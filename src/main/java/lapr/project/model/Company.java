@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
 import org.apache.commons.lang3.StringUtils;

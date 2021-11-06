@@ -1,11 +1,9 @@
 package lapr.project.ui;
 
 import lapr.project.controller.App;
-import lapr.project.model.CalculatorExample;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**

@@ -93,4 +93,7 @@ public class App {
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
     }
 
+    public AuthFacade getAuthFacade() {
+        return authFacade;
     }
+}
