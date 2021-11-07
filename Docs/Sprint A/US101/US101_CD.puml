@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ImportShipsUI{
+}
+
+class ImportShipsController{
++importShips(path)
+
+}
+
+class ShipImporter{
+}
+
+class CsvUtils{
++readFile(path)
+}
+
+class Company{
++getShipStore()
+}
+
+class ShipStore{
++getShip(mmsi)
++exists(mmsi);
+}
+
+class Ship{
++addPosition(position)
+}
+
+class Position{
+}
+
+class PositionTree{
++add(position)
+}
+
+ImportShipsUI ..> ImportShipsController
+ImportShipsController ..> ShipImporter
+ShipImporter --> CsvUtils
+ShipImporter --> Company
+Company --> ShipStore
+ShipStore --> Ship
+Ship -> PositionTree
+Ship -> Position
+PositionTree --> Position
+
+@enduml

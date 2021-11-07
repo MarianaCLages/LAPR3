@@ -1,0 +1,16 @@
+@startuml
+autonumber
+actor TrafficManager
+activate TrafficManager
+
+TrafficManager -> System: Asks to import the ships
+activate System
+System --> TrafficManager: Asks for file path
+deactivate System
+
+TrafficManager -> System: Introduces the path
+activate System
+TrafficManager <-- System: Informs the success of the operation
+deactivate System
+deactivate TrafficManager
+@enduml
