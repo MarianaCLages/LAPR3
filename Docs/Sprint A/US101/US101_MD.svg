@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css"
+     height="400px" preserveAspectRatio="none" style="width:132px;height:400px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 132 400" width="132px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1cn9qrmndypy0" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix"
+                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g><!--MD5=[0dc7f2ddb409b58bcf52b12238c25399]
+class Ship-->
+        <rect codeLine="3" fill="#FEFECE" filter="url(#f1cn9qrmndypy0)" height="150.6875" id="Ship"
+              style="stroke:#A80036;stroke-width:1.5;" width="87" x="19" y="7"/>
+        <ellipse cx="47.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M49.5,19.5 Q49.7031,19 49.9375,18.75 Q50.1719,18.5 50.4375,18.5 Q50.9063,18.5 51.2031,18.7813 Q51.5,19.0625 51.5,19.7188 L51.5,21.2813 Q51.5,21.9375 51.2188,22.2188 Q50.9375,22.5 50.5,22.5 Q50.1094,22.5 49.8594,22.3281 Q49.6094,22.1563 49.5,21.7031 Q49.4531,21.3906 49.2813,21.2188 Q48.9688,20.8906 48.4063,20.7031 Q47.8438,20.5 47.2813,20.5 Q46.5781,20.5 45.9844,20.7813 Q45.4063,21.0625 44.9531,21.6875 Q44.5,22.3125 44.5,23.1719 L44.5,24.0938 Q44.5,25.125 45.3438,25.8125 Q46.1875,26.5 47.6875,26.5 Q48.5781,26.5 49.2031,26.2969 Q49.5625,26.1875 49.9688,25.8281 Q50.2344,25.625 50.375,25.5625 Q50.5156,25.5 50.6875,25.5 Q51.0156,25.5 51.25,25.7656 Q51.5,26.0156 51.5,26.375 Q51.5,26.7188 51.1563,27.125 Q50.6563,27.7188 49.8594,28.0469 Q48.8125,28.5 47.5313,28.5 Q46.0313,28.5 44.8281,27.9063 Q43.8594,27.4375 43.1719,26.4219 Q42.5,25.4063 42.5,24.2031 L42.5,23.1094 Q42.5,21.8594 43.0938,20.7656 Q43.7031,19.6719 44.75,19.0938 Q45.8125,18.5 47,18.5 Q47.7188,18.5 48.3438,18.75 Q48.9688,19 49.5,19.5 Z "
+              fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="25" x="64.5"
+              y="27.9102">Ship
+        </text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="20" x2="105" y1="39" y2="39"/>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="47"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="39"
+              y="54.4189">MMSI
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="60.8359"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="61" x="39"
+              y="68.2549">VesselName
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="74.6719"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="18" x="39"
+              y="82.0908">IMO
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="88.5078"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="38" x="39"
+              y="95.9268">CallSign
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="102.3438"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="58" x="39"
+              y="109.7627">VesselType
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="116.1797"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="33" x="39"
+              y="123.5986">Length
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="130.0156"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="27" x="39"
+              y="137.4346">Width
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="27" y="143.8516"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="24" x="39"
+              y="151.2705">Draft
+        </text><!--MD5=[a64a835c3d62471a77f615251fdde58a]
+class Position-->
+        <rect codeLine="14" fill="#FEFECE" filter="url(#f1cn9qrmndypy0)" height="150.6875" id="Position"
+              style="stroke:#A80036;stroke-width:1.5;" width="111" x="7" y="236"/>
+        <ellipse cx="37.3" cy="252" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M39.3,248.5 Q39.5031,248 39.7375,247.75 Q39.9719,247.5 40.2375,247.5 Q40.7063,247.5 41.0031,247.7813 Q41.3,248.0625 41.3,248.7188 L41.3,250.2813 Q41.3,250.9375 41.0188,251.2188 Q40.7375,251.5 40.3,251.5 Q39.9094,251.5 39.6594,251.3281 Q39.4094,251.1563 39.3,250.7031 Q39.2531,250.3906 39.0813,250.2188 Q38.7688,249.8906 38.2063,249.7031 Q37.6438,249.5 37.0813,249.5 Q36.3781,249.5 35.7844,249.7813 Q35.2063,250.0625 34.7531,250.6875 Q34.3,251.3125 34.3,252.1719 L34.3,253.0938 Q34.3,254.125 35.1438,254.8125 Q35.9875,255.5 37.4875,255.5 Q38.3781,255.5 39.0031,255.2969 Q39.3625,255.1875 39.7688,254.8281 Q40.0344,254.625 40.175,254.5625 Q40.3156,254.5 40.4875,254.5 Q40.8156,254.5 41.05,254.7656 Q41.3,255.0156 41.3,255.375 Q41.3,255.7188 40.9563,256.125 Q40.4563,256.7188 39.6594,257.0469 Q38.6125,257.5 37.3313,257.5 Q35.8313,257.5 34.6281,256.9063 Q33.6594,256.4375 32.9719,255.4219 Q32.3,254.4063 32.3,253.2031 L32.3,252.1094 Q32.3,250.8594 32.8938,249.7656 Q33.5031,248.6719 34.55,248.0938 Q35.6125,247.5 36.8,247.5 Q37.5188,247.5 38.1438,247.75 Q38.7688,248 39.3,248.5 Z "
+              fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="45" x="54.7"
+              y="256.9102">Position
+        </text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="117" y1="268" y2="268"/>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="276"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="69" x="27"
+              y="283.4189">BaseDateTime
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="289.8359"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="20" x="27"
+              y="297.2549">LAT
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="303.6719"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="27"
+              y="311.0908">LONG
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="317.5078"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="23" x="27"
+              y="324.9268">SOG
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="331.3438"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="23" x="27"
+              y="338.7627">COG
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="345.1797"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="39" x="27"
+              y="352.5986">Heading
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="359.0156"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="27"
+              y="366.4346">Cargo
+        </text>
+        <rect fill="none" height="6" style="stroke:#C82930;stroke-width:1.0;" width="6" x="15" y="372.8516"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="85" x="27"
+              y="380.2705">TransceiverClass
+        </text><!--MD5=[cff912bd906a240c4b73f83b903cfe61]
+link Ship to Position-->
+        <path codeLine="25" d="M62.5,158.14 C62.5,181.43 62.5,207.19 62.5,230.81 " fill="none" id="Ship-to-Position"
+              style="stroke:#A80036;stroke-width:1.0;"/>
+        <polygon fill="#A80036" points="62.5,235.81,66.5,226.81,62.5,230.81,58.5,226.81,62.5,235.81"
+                 style="stroke:#A80036;stroke-width:1.0;"/>
+        <polygon fill="#000000" points="67.5,202.1758,70.4389,193.1307,64.5611,193.1307,67.5,202.1758"
+                 style="stroke:#000000;stroke-width:1.0;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="76.5"
+              y="202.4951">has a
+        </text><!--MD5=[fdd33bd2ef22ddb807b63e94e5b55117]
+@startuml
+hide methods
+
+class Ship{
+-MMSI
+-VesselName
+-IMO
+-CallSign
+-VesselType
+-Length
+-Width
+-Draft
+}
+
+class Position{
+-BaseDateTime
+-LAT
+-LONG
+-SOG
+-COG
+-Heading
+-Cargo
+-TransceiverClass
+}
+
+Ship - -> Position : has a >
+
+@enduml
+
+PlantUML version 1.2021.11(Sat Oct 02 14:26:11 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+-->
+    </g>
+</svg>
