@@ -1,0 +1,74 @@
+@startuml
+autonumber
+actor TrafficManager
+participant ImportShipsUI as UI
+participant ImportShipsController as Controller
+participant ShipImporter as Import
+participant "CsvUtils" as Utils
+participant "Company" as Company
+participant ":ShipStore" as SStore
+participant "newShip:Ship" as Ship
+participant ":Position" as Position
+participant ":PositionTree" as PositionTree
+participant ":PositionTree" as PositionTree1
+
+
+activate TrafficManager
+
+
+TrafficManager -> UI: Asks to import the ships
+activate UI
+UI --> TrafficManager: Asks for file path
+deactivate UI
+
+TrafficManager -> UI: Introduces the path
+activate UI
+UI -> Controller: importShips(path)
+activate Controller
+Controller -> Import: importShips(path)
+activate Import
+Import -> Utils: readFile(path)
+activate Utils
+deactivate Utils
+Import -> Company: getShipList()
+
+loop for each array in list
+Import -> SStore: exists(array[0])
+activate SStore
+deactivate
+note right
+first element of the array
+is the MMSI of the boat
+end note
+
+alt MMSI already exists
+Import -> SStore: getShip(MMSI)
+activate SStore
+deactivate
+
+
+else MMSI don't exist
+Import -> Ship**: new Ship()
+activate Ship
+Ship -->PositionTree1**: PositionTree()
+deactivate
+
+
+end
+Import -> Ship: addPosition()
+activate Ship
+Ship --> Position**: Position()
+Ship --> PositionTree: add(Position)
+activate PositionTree
+deactivate
+deactivate
+end
+return
+return
+deactivate Import
+
+deactivate Controller
+TrafficManager <-- UI: Informs the success of the operation
+deactivate UI
+deactivate TrafficManager
+@enduml

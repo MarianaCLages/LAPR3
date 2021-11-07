@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentScriptType="application/ecmascript" contentStyleType="text/css"
+     height="887.4px" preserveAspectRatio="none" style="width:1287px;height:887px;background:#FFFFFF;" version="1.1"
+     viewBox="0 0 1287 887" width="1287px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1wmm81dzc94j7" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="1.8"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix"
+                           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="3.6" dy="3.6" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="705.2766" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="45.9" y="89.6484"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27.3164" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="281.7" y="109.7648"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="630.5273" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="281.7" y="164.3977"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="575.8945" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="409.5" y="191.7141"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="521.2617" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="537.3" y="219.0305"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="644.4" y="246.3469"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="801" y="362.6543"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="801" y="451.6453"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="32.9484" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="894.15" y="529.2141"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="96.2648" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="894.15" y="610.4109"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="1105.65" y="679.6758"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="399.7125" style="stroke:#000000;stroke-width:1.8;"
+              width="795.15" x="479.7" y="314.1633"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="168.982" style="stroke:#000000;stroke-width:1.8;"
+              width="777.15" x="488.7" y="415.0125"/>
+        <rect fill="#FFFFFF" height="98.1492" style="stroke:none;stroke-width:0.9;" width="777.15" x="488.7"
+              y="485.8453"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="50.4" x2="50.4" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="286.2" x2="286.2" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="414" x2="414" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="541.8" x2="541.8" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="648.9" x2="648.9" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="723.6" x2="723.6" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="805.5" x2="805.5" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="898.2" x2="898.2" y1="530.0719"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="1022.85" x2="1022.85" y1="647.5852"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="1110.15" x2="1110.15" y1="80.6484"
+              y2="811.125"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:5.0,5.0;" x1="1210.95" x2="1210.95" y1="572.0203"
+              y2="811.125"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="86.4" x="4.5"
+              y="77.8799">TrafficManager
+        </text>
+        <ellipse cx="50.4" cy="13.5" fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" rx="7.2" ry="7.2"
+                 style="stroke:#A80036;stroke-width:1.8;"/>
+        <path d="M50.4,20.7 L50.4,45 M38.7,27.9 L62.1,27.9 M50.4,45 L38.7,58.5 M50.4,45 L62.1,58.5 " fill="none"
+              filter="url(#f1wmm81dzc94j7)" style="stroke:#A80036;stroke-width:1.8;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="86.4" x="4.5"
+              y="823.3049">TrafficManager
+        </text>
+        <ellipse cx="50.4" cy="835.0734" fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" rx="7.2" ry="7.2"
+                 style="stroke:#A80036;stroke-width:1.8;"/>
+        <path d="M50.4,842.2734 L50.4,866.5734 M38.7,849.4734 L62.1,849.4734 M50.4,866.5734 L38.7,880.0734 M50.4,866.5734 L62.1,880.0734 "
+              fill="none" filter="url(#f1wmm81dzc94j7)" style="stroke:#A80036;stroke-width:1.8;"/>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="90" x="239.4" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="77.4"
+              x="245.7" y="67.0799">ImportShipsUI
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="90" x="239.4" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="77.4"
+              x="245.7" y="829.6049">ImportShipsUI
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="135" x="344.7" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="122.4" x="351"
+              y="67.0799">ImportShipsController
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="135" x="344.7" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="122.4" x="351"
+              y="829.6049">ImportShipsController
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="84.6" x="497.7" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="72" x="504"
+              y="67.0799">ShipImporter
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="84.6" x="497.7" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="72" x="504"
+              y="829.6049">ShipImporter
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="57.6" x="618.3" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="45" x="624.6"
+              y="67.0799">CsvUtils
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="57.6" x="618.3" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="45" x="624.6"
+              y="829.6049">CsvUtils
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="66.6" x="688.5" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="54" x="694.8"
+              y="67.0799">Company
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="66.6" x="688.5" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="54" x="694.8"
+              y="829.6049">Company
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="72" x="767.7" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="59.4" x="774"
+              y="67.0799">:ShipStore
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="72" x="767.7" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="59.4" x="774"
+              y="829.6049">:ShipStore
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="89.1" x="852.3" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="76.5"
+              x="858.6" y="829.6049">newShip:Ship
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="61.2" x="990.45" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="48.6"
+              x="996.75" y="829.6049">:Position
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="88.2" x="1064.25" y="47.7"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="75.6"
+              x="1070.55" y="67.0799">:PositionTree
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="88.2" x="1064.25" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="75.6"
+              x="1070.55" y="829.6049">:PositionTree
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="88.2" x="1165.05" y="810.225"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="75.6"
+              x="1171.35" y="829.6049">:PositionTree
+        </text>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="705.2766" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="45.9" y="89.6484"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27.3164" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="281.7" y="109.7648"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="630.5273" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="281.7" y="164.3977"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="575.8945" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="409.5" y="191.7141"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="521.2617" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="537.3" y="219.0305"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="644.4" y="246.3469"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="801" y="362.6543"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="801" y="451.6453"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="32.9484" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="894.15" y="529.2141"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="96.2648" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="894.15" y="610.4109"/>
+        <rect fill="#FFFFFF" filter="url(#f1wmm81dzc94j7)" height="27" style="stroke:#A80036;stroke-width:0.9;"
+              width="9" x="1105.65" y="679.6758"/>
+        <polygon fill="#A80036" points="270.9,106.1648,279.9,109.7648,270.9,113.3648,274.5,109.7648"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="54.9" x2="276.3" y1="109.7648" y2="109.7648"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="61.2" y="105.394">1
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="127.8"
+              x="71.1" y="105.394">Asks to import the ships
+        </text>
+        <polygon fill="#A80036" points="64.8,133.4813,55.8,137.0813,64.8,140.6813,61.2,137.0813"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="59.4" x2="285.3" y1="137.0813"
+              y2="137.0813"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="70.2" y="132.7104">2
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="87.3" x="80.1"
+              y="132.7104">Asks for file path
+        </text>
+        <polygon fill="#A80036" points="270.9,160.7977,279.9,164.3977,270.9,167.9977,274.5,164.3977"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="54.9" x2="276.3" y1="164.3977" y2="164.3977"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="61.2" y="160.0269">3
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="99.9" x="71.1"
+              y="160.0269">Introduces the path
+        </text>
+        <polygon fill="#A80036" points="398.7,188.1141,407.7,191.7141,398.7,195.3141,402.3,191.7141"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="290.7" x2="404.1" y1="191.7141" y2="191.7141"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="297" y="187.3433">4
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="91.8"
+              x="306.9" y="187.3433">importShips(path)
+        </text>
+        <polygon fill="#A80036" points="526.5,215.4305,535.5,219.0305,526.5,222.6305,530.1,219.0305"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="418.5" x2="531.9" y1="219.0305" y2="219.0305"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="424.8" y="214.6597">5
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="91.8"
+              x="434.7" y="214.6597">importShips(path)
+        </text>
+        <polygon fill="#A80036" points="633.6,242.7469,642.6,246.3469,633.6,249.9469,637.2,246.3469"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="639" y1="246.3469" y2="246.3469"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="552.6" y="241.9761">6
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="71.1"
+              x="562.5" y="241.9761">readFile(path)
+        </text>
+        <polygon fill="#A80036" points="712.8,297.0633,721.8,300.6633,712.8,304.2633,716.4,300.6633"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="718.2" y1="300.6633" y2="300.6633"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="552.6" y="296.2925">7
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="65.7"
+              x="562.5" y="296.2925">getShipList()
+        </text>
+        <path d="M479.7,314.1633 L545.4,314.1633 L545.4,321.3633 L536.4,330.3633 L479.7,330.3633 L479.7,314.1633 "
+              fill="#EEEEEE" style="stroke:#000000;stroke-width:0.9;"/>
+        <rect fill="none" height="399.7125" style="stroke:#000000;stroke-width:1.8;" width="795.15" x="479.7"
+              y="314.1633"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="25.2" x="493.2" y="327.2089">loop
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="9.9" font-weight="bold" lengthAdjust="spacing"
+              textLength="105.3" x="558.9" y="326.2403">[for each array in list]
+        </text>
+        <polygon fill="#A80036" points="790.2,359.0543,799.2,362.6543,790.2,366.2543,793.8,362.6543"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="795.6" y1="362.6543" y2="362.6543"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="552.6" y="358.2835">8
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="78.3"
+              x="562.5" y="358.2835">exists(array[0])
+        </text>
+        <path d="M814.5,335.1797 L814.5,372.9797 L959.4,372.9797 L959.4,344.1797 L950.4,335.1797 L814.5,335.1797 "
+              fill="#FBFB77" filter="url(#f1wmm81dzc94j7)" style="stroke:#A80036;stroke-width:0.9;"/>
+        <path d="M950.4,335.1797 L950.4,344.1797 L959.4,344.1797 L950.4,335.1797 " fill="#FBFB77"
+              style="stroke:#A80036;stroke-width:0.9;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="126" x="819.9"
+              y="351.8253">first element of the array
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="121.5"
+              x="819.9" y="366.5417">is the MMSI of the boat
+        </text>
+        <path d="M488.7,415.0125 L543.6,415.0125 L543.6,422.2125 L534.6,431.2125 L488.7,431.2125 L488.7,415.0125 "
+              fill="#EEEEEE" style="stroke:#000000;stroke-width:0.9;"/>
+        <rect fill="none" height="168.982" style="stroke:#000000;stroke-width:1.8;" width="777.15" x="488.7"
+              y="415.0125"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="14.4" x="502.2" y="428.0581">alt
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="9.9" font-weight="bold" lengthAdjust="spacing"
+              textLength="106.2" x="557.1" y="427.0896">[MMSI already exists]
+        </text>
+        <polygon fill="#A80036" points="790.2,448.0453,799.2,451.6453,790.2,455.2453,793.8,451.6453"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="795.6" y1="451.6453" y2="451.6453"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="6.3" x="552.6" y="447.2745">9
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="77.4"
+              x="562.5" y="447.2745">getShip(MMSI)
+        </text>
+        <line style="stroke:#000000;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="488.7" x2="1265.85" y1="486.7453"
+              y2="486.7453"/>
+        <text fill="#000000" font-family="sans-serif" font-size="9.9" font-weight="bold" lengthAdjust="spacing"
+              textLength="89.1" x="493.2" y="497.0224">[MMSI don't exist]
+        </text>
+        <polygon fill="#A80036" points="841.5,516.6141,850.5,520.2141,841.5,523.8141,845.1,520.2141"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="846.9" y1="520.2141" y2="520.2141"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="552.6" y="515.8433">10
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="54.9"
+              x="568.8" y="515.8433">new Ship()
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="89.1" x="852.3" y="500.0977"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="76.5"
+              x="858.6" y="519.4775">newShip:Ship
+        </text>
+        <polygon fill="#A80036" points="1154.25,558.5625,1163.25,562.1625,1154.25,565.7625,1157.85,562.1625"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="898.65" x2="1159.65" y1="562.1625"
+              y2="562.1625"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="904.95" y="557.7917">11
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="72" x="921.15"
+              y="557.7917">PositionTree()
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="88.2" x="1165.05" y="542.0461"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="75.6"
+              x="1171.35" y="561.426">:PositionTree
+        </text>
+        <polygon fill="#A80036" points="883.35,606.8109,892.35,610.4109,883.35,614.0109,886.95,610.4109"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;" x1="546.3" x2="888.75" y1="610.4109" y2="610.4109"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="552.6" y="606.0401">12
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="68.4"
+              x="568.8" y="606.0401">addPosition()
+        </text>
+        <polygon fill="#A80036" points="979.65,634.1273,988.65,637.7273,979.65,641.3273,983.25,637.7273"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="903.15" x2="985.05" y1="637.7273"
+              y2="637.7273"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="909.45" y="633.3565">13
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="49.5"
+              x="925.65" y="633.3565">Position()
+        </text>
+        <rect fill="#FEFECE" filter="url(#f1wmm81dzc94j7)" height="28.4484" style="stroke:#A80036;stroke-width:1.35;"
+              width="61.2" x="990.45" y="617.6109"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12.6" lengthAdjust="spacing" textLength="48.6"
+              x="996.75" y="636.9908">:Position
+        </text>
+        <polygon fill="#A80036" points="1094.85,676.0758,1103.85,679.6758,1094.85,683.2758,1098.45,679.6758"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="903.15" x2="1100.25" y1="679.6758"
+              y2="679.6758"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="909.45" y="675.305">14
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="68.4"
+              x="925.65" y="675.305">add(Position)
+        </text>
+        <polygon fill="#A80036" points="428.4,736.6922,419.4,740.2922,428.4,743.8922,424.8,740.2922"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="423" x2="540.9" y1="740.2922"
+              y2="740.2922"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="433.8" y="735.9214">15
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="0" x="453.6"
+              y="735.9214"/>
+        <polygon fill="#A80036" points="300.6,764.0086,291.6,767.6086,300.6,771.2086,297,767.6086"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="295.2" x2="413.1" y1="767.6086"
+              y2="767.6086"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="306" y="763.2378">16
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="0" x="325.8"
+              y="763.2378"/>
+        <polygon fill="#A80036" points="60.3,791.325,51.3,794.925,60.3,798.525,56.7,794.925"
+                 style="stroke:#A80036;stroke-width:0.9;"/>
+        <line style="stroke:#A80036;stroke-width:0.9;stroke-dasharray:2.0,2.0;" x1="54.9" x2="285.3" y1="794.925"
+              y2="794.925"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" font-weight="bold" lengthAdjust="spacing"
+              textLength="12.6" x="65.7" y="790.5542">17
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11.7" lengthAdjust="spacing" textLength="189" x="81.9"
+              y="790.5542">Informs the success of the operation
+        </text><!--MD5=[8e77fd2c6eed5221c5d79411e11aabb1]
+@startuml
+autonumber
+actor TrafficManager
+participant ImportShipsUI as UI
+participant ImportShipsController as Controller
+participant ShipImporter as Import
+participant "CsvUtils" as Utils
+participant "Company" as Company
+participant ":ShipStore" as SStore
+participant "newShip:Ship" as Ship
+participant ":Position" as Position
+participant ":PositionTree" as PositionTree
+participant ":PositionTree" as PositionTree1
+
+
+activate TrafficManager
+
+
+TrafficManager -> UI: Asks to import the ships
+activate UI
+UI - -> TrafficManager: Asks for file path
+deactivate UI
+
+TrafficManager -> UI: Introduces the path
+activate UI
+UI -> Controller: importShips(path)
+activate Controller
+Controller -> Import: importShips(path)
+activate Import
+Import -> Utils: readFile(path)
+activate Utils
+deactivate Utils
+Import -> Company: getShipList()
+
+loop for each array in list
+Import -> SStore: exists(array[0])
+activate SStore
+deactivate
+note right
+first element of the array
+is the MMSI of the boat
+end note
+
+alt MMSI already exists
+Import -> SStore: getShip(MMSI)
+activate SStore
+deactivate
+
+
+else MMSI don't exist
+Import -> Ship**: new Ship()
+activate Ship
+Ship - ->PositionTree1**: PositionTree()
+deactivate
+
+
+end
+Import -> Ship: addPosition()
+activate Ship
+Ship - -> Position**: Position()
+Ship - -> PositionTree: add(Position)
+activate PositionTree
+deactivate
+deactivate
+end
+return
+return
+deactivate Import
+
+deactivate Controller
+TrafficManager <- - UI: Informs the success of the operation
+deactivate UI
+deactivate TrafficManager
+@enduml
+
+PlantUML version 1.2021.11(Sat Oct 02 14:26:11 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+-->
+    </g>
+</svg>
