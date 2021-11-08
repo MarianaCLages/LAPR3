@@ -215,6 +215,10 @@ dist/
 nbdist/
 .nb-gradle/
 
+
+
+# End of https://www.toptal.com/developers/gitignore/api/eclipse,maven,java,intellij+all,netbeans
+
 ### Visual Paradigm ###
 .vpprefdata/
 *.vpp~*
@@ -222,6 +226,3 @@ nbdist/
 *.vpp.working-journal
 *.lock
 tmp/*
-
-
-# End of https://www.toptal.com/developers/gitignore/api/eclipse,maven,java,intellij+all,netbeans
