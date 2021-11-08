@@ -10,6 +10,7 @@ public class Position implements Comparable<Position> {
     long sog;
     long cog;
 
+
     public Position(LocalDateTime dateHour, long latitude, long longitude, long heading, long sog, long cog) {
         this.dateHour = dateHour;
         this.latitude = latitude;
@@ -47,6 +48,7 @@ public class Position implements Comparable<Position> {
     public void setHeading(long heading) {
         this.heading = heading;
     }
+
 
     public long getSog() {
         return sog;
