@@ -522,4 +522,21 @@ public class ShipTest {
         assertNotNull(shipgeral.getTotalNumberOfMovements());
     }
 
+    @Test
+    void writeAllPosTest() {
+
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        LocalDateTime li = LocalDateTime.of(2020,12,01,01,01,01);
+        LocalDateTime lf = LocalDateTime.of(2020,12,31,23,59,50);
+
+        String expected = "Positional Message:";
+        String expected2 = "Positional Message:\n" +
+                "Position{latitude=0.0, longitude=0.0, heading=0.0, sog=0.0, cog=1.0}";
+
+
+        //Act + Assert
+        assertEquals(expected, shipgeral.writeAllPos(null,null));
+        assertEquals(expected2,shipgeral.writeAllPos(li,lf));
+    }
 }
