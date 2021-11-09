@@ -1,0 +1,28 @@
+@startuml
+hide methods
+
+class Ship{
+-MMSI
+-VesselName
+-IMO
+-CallSign
+-VesselType
+-Length
+-Width
+-Draft
+}
+
+class Position{
+-BaseDateTime
+-LAT
+-LONG
+-SOG
+-COG
+-Heading
+-Cargo
+-TransceiverClass
+}
+
+Ship --> Position : has a >
+
+@enduml
