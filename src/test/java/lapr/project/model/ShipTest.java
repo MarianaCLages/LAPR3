@@ -7,43 +7,43 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ShipTest {
+class ShipTest {
 
 
-    Ship shipgeral = new Ship(111111111, "name", 1111111, 1, 1, "A", "A", 1, 1, 1, 1);
+    Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 
     LocalDateTime dateTime =LocalDateTime.now();
 
     Position posgeral = new Position(dateTime, 0, 0, 1, 0,0);
 
     @Test
-    public void checkMMSITest() {
+    void checkMMSITest() {
 
         //Arrange
         //Act
         try {
-            Ship ship1 = new Ship(111, "name", 1111111, 1, 1, "A", "A", 1, 1, 1, 1);
-            Ship ship2 = new Ship(111111111, "name", 1111111, 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship1 = new Ship(111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 
         } catch (IllegalArgumentException ex) {
             //Assert
-            assertEquals(ex.getMessage(), "MMSI code must have 9 digits!");
+            assertEquals("MMSI code must have 9 digits!", ex.getMessage());
         }
 
 
     }
 
     @Test
-    public void checkIMOTest() {
+    void checkIMOTest() {
 
         //Arrange
         //Act
         try {
-            Ship ship1 = new Ship(111111111, "name", 11, 1, 1, "A", "A", 1, 1, 1, 1);
-            Ship ship2 = new Ship(111111111, "name", 1111111, 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship1 = new Ship(111111111, "name", "11", 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship2 = new Ship(111111111, "name", "1111111", 1, 1, "A", "A", 1, 1, 1, 1);
         } catch (IllegalArgumentException ex) {
             //Assert
-            assertEquals(ex.getMessage(), "IMO code must have 7 digits!");
+            assertEquals("IMO code must have 7 digits!", ex.getMessage());
         }
 
 
@@ -51,7 +51,7 @@ public class ShipTest {
 
 
     @Test
-    public void getMmsiTest() {
+    void getMmsiTest() {
 
         //Arrange
         //Act
@@ -60,7 +60,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setMmsiTest() {
+    void setMmsiTest() {
         //Arrange
         //Act
         shipgeral.setMmsi(222222222);
@@ -69,7 +69,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getNameTest() {
+    void getNameTest() {
         //Arrange
         //Act
         //Assert
@@ -78,7 +78,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setNameTest() {
+    void setNameTest() {
         //Arrange
         //Act
         shipgeral.setName("barco");
@@ -88,26 +88,26 @@ public class ShipTest {
     }
 
     @Test
-    public void getImoTest() {
+    void getImoTest() {
         //Arrange
         //Act
         //Assert
-        assertEquals(1111111, shipgeral.getImo());
+        assertEquals("IMO1111111", shipgeral.getImo());
     }
 
     @Test
-    public void setImoTest() {
+    void setImoTest() {
 
         //Arrange
         //Act
-        shipgeral.setImo(2222222);
+        shipgeral.setImo("IMO2222222");
 
         //Assert
-        assertEquals(2222222, shipgeral.getImo());
+        assertEquals("IMO2222222", shipgeral.getImo());
     }
 
     @Test
-    public void getNumGenTest() {
+    void getNumGenTest() {
         //Arrange
         //Act
         //Assert
@@ -115,7 +115,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setNumGenTest() {
+    void setNumGenTest() {
 
         //Arrange
         //Act
@@ -126,7 +126,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getCallSignTest() {
+    void getCallSignTest() {
 
         //Arrange
         //Act
@@ -135,7 +135,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setCallSignTest() {
+    void setCallSignTest() {
 
         //Arrange
         //Act
@@ -145,7 +145,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getVesselTypeTest() {
+    void getVesselTypeTest() {
 
         //Arrange
         //Act
@@ -154,7 +154,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setVesselTypeTest() {
+    void setVesselTypeTest() {
 
         //Arrange
         //Act
@@ -164,7 +164,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getLength() {
+    void getLength() {
 
         //Arrange
         //Act
@@ -173,7 +173,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setLengthTest() {
+    void setLengthTest() {
 
         //Arrange
         //Act
@@ -183,7 +183,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getWidthTest() {
+    void getWidthTest() {
 
         //Arrange
         //Act
@@ -192,7 +192,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setWidthTest() {
+    void setWidthTest() {
 
         //Arrange
         //Act
@@ -202,7 +202,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getCapacityTest() {
+    void getCapacityTest() {
 
         //Arrange
         //Act
@@ -211,7 +211,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setCapacityTest() {
+    void setCapacityTest() {
 
         //Arrange
         //Act
@@ -221,7 +221,7 @@ public class ShipTest {
     }
 
     @Test
-    public void getDraftTest() {
+    void getDraftTest() {
 
         //Arrange
         //Act
@@ -230,7 +230,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setDraftTest() {
+    void setDraftTest() {
 
         //Arrange
         //Act
@@ -241,7 +241,7 @@ public class ShipTest {
     }
 
     @Test
-    public void setGenPowerOutputTest() {
+    void setGenPowerOutputTest() {
 
         //Arrange
         //Act
@@ -252,7 +252,7 @@ public class ShipTest {
 
 
     @Test
-    public void toStringTest() {
+    void toStringTest() {
 
         //Arrange
         String expected = shipgeral.toString();

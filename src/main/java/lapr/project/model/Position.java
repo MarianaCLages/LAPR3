@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class Position implements Comparable<Position> {
     LocalDateTime dateHour;
-    long latitude;
-    long longitude;
-    long heading;
-    long sog;
-    long cog;
+    double latitude;
+    double longitude;
+    double heading;
+    double sog;
+    double cog;
 
 
-    public Position(LocalDateTime dateHour, long latitude, long longitude, long heading, long sog, long cog) {
+    public Position(LocalDateTime dateHour, double latitude, double longitude, double heading, double sog, double cog) {
         this.dateHour = dateHour;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -25,7 +25,7 @@ public class Position implements Comparable<Position> {
     }
 
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -33,7 +33,7 @@ public class Position implements Comparable<Position> {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -41,7 +41,7 @@ public class Position implements Comparable<Position> {
         this.longitude = longitude;
     }
 
-    public long getHeading() {
+    public double getHeading() {
         return heading;
     }
 
@@ -50,7 +50,7 @@ public class Position implements Comparable<Position> {
     }
 
 
-    public long getSog() {
+    public double getSog() {
         return sog;
     }
 
@@ -58,7 +58,7 @@ public class Position implements Comparable<Position> {
         this.sog = sog;
     }
 
-    public long getCog() {
+    public double getCog() {
         return cog;
     }
 

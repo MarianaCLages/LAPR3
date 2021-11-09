@@ -292,6 +292,17 @@ public class BinarySearchTree<E extends Comparable> {
         toStringRec(root.getLeft(), level + 1, sb);
     }
 
+    public E biggestElement() {
+        return biggestElement(root);
+    }
+
+    protected E biggestElement(Node<E> node) {
+        if (node == null) return null;
+        if (node.getRight() == null) return node.getElement();
+        return biggestElement(node.getRight());
+    }
+
+
     /**
      * Nested static class for a binary search tree node.
      */

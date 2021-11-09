@@ -1,29 +1,54 @@
 package lapr.project.model;
 
+import lapr.project.model.stores.PositionTree;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Ship implements Comparable<Ship> {
 
-    //dados estaticos
-    int mmsi;
-    String name;
-    int imo;
-    int numGen;
-    long genPowerOutput;
-    String callSign;
-    String vesselType;
-    double length;
-    double width;
-    double capacity;
-    double draft;
 
     //dados dinamicos
-    Map<java.util.Date, Position> posDate; // DateTime is the key, which will save the specific position of its time.
-    List<Position> Date;
-    BinarySearchTree<Position> binaryTreePosition;
+    private PositionTree posDate;
+    private List<Position> Date;
+    //dados estaticos
+    private char trancieverClass;
+    private String cargo;
+    private int mmsi;
+    private String name;
+    private String imo;
+    private int numGen;
+    private long genPowerOutput;
+    private String callSign;
+    private String vesselType;
+    private double length;
+    private double width;
+    private double capacity;
+    private double draft;
 
-    public Ship(int mmsi, String name, int imo, int numGen, long genPowerOutput, String callSign, String vesselType, double length, double width, double capacity, double draft) {
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char trancieverClass) {
+        checkIMO(imo);
+        checkMMSI(mmsi);
+
+        this.mmsi = mmsi;
+        this.name = name;
+        this.imo = imo;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.draft = draft;
+        this.cargo = cargo;
+        this.trancieverClass = trancieverClass;
+
+        this.posDate = new PositionTree();
+        Date = new ArrayList<>();
+    }
+
+    public Ship(int mmsi, String name, String imo, int numGen, long genPowerOutput, String callSign, String vesselType, double length, double width, double capacity, double draft) {
         checkIMO(imo);
         checkMMSI(mmsi);
 
@@ -39,9 +64,22 @@ public class Ship implements Comparable<Ship> {
         this.capacity = capacity;
         this.draft = draft;
 
-        this.posDate = new HashMap<>();
+        this.posDate = new PositionTree();
         Date = new ArrayList<>();
-        binaryTreePosition = new BinarySearchTree<>();
+    }
+
+
+    public Ship(int mmsi) {
+        checkMMSI(mmsi);
+        this.mmsi = mmsi;
+    }
+
+    public Position createPosition(LocalDateTime time, double latitude, double longitude, double heading, double sog, double cog) {
+        return new Position(time, latitude, longitude, heading, sog, cog);
+    }
+
+    public boolean insertPosition(Position position) {
+        return posDate.addPosition(position);
     }
 
     //Getters
@@ -49,104 +87,89 @@ public class Ship implements Comparable<Ship> {
         return mmsi;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getImo() {
-        return imo;
-    }
-
-    public int getNumGen() {
-        return numGen;
-    }
-
-    public String getCallSign() {
-        return callSign;
-    }
-
-    public String getVesselType() {
-        return vesselType;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getCapacity() {
-        return capacity;
-    }
-
-    public double getDraft() {
-        return draft;
-    }
-
-    public long getGenPowerOutput() {
-        return genPowerOutput;
-    }
-
-    public Map<Date, Position> getPosDate() {
-        return posDate;
-    }
-
-
-    public List<Position> getDate() {
-        return Date;
-    }
-
-    public BinarySearchTree<Position> getBinaryTreePosition() {
-        return binaryTreePosition;
-    }
-
-
-    //Setter
-
-    public void setDate(List<Position> date) {
-        Date = date;
-    }
-
+    //Setters
     public void setMmsi(int mmsi) {
         this.mmsi = mmsi;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setImo(int imo) {
+    public String getImo() {
+        return imo;
+    }
+
+    public void setImo(String imo) {
         this.imo = imo;
+    }
+
+    public int getNumGen() {
+        return numGen;
     }
 
     public void setNumGen(int numGen) {
         this.numGen = numGen;
     }
 
+    public String getCallSign() {
+        return callSign;
+    }
+
     public void setCallSign(String callSign) {
         this.callSign = callSign;
+    }
+
+    public String getVesselType() {
+        return vesselType;
     }
 
     public void setVesselType(String vesselType) {
         this.vesselType = vesselType;
     }
 
+    public double getLength() {
+        return length;
+    }
+
     public void setLength(long length) {
         this.length = length;
+    }
+
+    public double getWidth() {
+        return width;
     }
 
     public void setWidth(long width) {
         this.width = width;
     }
 
+    public double getCapacity() {
+        return capacity;
+    }
+
     public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
 
+    public PositionTree getPosDate() {
+        return posDate;
+    }
+
+    public double getDraft() {
+        return draft;
+    }
+
     public void setDraft(long draft) {
         this.draft = draft;
+    }
+
+    public long getGenPowerOutput() {
+        return genPowerOutput;
     }
 
     public void setGenPowerOutput(long genPowerOutput) {
@@ -154,60 +177,35 @@ public class Ship implements Comparable<Ship> {
     }
 
 
-    //Checks
-    public boolean checkMMSI(int mmsi) {
-        if (mmsi < 100000000 || mmsi > 999999999) {
-            throw new IllegalArgumentException("MMSI code must have 9 digits!");
-        }
-        return true;
+    public List<Position> getDate() {
+        return Date;
     }
 
-    public boolean checkIMO(int imo) {
-        if (imo < 1000000 || imo > 9999999) {
+    public void setDate(List<Position> date) {
+        Date = date;
+    }
+
+    //Checks
+    public void checkMMSI(int mmsi) {
+        if (mmsi > 99999999 && mmsi < 1000000000) {
+            return;
+        }
+        throw new IllegalArgumentException("MMSI code must have 9 digits!");
+    }
+
+    public void checkIMO(String imo) {
+        if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
             throw new IllegalArgumentException("IMO code must have 7 digits!");
         }
-        return true;
     }
+
+
 
     public String writeAllPos() {
 
-        String positionalMessage = "Positional Messages:";
-
-        Iterable<Position> itpos = binaryTreePosition.inOrder();
-        List<Position> posList = new ArrayList<>();
-        itpos.iterator().forEachRemaining(posList::add);
-
-
-        for (Position pos : posList) {
-            positionalMessage = positionalMessage + "\n" + pos.getDateHour() + ": " + pos.toString();
-        }
-
-        return positionalMessage;
-    }
-
-
-    public boolean addPosition(Position pos) {
-
-        if (pos == null) return false;
-        else {
-            this.binaryTreePosition.insert(pos);
-            return true;
-        }
-    }
-
-    public Position getPositionByLocalDateTime(Date dt) {
-
-        Iterable<Position> itpos = binaryTreePosition.inOrder();
-
-        List<Position> posList = new ArrayList<>();
-        itpos.iterator().forEachRemaining(posList::add);
-
-        for (Position pos : posList) {
-            if (pos.getDateHour().equals(dt)) return pos;
-        }
-
         return null;
     }
+
 
     @Override
     public String toString() {
@@ -229,10 +227,25 @@ public class Ship implements Comparable<Ship> {
 
     @Override
     public int compareTo(Ship o) {
+        if (mmsi > o.mmsi) {
+            return 1;
+        } else if (mmsi < o.mmsi) {
+            return -1;
+        }
+        return 0;
+    }
 
-        if(this.mmsi > o.getMmsi()) return 1;
-        else if(this.mmsi < o.getMmsi()) return -1;
-        else return 0;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ship)) return false;
+        Ship ship = (Ship) o;
+        return getMmsi() == ship.getMmsi() && Objects.equals(getImo(), ship.getImo()) && getNumGen() == ship.getNumGen() && getGenPowerOutput() == ship.getGenPowerOutput() && getLength() == ship.getLength() && getWidth() == ship.getWidth() && getCapacity() == ship.getCapacity() && getDraft() == ship.getDraft() && Objects.equals(getName(), ship.getName()) && Objects.equals(getCallSign(), ship.getCallSign()) && Objects.equals(getVesselType(), ship.getVesselType());
+    }
 
-    } //Falta implementar isto
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMmsi(), getName(), getImo(), getNumGen(), getGenPowerOutput(), getCallSign(), getVesselType(), getLength(), getWidth(), getCapacity(), getDraft());
+    }
+
 }
