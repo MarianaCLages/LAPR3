@@ -4,6 +4,7 @@ package lapr.project.model.stores;
 import lapr.project.model.BinarySearchTree;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.shared.PairOfShips;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class ShipStore {
 
     public BinarySearchTree<Ship> shipBinarySearchTree;
+    public BinarySearchTree<PairOfShips> pairsOfShipsSearchTree;
 
     public ShipStore() {
         this.shipBinarySearchTree = new BinarySearchTree<>();
@@ -348,4 +350,28 @@ public class ShipStore {
             return 0;
         }
     }
+
+    public void getPairOfShipsInsideBST() {
+
+        List<Ship> lShip = transformBSTintoList();
+
+        for (int i = 0; i < lShip.size(); i++) {
+
+            Ship s1 = lShip.get(i);
+
+            for (int j = 1; j < lShip.size(); j++) {
+
+                Ship s2 = lShip.get(j);
+
+                if (!s1.equals(s2) && (s1.getDeltaDistance() == s2.getDeltaDistance() && (s1.getDeltaDistance() < 5000 && s2.getDeltaDistance() < 5000) && (s1.getDeltaDistance() > 10000 && s2.getDeltaDistance() > 10000))) {
+
+                    PairOfShips pairOfShips = new PairOfShips(s1, s2);
+                    pairsOfShipsSearchTree.insert(pairOfShips);
+
+                }
+            }
+        }
+    }
+
+
 }

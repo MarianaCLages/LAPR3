@@ -1,4 +1,4 @@
-/*package lapr.project.utils.auth.domain.store;
+package lapr.project.utils.auth.domain.store;
 
 import lapr.project.utils.auth.domain.OrgRole;
 import org.junit.jupiter.api.Assertions;
@@ -31,19 +31,6 @@ class OrgRoleStoreTest {
         OrgRole actual = orgRoleStore.getRoleById("12dfk");
         //Assert
         assertNotNull(actual);
-    }
-
-    @Test
-    void getOrgRoles() {
-
-        //Arrange
-        List<OrgRole> expected = new ArrayList<>();
-        expected.add(orgRole);
-        //Act
-        List<OrgRole> actual = orgRoleStore.getOrgRoles();
-        //Assert
-        assertEquals(expected, actual);
-
     }
 
     @Test
@@ -90,4 +77,4 @@ class OrgRoleStoreTest {
         //Assert
         assertEquals(expected, actual);
     }
-}*/
+}

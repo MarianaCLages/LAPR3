@@ -8,6 +8,8 @@ class UtilsTest {
 
     @Test
     void showAndSelectOne() {
+        //Arrange + Act + Assert
+       // assertNotNull(Utils.readLineFromConsole("This is a test"));
     }
 
     @Test

@@ -17,7 +17,7 @@ class AuthControllerTest {
     public void doLogin() {
 
         //Arrange
-        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem design");
         authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
@@ -27,6 +27,18 @@ class AuthControllerTest {
         //Assert
         assertEquals(expected, actual);
 
+    }
+
+    @Test
+    public void doLoginFalse() {
+
+        //Arrange
+        authController.doLogin(null, null);
+        boolean expected = false;
+        //Act
+        boolean actual = authController.getApp().getCurrentUserSession().isLoggedIn();
+        //Assert
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -40,6 +52,18 @@ class AuthControllerTest {
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
         //Assert
         assertNotNull(list);
+
+    }
+
+
+    @Test
+    public void getUserRolesNull() {
+
+        //Arrange + Act
+        authController.doLogout();
+        List<UserRoleDTO> list = authController.getUserRoles();
+        //Assert
+        assertEquals(list, null);
 
     }
 
