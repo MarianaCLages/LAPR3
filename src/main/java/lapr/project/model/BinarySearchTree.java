@@ -34,7 +34,9 @@ public class BinarySearchTree<E extends Comparable> {
 
 
     public E find(E element) {
+
         return find(root, element).getElement();
+
     }
 
     protected Node<E> find(Node<E> node, E element) {

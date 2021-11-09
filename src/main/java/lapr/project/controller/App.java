@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.Client;
 import lapr.project.model.Company;
+import lapr.project.model.Ship;
 import lapr.project.model.TrafficManager;
 import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
@@ -91,6 +92,8 @@ public class App {
         //email: TM00001@lei.pt pass: 495
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
+
+
     }
 
     public AuthFacade getAuthFacade() {

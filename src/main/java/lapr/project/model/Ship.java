@@ -200,6 +200,77 @@ public class Ship implements Comparable<Ship> {
     }
 
 
+    public String writeAllPos(LocalDateTime di, LocalDateTime df) {
+
+        String positionalMessage = "Positional Message:";
+
+        if(di == null || df == null) return positionalMessage;
+
+        Date initiald = java.sql.Timestamp.valueOf(di);
+        Date finald = java.sql.Timestamp.valueOf(df);
+
+
+
+
+        double d = 0;
+        List<Position> positionList = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(initiald);
+
+        PositionTree binaryTest = this.getPosDate();
+        Iterable<Position> posIterable = binaryTest.getInOrderList();
+        Iterator<Position> posIterator = posIterable.iterator();
+
+
+
+
+        while (initiald.before(finald)) {
+
+
+            if (calendar.getTime().getMinutes() == 60) {
+                calendar.add(Calendar.HOUR_OF_DAY, 1);
+                calendar.getTime().setMinutes(0);
+                calendar.getTime().setSeconds(0);
+            }
+            if (calendar.getTime().getSeconds() == 60) {
+                calendar.add(Calendar.MINUTE, 1);
+                calendar.getTime().setSeconds(0);
+            }
+
+
+            while (posIterator.hasNext()) {
+
+
+
+                Position pos = posIterator.next();
+                Date posDate = java.sql.Timestamp.valueOf(pos.getDate());
+
+                if (!posDate.before(initiald) && !posDate.after(initiald)) {
+                    positionList.add(pos);
+                }
+
+            }
+
+            posIterator = posIterable.iterator();
+
+            calendar.add(Calendar.SECOND, 1);
+            initiald = calendar.getTime();
+        }
+
+
+
+        if(positionList.isEmpty()) return positionalMessage;
+
+        for(Position pos : positionList){
+            positionalMessage =  positionalMessage +"\n" + pos.toString() ;
+        }
+
+
+
+        return positionalMessage;
+    }
+
     @Override
     public int compareTo(Ship o) {
         if (mmsi > o.mmsi) {
