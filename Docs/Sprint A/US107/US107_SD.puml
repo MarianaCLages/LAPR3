@@ -3,15 +3,12 @@ actor TrafficManager
 participant System
 
 activate TrafficManager
-TrafficManager -> System: asks for the TopN Ship pairs
+TrafficManager -> System: asks for the Ship pairs
 activate System
-System --> TrafficManager: asks the number of pairs
+System --> TrafficManager: returns the ship pairs
 deactivate System
 
-TrafficManager -> System: inserts the number of pairs
-activate System
-System --> TrafficManager: returns the pairs
-deactivate System
+
 
 deactivate TrafficManager
 @enduml
