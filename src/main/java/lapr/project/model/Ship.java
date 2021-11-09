@@ -236,9 +236,9 @@ public class Ship implements Comparable<Ship> {
         return DistanceCalculation.distanceTo(this.getPosDate().getSmallestPosition(), this.getPosDate().getBiggestPosition());
     }
 
-    public int getTotalNumberOfMovements(Ship s) {
+    public int getTotalNumberOfMovements() {
 
-        return s.getPosDate().getSize();
+        return this.getPosDate().getSize();
 
     }
 

@@ -4,17 +4,30 @@ package lapr.project.model;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class ShipTest {
+
+public class ShipTest {
 
 
     Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+    Ship shipgeral2 = new Ship(121111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    LocalDateTime dateTime =LocalDateTime.now();
+    String sdate = "31-12-2020 23:16";
+    LocalDateTime date = LocalDateTime.parse(sdate, formatter);
 
-    Position posgeral = new Position(0, 0, 0, 1, 0,dateTime);
+    String sdate2 = "31-12-2020 23:50";
+    LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
+
+    //Position
+    Position posgeral = new Position(0, 0, 0, 0, 1, date);
+    Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
 
     @Test
     void checkMMSITest() {
@@ -22,12 +35,13 @@ class ShipTest {
         //Arrange
         //Act
         try {
+            Ship ship0 = new Ship(111111111);
             Ship ship1 = new Ship(111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
             Ship ship2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 
         } catch (IllegalArgumentException ex) {
             //Assert
-            assertEquals("MMSI code must have 9 digits!", ex.getMessage());
+            assertEquals(ex.getMessage(), "MMSI code must have 9 digits!");
         }
 
 
@@ -39,16 +53,14 @@ class ShipTest {
         //Arrange
         //Act
         try {
-            Ship ship1 = new Ship(111111111, "name", "11", 1, 1, "A", "A", 1, 1, 1, 1);
-            Ship ship2 = new Ship(111111111, "name", "1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship1 = new Ship(111111111, "name", "IMO11", 1, 1, "A", "A", 1, 1, 1, 1);
+            Ship ship2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
         } catch (IllegalArgumentException ex) {
             //Assert
-            assertEquals("IMO code must have 7 digits!", ex.getMessage());
+            assertEquals(ex.getMessage(), "IMO code must have 7 digits!");
         }
 
-
     }
-
 
     @Test
     void getMmsiTest() {
@@ -100,10 +112,10 @@ class ShipTest {
 
         //Arrange
         //Act
-        shipgeral.setImo("IMO2222222");
+        shipgeral.setImo("IMO1111111");
 
         //Assert
-        assertEquals("IMO2222222", shipgeral.getImo());
+        assertEquals("IMO1111111", shipgeral.getImo());
     }
 
     @Test
@@ -251,6 +263,20 @@ class ShipTest {
     }
 
 
+
+/*
+    @Test
+    public void getPositionByLocalDateTimeTest(){
+
+        //Arrange
+        shipgeral.addPosition(posgeral);
+        Position expected = posgeral;
+        //Act
+        //Assert
+        assertEquals(expected, shipgeral.getPositionByLocalDateTime(dateTime));
+    }*/
+
+
     @Test
     void toStringTest() {
 
@@ -261,6 +287,239 @@ class ShipTest {
         assertEquals(expected, shipgeral.toString());
     }
 
+    @Test
+    void getTravelledDistance() {
+
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+
+        double expected = 2476.1714106209574;
+
+        //Act
+        double actual = shipgeral.getTravelledDistance();
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void getDeltaDistance() {
+
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+
+        double expected = 2476.1714106209574;
+
+        //Act
+        double actual = shipgeral.getDeltaDistance();
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void compareToBigger() {
+
+        //Arrange
+        int expected = -1;
+
+        //Act
+        int actual = shipgeral.compareTo(shipgeral2);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void compareToSmaller() {
+
+        //Arrange
+        int expected = 1;
+
+        //Act
+        int actual = shipgeral2.compareTo(shipgeral);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void compareToSameShip() {
+
+        //Arrange
+        int expected = 0;
+
+        //Act
+        int actual = shipgeral.compareTo(shipgeral);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void equalsSameObject() {
+
+        //Arrange
+        boolean expected = true;
+
+        //Act
+        boolean actual = shipgeral.equals(shipgeral);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void equalsNotAInstanceOfShip() {
+
+        Object not_Istance_of_Ship = new Object();
+
+        //Arrange
+        boolean expected = false;
+
+        //Act
+        boolean actual = shipgeral.equals(not_Istance_of_Ship);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void equalsBetween2Ships() {
+
+        Object not_Istance_of_Ship = new Object();
+
+        //Arrange
+        boolean expected = false;
+
+        //Act
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        //Assert
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void hashCodeTest() {
+
+        //Arrange
+        int expected = -1099595711;
+        //Act
+        int actual = shipgeral.hashCode();
+        //Assertion
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void insertPosition() {
+
+        //Arrange
+        Position expected = posgeral;
+        shipgeral.insertPosition(posgeral);
+        //Act
+        Position actual = null;
+        for (Position p : shipgeral.getPosDate().getInOrderList()) {
+
+            if (p.equals(expected)) {
+                actual = p;
+            }
+
+        }
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void createPosition() {
+
+        //Arrange
+        Position expected = shipgeral.createPosition(date2, 20, 30, 40, 10, 20);
+        //Act + Assert
+        assertNotNull(expected);
+    }
+
+    @Test
+    void getPosition() {
+
+        //Arrange
+        List<Position> expected = shipgeral.getDate();
+        //Act + Assert
+        assertNotNull(expected);
+    }
+
+    @Test
+    void setPosition() {
+
+        //Arrange
+        List<Position> expected = new ArrayList<>();
+        expected.add(posgeral);
+        expected.add(posgeral2);
+        shipgeral.setDate(expected);
+        //Act + Assert
+        assertNotNull(expected);
+    }
+
+   /* @Test
+    void writeAllPosTest() {
+
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        LocalDateTime li = LocalDateTime.of(2020,12,01,01,01,01);
+        LocalDateTime lf = LocalDateTime.of(2020,12,31,23,59,50);
+
+        String expected = "Positional Message:";
+        String expected2 = "Positional Message:\n" +
+                "Position{latitude=0.0, longitude=0.0, heading=0.0, sog=0.0, cog=1.0}";
+
+
+        //Act + Assert
+        assertEquals(expected, shipgeral.writeAllPos(null,null));
+        assertEquals(expected2,shipgeral.writeAllPos(li,lf));
+    }
+
+    @Test
+    void addNewPosMessage() {
+        //Arrange
+        boolean expected = false;
+        //Act
+        boolean actual = shipgeral.addNewPosMessage(posgeral2);
+        //Assert
+        assertEquals(expected, actual);
+    } */
+
+   /* @Test
+    void creationTest() {
+
+        //Arrange + Act + Assert
+
+        assertNotNull(new Ship(111111111, "Ship", "IMO1111111", "A", "A", 23, 23, 23, 23, 'a'));
+
+    }*/
+
+    @Test
+    void getTotalNumberOfMovements() {
+
+        //Arrange + Act + Assert
+        assertNotNull(shipgeral.getTotalNumberOfMovements());
+    }
 
 }
-
