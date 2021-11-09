@@ -3,66 +3,68 @@ package lapr.project.model;
 import java.time.LocalDateTime;
 
 public class Position implements Comparable<Position> {
-    LocalDateTime dateHour;
+
     double latitude;
     double longitude;
     double heading;
     double sog;
     double cog;
+    LocalDateTime date;
 
-
-    public Position(LocalDateTime dateHour, double latitude, double longitude, double heading, double sog, double cog) {
-        this.dateHour = dateHour;
+    public Position(double latitude, double longitude, double heading, double sog, double cog, LocalDateTime date) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.heading = heading;
         this.sog = sog;
         this.cog = cog;
+        this.date = date;
     }
-
-    public LocalDateTime getDateHour() {
-        return dateHour;
-    }
-
 
     public double getLatitude() {
         return latitude;
-    }
-
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
-    }
-
     public double getHeading() {
         return heading;
     }
 
-    public void setHeading(long heading) {
-        this.heading = heading;
-    }
-
-
     public double getSog() {
         return sog;
-    }
-
-    public void setSog(long sog) {
-        this.sog = sog;
     }
 
     public double getCog() {
         return cog;
     }
 
-    public void setCog(long cog) {
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setHeading(double heading) {
+        this.heading = heading;
+    }
+
+    public void setSog(double sog) {
+        this.sog = sog;
+    }
+
+    public void setCog(double cog) {
         this.cog = cog;
     }
 
@@ -77,11 +79,13 @@ public class Position implements Comparable<Position> {
                 '}';
     }
 
+
     @Override
     public int compareTo(Position o) {
-        if (dateHour.isAfter(o.getDateHour())) return 1;
-        if (dateHour.isBefore(o.getDateHour())) return -1;
-        return 0;
+
+        if(this.getDate().isBefore(o.getDate())) return -1;
+        else if(this.getDate().isAfter(o.getDate())) return 1;
+        else return 0;
     }
 }
 

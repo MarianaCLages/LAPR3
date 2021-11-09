@@ -4,9 +4,28 @@ import lapr.project.ui.MenuItem;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utils {
+
+    public static int readIntegerFromConsole(String prompt) {
+        do {
+            try {
+                String input = readLineFromConsole(prompt);
+
+                int value = Integer.parseInt(input);
+
+                return value;
+            } catch (NumberFormatException ex) {
+                throw new NumberFormatException();
+            }
+        } while (true);
+    }
 
     public static String readLineFromConsole(String prompt) {
         try {

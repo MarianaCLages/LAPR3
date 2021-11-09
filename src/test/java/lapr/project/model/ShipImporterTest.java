@@ -60,11 +60,11 @@ class ShipImporterTest {
         try {
             ShipImporter.importsShips(new File(tempFile.toString()));
             List<String> list = new ArrayList<>();
-            Position position1 = new Position(LocalDateTime.from(formatter.parse("31/12/2020 17:19")), 1, 0, 0, 0, 0);
+            Position position1 = new Position(0, 1, 0, 0, 0, LocalDateTime.from(formatter.parse("31/12/2020 17:19")));
             list.add(position1.toString());
-            Position position2 = new Position(LocalDateTime.from(formatter.parse("31/12/2020 16:20")), 1, 0, 0, 0, 0);
+            Position position2 = new Position(1, 1, 0, 0, 0, LocalDateTime.from(formatter.parse("31/12/2020 16:20")));
             list.add(position2.toString());
-         //   Assertions.assertTrue(list.equals(shipStore.getShipListPos()));
+            //   Assertions.assertTrue(list.equals(shipStore.getShipListPos()));
 
         } catch (FileNotFoundException e) {
             Assertions.fail();

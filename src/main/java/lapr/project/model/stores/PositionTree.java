@@ -4,6 +4,8 @@ import lapr.project.model.BinarySearchTree;
 import lapr.project.model.Position;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PositionTree {
     BinarySearchTree<Position> positionBinarySearchTree;
@@ -16,7 +18,7 @@ public class PositionTree {
         try {
             positionBinarySearchTree.insert(position);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -29,14 +31,25 @@ public class PositionTree {
         return positionBinarySearchTree.biggestElement();
     }
 
-    public int getSize(){
+    public int getSize() {
         return positionBinarySearchTree.size();
     }
-    public Iterable<Position> getOrderList(){
+
+    public Iterable<Position> getOrderList() {
         return positionBinarySearchTree.inOrder();
     }
 
     public void getPosition(LocalDateTime date) {
-        positionBinarySearchTree.find(new Position(date, 0, 0, 0, 0, 0));
+        positionBinarySearchTree.find(new Position(0, 0, 0, 0, 0, date));
+    }
+
+    public List<Position> getInOrderList() {
+
+        Iterable<Position> dateIterable = getOrderList();
+        List<Position> positionList = new ArrayList<>();
+        dateIterable.iterator().forEachRemaining(positionList::add);
+
+        return positionList;
+
     }
 }

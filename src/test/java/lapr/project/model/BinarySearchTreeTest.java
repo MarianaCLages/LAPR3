@@ -14,53 +14,53 @@ class BinarySearchTreeTest {
     String sdate = "1/10/2020 23:16";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
     LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
-    Position position1 = new Position(date, 1, 48, 4, 5, 5);
+    Position position1 = new Position(1, 48, 4, 4, 5, date);
 
     String sdate2 = "3/10/2020 23:16";
     DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date2 = LocalDateTime.from(formatter.parse(sdate2));
-    Position position2 = new Position(date2, 2, 48, 4, 5, 5);
+    Position position2 = new Position(2, 48, 4, 4, 5, date2);
 
     String sdate3 = "4/10/2020 23:16";
     DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date3 = LocalDateTime.from(formatter.parse(sdate3));
-    Position position3 = new Position(date3, 3, 48, 4, 5, 5);
+    Position position3 = new Position(3, 48, 4, 4, 5, date3);
 
     String sdate4 = "5/10/2020 23:16";
     DateTimeFormatter formatter4 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date4 = LocalDateTime.from(formatter.parse(sdate4));
-    Position position4 = new Position(date4, 4, 48, 4, 5, 5);
+    Position position4 = new Position(4, 48, 4, 4, 5, date4);
 
     String sdate5 = "6/10/2020 23:16";
     DateTimeFormatter formatter5 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date5 = LocalDateTime.from(formatter.parse(sdate5));
-    Position position5 = new Position(date5, 5, 48, 4, 5, 5);
+    Position position5 = new Position(5, 48, 4, 4, 5, date5);
 
     String sdate6 = "7/10/2020 23:16";
     DateTimeFormatter formatter6 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date6 = LocalDateTime.from(formatter.parse(sdate6));
-    Position position6 = new Position(date6, 6, 48, 4, 5, 5);
+    Position position6 = new Position(6, 48, 4, 4, 5, date6);
 
 
     String sdate7 = "10/10/2020 23:16";
     DateTimeFormatter formatter7 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date7 = LocalDateTime.from(formatter.parse(sdate7));
-    Position position7 = new Position(date7, 7, 48, 4, 5, 5);
+    Position position7 = new Position(7, 48, 4, 4, 5, date7);
 
     String sdate8 = "15/10/2020 23:16";
     DateTimeFormatter formatter8 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date8 = LocalDateTime.from(formatter.parse(sdate8));
-    Position position8 = new Position(date8, 8, 48, 4, 5, 5);
+    Position position8 = new Position(8, 48, 4, 4, 5, date8);
 
     String sdate9 = "16/10/2020 23:16";
     DateTimeFormatter formatter9 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date9 = LocalDateTime.from(formatter.parse(sdate9));
-    Position position9 = new Position(date9, 9, 48, 4, 5, 5);
+    Position position9 = new Position(9, 48, 4, 4, 5, date9);
 
     String sdate10 = "30/10/2020 23:16";
     DateTimeFormatter formatter10 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date10 = LocalDateTime.from(formatter.parse(sdate10));
-    Position position10 = new Position(date10, 10, 48, 4, 5, 5);
+    Position position10 = new Position(10, 48, 4, 4, 5, date10);
 
 
     Position[] arr = {position6, position4, position1, position3, position2, position5, position10, position9, position7, position8};
@@ -117,7 +117,7 @@ class BinarySearchTreeTest {
         String sdate = "1/10/2020 14:16";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
         LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
-        Position positionNotExistent = new Position(date, 64, 48, 4, 5, 5);
+        Position positionNotExistent = new Position(64, 48, 48, 4, 5, date);
 
         int qtd = arr.length;
         instance.remove(positionNotExistent);
@@ -241,16 +241,16 @@ class BinarySearchTreeTest {
     @Test
     void toStringTest(){
         StringBuilder stringBuilder = new StringBuilder("");
-        stringBuilder.append("|-------Position{latitude=10.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=9.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|\t|-------Position{latitude=8.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|-------Position{latitude=7.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("Position{latitude=6.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=5.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|-------Position{latitude=4.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|-------Position{latitude=3.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|\t|-------Position{latitude=2.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=1.0, longitude=48.0, heading=4.0, sog=5.0, cog=5.0}\n");
+        stringBuilder.append("|-------Position{latitude=10.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=9.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|\t|\t|-------Position{latitude=8.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|\t|-------Position{latitude=7.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("Position{latitude=6.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=5.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|-------Position{latitude=4.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|\t|-------Position{latitude=3.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|\t|\t|-------Position{latitude=2.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=1.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
         assertEquals(stringBuilder.toString(),instance.toString());
     }
 }

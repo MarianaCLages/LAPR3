@@ -1,12 +1,11 @@
 package lapr.project.model;
 
 import lapr.project.model.stores.PositionTree;
+import lapr.project.shared.DistanceCalculation;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Ship implements Comparable<Ship> {
 
@@ -48,6 +47,7 @@ public class Ship implements Comparable<Ship> {
         Date = new ArrayList<>();
     }
 
+
     public Ship(int mmsi, String name, String imo, int numGen, long genPowerOutput, String callSign, String vesselType, double length, double width, double capacity, double draft) {
         checkIMO(imo);
         checkMMSI(mmsi);
@@ -75,11 +75,11 @@ public class Ship implements Comparable<Ship> {
     }
 
     public Position createPosition(LocalDateTime time, double latitude, double longitude, double heading, double sog, double cog) {
-        return new Position(time, latitude, longitude, heading, sog, cog);
+        return new Position(latitude, longitude, heading, sog, cog, time);
     }
 
-    public boolean insertPosition(Position position) {
-        return posDate.addPosition(position);
+    public void insertPosition(Position position) {
+        posDate.addPosition(position);
     }
 
     //Getters
@@ -200,31 +200,6 @@ public class Ship implements Comparable<Ship> {
     }
 
 
-
-    public String writeAllPos() {
-
-        return null;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Ship{" +
-                "mmsi=" + mmsi +
-                ", name='" + name + '\'' +
-                ", imo=" + imo +
-                ", numGen=" + numGen +
-                ", genPowerOutput=" + genPowerOutput +
-                ", callSign='" + callSign + '\'' +
-                ", vesselType='" + vesselType + '\'' +
-                ", length=" + length +
-                ", width=" + width +
-                ", capacity=" + capacity +
-                ", draft=" + draft +
-                ", posDate=" + posDate +
-                '}';
-    }
-
     @Override
     public int compareTo(Ship o) {
         if (mmsi > o.mmsi) {
@@ -248,4 +223,44 @@ public class Ship implements Comparable<Ship> {
         return Objects.hash(getMmsi(), getName(), getImo(), getNumGen(), getGenPowerOutput(), getCallSign(), getVesselType(), getLength(), getWidth(), getCapacity(), getDraft());
     }
 
+    public double getTravelledDistance() {
+        double travelledDistance = 0;
+
+        for (int i = 0; i < this.getPosDate().getInOrderList().size() - 1; i++) {
+            travelledDistance += DistanceCalculation.distanceTo(this.getPosDate().getInOrderList().get(i), this.getPosDate().getInOrderList().get(i + 1));
+        }
+        return travelledDistance;
+    }
+
+    public double getDeltaDistance() {
+        return DistanceCalculation.distanceTo(this.getPosDate().getSmallestPosition(), this.getPosDate().getBiggestPosition());
+    }
+
+    public int getTotalNumberOfMovements(Ship s) {
+
+        return s.getPosDate().getSize();
+
+    }
+
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "posDate=" + posDate +
+                ", Date=" + Date +
+                ", trancieverClass=" + trancieverClass +
+                ", cargo='" + cargo + '\'' +
+                ", mmsi=" + mmsi +
+                ", name='" + name + '\'' +
+                ", imo='" + imo + '\'' +
+                ", numGen=" + numGen +
+                ", genPowerOutput=" + genPowerOutput +
+                ", callSign='" + callSign + '\'' +
+                ", vesselType='" + vesselType + '\'' +
+                ", length=" + length +
+                ", width=" + width +
+                ", capacity=" + capacity +
+                ", draft=" + draft +
+                '}';
+    }
 }
+

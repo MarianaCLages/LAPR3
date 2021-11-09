@@ -15,7 +15,7 @@ class PositionTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
 
-    Position posgeral = new Position(date, 0, 0, 0, 1, 0);
+    Position posgeral = new Position(1, 0, 0, 1, 1, date);
 
 
     @Test
@@ -28,7 +28,7 @@ class PositionTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(0, posgeral.getLatitude());
+        assertEquals(1, posgeral.getLatitude());
 
     }
 
@@ -109,7 +109,7 @@ class PositionTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(0, posgeral.getCog());
+        assertEquals(1, posgeral.getCog());
     }
 
     @Test
@@ -127,7 +127,7 @@ class PositionTest {
     void toStringTest() {
 
         //Arrange
-        String expected = "Position{latitude=0.0, longitude=0.0, heading=0.0, sog=1.0, cog=0.0}";
+        String expected = "Position{latitude=1.0, longitude=0.0, heading=0.0, sog=1.0, cog=1.0}";
 
         //Act
         //Assert

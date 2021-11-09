@@ -14,7 +14,7 @@ class ShipTest {
 
     LocalDateTime dateTime =LocalDateTime.now();
 
-    Position posgeral = new Position(dateTime, 0, 0, 1, 0,0);
+    Position posgeral = new Position(0, 0, 0, 1, 0,dateTime);
 
     @Test
     void checkMMSITest() {
