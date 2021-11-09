@@ -133,4 +133,16 @@ class PositionTest {
         //Assert
         assertEquals(expected, posgeral.toString());
     }
+
+    @Test
+    void setDate() {
+        //Arrange
+        LocalDateTime expected = LocalDateTime.now();
+        //Act
+        posgeral.setDate(expected);
+        LocalDateTime actual = posgeral.getDate();
+        //Assert
+        assertEquals(expected, actual);
+    }
+
 }
