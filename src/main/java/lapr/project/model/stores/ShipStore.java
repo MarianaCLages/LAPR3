@@ -58,6 +58,11 @@ public class ShipStore {
         return lShip;
     }
 
+    public List<Ship> getlShip() {
+
+        return transformBSTintoList();
+    }
+
     public boolean writeAllShips() {
 
         if (shipBinarySearchTree.isEmpty()) return false;
