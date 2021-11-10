@@ -9,6 +9,7 @@ public class PairOfShips implements Comparable {
     public PairOfShips(Ship left, Ship right) {
         this.left = left;
         this.right = right;
+        checkShips();
     }
 
     public boolean equals(Object o) {
@@ -35,31 +36,38 @@ public class PairOfShips implements Comparable {
 
     }
 
+    public void checkShips() {
+        Ship aux;
+        if (this.left.getMmsi() < this.right.getMmsi()) {
+            aux = left;
+            left = right;
+            right = aux;
+        }
+    }
+
+    public void checkShips(PairOfShips pairOfShips) {
+        Ship aux;
+        if (pairOfShips.left.getMmsi() < pairOfShips.right.getMmsi()) {
+            aux = pairOfShips.left;
+            pairOfShips.left = pairOfShips.right;
+            pairOfShips.right = aux;
+        }
+    }
+
     public Ship getRight() {
         return this.right;
     }
 
     @Override
     public int compareTo(Object o) {
-        Ship aux = null;
 
         PairOfShips pairsOfShips2nd = (PairOfShips) o;
+        checkShips(pairsOfShips2nd);
 
-        if (this.left.getMmsi() < this.right.getMmsi()) {
-            aux = left;
-            left = right;
-            right = aux;
-        } else if (pairsOfShips2nd.left.getMmsi() < pairsOfShips2nd.right.getMmsi()) {
-            aux = pairsOfShips2nd.left;
-            pairsOfShips2nd.left = pairsOfShips2nd.right;
-            pairsOfShips2nd.right = aux;
-        }
-
-        if (this.left.getTravelledDistance() < pairsOfShips2nd.getLeft().getTravelledDistance()) {
+        if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) < Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
             return 1;
-        } else if (this.left.getTravelledDistance() > pairsOfShips2nd.getLeft().getTravelledDistance()) {
+        } else if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) > Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
             return -1;
         } else return 0;
-
     }
 }

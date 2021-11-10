@@ -423,16 +423,51 @@ public class ShipStore {
     public String getPairsOfShipsString() {
 
         getPairOfShipsInsideBST();
-
         StringBuilder sb = new StringBuilder();
 
         sb.append("Ship 1 MMMSI \t\t Ship 2 MMSI \t\t DistOrig \t\t DistDest \t\t Movs \t\t TravelDist \t\t Movs \t\t TravelDist\n");
 
         for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
-            sb.append(pairOfShips.getLeft().getMmsi() + "\t\t\t " + pairOfShips.getRight().getMmsi() + "\t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getLeft().getTravelledDistance() + "\t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
+            sb.append(pairOfShips.getLeft().getMmsi() + "\t\t\t " + pairOfShips.getRight().getMmsi() + "\t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getLeft().getTravelledDistance() + "\t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
         }
 
         return sb.toString();
     }
 
+   /* public double[] getTravelledDistanceIntoArray() {
+
+        double[] travelledDistanceIntoArray = new double[50];
+
+        int i = 0;
+
+        for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
+
+            travelledDistanceIntoArray[i] = pairOfShips.getLeft().getTravelledDistance();
+            i++;
+
+        }
+
+        return sortTravelledDistanceArray(travelledDistanceIntoArray);
+
+    }
+
+    public double[] sortTravelledDistanceArray(double[] travelledDistanceIntoArray) {
+
+        double aux = 0;
+
+        for (int i = 0; i < travelledDistanceIntoArray.length; i++) {
+            for (int j = 1; j < travelledDistanceIntoArray.length; j++) {
+
+                if (travelledDistanceIntoArray[j] > travelledDistanceIntoArray[i]) {
+                    aux = travelledDistanceIntoArray[j];
+                    travelledDistanceIntoArray[j] = travelledDistanceIntoArray[i];
+                    travelledDistanceIntoArray[i] = aux;
+                }
+
+            }
+        }
+
+        return travelledDistanceIntoArray;
+    }*/
 }
+

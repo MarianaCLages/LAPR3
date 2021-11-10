@@ -92,41 +92,6 @@ public class App {
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
 
-        //Position
-        String sdate = "31-12-2020 23:16";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime date = LocalDateTime.parse(sdate, formatter);
-
-        String sdate2 = "31-12-2020 23:50";
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter2);
-
-        String sdate3 = "31-12-2020 23:55";
-        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime date3 = LocalDateTime.parse(sdate3, formatter3);
-
-        Position posgeral = new Position(0, 0, 0, 0, 1, date);
-        Position posgeralTest = new Position(5, 5, 5, 5, 5, date);
-        Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
-        Position posgeral3 = new Position(9, 9, 9, 9, 9, date3);
-
-        //Ships
-        Ship shipTest1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
-        company.getShipStore().addShip(shipTest1);
-        shipTest1.getPosDate().addPosition(posgeral);
-        shipTest1.getPosDate().addPosition(posgeral2);
-
-
-        Ship shipTest2 = new Ship(222222222, "name", "IMO1121111", 1, 1, "B", "A", 1, 1, 1, 1);
-        company.getShipStore().addShip(shipTest2);
-        shipTest2.getPosDate().addPosition(posgeralTest);
-        shipTest2.getPosDate().addPosition(posgeral2);
-
-        Ship shipTest3 = new Ship(333333333, "name", "IMO3333333", 1, 1, "A", "A", 1, 1, 1, 1);
-        company.getShipStore().addShip(shipTest3);
-        shipTest3.getPosDate().addPosition(posgeral);
-        shipTest3.getPosDate().addPosition(posgeral3);
-        shipTest3.getPosDate().addPosition(posgeral2);
 
 
     }

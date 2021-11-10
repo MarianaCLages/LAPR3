@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.PositionalMessageController;
-import lapr.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
