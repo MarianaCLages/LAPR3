@@ -149,8 +149,8 @@ class ShipStoreTest {
                 "Departure Longitude : 0.0\n" +
                 "Arrival Latitude : 10.0\n" +
                 "Arrival Longitude : 20.0\n" +
-                "Travelled Distance : 2476.1714106209574\n" +
-                "Delta Distance : 2476.1714106209574";
+                "Travelled Distance : 2491535.47\n" +
+                "Delta Distance : 2491535.47";
         //Act
         String actual = shipstore.getShipSummaryByMMSI(shipgeral.getMmsi());
         //Assert
@@ -237,8 +237,8 @@ class ShipStoreTest {
                 "Departure Longitude : 0.0\n" +
                 "Arrival Latitude : 10.0\n" +
                 "Arrival Longitude : 20.0\n" +
-                "Travelled Distance : 2476.1714106209574\n" +
-                "Delta Distance : 2476.1714106209574";
+                "Travelled Distance : 2491535.47\n" +
+                "Delta Distance : 2491535.47";
         //Act
         String actual = shipstore.getShipSummaryByIMO(shipgeral.getImo());
         //Assert
