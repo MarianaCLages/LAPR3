@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-
-import lapr.project.utils.auth.UserSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -542,14 +540,70 @@ public class ShipTest {
     }
 
     @Test
-    void notCheckingMMSICreatingShip() {
-        
+    void notCheckingMMSICreatingShipWithOnlyMMSI() {
+
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Ship ship_invalid = new Ship(1111111111);
             if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
                 fail();
             }
         });
+    }
+
+    @Test
+    void notCheckingMMSICreatingShip1Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingMMSICreatingShip2Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "test", "test", 1, 3, "a", "a", 3, 4, 5, 6);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingIMOCreatingShip1Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "name", "IMO11", 1, 1, "A", "A", 1, 1, 1, 1);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingIMOCreatingShip2Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "test", "IMO11", 1, 3, "a", "a", 3, 4, 5, 6);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void equalsMutant() {
+
+        boolean expected;
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if(actual) fail();
+
+
     }
 
 
