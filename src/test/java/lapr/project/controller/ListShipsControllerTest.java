@@ -84,8 +84,11 @@ class ListShipsControllerTest {
             List<Ship> expected = Collections.emptyList();
             //Act + Assert
             assertNotNull(expected);
+            ctrl.getShipList();
+            ctrl.sortedList();
+            ctrl.getShipListDTO();
         } catch (IllegalArgumentException e) {
-            fail();
+
         }
     }
 
