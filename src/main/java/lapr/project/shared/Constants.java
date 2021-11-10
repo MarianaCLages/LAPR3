@@ -32,4 +32,7 @@ public class Constants {
 
     public static final double MAX_LATITUDE = 90;
     public static final double MAX_LONGITUDE = 180;
+    public static final double MAX_HEADING= 359;
+    public static final double MIN_HEADING= 0;
+
 }

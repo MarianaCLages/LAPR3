@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PositionTest {
 
@@ -42,6 +42,11 @@ class PositionTest {
         //Assert
         assertEquals(1, posgeral.getLatitude());
 
+        posgeral.setLatitude(90);
+        assertEquals(90, posgeral.getLatitude());
+
+        posgeral.setLatitude(-90);
+        assertEquals(-90, posgeral.getLatitude());
     }
 
     @Test
@@ -51,6 +56,7 @@ class PositionTest {
         //Act
         //Assert
         assertEquals(0, posgeral.getLongitude());
+
 
     }
 
@@ -64,6 +70,11 @@ class PositionTest {
         //Assert
         assertEquals(1, posgeral.getLongitude());
 
+        posgeral.setLongitude(180);
+        assertEquals(180, posgeral.getLongitude());
+
+        posgeral.setLongitude(-180);
+        assertEquals(-180, posgeral.getLongitude());
     }
 
     @Test
@@ -83,6 +94,14 @@ class PositionTest {
         posgeral.setHeading(1);
         //Assert
         assertEquals(1, posgeral.getHeading());
+
+        posgeral.setHeading(0);
+        //Assert
+        assertEquals(0, posgeral.getHeading());
+
+        posgeral.setHeading(359);
+        //Assert
+        assertEquals(359, posgeral.getHeading());
     }
 
     @Test
@@ -122,6 +141,57 @@ class PositionTest {
         assertEquals(1, posgeral.getCog());
     }
 
+    @Test
+    void invalidLatitude() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            posgeral.setLatitude(-200);
+        });
+
+    }
+
+
+    @Test
+    void noInfoLatitude() {
+        posgeral.setLatitude(91);
+        assertNull(posgeral.getLatitude());
+    }
+
+
+    @Test
+    void invalidLongitude() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            posgeral.setLongitude(-200);
+        });
+        try {
+            posgeral.setLongitude(180);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    void noInfoLongitude() {
+        posgeral.setLongitude(181);
+        assertNull(posgeral.getLongitude());
+    }
+
+    @Test
+    void invalidHeading() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            posgeral.setHeading(500);
+        });
+        try {
+            posgeral.setHeading(91);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    void noInfoHeading() {
+        posgeral.setHeading(511);
+        assertNull(posgeral.getHeading());
+    }
 
     @Test
     void toStringTest() {
