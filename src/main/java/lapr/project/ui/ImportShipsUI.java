@@ -2,7 +2,6 @@ package lapr.project.ui;
 
 import lapr.project.controller.ImportShipsController;
 import lapr.project.shared.exceptions.InvalidLineException;
-import lapr.project.utils.Utils;
 
 import java.io.FileNotFoundException;
 
