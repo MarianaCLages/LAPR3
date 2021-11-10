@@ -42,4 +42,16 @@ public class PairOfShips implements Comparable {
             return -1;
         } else return 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PairOfShips)) return false;
+
+        PairOfShips that = (PairOfShips) o;
+
+        if (!getLeft().equals(that.getLeft())) return false;
+        return getRight().equals(that.getRight());
+    }
+
 }

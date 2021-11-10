@@ -1,9 +1,9 @@
 package lapr.project.model.stores;
 
 
-import lapr.project.shared.BinarySearchTree;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.shared.BinarySearchTree;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 
@@ -413,6 +413,7 @@ public class ShipStore {
                     if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
                         if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
                             if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
+
                                 if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
                                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                                     pairsOfShipsSearchTree.insert(pairOfShips);
