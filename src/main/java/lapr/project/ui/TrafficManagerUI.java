@@ -10,6 +10,7 @@ public class TrafficManagerUI implements Runnable {
     public void run() {
 
         List<MenuItem> options = new ArrayList<>();
+        options.add(new MenuItem("Import Ship", new ImportShipsUI()));
         options.add(new MenuItem("Positional Message of a Ship", new PositionalMessageUI()));
         options.add(new MenuItem("Ship Summary", new ShipSummaryUI()));
         options.add(new MenuItem("Ship List", new ListShipsUI()));
