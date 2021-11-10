@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ShipImporter {
 
-    public static void importsShips(File path) throws FileNotFoundException, InvalidLineException {
+    public static boolean importsShips(File path) throws FileNotFoundException, InvalidLineException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         Company company = App.getInstance().getCompany();
         ShipStore shipStore = company.getShipStore();
@@ -33,5 +33,9 @@ public class ShipImporter {
             Position position = ship.createPosition(LocalDateTime.parse(line[1], formatter), Double.parseDouble(line[2]), Double.parseDouble(line[3]), Double.parseDouble(line[6]), Double.parseDouble(line[4]), Math.abs(Double.parseDouble(line[5])));
             ship.insertPosition(position);
         }
+        if (data.size() == 0) {
+            return false;
+        }
+        return true;
     }
 }

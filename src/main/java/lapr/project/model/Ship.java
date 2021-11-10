@@ -14,7 +14,7 @@ public class Ship implements Comparable<Ship> {
     private PositionTree posDate;
     private List<Position> Date;
     //dados estaticos
-    private char trancieverClass;
+    private char transcieverClass;
     private String cargo;
     private int mmsi;
     private String name;
@@ -28,7 +28,7 @@ public class Ship implements Comparable<Ship> {
     private double capacity;
     private double draft;
 
-    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char trancieverClass) {
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transcieverClass) {
         checkIMO(imo);
         checkMMSI(mmsi);
 
@@ -41,7 +41,7 @@ public class Ship implements Comparable<Ship> {
         this.width = width;
         this.draft = draft;
         this.cargo = cargo;
-        this.trancieverClass = trancieverClass;
+        this.transcieverClass = transcieverClass;
 
         this.posDate = new PositionTree();
         Date = new ArrayList<>();
@@ -308,9 +308,7 @@ public class Ship implements Comparable<Ship> {
     }
 
     public int getTotalNumberOfMovements() {
-
         return this.getPosDate().getSize();
-
     }
 
     @Override
@@ -318,7 +316,7 @@ public class Ship implements Comparable<Ship> {
         return "Ship{" +
                 "posDate=" + posDate +
                 ", Date=" + Date +
-                ", trancieverClass=" + trancieverClass +
+                ", transcieverClass=" + transcieverClass +
                 ", cargo='" + cargo + '\'' +
                 ", mmsi=" + mmsi +
                 ", name='" + name + '\'' +

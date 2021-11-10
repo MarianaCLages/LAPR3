@@ -2,8 +2,10 @@ package lapr.project.ui;
 
 import lapr.project.controller.PositionalMessageController;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class PositionalMessageUI implements Runnable {
@@ -33,12 +35,16 @@ public class PositionalMessageUI implements Runnable {
 
         System.out.println("Final date? yyyy-mm-dd HH:mm:ss");
         date = Utils.readLineFromConsole("");
+        try {
 
-        LocalDateTime datef = LocalDateTime.parse(date, dateFormat);
+            LocalDateTime datef = LocalDateTime.parse(date, dateFormat);
 
 
         if (!positionalMessageController.getPositionalMessages(mmsi, datei, datef)) {
             System.out.println(mmsi + " doesn't exist!");
+        }
+        }catch (DateTimeParseException e){
+            System.out.println("Invalid date");
         }
 
     }
