@@ -410,11 +410,17 @@ public class ShipStore {
 
                 Ship s2 = lShip.get(j);
 
-                if (!s1.equals(s2) && DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000 && DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000 && s1.getTravelledDistance() != s2.getTravelledDistance() && s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
-
-                    PairOfShips pairOfShips = new PairOfShips(s1, s2);
-                    pairsOfShipsSearchTree.insert(pairOfShips);
-
+                if (!s1.equals(s2)) {
+                    if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
+                        if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
+                            if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
+                                if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
+                                    PairOfShips pairOfShips = new PairOfShips(s1, s2);
+                                    pairsOfShipsSearchTree.insert(pairOfShips);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -425,10 +431,10 @@ public class ShipStore {
         getPairOfShipsInsideBST();
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Ship 1 MMMSI \t\t Ship 2 MMSI \t\t DistOrig \t\t DistDest \t\t Movs \t\t TravelDist \t\t Movs \t\t TravelDist\n");
+        sb.append("|   Ship 1 MMMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig  \t  | \t  DistDest  \t  |      \t  Movs  \t       |       \t   TravelDist  \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n");
 
         for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
-            sb.append(pairOfShips.getLeft().getMmsi() + "\t\t\t " + pairOfShips.getRight().getMmsi() + "\t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getLeft().getTravelledDistance() + "\t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
+            sb.append("     " + pairOfShips.getLeft().getMmsi() + "\t\t\t     " + pairOfShips.getRight().getMmsi() + "         \t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "     \t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "        \t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "                 \t\t" + pairOfShips.getLeft().getTravelledDistance() + "            \t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "                \t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
         }
 
         return sb.toString();
