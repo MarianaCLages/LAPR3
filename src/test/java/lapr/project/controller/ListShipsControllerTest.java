@@ -34,7 +34,7 @@ class ListShipsControllerTest {
     }
      */
 
-    @Test
+   /* @Test
     void sortedList() {
         //Arrange
         try {
@@ -54,7 +54,7 @@ class ListShipsControllerTest {
         } catch (IllegalArgumentException e) {
 
         }
-    }
+    } /*
 
     /*
     @Test
