@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.shared.BinarySearchTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

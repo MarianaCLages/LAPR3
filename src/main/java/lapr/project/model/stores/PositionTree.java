@@ -1,6 +1,6 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.BinarySearchTree;
+import lapr.project.shared.BinarySearchTree;
 import lapr.project.model.Position;
 
 import java.time.LocalDateTime;

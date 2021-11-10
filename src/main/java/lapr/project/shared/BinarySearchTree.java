@@ -1,4 +1,4 @@
-package lapr.project.model;
+package lapr.project.shared;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class BinarySearchTree<E extends Comparable> {
     /*
      * @return root Node of the tree (or null if tree is empty)
      */
-    protected Node<E> root() {
+    public Node<E> root() {
         return root;
     }
 
@@ -39,7 +39,7 @@ public class BinarySearchTree<E extends Comparable> {
 
     }
 
-    protected Node<E> find(Node<E> node, E element) {
+    public Node<E> find(Node<E> node, E element) {
         if (node == null) {
             return null;
         }
