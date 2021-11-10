@@ -4,6 +4,7 @@ package lapr.project.model.stores;
 import lapr.project.model.BinarySearchTree;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 
 import java.time.Duration;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class ShipStore {
 
     public BinarySearchTree<Ship> shipBinarySearchTree;
-    public BinarySearchTree<PairOfShips> pairsOfShipsSearchTree;
+    public BinarySearchTree<PairOfShips> pairsOfShipsSearchTree = new BinarySearchTree<>();
 
     public ShipStore() {
         this.shipBinarySearchTree = new BinarySearchTree<>();
@@ -88,6 +89,19 @@ public class ShipStore {
         }
         return shipListMmsi;
     }
+
+    public List<PairOfShips> getPairsOfShipsSearchTree() {
+        return transformBSTintoListPairsOfShip();
+    }
+
+    public List<PairOfShips> transformBSTintoListPairsOfShip() {
+        Iterable<PairOfShips> ls = pairsOfShipsSearchTree.inOrder();
+        List<PairOfShips> pairsShip = new ArrayList<>();
+        ls.iterator().forEachRemaining(pairsShip::add);
+
+        return pairsShip;
+    }
+
 
    /* public List<String> getShipListPos() {
         List<String> shipListPos = new ArrayList<>();
@@ -321,7 +335,9 @@ public class ShipStore {
 
     public double getDepartureLatitude(Ship s) {
         try {
-            return (s.getPosDate().getSmallestPosition().getLatitude());
+            if (s.getPosDate().getSmallestPosition().getLatitude() < -90 || s.getPosDate().getSmallestPosition().getLatitude() > 90)
+                return (s.getPosDate().getSmallestPosition().getLatitude());
+            else return 0;
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -363,7 +379,7 @@ public class ShipStore {
 
                 Ship s2 = lShip.get(j);
 
-                if (!s1.equals(s2) && (s1.getDeltaDistance() == s2.getDeltaDistance() && (s1.getDeltaDistance() < 5000 && s2.getDeltaDistance() < 5000) && (s1.getDeltaDistance() > 10000 && s2.getDeltaDistance() > 10000))) {
+                if (!s1.equals(s2) && (s1.getDeltaDistance() == s2.getDeltaDistance())) {
 
                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                     pairsOfShipsSearchTree.insert(pairOfShips);
@@ -373,5 +389,19 @@ public class ShipStore {
         }
     }
 
+    public String getPairsOfShipsString() {
+
+        getPairOfShipsInsideBST();
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Ship 1 MMMSI \t\t Ship 2 MMSI \t\t DistOrig \t\t DistDest \t\t Movs \t\t TravelDist \t\t Movs \t\t TravelDist\n");
+
+        for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
+            sb.append(pairOfShips.getLeft().getMmsi() + "\t\t\t " + pairOfShips.getRight().getMmsi() + "\t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "\t\t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getLeft().getTravelledDistance() + "\t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "\t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
+        }
+
+        return sb.toString();
+    }
 
 }

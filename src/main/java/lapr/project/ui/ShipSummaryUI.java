@@ -1,7 +1,10 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ShipSummaryControler;
+import lapr.project.shared.exceptions.InvalidLineException;
 import lapr.project.utils.Utils;
+
+import java.io.FileNotFoundException;
 
 public class ShipSummaryUI implements Runnable {
 
@@ -20,6 +23,25 @@ public class ShipSummaryUI implements Runnable {
         String callSign;
 
         String shipSummary = null;
+        boolean readOptionBoolean = false;
+
+
+        do {
+            try {
+                String readOption = Utils.readLineFromConsole("Do you wish to import a file (Y - filename/ N - no)");
+                if (!readOption.equals("N")) {
+                    readOptionBoolean = true;
+                    shipSummaryControler.importShips(readOption);
+                } else if (readOption.equals("N")) {
+                    readOptionBoolean = true;
+                } else if (!readOption.equals("Y") || !readOption.equals("N")) throw new IllegalArgumentException();
+            } catch (IllegalArgumentException ex1) {
+                System.out.println("Please enter a valid option! (Yes - FileName / No - N)");
+            } catch (InvalidLineException | FileNotFoundException ex2) {
+                System.out.println("Please enter a valid file (See the file names before entering one)");
+            }
+        } while (readOptionBoolean == false);
+
 
         do {
             try {

@@ -11,7 +11,6 @@ public class PairOfShips implements Comparable {
         this.right = right;
     }
 
-
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PairOfShips)) return false;
@@ -57,9 +56,9 @@ public class PairOfShips implements Comparable {
         }
 
         if (this.left.getTravelledDistance() < pairsOfShips2nd.getLeft().getTravelledDistance()) {
-            return -1;
-        } else if (this.left.getTravelledDistance() > pairsOfShips2nd.getLeft().getTravelledDistance()) {
             return 1;
+        } else if (this.left.getTravelledDistance() > pairsOfShips2nd.getLeft().getTravelledDistance()) {
+            return -1;
         } else return 0;
 
     }
