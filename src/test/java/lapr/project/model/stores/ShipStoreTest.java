@@ -17,6 +17,9 @@ class ShipStoreTest {
 
     Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
     Ship shipgeral2 = new Ship(222222222, "name", "IMO2222222", 1, 1, "A", "A", 1, 1, 1, 1);
+    Ship shipgeral3 = new Ship(111114111, "name", "IMO1111111", 1, 1, "F", "A", 1, 1, 1, 1);
+    Ship shipgeral4 = new Ship(111114111, "name", "IMO9999999", 1, 1, "F", "A", 1, 1, 1, 1);
+    Ship shipgeral5 = new Ship(999999999, "name", "IMO9999999", 1, 1, "F", "A", 1, 1, 1, 1);
 
     ShipStore shipstore = new ShipStore();
 
@@ -122,7 +125,23 @@ class ShipStoreTest {
 
         //Arrange
         shipstore.addShip(shipgeral);
-        String expected = null;
+        shipstore.addShip(shipgeral5);
+        String expected = "MMSI : 999999999\n" +
+                "Vessel name: A\n" +
+                "Start Base date Time: null\n" +
+                "End base date time : null\n" +
+                "Total movement time: 0 minutes\n" +
+                "Total number of movements : 0\n" +
+                "Max SOG : 0.0\n" +
+                "Mean SOG : 0.0\n" +
+                "Max COG : 0.0\n" +
+                "Mean COG : 0.0\n" +
+                "Departure Latitude : 0.0\n" +
+                "Departure Longitude : 0.0\n" +
+                "Arrival Latitude : 0.0\n" +
+                "Arrival Longitude : 0.0\n" +
+                "Travelled Distance : 0.0\n" +
+                "Delta Distance : 0.0";
         //Act
         String actual = shipstore.getShipSummaryByMMSI(999999999);
         //Assert
@@ -252,8 +271,23 @@ class ShipStoreTest {
     void getShipSummaryByIMONull() {
 
         //Arrange
-        shipstore.addShip(shipgeral);
-        String expected = null;
+        shipstore.addShip(shipgeral4);
+        String expected = "IMO : IMO9999999\n" +
+                "Vessel name: A\n" +
+                "Start Base date Time: null\n" +
+                "End base date time : null\n" +
+                "Total movement time: 0 minutes\n" +
+                "Total number of movements : 0\n" +
+                "Max SOG : 0.0\n" +
+                "Mean SOG : 0.0\n" +
+                "Max COG : 0.0\n" +
+                "Mean COG : 0.0\n" +
+                "Departure Latitude : 0.0\n" +
+                "Departure Longitude : 0.0\n" +
+                "Arrival Latitude : 0.0\n" +
+                "Arrival Longitude : 0.0\n" +
+                "Travelled Distance : 0.0\n" +
+                "Delta Distance : 0.0";
         //Act
         String actual = shipstore.getShipSummaryByIMO("IMO9999999");
         //Assert
@@ -382,7 +416,23 @@ class ShipStoreTest {
 
         //Arrange
         shipstore.addShip(shipgeral);
-        String expected = null;
+        shipstore.addShip(shipgeral3);
+        String expected = "Call Sign : F\n" +
+                "Vessel name: A\n" +
+                "Start Base date Time: null\n" +
+                "End base date time : null\n" +
+                "Total movement time: 0 minutes\n" +
+                "Total number of movements : 0\n" +
+                "Max SOG : 0.0\n" +
+                "Mean SOG : 0.0\n" +
+                "Max COG : 0.0\n" +
+                "Mean COG : 0.0\n" +
+                "Departure Latitude : 0.0\n" +
+                "Departure Longitude : 0.0\n" +
+                "Arrival Latitude : 0.0\n" +
+                "Arrival Longitude : 0.0\n" +
+                "Travelled Distance : 0.0\n" +
+                "Delta Distance : 0.0";
         //Act
         String actual = shipstore.getShipSummaryByCallSign("F");
         //Assert
@@ -632,8 +682,8 @@ class ShipStoreTest {
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:26", formatter), 15.6456, 0, 0, 0, 1));
 
         String expected = "|   Ship 1 MMMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig  \t  | \t  DistDest  \t  |      \t  Movs  \t       |       \t   TravelDist  \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n";
-        expected = expected +"     228339600\t\t\t     210950000         \t\t\t 2779890.79     \t\t\t\t2779890.79        \t\t\t2                 \t\t2779890.79            \t\t2                \t\t2779879.67\n";
-        assertEquals(expected,shipstore.getPairsOfShipsString());
+        expected = expected + "     228339600\t\t\t     210950000         \t\t\t 2779890.79     \t\t\t\t2779890.79        \t\t\t2                 \t\t2779890.79            \t\t2                \t\t2779879.67\n";
+        assertEquals(expected, shipstore.getPairsOfShipsString());
 
     }
 }

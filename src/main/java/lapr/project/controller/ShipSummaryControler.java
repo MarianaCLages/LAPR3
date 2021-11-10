@@ -29,5 +29,7 @@ public class ShipSummaryControler {
     public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException {
         return shipStore.getShipSummaryByCallSign(callSign);
     }
-
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
 }
