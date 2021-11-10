@@ -117,32 +117,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
+        StringBuilder sb = new StringBuilder();
 
-        try {
+        for (Ship s : lShip) {
 
-            StringBuilder sb = new StringBuilder();
+            if (mmsi == s.getMmsi()) {
 
-            for (Ship s : lShip) {
+                sb
+                        .append("MMSI : " + s.getMmsi() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                if (mmsi == s.getMmsi()) {
-
-                    sb
-                            .append("MMSI : " + s.getMmsi() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryByIMO(String imo) {
@@ -151,31 +144,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
-        try {
+        StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb = new StringBuilder();
+        for (Ship s : lShip) {
 
-            for (Ship s : lShip) {
+            if (imo.equals(s.getImo())) {
 
-                if (imo.equals(s.getImo())) {
+                sb
+                        .append("IMO : " + s.getImo() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                    sb
-                            .append("IMO : " + s.getImo() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryByCallSign(String callSign) {
@@ -184,31 +171,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
-        try {
+        StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb = new StringBuilder();
+        for (Ship s : lShip) {
 
-            for (Ship s : lShip) {
+            if (callSign.equals(s.getCallSign())) {
 
-                if (callSign.equals(s.getCallSign())) {
+                sb
+                        .append("Call Sign : " + s.getCallSign() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                    sb
-                            .append("Call Sign : " + s.getCallSign() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryStructure(Ship s) {

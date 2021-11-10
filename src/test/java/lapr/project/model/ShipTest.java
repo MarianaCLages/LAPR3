@@ -611,17 +611,24 @@ public class ShipTest {
 
         boolean actual = shipgeral.equals(shipgeral2);
 
-        if(actual && shipgeral.getMmsi() == shipgeral2.getMmsi() && Objects.equals(shipgeral.getImo(), shipgeral2.getImo()) && shipgeral.getNumGen() == shipgeral2.getNumGen() && shipgeral.getGenPowerOutput() == shipgeral2.getGenPowerOutput() && shipgeral.getLength() == shipgeral2.getLength() && shipgeral.getWidth() == shipgeral2.getWidth() && shipgeral.getCapacity() == shipgeral2.getCapacity() && shipgeral.getDraft() == shipgeral2.getDraft() && Objects.equals(shipgeral.getName(), shipgeral2.getName()) && Objects.equals(shipgeral.getCallSign(), shipgeral2.getCallSign()) && Objects.equals(shipgeral.getVesselType(), shipgeral2.getVesselType())) fail();
+        if (actual && shipgeral.getMmsi() == shipgeral2.getMmsi() && Objects.equals(shipgeral.getImo(), shipgeral2.getImo()) && shipgeral.getNumGen() == shipgeral2.getNumGen() && shipgeral.getGenPowerOutput() == shipgeral2.getGenPowerOutput() && shipgeral.getLength() == shipgeral2.getLength() && shipgeral.getWidth() == shipgeral2.getWidth() && shipgeral.getCapacity() == shipgeral2.getCapacity() && shipgeral.getDraft() == shipgeral2.getDraft() && Objects.equals(shipgeral.getName(), shipgeral2.getName()) && Objects.equals(shipgeral.getCallSign(), shipgeral2.getCallSign()) && Objects.equals(shipgeral.getVesselType(), shipgeral2.getVesselType()))
+            fail();
 
     }
 
     @Test
-    void checkIMOMutant(){
+    void checkIMOMutant() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            if(shipgeral.checkIMO("12")) fail();
+            if (shipgeral.checkIMO("12")) fail();
         });
-        
+
     }
 
+    @Test
+    void equalsMutantNull() {
+
+        if (shipgeral.equals(null)) fail();
+
+    }
 
 }

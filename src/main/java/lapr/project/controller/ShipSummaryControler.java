@@ -18,20 +18,16 @@ public class ShipSummaryControler {
         this.shipStore = company.getShipStore();
     }
 
-    public String getShipSummaryByMMSI(long mmsi) {
+    public String getShipSummaryByMMSI(long mmsi) throws IllegalArgumentException {
         return shipStore.getShipSummaryByMMSI(mmsi);
     }
 
-    public String getShipSummaryByIMO(String imo) {
+    public String getShipSummaryByIMO(String imo) throws IllegalArgumentException {
         return shipStore.getShipSummaryByIMO(imo);
     }
 
-    public String getShipSummaryByCallSign(String callSign) {
+    public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException {
         return shipStore.getShipSummaryByCallSign(callSign);
-    }
-
-    public void importShips(String fileName) throws InvalidLineException, FileNotFoundException {
-        ShipImporter.importsShips(new File(fileName));
     }
 
 }
