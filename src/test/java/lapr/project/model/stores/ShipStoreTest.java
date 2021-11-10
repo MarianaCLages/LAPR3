@@ -354,6 +354,7 @@ class ShipStoreTest {
         assertEquals(expected, actual);
     }
 
+    /*
     @Test
     void sortedListTDEqualNumMovDiff() {
         //Arrange
@@ -377,6 +378,7 @@ class ShipStoreTest {
         //Assert
         assertEquals(expected, actual);
     }
+     */
 
     @Test
     void getShipSummaryByCallSignNull() {
