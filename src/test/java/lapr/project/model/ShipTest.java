@@ -1,6 +1,8 @@
 package lapr.project.model;
 
 
+import lapr.project.utils.auth.UserSession;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -8,8 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ShipTest {
@@ -527,8 +528,8 @@ public class ShipTest {
 
         //Arrange
         shipgeral.getPosDate().addPosition(posgeral);
-        LocalDateTime li = LocalDateTime.of(2020,12,01,01,01,01);
-        LocalDateTime lf = LocalDateTime.of(2020,12,31,23,59,50);
+        LocalDateTime li = LocalDateTime.of(2020, 12, 01, 01, 01, 01);
+        LocalDateTime lf = LocalDateTime.of(2020, 12, 31, 23, 59, 50);
 
         String expected = "Positional Message:";
         String expected2 = "Positional Message:\n" +
@@ -536,7 +537,20 @@ public class ShipTest {
 
 
         //Act + Assert
-        assertEquals(expected, shipgeral.writeAllPos(null,null));
-        assertEquals(expected2,shipgeral.writeAllPos(li,lf));
+        assertEquals(expected, shipgeral.writeAllPos(null, null));
+        assertEquals(expected2, shipgeral.writeAllPos(li, lf));
     }
+
+    @Test
+    void notCheckingMMSICreatingShip() {
+        
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+
 }
