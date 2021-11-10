@@ -1,13 +1,12 @@
 package lapr.project.model.stores;
 
 
-import lapr.project.model.BinarySearchTree;
+import lapr.project.shared.BinarySearchTree;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
