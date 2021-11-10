@@ -193,10 +193,10 @@ public class Ship implements Comparable<Ship> {
         throw new IllegalArgumentException("MMSI code must have 9 digits!");
     }
 
-    public void checkIMO(String imo) {
+    public boolean checkIMO(String imo) {
         if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
             throw new IllegalArgumentException("IMO code must have 7 digits!");
-        }
+        } else return true;
     }
 
 
