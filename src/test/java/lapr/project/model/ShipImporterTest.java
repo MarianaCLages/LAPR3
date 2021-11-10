@@ -81,6 +81,7 @@ class ShipImporterTest {
 
     }
 
+    /*
     @Test
     void testImportsShips() {
         try {
@@ -92,8 +93,8 @@ class ShipImporterTest {
         } catch (FileNotFoundException | InvalidLineException e) {
             Assertions.fail();
         }
-
     }
+     */
 
  /*   @Test
     void testImportsPositions() {

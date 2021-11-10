@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -365,6 +366,38 @@ public class ShipStore {
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
+    }
+
+    public List<Ship> sortedList() {
+        List<Ship> shipList = transformBSTintoList();
+        Comparator<Ship> comparator1 = (o1, o2) -> {
+
+            double x1 = o1.getTravelledDistance();
+            double x2 = o2.getTravelledDistance();
+
+            double z1 = o1.getPosDate().getSize();
+            double z2 = o2.getPosDate().getSize();
+
+            double result1 = x2 - x1;
+            double result2 = z2 - z1;
+
+            if (result1 > 0) {
+                return 1;
+            } else if (result1 < 0) {
+                return -1;
+            } else {
+                if (result2 > 0) {
+                    return -1;
+                } else if (result2 < 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        };
+        shipList.sort(comparator1);
+
+        return shipList;
     }
 
     public void getPairOfShipsInsideBST() {

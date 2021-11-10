@@ -14,10 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ShipStoreTest {
 
-
     Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
-
-    Ship shipgeral2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+    Ship shipgeral2 = new Ship(222222222, "name", "IMO2222222", 1, 1, "A", "A", 1, 1, 1, 1);
 
     ShipStore shipstore = new ShipStore();
 
@@ -28,9 +26,16 @@ class ShipStoreTest {
     String sdate2 = "31-12-2020 23:50";
     LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
 
+    String sdate3 = "31-12-2020 23:55";
+    LocalDateTime date3 = LocalDateTime.parse(sdate3, formatter);
+
+    String sdate4 = "31-12-2020 23:58";
+    LocalDateTime date4 = LocalDateTime.parse(sdate4, formatter);
+
     Position posgeral = new Position(0, 0, 0, 0, 1, date);
     Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
-
+    Position posgeral3 = new Position(5, 10, 15, 10, 5, date3);
+    Position posgeral4 = new Position(10, 20, 30, 20, 10, date4);
 
     @Test
     void existsShip() {
@@ -286,6 +291,91 @@ class ShipStoreTest {
         //Assert
         assertEquals(expected, actual);
 
+    }
+
+    @Test
+    void sortedListTDDiffNumMovEqual() {
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral3);
+        shipgeral2.getPosDate().addPosition(posgeral4);
+        shipstore.addShip(shipgeral);
+        shipstore.addShip(shipgeral2);
+
+        //Act
+        List<Ship> expected = new ArrayList<>();
+        expected.add(shipgeral);
+        expected.add(shipgeral2);
+        List<Ship> actual = shipstore.sortedList();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sortedListTDEqualNumMovEqual() {
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral);
+        shipgeral2.getPosDate().addPosition(posgeral2);
+        shipstore.addShip(shipgeral);
+        shipstore.addShip(shipgeral2);
+
+        //Act
+        List<Ship> expected = new ArrayList<>();
+        expected.add(shipgeral);
+        expected.add(shipgeral2);
+        List<Ship> actual = shipstore.sortedList();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sortedListTDDiffNumMovDiff() {
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral3);
+        shipgeral2.getPosDate().addPosition(posgeral4);
+        shipstore.addShip(shipgeral);
+        shipstore.addShip(shipgeral2);
+
+        //Act
+        List<Ship> expected = new ArrayList<>();
+        expected.add(shipgeral);
+        expected.add(shipgeral2);
+        List<Ship> actual = shipstore.sortedList();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void sortedListTDEqualNumMovDiff() {
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral);
+        shipgeral2.getPosDate().addPosition(posgeral3);
+        shipgeral2.getPosDate().addPosition(posgeral4);
+        shipstore.addShip(shipgeral);
+        shipstore.addShip(shipgeral2);
+
+        //Act
+        List<Ship> expected = new ArrayList<>();
+        expected.add(shipgeral2);
+        expected.add(shipgeral);
+        List<Ship> actual = shipstore.sortedList();
+
+        System.out.println(shipgeral.getTravelledDistance());
+        System.out.println(shipgeral2.getTravelledDistance());
+
+        //Assert
+        assertEquals(expected, actual);
     }
 
     @Test
