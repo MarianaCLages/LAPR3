@@ -2,8 +2,7 @@ package lapr.project.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerTest {
 
@@ -134,6 +133,33 @@ class ContainerTest {
         boolean actual = containerReal.equals(containerEqualsTrue);
         //Assert
         assertTrue(actual);
+    }
+
+    @Test
+    void testEqualsSameObject() {
+        //Arrange
+        //Act
+        boolean actual = containerReal.equals(containerReal);
+        //Assert
+        assertTrue(actual);
+    }
+
+    @Test
+    void testEqualsInverseOperand() {
+        //Arrange
+        //Act
+        boolean actual = !(containerReal.equals(containerReal));
+        //Assert
+        assertFalse(actual);
+    }
+
+    @Test
+    void testEqualsAssert() {
+        //Arrange
+        //Act
+        boolean actual = containerReal.equals(containerReal);
+        //Assert
+        assertEquals(actual,containerReal.equals(containerReal));
     }
 
     @Test

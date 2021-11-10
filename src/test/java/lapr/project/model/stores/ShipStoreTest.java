@@ -451,6 +451,32 @@ class ShipStoreTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void getMaxCOGMutant() {
+
+        //Arrange
+        Position position_cog = new Position(1, 1, 1, 1, -10, LocalDateTime.now());
+        shipgeral.insertPosition(position_cog);
+
+        //Act + Arrange
+        assertNotNull(shipstore.getMeanCOG(shipgeral));
+
+
+    }
+
+    @Test
+    void getMaxSOGMutant() {
+
+        //Arrange
+        Position position_cog = new Position(1, 1, 1, 1, -10, LocalDateTime.now());
+        shipgeral.insertPosition(position_cog);
+
+        //Act + Arrange
+        assertNotNull(shipstore.getMeanSOG(shipgeral));
+
+
+    }
+
     /*
     @Test
     void getMeanSOGDividedByZero() {
