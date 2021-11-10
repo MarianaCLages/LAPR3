@@ -14,6 +14,7 @@ class ListShipsControllerTest {
 
     ListShipsController ctrl = new ListShipsController();
 
+    /*
     @Test
     void getShipList() {
         //Arrange
@@ -31,6 +32,7 @@ class ListShipsControllerTest {
         //Assert
         assertEquals(expectedList, shipList);
     }
+     */
 
     @Test
     void sortedList() {
