@@ -8,28 +8,30 @@ import java.util.*;
 
 public class DistanceCalculation {
 
-    public DistanceCalculation(){
+    public DistanceCalculation() {
 
     }
 
     public static double distanceTo(Position pos, Position pos2) {
 
+
         if (pos == null && pos2 == null) return 0;
 
-        double R = 6371;
-        double lat = Math.toRadians((double) pos.getLatitude());
-        double longi = Math.toRadians((double) pos.getLongitude());
-        double lat2 = Math.toRadians((double) pos2.getLatitude());
-        double longi2 = Math.toRadians((double) pos2.getLongitude());
+        double radius = 6371000;
 
-        double intervaloLat = lat2 - lat;
-        double intervaloLonge = longi2 - longi;
 
-        double a = Math.sin(intervaloLat / 2) * Math.sin(intervaloLat / 2) + Math.cos(lat) * Math.cos(lat2) * Math.sin(intervaloLonge / 2) * Math.sin(intervaloLonge / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = R * c;
+        double latShipRadians = pos.getLatitude() * (3.1416 / 180);
+        double latShip2Radians = pos.getLatitude() * (3.1416 / 180);
+        double latDiff = (pos2.getLatitude() - pos.getLatitude()) * (3.1416 / 180);
+        double lonDiff = (pos2.getLongitude() - pos.getLongitude()) * (3.1416 / 180);
 
-        return d;
+        double aux = Math.sin(latDiff / 2) * Math.sin(latDiff / 2) + Math.cos(latShipRadians) * Math.cos(latShip2Radians) * Math.sin(lonDiff / 2) * Math.sin(lonDiff / 2);
+
+        double c = 2 * Math.atan2(Math.sqrt(aux), Math.sqrt(1 - aux));
+
+        double distance = radius * c;
+
+        return (Math.round(distance * 100) / 100.0);
     }
 
     public double traveledDistanceBaseDateTime(Ship ship, LocalDateTime localinitiald, LocalDateTime localfinald) {

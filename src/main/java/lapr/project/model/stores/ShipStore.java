@@ -336,9 +336,7 @@ public class ShipStore {
 
     public double getDepartureLatitude(Ship s) {
         try {
-            if (s.getPosDate().getSmallestPosition().getLatitude() < -90 || s.getPosDate().getSmallestPosition().getLatitude() > 90)
-                return (s.getPosDate().getSmallestPosition().getLatitude());
-            else return 0;
+            return (s.getPosDate().getSmallestPosition().getLatitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -412,7 +410,7 @@ public class ShipStore {
 
                 Ship s2 = lShip.get(j);
 
-                if (!s1.equals(s2) && (s1.getDeltaDistance() == s2.getDeltaDistance())) {
+                if (!s1.equals(s2) && DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000 && DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000 && s1.getTravelledDistance() != s2.getTravelledDistance() && s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
 
                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                     pairsOfShipsSearchTree.insert(pairOfShips);

@@ -294,7 +294,7 @@ public class ShipTest {
         shipgeral.getPosDate().addPosition(posgeral);
         shipgeral.getPosDate().addPosition(posgeral2);
 
-        double expected = 2476.1714106209574;
+        double expected = 2491535.47;
 
         //Act
         double actual = shipgeral.getTravelledDistance();
@@ -312,7 +312,7 @@ public class ShipTest {
         shipgeral.getPosDate().addPosition(posgeral);
         shipgeral.getPosDate().addPosition(posgeral2);
 
-        double expected = 2476.1714106209574;
+        double expected = 2491535.47;
 
         //Act
         double actual = shipgeral.getDeltaDistance();
