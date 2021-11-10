@@ -13,12 +13,9 @@ public class DistanceCalculation {
     }
 
     public static double distanceTo(Position pos, Position pos2) {
-
-
         if (pos == null && pos2 == null) return 0;
 
         double radius = 6371000;
-
 
         double latShipRadians = pos.getLatitude() * (3.1416 / 180);
         double latShip2Radians = pos.getLatitude() * (3.1416 / 180);

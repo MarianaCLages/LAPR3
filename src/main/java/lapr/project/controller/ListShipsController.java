@@ -28,11 +28,9 @@ public class ListShipsController {
     }
 
     public List<Ship> sortedList() {
-
         if (shipStore.sortedList().isEmpty()) {
             throw new IllegalArgumentException();
         }
-
         return shipStore.sortedList();
     }
 
