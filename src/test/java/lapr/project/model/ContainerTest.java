@@ -159,7 +159,7 @@ class ContainerTest {
         //Act
         boolean actual = containerReal.equals(containerReal);
         //Assert
-        assertEquals(actual,containerReal.equals(containerReal));
+        assertEquals(actual, containerReal.equals(containerReal));
     }
 
     @Test
@@ -167,5 +167,17 @@ class ContainerTest {
         Container container = new Container("20BD", 1000, 1000, 100, "20RF");
         int expected = -1390046803;
         assertEquals(expected, container.hashCode());
+    }
+
+
+    @Test
+    void compareContainers() {
+
+        //Arrange + Act
+        boolean actual = containerReal.equals(new Container("20BD", 1100, 1100, 110, "20RF"));
+        //Assert
+        if (actual) {
+            fail();
+        }
     }
 }
