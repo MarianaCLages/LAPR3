@@ -1,12 +1,32 @@
 @startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
 actor TrafficManager
-participant System
+participant TopPairsUI as UI
+participant TopPairsController as Controller
+participant ":Company" as Company
+participant "store :ShipStore" as Store
 
 activate TrafficManager
-TrafficManager -> System: asks for the Ship pairs
-activate System
-System --> TrafficManager: returns the ship pairs
-deactivate System
+TrafficManager -> UI: asks for the Ship pairs
+activate UI
+UI -> Controller: getPairs()
+activate Controller
+Controller -> Company: store = getShipStore()
+activate Company
+deactivate
+Controller -> Store: getPairsOfShipsString()
+activate Store
+Store -> Store: getPairOfShipsInsideBST()
+activate Store
+deactivate Store
+return
+return
+
+UI --> TrafficManager: returns the ship pairs
+deactivate UI
 
 
 
