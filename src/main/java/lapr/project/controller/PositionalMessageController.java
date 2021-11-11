@@ -31,7 +31,7 @@ public class PositionalMessageController {
             Ship ship = shipStore.getShipByMMSI(mmsi);
 
 
-            if (ship == null) return false;
+            if (ship == null) throw new NullPointerException("Ship doesn't exist!");
 
             String posMessage = ship.writeAllPos(di, df);
 

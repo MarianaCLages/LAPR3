@@ -24,7 +24,7 @@ public class PositionalMessageUI implements Runnable {
         System.out.println("Which ship will you read the positional messages?");
         mmsi = read.nextInt();
 
-
+        try {
         System.out.println("Inital date? yyyy-mm-dd HH:mm:ss");
         date = Utils.readLineFromConsole("");
 
@@ -35,14 +35,19 @@ public class PositionalMessageUI implements Runnable {
 
         System.out.println("Final date? yyyy-mm-dd HH:mm:ss");
         date = Utils.readLineFromConsole("");
-        try {
+
 
             LocalDateTime datef = LocalDateTime.parse(date, dateFormat);
 
-
+        try{
         if (!positionalMessageController.getPositionalMessages(mmsi, datei, datef)) {
-            System.out.println(mmsi + " doesn't exist!");
+            System.out.println(mmsi + " doesn't exist!"); }
+
         }
+        catch (NullPointerException ex){
+            System.out.println("Ship doesn't exist");}
+
+
         }catch (DateTimeParseException e){
             System.out.println("Invalid date");
         }
