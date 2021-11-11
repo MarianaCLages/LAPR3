@@ -186,17 +186,17 @@ public class Ship implements Comparable<Ship> {
     }
 
     //Checks
-    public void checkMMSI(int mmsi) {
+    public boolean checkMMSI(int mmsi) {
         if (mmsi > 99999999 && mmsi < 1000000000) {
-            return;
+            return true;
         }
         throw new IllegalArgumentException("MMSI code must have 9 digits!");
     }
 
-    public void checkIMO(String imo) {
+    public boolean checkIMO(String imo) {
         if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
             throw new IllegalArgumentException("IMO code must have 7 digits!");
-        }
+        } else return true;
     }
 
 
@@ -204,12 +204,10 @@ public class Ship implements Comparable<Ship> {
 
         String positionalMessage = "Positional Message:";
 
-        if(di == null || df == null) return positionalMessage;
+        if (di == null || df == null) return positionalMessage;
 
         Date initiald = java.sql.Timestamp.valueOf(di);
         Date finald = java.sql.Timestamp.valueOf(df);
-
-
 
 
         double d = 0;
@@ -221,8 +219,6 @@ public class Ship implements Comparable<Ship> {
         PositionTree binaryTest = this.getPosDate();
         Iterable<Position> posIterable = binaryTest.getInOrderList();
         Iterator<Position> posIterator = posIterable.iterator();
-
-
 
 
         while (initiald.before(finald)) {
@@ -242,7 +238,6 @@ public class Ship implements Comparable<Ship> {
             while (posIterator.hasNext()) {
 
 
-
                 Position pos = posIterator.next();
                 Date posDate = java.sql.Timestamp.valueOf(pos.getDate());
 
@@ -259,13 +254,11 @@ public class Ship implements Comparable<Ship> {
         }
 
 
+        if (positionList.isEmpty()) return positionalMessage;
 
-        if(positionList.isEmpty()) return positionalMessage;
-
-        for(Position pos : positionList){
-            positionalMessage =  positionalMessage +"\n" + pos.toString() ;
+        for (Position pos : positionList) {
+            positionalMessage = positionalMessage + "\n" + pos.toString();
         }
-
 
 
         return positionalMessage;

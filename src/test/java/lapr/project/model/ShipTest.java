@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-
-import lapr.project.utils.auth.UserSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -546,8 +545,8 @@ public class ShipTest {
     }
 
     @Test
-    void notCheckingMMSICreatingShip() {
-        
+    void notCheckingMMSICreatingShipWithOnlyMMSI() {
+
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             Ship ship_invalid = new Ship(1111111111);
             if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
@@ -556,5 +555,84 @@ public class ShipTest {
         });
     }
 
+    @Test
+    void notCheckingMMSICreatingShip1Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingMMSICreatingShip2Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "test", "test", 1, 3, "a", "a", 3, 4, 5, 6);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingIMOCreatingShip1Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "name", "IMO11", 1, 1, "A", "A", 1, 1, 1, 1);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingIMOCreatingShip2Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "test", "12", 1, 3, "a", "a", 3, 4, 5, 6);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void notCheckingIMOCreatingShip3Type() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Ship ship_invalid = new Ship(1111111111, "name", "AA", 1, 1, "A", "A", 1, 1, 1, 1);
+            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
+                fail();
+            }
+        });
+    }
+
+    @Test
+    void equalsMutant() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getMmsi() == shipgeral2.getMmsi() && Objects.equals(shipgeral.getImo(), shipgeral2.getImo()) && shipgeral.getNumGen() == shipgeral2.getNumGen() && shipgeral.getGenPowerOutput() == shipgeral2.getGenPowerOutput() && shipgeral.getLength() == shipgeral2.getLength() && shipgeral.getWidth() == shipgeral2.getWidth() && shipgeral.getCapacity() == shipgeral2.getCapacity() && shipgeral.getDraft() == shipgeral2.getDraft() && Objects.equals(shipgeral.getName(), shipgeral2.getName()) && Objects.equals(shipgeral.getCallSign(), shipgeral2.getCallSign()) && Objects.equals(shipgeral.getVesselType(), shipgeral2.getVesselType()))
+            fail();
+
+    }
+
+    @Test
+    void checkIMOMutant() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            if (shipgeral.checkIMO("12")) fail();
+        });
+
+    }
+
+    @Test
+    void equalsMutantNull() {
+
+        if (shipgeral.equals(null)) fail();
+
+    }
 
 }

@@ -1,9 +1,9 @@
 package lapr.project.model.stores;
 
 
-import lapr.project.shared.BinarySearchTree;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.shared.BinarySearchTree;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 
@@ -117,32 +117,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
+        StringBuilder sb = new StringBuilder();
 
-        try {
+        for (Ship s : lShip) {
 
-            StringBuilder sb = new StringBuilder();
+            if (mmsi == s.getMmsi()) {
 
-            for (Ship s : lShip) {
+                sb
+                        .append("MMSI : " + s.getMmsi() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                if (mmsi == s.getMmsi()) {
-
-                    sb
-                            .append("MMSI : " + s.getMmsi() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryByIMO(String imo) {
@@ -151,31 +144,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
-        try {
+        StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb = new StringBuilder();
+        for (Ship s : lShip) {
 
-            for (Ship s : lShip) {
+            if (imo.equals(s.getImo())) {
 
-                if (imo.equals(s.getImo())) {
+                sb
+                        .append("IMO : " + s.getImo() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                    sb
-                            .append("IMO : " + s.getImo() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryByCallSign(String callSign) {
@@ -184,31 +171,25 @@ public class ShipStore {
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
-        try {
+        StringBuilder sb = new StringBuilder();
 
-            StringBuilder sb = new StringBuilder();
+        for (Ship s : lShip) {
 
-            for (Ship s : lShip) {
+            if (callSign.equals(s.getCallSign())) {
 
-                if (callSign.equals(s.getCallSign())) {
+                sb
+                        .append("Call Sign : " + s.getCallSign() + "\n")
+                        .append(getShipSummaryStructure(s));
 
-                    sb
-                            .append("Call Sign : " + s.getCallSign() + "\n")
-                            .append(getShipSummaryStructure(s));
-
-                }
             }
-
-            returnString = sb.toString();
-
-            if (returnString == null || returnString.isEmpty())
-                throw new IllegalArgumentException("Invalid Ship, please enter another one");
-            else return returnString;
-
-        } catch (IllegalArgumentException ex) {
-            System.out.println(ex.getMessage()); //Depois fazer um logger
-            return null;
         }
+
+        returnString = sb.toString();
+
+        if (returnString == null || returnString.isEmpty())
+            throw new IllegalArgumentException("Invalid Ship, please enter another one");
+        else return returnString;
+
     }
 
     public String getShipSummaryStructure(Ship s) {
@@ -413,6 +394,7 @@ public class ShipStore {
                     if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
                         if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
                             if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
+
                                 if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
                                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                                     pairsOfShipsSearchTree.insert(pairOfShips);

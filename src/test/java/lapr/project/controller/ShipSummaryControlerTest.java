@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.model.Ship;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,30 +14,30 @@ class ShipSummaryControlerTest {
     void getShipSummaryByMMSI() {
 
         //Arrange
-        String expected = null;
+        shipSummaryControler.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
         //Act
-        String actual = shipSummaryControler.getShipSummaryByMMSI(1111111111);
+        String actual = shipSummaryControler.getShipSummaryByMMSI(111111111);
         //Assert
-        assertEquals(expected, actual);
+        assertNotNull(actual);
     }
 
     @Test
     void getShipSummaryByIMO() {
         //Arrange
-        String expected = null;
+        shipSummaryControler.getShipStore().addShip(new Ship(111114111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
         //Act
         String actual = shipSummaryControler.getShipSummaryByIMO("IMO0000000");
         //Assert
-        assertEquals(expected, actual);
+        assertNotNull(actual);
     }
 
     @Test
     void getShipSummaryByCallSign() {
         //Arrange
-        String expected = null;
+        shipSummaryControler.getShipStore().addShip(new Ship(111114111, "name", "IMO0000000", 1, 1, "F", "A", 1, 1, 1, 1));
         //Act
         String actual = shipSummaryControler.getShipSummaryByCallSign("F");
         //Assert
-        assertEquals(expected, actual);
+        assertNotNull(actual);
     }
 }
