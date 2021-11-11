@@ -9,10 +9,7 @@ import lapr.project.shared.PairOfShips;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ShipStore {
@@ -82,6 +79,43 @@ public class ShipStore {
         return findShip(mmsi);
     }
 
+    public Ship getShipByIMO(String imo) {
+
+
+        Iterable<Ship> ls = shipBinarySearchTree.inOrder();
+        Iterator<Ship> iterShip = ls.iterator();
+
+        while (iterShip.hasNext()) {
+            Ship s = iterShip.next();
+
+
+            List<Ship> lista = transformBSTintoList();
+
+
+            if (s.getImo().trim() == imo.trim()) return s;
+        }
+
+        return null;
+
+    }public Ship getShipByCallSign(String callSign) {
+
+
+        Iterable<Ship> ls = shipBinarySearchTree.inOrder();
+        Iterator<Ship> iterShip = ls.iterator();
+
+        while (iterShip.hasNext()) {
+            Ship s = iterShip.next();
+
+
+            List<Ship> lista = transformBSTintoList();
+
+
+            if (s.getCallSign().trim() == callSign.trim()) return s;
+        }
+
+        return null;
+    }
+
     public List<Integer> getShipListMmsi() {
         List<Integer> shipListMmsi = new ArrayList<>();
         for (Ship ship : shipBinarySearchTree.inOrder()) {
@@ -102,14 +136,60 @@ public class ShipStore {
         return pairsShip;
     }
 
+    public List<Ship> getTopN(int n, String vesselType, LocalDateTime dt, LocalDateTime dt2) {
+        DistanceCalculation distance = new DistanceCalculation();
+        int count = 0;
+        List<Ship> shipsByVessel = new ArrayList<>();
 
-   /* public List<String> getShipListPos() {
-        List<String> shipListPos = new ArrayList<>();
-        for (Ship ship : shipBinarySearchTree.inOrder()) {
-            shipListPos.add(ship.writeAllPos());
+        if (this.getShipBinarySearchTree().isEmpty()) {
+            System.out.println("Store is empty!");
+            return null;
+        } else {
+            Iterable<Ship> iterableShip = this.getShipBinarySearchTree().inOrder();
+
+            for (Ship s : iterableShip) {
+                if (s.getVesselType().equals(vesselType) ) {
+                    shipsByVessel.add(s);
+
+                }
+            }
+
+            if (shipsByVessel.size() < n) {
+                System.out.println("There is not enough ships to do this operation!");
+                return null;
+            }
+
+            double max = 0;
+            Ship maxShip = null;
+            List<Ship> topNShips = new ArrayList<>();
+
+            for(Ship s : shipsByVessel){
+                System.out.println(s.getMmsi());
+            }
+
+            while (count < n) {
+                for (Ship s : shipsByVessel) {
+                    if (max < distance.traveledDistanceBaseDateTime(s,dt,dt2)) {
+                        max = distance.traveledDistanceBaseDateTime(s, dt, dt2);
+                        maxShip = s;
+                    }
+                }
+
+                topNShips.add(maxShip);
+                shipsByVessel.remove(maxShip);
+                max = 0;
+                count++;
+            }
+
+            Set<Ship> set = new HashSet<>(topNShips);
+
+            if(set.size() < topNShips.size()){
+                System.out.println("Not enough ships for that period of time!");
+                return null;
+            }
+            return topNShips;
         }
-        return shipListPos;
-    } */
+    }
 
     public String getShipSummaryByMMSI(double mmsi) {
 

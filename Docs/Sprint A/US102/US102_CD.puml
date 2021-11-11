@@ -1,0 +1,31 @@
+@startuml
+
+class SearchShipUI{
+
+}
+
+class SearchShipController{
+  +searchShipByMMSI(mmsi)
+  +searchShipByIMO(imo)
+  +searchShipByCallSign(callsign)
+}
+
+class Ship{
+
+}
+
+class ShipStore{
+  +getShipByMMSI(mmsi)
+  +getShipByIMO(imo)
+  +getShipByCallSign(callsign)
+}
+
+class Company{
+  +getShipStore
+}
+
+SearchShipUI ..> SearchShipController
+SearchShipController ..> Company
+Company --> ShipStore
+ShipStore --> Ship
+@enduml

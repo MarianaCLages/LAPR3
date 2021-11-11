@@ -1,0 +1,14 @@
+@startuml
+
+class Ship{
+    -int MMSI
+    -String IMO
+    -String Call Sign
+}
+
+class "Traffic Manager" as TM{
+}
+
+TM "1" --> "0..*" Ship : controls position of>
+
+@enduml

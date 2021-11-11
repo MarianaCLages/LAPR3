@@ -41,4 +41,8 @@ public class PositionalMessageController {
         }
         return false;
     }
+
+    public ShipStore getShipStore(){
+        return shipStore;
+    }
 }

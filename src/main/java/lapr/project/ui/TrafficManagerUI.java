@@ -12,6 +12,7 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Positional Message of a Ship", new PositionalMessageUI()));
         options.add(new MenuItem("Ship Summary", new ShipSummaryUI()));
         options.add(new MenuItem("Ship List", new ListShipsUI()));
+        options.add(new MenuItem("Top N Ships", new TopNShipsUI()));
         options.add(new MenuItem("Pairs Of Ships", new PairsOfShipsUI()));
 
 
