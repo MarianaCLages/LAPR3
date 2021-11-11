@@ -21,15 +21,19 @@ public class ShipTest {
     Ship shipgeral2 = new Ship(121111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    String sdate = "31-12-2020 23:16";
+    String sdate = "29-12-2020 23:16";
     LocalDateTime date = LocalDateTime.parse(sdate, formatter);
 
     String sdate2 = "31-12-2020 23:50";
     LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
 
+    String sdate3 = "31-12-2020 23:16";
+    LocalDateTime date3 = LocalDateTime.parse(sdate, formatter);
+
     //Position
     Position posgeral = new Position(0, 0, 0, 0, 1, date);
     Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
+    Position posgeral3 = new Position(20, 30, 40, 20, 10, date3);
 
     @Test
     void checkMMSITest() {
@@ -628,6 +632,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsReverseReturn() {
+
+        boolean actual = shipgeral.equals(shipgeral);
+
+        if (!actual) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectMMSI() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -1030,6 +1043,7 @@ public class ShipTest {
 
         try {
             boolean actual = shipgeral.checkIMO(expected);
+            if (!actual) fail();
         } catch (IllegalArgumentException e) {
             fail();
         }
@@ -1066,19 +1080,46 @@ public class ShipTest {
 
         boolean actual = shipgeral.checkIMO(expected);
 
-        if(!actual) fail();
+        if (!actual) fail();
 
     }
 
 
+    @Test
+    void checkMMSIReturn() {
 
+        boolean actual = shipgeral.checkMMSI(111111111);
+
+        if (!actual) fail();
+
+    }
 
 
     @Test
     void testToString() {
 
         String expected = "Ship{cargo='null', mmsi=111111111, name='name', imo='IMO1111111', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}";
-        assertEquals(expected,shipgeral.toString());
+        assertEquals(expected, shipgeral.toString());
     }
+
+    @Test
+    void writePosMessageCase1() {
+
+        String actual = shipgeral.writeAllPos(posgeral.date, posgeral3.date);
+
+        if (actual.equals("")) fail();
+
+    }
+
+    @Test
+    void writePosMessageCase2() {
+
+        String actual = shipgeral.writeAllPos(posgeral.date, posgeral2.date);
+
+        if (!actual.equals("Positional Message:")) fail();
+
+    }
+
+
 }
 
