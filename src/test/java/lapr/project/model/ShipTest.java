@@ -536,8 +536,8 @@ public class ShipTest {
 
 
         //Act + Assert
-        assertEquals(expected,shipgeral.writeAllPos(li,null));
-        assertEquals(expected,shipgeral.writeAllPos(null,lf));
+        assertEquals(expected, shipgeral.writeAllPos(li, null));
+        assertEquals(expected, shipgeral.writeAllPos(null, lf));
         assertEquals(expected, shipgeral.writeAllPos(null, null));
         assertEquals(expected2, shipgeral.writeAllPos(li, lf));
 
@@ -654,6 +654,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectMMSI3() {
+
+        boolean actual = shipgeral.equals(new Ship(111113111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getMmsi() == shipgeral2.getMmsi()) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectIMO() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -672,6 +681,16 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectIMO3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1211111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getImo().equals(shipgeral2.getImo())) fail();
+
+    }
+
+
+    @Test
     void equalsAllSameExpectCallSign() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -686,6 +705,15 @@ public class ShipTest {
         boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "b", "A", 1, 1, 1, 1));
 
         if (actual && !shipgeral.getCallSign().equals(shipgeral2.getCallSign())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCallSign3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "b", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getCallSign().equals(shipgeral2.getCallSign())) fail();
 
     }
 
@@ -708,6 +736,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectNumsGen3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 2, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getNumGen() == shipgeral2.getNumGen()) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectNumGenPowerOutput() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -722,6 +759,15 @@ public class ShipTest {
         boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 2, "A", "A", 1, 1, 1, 1));
 
         if (actual && shipgeral.getGenPowerOutput() != shipgeral2.getGenPowerOutput()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectNumGenPowerOutput3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 2, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getGenPowerOutput() == shipgeral2.getGenPowerOutput()) fail();
 
     }
 
@@ -744,6 +790,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectWidth3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 2, 1, 1));
+
+        if (actual && shipgeral.getWidth() == shipgeral2.getWidth()) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectCapacity() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -758,6 +813,15 @@ public class ShipTest {
         boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 2, 1));
 
         if (actual && shipgeral.getCapacity() != shipgeral2.getCapacity()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCapacity3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 2, 1));
+
+        if (actual && shipgeral.getCapacity() == shipgeral2.getCapacity()) fail();
 
     }
 
@@ -780,6 +844,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectDraft3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 2));
+
+        if (actual && shipgeral.getDraft() == shipgeral2.getDraft()) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectName() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -798,6 +871,15 @@ public class ShipTest {
     }
 
     @Test
+    void equalsAllSameExpectName3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "nAmE", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && !shipgeral.getName().equals(shipgeral2.getName())) fail();
+
+    }
+
+    @Test
     void equalsAllSameExpectVesselType() {
 
         boolean actual = shipgeral.equals(shipgeral2);
@@ -812,6 +894,15 @@ public class ShipTest {
         boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "b", 1, 1, 1, 1));
 
         if (actual && shipgeral.getVesselType().equals(shipgeral2.getVesselType())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectVesselType3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "b", 1, 1, 1, 1));
+
+        if (actual && !shipgeral.getVesselType().equals(shipgeral2.getVesselType())) fail();
 
     }
 
