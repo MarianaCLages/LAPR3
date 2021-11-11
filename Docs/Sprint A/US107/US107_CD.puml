@@ -19,6 +19,6 @@ class ShipStore{
 
 TopPairsUI --> TopPairsController
 TopPairsController --> Company
-Company ->ShipStore
+Company -> ShipStore
 TopPairsController--> ShipStore
 @enduml
