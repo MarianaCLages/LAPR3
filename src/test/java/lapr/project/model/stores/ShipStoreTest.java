@@ -386,6 +386,30 @@ class ShipStoreTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void sortedListTDDiffNumMovDiffMutant() {
+        //Arrange
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral2);
+        shipgeral2.getPosDate().addPosition(posgeral3);
+        shipgeral2.getPosDate().addPosition(posgeral4);
+        shipstore.addShip(shipgeral);
+        shipstore.addShip(shipgeral2);
+
+        //Act
+        List<Ship> expected = new ArrayList<>();
+        expected.add(shipgeral);
+        expected.add(shipgeral2);
+        List<Ship> actual = shipstore.sortedList();
+
+        if (!actual.toString().equals("[Ship{cargo='null', mmsi=111111111, name='name', imo='IMO1111111', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}, Ship{cargo='null', mmsi=222222222, name='name', imo='IMO2222222', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}]"))
+            fail();
+
+        //Assert
+        assertEquals(expected, actual);
+    }
+
     /*
     @Test
     void sortedListTDEqualNumMovDiff() {
@@ -581,18 +605,18 @@ class ShipStoreTest {
         //Act + Assert
         List<Ship> actualtestShip1 = shipstore.getTopN(1, "A", date, date2);
 
-        try{
-        List<Ship> actualtestShip2 = shipstore.getTopN(10, "A", date, date2);}
-        catch (IllegalArgumentException ex){
-            assertEquals("There is not enough ships to do this operation!",ex.getMessage());
+        try {
+            List<Ship> actualtestShip2 = shipstore.getTopN(10, "A", date, date2);
+        } catch (IllegalArgumentException ex) {
+            assertEquals("There is not enough ships to do this operation!", ex.getMessage());
         }
 
-        try{
-            shipStoreTest.getTopN(1,"A",date,date2);
-        }catch (IllegalArgumentException ex){
-            assertEquals("Store is empty!",ex.getMessage());
+        try {
+            shipStoreTest.getTopN(1, "A", date, date2);
+        } catch (IllegalArgumentException ex) {
+            assertEquals("Store is empty!", ex.getMessage());
         }
-        
+
         assertEquals(expectedtestShip.size(), actualtestShip1.size());
 
 

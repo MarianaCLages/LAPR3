@@ -31,6 +31,20 @@ class UserRoleStoreTest {
     }
 
     @Test
+    void addTrueMutation() {
+
+        //Arrange
+        UserRole userRole = new UserRole("Trolley","Construção");
+        userRoleStore.add(userRole);
+        //Act
+        boolean actual = userRoleStore.add(userRole);
+        if(actual) fail();
+        //Assert
+        assertFalse(actual);
+
+    }
+
+    @Test
     void addFalse() {
 
         //Arrange
@@ -159,5 +173,23 @@ class UserRoleStoreTest {
         assertFalse(actual);
 
     }
+
+    @Test
+    void existsMutantUserRole2() {
+
+        //Arrange
+        UserRole userRole = new UserRole("Trolley","Construção");
+        UserRole userRol2e = new UserRole("Troy","a");
+        UserRole userRole3 = new UserRole(" a"," a");
+        userRoleStore.add(userRole);
+        //Act
+        boolean actual = userRoleStore.exists(userRole3);
+        if(actual) fail();
+        //Assert
+        assertFalse(actual);
+
+    }
+
+
 
 }
