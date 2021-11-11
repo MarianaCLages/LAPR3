@@ -16,17 +16,39 @@ public class ListShipsController {
     List<Ship> shipList;
     ShipMapper shipMapper;
 
+    /**
+     * Constructor.
+     */
     public ListShipsController() {
         this.company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
     }
 
+    /**
+     * Gets the Ship Store.
+     *
+     * @return the Ship Store
+     */
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
+    /**
+     * Gets the ship list.
+     *
+     * @return the ship list
+     */
     public List<Ship> getShipList() {
         shipList = new ArrayList<>();
         shipList = shipStore.getlShip();
         return shipList;
     }
 
+    /**
+     * Sorts the ship list.
+     *
+     * @return the sorted ship list
+     */
     public List<Ship> sortedList() {
         if (shipStore.sortedList().isEmpty()) {
             throw new IllegalArgumentException();
@@ -34,6 +56,11 @@ public class ListShipsController {
         return shipStore.sortedList();
     }
 
+    /**
+     * Gets the ship list in DTO.
+     *
+     * @return the ship list in DTO
+     */
     public List<ShipDTO> getShipListDTO() {
         try {
             this.shipMapper = new ShipMapper();
@@ -42,9 +69,5 @@ public class ListShipsController {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    public ShipStore getShipStore() {
-        return shipStore;
     }
 }

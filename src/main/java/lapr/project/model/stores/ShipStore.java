@@ -1,6 +1,5 @@
 package lapr.project.model.stores;
 
-
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
 import lapr.project.shared.BinarySearchTree;
@@ -32,7 +31,6 @@ public class ShipStore {
         } catch (Exception e) {
             return false;
         }
-
     }
 
     public boolean existsShip(int mmsi) {
@@ -47,7 +45,6 @@ public class ShipStore {
     public Ship findShip(int mmsi) {
         Ship ship = new Ship(mmsi);
         return shipBinarySearchTree.find(ship);
-
     }
 
     public List<Ship> transformBSTintoList() {
@@ -59,13 +56,13 @@ public class ShipStore {
     }
 
     public List<Ship> getlShip() {
-
         return transformBSTintoList();
     }
 
     public boolean writeAllShips() {
-
-        if (shipBinarySearchTree.isEmpty()) return false;
+        if (shipBinarySearchTree.isEmpty()) {
+            return false;
+        }
 
         for (Ship s : shipBinarySearchTree.inOrder()) {
             System.out.println(s);
@@ -75,46 +72,34 @@ public class ShipStore {
     }
 
     public Ship getShipByMMSI(int mmsi) {
-
         return findShip(mmsi);
     }
 
     public Ship getShipByIMO(String imo) {
-
-
         Iterable<Ship> ls = shipBinarySearchTree.inOrder();
         Iterator<Ship> iterShip = ls.iterator();
 
         while (iterShip.hasNext()) {
             Ship s = iterShip.next();
-
-
             List<Ship> lista = transformBSTintoList();
-
-
-            if (s.getImo().trim() == imo.trim()) return s;
+            if (s.getImo().trim() == imo.trim()) {
+                return s;
+            }
         }
-
         return null;
-
     }
 
     public Ship getShipByCallSign(String callSign) {
-
-
         Iterable<Ship> ls = shipBinarySearchTree.inOrder();
         Iterator<Ship> iterShip = ls.iterator();
 
         while (iterShip.hasNext()) {
             Ship s = iterShip.next();
-
-
             List<Ship> lista = transformBSTintoList();
-
-
-            if (s.getCallSign().trim() == callSign.trim()) return s;
+            if (s.getCallSign().trim() == callSign.trim()) {
+                return s;
+            }
         }
-
         return null;
     }
 
@@ -152,7 +137,6 @@ public class ShipStore {
             for (Ship s : iterableShip) {
                 if (s.getVesselType().equals(vesselType)) {
                     shipsByVessel.add(s);
-
                 }
             }
 
@@ -194,90 +178,74 @@ public class ShipStore {
     }
 
     public String getShipSummaryByMMSI(double mmsi) {
-
-
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
         StringBuilder sb = new StringBuilder();
 
         for (Ship s : lShip) {
-
             if (mmsi == s.getMmsi()) {
-
                 sb
                         .append("MMSI : " + s.getMmsi() + "\n")
                         .append(getShipSummaryStructure(s));
-
             }
         }
-
         returnString = sb.toString();
 
-        if (returnString == null || returnString.isEmpty())
+        if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
-        else return returnString;
-
+        } else {
+            return returnString;
+        }
     }
 
     public String getShipSummaryByIMO(String imo) {
-
-
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
         StringBuilder sb = new StringBuilder();
 
         for (Ship s : lShip) {
-
             if (imo.equals(s.getImo())) {
-
                 sb
                         .append("IMO : " + s.getImo() + "\n")
                         .append(getShipSummaryStructure(s));
-
             }
         }
-
         returnString = sb.toString();
 
-        if (returnString == null || returnString.isEmpty())
+        if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
-        else return returnString;
-
+        } else {
+            return returnString;
+        }
     }
 
     public String getShipSummaryByCallSign(String callSign) {
-
-
         String returnString;
         List<Ship> lShip = transformBSTintoList();
 
         StringBuilder sb = new StringBuilder();
 
         for (Ship s : lShip) {
-
             if (callSign.equals(s.getCallSign())) {
-
                 sb
                         .append("Call Sign : " + s.getCallSign() + "\n")
                         .append(getShipSummaryStructure(s));
-
             }
         }
-
         returnString = sb.toString();
 
-        if (returnString == null || returnString.isEmpty())
+        if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
-        else return returnString;
-
+        } else {
+            return returnString;
+        }
     }
 
     public String getShipSummaryStructure(Ship s) {
 
         StringBuilder sb = new StringBuilder();
-
         sb
                 .append("Vessel name: " + s.getVesselType() + "\n")
                 .append("Start Base date Time: " + getFirstDate(s) + "\n")
@@ -296,7 +264,6 @@ public class ShipStore {
                 .append("Delta Distance : " + s.getDeltaDistance());
 
         return sb.toString();
-
     }
 
     public LocalDateTime getFirstDate(Ship s) {
@@ -316,12 +283,9 @@ public class ShipStore {
     }
 
     public long differenceBetweenDates(LocalDateTime first, LocalDateTime second) {
-
         try {
-
             Date firstDate = java.util.Date.from(first.atZone(ZoneId.systemDefault()).toInstant());
             Date secondDate = java.util.Date.from(second.atZone(ZoneId.systemDefault()).toInstant());
-
             long diffInMillies = Math.abs(firstDate.getTime() - secondDate.getTime());
             return (TimeUnit.MINUTES.convert(diffInMillies, TimeUnit.MILLISECONDS));
         } catch (NullPointerException e) {
@@ -330,17 +294,17 @@ public class ShipStore {
     }
 
     public double getMaxSOG(Ship s) {
-
         double maxSog = 0;
 
         for (Position ps1 : s.getPosDate().getOrderList()) {
-            if (ps1.getSog() > maxSog) maxSog = ps1.getSog();
+            if (ps1.getSog() > maxSog) {
+                maxSog = ps1.getSog();
+            }
         }
         return maxSog;
     }
 
     public double getMeanSOG(Ship s) {
-
         try {
             double meanSOG = 0;
             int count = 0;
@@ -350,7 +314,9 @@ public class ShipStore {
                 count++;
             }
 
-            if (count == 0) return 0;
+            if (count == 0) {
+                return 0;
+            }
 
             return (meanSOG / count);
         } catch (ArithmeticException | NullPointerException e) {
@@ -359,19 +325,18 @@ public class ShipStore {
     }
 
     public double getMaxCOG(Ship s) {
-
         double maxCog = 0;
 
         for (Position ps1 : s.getPosDate().getOrderList()) {
-            if (ps1.getCog() > maxCog) maxCog = ps1.getCog();
+            if (ps1.getCog() > maxCog) {
+                maxCog = ps1.getCog();
+            }
         }
         return maxCog;
     }
 
     public double getMeanCOG(Ship s) {
-
         try {
-
             double meanCOG = 0;
             int count = 0;
 
@@ -380,7 +345,9 @@ public class ShipStore {
                 count++;
             }
 
-            if (count == 0) return 0;
+            if (count == 0) {
+                return 0;
+            }
 
             return (meanCOG / count);
         } catch (ArithmeticException | NullPointerException e) {
@@ -457,17 +424,12 @@ public class ShipStore {
     }
 
     public void getPairOfShipsInsideBST() {
-
         List<Ship> lShip = transformBSTintoList();
 
         for (int i = 0; i < lShip.size(); i++) {
-
             Ship s1 = lShip.get(i);
-
             for (int j = 1; j < lShip.size(); j++) {
-
                 Ship s2 = lShip.get(j);
-
                 if (!s1.equals(s2)) {
                     if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
                         if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
@@ -486,7 +448,6 @@ public class ShipStore {
     }
 
     public String getPairsOfShipsString() {
-
         getPairOfShipsInsideBST();
         StringBuilder sb = new StringBuilder();
 
@@ -495,7 +456,6 @@ public class ShipStore {
         for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
             sb.append("     " + pairOfShips.getLeft().getMmsi() + "\t\t\t     " + pairOfShips.getRight().getMmsi() + "         \t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "     \t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "        \t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "                 \t\t" + pairOfShips.getLeft().getTravelledDistance() + "            \t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "                \t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
         }
-
         return sb.toString();
     }
 
