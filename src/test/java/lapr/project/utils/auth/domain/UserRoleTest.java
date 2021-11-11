@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserRoleTest {
 
-    UserRole userRole = new UserRole("Trolley","Construção");
+    UserRole userRole = new UserRole("Trolley", "Construção");
 
     @Test
-    void userRole(){
+    void userRole() {
         //Arrange + Act + Assert
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             UserRole null_userRole = new UserRole(null, null);
@@ -51,7 +51,7 @@ class UserRoleTest {
     void testEqualsTrue() {
 
         //Arrange
-        UserRole expected = new UserRole("Trolley","Construção");
+        UserRole expected = new UserRole("Trolley", "Construção");
         //Act + Arrange
         assertTrue(userRole.equals(expected));
 
@@ -61,7 +61,7 @@ class UserRoleTest {
     void testEqualsFalse() {
 
         //Arrange
-        UserRole expected = new UserRole("FashionDesigner","Roupa para o Edu");
+        UserRole expected = new UserRole("FashionDesigner", "Roupa para o Edu");
         //Act + Arrange
         assertFalse(userRole.equals(expected));
 
@@ -99,13 +99,26 @@ class UserRoleTest {
     }
 
     @Test
-    void testToString(){
+    void testToString() {
         //Arrange
         String expected = "TROLLEY - Construção";
         //Act
         String actual = userRole.toString();
         //Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void hashCodeTest() {
+
+        int expected = -336214042;
+
+        int actual = userRole.hashCode();
+
+        if(actual==0) fail();
+
+        assertEquals(expected, actual);
+
     }
 
 }

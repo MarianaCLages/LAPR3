@@ -33,6 +33,31 @@ class UserTest {
     }
 
     @Test
+    void hasID() {
+
+        //Arrange
+        Email expected = new Email("1201487@isep.ipp.pt");
+        //Act
+        boolean actual = user.hasId(new Email("111@isep.ipp.pt"));
+        //Assert
+        if (actual) fail();
+        assertNotEquals(expected, actual);
+
+    }
+
+    @Test
+    void hasPasswordMutant() {
+
+        //Arrange
+        Password expected = new Password("fEgh");
+        //Act
+        boolean actual = user.hasPassword("");
+        //Assert
+        if (actual) fail();
+
+    }
+
+    @Test
     void getName() {
         //Arrange
         String expected = "Miguel";
@@ -77,6 +102,20 @@ class UserTest {
     }
 
     @Test
+    void addRoleNotNullMutant() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        UserRole userRole = new UserRole("Trolley", "Construir aplicações sem design");
+        //Act
+        user_Local.addRole(userRole);
+        boolean actual = user_Local.addRole(userRole);
+        if (actual) fail();
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void addRoleNull() {
         //Arrange
         User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
@@ -101,6 +140,29 @@ class UserTest {
     }
 
     @Test
+    void removeRoleNullCase1() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        //Act
+        boolean actual = user_Local.removeRole(null);
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void removeRoleNullCase2() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        //Act
+        boolean actual = user_Local.removeRole(null);
+        if (actual) fail();
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void removeRoleNotNull() {
         //Arrange
         User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
@@ -113,6 +175,20 @@ class UserTest {
     }
 
     @Test
+    void removeRoleNotNullMutant() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        UserRole userRole = null;
+        //Act
+        user_Local.removeRole(userRole);
+        boolean actual = user_Local.removeRole(userRole);
+        if (actual) fail();
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void hasRole() {
         //Arrange
         User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
@@ -120,6 +196,18 @@ class UserTest {
         UserRole userRole = new UserRole("Trolley", "Construir aplicações sem design");
         //Act
         boolean actual = user_Local.hasRole(userRole);
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void hasRoleMutant() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        //Act
+        boolean actual = user_Local.hasRole(new UserRole("a", "a"));
+        if(actual) fail();
         // Assert
         assertEquals(expected, actual);
     }
@@ -179,12 +267,12 @@ class UserTest {
 
     @Test
     void testHashCode() {
-       //Arrange
+        //Arrange
         int expected = -574791413;
         //Act
         int actual = user.hashCode();
         //Assert
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -245,6 +333,6 @@ class UserTest {
         //Act
         String actual = user.toString();
         //Assert
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 }
