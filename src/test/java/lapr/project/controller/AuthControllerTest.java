@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AuthControllerTest {
 
-    static AuthController authController = new AuthController();
+    AuthController authController = new AuthController();
 
     @Test
-    public void doLogin() {
+    void doLogin() {
 
         //Arrange
         authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem design");
@@ -29,20 +29,8 @@ class AuthControllerTest {
 
     }
 
-   /* @Test
-    public void doLoginFalse() {
-
-        //Arrange
-        authController.doLogin(null, null);
-        boolean expected = false;
-        //Act
-        boolean actual = authController.getApp().getCurrentUserSession().isLoggedIn();
-        //Assert
-        assertEquals(expected, actual);
-    } */
-
     @Test
-    public void getUserRoles() {
+    void getUserRoles() {
 
         //Arrange + Act
         authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
@@ -57,7 +45,7 @@ class AuthControllerTest {
 
 
     @Test
-    public void getUserRolesNull() {
+    void getUserRolesNull() {
 
         //Arrange + Act
         authController.doLogout();
@@ -68,7 +56,7 @@ class AuthControllerTest {
     }
 
     @Test
-    public void doLogout() {
+    void doLogout() {
         //Arrange
         authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
         authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
@@ -82,14 +70,85 @@ class AuthControllerTest {
 
     }
 
-
     @Test
-    public void getCompany() {
+    void getCompany() {
         //Arrange + Act + Assert
         authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
         authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
         assertNotNull(authController.getApp().getCompany());
+    }
+
+    @Test
+    void addUserWithRoleMutant() {
+        //Arrange + Act + Assert
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
+        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+        boolean actual = authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        if (actual) fail();
+        assertFalse(actual);
+    }
+
+    @Test
+    void addUserMutant() {
+        //Arrange + Act + Assert
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
+        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+        boolean actual = authController.getApp().getAuthFacade().addUser("Mariana", "1200902@isep.ipp.pt", "69Sus");
+        if (actual) fail();
+        assertFalse(actual);
+    }
+
+    @Test
+    void addUserWithRoleMutant1() {
+        //Arrange + Act + Assert
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
+        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+        boolean actual = authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
+        if (actual) fail();
+
+        if (actual) fail();
+
+        assertFalse(actual);
+    }
+
+    @Test
+    void addUserWithRolesMutant1() {
+        //Arrange + Act + Assert
+
+        String[] roles = {"Engineer", "Design", "Trolley"};
+
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserRole("Design", "Conoftware sem desing");
+        authController.getApp().getAuthFacade().addUserRole("Engineer", "C sem desing");
+
+        authController.getApp().getAuthFacade().addUserWithRoles("Mariana", "1200902@isep.ipp.pt", "69Sus", roles);
+        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+        boolean actual = authController.getApp().getAuthFacade().addUserWithRoles("Mariana", "1200902@isep.ipp.pt", "69Sus", roles);
+        if (actual) fail();
+
+        assertFalse(actual);
+    }
+
+    @Test
+    void existsUserMutant() {
+        //Arrange + Act + Assert
+
+        String[] roles = {"Engineer", "Design", "Trolley"};
+
+        authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem desing");
+        authController.getApp().getAuthFacade().addUserRole("Design", "Conoftware sem desing");
+        authController.getApp().getAuthFacade().addUserRole("Engineer", "C sem desing");
+
+        authController.getApp().getAuthFacade().addUserWithRoles("Mariana", "1200902@isep.ipp.pt", "69Sus", roles);
+        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+        boolean actual = authController.getApp().getAuthFacade().existsUser("a@a.pt");
+        if (actual) fail();
+
+        assertFalse(actual);
     }
 
 }

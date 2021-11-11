@@ -38,6 +38,7 @@ class UserRoleStoreTest {
         userRoleStore.add(userRole);
         //Act
         boolean actual = userRoleStore.add(userRole);
+        if(actual) fail();
         //Assert
         assertFalse(actual);
 
@@ -118,6 +119,45 @@ class UserRoleStoreTest {
     }
 
     @Test
-    void testExists() {
+    void existsMutant() {
+
+        //Arrange
+        UserRole userRole = new UserRole("Trolley","Construção");
+        userRoleStore.add(userRole);
+        //Act
+        boolean actual = userRoleStore.exists("a");
+        if(actual) fail();
+        //Assert
+        assertFalse(actual);
+
     }
+
+    @Test
+    void existsMutantUserRole() {
+
+        //Arrange
+        UserRole userRole = new UserRole("Trolley","Construção");
+        //Act
+        boolean actual = userRoleStore.exists(userRole);
+        if(actual) fail();
+        //Assert
+        assertFalse(actual);
+
+    }
+
+    @Test
+    void existsMutantUserRole1() {
+
+        //Arrange
+        UserRole userRole = new UserRole("Trolley","Construção");
+        UserRole userRol2e = new UserRole("Troy","a");
+        userRoleStore.add(userRole);
+        //Act
+        boolean actual = userRoleStore.exists(userRol2e);
+        if(actual) fail();
+        //Assert
+        assertFalse(actual);
+
+    }
+
 }

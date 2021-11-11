@@ -128,6 +128,44 @@ class UserTest {
     }
 
     @Test
+    void removeRoleNotNullMutantCase1() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        UserRole userRole = new UserRole("Trolley", "Construir aplicações sem design");
+        //Act
+        boolean actual = user_Local.removeRole(userRole);
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void removeRoleNotNullMutantCase2() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = true;
+        UserRole userRole = new UserRole("Trolley", "Construir aplicações sem design");
+        //Act
+        user_Local.addRole(userRole);
+        boolean actual = user_Local.removeRole(userRole);
+        if (!actual) fail();
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void removeRoleNotNullMutantCase3() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = false;
+        UserRole userRole = null;
+        //Act
+        boolean actual = user_Local.removeRole(userRole);
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void removeRoleNull() {
         //Arrange
         User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
@@ -201,13 +239,27 @@ class UserTest {
     }
 
     @Test
+    void hasRoleMutantCase1() {
+        //Arrange
+        User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
+        boolean expected = true;
+        UserRole userRole = new UserRole("Trolley", "Construir aplicações sem design");
+        user_Local.addRole(userRole);
+        //Act
+        boolean actual = user_Local.hasRole(userRole);
+        if(!actual) fail();
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void hasRoleMutant() {
         //Arrange
         User user_Local = new User(new Email("1201487@isep.ipp.pt"), new Password("fEgh"), "Miguel");
         boolean expected = false;
         //Act
         boolean actual = user_Local.hasRole(new UserRole("a", "a"));
-        if(actual) fail();
+        if (actual) fail();
         // Assert
         assertEquals(expected, actual);
     }
