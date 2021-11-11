@@ -38,7 +38,7 @@ public class PositionalMessageController {
             if (!posMessage.equals("Positional Message:")) {
 
                 System.out.println(posMessage);
-                System.out.println("\n\nPositional messages sent successfully|");
+               
 
                 return true;
             }

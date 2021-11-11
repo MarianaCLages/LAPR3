@@ -42,6 +42,9 @@ public class PositionalMessageUI implements Runnable {
         try{
         if (!positionalMessageController.getPositionalMessages(mmsi, datei, datef)) {
             System.out.println(mmsi + " doesn't exist!"); }
+        else{
+            System.out.println("\n\nPositional messages sent successfully!");
+        }
 
         }
         catch (NullPointerException ex){
