@@ -592,7 +592,7 @@ class ShipStoreTest {
         }catch (IllegalArgumentException ex){
             assertEquals("Store is empty!",ex.getMessage());
         }
-        
+
         assertEquals(expectedtestShip.size(), actualtestShip1.size());
 
 
