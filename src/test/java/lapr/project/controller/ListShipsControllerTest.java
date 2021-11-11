@@ -1,7 +1,9 @@
 package lapr.project.controller;
 
 import lapr.project.model.Ship;
+import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.mappers.dto.ShipDTO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,25 +16,76 @@ class ListShipsControllerTest {
 
     ListShipsController ctrl = new ListShipsController();
 
-    /*
+
     @Test
     void getShipList() {
         //Arrange
         Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
         Ship ship2 = new Ship(222222222, "name", "IMO1121111", 1, 1, "B", "A", 1, 1, 1, 1);
-        Ship ship3 = new Ship(333333333, "name", "IMO3333333", 1, 1, "A", "A", 1, 1, 1, 1);
-        List<Ship> shipList = new ArrayList<>();
-        shipList.add(ship1);
-        shipList.add(ship2);
-        shipList.add(ship3);
 
-        //Act
-        List<Ship> expectedList = ctrl.getShipList();
 
-        //Assert
-        assertEquals(expectedList, shipList);
+        ctrl.getShipStore().addShip(ship1);
+
+        List<Ship> actual = ctrl.getShipList();
+
+        assertNotEquals(Collections.emptyList(), actual);
     }
-     */
+
+    @Test
+    void getShipListMutant() {
+        //Arrange
+        try {
+            Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            ctrl.getShipStore().addShip(ship1);
+
+            List<Ship> actual = ctrl.getShipList();
+
+            assertNotNull(actual);
+
+
+        } catch (IllegalArgumentException e) {
+
+            fail();
+
+        }
+    }
+
+    @Test
+    void getShipListDTO() {
+        //Arrange
+        Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+        Ship ship2 = new Ship(222222222, "name", "IMO1121111", 1, 1, "B", "A", 1, 1, 1, 1);
+
+
+        ctrl.getShipStore().addShip(ship1);
+
+        List<ShipDTO> actual = ctrl.getShipListDTO();
+
+        assertNotEquals(Collections.emptyList(), actual);
+    }
+
+    @Test
+    void getShipListDTOMutant() {
+        //Arrange
+        //Arrange
+        try {
+            Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+            ctrl.getShipStore().addShip(ship1);
+
+            List<ShipDTO> actual = ctrl.getShipListDTO();
+
+            assertNotNull(actual);
+
+
+        } catch (IllegalArgumentException e) {
+
+            fail();
+
+        }
+    }
+
+
+
 
    /* @Test
     void sortedList() {

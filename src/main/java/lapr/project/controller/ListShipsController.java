@@ -43,4 +43,8 @@ public class ListShipsController {
             return null;
         }
     }
+
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
 }
