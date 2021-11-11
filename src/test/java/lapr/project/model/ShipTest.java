@@ -1135,4 +1135,16 @@ public class ShipTest {
     void calendarSeconds() {
         String actual = shipgeral.writeAllPos(posgeral3.date, posgeral4.date);
     }
+
+    @Test
+    void equalsMutation() {
+
+        Ship shipgeral3 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+
+        boolean actual = shipgeral.equals(shipgeral3);
+
+        if (!actual) fail();
+
+    }
+
 }

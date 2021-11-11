@@ -36,7 +36,7 @@ public class App {
     }
 
 
-    private Properties getProperties() {
+    public Properties getProperties() {
         Properties props = new Properties();
 
         // Add default properties and values
@@ -76,7 +76,7 @@ public class App {
         this.authFacade.doLogout();
     }
 
-    private void bootstrap() {
+    public boolean bootstrap() {
 
         this.authFacade.addUserRole(Constants.ROLE_CLIENT, Constants.ROLE_CLIENT);
         this.authFacade.addUserRole(Constants.TRAFFIC_MANAGER, Constants.ROLE_TRAFFIC_MANAGER);
@@ -91,6 +91,7 @@ public class App {
         //email: TM00001@lei.pt pass: 495
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
+        return true;
 
     }
 
