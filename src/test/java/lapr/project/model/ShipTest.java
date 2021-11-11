@@ -631,4 +631,185 @@ public class ShipTest {
 
     }
 
+    @Test
+    void equalsAllSameExpectMMSI() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getMmsi() != shipgeral2.getMmsi()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectMMSI2() {
+
+        boolean actual = shipgeral.equals(new Ship(111113111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getMmsi() != shipgeral2.getMmsi()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectIMO() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && !shipgeral.getImo().equals(shipgeral2.getImo())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectIMO2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1211111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && !shipgeral.getImo().equals(shipgeral2.getImo())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCallSign() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && !shipgeral.getCallSign().equals(shipgeral2.getCallSign())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCallSign2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "b", "A", 1, 1, 1, 1));
+
+        if (actual && !shipgeral.getCallSign().equals(shipgeral2.getCallSign())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectNumGens() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getNumGen() != shipgeral2.getNumGen()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectNumsGen2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 2, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getNumGen() != shipgeral2.getNumGen()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectNumGenPowerOutput() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getGenPowerOutput() != shipgeral2.getGenPowerOutput()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectNumGenPowerOutput2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 2, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getGenPowerOutput() != shipgeral2.getGenPowerOutput()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectWidth() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getWidth() != shipgeral2.getWidth()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectWidth2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 2, 1, 1));
+
+        if (actual && shipgeral.getWidth() != shipgeral2.getWidth()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCapacity() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getCapacity() != shipgeral2.getCapacity()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectCapacity2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 2, 1));
+
+        if (actual && shipgeral.getCapacity() != shipgeral2.getCapacity()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectDraft() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getDraft() != shipgeral2.getDraft()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectDraft2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 2));
+
+        if (actual && shipgeral.getDraft() != shipgeral2.getDraft()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectName() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getName().equals(shipgeral2.getName())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectName2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "nAmE", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getName().equals(shipgeral2.getName())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectVesselType() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getVesselType().equals(shipgeral2.getVesselType())) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectVesselType2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "b", 1, 1, 1, 1));
+
+        if (actual && shipgeral.getVesselType().equals(shipgeral2.getVesselType())) fail();
+
+    }
+
+
 }
