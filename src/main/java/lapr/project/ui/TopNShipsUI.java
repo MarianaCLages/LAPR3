@@ -42,7 +42,13 @@ public class TopNShipsUI implements Runnable {
 
         LocalDateTime datef = LocalDateTime.parse(date, dateFormat);
 
-        List<Ship> lShip = topNShipsController.getTopNShips(n, vesselType, datei, datef);
+        List<Ship> lShip = null;
+
+        try{
+        lShip = topNShipsController.getTopNShips(n, vesselType, datei, datef);}
+        catch (IllegalArgumentException ex){
+            System.out.println("Not enough ships for this operation");
+        }
 
         if (lShip == null) {
             System.out.println("Not successful... Please, try again.");

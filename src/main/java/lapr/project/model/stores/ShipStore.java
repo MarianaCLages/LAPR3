@@ -128,10 +128,11 @@ public class ShipStore {
         int count = 0;
         List<Ship> shipsByVessel = new ArrayList<>();
 
-        if (this.getShipBinarySearchTree().isEmpty()) {
-            System.out.println("Store is empty!");
-            return null;
-        } else {
+
+            if (this.getShipBinarySearchTree().isEmpty()) {
+                throw new IllegalArgumentException("Store is empty!");
+            }
+
             Iterable<Ship> iterableShip = this.getShipBinarySearchTree().inOrder();
 
             for (Ship s : iterableShip) {
@@ -140,18 +141,16 @@ public class ShipStore {
                 }
             }
 
+
             if (shipsByVessel.size() < n) {
-                System.out.println("There is not enough ships to do this operation!");
-                return null;
+                throw new IllegalArgumentException("There is not enough ships to do this operation!");
             }
+            else{
 
             double max = 0;
             Ship maxShip = null;
             List<Ship> topNShips = new ArrayList<>();
 
-            for (Ship s : shipsByVessel) {
-                System.out.println(s.getMmsi());
-            }
 
             while (count < n) {
                 for (Ship s : shipsByVessel) {
@@ -170,10 +169,10 @@ public class ShipStore {
             Set<Ship> set = new HashSet<>(topNShips);
 
             if (set.size() < topNShips.size()) {
-                System.out.println("Not enough ships for that period of time!");
-                return null;
+                throw new IllegalArgumentException("Not enough ships for that period of time!");
             }
             return topNShips;
+
         }
     }
 

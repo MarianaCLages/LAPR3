@@ -92,11 +92,14 @@ class TopNShipsControllerTest {
     void getTopNShipsMutantcase2() {
         //Arrange
 
-        //Act
-        List<Ship> actual = topNController.getTopNShips(100, "A", dateMutant1, date2Mutant2);
+        //Act + Assert
+        try {
+            List<Ship> actual = topNController.getTopNShips(100, "A", dateMutant1, date2Mutant2);
+        }
+        catch (IllegalArgumentException ex){
+            assertEquals("There is not enough ships to do this operation!",ex.getMessage());
 
-        //Assert
-        if (!(actual == null)) fail();
+        }
 
     }
 
