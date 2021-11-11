@@ -906,5 +906,32 @@ public class ShipTest {
 
     }
 
+    @Test
+    void equalsAllSameExpectLength() {
+
+        boolean actual = shipgeral.equals(shipgeral2);
+
+        if (actual && shipgeral.getLength() != shipgeral2.getLength()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectLength2() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 2, 1, 1, 1));
+
+        if (actual && shipgeral.getLength() != shipgeral2.getLength()) fail();
+
+    }
+
+    @Test
+    void equalsAllSameExpectLength3() {
+
+        boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 2, 1, 1, 1));
+
+        if (actual && shipgeral.getLength() == shipgeral2.getLength()) fail();
+
+    }
+
 
 }
