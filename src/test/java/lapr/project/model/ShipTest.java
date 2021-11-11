@@ -1,11 +1,13 @@
 package lapr.project.model;
 
+import lapr.project.utils.auth.UserSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -457,27 +459,6 @@ public class ShipTest {
         assertNotNull(expected);
     }
 
-    @Test
-    void getPosition() {
-
-        //Arrange
-        List<Position> expected = shipgeral.getDate();
-        //Act + Assert
-        assertNotNull(expected);
-    }
-
-    @Test
-    void setPosition() {
-
-        //Arrange
-        List<Position> expected = new ArrayList<>();
-        expected.add(posgeral);
-        expected.add(posgeral2);
-        shipgeral.setDate(expected);
-        //Act + Assert
-        assertNotNull(expected);
-    }
-
    /* @Test
     void writeAllPosTest() {
 
@@ -625,7 +606,7 @@ public class ShipTest {
 
         boolean actual = shipgeral.equals(shipgeral);
 
-        if(!actual){
+        if (!actual) {
             fail();
         }
 
@@ -941,6 +922,151 @@ public class ShipTest {
         boolean actual = shipgeral.equals(new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 2, 1, 1, 1));
 
         if (actual && shipgeral.getLength() == shipgeral2.getLength()) fail();
+
+    }
+
+    @Test
+    void checkMMSINegativeCase() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            boolean actual = shipgeral.checkMMSI(9999989);
+            if (!actual) fail();
+        });
+    }
+
+    @Test
+    void checkMMSIBoundNegative() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            boolean actual = shipgeral.checkMMSI(99999999);
+
+            if (actual) fail();
+
+        });
+
+
+    }
+
+    @Test
+    void checkMMSIBound2ndOptionOut() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            boolean actual = shipgeral.checkMMSI(1000000000);
+
+            if (actual) fail();
+        });
+
+
+    }
+
+    /*
+    @Test
+    void getDateCollectionsEmpty() {
+
+
+        List<Position> positionList = shipgeral.getDate();
+
+        if (!positionList.equals(Collections.emptyList())) fail();
+
+    }
+
+    @Test
+    void getDateCollectionsEmpty2() {
+
+
+        List<Position> positionList = shipgeral.getDate();
+
+        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
+
+    }
+
+    @Test
+    void getDateCollectionsEmpty3() {
+
+        shipgeral.insertPosition(posgeral);
+        List<Position> positionList = shipgeral.getDate();
+
+        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
+
+    }
+
+    @Test
+    void getDateCollectionsEmpty4() {
+
+        shipgeral.insertPosition(posgeral);
+        List<Position> positionList = shipgeral.getDate();
+
+        if (!positionList.equals(Collections.emptyList())) fail();
+
+    }
+
+    @Test
+    void getAssertNotEquals() {
+
+        shipgeral.insertPosition(posgeral);
+        List<Position> positionList = shipgeral.getDate();
+
+        assertNotEquals(positionList, Collections.emptyList());
+
+    }
+
+    @Test
+    void getAssertNotEquals2() {
+
+        shipgeral.insertPosition(posgeral);
+        shipgeral.insertPosition(posgeral2);
+        List<Position> positionList = shipgeral.getDate();
+
+        System.out.println(positionList);
+
+
+        assertNotEquals(Collections.emptyList(),  positionList);
+    }*/
+
+    @Test
+    void checkImoFirstCase() {
+
+        String expected = "IMO1111111";
+
+        try {
+            boolean actual = shipgeral.checkIMO(expected);
+        } catch (IllegalArgumentException e) {
+            fail();
+        }
+    }
+
+    @Test
+    void checkImoSecondCase() {
+
+        String expected = "IMO1111111";
+
+        try {
+            boolean actual = shipgeral.checkIMO(expected);
+        } catch (IllegalArgumentException e) {
+            fail();
+        }
+    }
+
+    @Test
+    void checkImoThirdCase() {
+
+        String expected = "IMAAAAAAAA";
+
+        try {
+            boolean actual = shipgeral.checkIMO(expected);
+        } catch (IllegalArgumentException e) {
+            fail();
+        }
+    }
+
+    @Test
+    void checkImoReturn() {
+
+        String expected = "IMO1111111";
+
+        boolean actual = shipgeral.checkIMO(expected);
+
+        if(!actual) fail();
 
     }
 

@@ -12,7 +12,6 @@ public class Ship implements Comparable<Ship> {
 
     //dados dinamicos
     private PositionTree posDate;
-    private List<Position> Date;
     //dados estaticos
     private char transcieverClass;
     private String cargo;
@@ -44,7 +43,6 @@ public class Ship implements Comparable<Ship> {
         this.transcieverClass = transcieverClass;
 
         this.posDate = new PositionTree();
-        Date = new ArrayList<>();
     }
 
 
@@ -65,7 +63,6 @@ public class Ship implements Comparable<Ship> {
         this.draft = draft;
 
         this.posDate = new PositionTree();
-        Date = new ArrayList<>();
     }
 
 
@@ -174,15 +171,6 @@ public class Ship implements Comparable<Ship> {
 
     public void setGenPowerOutput(long genPowerOutput) {
         this.genPowerOutput = genPowerOutput;
-    }
-
-
-    public List<Position> getDate() {
-        return Date;
-    }
-
-    public void setDate(List<Position> date) {
-        Date = date;
     }
 
     //Checks
@@ -308,7 +296,6 @@ public class Ship implements Comparable<Ship> {
     public String toString() {
         return "Ship{" +
                 "posDate=" + posDate +
-                ", Date=" + Date +
                 ", transcieverClass=" + transcieverClass +
                 ", cargo='" + cargo + '\'' +
                 ", mmsi=" + mmsi +
