@@ -279,7 +279,30 @@ public class Ship implements Comparable<Ship> {
         if (this == o) return true;
         if (!(o instanceof Ship)) return false;
         Ship ship = (Ship) o;
-        return getMmsi() == ship.getMmsi() && Objects.equals(getImo(), ship.getImo()) && getNumGen() == ship.getNumGen() && getGenPowerOutput() == ship.getGenPowerOutput() && getLength() == ship.getLength() && getWidth() == ship.getWidth() && getCapacity() == ship.getCapacity() && getDraft() == ship.getDraft() && Objects.equals(getName(), ship.getName()) && Objects.equals(getCallSign(), ship.getCallSign()) && Objects.equals(getVesselType(), ship.getVesselType());
+        if (getMmsi() == ship.getMmsi()) {
+            if (Objects.equals(getImo(), ship.getImo())) {
+                if (getNumGen() == ship.getNumGen()) {
+                    if (getGenPowerOutput() == ship.getGenPowerOutput()) {
+                        if (getLength() == ship.getLength()) {
+                            if (getWidth() == ship.getWidth()) {
+                                if (getCapacity() == ship.getCapacity()) {
+                                    if (getDraft() == ship.getDraft()) {
+                                        if (Objects.equals(getName(), ship.getName())) {
+                                            if (Objects.equals(getCallSign(), ship.getCallSign())) {
+                                                if (Objects.equals(getVesselType(), ship.getVesselType())) {
+                                                    return true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -307,7 +330,7 @@ public class Ship implements Comparable<Ship> {
     @Override
     public String toString() {
         return "Ship{" +
-                ", cargo='" + cargo + '\'' +
+                "cargo='" + cargo + '\'' +
                 ", mmsi=" + mmsi +
                 ", name='" + name + '\'' +
                 ", imo='" + imo + '\'' +
