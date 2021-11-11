@@ -711,7 +711,7 @@ class ShipStoreTest {
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 50, 0, 0, 0, 1));
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:26", formatter), 15.6456, 0, 0, 0, 1));
 
-        String expected = "|   Ship 1 MMMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig  \t  | \t  DistDest  \t  |      \t  Movs  \t       |       \t   TravelDist  \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n";
+        String expected = "|   Ship 1 MMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig  \t  | \t  DistDest  \t  |      \t  Movs  \t       |       \t   TravelDist  \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n";
         expected = expected + "     228339600\t\t\t     210950000         \t\t\t 2779890.79     \t\t\t\t2779890.79        \t\t\t2                 \t\t2779890.79            \t\t2                \t\t2779879.67\n";
         assertEquals(expected, shipstore.getPairsOfShipsString());
 
