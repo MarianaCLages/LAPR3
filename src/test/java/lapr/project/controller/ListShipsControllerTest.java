@@ -67,25 +67,24 @@ class ListShipsControllerTest {
     @Test
     void getShipListDTOMutant() {
         //Arrange
-        //Arrange
+        List<ShipDTO> actual = null;
         try {
             Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
             ctrl.getShipStore().addShip(ship1);
 
-            List<ShipDTO> actual = ctrl.getShipListDTO();
+            actual = ctrl.getShipListDTO();
 
             assertNotNull(actual);
 
-
         } catch (IllegalArgumentException e) {
 
-            fail();
-
+            try {
+                if (actual.equals(Collections.emptyList())) fail();
+            } catch (NullPointerException ex) {
+                fail();
+            }
         }
     }
-
-
-
 
    /* @Test
     void sortedList() {

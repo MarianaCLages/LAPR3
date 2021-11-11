@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,4 +42,29 @@ class TopNShipsControllerTest {
         //Assert
         assertEquals(expectedList.size(), actualList.size());
     }
+
+    @Test
+    void getTopNShipsMutant() {
+        //Arrange
+
+        //Act
+        List<Ship> actual = topNController.getTopNShips(1, "A", date, date2);
+
+        //Assert
+        if(actual.equals(Collections.emptyList())) fail();
+
+    }
+
+    @Test
+    void getTopNShipsMutantAssert() {
+        //Arrange
+
+        //Act
+        List<Ship> actual = topNController.getTopNShips(1, "A", date, date2);
+
+        //Assert
+        if(actual.equals(Collections.emptyList())) assertNotEquals(Collections.emptyList(),actual );
+
+    }
+
 }
