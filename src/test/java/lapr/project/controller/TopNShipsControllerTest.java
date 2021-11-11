@@ -25,6 +25,13 @@ class TopNShipsControllerTest {
     String sdate2 = "31-12-2020 23:18";
     LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
 
+
+    String sdateMutant1 = "31-12-2019 23:16";
+    LocalDateTime dateMutant1 = LocalDateTime.parse(sdate, formatter);
+
+    String sdate2Mutant2 = "31-12-2019 23:18";
+    LocalDateTime date2Mutant2 = LocalDateTime.parse(sdate2, formatter);
+
     //Position
     Position posgeral = new Position(0, 0, 0, 0, 1, date);
 
@@ -51,7 +58,7 @@ class TopNShipsControllerTest {
         List<Ship> actual = topNController.getTopNShips(1, "A", date, date2);
 
         //Assert
-        if(actual.equals(Collections.emptyList())) fail();
+        if (actual.equals(Collections.emptyList())) fail();
 
     }
 
@@ -63,7 +70,33 @@ class TopNShipsControllerTest {
         List<Ship> actual = topNController.getTopNShips(1, "A", date, date2);
 
         //Assert
-        if(actual.equals(Collections.emptyList())) assertNotEquals(Collections.emptyList(),actual );
+        if (actual.equals(Collections.emptyList())) assertNotEquals(Collections.emptyList(), actual);
+
+    }
+
+    @Test
+    void getTopNShipsMutantAssertcase1() {
+        //Arrange
+        List<Ship> actual = null;
+        //Act
+        try {
+            actual = topNController.getTopNShips(0, "A", dateMutant1, date2Mutant2);
+            //Assert
+            if(!(actual == null)) fail();
+        } catch (NullPointerException e) {
+            if (actual.equals(Collections.emptyList())) assertNotEquals(Collections.emptyList(), actual);
+        }
+    }
+
+    @Test
+    void getTopNShipsMutantcase2() {
+        //Arrange
+
+        //Act
+        List<Ship> actual = topNController.getTopNShips(100, "A", dateMutant1, date2Mutant2);
+
+        //Assert
+        if (!(actual == null)) fail();
 
     }
 

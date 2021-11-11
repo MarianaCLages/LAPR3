@@ -1,4 +1,4 @@
-package lapr.project.utils;
+package lapr.project.ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;

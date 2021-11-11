@@ -3,7 +3,7 @@ package lapr.project.model;
 import lapr.project.controller.App;
 import lapr.project.model.stores.ShipStore;
 import lapr.project.shared.exceptions.InvalidLineException;
-import lapr.project.utils.CsvUtils;
+import lapr.project.ui.CsvUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

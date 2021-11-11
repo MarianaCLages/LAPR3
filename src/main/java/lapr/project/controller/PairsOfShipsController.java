@@ -17,4 +17,7 @@ public class PairsOfShipsController {
         return shipStore.getPairsOfShipsString();
     }
 
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
 }
