@@ -1,0 +1,24 @@
+@startuml
+class TopPairsUI{
++run()
+}
+
+class Company{
+-ShipStore
++getShipStore()
+}
+
+class TopPairsController{
++getPairs()
+}
+
+class ShipStore{
++getPairsOfShipsString()
+-getPairsOfShipsInsideBST()
+}
+
+TopPairsUI --> TopPairsController
+TopPairsController --> Company
+Company ->ShipStore
+TopPairsController--> ShipStore
+@enduml
