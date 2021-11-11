@@ -212,17 +212,6 @@ public class Ship implements Comparable<Ship> {
         while (initiald.before(finald)) {
 
 
-            if (calendar.getTime().getMinutes() == 60) {
-                calendar.add(Calendar.HOUR_OF_DAY, 1);
-                calendar.getTime().setMinutes(0); //Tiago não consigo matar estes mutantes :(
-                calendar.getTime().setSeconds(0);
-            }
-            if (calendar.getTime().getSeconds() == 60) {
-                calendar.add(Calendar.MINUTE, 1);
-                calendar.getTime().setSeconds(0);
-            }
-
-
             while (posIterator.hasNext()) {
 
 
