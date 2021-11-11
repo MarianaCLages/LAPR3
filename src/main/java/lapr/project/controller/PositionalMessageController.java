@@ -12,12 +12,19 @@ public class PositionalMessageController {
     private Company company;
     private ShipStore shipStore;
 
+    /**
+     * Constructor.
+     */
+
     public PositionalMessageController() {
         this.company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
     }
 
 
+    /**
+     * Gets the positional messages of a ship by its mmsi on a certain period of time.
+     * */
     public boolean getPositionalMessages(int mmsi, LocalDateTime di , LocalDateTime df) {
 
         try {
@@ -42,6 +49,11 @@ public class PositionalMessageController {
         return false;
     }
 
+    /**
+     * Gets the Ship Store.
+     *
+     * @return the Ship Store
+     */
     public ShipStore getShipStore(){
         return shipStore;
     }
