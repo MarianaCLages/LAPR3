@@ -15,7 +15,11 @@ class PositionTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
 
+    String sdate2 = "31/12/2020 23:16";
+    LocalDateTime date2 = LocalDateTime.from(formatter.parse(sdate2));
+
     Position posgeral = new Position(1, 0, 0, 1, 1, date);
+    Position posgeral2 = new Position(1, 0, 0, 1, 1, date2);
 
 
     @Test
@@ -213,6 +217,15 @@ class PositionTest {
         LocalDateTime actual = posgeral.getDate();
         //Assert
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void compareToMutation(){
+
+        int actual = posgeral.compareTo(posgeral2);
+
+        if(actual==0) fail();
+
     }
 
 }

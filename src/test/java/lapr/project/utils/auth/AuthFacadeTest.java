@@ -23,6 +23,15 @@ class AuthFacadeTest {
         assertEquals(expected,actual);
     }
 
+    /*@Test
+    void addUserRoleMutation() {
+        //Arrange + Act
+        authFacade.addUserRole("Trolley","Design");
+        boolean actual =  authFacade.addUserRole("Trolley","Design");
+        //Assert
+        if(!actual) fail();
+    }*/
+
     @Test
     void addUser() {
         //Arrange
