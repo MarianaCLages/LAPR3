@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -18,13 +19,21 @@ public class PositionalMessageControllerTest {
     String sdate2 = "31-12-2020 23:56";
     LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
 
+
+
     @Test
     void getPositionalMessages() {
 
         //Arrange
+
         //Act
         //Assert
         assertEquals(false,positionalMessageController.getPositionalMessages(123456789,date,date2));
 
+        try{
+            boolean b = positionalMessageController.getPositionalMessages(111111111,null,null);
+        }catch (NullPointerException ex){
+            assertEquals(false,ex.getMessage());
+        }
     }
 }

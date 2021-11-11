@@ -536,8 +536,12 @@ public class ShipTest {
 
 
         //Act + Assert
+        assertEquals(expected,shipgeral.writeAllPos(li,null));
+        assertEquals(expected,shipgeral.writeAllPos(null,lf));
         assertEquals(expected, shipgeral.writeAllPos(null, null));
         assertEquals(expected2, shipgeral.writeAllPos(li, lf));
+
+
     }
 
     @Test
