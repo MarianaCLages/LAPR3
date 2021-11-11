@@ -621,6 +621,17 @@ public class ShipTest {
     }
 
     @Test
+    void equalsFalseExpectedTrue() {
+
+        boolean actual = shipgeral.equals(shipgeral);
+
+        if(!actual){
+            fail();
+        }
+
+    }
+
+    @Test
     void checkIMOMutant() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             if (shipgeral.checkIMO("12")) fail();
