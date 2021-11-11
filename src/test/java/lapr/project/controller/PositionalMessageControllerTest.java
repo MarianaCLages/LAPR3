@@ -45,6 +45,12 @@ public class PositionalMessageControllerTest {
         }catch (NullPointerException ex){
             assertEquals(false,ex.getMessage());
         }
+
+        try{
+            boolean b = positionalMessageController.getPositionalMessages(111111111,date,date2);
+        }catch (RuntimeException e){
+            assertEquals(false,e.getMessage());
+        }
     }
 
 
