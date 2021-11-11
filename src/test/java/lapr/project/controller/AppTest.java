@@ -1,8 +1,11 @@
 package lapr.project.controller;
 
 import lapr.project.model.Company;
+import lapr.project.utils.auth.UserSession;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,31 +40,46 @@ class AppTest {
     @Test
     void getPropertiesMutant() {
 
-
         Properties actual = app.getProperties();
 
         if (actual == null) fail();
 
+    }
+
+    @Test
+    void doLoginMutantReturnTrue() {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            boolean actual = app.doLogin("invalid@email", "invalid");
+
+            if (actual) fail();
+        });
 
     }
 
     @Test
-    void getInstance() {
+    void doLoginMutantReturnTrue2() {
+
+        boolean actual;
+
+        if (!app.getAuthFacade().getCurrentUserSession().isLoggedIn()) {
+            actual = app.doLogin("false@eMail.ptt", "invalid");
+            if (actual) fail();
+        } else
+            assertNotEquals(true, false);
     }
 
     @Test
-    void getCurrentUserSession() {
-    }
+    void doLoginMutantReturnFalse() {
 
-    @Test
-    void doLogin() {
-    }
+        app.getAuthFacade().doLogout();
+        app.getAuthFacade().addUserRole("AA", "Test");
+        app.getAuthFacade().addUserWithRole("Tiago", "invalid@email.pt", "aa", "AA");
 
-    @Test
-    void doLogout() {
-    }
+        boolean actual = app.doLogin("invalid@email.pt", "aa");
 
-    @Test
-    void getAuthFacade() {
+        if (!actual) fail();
+
+
     }
 }
