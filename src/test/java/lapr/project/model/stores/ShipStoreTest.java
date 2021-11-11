@@ -578,14 +578,23 @@ class ShipStoreTest {
         shipstore.getShipBinarySearchTree().insert(shipgeral);
         ShipStore shipStoreTest = new ShipStore();
 
-        //Act
+        //Act + Assert
         List<Ship> actualtestShip1 = shipstore.getTopN(1, "A", date, date2);
-        List<Ship> actualtestShip2 = shipstore.getTopN(10, "A", date, date2);
 
-        //Assert
-        assertNull(shipStoreTest.getTopN(1, "A", date, date2));
+        try{
+        List<Ship> actualtestShip2 = shipstore.getTopN(10, "A", date, date2);}
+        catch (IllegalArgumentException ex){
+            assertEquals("There is not enough ships to do this operation!",ex.getMessage());
+        }
+
+        try{
+            shipStoreTest.getTopN(1,"A",date,date2);
+        }catch (IllegalArgumentException ex){
+            assertEquals("Store is empty!",ex.getMessage());
+        }
+        
         assertEquals(expectedtestShip.size(), actualtestShip1.size());
-        assertNull(actualtestShip2);
+
 
     }
 
