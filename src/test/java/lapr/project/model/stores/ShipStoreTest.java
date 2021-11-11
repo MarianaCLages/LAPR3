@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -686,4 +687,113 @@ class ShipStoreTest {
         assertEquals(expected, shipstore.getPairsOfShipsString());
 
     }
+
+    @Test
+    void createNullShipFalse() {
+
+        Ship ship = shipstore.createShip(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B');
+
+        if (ship.equals(null) || ship == null) fail();
+
+    }
+
+    @Test
+    void insertShipIntoBST() {
+
+        Ship ship = shipstore.createShip(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B');
+
+        boolean actual = shipstore.addShip(ship);
+
+        if (!actual) fail();
+
+    }
+
+    @Test
+    void getDateCollectionsEmpty() {
+
+
+        List<Ship> positionList = shipstore.getlShip();
+
+        if (!positionList.equals(Collections.emptyList())) fail();
+
+    }
+
+
+    @Test
+    void getDateCollectionsEmpty2() {
+
+
+        List<Ship> positionList = shipstore.getlShip();
+
+        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
+
+    }
+
+
+    @Test
+    void getDateCollectionsEmpty3() {
+
+        shipstore.addShip(shipgeral);
+        List<Ship> positionList = shipstore.getlShip();
+
+        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
+
+    }
+
+    @Test
+    void getAssertNotEquals() {
+
+        shipstore.addShip(shipgeral);
+        List<Ship> positionList = shipstore.getlShip();
+
+        assertNotEquals(positionList, Collections.emptyList());
+
+    }
+
+    @Test
+    void getAssertNotEquals2() {
+
+        shipstore.addShip(shipgeral);
+        List<Ship> positionList = shipstore.getlShip();
+
+        System.out.println(positionList);
+
+
+        assertNotEquals(Collections.emptyList(), positionList);
+    }
+
+    @Test
+    void getShipByMMSIMutant() {
+
+        shipstore.addShip(shipgeral);
+        List<Integer> positionList = shipstore.getShipListMmsi();
+
+        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
+
+    }
+
+    @Test
+    void getShipByMMSIMutant3() {
+
+        shipstore.addShip(shipgeral);
+        List<Integer> positionList = shipstore.getShipListMmsi();
+
+        assertNotEquals(Collections.emptyList(), positionList);
+
+    }
+
+    @Test
+    void getMaxSog() {
+
+        //Arrange
+        Position position_cog = new Position(1, 1, 1, -10, 0, LocalDateTime.now());
+        shipgeral.insertPosition(position_cog);
+
+        //Act + Arrange
+
+        assertNotEquals(0.0, shipstore.getMeanSOG(shipgeral));
+
+
+    }
+
 }

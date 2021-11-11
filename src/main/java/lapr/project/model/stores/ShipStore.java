@@ -194,10 +194,6 @@ public class ShipStore {
 
     public String getShipSummaryStructure(Ship s) {
 
-        Iterable<Position> dateIterable = s.getPosDate().getOrderList();
-        List<Position> positionList = new ArrayList<>();
-        dateIterable.iterator().forEachRemaining(positionList::add);
-
         StringBuilder sb = new StringBuilder();
 
         sb

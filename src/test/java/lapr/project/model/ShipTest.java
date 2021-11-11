@@ -1,14 +1,10 @@
 package lapr.project.model;
 
-import lapr.project.utils.auth.UserSession;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +17,7 @@ public class ShipTest {
     Ship shipgeral2 = new Ship(121111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    String sdate = "29-12-2020 23:16";
+    String sdate = "29-12-2020 00:16";
     LocalDateTime date = LocalDateTime.parse(sdate, formatter);
 
     String sdate2 = "31-12-2020 23:50";
@@ -30,10 +26,20 @@ public class ShipTest {
     String sdate3 = "31-12-2020 23:16";
     LocalDateTime date3 = LocalDateTime.parse(sdate, formatter);
 
+    String sdate4 = "31-12-2020 00:17";
+    LocalDateTime date4 = LocalDateTime.parse(sdate, formatter);
+
+    String sdate5 = "31-12-2020 00:00";
+    LocalDateTime date5 = LocalDateTime.parse(sdate, formatter);
+
+    String sdate6 = "31-12-2020 00:00";
+    LocalDateTime date6 = LocalDateTime.parse(sdate, formatter);
+
     //Position
     Position posgeral = new Position(0, 0, 0, 0, 1, date);
     Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
     Position posgeral3 = new Position(20, 30, 40, 20, 10, date3);
+    Position posgeral4 = new Position(20, 30, 40, 20, 10, date3);
 
     @Test
     void checkMMSITest() {
@@ -1120,6 +1126,13 @@ public class ShipTest {
 
     }
 
+    @Test
+    void calendarMinutes() {
+        String actual = shipgeral.writeAllPos(posgeral3.date, posgeral4.date);
+    }
 
+    @Test
+    void calendarSeconds() {
+        String actual = shipgeral.writeAllPos(posgeral3.date, posgeral4.date);
+    }
 }
-
