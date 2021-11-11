@@ -1,0 +1,23 @@
+@startuml
+
+actor "Traffic Manager" as ACT
+participant "System" as SYS
+
+activate ACT
+ACT -> SYS : initiates the search ship by MMSI, IMO or Call sign process
+activate SYS
+SYS -> ACT : asks for which search parameter to use
+deactivate SYS
+
+ACT -> SYS : chooses a search parameter
+activate SYS
+SYS -> ACT : asks to submit search parameter information
+deactivate SYS
+
+ACT -> SYS : submits the search parameters
+activate SYS
+SYS -> ACT : shows requested ship
+deactivate SYS
+deactivate ACT
+
+@enduml

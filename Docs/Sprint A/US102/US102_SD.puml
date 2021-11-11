@@ -1,0 +1,34 @@
+@startuml
+
+actor "Traffic Manager" as ACT
+
+participant SearchShipUI as UI
+participant SearchShipController as CTRL
+participant ShipStore as SS
+participant Ship as SHIP
+
+activate ACT
+ACT -> UI : initiates the search ship by MMSI, IMO or Call sign process
+activate UI
+UI -> ACT : requests for which search parameter to use
+deactivate UI
+
+ACT -> UI : picks a search parameter
+activate UI
+UI -> ACT : requests search parameter information
+deactivate UI
+
+
+UI -> CTRL : searchShip()
+activate CTRL
+CTRL -> SS : getShipBy()
+activate SS
+SS -> CTRL : Ship
+deactivate SS
+CTRL -> UI
+deactivate CTRL
+UI -> ACT : shows Ship information
+deactivate UI
+deactivate ACT
+
+@enduml
