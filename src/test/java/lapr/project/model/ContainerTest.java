@@ -180,4 +180,16 @@ class ContainerTest {
             fail();
         }
     }
+
+    @Test
+    void compareContainersNull() {
+
+        //Arrange + Act
+        boolean actual = containerReal.equals(null);
+        //Assert
+        if (actual) {
+            fail();
+        }
+    }
+
 }

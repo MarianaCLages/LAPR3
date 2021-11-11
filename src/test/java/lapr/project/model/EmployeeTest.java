@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.utils.auth.domain.OrgRole;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,4 +47,21 @@ class EmployeeTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    void getInvalidName() {
+
+        String name = employee.getName();
+
+        if (name == "" || StringUtils.isBlank(name)) fail();
+    }
+
+    @Test
+    void getInvalidEmail() {
+
+        String email = employee.getEmail();
+
+        if (email == "" || StringUtils.isBlank(email)) fail();
+    }
+
 }

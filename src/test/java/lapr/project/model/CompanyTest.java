@@ -1,12 +1,16 @@
 package lapr.project.model;
 
 
+import lapr.project.utils.auth.AuthFacade;
+import lapr.project.utils.auth.domain.store.OrgRoleStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CompanyTest {
+
+    Company company = new Company("Cargo");
 
     @Test
     void createCompanyInvalid() {
@@ -26,4 +30,23 @@ class CompanyTest {
             //Mutant killer
         }
     }
+
+    @Test
+    void getAuthFacade() {
+
+        AuthFacade authFacade = company.getAuthFacade();
+
+        if(authFacade==null) fail();
+
+    }
+
+    @Test
+    void getOrgRoleStore() {
+
+        OrgRoleStore orgRoleStore = company.getOrgRoleStore();
+
+        if(orgRoleStore==null) fail();
+
+    }
+
 }

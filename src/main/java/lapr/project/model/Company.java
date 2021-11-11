@@ -24,7 +24,6 @@ public class Company {
         return this.shipStore;
     }
 
-
     public AuthFacade getAuthFacade() {
         return authFacade;
     }
