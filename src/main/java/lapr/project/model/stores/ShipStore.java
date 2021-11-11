@@ -97,7 +97,9 @@ public class ShipStore {
 
         return null;
 
-    }public Ship getShipByCallSign(String callSign) {
+    }
+
+    public Ship getShipByCallSign(String callSign) {
 
 
         Iterable<Ship> ls = shipBinarySearchTree.inOrder();
@@ -148,7 +150,7 @@ public class ShipStore {
             Iterable<Ship> iterableShip = this.getShipBinarySearchTree().inOrder();
 
             for (Ship s : iterableShip) {
-                if (s.getVesselType().equals(vesselType) ) {
+                if (s.getVesselType().equals(vesselType)) {
                     shipsByVessel.add(s);
 
                 }
@@ -163,13 +165,13 @@ public class ShipStore {
             Ship maxShip = null;
             List<Ship> topNShips = new ArrayList<>();
 
-            for(Ship s : shipsByVessel){
+            for (Ship s : shipsByVessel) {
                 System.out.println(s.getMmsi());
             }
 
             while (count < n) {
                 for (Ship s : shipsByVessel) {
-                    if (max < distance.traveledDistanceBaseDateTime(s,dt,dt2)) {
+                    if (max < distance.traveledDistanceBaseDateTime(s, dt, dt2)) {
                         max = distance.traveledDistanceBaseDateTime(s, dt, dt2);
                         maxShip = s;
                     }
@@ -183,7 +185,7 @@ public class ShipStore {
 
             Set<Ship> set = new HashSet<>(topNShips);
 
-            if(set.size() < topNShips.size()){
+            if (set.size() < topNShips.size()) {
                 System.out.println("Not enough ships for that period of time!");
                 return null;
             }

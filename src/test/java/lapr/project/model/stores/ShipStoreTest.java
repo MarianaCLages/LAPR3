@@ -570,28 +570,24 @@ class ShipStoreTest {
      */
 
 
-    /*
     @Test
-    void getTopN(){
+    void getTopN() {
         //Arrange
         List<Ship> expectedtestShip = new ArrayList<>();
         expectedtestShip.add(shipgeral);
         shipstore.getShipBinarySearchTree().insert(shipgeral);
         ShipStore shipStoreTest = new ShipStore();
-        //Act
-        List<Ship> actualtestShip1 = shipstore.getTopN(1,"A",date,date2);
-        List<Ship> actualtestShip2 = shipstore.getTopN(10,"A",date,date2);
 
+        //Act
+        List<Ship> actualtestShip1 = shipstore.getTopN(1, "A", date, date2);
+        List<Ship> actualtestShip2 = shipstore.getTopN(10, "A", date, date2);
 
         //Assert
-        assertEquals(null,shipStoreTest.getTopN(1,"A",date,date2));
-        assertEquals(expectedtestShip.size(),actualtestShip1.size());
-        assertEquals(expectedtestShip.indexOf(shipgeral),actualtestShip1.indexOf(shipgeral));
-        assertEquals(null,actualtestShip2);
+        assertNull(shipStoreTest.getTopN(1, "A", date, date2));
+        assertEquals(expectedtestShip.size(), actualtestShip1.size());
+        assertNull(actualtestShip2);
 
     }
-
-}*/
 
     @Test
     void getMeanSOG() {
