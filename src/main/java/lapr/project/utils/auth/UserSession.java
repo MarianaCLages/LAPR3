@@ -47,7 +47,7 @@ public class UserSession {
             UserRoleMapper mapper = new UserRoleMapper();
             return mapper.toDTO(this.user.getRoles());
         }
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     public User getUser() {

@@ -1,5 +1,6 @@
 package lapr.project.utils.auth;
 
+import lapr.project.utils.auth.domain.User;
 import lapr.project.utils.auth.domain.UserRole;
 import lapr.project.utils.auth.mappers.UserRoleMapper;
 import lapr.project.utils.auth.mappers.dto.UserRoleDTO;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -120,7 +122,7 @@ class UserSessionTest {
         List<UserRoleDTO> userRoleDTOS1 = authFacade.getCurrentUserSession().getUserRoles();
         UserRoleDTO actual = userRoleDTOS1.get(0);
         //Assert
-        assertNotEquals(expected, actual); //Isto devia dar bem se fizerem side by side comparssiisisision isto devia dar bem pa
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -135,4 +137,39 @@ class UserSessionTest {
         //Assert
         assertNotEquals(expected, actual);
     }
+
+    @Test
+    void getUserRolesMutant() {
+        //Arrange
+        UserRoleMapper mapper = new UserRoleMapper();
+        List<UserRoleDTO> userRoleDTOS = new ArrayList<>();
+        userRoleDTOS.add(mapper.toDTO(new UserRole(role, description)));
+        UserRoleDTO expected = userRoleDTOS.get(0);
+        authFacade.addUserRole(role, description);
+        authFacade.addUserWithRole(name, email, password, role);
+        authFacade.doLogout();
+        //Act
+        List<UserRoleDTO> userRoleDTOS1 = authFacade.getCurrentUserSession().getUserRoles();
+        UserRoleDTO actual = null;
+        if (!userRoleDTOS1.equals(Collections.emptyList())) fail();
+        //Assert
+        assertNotEquals(expected, actual);
+    }
+
+    @Test
+    void getUser() {
+        //Arrange
+        UserRoleMapper mapper = new UserRoleMapper();
+        List<UserRoleDTO> userRoleDTOS = new ArrayList<>();
+        userRoleDTOS.add(mapper.toDTO(new UserRole(role, description)));
+        authFacade.addUserRole(role, description);
+        authFacade.addUserWithRole(name, email, password, role);
+        authFacade.doLogin(email, password);
+        //Act
+        User actual = authFacade.getCurrentUserSession().getUser();
+        if(actual==null) fail();
+        //Assert
+        assertNotNull(actual);
+    }
+
 }
