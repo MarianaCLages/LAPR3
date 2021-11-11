@@ -1071,9 +1071,9 @@ public class ShipTest {
     }
 
 
-<<<<<<< HEAD
-}
-=======
+
+
+
     @Test
     void testToString() {
 
@@ -1081,4 +1081,4 @@ public class ShipTest {
         assertEquals(expected,shipgeral.toString());
     }
 }
->>>>>>> 7a3c9abc25301f39b674e7cf4a7d0897fdf81445
+

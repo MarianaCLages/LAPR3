@@ -318,13 +318,7 @@ public class Ship implements Comparable<Ship> {
     @Override
     public String toString() {
         return "Ship{" +
-<<<<<<< HEAD
-                "posDate=" + posDate +
-                ", transcieverClass=" + transcieverClass +
-                ", cargo='" + cargo + '\'' +
-=======
                 "cargo='" + cargo + '\'' +
->>>>>>> 7a3c9abc25301f39b674e7cf4a7d0897fdf81445
                 ", mmsi=" + mmsi +
                 ", name='" + name + '\'' +
                 ", imo='" + imo + '\'' +
