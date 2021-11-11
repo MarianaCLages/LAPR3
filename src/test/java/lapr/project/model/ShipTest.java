@@ -945,4 +945,10 @@ public class ShipTest {
     }
 
 
+    @Test
+    void testToString() {
+
+        String expected = "Ship{cargo='null', mmsi=111111111, name='name', imo='IMO1111111', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}";
+        assertEquals(expected,shipgeral.toString());
+    }
 }
