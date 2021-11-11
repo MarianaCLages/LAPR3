@@ -9,10 +9,7 @@ import lapr.project.shared.PairOfShips;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ShipStore {
@@ -80,6 +77,43 @@ public class ShipStore {
     public Ship getShipByMMSI(int mmsi) {
 
         return findShip(mmsi);
+    }
+
+    public Ship getShipByIMO(String imo) {
+
+
+        Iterable<Ship> ls = shipBinarySearchTree.inOrder();
+        Iterator<Ship> iterShip = ls.iterator();
+
+        while (iterShip.hasNext()) {
+            Ship s = iterShip.next();
+
+
+            List<Ship> lista = transformBSTintoList();
+
+
+            if (s.getImo().trim() == imo.trim()) return s;
+        }
+
+        return null;
+
+    }public Ship getShipByCallSign(String callSign) {
+
+
+        Iterable<Ship> ls = shipBinarySearchTree.inOrder();
+        Iterator<Ship> iterShip = ls.iterator();
+
+        while (iterShip.hasNext()) {
+            Ship s = iterShip.next();
+
+
+            List<Ship> lista = transformBSTintoList();
+
+
+            if (s.getCallSign().trim() == callSign.trim()) return s;
+        }
+
+        return null;
     }
 
     public List<Integer> getShipListMmsi() {
