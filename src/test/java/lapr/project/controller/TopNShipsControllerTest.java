@@ -74,7 +74,7 @@ class TopNShipsControllerTest {
 
     }
 
-    @Test
+  /*  @Test
     void getTopNShipsMutantAssertcase1() {
         //Arrange
         List<Ship> actual = null;
@@ -86,7 +86,7 @@ class TopNShipsControllerTest {
         } catch (NullPointerException e) {
             if (actual.equals(Collections.emptyList())) assertNotEquals(Collections.emptyList(), actual);
         }
-    }
+    } */
 
     @Test
     void getTopNShipsMutantcase2() {
