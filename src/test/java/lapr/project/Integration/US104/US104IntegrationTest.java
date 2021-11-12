@@ -19,7 +19,7 @@ class US104IntegrationTest {
     App app = App.getInstance();
     Company company = app.getCompany();
 
-    ShipStore shipStore = company.getShipStore();
+   ShipStore shipStore = company.getShipStore();
     ShipSummaryController shipSummaryController = new ShipSummaryController();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");

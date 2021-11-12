@@ -308,19 +308,23 @@ public class Ship implements Comparable<Ship> {
         Date initiald = java.sql.Timestamp.valueOf(di);
         Date finald = java.sql.Timestamp.valueOf(df);
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(initiald);
+
+        calendar.add(Calendar.SECOND, -1);
+        initiald = calendar.getTime();
+
 
         double d = 0;
         List<Position> positionList = new ArrayList<>();
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(initiald);
 
         PositionTree binaryTest = this.getPosDate();
         Iterable<Position> posIterable = binaryTest.getInOrderList();
         Iterator<Position> posIterator = posIterable.iterator();
 
 
-        while (initiald.before(finald)) {
+        while (!initiald.after(finald)) {
 
 
             while (posIterator.hasNext()) {

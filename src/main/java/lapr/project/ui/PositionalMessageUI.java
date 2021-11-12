@@ -40,15 +40,16 @@ public class PositionalMessageUI implements Runnable {
             LocalDateTime datef = LocalDateTime.parse(date, dateFormat);
 
         try{
-        if (!positionalMessageController.getPositionalMessages(mmsi, datei, datef)) {
-            System.out.println(mmsi + " doesn't exist!"); }
-        else{
-            System.out.println("\n\nPositional messages sent successfully!");
-        }
+
+            String posMessage = positionalMessageController.getPositionalMessages(mmsi,datei,datef);
+
+             if(posMessage != null){
+                System.out.println(posMessage);
+            }
 
         }
         catch (NullPointerException ex){
-            System.out.println("Ship doesn't exist");}
+            System.out.println("Ship doesn't exist or doesn't have positions in that period of time!");}
 
 
         }catch (DateTimeParseException e){

@@ -25,7 +25,7 @@ public class PositionalMessageController {
     /**
      * Gets the positional messages of a ship by its mmsi on a certain period of time.
      * */
-    public boolean getPositionalMessages(int mmsi, LocalDateTime di , LocalDateTime df) {
+    public String getPositionalMessages(int mmsi, LocalDateTime di , LocalDateTime df) {
 
         try {
             Ship ship = shipStore.getShipByMMSI(mmsi);
@@ -37,16 +37,13 @@ public class PositionalMessageController {
 
             if (!posMessage.equals("Positional Message:")) {
 
-                System.out.println(posMessage);
-               
-
-                return true;
+                return posMessage;
             }
 
         }catch (NullPointerException e){
-            return false;
+            return null;
         }
-        return false;
+        return null;
     }
 
     /**
