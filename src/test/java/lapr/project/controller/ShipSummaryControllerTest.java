@@ -6,18 +6,18 @@ import org.junit.platform.commons.util.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ShipSummaryControlerTest {
+class ShipSummaryControllerTest {
 
-    ShipSummaryControler shipSummaryControler = new ShipSummaryControler();
+    ShipSummaryController shipSummaryController = new ShipSummaryController();
 
 
     @Test
     void getShipSummaryByMMSI() {
 
         //Arrange
-        shipSummaryControler.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
+        shipSummaryController.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
         //Act
-        String actual = shipSummaryControler.getShipSummaryByMMSI(111111111);
+        String actual = shipSummaryController.getShipSummaryByMMSI(111111111);
         //Assert
         assertNotNull(actual);
     }
@@ -25,8 +25,8 @@ class ShipSummaryControlerTest {
     @Test
     void getShipSummaryByMMSIMutant() {
 
-        shipSummaryControler.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
-        String actual = shipSummaryControler.getShipSummaryByMMSI(111111111);
+        shipSummaryController.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
+        String actual = shipSummaryController.getShipSummaryByMMSI(111111111);
 
         if (StringUtils.isBlank(actual) || actual.equals("")) fail();
     }
@@ -44,8 +44,8 @@ class ShipSummaryControlerTest {
     @Test
     void getShipSummaryByIMOMutant() {
 
-        shipSummaryControler.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
-        String actual = shipSummaryControler.getShipSummaryByIMO("IMO0000000");
+        shipSummaryController.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
+        String actual = shipSummaryController.getShipSummaryByIMO("IMO0000000");
 
         if (StringUtils.isBlank(actual) || actual.equals("")) fail();
     }
@@ -62,8 +62,8 @@ class ShipSummaryControlerTest {
 
     @Test
     void getShipSummaryByCallSignMutant() {
-        shipSummaryControler.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
-        String actual = shipSummaryControler.getShipSummaryByCallSign("a");
+        shipSummaryController.getShipStore().addShip(new Ship(111111111, "name", "IMO0000000", 1, 1, "a", "A", 1, 1, 1, 1));
+        String actual = shipSummaryController.getShipSummaryByCallSign("a");
 
         if (StringUtils.isBlank(actual) || actual.equals("")) fail();
     }

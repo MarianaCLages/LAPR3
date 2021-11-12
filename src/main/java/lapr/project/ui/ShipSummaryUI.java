@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ShipSummaryControler;
-import lapr.project.shared.exceptions.InvalidLineException;
-
-import java.io.FileNotFoundException;
+import lapr.project.controller.ShipSummaryController;
 
 public class ShipSummaryUI implements Runnable {
 
@@ -11,7 +8,7 @@ public class ShipSummaryUI implements Runnable {
         //Empty
     }
 
-    private final ShipSummaryControler shipSummaryControler = new ShipSummaryControler();
+    private final ShipSummaryController shipSummaryController = new ShipSummaryController();
 
     @Override
     public void run() {
@@ -45,7 +42,7 @@ public class ShipSummaryUI implements Runnable {
                     }
                 } while (mmsi == 0);
                 try {
-                    shipSummary = shipSummaryControler.getShipSummaryByMMSI(mmsi);
+                    shipSummary = shipSummaryController.getShipSummaryByMMSI(mmsi);
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
@@ -60,7 +57,7 @@ public class ShipSummaryUI implements Runnable {
                     }
                 } while (imo == null);
                 try {
-                    shipSummary = shipSummaryControler.getShipSummaryByIMO(imo);
+                    shipSummary = shipSummaryController.getShipSummaryByIMO(imo);
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
@@ -75,7 +72,7 @@ public class ShipSummaryUI implements Runnable {
                     }
                 } while (callSign == null);
                 try {
-                    shipSummary = shipSummaryControler.getShipSummaryByCallSign(callSign);
+                    shipSummary = shipSummaryController.getShipSummaryByCallSign(callSign);
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
@@ -85,7 +82,7 @@ public class ShipSummaryUI implements Runnable {
                 break;
         }
 
-        if (shipSummary != null) System.out.println("SHIP'S SUMMARY : " + "\n" + shipSummary);
+        if (shipSummary != null) System.out.println("\nSHIP'S SUMMARY : " + "\n" + shipSummary);
 
     }
 }

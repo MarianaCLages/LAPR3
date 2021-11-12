@@ -8,12 +8,12 @@ import lapr.project.shared.exceptions.InvalidLineException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class ShipSummaryControler {
+public class ShipSummaryController {
 
     private Company company;
     private ShipStore shipStore;
 
-    public ShipSummaryControler() {
+    public ShipSummaryController() {
         this.company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
     }
