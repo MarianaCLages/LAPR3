@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AuthController {
 
-    private App app;
+    private final App app;
 
     public AuthController()
     {

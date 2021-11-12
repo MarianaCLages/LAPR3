@@ -7,7 +7,7 @@ import java.util.Objects;
 public class MenuItem {
 
     private final String description;
-    private Runnable ui;
+    private final Runnable ui;
 
     public MenuItem(String description, Runnable ui) {
         if (StringUtils.isBlank(description))

@@ -80,7 +80,7 @@ public class DistanceCalculation {
 
 
         int count = 0;
-        Position posA[] = new Position[2];
+        Position[] posA = new Position[2];
 
         for (Position pos : positionList) {
 

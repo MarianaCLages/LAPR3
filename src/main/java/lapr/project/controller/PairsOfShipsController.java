@@ -5,8 +5,8 @@ import lapr.project.model.stores.ShipStore;
 
 public class PairsOfShipsController {
 
-    private Company company;
-    private ShipStore shipStore;
+    private final Company company;
+    private final ShipStore shipStore;
 
     public PairsOfShipsController() {
         this.company = App.getInstance().getCompany();

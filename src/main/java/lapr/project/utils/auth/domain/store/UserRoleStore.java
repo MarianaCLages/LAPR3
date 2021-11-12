@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class UserRoleStore {
 
-    private Set<UserRole> store = new HashSet<UserRole>();
+    private final Set<UserRole> store = new HashSet<UserRole>();
 
     public UserRole create(String id, String description) {
         return new UserRole(id, description);

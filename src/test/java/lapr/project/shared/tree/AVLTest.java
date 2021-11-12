@@ -16,13 +16,13 @@ class AVLTest {
     @Test
     void rightRotationNull() {
         AVL<Integer> avl = new AVL<>();
-        assertEquals(null, avl.rightRotation(null));
+        assertNull(avl.rightRotation(null));
     }
 
     @Test
     void leftRotationNull() {
         AVL<Integer> avl = new AVL<>();
-        assertEquals(null, avl.leftRotation(null));
+        assertNull(avl.leftRotation(null));
     }
 
     @Test
@@ -40,7 +40,7 @@ class AVLTest {
 
         avl.remove(1);
 
-        assertEquals(avl.toString(), "");
+        assertEquals("", avl.toString());
     }
 
     @Test
@@ -50,7 +50,7 @@ class AVLTest {
 
         avl.remove(1);
 
-        assertEquals(avl.root(), null);
+        assertNull(avl.root());
     }
 
     @Test

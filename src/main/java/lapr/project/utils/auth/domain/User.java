@@ -7,10 +7,10 @@ import java.util.*;
 
 public class User {
 
-    private Email id;
-    private Password password;
-    private String name;
-    private Set<UserRole> roles = new HashSet<UserRole>();
+    private final Email id;
+    private final Password password;
+    private final String name;
+    private final Set<UserRole> roles = new HashSet<UserRole>();
 
     public User(Email id, Password pwd, String name) {
         if ((!ObjectUtils.allNotNull(id, pwd)) || StringUtils.isBlank(name))

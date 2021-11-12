@@ -10,8 +10,8 @@ import java.io.FileNotFoundException;
 
 public class ShipSummaryController {
 
-    private Company company;
-    private ShipStore shipStore;
+    private final Company company;
+    private final ShipStore shipStore;
 
     public ShipSummaryController() {
         this.company = App.getInstance().getCompany();

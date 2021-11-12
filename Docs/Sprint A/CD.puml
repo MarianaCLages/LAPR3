@@ -1,0 +1,172 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+@startuml
+'https://plantuml.com/class-diagram
+
+class ImportShipsUI{
+}
+
+class ImportShipsController{
++importShips(path)
+
+}
+
+class ShipImporter{
+}
+
+class CsvUtils{
++readFile(path)
+}
+
+class ShipStore{
++getShip(mmsi)
++exists(mmsi);
++getShipByMMSI(mmsi)
++getShipByIMO(imo)
++getShipByCallSign(callsign)
++getlShip()
++sortedList()
++getTopN()
+}
+
+class Ship{
+-mmsi
+-name
+-imo
+-numGen
+-genPowerOutput
+-callSign
+-vesselType
+-length
+-width
+-capacity
+-draft
++addPosition(position)
++getPosition(date)
++writeAllPos()
++organizeDatePos()
++checkMMSI()
++checkIMO()
++addNewPosMessage(position)
++getMmsi()
++getName()
++getNumGen()
++getCallSign()
++getVesselType()
++getLength()
++getWidth()
++getCapacity()
++getGenPowerOutput()
++getTravelledDistance()
++getTotalNumberOfMovements(ship)
++getDeltaDistance()
++getVesselType()
+}
+
+class Position{
+-latitude
+-longitude
+-heading
+-sog
+-cog
+-date
++getLatitude()
++getLongitude()
++getHeading()
++getSog()
++getCog()
+}
+
+class PositionTree{
++add(position)
+}
+
+class SearchShipUI{
+
+}
+
+class SearchShipController{
+  +searchShipByMMSI(mmsi)
+  +searchShipByIMO(imo)
+  +searchShipByCallSign(callsign)
+}
+
+
+
+class TopPairsUI{
++run()
+}
+
+class Company{
+-ShipStore
++getShipStore()
+}
+
+class TopPairsController{
++getPairs()
+}
+
+class ShipStore{
++getPairsOfShipsString()
+-getPairsOfShipsInsideBST()
+}
+
+class PositionalMessagesUI{
+}
+
+class PositionalMessagesController{
++writePositionMessages()
+}
+
+class ListShipsUI{
+}
+
+class ListShipsController{
++getShipList()
++sortedList()
++getShipListDTO()
+}
+class ShipMapper{
++toDTO(ship)
+}
+class ShipDto{
++toDTO()
+}
+
+class TopNShipsUI{
+}
+
+class TopNShipsController{
++getTopNShips()
+}
+
+
+
+ImportShipsUI ..> ImportShipsController
+ImportShipsController ..> ShipImporter
+ShipImporter ..> CsvUtils
+ShipImporter ..> Company
+ShipStore --> Ship
+Ship -> PositionTree
+Ship --> Position
+PositionTree --> Position
+SearchShipUI ..> SearchShipController
+SearchShipController ..> Company
+TopPairsUI ..> TopPairsController
+TopPairsController ..> Company
+Company --> ShipStore
+
+PositionalMessagesUI ..> PositionalMessagesController
+PositionalMessagesController ..> Company
+
+ListShipsUI ..> ShipDto
+ListShipsUI ..> ListShipsController
+ListShipsController ..>ShipMapper
+ShipMapper ..> ShipDto
+ListShipsController ..> Company
+
+TopNShipsUI ..> TopNShipsController
+TopNShipsController ..> Company
+
+@enduml

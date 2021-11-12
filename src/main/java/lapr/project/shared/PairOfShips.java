@@ -45,7 +45,7 @@ public class PairOfShips implements Comparable<PairOfShips> {
 
     @Override
     public int compareTo(PairOfShips o) {
-        PairOfShips pairsOfShips2nd = (PairOfShips) o;
+        PairOfShips pairsOfShips2nd = o;
 
         if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) < Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
             return 1;

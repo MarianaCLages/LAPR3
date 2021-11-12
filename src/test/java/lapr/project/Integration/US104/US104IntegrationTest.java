@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+/*
+>>>>>>> e30d3a7d761bfb29d9a11c53b6d371fbde5adc23
 package lapr.project.Integration.US104;
 
 import lapr.project.controller.App;
@@ -25,7 +29,7 @@ class US104IntegrationTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     //If necessary to print the output in the console use this boolean as true
-    boolean printInTheConsole = false;
+    boolean printInTheConsole = true;
 
     //Creation of the dates for the Ship positions
 
@@ -792,4 +796,8 @@ class US104IntegrationTest {
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}*/
+>>>>>>> e30d3a7d761bfb29d9a11c53b6d371fbde5adc23
