@@ -39,7 +39,7 @@ public class PositionalMessageControllerTest {
         //Assert
         assertEquals(null,positionalMessageController.getPositionalMessages(123456789,date,date2));
         assertEquals("Positional Message:\n" +
-                "Position{latitude=1.0, longitude=0.0, heading=0.0, sog=1.0, cog=1.0}",positionalMessageController.getPositionalMessages(111111111,date,date2));
+                "Position{latitude=1.0, longitude=0.0, heading=0.0, SOG=1.0, COG=1.0}",positionalMessageController.getPositionalMessages(111111111,date,date2));
         assertEquals(null,positionalMessageController.getPositionalMessages(121111111,date,date2));
         try{
             String b = positionalMessageController.getPositionalMessages(111111111,null,null);

@@ -244,16 +244,16 @@ class BinarySearchTreeTest {
     @Test
     void toStringTest(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("|-------Position{latitude=10.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=9.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|\t|-------Position{latitude=8.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|-------Position{latitude=7.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("Position{latitude=6.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=5.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|-------Position{latitude=4.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|-------Position{latitude=3.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|\t|\t|-------Position{latitude=2.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
-        stringBuilder.append("|\t|-------Position{latitude=1.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
+        stringBuilder.append("|-------Position{latitude=10.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=9.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|\t|\t|-------Position{latitude=8.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|\t|-------Position{latitude=7.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("Position{latitude=6.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=5.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|-------Position{latitude=4.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|\t|-------Position{latitude=3.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|\t|\t|-------Position{latitude=2.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
+        stringBuilder.append("|\t|-------Position{latitude=1.0, longitude=48.0, heading=4.0, SOG=4.0, COG=5.0}\n");
         assertEquals(stringBuilder.toString(),instance.toString());
     }
 }

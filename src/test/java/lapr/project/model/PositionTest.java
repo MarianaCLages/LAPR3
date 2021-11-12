@@ -201,7 +201,7 @@ class PositionTest {
     void toStringTest() {
 
         //Arrange
-        String expected = "Position{latitude=1.0, longitude=0.0, heading=0.0, sog=1.0, cog=1.0}";
+        String expected = "Position{latitude=1.0, longitude=0.0, heading=0.0, SOG=1.0, COG=1.0}";
 
         //Act
         //Assert
