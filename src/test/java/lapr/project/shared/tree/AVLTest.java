@@ -40,7 +40,7 @@ class AVLTest {
 
         avl.remove(1);
 
-        assertEquals(avl.toString(),"");
+        assertEquals(avl.toString(), "");
     }
 
     @Test
@@ -50,7 +50,78 @@ class AVLTest {
 
         avl.remove(1);
 
-        assertEquals(avl.root(),null);
+        assertEquals(avl.root(), null);
     }
 
+    @Test
+    void removeLeftNode() {
+        AVL<Integer> avl = new AVL<>();
+
+        avl.insert(1);
+        avl.insert(2);
+        avl.insert(3);
+        avl.insert(4);
+        avl.insert(5);
+        avl.insert(6);
+        avl.insert(7);
+        avl.insert(8);
+        avl.insert(9);
+        avl.insert(10);
+
+        avl.remove(2);
+    }
+
+    @Test
+    void removeRightNode() {
+        AVL<Integer> avl = new AVL<>();
+
+        avl.insert(1);
+        avl.insert(2);
+        avl.insert(3);
+        avl.insert(4);
+        avl.insert(5);
+        avl.insert(6);
+        avl.insert(7);
+        avl.insert(8);
+        avl.insert(9);
+        avl.insert(10);
+
+        avl.remove(8);
+    }
+
+    @Test
+    void removeRightLeftNode() {
+        AVL<Integer> avl = new AVL<>();
+
+        avl.insert(1);
+        avl.insert(2);
+        avl.insert(3);
+        avl.insert(4);
+        avl.insert(5);
+        avl.insert(6);
+        avl.insert(7);
+        avl.insert(8);
+        avl.insert(9);
+        avl.insert(10);
+
+        avl.remove(6);
+    }
+    @Test
+    void removeRightNodeNull() {
+        AVL<Integer> avl = new AVL<>();
+
+        avl.insert(1);
+        avl.insert(2);
+        avl.insert(3);
+        avl.insert(4);
+        avl.insert(5);
+        avl.insert(6);
+        avl.insert(7);
+        avl.insert(8);
+        avl.insert(9);
+        avl.insert(10);
+
+        avl.remove(3);
+        avl.remove(2);
+    }
 }
