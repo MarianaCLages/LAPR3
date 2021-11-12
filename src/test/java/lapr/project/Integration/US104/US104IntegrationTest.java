@@ -1,4 +1,4 @@
-/*package lapr.project.Integration.US104;
+package lapr.project.Integration.US104;
 
 import lapr.project.controller.App;
 import lapr.project.controller.ShipSummaryController;
@@ -19,7 +19,7 @@ class US104IntegrationTest {
     App app = App.getInstance();
     Company company = app.getCompany();
 
-   ShipStore shipStore = company.getShipStore();
+    ShipStore shipStore = company.getShipStore();
     ShipSummaryController shipSummaryController = new ShipSummaryController();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -36,58 +36,58 @@ class US104IntegrationTest {
     LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
 
     String sdate3 = "31-12-2020 22:01";
-    LocalDateTime date3 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date3 = LocalDateTime.parse(sdate3, formatter);
 
     String sdate4 = "31-12-2020 22:03";
-    LocalDateTime date4 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date4 = LocalDateTime.parse(sdate4, formatter);
 
     String sdate5 = "31-12-2020 10:36";
-    LocalDateTime date5 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date5 = LocalDateTime.parse(sdate5, formatter);
 
     String sdate6 = "31-12-2020 12:26";
-    LocalDateTime date6 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date6 = LocalDateTime.parse(sdate6, formatter);
 
     String sdate7 = "29-12-2020 01:17";
-    LocalDateTime date7 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date7 = LocalDateTime.parse(sdate7, formatter);
 
     String sdate8 = "31-12-2020 20:59";
-    LocalDateTime date8 = LocalDateTime.parse(sdate2, formatter);
+    LocalDateTime date8 = LocalDateTime.parse(sdate8, formatter);
 
     String sdate9 = "31-12-2020 21:16";
-    LocalDateTime date9 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date9 = LocalDateTime.parse(sdate9, formatter);
 
     String sdate10 = "31-12-2020 23:22";
-    LocalDateTime date10 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date10 = LocalDateTime.parse(sdate10, formatter);
 
     String sdate11 = "31-12-2020 20:12";
-    LocalDateTime date11 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date11 = LocalDateTime.parse(sdate11, formatter);
 
     String sdate12 = "31-12-2020 23:21";
-    LocalDateTime date12 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date12 = LocalDateTime.parse(sdate12, formatter);
 
     String sdate13 = "29-12-2020 21:43";
-    LocalDateTime date13 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date13 = LocalDateTime.parse(sdate13, formatter);
 
     String sdate14 = "31-12-2020 23:44";
-    LocalDateTime date14 = LocalDateTime.parse(sdate2, formatter);
+    LocalDateTime date14 = LocalDateTime.parse(sdate14, formatter);
 
     String sdate15 = "31-12-2020 20:50";
-    LocalDateTime date15 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date15 = LocalDateTime.parse(sdate15, formatter);
 
     String sdate16 = "31-12-2020 23:52";
-    LocalDateTime date16 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date16 = LocalDateTime.parse(sdate16, formatter);
 
     String sdate17 = "31-12-2020 18:54";
-    LocalDateTime date17 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date17 = LocalDateTime.parse(sdate17, formatter);
 
     String sdate18 = "31-12-2020 23:54";
-    LocalDateTime date18 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date18 = LocalDateTime.parse(sdate18, formatter);
 
     String sdate19 = "31-12-2020 18:56";
-    LocalDateTime date19 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date19 = LocalDateTime.parse(sdate19, formatter);
 
     String sdate20 = "31-12-2020 23:59";
-    LocalDateTime date20 = LocalDateTime.parse(sdate, formatter);
+    LocalDateTime date20 = LocalDateTime.parse(sdate20, formatter);
 
     @Test
     void runUS104() {
@@ -99,16 +99,16 @@ class US104IntegrationTest {
 
         //Create Ships
 
-        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 100, 10, "C4SQ2", "VARAMO", 5000, 2000, 20000, 30);
-        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 70, 12, "5BZP3", "SAITA", 1, 300, 1300, 40);
-        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 10, 20, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
-        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 20, 18, "9HA3589", "CMA CGM ALMAVIVA", 250, 150, 20000, 10);
-        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 30, 16, "9HJC9", "CARNIVAL LEGEND", 500, 100, 12000, 14);
-        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 40, 22, "LATO7", "ARCTIC AURORA", 1150, 200, 1000, 11);
-        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 20, 30, "LAJB6", "OREGON TRADER", 1600, 200, 200, 13);
-        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 200, 8, "WDG5171", "KRONVIKEN", 1000, 175, 300, 20);
-        Ship ship9 = new Ship(366934280, "", "IMO7819216", 5, 50, "WNGW", "ARCTIC SEA", 1, 200, 300, 21);
-        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 10, 20, "V2FR9", "TUSTUMENA", 200, 300, 200, 10);
+        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9642111", 100, 10, "C4S99", "VARAMO", 5000, 2000, 20000, 30);
+        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9301111", 70, 12, "5BZ88", "SAITA", 1, 300, 1300, 40);
+        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9451111", 10, 20, "FL77", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
+        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9641111", 20, 18, "9HA3566", "CMA CGM ALMAVIVA", 250, 150, 20000, 10);
+        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9511111", 30, 16, "9HJ55", "CARNIVAL LEGEND", 500, 100, 12000, 14);
+        Ship ship6 = new Ship(636091400, "Traveller", "IMO8341111", 40, 22, "LAT44", "ARCTIC AURORA", 1150, 200, 1000, 11);
+        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO6701111", 20, 30, "LAJ33", "OREGON TRADER", 1600, 200, 200, 13);
+        Ship ship8 = new Ship(257799000, "Titanic", "IMO1321111", 200, 8, "WDG5122", "KRONVIKEN", 1000, 175, 300, 20);
+        Ship ship9 = new Ship(366934280, "", "IMO7811111", 5, 50, "WN11", "ARCTIC SEA", 1, 200, 300, 21);
+        Ship ship10 = new Ship(211331640, "name", "IMO2501111", 10, 20, "V2F00", "TUSTUMENA", 200, 300, 200, 10);
 
         //Add positions into the Position AVL of a Ship
 
@@ -187,41 +187,41 @@ class US104IntegrationTest {
                 "Delta Distance : 6273.39";
         String expectedMMSIShip2 = "MMSI : 367487570\n" +
                 "Vessel name: SAITA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 12.5\n" +
-                "Mean SOG : 12.5\n" +
+                "Start Base date Time: 2020-12-31T22:01\n" +
+                "End base date time : 2020-12-31T22:03\n" +
+                "Total movement time: 2 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 19.4\n" +
+                "Mean SOG : 15.95\n" +
                 "Max COG : 2.4\n" +
-                "Mean COG : 2.4\n" +
-                "Departure Latitude : 42.92236\n" +
-                "Departure Longitude : -66.97243\n" +
+                "Mean COG : -54.65\n" +
+                "Departure Latitude : 26.44508\n" +
+                "Departure Longitude : -91.83885\n" +
                 "Arrival Latitude : 42.92236\n" +
                 "Arrival Longitude : -66.97243\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 3090832.41\n" +
+                "Delta Distance : 3090832.41";
         String expectedMMSIShip3 = "MMSI : 368085000\n" +
                 "Vessel name: HYUNDAI SINGAPORE\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T10:36\n" +
+                "End base date time : 2020-12-31T12:26\n" +
+                "Total movement time: 110 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 0.0\n" +
                 "Mean SOG : 0.0\n" +
-                "Max COG : 0.0\n" +
-                "Mean COG : -195.0\n" +
-                "Departure Latitude : 47.63531\n" +
+                "Max COG : 195.1\n" +
+                "Mean COG : 0.04999999999999716\n" +
+                "Departure Latitude : 47.63532\n" +
                 "Departure Longitude : -122.32866\n" +
                 "Arrival Latitude : 47.63531\n" +
                 "Arrival Longitude : -122.32866\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 1.11\n" +
+                "Delta Distance : 1.11";
         String expectedMMSIShip4 = "MMSI : 636015178\n" +
                 "Vessel name: CMA CGM ALMAVIVA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T01:17\n" +
+                "End base date time : 2020-12-31T20:59\n" +
+                "Total movement time: 4062 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.2\n" +
                 "Mean SOG : 5.699999999999999\n" +
@@ -235,41 +235,41 @@ class US104IntegrationTest {
                 "Delta Distance : 3829507.49";
         String expectedMMSIShip5 = "MMSI : 636092932\n" +
                 "Vessel name: CARNIVAL LEGEND\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 8.2\n" +
-                "Mean SOG : 8.2\n" +
-                "Max COG : 62.0\n" +
-                "Mean COG : 62.0\n" +
-                "Departure Latitude : 81.2\n" +
-                "Departure Longitude : -11.2\n" +
+                "Start Base date Time: 2020-12-31T21:16\n" +
+                "End base date time : 2020-12-31T23:22\n" +
+                "Total movement time: 126 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 8.7\n" +
+                "Max COG : 115.1\n" +
+                "Mean COG : 88.55\n" +
+                "Departure Latitude : 47.63529\n" +
+                "Departure Longitude : -22.32866\n" +
                 "Arrival Latitude : 81.2\n" +
                 "Arrival Longitude : -11.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 3829507.49\n" +
+                "Delta Distance : 3829507.49";
         String expectedMMSIShip6 = "MMSI : 636091400\n" +
                 "Vessel name: ARCTIC AURORA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 0.223423\n" +
-                "Mean SOG : 0.223423\n" +
-                "Max COG : 83.0\n" +
-                "Mean COG : 83.0\n" +
-                "Departure Latitude : 31.2\n" +
-                "Departure Longitude : 111.2\n" +
+                "Start Base date Time: 2020-12-31T20:12\n" +
+                "End base date time : 2020-12-31T23:21\n" +
+                "Total movement time: 189 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 4.7117115\n" +
+                "Max COG : 103.1\n" +
+                "Mean COG : 93.05\n" +
+                "Departure Latitude : 41.63529\n" +
+                "Departure Longitude : 122.32866\n" +
                 "Arrival Latitude : 31.2\n" +
                 "Arrival Longitude : 111.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 1485041.02\n" +
+                "Delta Distance : 1485041.02";
         String expectedMMSIShip7 = "MMSI : 636019825\n" +
                 "Vessel name: OREGON TRADER\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T21:43\n" +
+                "End base date time : 2020-12-31T23:44\n" +
+                "Total movement time: 3001 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.422412\n" +
                 "Mean SOG : 9.311205999999999\n" +
@@ -283,52 +283,52 @@ class US104IntegrationTest {
                 "Delta Distance : 9364353.79";
         String expectedMMSIShip8 = "MMSI : 257799000\n" +
                 "Vessel name: KRONVIKEN\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.223423\n" +
-                "Mean SOG : 1.223423\n" +
+                "Start Base date Time: 2020-12-31T20:50\n" +
+                "End base date time : 2020-12-31T23:52\n" +
+                "Total movement time: 182 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 11.1212\n" +
+                "Mean SOG : 6.1723115\n" +
                 "Max COG : 19.0\n" +
-                "Mean COG : 19.0\n" +
-                "Departure Latitude : 9.2\n" +
-                "Departure Longitude : -2.2\n" +
+                "Mean COG : 15.05\n" +
+                "Departure Latitude : 12.639\n" +
+                "Departure Longitude : -21.32866\n" +
                 "Arrival Latitude : 9.2\n" +
                 "Arrival Longitude : -2.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 2110568.86\n" +
+                "Delta Distance : 2110568.86";
         String expectedMMSIShip9 = "MMSI : 366934280\n" +
                 "Vessel name: ARCTIC SEA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.2232\n" +
-                "Mean SOG : 1.2232\n" +
+                "Start Base date Time: 2020-12-31T18:54\n" +
+                "End base date time : 2020-12-31T23:54\n" +
+                "Total movement time: 300 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 14.24564\n" +
+                "Mean SOG : 7.73442\n" +
                 "Max COG : 153.0\n" +
-                "Mean COG : 153.0\n" +
-                "Departure Latitude : 1.2\n" +
-                "Departure Longitude : 41.2\n" +
+                "Mean COG : 84.8\n" +
+                "Departure Latitude : 4.84348\n" +
+                "Departure Longitude : 24.81775\n" +
                 "Arrival Latitude : 1.2\n" +
                 "Arrival Longitude : 41.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 1860345.96\n" +
+                "Delta Distance : 1860345.96";
         String expectedMMSIShip10 = "MMSI : 211331640\n" +
                 "Vessel name: TUSTUMENA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T18:56\n" +
+                "End base date time : 2020-12-31T23:59\n" +
+                "Total movement time: 303 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 12.23232\n" +
-                "Mean SOG : 12.23232\n" +
-                "Max COG : 12.0\n" +
-                "Mean COG : 12.0\n" +
-                "Departure Latitude : 32.2\n" +
-                "Departure Longitude : 19.233\n" +
+                "Mean SOG : 8.22271\n" +
+                "Max COG : 125.1\n" +
+                "Mean COG : 68.55\n" +
+                "Departure Latitude : 27.29\n" +
+                "Departure Longitude : 12.32866\n" +
                 "Arrival Latitude : 32.2\n" +
                 "Arrival Longitude : 19.233\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 874092.6\n" +
+                "Delta Distance : 874092.6";
 
         //Act
 
@@ -376,7 +376,7 @@ class US104IntegrationTest {
 
         //Arrange
 
-        String expectedIMOShip1 = "IMO : IMO9643544\n" +
+        String expectedIMOShip1 = "IMO : IMO9642111\n" +
                 "Vessel name: VARAMO\n" +
                 "Start Base date Time: 2020-12-31T17:03\n" +
                 "End base date time : 2020-12-31T17:19\n" +
@@ -392,43 +392,43 @@ class US104IntegrationTest {
                 "Arrival Longitude : -66.97243\n" +
                 "Travelled Distance : 6273.39\n" +
                 "Delta Distance : 6273.39";
-        String expectedIMOShip2 = "IMO : IMO9305685\n" +
+        String expectedIMOShip2 = "IMO : IMO9301111\n" +
                 "Vessel name: SAITA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 12.5\n" +
-                "Mean SOG : 12.5\n" +
+                "Start Base date Time: 2020-12-31T22:01\n" +
+                "End base date time : 2020-12-31T22:03\n" +
+                "Total movement time: 2 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 19.4\n" +
+                "Mean SOG : 15.95\n" +
                 "Max COG : 2.4\n" +
-                "Mean COG : 2.4\n" +
-                "Departure Latitude : 42.92236\n" +
-                "Departure Longitude : -66.97243\n" +
+                "Mean COG : -54.65\n" +
+                "Departure Latitude : 26.44508\n" +
+                "Departure Longitude : -91.83885\n" +
                 "Arrival Latitude : 42.92236\n" +
                 "Arrival Longitude : -66.97243\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip3 = "IMO : IMO9450648\n" +
+                "Travelled Distance : 3090832.41\n" +
+                "Delta Distance : 3090832.41";
+        String expectedIMOShip3 = "IMO : IMO9451111\n" +
                 "Vessel name: HYUNDAI SINGAPORE\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T10:36\n" +
+                "End base date time : 2020-12-31T12:26\n" +
+                "Total movement time: 110 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 0.0\n" +
                 "Mean SOG : 0.0\n" +
-                "Max COG : 0.0\n" +
-                "Mean COG : -195.0\n" +
-                "Departure Latitude : 47.63531\n" +
+                "Max COG : 195.1\n" +
+                "Mean COG : 0.04999999999999716\n" +
+                "Departure Latitude : 47.63532\n" +
                 "Departure Longitude : -122.32866\n" +
                 "Arrival Latitude : 47.63531\n" +
                 "Arrival Longitude : -122.32866\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip4 = "IMO : IMO9645970\n" +
+                "Travelled Distance : 1.11\n" +
+                "Delta Distance : 1.11";
+        String expectedIMOShip4 = "IMO : IMO9641111\n" +
                 "Vessel name: CMA CGM ALMAVIVA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T01:17\n" +
+                "End base date time : 2020-12-31T20:59\n" +
+                "Total movement time: 4062 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.2\n" +
                 "Mean SOG : 5.699999999999999\n" +
@@ -440,43 +440,43 @@ class US104IntegrationTest {
                 "Arrival Longitude : -111.2\n" +
                 "Travelled Distance : 3829507.49\n" +
                 "Delta Distance : 3829507.49";
-        String expectedIMOShip5 = "IMO : IMO9517575\n" +
+        String expectedIMOShip5 = "IMO : IMO9511111\n" +
                 "Vessel name: CARNIVAL LEGEND\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 8.2\n" +
-                "Mean SOG : 8.2\n" +
-                "Max COG : 62.0\n" +
-                "Mean COG : 62.0\n" +
-                "Departure Latitude : 81.2\n" +
-                "Departure Longitude : -11.2\n" +
+                "Start Base date Time: 2020-12-31T21:16\n" +
+                "End base date time : 2020-12-31T23:22\n" +
+                "Total movement time: 126 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 8.7\n" +
+                "Max COG : 115.1\n" +
+                "Mean COG : 88.55\n" +
+                "Departure Latitude : 47.63529\n" +
+                "Departure Longitude : -22.32866\n" +
                 "Arrival Latitude : 81.2\n" +
                 "Arrival Longitude : -11.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip6 = "IMO : IMO9344564\n" +
+                "Travelled Distance : 3829507.49\n" +
+                "Delta Distance : 3829507.49";
+        String expectedIMOShip6 = "IMO : IMO8341111\n" +
                 "Vessel name: ARCTIC AURORA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 0.223423\n" +
-                "Mean SOG : 0.223423\n" +
-                "Max COG : 83.0\n" +
-                "Mean COG : 83.0\n" +
-                "Departure Latitude : 31.2\n" +
-                "Departure Longitude : 111.2\n" +
+                "Start Base date Time: 2020-12-31T20:12\n" +
+                "End base date time : 2020-12-31T23:21\n" +
+                "Total movement time: 189 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 4.7117115\n" +
+                "Max COG : 103.1\n" +
+                "Mean COG : 93.05\n" +
+                "Departure Latitude : 41.63529\n" +
+                "Departure Longitude : 122.32866\n" +
                 "Arrival Latitude : 31.2\n" +
                 "Arrival Longitude : 111.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip7 = "IMO : IMO9701920\n" +
+                "Travelled Distance : 1485041.02\n" +
+                "Delta Distance : 1485041.02";
+        String expectedIMOShip7 = "IMO : IMO6701111\n" +
                 "Vessel name: OREGON TRADER\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T21:43\n" +
+                "End base date time : 2020-12-31T23:44\n" +
+                "Total movement time: 3001 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.422412\n" +
                 "Mean SOG : 9.311205999999999\n" +
@@ -488,67 +488,67 @@ class US104IntegrationTest {
                 "Arrival Longitude : -12.2\n" +
                 "Travelled Distance : 9364353.79\n" +
                 "Delta Distance : 9364353.79";
-        String expectedIMOShip8 = "IMO : IMO9321677\n" +
+        String expectedIMOShip8 = "IMO : IMO1321111\n" +
                 "Vessel name: KRONVIKEN\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.223423\n" +
-                "Mean SOG : 1.223423\n" +
+                "Start Base date Time: 2020-12-31T20:50\n" +
+                "End base date time : 2020-12-31T23:52\n" +
+                "Total movement time: 182 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 11.1212\n" +
+                "Mean SOG : 6.1723115\n" +
                 "Max COG : 19.0\n" +
-                "Mean COG : 19.0\n" +
-                "Departure Latitude : 9.2\n" +
-                "Departure Longitude : -2.2\n" +
+                "Mean COG : 15.05\n" +
+                "Departure Latitude : 12.639\n" +
+                "Departure Longitude : -21.32866\n" +
                 "Arrival Latitude : 9.2\n" +
                 "Arrival Longitude : -2.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip9 = "IMO : IMO7819216\n" +
+                "Travelled Distance : 2110568.86\n" +
+                "Delta Distance : 2110568.86";
+        String expectedIMOShip9 = "IMO : IMO7811111\n" +
                 "Vessel name: ARCTIC SEA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.2232\n" +
-                "Mean SOG : 1.2232\n" +
+                "Start Base date Time: 2020-12-31T18:54\n" +
+                "End base date time : 2020-12-31T23:54\n" +
+                "Total movement time: 300 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 14.24564\n" +
+                "Mean SOG : 7.73442\n" +
                 "Max COG : 153.0\n" +
-                "Mean COG : 153.0\n" +
-                "Departure Latitude : 1.2\n" +
-                "Departure Longitude : 41.2\n" +
+                "Mean COG : 84.8\n" +
+                "Departure Latitude : 4.84348\n" +
+                "Departure Longitude : 24.81775\n" +
                 "Arrival Latitude : 1.2\n" +
                 "Arrival Longitude : 41.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedIMOShip10 = "IMO : IMO9506758\n" +
+                "Travelled Distance : 1860345.96\n" +
+                "Delta Distance : 1860345.96";
+        String expectedIMOShip10 = "IMO : IMO2501111\n" +
                 "Vessel name: TUSTUMENA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T18:56\n" +
+                "End base date time : 2020-12-31T23:59\n" +
+                "Total movement time: 303 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 12.23232\n" +
-                "Mean SOG : 12.23232\n" +
-                "Max COG : 12.0\n" +
-                "Mean COG : 12.0\n" +
-                "Departure Latitude : 32.2\n" +
-                "Departure Longitude : 19.233\n" +
+                "Mean SOG : 8.22271\n" +
+                "Max COG : 125.1\n" +
+                "Mean COG : 68.55\n" +
+                "Departure Latitude : 27.29\n" +
+                "Departure Longitude : 12.32866\n" +
                 "Arrival Latitude : 32.2\n" +
                 "Arrival Longitude : 19.233\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 874092.6\n" +
+                "Delta Distance : 874092.6";
 
         //Act
 
-        String actualIMOShip1 = shipSummaryController.getShipSummaryByIMO("IMO9643544");
-        String actualIMOShip2 = shipSummaryController.getShipSummaryByIMO("IMO9305685");
-        String actualIMOShip3 = shipSummaryController.getShipSummaryByIMO("IMO9450648");
-        String actualIMOShip4 = shipSummaryController.getShipSummaryByIMO("IMO9645970");
-        String actualIMOShip5 = shipSummaryController.getShipSummaryByIMO("IMO9517575");
-        String actualIMOShip6 = shipSummaryController.getShipSummaryByIMO("IMO9344564");
-        String actualIMOShip7 = shipSummaryController.getShipSummaryByIMO("IMO9701920");
-        String actualIMOShip8 = shipSummaryController.getShipSummaryByIMO("IMO9321677");
-        String actualIMOShip9 = shipSummaryController.getShipSummaryByIMO("IMO7819216");
-        String actualIMOShip10 = shipSummaryController.getShipSummaryByIMO("IMO9506758");
+        String actualIMOShip1 = shipSummaryController.getShipSummaryByIMO("IMO9642111");
+        String actualIMOShip2 = shipSummaryController.getShipSummaryByIMO("IMO9301111");
+        String actualIMOShip3 = shipSummaryController.getShipSummaryByIMO("IMO9451111");
+        String actualIMOShip4 = shipSummaryController.getShipSummaryByIMO("IMO9641111");
+        String actualIMOShip5 = shipSummaryController.getShipSummaryByIMO("IMO9511111");
+        String actualIMOShip6 = shipSummaryController.getShipSummaryByIMO("IMO8341111");
+        String actualIMOShip7 = shipSummaryController.getShipSummaryByIMO("IMO6701111");
+        String actualIMOShip8 = shipSummaryController.getShipSummaryByIMO("IMO1321111");
+        String actualIMOShip9 = shipSummaryController.getShipSummaryByIMO("IMO7811111");
+        String actualIMOShip10 = shipSummaryController.getShipSummaryByIMO("IMO2501111");
 
         //Assert
 
@@ -582,7 +582,7 @@ class US104IntegrationTest {
 
         //Arrange
 
-        String expectedCallSignShip1 = "Call Sign : C4SQ2\n" +
+        String expectedCallSignShip1 = "Call Sign : C4S99\n" +
                 "Vessel name: VARAMO\n" +
                 "Start Base date Time: 2020-12-31T17:03\n" +
                 "End base date time : 2020-12-31T17:19\n" +
@@ -598,43 +598,43 @@ class US104IntegrationTest {
                 "Arrival Longitude : -66.97243\n" +
                 "Travelled Distance : 6273.39\n" +
                 "Delta Distance : 6273.39";
-        String expectedCallSignShip2 = "Call Sign : 5BZP3\n" +
+        String expectedCallSignShip2 = "Call Sign : 5BZ88\n" +
                 "Vessel name: SAITA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 12.5\n" +
-                "Mean SOG : 12.5\n" +
+                "Start Base date Time: 2020-12-31T22:01\n" +
+                "End base date time : 2020-12-31T22:03\n" +
+                "Total movement time: 2 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 19.4\n" +
+                "Mean SOG : 15.95\n" +
                 "Max COG : 2.4\n" +
-                "Mean COG : 2.4\n" +
-                "Departure Latitude : 42.92236\n" +
-                "Departure Longitude : -66.97243\n" +
+                "Mean COG : -54.65\n" +
+                "Departure Latitude : 26.44508\n" +
+                "Departure Longitude : -91.83885\n" +
                 "Arrival Latitude : 42.92236\n" +
                 "Arrival Longitude : -66.97243\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip3 = "Call Sign : FLSU\n" +
+                "Travelled Distance : 3090832.41\n" +
+                "Delta Distance : 3090832.41";
+        String expectedCallSignShip3 = "Call Sign : FL77\n" +
                 "Vessel name: HYUNDAI SINGAPORE\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T10:36\n" +
+                "End base date time : 2020-12-31T12:26\n" +
+                "Total movement time: 110 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 0.0\n" +
                 "Mean SOG : 0.0\n" +
-                "Max COG : 0.0\n" +
-                "Mean COG : -195.0\n" +
-                "Departure Latitude : 47.63531\n" +
+                "Max COG : 195.1\n" +
+                "Mean COG : 0.04999999999999716\n" +
+                "Departure Latitude : 47.63532\n" +
                 "Departure Longitude : -122.32866\n" +
                 "Arrival Latitude : 47.63531\n" +
                 "Arrival Longitude : -122.32866\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip4 = "Call Sign : 9HA3589\n" +
+                "Travelled Distance : 1.11\n" +
+                "Delta Distance : 1.11";
+        String expectedCallSignShip4 = "Call Sign : 9HA3566\n" +
                 "Vessel name: CMA CGM ALMAVIVA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T01:17\n" +
+                "End base date time : 2020-12-31T20:59\n" +
+                "Total movement time: 4062 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.2\n" +
                 "Mean SOG : 5.699999999999999\n" +
@@ -646,43 +646,43 @@ class US104IntegrationTest {
                 "Arrival Longitude : -111.2\n" +
                 "Travelled Distance : 3829507.49\n" +
                 "Delta Distance : 3829507.49";
-        String expectedCallSignShip5 = "Call Sign : 9HJC9\n" +
+        String expectedCallSignShip5 = "Call Sign : 9HJ55\n" +
                 "Vessel name: CARNIVAL LEGEND\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 8.2\n" +
-                "Mean SOG : 8.2\n" +
-                "Max COG : 62.0\n" +
-                "Mean COG : 62.0\n" +
-                "Departure Latitude : 81.2\n" +
-                "Departure Longitude : -11.2\n" +
+                "Start Base date Time: 2020-12-31T21:16\n" +
+                "End base date time : 2020-12-31T23:22\n" +
+                "Total movement time: 126 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 8.7\n" +
+                "Max COG : 115.1\n" +
+                "Mean COG : 88.55\n" +
+                "Departure Latitude : 47.63529\n" +
+                "Departure Longitude : -22.32866\n" +
                 "Arrival Latitude : 81.2\n" +
                 "Arrival Longitude : -11.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip6 = "Call Sign : LATO7\n" +
+                "Travelled Distance : 3829507.49\n" +
+                "Delta Distance : 3829507.49";
+        String expectedCallSignShip6 = "Call Sign : LAT44\n" +
                 "Vessel name: ARCTIC AURORA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 0.223423\n" +
-                "Mean SOG : 0.223423\n" +
-                "Max COG : 83.0\n" +
-                "Mean COG : 83.0\n" +
-                "Departure Latitude : 31.2\n" +
-                "Departure Longitude : 111.2\n" +
+                "Start Base date Time: 2020-12-31T20:12\n" +
+                "End base date time : 2020-12-31T23:21\n" +
+                "Total movement time: 189 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 9.2\n" +
+                "Mean SOG : 4.7117115\n" +
+                "Max COG : 103.1\n" +
+                "Mean COG : 93.05\n" +
+                "Departure Latitude : 41.63529\n" +
+                "Departure Longitude : 122.32866\n" +
                 "Arrival Latitude : 31.2\n" +
                 "Arrival Longitude : 111.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip7 = "Call Sign : LAJB6\n" +
+                "Travelled Distance : 1485041.02\n" +
+                "Delta Distance : 1485041.02";
+        String expectedCallSignShip7 = "Call Sign : LAJ33\n" +
                 "Vessel name: OREGON TRADER\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:19\n" +
-                "Total movement time: 16 minutes\n" +
+                "Start Base date Time: 2020-12-29T21:43\n" +
+                "End base date time : 2020-12-31T23:44\n" +
+                "Total movement time: 3001 minutes\n" +
                 "Total number of movements : 2\n" +
                 "Max SOG : 9.422412\n" +
                 "Mean SOG : 9.311205999999999\n" +
@@ -694,67 +694,67 @@ class US104IntegrationTest {
                 "Arrival Longitude : -12.2\n" +
                 "Travelled Distance : 9364353.79\n" +
                 "Delta Distance : 9364353.79";
-        String expectedCallSignShip8 = "Call Sign : WDG5171\n" +
+        String expectedCallSignShip8 = "Call Sign : WDG5122\n" +
                 "Vessel name: KRONVIKEN\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.223423\n" +
-                "Mean SOG : 1.223423\n" +
+                "Start Base date Time: 2020-12-31T20:50\n" +
+                "End base date time : 2020-12-31T23:52\n" +
+                "Total movement time: 182 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 11.1212\n" +
+                "Mean SOG : 6.1723115\n" +
                 "Max COG : 19.0\n" +
-                "Mean COG : 19.0\n" +
-                "Departure Latitude : 9.2\n" +
-                "Departure Longitude : -2.2\n" +
+                "Mean COG : 15.05\n" +
+                "Departure Latitude : 12.639\n" +
+                "Departure Longitude : -21.32866\n" +
                 "Arrival Latitude : 9.2\n" +
                 "Arrival Longitude : -2.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip9 = "Call Sign : WNGW\n" +
+                "Travelled Distance : 2110568.86\n" +
+                "Delta Distance : 2110568.86";
+        String expectedCallSignShip9 = "Call Sign : WN11\n" +
                 "Vessel name: ARCTIC SEA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
-                "Max SOG : 1.2232\n" +
-                "Mean SOG : 1.2232\n" +
+                "Start Base date Time: 2020-12-31T18:54\n" +
+                "End base date time : 2020-12-31T23:54\n" +
+                "Total movement time: 300 minutes\n" +
+                "Total number of movements : 2\n" +
+                "Max SOG : 14.24564\n" +
+                "Mean SOG : 7.73442\n" +
                 "Max COG : 153.0\n" +
-                "Mean COG : 153.0\n" +
-                "Departure Latitude : 1.2\n" +
-                "Departure Longitude : 41.2\n" +
+                "Mean COG : 84.8\n" +
+                "Departure Latitude : 4.84348\n" +
+                "Departure Longitude : 24.81775\n" +
                 "Arrival Latitude : 1.2\n" +
                 "Arrival Longitude : 41.2\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
-        String expectedCallSignShip10 = "Call Sign : V2FR9\n" +
+                "Travelled Distance : 1860345.96\n" +
+                "Delta Distance : 1860345.96";
+        String expectedCallSignShip10 = "Call Sign : V2F00\n" +
                 "Vessel name: TUSTUMENA\n" +
-                "Start Base date Time: 2020-12-31T17:03\n" +
-                "End base date time : 2020-12-31T17:03\n" +
-                "Total movement time: 0 minutes\n" +
-                "Total number of movements : 1\n" +
+                "Start Base date Time: 2020-12-31T18:56\n" +
+                "End base date time : 2020-12-31T23:59\n" +
+                "Total movement time: 303 minutes\n" +
+                "Total number of movements : 2\n" +
                 "Max SOG : 12.23232\n" +
-                "Mean SOG : 12.23232\n" +
-                "Max COG : 12.0\n" +
-                "Mean COG : 12.0\n" +
-                "Departure Latitude : 32.2\n" +
-                "Departure Longitude : 19.233\n" +
+                "Mean SOG : 8.22271\n" +
+                "Max COG : 125.1\n" +
+                "Mean COG : 68.55\n" +
+                "Departure Latitude : 27.29\n" +
+                "Departure Longitude : 12.32866\n" +
                 "Arrival Latitude : 32.2\n" +
                 "Arrival Longitude : 19.233\n" +
-                "Travelled Distance : 0.0\n" +
-                "Delta Distance : 0.0";
+                "Travelled Distance : 874092.6\n" +
+                "Delta Distance : 874092.6";
 
         //Act
 
-        String actualCallSignShip1 = shipSummaryController.getShipSummaryByCallSign("C4SQ2");
-        String actualCallSignShip2 = shipSummaryController.getShipSummaryByCallSign("5BZP3");
-        String actualCallSignShip3 = shipSummaryController.getShipSummaryByCallSign("FLSU");
-        String actualCallSignShip4 = shipSummaryController.getShipSummaryByCallSign("9HA3589");
-        String actualCallSignShip5 = shipSummaryController.getShipSummaryByCallSign("9HJC9");
-        String actualCallSignShip6 = shipSummaryController.getShipSummaryByCallSign("LATO7");
-        String actualCallSignShip7 = shipSummaryController.getShipSummaryByCallSign("LAJB6");
-        String actualCallSignShip8 = shipSummaryController.getShipSummaryByCallSign("WDG5171");
-        String actualCallSignShip9 = shipSummaryController.getShipSummaryByCallSign("WNGW");
-        String actualCallSignShip10 = shipSummaryController.getShipSummaryByCallSign("V2FR9");
+        String actualCallSignShip1 = shipSummaryController.getShipSummaryByCallSign("C4S99");
+        String actualCallSignShip2 = shipSummaryController.getShipSummaryByCallSign("5BZ88");
+        String actualCallSignShip3 = shipSummaryController.getShipSummaryByCallSign("FL77");
+        String actualCallSignShip4 = shipSummaryController.getShipSummaryByCallSign("9HA3566");
+        String actualCallSignShip5 = shipSummaryController.getShipSummaryByCallSign("9HJ55");
+        String actualCallSignShip6 = shipSummaryController.getShipSummaryByCallSign("LAT44");
+        String actualCallSignShip7 = shipSummaryController.getShipSummaryByCallSign("LAJ33");
+        String actualCallSignShip8 = shipSummaryController.getShipSummaryByCallSign("WDG5122");
+        String actualCallSignShip9 = shipSummaryController.getShipSummaryByCallSign("WN11");
+        String actualCallSignShip10 = shipSummaryController.getShipSummaryByCallSign("V2F00");
 
         //Assert
 
@@ -792,4 +792,4 @@ class US104IntegrationTest {
 
     }
 
-}*/
+}
