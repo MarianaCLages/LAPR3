@@ -13,6 +13,14 @@ import java.util.List;
 
 public class ShipImporter {
 
+    /**
+     * Imports the ships from a file.
+     *
+     * @param path the path of the file
+     * @return true if it imports the file, false if it doesn't
+     * @throws FileNotFoundException
+     * @throws InvalidLineException
+     */
     public static boolean importsShips(File path) throws FileNotFoundException, InvalidLineException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         Company company = App.getInstance().getCompany();
@@ -20,8 +28,7 @@ public class ShipImporter {
         List<String[]> data = CsvUtils.readFile(path);
 
         for (String[] line : data) {
-
-            Ship ship = null;
+            Ship ship;
             if (!shipStore.existsShip(Integer.parseInt(line[0]))) {
                 if (line.length != 16) throw new InvalidLineException();
                 ship = shipStore.createShip(Integer.parseInt(line[0]), line[7], line[8], line[9], line[10], Double.parseDouble(line[11]), Double.parseDouble(line[12]), Math.abs(Double.parseDouble(line[13])), line[14], line[15].charAt(0));

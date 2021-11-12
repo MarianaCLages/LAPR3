@@ -135,7 +135,7 @@ public class Container {
     }
 
     /**
-     * Checks if two objects are equal.
+     * Checks if two objects (Container) are equal.
      *
      * @param o the object
      * @return true if objects are equal, false if they aren't

@@ -7,6 +7,12 @@ public class FacilityLocation {
     private double latitude;
     private double longitude;
 
+    /**
+     * Constructor.
+     *
+     * @param latitude  the latitude of the facility location
+     * @param longitude the longitude of the facility location
+     */
     public FacilityLocation(double latitude, double longitude) {
         if (checkLatitude(latitude)) throw new IllegalArgumentException("Invalid latitude");
         if (checkLongitude(longitude)) throw new IllegalArgumentException("Invalid longitude");
@@ -14,32 +20,70 @@ public class FacilityLocation {
         this.longitude = longitude;
     }
 
+    /**
+     * Checks the latitude of the facility location.
+     *
+     * @param latitude the latitude of the facility location
+     * @return true if it is valid, false if it isn't
+     */
     private boolean checkLatitude(double latitude) {
         return (latitude < -MAX_LATITUDE || latitude > MAX_LATITUDE);
     }
 
+    /**
+     * Checks the longitude of the facility location.
+     *
+     * @param longitude the longitude of the facility location
+     * @return true if it is valid, false if it isn't
+     */
     private boolean checkLongitude(double longitude) {
         return (longitude < -MAX_LONGITUDE || longitude > MAX_LONGITUDE);
     }
 
+    /**
+     * Gets the latitude of the facility location
+     *
+     * @return the latitude of the facility location
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Gets the longitude of the facility location
+     *
+     * @return the longitude of the facility location
+     */
+    public double getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * Sets the latitude of the facility location.
+     *
+     * @param latitude the latitude of the facility location
+     */
     public void setLatitude(double latitude) {
         if (checkLatitude(latitude)) throw new IllegalArgumentException("Invalid latitude");
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
-
+    /**
+     * Sets the longitude of the facility location.
+     *
+     * @param longitude the longitude of the facility location
+     */
     public void setLongitude(double longitude) {
         if (checkLongitude(longitude)) throw new IllegalArgumentException("Invalid longitude");
         this.longitude = longitude;
     }
 
+    /**
+     * Checks if two objects (FacilityLocation) are equal.
+     *
+     * @param o the object
+     * @return true if objects are equal, false if they aren't
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,7 +95,11 @@ public class FacilityLocation {
         return Double.compare(location.getLongitude(), getLongitude()) == 0;
     }
 
-
+    /**
+     * Generates a hash code for the facility location values.
+     *
+     * @return the hash code for the facility location values
+     */
     @Override
     public int hashCode() {
         int result;

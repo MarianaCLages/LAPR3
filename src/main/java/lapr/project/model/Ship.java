@@ -8,10 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Ship implements Comparable<Ship> {
-
-
     private PositionTree posDate;
-    private char transcieverClass;
     private String cargo;
     private int mmsi;
     private String name;
@@ -30,17 +27,16 @@ public class Ship implements Comparable<Ship> {
      *
      * @param mmsi             the ship's MMSI
      * @param name             the ship's name
-     * @param imo              the ship's international identification number
+     * @param imo              the ship's IMO
      * @param callSign         the ship's call sign
-     * @param vesselType       the ship's type
+     * @param vesselType       the ship's vessel type
      * @param length           the ship's length
      * @param width            the ship's width
      * @param draft            the ship's draft
      * @param cargo            the ship's cargo
-     * @param transcieverClass the ship's transciever class
+     * @param transceiverClass the ship's transceiver class
      */
-
-    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transcieverClass) {
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transceiverClass) {
         checkIMO(imo);
         checkMMSI(mmsi);
 
@@ -53,25 +49,25 @@ public class Ship implements Comparable<Ship> {
         this.width = width;
         this.draft = draft;
         this.cargo = cargo;
-        this.transcieverClass = transcieverClass;
 
         this.posDate = new PositionTree();
     }
 
-
     /**
      * Constructor.
      *
-     * @param mmsi       the ship's identification
-     * @param name       the ship's name
-     * @param imo        the ship's international identification number
-     * @param callSign   the ship's call sign
-     * @param vesselType the ship's type
-     * @param length     the ship's length
-     * @param width      the ship's width
-     * @param draft      the ship's draft
+     * @param mmsi           the ship's MMSI
+     * @param name           the ship's name
+     * @param imo            the ship's IMO
+     * @param numGen         the ship's number of energy generators
+     * @param genPowerOutput the generator's power output
+     * @param callSign       the ship's call sign
+     * @param vesselType     the ship's vessel type
+     * @param length         the ship's length
+     * @param width          the ship's width
+     * @param capacity       the ship's capacity
+     * @param draft          the ship's draft
      */
-
     public Ship(int mmsi, String name, String imo, int numGen, long genPowerOutput, String callSign, String vesselType, double length, double width, double capacity, double draft) {
         checkIMO(imo);
         checkMMSI(mmsi);
@@ -94,180 +90,107 @@ public class Ship implements Comparable<Ship> {
     /**
      * Constructor.
      *
-     * @param mmsi the ship's identification
+     * @param mmsi the ship's MMSI
      **/
-
     public Ship(int mmsi) {
         checkMMSI(mmsi);
         this.mmsi = mmsi;
     }
 
     /**
-     * creates a new position.
+     * Creates a new position.
      *
-     * @return a new position
+     * @return the new position created
      **/
-
     public Position createPosition(LocalDateTime time, double latitude, double longitude, double heading, double sog, double cog) {
         return new Position(latitude, longitude, heading, sog, cog, time);
     }
 
-    /**
-     * inserts a new position to the ship.
-     **/
-    public void insertPosition(Position position) {
-        posDate.addPosition(position);
-    }
+    //Getters
 
     /**
-     * gets the ship's identification.
+     * Gets the ship's MMSI.
      *
-     * @return ship's identification
+     * @return the ship's MMSI
      **/
     public int getMmsi() {
         return mmsi;
     }
 
     /**
-     * sets ship's identification.
-     **/
-    //Setters
-    public void setMmsi(int mmsi) {
-        this.mmsi = mmsi;
-    }
-
-    /**
-     * gets name.
+     * Gets the ship's name.
      *
-     * @return name
+     * @return the ship's name
      **/
     public String getName() {
         return name;
     }
 
     /**
-     * sets name.
-     **/
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * gets internation identification number.
+     * Gets the ship's IMO.
      *
-     * @return the internation identification number
+     * @return the ship's IMO
      **/
     public String getImo() {
         return imo;
     }
 
     /**
-     * sets internation identification numbe.r
-     **/
-    public void setImo(String imo) {
-        this.imo = imo;
-    }
-
-    /**
-     * gets number Generator.
+     * Gets the ship's number of energy generators
      *
-     * @return the number Generator
+     * @return the ship's number of energy generators
      **/
     public int getNumGen() {
         return numGen;
     }
 
     /**
-     * sets number Generator.
-     **/
-    public void setNumGen(int numGen) {
-        this.numGen = numGen;
-    }
-
-    /**
-     * gets call sign.
+     * Gets the ship's call sign.
      *
-     * @return the call sign
+     * @return the ship's call sign
      **/
     public String getCallSign() {
         return callSign;
     }
 
     /**
-     * sets call sign.
-     **/
-    public void setCallSign(String callSign) {
-        this.callSign = callSign;
-    }
-
-    /**
-     * gets the vessel type.
+     * Gets the ship's vessel type.
      *
-     * @return the vessel type
+     * @return the ship's vessel type
      **/
     public String getVesselType() {
         return vesselType;
     }
 
     /**
-     * sets the vessel type.
-     **/
-    public void setVesselType(String vesselType) {
-        this.vesselType = vesselType;
-    }
-
-    /**
-     * gets length.
+     * Gets the ship's length.
      *
-     * @return the length
+     * @return the ship's length
      **/
     public double getLength() {
         return length;
     }
 
     /**
-     * sets length.
-     **/
-    public void setLength(long length) {
-        this.length = length;
-    }
-
-    /**
-     * gets width.
+     * Gets the ship's width.
      *
-     * @eturn width
+     * @return the ship's width
      **/
     public double getWidth() {
         return width;
     }
 
     /**
-     * sets width.
-     **/
-    public void setWidth(long width) {
-        this.width = width;
-    }
-
-    /**
-     * gets capacity.
+     * Gets the ship's capacity.
      *
-     * @return capacity
+     * @return the ship's capacity
      **/
     public double getCapacity() {
         return capacity;
     }
 
     /**
-     * sets capacity.
-     *
-     * @return capacity
-     **/
-    public void setCapacity(long capacity) {
-        this.capacity = capacity;
-    }
-
-    /**
-     * gets the position date.
+     * Gets the position date.
      *
      * @return the position date
      **/
@@ -276,41 +199,132 @@ public class Ship implements Comparable<Ship> {
     }
 
     /**
-     * gets the draft.
+     * Gets the ship's draft.
      *
-     * @return the draft
+     * @return the ship's draft
      **/
     public double getDraft() {
         return draft;
     }
 
     /**
-     * sets the draft.
-     **/
-    public void setDraft(long draft) {
-        this.draft = draft;
-    }
-
-    /**
-     * gets the generated power output.
+     * Gets the generator's power output.
      *
-     * @return the generated power output
+     * @return the generator's power output
      **/
     public long getGenPowerOutput() {
         return genPowerOutput;
     }
 
+    //Setters
+
     /**
-     * sets the generated power output.
-     **/
+     * Sets the ship's MMSI.
+     *
+     * @param mmsi the ship's MMSI
+     */
+    public void setMmsi(int mmsi) {
+        this.mmsi = mmsi;
+    }
+
+    /**
+     * Sets the ship's name.
+     *
+     * @param name the ship's name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the ship's IMO.
+     *
+     * @param imo the ship's IMO
+     */
+    public void setImo(String imo) {
+        this.imo = imo;
+    }
+
+    /**
+     * Sets the ship's number of energy generators
+     *
+     * @param numGen the ship's number of energy generators
+     */
+    public void setNumGen(int numGen) {
+        this.numGen = numGen;
+    }
+
+    /**
+     * Sets the ship's call sign.
+     *
+     * @param callSign the ship's call sign
+     */
+    public void setCallSign(String callSign) {
+        this.callSign = callSign;
+    }
+
+    /**
+     * Sets the ship's vessel type.
+     *
+     * @param vesselType the ship's vessel type
+     */
+    public void setVesselType(String vesselType) {
+        this.vesselType = vesselType;
+    }
+
+    /**
+     * Sets the ship's length.
+     *
+     * @param length the ship's length
+     */
+    public void setLength(long length) {
+        this.length = length;
+    }
+
+    /**
+     * Sets the ship's width.
+     *
+     * @param width the ship's width
+     */
+    public void setWidth(long width) {
+        this.width = width;
+    }
+
+    /**
+     * Sets the ship's capacity.
+     *
+     * @param capacity the ship's capacity
+     */
+    public void setCapacity(long capacity) {
+        this.capacity = capacity;
+    }
+
+    /**
+     * Sets the ship's draft.
+     *
+     * @param draft the ship's draft
+     */
+    public void setDraft(long draft) {
+        this.draft = draft;
+    }
+
+    /**
+     * Sets the generator's power output.
+     *
+     * @param genPowerOutput the generator's power output
+     */
     public void setGenPowerOutput(long genPowerOutput) {
         this.genPowerOutput = genPowerOutput;
     }
 
-    /**
-     * checks if the identification has 9 digits.
-     **/
     //Checks
+
+    /**
+     * Checks the ship's MMSI
+     *
+     * @param mmsi the ship's MMSI
+     * @return true if it is valid, false if it isn't
+     */
     public boolean checkMMSI(int mmsi) {
         if (mmsi > 99999999 && mmsi < 1000000000) {
             return true;
@@ -319,20 +333,35 @@ public class Ship implements Comparable<Ship> {
     }
 
     /**
-     * checks if the ship's international identification number has 7 digits.
+     * Checks the ship's IMO.
      *
-     * @return if true of false
-     **/
+     * @param imo the ship's IMO
+     * @return true if it valid, false if it isn't
+     */
     public boolean checkIMO(String imo) {
         if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
             throw new IllegalArgumentException("IMO code must have 7 digits!");
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
     /**
-     * return a String with all the positions of a ship on a certain period of time.
+     * Inserts a position in the tree.
+     *
+     * @param position the position to be added
      */
+    public void insertPosition(Position position) {
+        posDate.addPosition(position);
+    }
 
+    /**
+     * Writes all the positional messages in a period of time.
+     *
+     * @param di the initial date
+     * @param df the final date
+     * @return the positional messages in a period of time
+     */
     public String writeAllPos(LocalDateTime di, LocalDateTime df) {
 
         String positionalMessage = "Positional Message:";
@@ -348,10 +377,7 @@ public class Ship implements Comparable<Ship> {
         calendar.add(Calendar.SECOND, -1);
         initiald = calendar.getTime();
 
-
-        double d = 0;
         List<Position> positionList = new ArrayList<>();
-
 
         PositionTree binaryTest = this.getPosDate();
         Iterable<Position> posIterable = binaryTest.getInOrderList();
@@ -359,79 +385,34 @@ public class Ship implements Comparable<Ship> {
 
 
         while (!initiald.after(finald)) {
-
-
             while (posIterator.hasNext()) {
-
-
                 Position pos = posIterator.next();
                 Date posDate = java.sql.Timestamp.valueOf(pos.getDate());
 
                 if (!posDate.before(initiald) && !posDate.after(initiald)) {
                     positionList.add(pos);
                 }
-
             }
-
             posIterator = posIterable.iterator();
 
             calendar.add(Calendar.SECOND, 1);
             initiald = calendar.getTime();
         }
 
-
-        if (positionList.isEmpty()) return positionalMessage;
+        if (positionList.isEmpty()) {
+            return positionalMessage;
+        }
 
         for (Position pos : positionList) {
             positionalMessage = positionalMessage + "\n" + pos.toString();
         }
-
-
         return positionalMessage;
     }
 
     /**
-     * compares two ships by their mmsi
+     * Gets the ship's travelled distance.
      *
-     * @return if one is greater than the other, or if it's smaller,or if they're equal
-     **/
-    @Override
-    public int compareTo(Ship o) {
-        if (mmsi > o.mmsi) {
-            return 1;
-        } else if (mmsi < o.mmsi) {
-            return -1;
-        }
-        return 0;
-    }
-
-    /**
-     * compares if two ships are equal
-     *
-     * @return true if they are equal, false if not
-     **/
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Ship)) return false;
-        Ship ship = (Ship) o;
-        return getMmsi() == ship.getMmsi() && Objects.equals(getImo(), ship.getImo()) && getNumGen() == ship.getNumGen() && getGenPowerOutput() == ship.getGenPowerOutput() && getLength() == ship.getLength() && getWidth() == ship.getWidth() && getCapacity() == ship.getCapacity() && getDraft() == ship.getDraft() && Objects.equals(getName(), ship.getName()) && Objects.equals(getCallSign(), ship.getCallSign()) && Objects.equals(getVesselType(), ship.getVesselType());
-    }
-
-    /**
-     * returns the hash code.
-     *
-     * @return the hash code
-     **/
-    @Override
-    public int hashCode() {
-        return Objects.hash(getMmsi(), getName(), getImo(), getNumGen(), getGenPowerOutput(), getCallSign(), getVesselType(), getLength(), getWidth(), getCapacity(), getDraft());
-    }
-
-    /**
-     * gets the travelled distance.
-     *
-     * @return the travelled distance.
+     * @return the ship's travelled distance
      **/
     public double getTravelledDistance() {
         double travelledDistance = 0;
@@ -443,33 +424,76 @@ public class Ship implements Comparable<Ship> {
     }
 
     /**
-     * gets the delta distance.
+     * Gets the ship's delta distance.
      *
-     * @return the delta distance
+     * @return the ship's delta distance
      **/
     public double getDeltaDistance() {
         return DistanceCalculation.distanceTo(this.getPosDate().getSmallestPosition(), this.getPosDate().getBiggestPosition());
     }
 
     /**
-     * gets the total number of movements.
+     * Gets the ship's total number of movements.
      *
-     * @return the total number of movements.
+     * @return the ship's total number of movements
      **/
     public int getTotalNumberOfMovements() {
         return this.getPosDate().getSize();
     }
 
     /**
-     * Returns the textual description of the ship in the format: cargo, mmsi, name, imo, number of generators, generated power output, call sign, vessel type, length, width, capacity, draft
-     **/
+     * Compares the MMSI of two different objects (Ship).
+     *
+     * @param o the object to compare (Ship)
+     * @return 0 if they're equal, -1 or 1 if they're different
+     */
+    @Override
+    public int compareTo(Ship o) {
+        if (mmsi > o.mmsi) {
+            return 1;
+        } else if (mmsi < o.mmsi) {
+            return -1;
+        }
+        return 0;
+    }
+
+    /**
+     * Checks if two objects (Ship) are equal.
+     *
+     * @param o the object
+     * @return true if objects are equal, false if they aren't
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ship)) return false;
+        Ship ship = (Ship) o;
+        return getMmsi() == ship.getMmsi() && Objects.equals(getImo(), ship.getImo()) && getNumGen() == ship.getNumGen() && getGenPowerOutput() == ship.getGenPowerOutput() && getLength() == ship.getLength() && getWidth() == ship.getWidth() && getCapacity() == ship.getCapacity() && getDraft() == ship.getDraft() && Objects.equals(getName(), ship.getName()) && Objects.equals(getCallSign(), ship.getCallSign()) && Objects.equals(getVesselType(), ship.getVesselType());
+    }
+
+    /**
+     * Generates a hash code for the ship values.
+     *
+     * @return the hash code for the ship values
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMmsi(), getName(), getImo(), getNumGen(), getGenPowerOutput(), getCallSign(), getVesselType(), getLength(), getWidth(), getCapacity(), getDraft());
+    }
+
+    /**
+     * Returns the textual description of the ship in the format: MMSI, name, IMO, number of energy generators, generator's power output,
+     * call sign, vessel type, length, width, capacity, draft.
+     *
+     * @return the ship's characteristics
+     */
     @Override
     public String toString() {
         return "Ship{" +
                 "cargo='" + cargo + '\'' +
-                ", mmsi=" + mmsi +
+                ", MMSI=" + mmsi +
                 ", name='" + name + '\'' +
-                ", imo='" + imo + '\'' +
+                ", IMO='" + imo + '\'' +
                 ", numGen=" + numGen +
                 ", genPowerOutput=" + genPowerOutput +
                 ", callSign='" + callSign + '\'' +
@@ -481,4 +505,3 @@ public class Ship implements Comparable<Ship> {
                 '}';
     }
 }
-
