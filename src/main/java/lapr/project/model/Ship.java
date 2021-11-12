@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Ship {
+    private char transceiverClass;
     private PositionTree posDate;
     private String cargo;
     private int mmsi;
@@ -49,6 +50,7 @@ public class Ship {
         this.width = width;
         this.draft = draft;
         this.cargo = cargo;
+        this.transceiverClass = transceiverClass;
 
         this.posDate = new PositionTree();
     }
@@ -94,6 +96,14 @@ public class Ship {
      **/
     public Ship() {
 
+    }
+
+    public char getTransceiverClass() {
+        return transceiverClass;
+    }
+
+    public String getCargo() {
+        return cargo;
     }
 
     /**
