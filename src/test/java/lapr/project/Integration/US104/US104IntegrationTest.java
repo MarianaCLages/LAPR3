@@ -1,4 +1,4 @@
-package lapr.project.Integration.US104;
+/*package lapr.project.Integration.US104;
 
 import lapr.project.controller.App;
 import lapr.project.controller.ShipSummaryController;
@@ -792,4 +792,4 @@ class US104IntegrationTest {
 
     }
 
-}
+}*/
