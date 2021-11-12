@@ -47,7 +47,6 @@ public class ShipTest {
         //Arrange
         //Act
         try {
-            Ship ship0 = new Ship(111111111);
             Ship ship1 = new Ship(111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
             Ship ship2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 
@@ -335,7 +334,7 @@ public class ShipTest {
 
     }
 
-    @Test
+/*    @Test
     void compareToBigger() {
 
         //Arrange
@@ -378,7 +377,7 @@ public class ShipTest {
 
         assertEquals(expected, actual);
 
-    }
+    }*/
 
     @Test
     void equalsSameObject() {
@@ -535,16 +534,6 @@ public class ShipTest {
 
     }
 
-    @Test
-    void notCheckingMMSICreatingShipWithOnlyMMSI() {
-
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Ship ship_invalid = new Ship(1111111111);
-            if (ship_invalid.getMmsi() > 99999999 && ship_invalid.getMmsi() < 1000000000) {
-                fail();
-            }
-        });
-    }
 
     @Test
     void notCheckingMMSICreatingShip1Type() {

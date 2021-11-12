@@ -1,7 +1,6 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.Position;
-import lapr.project.model.Ship;
+import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 import lapr.project.shared.tree.AVL;
@@ -13,14 +12,18 @@ import java.util.concurrent.TimeUnit;
 
 public class ShipStore {
 
-    public AVL<Ship> shipBinarySearchTree;
+    public AVL<ShipByMmsi> shipByMmsiAVL;
+    public AVL<ShipByIMO> shipByIMOAVL;
+    public AVL<ShipByCallSign> shipByCallSignAVL;
     public AVL<PairOfShips> pairsOfShipsSearchTree = new AVL<>();
 
     /**
      * Constructor.
      */
     public ShipStore() {
-        this.shipBinarySearchTree = new AVL<>();
+        this.shipByMmsiAVL = new AVL<>();
+        this.shipByIMOAVL = new AVL<>();
+        this.shipByCallSignAVL = new AVL<>();
     }
 
     /**
