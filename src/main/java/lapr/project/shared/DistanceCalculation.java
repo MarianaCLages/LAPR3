@@ -46,6 +46,9 @@ public class DistanceCalculation {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(initiald);
 
+        calendar.add(Calendar.SECOND, -1);
+        initiald = calendar.getTime();
+
         Position sv1;
         Position sv2;
 
@@ -53,7 +56,7 @@ public class DistanceCalculation {
         Iterator<Position> posIterator = posIterable.iterator();
 
 
-        while (initiald.before(finald)) {
+        while (!initiald.after(finald)) {
 
 
 
