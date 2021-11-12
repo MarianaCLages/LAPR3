@@ -2,7 +2,7 @@ package lapr.project.shared;
 
 import lapr.project.model.Ship;
 
-public class PairOfShips implements Comparable {
+public class PairOfShips implements Comparable<PairOfShips> {
     private Ship left;
     private Ship right;
 
@@ -31,17 +31,6 @@ public class PairOfShips implements Comparable {
         return this.right;
     }
 
-    @Override
-    public int compareTo(Object o) {
-
-        PairOfShips pairsOfShips2nd = (PairOfShips) o;
-
-        if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) < Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
-            return 1;
-        } else if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) > Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
-            return -1;
-        } else return 0;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,4 +43,14 @@ public class PairOfShips implements Comparable {
         return getRight().equals(that.getRight());
     }
 
+    @Override
+    public int compareTo(PairOfShips o) {
+        PairOfShips pairsOfShips2nd = (PairOfShips) o;
+
+        if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) < Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
+            return 1;
+        } else if (Math.abs(this.right.getTravelledDistance() - this.left.getTravelledDistance()) > Math.abs(pairsOfShips2nd.right.getTravelledDistance() - pairsOfShips2nd.left.getTravelledDistance())) {
+            return -1;
+        } else return 0;
+    }
 }

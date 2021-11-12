@@ -1,11 +1,11 @@
-package lapr.project.shared;
+package lapr.project.shared.tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BinarySearchTree<E extends Comparable> {
+public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E> {
 
 
     protected Node<E> root = null;     // root of the tree

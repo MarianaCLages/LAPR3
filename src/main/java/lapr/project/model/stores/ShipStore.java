@@ -2,9 +2,9 @@ package lapr.project.model.stores;
 
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
-import lapr.project.shared.BinarySearchTree;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
+import lapr.project.shared.tree.AVL;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,14 +13,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ShipStore {
 
-    public BinarySearchTree<Ship> shipBinarySearchTree;
-    public BinarySearchTree<PairOfShips> pairsOfShipsSearchTree = new BinarySearchTree<>();
+    public AVL<Ship> shipBinarySearchTree;
+    public AVL<PairOfShips> pairsOfShipsSearchTree = new AVL<>();
 
     /**
      * Constructor.
      */
     public ShipStore() {
-        this.shipBinarySearchTree = new BinarySearchTree<>();
+        this.shipBinarySearchTree = new AVL<>();
     }
 
     /**
@@ -511,7 +511,7 @@ public class ShipStore {
      *
      * @return the binary search tree
      */
-    public BinarySearchTree<Ship> getShipBinarySearchTree() {
+    public AVL<Ship> getShipBinarySearchTree() {
         return shipBinarySearchTree;
     }
 

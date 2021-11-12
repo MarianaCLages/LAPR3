@@ -1,17 +1,17 @@
 package lapr.project.model.stores;
 
-import lapr.project.shared.BinarySearchTree;
 import lapr.project.model.Position;
+import lapr.project.shared.tree.AVL;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PositionTree {
-    BinarySearchTree<Position> positionBinarySearchTree;
+    AVL<Position> positionBinarySearchTree;
 
     public PositionTree() {
-        this.positionBinarySearchTree = new BinarySearchTree<Position>();
+        this.positionBinarySearchTree = new AVL<Position>();
     }
 
     public boolean addPosition(Position position) {

@@ -2,8 +2,8 @@ package lapr.project.model.stores;
 
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
-import lapr.project.shared.BinarySearchTree;
 import lapr.project.shared.PairOfShips;
+import lapr.project.shared.tree.AVL;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -471,7 +471,7 @@ class ShipStoreTest {
 
         //Arrange + Act
         shipstore.addShip(shipgeral);
-        BinarySearchTree<Ship> binarySearchTree = shipstore.getShipBinarySearchTree();
+        AVL<Ship> binarySearchTree = shipstore.getShipBinarySearchTree();
         //Assert
         assertNotNull(binarySearchTree);
     }

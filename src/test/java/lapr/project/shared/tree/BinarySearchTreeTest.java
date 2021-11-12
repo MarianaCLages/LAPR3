@@ -1,7 +1,8 @@
-package lapr.project.shared;
+package lapr.project.shared.tree;
 
 import lapr.project.model.Position;
-import lapr.project.shared.BinarySearchTree;
+
+import lapr.project.shared.tree.BinarySearchTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
