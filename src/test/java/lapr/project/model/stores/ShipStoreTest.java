@@ -41,7 +41,7 @@ class ShipStoreTest {
     @Test
     void existsShip() {
         shipstore.addShip(shipgeral);
-        assertNotNull(shipstore.findShip(shipgeral.getMmsi()));
+        assertNotNull(shipstore.getShipByMmsi(shipgeral.getMmsi()));
 
         Ship ship1 = new Ship(123456789, "ya", "IMO1111211", "L", "123", 15.6, 45, 54, "NA", 'b');
         assertFalse((shipstore.existsShip(123456789)));
@@ -51,16 +51,6 @@ class ShipStoreTest {
     void findShip() {
         shipstore.addShip(shipgeral);
         assertTrue(shipstore.existsShip((shipgeral.getMmsi())));
-    }
-
-    @Test
-    void getlShipTest() {
-
-        //Arrange
-        List expected = shipstore.getlShip();
-        //Act
-        //Assert
-        assertEquals(expected, shipstore.getlShip());
     }
 
     @Test
@@ -465,17 +455,6 @@ class ShipStoreTest {
 
     }
 
-
-    @Test
-    void getBinarySearchTree() {
-
-        //Arrange + Act
-        shipstore.addShip(shipgeral);
-        AVL<Ship> binarySearchTree = shipstore.getShipBinarySearchTree();
-        //Assert
-        assertNotNull(binarySearchTree);
-    }
-
     @Test
     void createShipStore() {
 
@@ -518,7 +497,7 @@ class ShipStoreTest {
         shipstore.addShip(shipgeral);
         Ship expected = shipgeral;
         //Act
-        Ship actual = shipstore.getShipByMMSI(111111111);
+        Ship actual = shipstore.getShipByMmsi(111111111);
         //Assert
         assertEquals(expected, actual);
     }
@@ -599,7 +578,7 @@ class ShipStoreTest {
         //Arrange
         List<Ship> expectedtestShip = new ArrayList<>();
         expectedtestShip.add(shipgeral);
-        shipstore.getShipBinarySearchTree().insert(shipgeral);
+        shipstore.insertIntoMmsiAVL(shipgeral);
         ShipStore shipStoreTest = new ShipStore();
 
         //Act + Assert
@@ -734,80 +713,6 @@ class ShipStoreTest {
         boolean actual = shipstore.addShip(ship);
 
         if (!actual) fail();
-
-    }
-
-    @Test
-    void getDateCollectionsEmpty() {
-
-
-        List<Ship> positionList = shipstore.getlShip();
-
-        if (!positionList.equals(Collections.emptyList())) fail();
-
-    }
-
-
-    @Test
-    void getDateCollectionsEmpty2() {
-
-
-        List<Ship> positionList = shipstore.getlShip();
-
-        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
-
-    }
-
-
-    @Test
-    void getDateCollectionsEmpty3() {
-
-        shipstore.addShip(shipgeral);
-        List<Ship> positionList = shipstore.getlShip();
-
-        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
-
-    }
-
-    @Test
-    void getAssertNotEquals() {
-
-        shipstore.addShip(shipgeral);
-        List<Ship> positionList = shipstore.getlShip();
-
-        assertNotEquals(positionList, Collections.emptyList());
-
-    }
-
-    @Test
-    void getAssertNotEquals2() {
-
-        shipstore.addShip(shipgeral);
-        List<Ship> positionList = shipstore.getlShip();
-
-        System.out.println(positionList);
-
-
-        assertNotEquals(Collections.emptyList(), positionList);
-    }
-
-    @Test
-    void getShipByMMSIMutant() {
-
-        shipstore.addShip(shipgeral);
-        List<Integer> positionList = shipstore.getShipListMmsi();
-
-        if (!positionList.equals(Collections.emptyList())) assertNotNull(positionList);
-
-    }
-
-    @Test
-    void getShipByMMSIMutant3() {
-
-        shipstore.addShip(shipgeral);
-        List<Integer> positionList = shipstore.getShipListMmsi();
-
-        assertNotEquals(Collections.emptyList(), positionList);
 
     }
 

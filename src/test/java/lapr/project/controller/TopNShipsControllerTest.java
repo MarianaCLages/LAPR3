@@ -39,7 +39,7 @@ class TopNShipsControllerTest {
     void getTopNShips() {
         //Arrange
         shipgeral.getPosDate().addPosition(posgeral);
-        topNController.shipStore.getShipBinarySearchTree().insert(shipgeral);
+        topNController.shipStore.insertIntoMmsiAVL(shipgeral);
         List<Ship> expectedList = new ArrayList<>();
         expectedList.add(shipgeral);
 

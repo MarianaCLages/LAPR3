@@ -62,17 +62,17 @@ public class ShipStore {
         }
     }
 
-    private void insertIntoMmsiAVL(Ship ship) {
+    public void insertIntoMmsiAVL(Ship ship) {
         ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipByMmsiAVL.insert(shipToInsert);
     }
 
-    private void insertIntoImoAVL(Ship ship) {
+    public void insertIntoImoAVL(Ship ship) {
         ShipByIMO shipToInsert = new ShipByIMO(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipByIMOAVL.insert(shipToInsert);
     }
 
-    private void insertIntoCallSign(Ship ship) {
+    public void insertIntoCallSign(Ship ship) {
         ShipByCallSign shipToInsert = new ShipByCallSign(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipByCallSignAVL.insert(shipToInsert);
     }
@@ -85,7 +85,7 @@ public class ShipStore {
      */
     public boolean existsShip(int mmsi) {
         try {
-            findShipByMmsi(mmsi);
+            getShipByMmsi(mmsi);
             return true;
         } catch (Exception e) {
             return false;
@@ -98,7 +98,7 @@ public class ShipStore {
      * @param mmsi the ship's MMSI
      * @return the ship by MMSI
      */
-    public Ship findShipByMmsi(int mmsi) {
+    public Ship getShipByMmsi(int mmsi) {
         ShipByMmsi ship = new ShipByMmsi(mmsi);
         return shipByMmsiAVL.find(ship);
     }
@@ -118,22 +118,13 @@ public class ShipStore {
      *
      * @return BST as a list
      */
-    public List<Ship> transformBSTintoList() {
+   /* public List<Ship> transformBSTintoList() {
         Iterable<Ship> ls = shipBinarySearchTree.inOrder();
         List<Ship> lShip = new ArrayList<>();
         ls.iterator().forEachRemaining(lShip::add);
 
         return lShip;
-    }
-
-    /**
-     * Gets the BST as a list.
-     *
-     * @return the BST as a list
-     */
-    public List<Ship> getlShip() {
-        return transformBSTintoList();
-    }
+    }*/
 
     /**
      * Writes all ships from BST in order.
@@ -141,39 +132,15 @@ public class ShipStore {
      * @return false if BST is empty, true if it isn't
      */
     public boolean writeAllShips() {
-        if (shipBinarySearchTree.isEmpty()) {
+        if (shipByIMOAVL.isEmpty() || shipByCallSignAVL.isEmpty() || shipByMmsiAVL.isEmpty()) {
             return false;
         }
 
-        for (Ship s : shipBinarySearchTree.inOrder()) {
-            System.out.println(s);
+        for (Ship s : shipByMmsiAVL.inOrder()) {
+            System.out.println(s); //Tiago passa isto para a UI
         }
-    
+
         return true;
-    }
-
-    /**
-     * Gets ship by MMSI from BST.
-     *
-     * @param mmsi the ship's MMSI
-     * @return the ship by MMSI
-     */
-    public Ship getShipByMMSI(int mmsi) {
-        return findShip(mmsi);
-    }
-
-
-    /**
-     * Gets the list of the ships' MMSI
-     *
-     * @return the list of the ships' MMSI
-     */
-    public List<Integer> getShipListMmsi() {
-        List<Integer> shipListMmsi = new ArrayList<>();
-        for (Ship ship : shipBinarySearchTree.inOrder()) {
-            shipListMmsi.add(ship.getMmsi());
-        }
-        return shipListMmsi;
     }
 
     /**
@@ -208,17 +175,18 @@ public class ShipStore {
      * @return the top-N ships in a period of time
      */
     public List<Ship> getTopN(int n, String vesselType, LocalDateTime dt, LocalDateTime dt2) {
+
         DistanceCalculation distance = new DistanceCalculation();
         int count = 0;
         List<Ship> shipsByVessel = new ArrayList<>();
 
-        if (this.getShipBinarySearchTree().isEmpty()) {
+        if (shipByMmsiAVL.isEmpty() || shipByCallSignAVL.isEmpty() || shipByIMOAVL.isEmpty()) {
             throw new IllegalArgumentException("Store is empty!");
         }
 
-        Iterable<Ship> iterableShip = this.getShipBinarySearchTree().inOrder();
+        List<Ship> shipList = transformAVLintoList();
 
-        for (Ship s : iterableShip) {
+        for (Ship s : shipList) {
             if (s.getVesselType().equals(vesselType)) {
                 shipsByVessel.add(s);
             }
@@ -259,21 +227,22 @@ public class ShipStore {
      * @param mmsi the ship's MMSI
      * @return the ship's summary by MMSI
      */
-    public String getShipSummaryByMMSI(double mmsi) {
-        String returnString;
-        List<Ship> lShip = transformBSTintoList();
+    public String getShipSummaryByMMSI(int mmsi) {
 
+        String returnString = null;
         StringBuilder sb = new StringBuilder();
 
-        for (Ship s : lShip) {
-            if (mmsi == s.getMmsi()) {
-                sb
-                        .append("MMSI : " + s.getMmsi() + "\n")
-                        .append(getShipSummaryStructure(s));
-            }
-        }
-        returnString = sb.toString();
+        Ship s = getShipByMmsi(mmsi);
 
+        if (s != null) {
+
+            sb
+                    .append("MMSI : " + s.getMmsi() + "\n")
+                    .append(getShipSummaryStructure(s));
+
+            returnString = sb.toString();
+
+        }
         if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
         } else {
@@ -288,20 +257,20 @@ public class ShipStore {
      * @return the ship's summary by IMO
      */
     public String getShipSummaryByIMO(String imo) {
-        String returnString;
-        List<Ship> lShip = transformBSTintoList();
-
+        String returnString = null;
         StringBuilder sb = new StringBuilder();
 
-        for (Ship s : lShip) {
-            if (imo.equals(s.getImo())) {
-                sb
-                        .append("IMO : " + s.getImo() + "\n")
-                        .append(getShipSummaryStructure(s));
-            }
-        }
-        returnString = sb.toString();
+        Ship s = getShipByIMO(imo);
 
+        if (s != null) {
+
+            sb
+                    .append("IMO : " + s.getImo() + "\n")
+                    .append(getShipSummaryStructure(s));
+
+            returnString = sb.toString();
+
+        }
         if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
         } else {
@@ -316,19 +285,21 @@ public class ShipStore {
      * @return the ship's summary by call sign
      */
     public String getShipSummaryByCallSign(String callSign) {
-        String returnString;
-        List<Ship> lShip = transformBSTintoList();
 
+        String returnString = null;
         StringBuilder sb = new StringBuilder();
 
-        for (Ship s : lShip) {
-            if (callSign.equals(s.getCallSign())) {
-                sb
-                        .append("Call Sign : " + s.getCallSign() + "\n")
-                        .append(getShipSummaryStructure(s));
-            }
+        Ship s = getShipByCallSign(callSign);
+
+        if (s != null) {
+
+            sb
+                    .append("Call Sign : " + s.getCallSign() + "\n")
+                    .append(getShipSummaryStructure(s));
+
+            returnString = sb.toString();
+
         }
-        returnString = sb.toString();
 
         if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
@@ -502,8 +473,17 @@ public class ShipStore {
      *
      * @return the binary search tree
      */
-    public AVL<Ship> getShipBinarySearchTree() {
-        return shipBinarySearchTree;
+
+    public AVL<ShipByMmsi> getShipByMMSIBinarySearchTree() {
+        return shipByMmsiAVL;
+    }
+
+    public AVL<ShipByIMO> getShipByIMOBinarySearchTree() {
+        return shipByIMOAVL;
+    }
+
+    public AVL<ShipByCallSign> getShipByCallSignBinarySearchTree() {
+        return shipByCallSignAVL;
     }
 
     /**
@@ -568,7 +548,7 @@ public class ShipStore {
      * @return the ship list ordered by travelled distance (descending) and total number of movements (ascending)
      */
     public List<Ship> sortedList() {
-        List<Ship> shipList = transformBSTintoList();
+        List<Ship> shipList = transformAVLintoList();
         Comparator<Ship> comparator1 = (o1, o2) -> {
 
             double x1 = o1.getTravelledDistance();
@@ -599,11 +579,23 @@ public class ShipStore {
         return shipList;
     }
 
+
+    public List<Ship> transformAVLintoList() {
+
+        List<Ship> slist = new ArrayList<>();
+        Iterable<ShipByMmsi> iterator = shipByMmsiAVL.inOrder();
+        iterator.forEach(slist::add);
+
+        return slist;
+
+    }
+
     /**
      * Gets pairs of ships in the BST.
      */
     public void getPairOfShipsInsideBST() {
-        List<Ship> lShip = transformBSTintoList();
+
+        List<Ship> lShip = null;
 
         for (int i = 0; i < lShip.size(); i++) {
             Ship s1 = lShip.get(i);
@@ -642,5 +634,6 @@ public class ShipStore {
         }
         return sb.toString();
     }
+
 }
 

@@ -14,7 +14,7 @@ public class ShipSummaryUI implements Runnable {
     public void run() {
 
         int option;
-        long mmsi;
+        int mmsi;
         String imo;
         String callSign;
 

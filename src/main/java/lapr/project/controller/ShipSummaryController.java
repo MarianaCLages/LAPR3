@@ -18,7 +18,7 @@ public class ShipSummaryController {
         this.shipStore = company.getShipStore();
     }
 
-    public String getShipSummaryByMMSI(long mmsi) throws IllegalArgumentException {
+    public String getShipSummaryByMMSI(int mmsi) throws IllegalArgumentException {
         return shipStore.getShipSummaryByMMSI(mmsi);
     }
 

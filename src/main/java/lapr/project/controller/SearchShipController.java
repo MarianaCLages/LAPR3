@@ -15,7 +15,7 @@ public class SearchShipController {
     }
 
     public Ship searchShipByMMSI(int p) {
-        return ss.getShipByMMSI(p);
+        return ss.getShipByMmsi(p);
     }
 
     public Ship searchShipByIMO(String p) {

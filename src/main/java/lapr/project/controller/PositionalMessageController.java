@@ -23,7 +23,7 @@ public class PositionalMessageController {
      */
     public String getPositionalMessages(int mmsi, LocalDateTime di, LocalDateTime df) {
         try {
-            Ship ship = shipStore.getShipByMMSI(mmsi);
+            Ship ship = shipStore.getShipByMmsi(mmsi);
 
             if (ship == null) throw new NullPointerException("Ship doesn't exist!");
             String posMessage = ship.writeAllPos(di, df);

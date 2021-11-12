@@ -40,7 +40,7 @@ public class ListShipsController {
      */
     public List<Ship> getShipList() {
         shipList = new ArrayList<>();
-        shipList = shipStore.getlShip();
+        shipList = shipStore.transformAVLintoList();
         return shipList;
     }
 
