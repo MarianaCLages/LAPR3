@@ -88,6 +88,7 @@ public class ShipStore {
             getShipByMmsi(mmsi);
             return true;
         } catch (Exception e) {
+            System.out.println(mmsi);
             return false;
         }
     }
