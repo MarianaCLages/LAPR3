@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class UserStore {
-    private Set<User> store = new HashSet();
+    private final Set<User> store = new HashSet();
 
     public UserStore() {
     }
@@ -20,11 +20,11 @@ public class UserStore {
     }
 
     public boolean add(User user) {
-        return user != null && !this.exists(user) ? this.store.add(user) : false;
+        return user != null && !this.exists(user) && this.store.add(user);
     }
 
     public boolean remove(User user) {
-        return user != null ? this.store.remove(user) : false;
+        return user != null && this.store.remove(user);
     }
 
     public Optional<User> getById(String email) {

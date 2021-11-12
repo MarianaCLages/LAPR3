@@ -3,10 +3,10 @@ package lapr.project.model;
 import lapr.project.utils.auth.domain.OrgRole;
 
 public class Employee {
-    private String email;
-    private String employeeId;
-    private OrgRole role;
-    private String name;
+    private final String email;
+    private final String employeeId;
+    private final OrgRole role;
+    private final String name;
 
     /**
      * Constructor.

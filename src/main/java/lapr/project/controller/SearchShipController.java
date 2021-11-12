@@ -6,8 +6,8 @@ import lapr.project.model.stores.ShipStore;
 
 public class SearchShipController {
 
-    private Company cmpn;
-    private ShipStore ss;
+    private final Company cmpn;
+    private final ShipStore ss;
 
     public SearchShipController(){
         this.cmpn = App.getInstance().getCompany();

@@ -20,10 +20,6 @@ public class TopNShipsController {
     public List<Ship> getTopNShips(int n, String vesselType, LocalDateTime li, LocalDateTime lf) {
         List<Ship> lShip = shipStore.getTopN(n, vesselType, li, lf);
 
-        if (lShip == null) {
-            return null;
-        } else {
-            return lShip;
-        }
+        return lShip;
     }
 }

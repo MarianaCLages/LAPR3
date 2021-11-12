@@ -10,9 +10,7 @@ import java.util.*;
 public class Ship implements Comparable<Ship> {
 
 
-    //dados dinamicos
     private PositionTree posDate;
-    //dados estaticos
     private char transcieverClass;
     private String cargo;
     private int mmsi;
@@ -30,17 +28,17 @@ public class Ship implements Comparable<Ship> {
     /**
      * Constructor.
      *
-     * @param mmsi         the ship's MMSI
-     * @param name         the ship's name
-     * @param imo          the ship's international identification number
-     * @param callSign     the ship's call sign
-     * @param vesselType   the ship's type
-     * @param length       the ship's length
-     * @param width        the ship's width
-     * @param draft        the ship's draft
-     * @param cargo        the ship's cargo
+     * @param mmsi             the ship's MMSI
+     * @param name             the ship's name
+     * @param imo              the ship's international identification number
+     * @param callSign         the ship's call sign
+     * @param vesselType       the ship's type
+     * @param length           the ship's length
+     * @param width            the ship's width
+     * @param draft            the ship's draft
+     * @param cargo            the ship's cargo
      * @param transcieverClass the ship's transciever class
-     * */
+     */
 
     public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transcieverClass) {
         checkIMO(imo);
@@ -64,15 +62,15 @@ public class Ship implements Comparable<Ship> {
     /**
      * Constructor.
      *
-     * @param mmsi         the ship's identification
-     * @param name         the ship's name
-     * @param imo          the ship's international identification number
-     * @param callSign     the ship's call sign
-     * @param vesselType   the ship's type
-     * @param length       the ship's length
-     * @param width        the ship's width
-     * @param draft        the ship's draft
-     * */
+     * @param mmsi       the ship's identification
+     * @param name       the ship's name
+     * @param imo        the ship's international identification number
+     * @param callSign   the ship's call sign
+     * @param vesselType the ship's type
+     * @param length     the ship's length
+     * @param width      the ship's width
+     * @param draft      the ship's draft
+     */
 
     public Ship(int mmsi, String name, String imo, int numGen, long genPowerOutput, String callSign, String vesselType, double length, double width, double capacity, double draft) {
         checkIMO(imo);
@@ -96,8 +94,8 @@ public class Ship implements Comparable<Ship> {
     /**
      * Constructor.
      *
-     * @param mmsi         the ship's identification
-     * **/
+     * @param mmsi the ship's identification
+     **/
 
     public Ship(int mmsi) {
         checkMMSI(mmsi);
@@ -107,7 +105,8 @@ public class Ship implements Comparable<Ship> {
     /**
      * creates a new position.
      *
-     * @return a new position**/
+     * @return a new position
+     **/
 
     public Position createPosition(LocalDateTime time, double latitude, double longitude, double heading, double sog, double cog) {
         return new Position(latitude, longitude, heading, sog, cog, time);
@@ -115,21 +114,23 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * inserts a new position to the ship.
-     * **/
+     **/
     public void insertPosition(Position position) {
         posDate.addPosition(position);
     }
 
     /**
      * gets the ship's identification.
+     *
      * @return ship's identification
-     * **/
+     **/
     public int getMmsi() {
         return mmsi;
     }
 
     /**
-     * sets ship's identification.**/
+     * sets ship's identification.
+     **/
     //Setters
     public void setMmsi(int mmsi) {
         this.mmsi = mmsi;
@@ -137,75 +138,89 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * gets name.
-     * @return name**/
+     *
+     * @return name
+     **/
     public String getName() {
         return name;
     }
 
     /**
      * sets name.
-     * **/
+     **/
     public void setName(String name) {
         this.name = name;
     }
 
     /**
      * gets internation identification number.
-     * @return the internation identification number**/
+     *
+     * @return the internation identification number
+     **/
     public String getImo() {
         return imo;
     }
 
     /**
-     * sets internation identification numbe.r**/
+     * sets internation identification numbe.r
+     **/
     public void setImo(String imo) {
         this.imo = imo;
     }
 
     /**
      * gets number Generator.
-     * @return the number Generator **/
+     *
+     * @return the number Generator
+     **/
     public int getNumGen() {
         return numGen;
     }
 
     /**
-     * sets number Generator.**/
+     * sets number Generator.
+     **/
     public void setNumGen(int numGen) {
         this.numGen = numGen;
     }
 
     /**
      * gets call sign.
-     * @return the call sign**/
+     *
+     * @return the call sign
+     **/
     public String getCallSign() {
         return callSign;
     }
 
     /**
      * sets call sign.
-     * **/
+     **/
     public void setCallSign(String callSign) {
         this.callSign = callSign;
     }
 
     /**
      * gets the vessel type.
+     *
      * @return the vessel type
-     * **/
+     **/
     public String getVesselType() {
         return vesselType;
     }
 
     /**
-     * sets the vessel type.**/
+     * sets the vessel type.
+     **/
     public void setVesselType(String vesselType) {
         this.vesselType = vesselType;
     }
 
     /**
      * gets length.
-     * @return the length**/
+     *
+     * @return the length
+     **/
     public double getLength() {
         return length;
     }
@@ -219,66 +234,82 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * gets width.
-     * @eturn width **/
+     *
+     * @eturn width
+     **/
     public double getWidth() {
         return width;
     }
 
     /**
-     * sets width.**/
+     * sets width.
+     **/
     public void setWidth(long width) {
         this.width = width;
     }
 
     /**
      * gets capacity.
-     * @return capacity**/
+     *
+     * @return capacity
+     **/
     public double getCapacity() {
         return capacity;
     }
 
     /**
      * sets capacity.
-     * @return capacity **/
+     *
+     * @return capacity
+     **/
     public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
 
     /**
      * gets the position date.
-     * @return the position date**/
+     *
+     * @return the position date
+     **/
     public PositionTree getPosDate() {
         return posDate;
     }
 
     /**
      * gets the draft.
-     * @return the draft**/
+     *
+     * @return the draft
+     **/
     public double getDraft() {
         return draft;
     }
 
     /**
-     * sets the draft.**/
+     * sets the draft.
+     **/
     public void setDraft(long draft) {
         this.draft = draft;
     }
 
     /**
      * gets the generated power output.
-     * @return the generated power output**/
+     *
+     * @return the generated power output
+     **/
     public long getGenPowerOutput() {
         return genPowerOutput;
     }
 
     /**
-     * sets the generated power output.**/
+     * sets the generated power output.
+     **/
     public void setGenPowerOutput(long genPowerOutput) {
         this.genPowerOutput = genPowerOutput;
     }
 
     /**
-     * checks if the identification has 9 digits.**/
+     * checks if the identification has 9 digits.
+     **/
     //Checks
     public boolean checkMMSI(int mmsi) {
         if (mmsi > 99999999 && mmsi < 1000000000) {
@@ -289,7 +320,9 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * checks if the ship's international identification number has 7 digits.
-     * @return if true of false**/
+     *
+     * @return if true of false
+     **/
     public boolean checkIMO(String imo) {
         if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
             throw new IllegalArgumentException("IMO code must have 7 digits!");
@@ -297,7 +330,8 @@ public class Ship implements Comparable<Ship> {
     }
 
     /**
-     * return a String with all the positions of a ship on a certain period of time.*/
+     * return a String with all the positions of a ship on a certain period of time.
+     */
 
     public String writeAllPos(LocalDateTime di, LocalDateTime df) {
 
@@ -358,7 +392,9 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * compares two ships by their mmsi
-     * @return if one is greater than the other, or if it's smaller,or if they're equal **/
+     *
+     * @return if one is greater than the other, or if it's smaller,or if they're equal
+     **/
     @Override
     public int compareTo(Ship o) {
         if (mmsi > o.mmsi) {
@@ -371,7 +407,9 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * compares if two ships are equal
-     * @return true if they are equal, false if not**/
+     *
+     * @return true if they are equal, false if not
+     **/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -382,7 +420,9 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * returns the hash code.
-     * @return the hash code**/
+     *
+     * @return the hash code
+     **/
     @Override
     public int hashCode() {
         return Objects.hash(getMmsi(), getName(), getImo(), getNumGen(), getGenPowerOutput(), getCallSign(), getVesselType(), getLength(), getWidth(), getCapacity(), getDraft());
@@ -390,7 +430,9 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * gets the travelled distance.
-     * @return the travelled distance.**/
+     *
+     * @return the travelled distance.
+     **/
     public double getTravelledDistance() {
         double travelledDistance = 0;
 
@@ -402,20 +444,25 @@ public class Ship implements Comparable<Ship> {
 
     /**
      * gets the delta distance.
-     * @return the delta distance**/
+     *
+     * @return the delta distance
+     **/
     public double getDeltaDistance() {
         return DistanceCalculation.distanceTo(this.getPosDate().getSmallestPosition(), this.getPosDate().getBiggestPosition());
     }
 
     /**
      * gets the total number of movements.
-     * @return the total number of movements.**/
+     *
+     * @return the total number of movements.
+     **/
     public int getTotalNumberOfMovements() {
         return this.getPosDate().getSize();
     }
 
     /**
-     * Returns the textual description of the ship in the format: cargo, mmsi, name, imo, number of generators, generated power output, call sign, vessel type, length, width, capacity, draft**/
+     * Returns the textual description of the ship in the format: cargo, mmsi, name, imo, number of generators, generated power output, call sign, vessel type, length, width, capacity, draft
+     **/
     @Override
     public String toString() {
         return "Ship{" +

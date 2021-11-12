@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 public class ImportShipsController {
 
-    private Company company;
+    private final Company company;
 
     public ImportShipsController() {
         this.company = App.getInstance().getCompany();

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class PositionalMessageUI implements Runnable {
 
-    private PositionalMessageController positionalMessageController = new PositionalMessageController();
+    private final PositionalMessageController positionalMessageController = new PositionalMessageController();
 
 
     public void run() {

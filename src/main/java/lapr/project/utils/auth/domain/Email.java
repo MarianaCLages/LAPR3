@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Email {
 
-    private String email;
+    private final String email;
 
     public Email(String email) {
         if (!validate(email))

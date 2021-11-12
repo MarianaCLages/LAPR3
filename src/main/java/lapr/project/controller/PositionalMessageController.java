@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class PositionalMessageController {
 
 
-    private Company company;
-    private ShipStore shipStore;
+    private final Company company;
+    private final ShipStore shipStore;
 
     /**
      * Constructor.

@@ -53,7 +53,7 @@ public class Utils {
 
             System.out.println(index + ". " + o.getDescription());
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("0 - Cancel");
     }
 

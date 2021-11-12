@@ -243,7 +243,7 @@ class BinarySearchTreeTest {
 
     @Test
     void toStringTest(){
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("|-------Position{latitude=10.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
         stringBuilder.append("|\t|-------Position{latitude=9.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");
         stringBuilder.append("|\t|\t|\t|-------Position{latitude=8.0, longitude=48.0, heading=4.0, sog=4.0, cog=5.0}\n");

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class SearchShipUI implements Runnable {
 
-    private SearchShipController ctrl = new SearchShipController();
+    private final SearchShipController ctrl = new SearchShipController();
 
     @Override
     public void run() {
