@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-/*
->>>>>>> e30d3a7d761bfb29d9a11c53b6d371fbde5adc23
 package lapr.project.Integration.US104;
 
 import lapr.project.controller.App;
@@ -796,8 +792,5 @@ class US104IntegrationTest {
 
     }
 
-<<<<<<< HEAD
+
 }
-=======
-}*/
->>>>>>> e30d3a7d761bfb29d9a11c53b6d371fbde5adc23
