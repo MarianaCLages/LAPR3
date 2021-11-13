@@ -7,13 +7,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PositionTree {
+public class PositionTreeStore {
     AVL<Position> positionBinarySearchTree;
 
     /**
      * Constructor.
      */
-    public PositionTree() {
+    public PositionTreeStore() {
         this.positionBinarySearchTree = new AVL<>();
     }
 

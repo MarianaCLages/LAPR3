@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.model.stores.PositionTree;
+import lapr.project.model.stores.PositionTreeStore;
 import lapr.project.shared.DistanceCalculation;
 import org.apache.commons.lang3.StringUtils;
 
@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Ship {
     private char transceiverClass;
-    private PositionTree posDate;
+    private PositionTreeStore posDate;
     private String cargo;
     private int mmsi;
     private String name;
@@ -52,7 +52,7 @@ public class Ship {
         this.cargo = cargo;
         this.transceiverClass = transceiverClass;
 
-        this.posDate = new PositionTree();
+        this.posDate = new PositionTreeStore();
     }
 
     /**
@@ -86,7 +86,7 @@ public class Ship {
         this.capacity = capacity;
         this.draft = draft;
 
-        this.posDate = new PositionTree();
+        this.posDate = new PositionTreeStore();
     }
 
     /**
@@ -295,7 +295,7 @@ public class Ship {
      *
      * @return the position date
      **/
-    public PositionTree getPosDate() {
+    public PositionTreeStore getPosDate() {
         return posDate;
     }
 
@@ -397,7 +397,7 @@ public class Ship {
 
         List<Position> positionList = new ArrayList<>();
 
-        PositionTree binaryTest = this.getPosDate();
+        PositionTreeStore binaryTest = this.getPosDate();
         Iterable<Position> posIterable = binaryTest.getInOrderList();
         Iterator<Position> posIterator = posIterable.iterator();
 
@@ -508,7 +508,7 @@ public class Ship {
                 '}';
     }
 
-    public void setPosDate(PositionTree posDate) {
+    public void setPosDate(PositionTreeStore posDate) {
         this.posDate = posDate;
     }
 }

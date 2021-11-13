@@ -9,9 +9,9 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PositionTreeTest {
+class PositionTreeStoreTest {
 
-    PositionTree positionTree = new PositionTree();
+    PositionTreeStore positionTreeStore = new PositionTreeStore();
 
     Ship shipgeral2 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 
@@ -27,7 +27,7 @@ class PositionTreeTest {
     void addPosition() {
 
         //Arrange + Act
-        boolean expected = positionTree.addPosition(null);
+        boolean expected = positionTreeStore.addPosition(null);
         //Assert
         assertEquals(expected, true);
 
@@ -38,7 +38,7 @@ class PositionTreeTest {
         //Arrange + Act + Assert
         try {
             shipgeral2.insertPosition(posgeral);
-            assertNotNull(positionTree.getPosition(date));
+            assertNotNull(positionTreeStore.getPosition(date));
         } catch (Exception e) {
 
         }
