@@ -64,16 +64,19 @@ public class ShipStore {
 
     public void insertIntoMmsiAVL(Ship ship) {
         ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
+        shipToInsert.setPosDate(ship.getPosDate());
         shipByMmsiAVL.insert(shipToInsert);
     }
 
     public void insertIntoImoAVL(Ship ship) {
         ShipByIMO shipToInsert = new ShipByIMO(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
+        shipToInsert.setPosDate(ship.getPosDate());
         shipByIMOAVL.insert(shipToInsert);
     }
 
     public void insertIntoCallSign(Ship ship) {
         ShipByCallSign shipToInsert = new ShipByCallSign(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
+        shipToInsert.setPosDate(ship.getPosDate());
         shipByCallSignAVL.insert(shipToInsert);
     }
 
