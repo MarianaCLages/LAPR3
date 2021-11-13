@@ -44,9 +44,12 @@ public class TopNShipsUI implements Runnable {
 
         List<Ship> lShip = null;
 
-        try{
-        lShip = topNShipsController.getTopNShips(n, vesselType, datei, datef);}
-        catch (IllegalArgumentException ex){
+        if (topNShipsController.getShipStore().transformAVLintoList().size() > 10)
+            System.out.println("(This operation might take a while!)\n\n");
+
+        try {
+            lShip = topNShipsController.getTopNShips(n, vesselType, datei, datef);
+        } catch (IllegalArgumentException ex) {
             System.out.println("Not enough ships for this operation");
         }
 

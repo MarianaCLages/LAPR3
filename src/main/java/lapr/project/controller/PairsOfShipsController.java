@@ -22,7 +22,7 @@ public class PairsOfShipsController {
     }
 
     public int getSize() {
-        return shipStore.getPairsOfShipsSearchTree().size();
+        return shipStore.getShipByMMSIBinarySearchTree().size();
     }
 
 }

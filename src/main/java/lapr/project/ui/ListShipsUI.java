@@ -18,6 +18,7 @@ public class ListShipsUI implements Runnable {
         }
 
         System.out.println("### SHIP LIST ###");
+        if(ctrl.getShipStore().transformAVLintoList().size()>10) System.out.println("(This operation might take a while!)\n\n");
         System.out.println(ctrl.getShipListDTO());
     }
 }

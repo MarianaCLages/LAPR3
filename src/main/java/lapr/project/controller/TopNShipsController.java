@@ -20,4 +20,8 @@ public class TopNShipsController {
     public List<Ship> getTopNShips(int n, String vesselType, LocalDateTime li, LocalDateTime lf) {
         return shipStore.getTopN(n, vesselType, li, lf);
     }
+
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
 }
