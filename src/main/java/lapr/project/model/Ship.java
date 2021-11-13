@@ -94,7 +94,7 @@ public class Ship {
      */
 
     public Ship() {
-
+        this.posDate = new PositionTreeStore();
     }
 
     /**
@@ -172,6 +172,15 @@ public class Ship {
     }
 
     /**
+     * Sets the ship's number of energy generators
+     *
+     * @param numGen the ship's number of energy generators
+     */
+    public void setNumGen(int numGen) {
+        this.numGen = numGen;
+    }
+
+    /**
      * Gets the ship's transceiver class.
      *
      * @return the ship's transceiver class
@@ -187,15 +196,6 @@ public class Ship {
      */
     public String getCargo() {
         return cargo;
-    }
-
-    /**
-     * Sets the ship's number of energy generators
-     *
-     * @param numGen the ship's number of energy generators
-     */
-    public void setNumGen(int numGen) {
-        this.numGen = numGen;
     }
 
     /**
@@ -299,6 +299,10 @@ public class Ship {
         return posDate;
     }
 
+    public void setPosDate(PositionTreeStore posDate) {
+        this.posDate = posDate;
+    }
+
     /**
      * Gets the ship's draft.
      *
@@ -326,6 +330,8 @@ public class Ship {
         return genPowerOutput;
     }
 
+    //Checks
+
     /**
      * Sets the generator's power output.
      *
@@ -334,8 +340,6 @@ public class Ship {
     public void setGenPowerOutput(long genPowerOutput) {
         this.genPowerOutput = genPowerOutput;
     }
-
-    //Checks
 
     /**
      * Checks the ship's MMSI
@@ -459,7 +463,6 @@ public class Ship {
         return this.getPosDate().getSize();
     }
 
-
     /**
      * Checks if two objects (Ship) are equal.
      *
@@ -506,9 +509,5 @@ public class Ship {
                 ", capacity=" + capacity +
                 ", draft=" + draft +
                 '}';
-    }
-
-    public void setPosDate(PositionTreeStore posDate) {
-        this.posDate = posDate;
     }
 }

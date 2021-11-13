@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PositionTest {
+class
+PositionTest {
 
 
     String sdate = "31/11/2020 23:16";

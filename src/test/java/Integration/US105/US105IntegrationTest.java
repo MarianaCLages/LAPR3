@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class US105IntegrationTest {
+class US105IntegrationTest {
     App app = App.getInstance();
     Company company = app.getCompany();
 
