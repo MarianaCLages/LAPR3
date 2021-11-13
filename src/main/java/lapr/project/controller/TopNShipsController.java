@@ -18,8 +18,6 @@ public class TopNShipsController {
     }
 
     public List<Ship> getTopNShips(int n, String vesselType, LocalDateTime li, LocalDateTime lf) {
-        List<Ship> lShip = shipStore.getTopN(n, vesselType, li, lf);
-
-        return lShip;
+        return shipStore.getTopN(n, vesselType, li, lf);
     }
 }

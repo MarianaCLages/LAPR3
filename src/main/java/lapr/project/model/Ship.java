@@ -89,16 +89,12 @@ public class Ship {
         this.posDate = new PositionTree();
     }
 
+    /**
+     * Empty constructor.
+     */
+
     public Ship() {
 
-    }
-
-    public char getTransceiverClass() {
-        return transceiverClass;
-    }
-
-    public String getCargo() {
-        return cargo;
     }
 
     /**
@@ -173,6 +169,24 @@ public class Ship {
      **/
     public int getNumGen() {
         return numGen;
+    }
+
+    /**
+     * Gets the ship's transceiver class.
+     *
+     * @return the ship's transceiver class
+     */
+    public char getTransceiverClass() {
+        return transceiverClass;
+    }
+
+    /**
+     * Gets the ship's cargo.
+     *
+     * @return the ship's cargo
+     */
+    public String getCargo() {
+        return cargo;
     }
 
     /**
@@ -340,7 +354,7 @@ public class Ship {
      * Checks the ship's IMO.
      *
      * @param imo the ship's IMO
-     * @return true if it valid, false if it isn't
+     * @return true if it is valid, false if it isn't
      */
     public boolean checkIMO(String imo) {
         if (imo.length() != 10 || (!imo.startsWith("IMO") && StringUtils.isNumeric(imo.substring(2, imo.length() - 1)))) {
@@ -368,9 +382,9 @@ public class Ship {
      */
     public String writeAllPos(LocalDateTime di, LocalDateTime df) {
 
-        String positionalMessage = "Positional Message:";
+        StringBuilder positionalMessage = new StringBuilder("Positional Message:");
 
-        if (di == null || df == null) return positionalMessage;
+        if (di == null || df == null) return positionalMessage.toString();
 
         Date initiald = java.sql.Timestamp.valueOf(di);
         Date finald = java.sql.Timestamp.valueOf(df);
@@ -404,13 +418,13 @@ public class Ship {
         }
 
         if (positionList.isEmpty()) {
-            return positionalMessage;
+            return positionalMessage.toString();
         }
 
         for (Position pos : positionList) {
-            positionalMessage = positionalMessage + "\n" + pos.toString();
+            positionalMessage.append("\n").append(pos.toString());
         }
-        return positionalMessage;
+        return positionalMessage.toString();
     }
 
     /**

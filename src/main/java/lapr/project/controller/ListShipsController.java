@@ -7,6 +7,7 @@ import lapr.project.utils.mappers.ShipMapper;
 import lapr.project.utils.mappers.dto.ShipDTO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListShipsController {
@@ -67,7 +68,7 @@ public class ListShipsController {
             List<Ship> sShips = sortedList();
             return shipMapper.toDTO(sShips);
         } catch (Exception e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 }

@@ -18,6 +18,6 @@ public class ListShipsUI implements Runnable {
         }
 
         System.out.println("### SHIP LIST ###");
-        System.out.println(ctrl.getShipListDTO1());
+        System.out.println(ctrl.getShipListDTO());
     }
 }

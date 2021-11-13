@@ -650,7 +650,7 @@ class ShipStoreTest {
         shipstore.addShip(ship6);
         shipstore.getPairOfShipsInsideBST();
         int i = 0;
-        for (PairOfShips ships : shipstore.getPairsOfShipsSearchTree().inOrder()) {
+        for (PairOfShips ships : shipstore.getPairsOfShipsSearchTree()) {
             assertTrue(arrayPairs[i].equals(ships));
             i++;
         }
