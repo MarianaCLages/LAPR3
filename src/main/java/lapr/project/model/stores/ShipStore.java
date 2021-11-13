@@ -599,7 +599,7 @@ public class ShipStore {
      */
     public void getPairOfShipsInsideBST() {
 
-        List<Ship> lShip = null;
+        List<Ship> lShip = transformAVLintoList();
 
         for (int i = 0; i < lShip.size(); i++) {
             Ship s1 = lShip.get(i);

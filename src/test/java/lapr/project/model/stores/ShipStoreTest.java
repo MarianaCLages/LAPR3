@@ -326,10 +326,8 @@ class ShipStoreTest {
         shipstore.addShip(shipgeral2);
 
         //Act
-        List<Ship> expected = new ArrayList<>();
-        expected.add(shipgeral);
-        expected.add(shipgeral2);
-        List<Ship> actual = shipstore.sortedList();
+        String expected = "[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}]";
+        String actual = shipstore.sortedList().toString();
 
         //Assert
         assertEquals(expected, actual);
@@ -346,10 +344,8 @@ class ShipStoreTest {
         shipstore.addShip(shipgeral2);
 
         //Act
-        List<Ship> expected = new ArrayList<>();
-        expected.add(shipgeral);
-        expected.add(shipgeral2);
-        List<Ship> actual = shipstore.sortedList();
+        String expected = "[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}]";
+        String actual = shipstore.sortedList().toString();
 
         //Assert
         assertEquals(expected, actual);
@@ -367,10 +363,8 @@ class ShipStoreTest {
         shipstore.addShip(shipgeral2);
 
         //Act
-        List<Ship> expected = new ArrayList<>();
-        expected.add(shipgeral);
-        expected.add(shipgeral2);
-        List<Ship> actual = shipstore.sortedList();
+        String expected = "[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}]";
+        String actual = shipstore.sortedList().toString();
 
         //Assert
         assertEquals(expected, actual);
@@ -388,12 +382,10 @@ class ShipStoreTest {
         shipstore.addShip(shipgeral2);
 
         //Act
-        List<Ship> expected = new ArrayList<>();
-        expected.add(shipgeral);
-        expected.add(shipgeral2);
-        List<Ship> actual = shipstore.sortedList();
+        String expected = "[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}]";
+        String actual = shipstore.sortedList().toString();
 
-        if (!actual.toString().equals("[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=1, genPowerOutput=1, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=1.0, draft=1.0}]"))
+        if (!actual.toString().equals("[Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}, Ship{cargo='null', MMSI=222222222, name='name', IMO='IMO2222222', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}]"))
             fail();
 
         //Assert
@@ -495,9 +487,9 @@ class ShipStoreTest {
 
         //Arrange
         shipstore.addShip(shipgeral);
-        Ship expected = shipgeral;
+        String expected = "Ship{cargo='null', MMSI=111111111, name='name', IMO='IMO1111111', numGen=0, genPowerOutput=0, callSign='A', vesselType='A', length=1.0, width=1.0, capacity=0.0, draft=1.0}";
         //Act
-        Ship actual = shipstore.getShipByMmsi(111111111);
+        String actual = shipstore.getShipByMmsi(111111111).toString();
         //Assert
         assertEquals(expected, actual);
     }
@@ -578,7 +570,7 @@ class ShipStoreTest {
         //Arrange
         List<Ship> expectedtestShip = new ArrayList<>();
         expectedtestShip.add(shipgeral);
-        shipstore.insertIntoMmsiAVL(shipgeral);
+        shipstore.addShip(shipgeral);
         ShipStore shipStoreTest = new ShipStore();
 
         //Act + Assert

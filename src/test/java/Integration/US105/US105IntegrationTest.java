@@ -166,21 +166,9 @@ public class US105IntegrationTest {
         shipStore.addShip(ship10);
 
         //Arrange
-        List<Ship> expectedList = new ArrayList<>();
-
-        expectedList.add(ship7);
-        expectedList.add(ship4);
-        expectedList.add(ship5);
-        expectedList.add(ship2);
-        expectedList.add(ship8);
-        expectedList.add(ship9);
-        expectedList.add(ship6);
-        expectedList.add(ship10);
-        expectedList.add(ship1);
-        expectedList.add(ship3);
-
+        String expectedList = "[Ship{cargo='null', MMSI=636019825, name='SeaWandering', IMO='IMO9701920', numGen=0, genPowerOutput=0, callSign='LAJB6', vesselType='OREGON TRADER', length=1600.0, width=200.0, capacity=0.0, draft=13.0}, Ship{cargo='null', MMSI=636015178, name='FFF&N', IMO='IMO9645970', numGen=0, genPowerOutput=0, callSign='9HA3589', vesselType='HYUNDAI SINGAPORE', length=250.0, width=150.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=636092932, name='GiantTrans', IMO='IMO9517575', numGen=0, genPowerOutput=0, callSign='9HJC9', vesselType='CARNIVAL LEGEND', length=500.0, width=100.0, capacity=0.0, draft=14.0}, Ship{cargo='null', MMSI=367487570, name='ArticMonkey', IMO='IMO9305685', numGen=0, genPowerOutput=0, callSign='5BZP3', vesselType='VARAMO', length=1.0, width=300.0, capacity=0.0, draft=40.0}, Ship{cargo='null', MMSI=257799000, name='Titanic', IMO='IMO9321677', numGen=0, genPowerOutput=0, callSign='WDG5171', vesselType='OREGON TRADER', length=1000.0, width=175.0, capacity=0.0, draft=20.0}, Ship{cargo='null', MMSI=366934280, name='', IMO='IMO7819216', numGen=0, genPowerOutput=0, callSign='WNGW', vesselType='ARCTIC SEA', length=1.0, width=200.0, capacity=0.0, draft=21.0}, Ship{cargo='null', MMSI=636091400, name='Traveller', IMO='IMO9344564', numGen=0, genPowerOutput=0, callSign='LATO7', vesselType='CARNIVAL LEGEND', length=1150.0, width=200.0, capacity=0.0, draft=11.0}, Ship{cargo='null', MMSI=211331640, name='name', IMO='IMO9506758', numGen=0, genPowerOutput=0, callSign='V2FR9', vesselType='ARCTIC SEA', length=200.0, width=300.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=367439390, name='SeaTruck', IMO='IMO9643544', numGen=0, genPowerOutput=0, callSign='C4SQ2', vesselType='VARAMO', length=5000.0, width=2000.0, capacity=0.0, draft=30.0}, Ship{cargo='null', MMSI=368085000, name='Bamboo', IMO='IMO9450648', numGen=0, genPowerOutput=0, callSign='FLSU', vesselType='HYUNDAI SINGAPORE', length=500.0, width=100.0, capacity=0.0, draft=20.0}]";
         //Act
-        List<Ship> actualList = listShipsController.sortedList();
+        String actualList = listShipsController.sortedList().toString();
 
         //Assert
         assertEquals(expectedList, actualList);
