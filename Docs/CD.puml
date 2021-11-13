@@ -99,6 +99,13 @@ class Position{
 
 class PositionTree{
 +add(position)
+-positionTree
++getSmallestPosition()
++getBiggestPosition()
++getSize()
++getOrderList()
++getPosition()
++getInOrderList()
 }
 
 class SearchShipUI{
