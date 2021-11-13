@@ -9,7 +9,6 @@ public class ShipByMmsi extends Ship implements Comparable<ShipByMmsi> {
         setMmsi(mmsi);
     }
 
-
     @Override
     public int compareTo(ShipByMmsi o) {
         return Integer.compare(getMmsi(), o.getMmsi());

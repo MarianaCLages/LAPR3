@@ -9,7 +9,6 @@ public class ShipByIMO extends Ship implements Comparable<ShipByIMO> {
         setImo(imo);
     }
 
-
     @Override
     public int compareTo(ShipByIMO o) {
         return (getImo().compareTo(o.getImo()));

@@ -2,7 +2,6 @@ package Integration.US105;
 
 import lapr.project.controller.App;
 import lapr.project.controller.ListShipsController;
-import lapr.project.controller.TopNShipsController;
 import lapr.project.model.Company;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
@@ -12,8 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;

@@ -472,12 +472,6 @@ public class ShipStore {
         }
     }
 
-    /**
-     * Gets the binary search tree.
-     *
-     * @return the binary search tree
-     */
-
     public AVL<ShipByMmsi> getShipByMMSIBinarySearchTree() {
         return shipByMmsiAVL;
     }
@@ -584,21 +578,23 @@ public class ShipStore {
     }
 
 
+    /**
+     * Transforms the AVL in a list.
+     *
+     * @return the AVL in a list
+     */
     public List<Ship> transformAVLintoList() {
-
         List<Ship> slist = new ArrayList<>();
         Iterable<ShipByMmsi> iterator = shipByMmsiAVL.inOrder();
         iterator.forEach(slist::add);
 
         return slist;
-
     }
 
     /**
      * Gets pairs of ships in the BST.
      */
     public void getPairOfShipsInsideBST() {
-
         List<Ship> lShip = transformAVLintoList();
 
         for (int i = 0; i < lShip.size(); i++) {
@@ -609,7 +605,6 @@ public class ShipStore {
                     if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
                         if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
                             if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
-
                                 if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
                                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                                     pairsOfShipsSearchTree.insert(pairOfShips);

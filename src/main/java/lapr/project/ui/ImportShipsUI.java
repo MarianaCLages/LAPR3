@@ -23,9 +23,9 @@ public class ImportShipsUI implements Runnable {
                 } else if (!readOption.equals("Y") || !readOption.equals("N")) throw new IllegalArgumentException();
 
             } catch (IllegalArgumentException ex1) {
-                System.out.println("Please enter a valid option! (Yes - yes / No - n)");
+                System.out.println("Please enter a valid option! (Y - yes / N - no)");
             } catch (InvalidLineException | FileNotFoundException ex2) {
-                System.out.println("Please enter a valid file (See the file names before entering one)");
+                System.out.println("Please enter a valid file! (See the file names before entering one)");
             }
         } while (readOptionBoolean == false);
     }
