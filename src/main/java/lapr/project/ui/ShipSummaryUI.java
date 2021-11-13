@@ -44,8 +44,12 @@ public class ShipSummaryUI implements Runnable {
                 try {
                     shipSummary = shipSummaryController.getShipSummaryByMMSI(mmsi);
                     break;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
+                } catch (IllegalArgumentException ex1) {
+                    System.out.println(ex1.getMessage());
+                    break;
+                } catch (NullPointerException ex2){
+                    System.out.println("Invalid Ship!");
+                    break;
                 }
             case 2:
                 do {
@@ -61,7 +65,12 @@ public class ShipSummaryUI implements Runnable {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
+                    break;
+                } catch (NullPointerException ex2){
+                    System.out.println("Invalid Ship!");
+                    break;
                 }
+
             case 3:
                 do {
                     try {
@@ -76,6 +85,10 @@ public class ShipSummaryUI implements Runnable {
                     break;
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
+                    break;
+                } catch (NullPointerException ex2){
+                    System.out.println("Invalid Ship!");
+                    break;
                 }
             default:
                 // code smell

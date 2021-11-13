@@ -18,7 +18,7 @@ public class ShipSummaryController {
         this.shipStore = company.getShipStore();
     }
 
-    public String getShipSummaryByMMSI(int mmsi) throws IllegalArgumentException {
+    public String getShipSummaryByMMSI(int mmsi) throws IllegalArgumentException, NullPointerException {
         return shipStore.getShipSummaryByMMSI(mmsi);
     }
 
@@ -29,6 +29,7 @@ public class ShipSummaryController {
     public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException {
         return shipStore.getShipSummaryByCallSign(callSign);
     }
+
     public ShipStore getShipStore() {
         return shipStore;
     }

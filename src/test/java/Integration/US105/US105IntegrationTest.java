@@ -22,7 +22,7 @@ public class US105IntegrationTest {
     App app = App.getInstance();
     Company company = app.getCompany();
 
-    ShipStore shipStore = new ShipStore();
+    ShipStore shipStore = company.getShipStore();
     ListShipsController listShipsController = new ListShipsController();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -101,16 +101,16 @@ public class US105IntegrationTest {
         }
 
         //Create Ships
-        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 0, 0, "C4SQ2", "VARAMO", 5000, 2000, 0, 30);
-        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 0, 0, "5BZP3", "VARAMO", 1, 300, 0, 40);
-        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 0, 0, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 0, 20);
-        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 0, 0,"9HA3589", "HYUNDAI SINGAPORE", 250, 150, 0, 10);
-        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 0, 0, "9HJC9", "CARNIVAL LEGEND", 500, 100, 0, 14);
-        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 0, 0, "LATO7", "CARNIVAL LEGEND", 1150, 200, 0, 11);
-        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 0, 0,"LAJB6", "OREGON TRADER", 1600, 200, 0, 13);
-        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 0, 0, "WDG5171", "OREGON TRADER", 1000, 175, 0, 20);
-        Ship ship9 = new Ship(366934280, "", "IMO7819216", 0, 0, "WNGW", "ARCTIC SEA", 1, 200, 0, 21);
-        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 0, 0, "V2FR9", "ARCTIC SEA", 200, 300, 0, 10);
+        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 100, 10, "C4SQ2", "VARAMO", 5000, 2000, 20000, 30);
+        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 70, 12, "5BZP3", "VARAMO", 1, 300, 1300, 40);
+        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 10, 20, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
+        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 20, 18, "9HA3589", "HYUNDAI SINGAPORE", 250, 150, 20000, 10);
+        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 30, 16, "9HJC9", "CARNIVAL LEGEND", 500, 100, 12000, 14);
+        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 40, 22, "LATO7", "CARNIVAL LEGEND", 1150, 200, 1000, 11);
+        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 20, 30, "LAJB6", "OREGON TRADER", 1600, 200, 200, 13);
+        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 200, 8, "WDG5171", "OREGON TRADER", 1000, 175, 300, 20);
+        Ship ship9 = new Ship(366934280, "", "IMO7819216", 5, 50, "WNGW", "ARCTIC SEA", 1, 200, 300, 21);
+        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 10, 20, "V2FR9", "ARCTIC SEA", 200, 300, 200, 10);
 
         //Add positions into the Position AVL of a Ship
         //Ship1
@@ -164,23 +164,11 @@ public class US105IntegrationTest {
         shipStore.addShip(ship8);
         shipStore.addShip(ship9);
         shipStore.addShip(ship10);
-        //Arrange
-        List<Ship> expectedList = new ArrayList<>();
-        expectedList.add(ship7);
-        expectedList.add(ship4);
-        expectedList.add(ship5);
-        expectedList.add(ship2);
-        expectedList.add(ship8);
-        expectedList.add(ship9);
-        expectedList.add(ship6);
-        expectedList.add(ship10);
-        expectedList.add(ship1);
-        expectedList.add(ship3);
 
+        //Arrange
+        String expectedList = "[Ship{cargo='null', MMSI=636019825, name='SeaWandering', IMO='IMO9701920', numGen=0, genPowerOutput=0, callSign='LAJB6', vesselType='OREGON TRADER', length=1600.0, width=200.0, capacity=0.0, draft=13.0}, Ship{cargo='null', MMSI=636015178, name='FFF&N', IMO='IMO9645970', numGen=0, genPowerOutput=0, callSign='9HA3589', vesselType='HYUNDAI SINGAPORE', length=250.0, width=150.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=636092932, name='GiantTrans', IMO='IMO9517575', numGen=0, genPowerOutput=0, callSign='9HJC9', vesselType='CARNIVAL LEGEND', length=500.0, width=100.0, capacity=0.0, draft=14.0}, Ship{cargo='null', MMSI=367487570, name='ArticMonkey', IMO='IMO9305685', numGen=0, genPowerOutput=0, callSign='5BZP3', vesselType='VARAMO', length=1.0, width=300.0, capacity=0.0, draft=40.0}, Ship{cargo='null', MMSI=257799000, name='Titanic', IMO='IMO9321677', numGen=0, genPowerOutput=0, callSign='WDG5171', vesselType='OREGON TRADER', length=1000.0, width=175.0, capacity=0.0, draft=20.0}, Ship{cargo='null', MMSI=366934280, name='', IMO='IMO7819216', numGen=0, genPowerOutput=0, callSign='WNGW', vesselType='ARCTIC SEA', length=1.0, width=200.0, capacity=0.0, draft=21.0}, Ship{cargo='null', MMSI=636091400, name='Traveller', IMO='IMO9344564', numGen=0, genPowerOutput=0, callSign='LATO7', vesselType='CARNIVAL LEGEND', length=1150.0, width=200.0, capacity=0.0, draft=11.0}, Ship{cargo='null', MMSI=211331640, name='name', IMO='IMO9506758', numGen=0, genPowerOutput=0, callSign='V2FR9', vesselType='ARCTIC SEA', length=200.0, width=300.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=367439390, name='SeaTruck', IMO='IMO9643544', numGen=0, genPowerOutput=0, callSign='C4SQ2', vesselType='VARAMO', length=5000.0, width=2000.0, capacity=0.0, draft=30.0}, Ship{cargo='null', MMSI=368085000, name='Bamboo', IMO='IMO9450648', numGen=0, genPowerOutput=0, callSign='FLSU', vesselType='HYUNDAI SINGAPORE', length=500.0, width=100.0, capacity=0.0, draft=20.0}]";
         //Act
-        List<Ship> actualList = listShipsController.sortedList();
-        System.out.println(actualList.size());
-        System.out.println(expectedList.size());
+        String actualList = listShipsController.sortedList().toString();
 
         //Assert
         assertEquals(expectedList, actualList);
