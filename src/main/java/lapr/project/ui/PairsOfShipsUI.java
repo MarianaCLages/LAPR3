@@ -13,6 +13,10 @@ public class PairsOfShipsUI implements Runnable {
     @Override
     public void run() {
 
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t #PAIRS OF SHIPS#");
+
+        if(pairsOfShipsController.getSize()>5) System.out.println("(This operation may take a while!)");
+
         System.out.println(pairsOfShipsController.getPairs());
 
     }

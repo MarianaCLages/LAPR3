@@ -1,12 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.Company;
-import lapr.project.model.ShipImporter;
 import lapr.project.model.stores.ShipStore;
-import lapr.project.shared.exceptions.InvalidLineException;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class ShipSummaryController {
 
@@ -22,11 +17,11 @@ public class ShipSummaryController {
         return shipStore.getShipSummaryByMMSI(mmsi);
     }
 
-    public String getShipSummaryByIMO(String imo) throws IllegalArgumentException {
+    public String getShipSummaryByIMO(String imo) throws IllegalArgumentException , NullPointerException {
         return shipStore.getShipSummaryByIMO(imo);
     }
 
-    public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException {
+    public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException , NullPointerException {
         return shipStore.getShipSummaryByCallSign(callSign);
     }
 

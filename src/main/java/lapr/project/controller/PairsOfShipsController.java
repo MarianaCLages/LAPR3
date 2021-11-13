@@ -20,4 +20,9 @@ public class PairsOfShipsController {
     public ShipStore getShipStore() {
         return shipStore;
     }
+
+    public int getSize() {
+        return shipStore.getPairsOfShipsSearchTree().size();
+    }
+
 }

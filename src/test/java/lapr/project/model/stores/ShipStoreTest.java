@@ -650,7 +650,7 @@ class ShipStoreTest {
         shipstore.addShip(ship6);
         shipstore.getPairOfShipsInsideBST();
         int i = 0;
-        for (PairOfShips ships : shipstore.pairsOfShipsSearchTree.inOrder()) {
+        for (PairOfShips ships : shipstore.getPairsOfShipsSearchTree().inOrder()) {
             assertTrue(arrayPairs[i].equals(ships));
             i++;
         }
@@ -722,4 +722,26 @@ class ShipStoreTest {
 
     }
 
+    @Test
+    void getShipInvalid() {
+
+        String expected1=null;
+        String expected2=null;
+        String expected3=null;
+
+        try {
+
+            expected1 = shipstore.getShipSummaryByCallSign("zzzz");
+            expected2 = shipstore.getShipSummaryByIMO("IMO9990111");
+            expected3 = shipstore.getShipSummaryByMMSI(999999345);
+
+        } catch (NullPointerException e) {
+
+            assertEquals(expected1, null);
+            assertEquals(expected2, null);
+            assertEquals(expected3, null);
+
+        }
+
+    }
 }

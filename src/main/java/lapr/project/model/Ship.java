@@ -89,11 +89,6 @@ public class Ship {
         this.posDate = new PositionTree();
     }
 
-    /**
-     * Constructor.
-     *
-     * @param mmsi the ship's MMSI
-     **/
     public Ship() {
 
     }
