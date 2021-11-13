@@ -22,7 +22,7 @@ public class US105IntegrationTest {
     App app = App.getInstance();
     Company company = app.getCompany();
 
-    ShipStore shipStore = company.getShipStore();
+    ShipStore shipStore = new ShipStore();
     ListShipsController listShipsController = new ListShipsController();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -101,16 +101,16 @@ public class US105IntegrationTest {
         }
 
         //Create Ships
-        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 100, 10, "C4SQ2", "VARAMO", 5000, 2000, 20000, 30);
-        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 70, 12, "5BZP3", "VARAMO", 1, 300, 1300, 40);
-        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 10, 20, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
-        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 20, 18, "9HA3589", "HYUNDAI SINGAPORE", 250, 150, 20000, 10);
-        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 30, 16, "9HJC9", "CARNIVAL LEGEND", 500, 100, 12000, 14);
-        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 40, 22, "LATO7", "CARNIVAL LEGEND", 1150, 200, 1000, 11);
-        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 20, 30, "LAJB6", "OREGON TRADER", 1600, 200, 200, 13);
-        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 200, 8, "WDG5171", "OREGON TRADER", 1000, 175, 300, 20);
-        Ship ship9 = new Ship(366934280, "", "IMO7819216", 5, 50, "WNGW", "ARCTIC SEA", 1, 200, 300, 21);
-        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 10, 20, "V2FR9", "ARCTIC SEA", 200, 300, 200, 10);
+        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 0, 0, "C4SQ2", "VARAMO", 5000, 2000, 0, 30);
+        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 0, 0, "5BZP3", "VARAMO", 1, 300, 0, 40);
+        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 0, 0, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 0, 20);
+        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 0, 0,"9HA3589", "HYUNDAI SINGAPORE", 250, 150, 0, 10);
+        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 0, 0, "9HJC9", "CARNIVAL LEGEND", 500, 100, 0, 14);
+        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 0, 0, "LATO7", "CARNIVAL LEGEND", 1150, 200, 0, 11);
+        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 0, 0,"LAJB6", "OREGON TRADER", 1600, 200, 0, 13);
+        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 0, 0, "WDG5171", "OREGON TRADER", 1000, 175, 0, 20);
+        Ship ship9 = new Ship(366934280, "", "IMO7819216", 0, 0, "WNGW", "ARCTIC SEA", 1, 200, 0, 21);
+        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 0, 0, "V2FR9", "ARCTIC SEA", 200, 300, 0, 10);
 
         //Add positions into the Position AVL of a Ship
         //Ship1
@@ -164,10 +164,8 @@ public class US105IntegrationTest {
         shipStore.addShip(ship8);
         shipStore.addShip(ship9);
         shipStore.addShip(ship10);
-
         //Arrange
         List<Ship> expectedList = new ArrayList<>();
-
         expectedList.add(ship7);
         expectedList.add(ship4);
         expectedList.add(ship5);
@@ -181,6 +179,8 @@ public class US105IntegrationTest {
 
         //Act
         List<Ship> actualList = listShipsController.sortedList();
+        System.out.println(actualList.size());
+        System.out.println(expectedList.size());
 
         //Assert
         assertEquals(expectedList, actualList);

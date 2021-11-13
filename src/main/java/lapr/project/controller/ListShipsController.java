@@ -50,6 +50,7 @@ public class ListShipsController {
      * @return the sorted ship list
      */
     public List<Ship> sortedList() {
+        System.out.println(shipStore.writeAllShips());
         if (shipStore.sortedList().isEmpty()) {
             throw new IllegalArgumentException();
         }
