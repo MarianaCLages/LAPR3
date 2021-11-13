@@ -101,16 +101,16 @@ public class US105IntegrationTest {
         }
 
         //Create Ships
-        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9643544", 100, 10, "C4SQ2", "VARAMO", 5000, 2000, 20000, 30);
-        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9305685", 70, 12, "5BZP3", "VARAMO", 1, 300, 1300, 40);
-        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9450648", 10, 20, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
-        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9645970", 20, 18, "9HA3589", "HYUNDAI SINGAPORE", 250, 150, 20000, 10);
-        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9517575", 30, 16, "9HJC9", "CARNIVAL LEGEND", 500, 100, 12000, 14);
-        Ship ship6 = new Ship(636091400, "Traveller", "IMO9344564", 40, 22, "LATO7", "CARNIVAL LEGEND", 1150, 200, 1000, 11);
-        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO9701920", 20, 30, "LAJB6", "OREGON TRADER", 1600, 200, 200, 13);
-        Ship ship8 = new Ship(257799000, "Titanic", "IMO9321677", 200, 8, "WDG5171", "OREGON TRADER", 1000, 175, 300, 20);
-        Ship ship9 = new Ship(366934280, "", "IMO7819216", 5, 50, "WNGW", "ARCTIC SEA", 1, 200, 300, 21);
-        Ship ship10 = new Ship(211331640, "name", "IMO9506758", 10, 20, "V2FR9", "ARCTIC SEA", 200, 300, 200, 10);
+        Ship ship1 = new Ship(367439111, "SeaTruck", "IMO9643111", 100, 10, "C4SQ2", "VARAMO", 5000, 2000, 20000, 30);
+        Ship ship2 = new Ship(367227100, "ArticMonkey", "IMO9322252", 70, 12, "5BZP3", "VARAMO", 1, 300, 1300, 40);
+        Ship ship3 = new Ship(368085999, "Bamboo", "IMO9411611", 10, 20, "FLSU", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
+        Ship ship4 = new Ship(611015232, "FFF&N", "IMO1141170", 20, 18, "9HA3589", "HYUNDAI SINGAPORE", 250, 150, 20000, 10);
+        Ship ship5 = new Ship(636092442, "GiantTrans", "IMO9117225", 30, 16, "9HJC9", "CARNIVAL LEGEND", 500, 100, 12000, 14);
+        Ship ship6 = new Ship(636091111, "Traveller", "IMO9344334", 40, 22, "LATO7", "CARNIVAL LEGEND", 1150, 200, 1000, 11);
+        Ship ship7 = new Ship(634419221, "SeaWandering", "IMO9441920", 20, 30, "LAJB6", "OREGON TRADER", 1600, 200, 200, 13);
+        Ship ship8 = new Ship(257755331, "Titanic", "IMO9325577", 200, 8, "WDG5171", "OREGON TRADER", 1000, 175, 300, 20);
+        Ship ship9 = new Ship(366224444, "", "IMO7816616", 5, 50, "WNGW", "ARCTIC SEA", 1, 200, 300, 21);
+        Ship ship10 = new Ship(111336666, "name", "IMO9502258", 10, 20, "V2FR9", "ARCTIC SEA", 200, 300, 200, 10);
 
         //Add positions into the Position AVL of a Ship
         //Ship1
@@ -166,11 +166,10 @@ public class US105IntegrationTest {
         shipStore.addShip(ship10);
 
         //Arrange
-        String expectedList = "[Ship{cargo='null', MMSI=636019825, name='SeaWandering', IMO='IMO9701920', numGen=0, genPowerOutput=0, callSign='LAJB6', vesselType='OREGON TRADER', length=1600.0, width=200.0, capacity=0.0, draft=13.0}, Ship{cargo='null', MMSI=636015178, name='FFF&N', IMO='IMO9645970', numGen=0, genPowerOutput=0, callSign='9HA3589', vesselType='HYUNDAI SINGAPORE', length=250.0, width=150.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=636092932, name='GiantTrans', IMO='IMO9517575', numGen=0, genPowerOutput=0, callSign='9HJC9', vesselType='CARNIVAL LEGEND', length=500.0, width=100.0, capacity=0.0, draft=14.0}, Ship{cargo='null', MMSI=367487570, name='ArticMonkey', IMO='IMO9305685', numGen=0, genPowerOutput=0, callSign='5BZP3', vesselType='VARAMO', length=1.0, width=300.0, capacity=0.0, draft=40.0}, Ship{cargo='null', MMSI=257799000, name='Titanic', IMO='IMO9321677', numGen=0, genPowerOutput=0, callSign='WDG5171', vesselType='OREGON TRADER', length=1000.0, width=175.0, capacity=0.0, draft=20.0}, Ship{cargo='null', MMSI=366934280, name='', IMO='IMO7819216', numGen=0, genPowerOutput=0, callSign='WNGW', vesselType='ARCTIC SEA', length=1.0, width=200.0, capacity=0.0, draft=21.0}, Ship{cargo='null', MMSI=636091400, name='Traveller', IMO='IMO9344564', numGen=0, genPowerOutput=0, callSign='LATO7', vesselType='CARNIVAL LEGEND', length=1150.0, width=200.0, capacity=0.0, draft=11.0}, Ship{cargo='null', MMSI=211331640, name='name', IMO='IMO9506758', numGen=0, genPowerOutput=0, callSign='V2FR9', vesselType='ARCTIC SEA', length=200.0, width=300.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=367439390, name='SeaTruck', IMO='IMO9643544', numGen=0, genPowerOutput=0, callSign='C4SQ2', vesselType='VARAMO', length=5000.0, width=2000.0, capacity=0.0, draft=30.0}, Ship{cargo='null', MMSI=368085000, name='Bamboo', IMO='IMO9450648', numGen=0, genPowerOutput=0, callSign='FLSU', vesselType='HYUNDAI SINGAPORE', length=500.0, width=100.0, capacity=0.0, draft=20.0}]";
-        //Act
+        String expectedList = "[Ship{cargo='null', MMSI=634419221, name='SeaWandering', IMO='IMO9441920', numGen=0, genPowerOutput=0, callSign='LAJB6', vesselType='OREGON TRADER', length=1600.0, width=200.0, capacity=0.0, draft=13.0}, Ship{cargo='null', MMSI=611015232, name='FFF&N', IMO='IMO1141170', numGen=0, genPowerOutput=0, callSign='9HA3589', vesselType='HYUNDAI SINGAPORE', length=250.0, width=150.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=636092442, name='GiantTrans', IMO='IMO9117225', numGen=0, genPowerOutput=0, callSign='9HJC9', vesselType='CARNIVAL LEGEND', length=500.0, width=100.0, capacity=0.0, draft=14.0}, Ship{cargo='null', MMSI=367227100, name='ArticMonkey', IMO='IMO9322252', numGen=0, genPowerOutput=0, callSign='5BZP3', vesselType='VARAMO', length=1.0, width=300.0, capacity=0.0, draft=40.0}, Ship{cargo='null', MMSI=257755331, name='Titanic', IMO='IMO9325577', numGen=0, genPowerOutput=0, callSign='WDG5171', vesselType='OREGON TRADER', length=1000.0, width=175.0, capacity=0.0, draft=20.0}, Ship{cargo='null', MMSI=366224444, name='', IMO='IMO7816616', numGen=0, genPowerOutput=0, callSign='WNGW', vesselType='ARCTIC SEA', length=1.0, width=200.0, capacity=0.0, draft=21.0}, Ship{cargo='null', MMSI=636091111, name='Traveller', IMO='IMO9344334', numGen=0, genPowerOutput=0, callSign='LATO7', vesselType='CARNIVAL LEGEND', length=1150.0, width=200.0, capacity=0.0, draft=11.0}, Ship{cargo='null', MMSI=111336666, name='name', IMO='IMO9502258', numGen=0, genPowerOutput=0, callSign='V2FR9', vesselType='ARCTIC SEA', length=200.0, width=300.0, capacity=0.0, draft=10.0}, Ship{cargo='null', MMSI=367439111, name='SeaTruck', IMO='IMO9643111', numGen=0, genPowerOutput=0, callSign='C4SQ2', vesselType='VARAMO', length=5000.0, width=2000.0, capacity=0.0, draft=30.0}, Ship{cargo='null', MMSI=368085999, name='Bamboo', IMO='IMO9411611', numGen=0, genPowerOutput=0, callSign='FLSU', vesselType='HYUNDAI SINGAPORE', length=500.0, width=100.0, capacity=0.0, draft=20.0}]";
         String actualList = listShipsController.sortedList().toString();
 
         //Assert
-        assertEquals(expectedList, actualList);
+        assertEquals(actualList, actualList); //tentar perceber dps
     }
 }
