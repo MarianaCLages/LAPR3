@@ -498,4 +498,8 @@ public class Ship {
                 ", draft=" + draft +
                 '}';
     }
+
+    public void setPosDate(PositionTree posDate) {
+        this.posDate = posDate;
+    }
 }
