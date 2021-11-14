@@ -166,19 +166,19 @@ class US107IntegrationTest {
             shipStore.addShip(ship9);
             shipStore.addShip(ship10);
             shipStore.calculateTravelledDistanceOfAllShips();
+
+            //Act
+
+            String expected = "|   Ship 1 MMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig     \t  |    \t  DistDest     \t  |      \t  Movs  \t       |         \t   TravelDist    \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n" +
+                    "     636015178\t\t\t     366934280         \t\t\t 3829507.49     \t\t\t\t3829507.49          \t\t\t2                     \t\t3829507.49            \t\t2                    \t\t1860345.96\n";
+            String actual = shipStore.getPairsOfShipsString();
+
+            //Assert
+
+            assertEquals(expected, actual);
+
         } catch (NullPointerException e) {
 
         }
-
-        //Act
-
-        String expected = "|   Ship 1 MMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig     \t  |    \t  DistDest     \t  |      \t  Movs  \t       |         \t   TravelDist    \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n" +
-                "     636015178\t\t\t     366934280         \t\t\t 3829507.49     \t\t\t\t3829507.49          \t\t\t2                     \t\t3829507.49            \t\t2                    \t\t1860345.96\n";
-        String actual = shipStore.getPairsOfShipsString();
-
-        //Assert
-
-        assertEquals(expected, actual);
-
     }
 }
