@@ -1136,4 +1136,60 @@ public class ShipTest {
 
     }
 
+    @Test
+    void getCalculatedDistance(){
+
+        boolean actual = shipgeral.calculateTravelledDistance();
+
+        assertFalse(actual);
+
+
+    }
+
+    @Test
+    void getCalculatedDistanceMutation(){
+
+        shipgeral.insertPosition(posgeral);
+        shipgeral.insertPosition(posgeral2);
+        shipgeral.insertPosition(posgeral3);
+        shipgeral.insertPosition(posgeral4);
+
+        boolean actual = shipgeral.calculateTravelledDistance();
+
+        if(!actual) fail();
+
+        assertTrue(actual);
+
+
+    }
+
+    @Test
+    void setAllDynamicDataMutation(){
+
+        shipgeral.insertPosition(posgeral);
+        shipgeral.insertPosition(posgeral2);
+        shipgeral.insertPosition(posgeral3);
+        shipgeral.insertPosition(posgeral4);
+
+        boolean actual = shipgeral.setAllDynamicData();
+
+        if(!actual) fail();
+
+        assertTrue(actual);
+
+
+    }
+
+    @Test
+    void setAllDynamicDataMutation2(){
+
+        boolean actual = shipgeral.setAllDynamicData();
+
+        if(actual) fail();
+
+        assertFalse(actual);
+
+
+    }
+
 }
