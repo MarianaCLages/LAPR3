@@ -90,7 +90,7 @@ class US107IntegrationTest {
     LocalDateTime date20 = LocalDateTime.parse(sdate20, formatter);
 
     @Test
-    void runUS104() {
+    void runUS107() {
 
         UserSession verifyLogin = app.getAuthFacade().doLogin("TM00001@lei.pt", "495");
 
