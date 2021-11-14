@@ -187,7 +187,7 @@ public class ShipStore {
             throw new IllegalArgumentException("Store is empty!");
         }
 
-        List<Ship> shipList = transformAVLintoList();
+        List<Ship> shipList = transformAVLintoListMMSI();
 
         for (Ship s : shipList) {
             if (s.getVesselType().equals(vesselType)) {
@@ -537,7 +537,7 @@ public class ShipStore {
      * @return the ship list ordered by travelled distance (descending) and total number of movements (ascending)
      */
     public List<Ship> sortedList() {
-        List<Ship> shipList = transformAVLintoList();
+        List<Ship> shipList = transformAVLintoListMMSI();
         Comparator<Ship> comparator1 = (o1, o2) -> {
 
             double x1 = o1.getShipsTravelledDistance();
@@ -574,9 +574,25 @@ public class ShipStore {
      *
      * @return the AVL in a list
      */
-    public List<Ship> transformAVLintoList() {
+    public List<Ship> transformAVLintoListMMSI() {
         List<Ship> slist = new ArrayList<>();
         Iterable<ShipByMmsi> iterator = shipByMmsiAVL.inOrder();
+        iterator.forEach(slist::add);
+
+        return slist;
+    }
+
+    public List<Ship> transformAVLintoListIMO() {
+        List<Ship> slist = new ArrayList<>();
+        Iterable<ShipByIMO> iterator = shipByIMOAVL.inOrder();
+        iterator.forEach(slist::add);
+
+        return slist;
+    }
+
+    public List<Ship> transformAVLintoListCallSign() {
+        List<Ship> slist = new ArrayList<>();
+        Iterable<ShipByCallSign> iterator = shipByCallSignAVL.inOrder();
         iterator.forEach(slist::add);
 
         return slist;
@@ -586,7 +602,7 @@ public class ShipStore {
      * Gets pairs of ships in the BST.
      */
     public void getPairOfShipsInsideBST() {
-        List<Ship> lShip = transformAVLintoList();
+        List<Ship> lShip = transformAVLintoListMMSI();
 
         for (int i = 0; i < lShip.size(); i++) {
             Ship s1 = lShip.get(i);
@@ -627,13 +643,32 @@ public class ShipStore {
 
     public void calculateTravelledDistanceOfAllShips() {
 
-        for (Ship s : transformAVLintoList()) {
+        for (Ship s1 : transformAVLintoListMMSI()) {
 
-            s.calculateTravelledDistance();
-            s.setBiggestPosition();
-            s.setSmalllestPosition();
-            s.setPosDateSize();
+            s1.calculateTravelledDistance();
+            s1.setBiggestPosition();
+            s1.setSmalllestPosition();
+            s1.setPosDateSize();
 
         }
+
+        for (Ship s2 : transformAVLintoListIMO()) {
+
+            s2.calculateTravelledDistance();
+            s2.setBiggestPosition();
+            s2.setSmalllestPosition();
+            s2.setPosDateSize();
+
+        }
+
+        for (Ship s3 : transformAVLintoListCallSign()) {
+
+            s3.calculateTravelledDistance();
+            s3.setBiggestPosition();
+            s3.setSmalllestPosition();
+            s3.setPosDateSize();
+
+        }
+
     }
 }

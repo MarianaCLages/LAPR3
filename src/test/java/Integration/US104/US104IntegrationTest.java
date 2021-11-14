@@ -330,6 +330,8 @@ class US104IntegrationTest {
                 "Travelled Distance : 874092.6\n" +
                 "Delta Distance : 874092.6";
 
+        shipStore.calculateTravelledDistanceOfAllShips();
+
         //Act
 
         String actualMMSIShip1 = shipSummaryController.getShipSummaryByMMSI(367439390);

@@ -147,6 +147,7 @@ class ShipStoreTest {
         shipgeral.getPosDate().addPosition(posgeral);
         shipgeral.getPosDate().addPosition(posgeral2);
         shipstore.addShip(shipgeral);
+        shipstore.calculateTravelledDistanceOfAllShips();
         String expected = "MMSI : 111111111\n" +
                 "Vessel name: A\n" +
                 "Start Base date Time: 2020-12-31T23:16\n" +
@@ -235,6 +236,7 @@ class ShipStoreTest {
         shipgeral.getPosDate().addPosition(posgeral);
         shipgeral.getPosDate().addPosition(posgeral2);
         shipstore.addShip(shipgeral);
+        shipstore.calculateTravelledDistanceOfAllShips();
         String expected = "IMO : IMO1111111\n" +
                 "Vessel name: A\n" +
                 "Start Base date Time: 2020-12-31T23:16\n" +
@@ -681,6 +683,8 @@ class ShipStoreTest {
 
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 50, 0, 0, 0, 1));
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:26", formatter), 15.6456, 0, 0, 0, 1));
+
+        shipstore.calculateTravelledDistanceOfAllShips();
 
         String expected = "|   Ship 1 MMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig     \t  |    \t  DistDest     \t  |      \t  Movs  \t       |         \t   TravelDist    \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n" +
                 "     228339600\t\t\t     210950000         \t\t\t 2779890.79     \t\t\t\t2779890.79          \t\t\t2                     \t\t2779890.79            \t\t2                    \t\t2779879.67\n";

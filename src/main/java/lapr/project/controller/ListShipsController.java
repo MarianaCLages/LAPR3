@@ -41,7 +41,7 @@ public class ListShipsController {
      */
     public List<Ship> getShipList() {
         shipList = new ArrayList<>();
-        shipList = shipStore.transformAVLintoList();
+        shipList = shipStore.transformAVLintoListMMSI();
         return shipList;
     }
 

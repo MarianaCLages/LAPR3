@@ -44,7 +44,7 @@ public class TopNShipsUI implements Runnable {
 
         List<Ship> lShip = null;
 
-        if (topNShipsController.getShipStore().transformAVLintoList().size() > 10)
+        if (topNShipsController.getShipStore().transformAVLintoListMMSI().size() > 10)
             System.out.println("(This operation might take a while!)\n\n");
 
         try {

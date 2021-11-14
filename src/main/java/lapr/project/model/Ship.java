@@ -391,15 +391,15 @@ public class Ship {
     }
 
     public boolean calculateTravelledDistance() {
-        double aux = travelledDistance;
-        travelledDistance = getTravelledDistance();
-        if (aux == travelledDistance) return false;
+        double aux = this.travelledDistance;
+        this.travelledDistance = getTravelledDistance();
+        if (aux == this.travelledDistance) return false;
         else return true;
     }
 
     public double getShipsTravelledDistance() {
 
-        return travelledDistance;
+        return this.travelledDistance;
 
     }
 
@@ -538,11 +538,6 @@ public class Ship {
                 ", draft=" + draft +
                 '}';
     }
-<<<<<<< HEAD
-
-    public void setPosDate(PositionTreeStore posDate) {
-        this.posDate = posDate;
-    }
 
 
     public void setBiggestPosition() {
@@ -568,6 +563,19 @@ public class Ship {
     public double getPosDateSize() {
         return posDateSize;
     }
-=======
->>>>>>> aa148c892b6e497b04bf1b19f7eebc78cd61dc76
+
+    public boolean setAllDynamicData() {
+
+        double case1 = this.travelledDistance;
+        double case2 = this.posDateSize;
+
+        this.calculateTravelledDistance();
+        this.setBiggestPosition();
+        this.setSmalllestPosition();
+        this.setPosDateSize();
+
+        if (case1 == this.travelledDistance || case2 == this.posDateSize) {
+            return false;
+        } else return true;
+    }
 }
