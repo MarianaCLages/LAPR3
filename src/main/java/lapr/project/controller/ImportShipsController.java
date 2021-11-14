@@ -18,6 +18,7 @@ public class ImportShipsController {
     public boolean importShips(String fileName) throws InvalidLineException, FileNotFoundException {
         boolean returnValue = false;
         returnValue = ShipImporter.importsShips(new File(fileName));
+        company.getShipStore().calculateTravelledDistanceOfAllShips();
         return returnValue;
     }
 }

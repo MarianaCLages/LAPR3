@@ -334,7 +334,7 @@ public class ShipStore {
                 .append("Departure Longitude : " + getDepartureLongitude(s) + "\n")
                 .append("Arrival Latitude : " + getArrivalLatitude(s) + "\n")
                 .append("Arrival Longitude : " + getArrivalLongitude(s) + "\n")
-                .append("Travelled Distance : " + s.getTravelledDistance() + "\n")
+                .append("Travelled Distance : " + s.getShipsTravelledDistance() + "\n")
                 .append("Delta Distance : " + s.getDeltaDistance());
 
         return sb.toString();
@@ -476,14 +476,6 @@ public class ShipStore {
         return shipByMmsiAVL;
     }
 
-    public AVL<ShipByIMO> getShipByIMOBinarySearchTree() {
-        return shipByIMOAVL;
-    }
-
-    public AVL<ShipByCallSign> getShipByCallSignBinarySearchTree() {
-        return shipByCallSignAVL;
-    }
-
     /**
      * Gets the departure latitude of a ship.
      *
@@ -492,7 +484,7 @@ public class ShipStore {
      */
     public double getDepartureLatitude(Ship s) {
         try {
-            return (s.getPosDate().getSmallestPosition().getLatitude());
+            return (s.getSmallPosition().getLatitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -506,7 +498,7 @@ public class ShipStore {
      */
     public double getDepartureLongitude(Ship s) {
         try {
-            return (s.getPosDate().getSmallestPosition().getLongitude());
+            return (s.getSmallPosition().getLongitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -520,7 +512,7 @@ public class ShipStore {
      */
     public double getArrivalLatitude(Ship s) {
         try {
-            return (s.getPosDate().getBiggestPosition().getLatitude());
+            return (s.getBiggestPosition().getLatitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -534,7 +526,7 @@ public class ShipStore {
      */
     public double getArrivalLongitude(Ship s) {
         try {
-            return (s.getPosDate().getBiggestPosition().getLongitude());
+            return (s.getBiggestPosition().getLongitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -549,11 +541,11 @@ public class ShipStore {
         List<Ship> shipList = transformAVLintoList();
         Comparator<Ship> comparator1 = (o1, o2) -> {
 
-            double x1 = o1.getTravelledDistance();
-            double x2 = o2.getTravelledDistance();
+            double x1 = o1.getShipsTravelledDistance();
+            double x2 = o2.getShipsTravelledDistance();
 
-            double z1 = o1.getPosDate().getSize();
-            double z2 = o2.getPosDate().getSize();
+            double z1 = o1.getPosDateSize();
+            double z2 = o2.getPosDateSize();
 
             double result1 = x2 - x1;
             double result2 = z2 - z1;
@@ -602,10 +594,10 @@ public class ShipStore {
             for (int j = 1; j < lShip.size(); j++) {
                 Ship s2 = lShip.get(j);
                 if (!s1.equals(s2)) {
-                    if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
-                        if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
-                            if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
-                                if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
+                    if (DistanceCalculation.distanceTo(s1.getSmallPosition(), s2.getSmallPosition()) < 5000) {
+                        if (DistanceCalculation.distanceTo(s1.getBiggestPosition(), s2.getBiggestPosition()) < 5000) {
+                            if (s1.getShipsTravelledDistance() != s2.getShipsTravelledDistance()) {
+                                if (s1.getShipsTravelledDistance() >= 10000 && s2.getShipsTravelledDistance() >= 10000) {
                                     PairOfShips pairOfShips = new PairOfShips(s1, s2);
                                     pairsOfShipsSearchTree.insert(pairOfShips);
                                 }
@@ -634,5 +626,15 @@ public class ShipStore {
         return sb.toString();
     }
 
-}
+    public void calculateTravelledDistanceOfAllShips() {
 
+        for (Ship s : transformAVLintoList()) {
+
+            s.calculateTravelledDistance();
+            s.setBiggestPosition();
+            s.setSmalllestPosition();
+            s.setPosDateSize();
+
+        }
+    }
+}

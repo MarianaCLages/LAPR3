@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Ship {
+
     private char transceiverClass;
     private PositionTreeStore posDate;
     private String cargo;
@@ -22,6 +23,10 @@ public class Ship {
     private double width;
     private double capacity;
     private double draft;
+    private double travelledDistance;
+    private Position biggestPosition;
+    private Position smallPosition;
+    private double posDateSize;
 
     /**
      * Constructor.
@@ -53,6 +58,10 @@ public class Ship {
         this.transceiverClass = transceiverClass;
 
         this.posDate = new PositionTreeStore();
+        this.travelledDistance = 0;
+        this.biggestPosition = null;
+        this.smallPosition = null;
+        this.posDateSize = 0;
     }
 
     /**
@@ -87,6 +96,10 @@ public class Ship {
         this.draft = draft;
 
         this.posDate = new PositionTreeStore();
+        this.travelledDistance = 0;
+        this.biggestPosition = null;
+        this.smallPosition = null;
+        this.posDateSize = 0;
     }
 
     /**
@@ -373,6 +386,20 @@ public class Ship {
         posDate.addPosition(position);
     }
 
+    public boolean calculateTravelledDistance() {
+        double aux = travelledDistance;
+        travelledDistance = getTravelledDistance();
+        if (aux == travelledDistance) return false;
+        else return true;
+    }
+
+    public double getShipsTravelledDistance() {
+
+        return travelledDistance;
+
+    }
+
+
     /**
      * Writes all the positional messages in a period of time.
      *
@@ -433,6 +460,7 @@ public class Ship {
      * @return the ship's travelled distance
      **/
     public double getTravelledDistance() {
+
         double travelledDistance = 0;
 
         for (int i = 0; i < this.getPosDate().getInOrderList().size() - 1; i++) {
@@ -510,5 +538,30 @@ public class Ship {
 
     public void setPosDate(PositionTreeStore posDate) {
         this.posDate = posDate;
+    }
+
+
+    public void setBiggestPosition() {
+        biggestPosition = this.getPosDate().getBiggestPosition();
+    }
+
+    public void setSmalllestPosition() {
+        smallPosition = this.getPosDate().getSmallestPosition();
+    }
+
+    public Position getBiggestPosition() {
+        return biggestPosition;
+    }
+
+    public Position getSmallPosition() {
+        return smallPosition;
+    }
+
+    public void setPosDateSize() {
+        this.posDateSize = this.posDate.getSize();
+    }
+
+    public double getPosDateSize() {
+        return posDateSize;
     }
 }
