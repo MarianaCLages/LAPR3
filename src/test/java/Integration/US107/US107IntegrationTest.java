@@ -167,7 +167,7 @@ class US107IntegrationTest {
             shipStore.addShip(ship10);
             shipStore.calculateTravelledDistanceOfAllShips();
         } catch (NullPointerException e) {
-            
+
         }
 
         //Act
