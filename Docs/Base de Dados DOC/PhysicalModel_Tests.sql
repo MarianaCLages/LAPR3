@@ -14,7 +14,7 @@ commit;
 --expected: fail, roleid not found
 
 INSERT INTO Role (ID, ROLEDESCRIPTION)
-VALUES (14, null);
+VALUES (14, 'ship captain');
 commit;
 INSERT INTO EMPLOYEE(name, ROLEID, EMAIL)
 VALUES ('José', 14, 'jose@email.com');
@@ -22,14 +22,14 @@ commit;
 --expect: pass, finds the roldeId
 
 INSERT INTO Role (ID, ROLEDESCRIPTION)
-VALUES (14, null);
+VALUES (14, 'ship captain');
 commit;
 INSERT INTO EMPLOYEE(name, roleid, email)
 VALUES ('José', 'Traffic Manager', 'jose@email.com');
 commit;
 --expected: fail, roleId is be a number
 INSERT INTO Role (ID, ROLEDESCRIPTION)
-VALUES (14, null);
+VALUES (14, 'ship captain');
 commit;
 INSERT INTO EMPLOYEE(name, roleid, email)
 VALUES (null, 14, 'jose@email.com');
@@ -178,14 +178,14 @@ VALUES (null, 15, 15, 'Porto de Leixões', 1);
 --fail, PK is null
 
 INSERT INTO CARGOMANIFEST(id, transporertid, containergrossweight)
-VALUES (1,'Transporter',15);
+VALUES (1, 'Transporter', 15);
 --pass
 
 INSERT INTO CARGOMANIFEST(id, transporertid, containergrossweight)
-VALUES (1,'Tansporter',15);
+VALUES (1, 'Tansporter', 15);
 --fail, transporertid is FK and does not exists in transporer Table
 
 
 INSERT INTO CARGOMANIFEST(id, transporertid, containergrossweight)
-VALUES (null,'Transporter',15);
+VALUES (null, 'Transporter', 15);
 --fail, PK is null
