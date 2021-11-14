@@ -596,12 +596,12 @@ public class ShipStore {
     public void getPairOfShipsInsideBST() {
         List<Ship> lShip = transformAVLintoList();
 
-        for (int i = 0; i < lShip.size(); i++) {
-            Ship s1 = lShip.get(i);
-            for (int j = 1; j < lShip.size(); j++) {
-                Ship s2 = lShip.get(j);
+        for (int i = 0; i < lShip.size(); i++) {//n
+            Ship s1 = lShip.get(i); //n * 1
+            for (int j = 1; j < lShip.size(); j++) { //n*n
+                Ship s2 = lShip.get(j);//n2 *1
                 if (!s1.equals(s2)) {
-                    if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) {
+                    if (DistanceCalculation.distanceTo(s1.getPosDate().getSmallestPosition(), s2.getPosDate().getSmallestPosition()) < 5000) { //2 * (n2*log(n))
                         if (DistanceCalculation.distanceTo(s1.getPosDate().getBiggestPosition(), s2.getPosDate().getBiggestPosition()) < 5000) {
                             if (s1.getTravelledDistance() != s2.getTravelledDistance()) {
                                 if (s1.getTravelledDistance() >= 10000 && s2.getTravelledDistance() >= 10000) {
