@@ -1,4 +1,4 @@
-/*package Integration.US103;
+package Integration.US103;
 
 import lapr.project.controller.App;
 import lapr.project.controller.PositionalMessageController;
@@ -175,48 +175,48 @@ public class US103IntegrationTest {
 
 
         String expectedPosMessageShip1 = "Positional Message:\n" +
-                "Position{latitude=42.97875, longitude=-66.97001, heading=355.0, sog=12.9, cog=13.1}\n" +
-                "Position{latitude=42.92236, longitude=-66.97243, heading=358.0, sog=12.5, cog=2.4}";
+                "Position{latitude=42.97875, longitude=-66.97001, heading=355.0, SOG=12.9, COG=13.1}\n" +
+                "Position{latitude=42.92236, longitude=-66.97243, heading=358.0, SOG=12.5, COG=2.4}";
 
         String expectedPosMessageShip2 = "Positional Message:\n" +
-                "Position{latitude=26.44508, longitude=-91.83885, heading=296.0, sog=19.4, cog=-111.7}\n" +
-                "Position{latitude=42.92236, longitude=-66.97243, heading=358.0, sog=12.5, cog=2.4}";
+                "Position{latitude=26.44508, longitude=-91.83885, heading=296.0, SOG=19.4, COG=-111.7}\n" +
+                "Position{latitude=42.92236, longitude=-66.97243, heading=358.0, SOG=12.5, COG=2.4}";
 
         String expectedPosMessageShip3 = "Positional Message:\n" +
-                "Position{latitude=47.63532, longitude=-122.32866, heading=296.0, sog=0.0, cog=195.1}\n" +
-                "Position{latitude=47.63531, longitude=-122.32866, heading=286.0, sog=0.0, cog=-195.0}";
+                "Position{latitude=47.63532, longitude=-122.32866, heading=296.0, SOG=0.0, COG=195.1}\n" +
+                "Position{latitude=47.63531, longitude=-122.32866, heading=286.0, SOG=0.0, COG=-195.0}";
 
 
         String expectedPosMessageShip4 = "Positional Message:\n" +
-                "Position{latitude=47.63529, longitude=-122.32866, heading=44.0, sog=9.2, cog=95.1}\n" +
-                "Position{latitude=81.2, longitude=-111.2, heading=112.0, sog=2.2, cog=72.0}";
+                "Position{latitude=47.63529, longitude=-122.32866, heading=44.0, SOG=9.2, COG=95.1}\n" +
+                "Position{latitude=81.2, longitude=-111.2, heading=112.0, SOG=2.2, COG=72.0}";
 
 
         String expectedPosMessageShip5 = "Positional Message:\n" +
-                "Position{latitude=47.63529, longitude=-22.32866, heading=66.0, sog=9.2, cog=115.1}\n" +
-                "Position{latitude=81.2, longitude=-11.2, heading=112.0, sog=8.2, cog=62.0}";
+                "Position{latitude=47.63529, longitude=-22.32866, heading=66.0, SOG=9.2, COG=115.1}\n" +
+                "Position{latitude=81.2, longitude=-11.2, heading=112.0, SOG=8.2, COG=62.0}";
 
 
         String expectedPosMessageShip6 = "Positional Message:\n" +
-                "Position{latitude=41.63529, longitude=122.32866, heading=233.0, sog=9.2, cog=103.1}\n" +
-                "Position{latitude=31.2, longitude=111.2, heading=112.0, sog=0.223423, cog=83.0}";
+                "Position{latitude=41.63529, longitude=122.32866, heading=233.0, SOG=9.2, COG=103.1}\n" +
+                "Position{latitude=31.2, longitude=111.2, heading=112.0, SOG=0.223423, COG=83.0}";
 
 
         String expectedPosMessageShip7 = "Positional Message:\n" +
-                "Position{latitude=27.639, longitude=-90.366, heading=142.0, sog=9.422412, cog=102.1}\n" +
-                "Position{latitude=71.2, longitude=-12.2, heading=112.0, sog=9.2, cog=90.0}";
+                "Position{latitude=27.639, longitude=-90.366, heading=142.0, SOG=9.422412, COG=102.1}\n" +
+                "Position{latitude=71.2, longitude=-12.2, heading=112.0, SOG=9.2, COG=90.0}";
 
         String expectedPosMessageShip8 = "Positional Message:\n" +
-                "Position{latitude=12.639, longitude=-21.32866, heading=43.0, sog=11.1212, cog=11.1}\n" +
-                "Position{latitude=9.2, longitude=-2.2, heading=112.0, sog=1.223423, cog=19.0}";
+                "Position{latitude=12.639, longitude=-21.32866, heading=43.0, SOG=11.1212, COG=11.1}\n" +
+                "Position{latitude=9.2, longitude=-2.2, heading=112.0, SOG=1.223423, COG=19.0}";
 
         String expectedPosMessageShip9 = "Positional Message:\n" +
-                "Position{latitude=4.84348, longitude=24.81775, heading=32.0, sog=14.24564, cog=16.6}\n" +
-                "Position{latitude=1.2, longitude=41.2, heading=112.0, sog=1.2232, cog=153.0}";
+                "Position{latitude=4.84348, longitude=24.81775, heading=32.0, SOG=14.24564, COG=16.6}\n" +
+                "Position{latitude=1.2, longitude=41.2, heading=112.0, SOG=1.2232, COG=153.0}";
 
         String expectedPosMessageShip10 = "Positional Message:\n" +
-                "Position{latitude=27.29, longitude=12.32866, heading=11.0, sog=4.2131, cog=125.1}\n" +
-                "Position{latitude=32.2, longitude=19.233, heading=112.0, sog=12.23232, cog=12.0}";
+                "Position{latitude=27.29, longitude=12.32866, heading=11.0, SOG=4.2131, COG=125.1}\n" +
+                "Position{latitude=32.2, longitude=19.233, heading=112.0, SOG=12.23232, COG=12.0}";
 
         String actualPosMessageShip1 = positionalMessageController.getPositionalMessages(367439390, date, date2);
         String actualPosMessageShip2 = positionalMessageController.getPositionalMessages(367487570, date3, date4);
@@ -228,6 +228,7 @@ public class US103IntegrationTest {
         String actualPosMessageShip8 = positionalMessageController.getPositionalMessages(257799000, date15, date16);
         String actualPosMessageShip9 = positionalMessageController.getPositionalMessages(366934280, date17, date18);
         String actualPosMessageShip10 = positionalMessageController.getPositionalMessages(211331640, date19, date20);
+
 
 
         //Assert
@@ -259,4 +260,3 @@ public class US103IntegrationTest {
         }
     }
 }
-*/

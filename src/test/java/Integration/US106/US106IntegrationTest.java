@@ -1,4 +1,4 @@
-/*package Integration.US106;
+package Integration.US106;
 
 import lapr.project.controller.App;
 import lapr.project.controller.TopNShipsController;
@@ -202,5 +202,16 @@ public class US106IntegrationTest {
         assertEquals(expectedList4,actualList4);
         assertEquals(expectedList5,actualList5);
 
+        //Use this variable as true if necessary to print the output
+        if (printInTheConsole) {
+            System.out.println(expectedList1);
+            System.out.println(expectedList2);
+            System.out.println(expectedList3);
+            System.out.println(expectedList4);
+            System.out.println(expectedList5);
+
+
+        }
+
     }
-} */
+}
