@@ -11,12 +11,23 @@ public class ImportShipsController {
 
     private final Company company;
 
+    /**
+     * Constructor.
+     */
     public ImportShipsController() {
         this.company = App.getInstance().getCompany();
     }
 
+    /**
+     * Imports ships from file.
+     *
+     * @param fileName the file
+     * @return true if it succeeds, false if it doesn't
+     * @throws InvalidLineException
+     * @throws FileNotFoundException
+     */
     public boolean importShips(String fileName) throws InvalidLineException, FileNotFoundException {
-        boolean returnValue = false;
+        boolean returnValue;
         returnValue = ShipImporter.importsShips(new File(fileName));
         company.getShipStore().calculateTravelledDistanceOfAllShips();
         return returnValue;

@@ -1171,7 +1171,7 @@ public class ShipTest {
         shipgeral.insertPosition(posgeral3);
         shipgeral.insertPosition(posgeral4);
 
-        boolean actual = shipgeral.setAllDynamicData();
+        boolean actual = shipgeral.setShipData();
 
         if(!actual) fail();
 
@@ -1183,7 +1183,7 @@ public class ShipTest {
     @Test
     void setAllDynamicDataMutation2(){
 
-        boolean actual = shipgeral.setAllDynamicData();
+        boolean actual = shipgeral.setShipData();
 
         if(actual) fail();
 

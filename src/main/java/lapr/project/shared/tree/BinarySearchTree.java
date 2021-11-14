@@ -248,8 +248,9 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         snapshot.add(node.getElement());
     }
 
-    /*
+    /**
      * Returns a map with a list of nodes by each tree level.
+     *
      * @return a map with a list of nodes by each tree level
      */
     public Map<Integer, List<E>> nodesByLevel() {
@@ -258,6 +259,13 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         return result;
     }
 
+    /**
+     * Processes the BST by levels.
+     *
+     * @param node   the node
+     * @param result the result (map)
+     * @param level  the level
+     */
     private void processBstByLevel(Node<E> node, Map<Integer, List<E>> result, int level) {
         if (node == null) {
             return;
@@ -281,6 +289,13 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
 
 //#########################################################################
 
+    /**
+     * Returns a string representation of the tree.
+     *
+     * @param root  the root
+     * @param level the level
+     * @param sb    the string builder
+     */
     private void toStringRec(Node<E> root, int level, StringBuilder sb) {
         if (root == null)
             return;
@@ -294,10 +309,21 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         toStringRec(root.getLeft(), level + 1, sb);
     }
 
+    /**
+     * Gets the biggest element.
+     *
+     * @return the biggest element
+     */
     public E biggestElement() {
         return biggestElement(root);
     }
 
+    /**
+     * Gets the biggest element.
+     *
+     * @param node the node
+     * @return the biggest element
+     */
     protected E biggestElement(Node<E> node) {
         if (node == null) return null;
         if (node.getRight() == null) return node.getElement();
@@ -308,7 +334,6 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
     /**
      * Nested static class for a binary search tree node.
      */
-
     protected static class Node<E> {
         private E element;          // an element stored at this node
         private Node<E> left;       // a reference to the left child (if any)
@@ -327,28 +352,60 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
             right = rightChild;
         }
 
-        // accessor methods
+        // Accessor methods
+
+        /**
+         * Gets an element.
+         *
+         * @return the element
+         */
         public E getElement() {
             return element;
         }
 
-        // update methods
-        public void setElement(E e) {
-            element = e;
-        }
-
+        /**
+         * Gets the left node.
+         *
+         * @return the left node
+         */
         public Node<E> getLeft() {
             return left;
         }
 
-        public void setLeft(Node<E> leftChild) {
-            left = leftChild;
-        }
-
+        /**
+         * Gets the right node.
+         *
+         * @return the right node
+         */
         public Node<E> getRight() {
             return right;
         }
 
+        // Update methods
+
+        /**
+         * Sets an element.
+         *
+         * @param e the element
+         */
+        public void setElement(E e) {
+            element = e;
+        }
+
+        /**
+         * Sets the left node.
+         *
+         * @param leftChild the left node
+         */
+        public void setLeft(Node<E> leftChild) {
+            left = leftChild;
+        }
+
+        /**
+         * Sets the right node.
+         *
+         * @param rightChild the right node
+         */
         public void setRight(Node<E> rightChild) {
             right = rightChild;
         }

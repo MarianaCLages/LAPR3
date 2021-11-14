@@ -3,7 +3,12 @@ package lapr.project.shared.tree;
 
 public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
 
-
+    /**
+     * Gets the balance factor.
+     *
+     * @param node the node
+     * @return the balance factor
+     */
     public int balanceFactor(Node<E> node) {
         if (node == null) {
             return 0;
@@ -13,9 +18,14 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         int rightHeight = height(node.getRight());
 
         return rightHeight - leftHeight;
-
     }
 
+    /**
+     * Does a right rotation in the AVL tree.
+     *
+     * @param node the node
+     * @return the AVL after rotation
+     */
     public Node<E> rightRotation(Node<E> node) {
         if (node == null) {
             return null;
@@ -29,6 +39,12 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         return node;
     }
 
+    /**
+     * Does a left rotation in the AVL tree.
+     *
+     * @param node the node
+     * @return the AVL after rotation
+     */
     public Node<E> leftRotation(Node<E> node) {
         if (node == null) {
             return null;
@@ -42,6 +58,12 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         return node;
     }
 
+    /**
+     * Does two rotations in the AVL tree.
+     *
+     * @param node the node
+     * @return the AVL after two rotations
+     */
     private Node<E> twoRotations(Node<E> node) {
         int balance = balanceFactor(node);
 
@@ -56,6 +78,12 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         return node;
     }
 
+    /**
+     * Balances the AVL tree.
+     *
+     * @param node the node
+     * @return the balanced AVL tree
+     */
     public Node<E> balanceNode(Node<E> node) {
         if (node == null) {
             return null;
@@ -80,11 +108,23 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         return node;
     }
 
+    /**
+     * Inserts a new element in the AVL tree.
+     *
+     * @param element the element to be inserted
+     */
     @Override
     public void insert(E element) {
         root = insert(element, root);
     }
 
+    /**
+     * Inserts a new element in the AVL tree.
+     *
+     * @param element the element to be inserted
+     * @param node    the node
+     * @return the AVL with inserted element
+     */
     private Node<E> insert(E element, Node<E> node) {
         if (node == null) {
             return new Node<>(element, null, null);
@@ -103,11 +143,23 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         return node;
     }
 
+    /**
+     * Removes an element from the AVL tree.
+     *
+     * @param element the element to be removed
+     */
     @Override
     public void remove(E element) {
         root = remove(element, root());
     }
 
+    /**
+     * Removes an element from the AVL tree.
+     *
+     * @param element the element to be removed
+     * @param node    the node
+     * @return the AVL with removed element
+     */
     private Node<E> remove(E element, Node<E> node) {
         if (node == null) {
             return null;
@@ -135,6 +187,4 @@ public class AVL<E extends Comparable<E>> extends BinarySearchTree<E> {
         }
         return node;
     }
-
-
 }

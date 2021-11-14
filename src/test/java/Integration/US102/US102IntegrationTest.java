@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US104IntegrationTest {
+class US102IntegrationTest {
 
     App app = App.getInstance();
     Company company = app.getCompany();
@@ -99,16 +99,16 @@ class US104IntegrationTest {
 
         //Create Ships
 
-        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9642111", 100, 10, "C4S99", "VARAMO", 5000, 2000, 20000, 30);
-        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9301111", 70, 12, "5BZ88", "SAITA", 1, 300, 1300, 40);
-        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9451111", 10, 20, "FL77", "HYUNDAI SINGAPORE", 500, 100, 10000, 20);
-        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9641111", 20, 18, "9HA3566", "CMA CGM ALMAVIVA", 250, 150, 20000, 10);
-        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9511111", 30, 16, "9HJ55", "CARNIVAL LEGEND", 500, 100, 12000, 14);
-        Ship ship6 = new Ship(636091400, "Traveller", "IMO8341111", 40, 22, "LAT44", "ARCTIC AURORA", 1150, 200, 1000, 11);
-        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO6701111", 20, 30, "LAJ33", "OREGON TRADER", 1600, 200, 200, 13);
-        Ship ship8 = new Ship(257799000, "Titanic", "IMO1321111", 200, 8, "WDG5122", "KRONVIKEN", 1000, 175, 300, 20);
-        Ship ship9 = new Ship(366934280, "", "IMO7811111", 5, 50, "WN11", "ARCTIC SEA", 1, 200, 300, 21);
-        Ship ship10 = new Ship(211331640, "name", "IMO2501111", 10, 20, "V2F00", "TUSTUMENA", 200, 300, 200, 10);
+        Ship ship1 = new Ship(367439390, "SeaTruck", "IMO9642111", 0, 0, "C4S99", "VARAMO", 5000, 2000, 0, 30);
+        Ship ship2 = new Ship(367487570, "ArticMonkey", "IMO9301111", 0, 0, "5BZ88", "SAITA", 1, 300, 0, 40);
+        Ship ship3 = new Ship(368085000, "Bamboo", "IMO9451111", 0, 0, "FL77", "HYUNDAI SINGAPORE", 500, 100, 0, 20);
+        Ship ship4 = new Ship(636015178, "FFF&N", "IMO9641111", 0, 0, "9HA3566", "CMA CGM ALMAVIVA", 250, 150, 0, 10);
+        Ship ship5 = new Ship(636092932, "GiantTrans", "IMO9511111", 0, 0, "9HJ55", "CARNIVAL LEGEND", 500, 100, 0, 14);
+        Ship ship6 = new Ship(636091400, "Traveller", "IMO8341111", 0, 0, "LAT44", "ARCTIC AURORA", 1150, 200, 0, 11);
+        Ship ship7 = new Ship(636019825, "SeaWandering", "IMO6701111", 0, 0, "LAJ33", "OREGON TRADER", 1600, 200, 0, 13);
+        Ship ship8 = new Ship(257799000, "Titanic", "IMO1321111", 0, 0, "WDG5122", "KRONVIKEN", 1000, 175, 0, 20);
+        Ship ship9 = new Ship(366934280, "", "IMO7811111", 0, 0, "WN11", "ARCTIC SEA", 1, 200, 0, 21);
+        Ship ship10 = new Ship(211331640, "name", "IMO2501111", 0, 0, "V2F00", "TUSTUMENA", 200, 300, 0, 10);
 
         //Add positions into the Position AVL of a Ship
 

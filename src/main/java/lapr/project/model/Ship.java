@@ -397,10 +397,13 @@ public class Ship {
         else return true;
     }
 
+    /**
+     * Gets the travelled distance of a ship.
+     *
+     * @return the travelled distance of a ship
+     */
     public double getShipsTravelledDistance() {
-
         return this.travelledDistance;
-
     }
 
 
@@ -539,39 +542,66 @@ public class Ship {
                 '}';
     }
 
-
-    public void setBiggestPosition() {
-        biggestPosition = this.getPosDate().getBiggestPosition();
-    }
-
-    public void setSmalllestPosition() {
-        smallPosition = this.getPosDate().getSmallestPosition();
-    }
-
+    /**
+     * Gets the biggest position.
+     *
+     * @return the biggest position
+     */
     public Position getBiggestPosition() {
         return biggestPosition;
     }
 
-    public Position getSmallPosition() {
+    /**
+     * Gets the smallest position.
+     *
+     * @return the smallest position
+     */
+    public Position getSmallestPosition() {
         return smallPosition;
     }
 
-    public void setPosDateSize() {
-        this.posDateSize = this.posDate.getSize();
-    }
-
+    /**
+     * Gets the position date size.
+     *
+     * @return the position date size
+     */
     public double getPosDateSize() {
         return posDateSize;
     }
 
-    public boolean setAllDynamicData() {
+    /**
+     * Sets the biggest position.
+     */
+    public void setBiggestPosition() {
+        biggestPosition = this.getPosDate().getBiggestPosition();
+    }
 
+    /**
+     * Sets the smallest position.
+     */
+    public void setSmallestPosition() {
+        smallPosition = this.getPosDate().getSmallestPosition();
+    }
+
+    /**
+     * Sets the position date size.
+     */
+    public void setPosDateSize() {
+        this.posDateSize = this.posDate.getSize();
+    }
+
+    /**
+     * Sets the ship's info.
+     *
+     * @return true if it succeeds, false if it doesn't
+     */
+    public boolean setShipData() {
         double case1 = this.travelledDistance;
         double case2 = this.posDateSize;
 
         this.calculateTravelledDistance();
         this.setBiggestPosition();
-        this.setSmalllestPosition();
+        this.setSmallestPosition();
         this.setPosDateSize();
 
         if (case1 == this.travelledDistance || case2 == this.posDateSize) {

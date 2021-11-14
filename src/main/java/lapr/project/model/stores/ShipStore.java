@@ -62,18 +62,33 @@ public class ShipStore {
         }
     }
 
+    /**
+     * Inserts a new ship in the MMSI AVL.
+     *
+     * @param ship the ship to be inserted
+     */
     public void insertIntoMmsiAVL(Ship ship) {
         ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipToInsert.setPosDate(ship.getPosDate());
         shipByMmsiAVL.insert(shipToInsert);
     }
 
+    /**
+     * Inserts a new ship in the IMO AVL.
+     *
+     * @param ship the ship to be inserted
+     */
     public void insertIntoImoAVL(Ship ship) {
         ShipByIMO shipToInsert = new ShipByIMO(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipToInsert.setPosDate(ship.getPosDate());
         shipByIMOAVL.insert(shipToInsert);
     }
 
+    /**
+     * Inserts a new ship in the Call Sign AVL.
+     *
+     * @param ship the ship to be inserted
+     */
     public void insertIntoCallSign(Ship ship) {
         ShipByCallSign shipToInsert = new ShipByCallSign(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipToInsert.setPosDate(ship.getPosDate());
@@ -96,43 +111,42 @@ public class ShipStore {
     }
 
     /**
-     * Gets ship by MMSI from BST.
+     * Gets ship by MMSI from AVL.
      *
      * @param mmsi the ship's MMSI
-     * @return the ship by MMSI
+     * @return the ship found by MMSI
      */
     public Ship getShipByMmsi(int mmsi) {
         ShipByMmsi ship = new ShipByMmsi(mmsi);
         return shipByMmsiAVL.find(ship);
     }
 
+    /**
+     * Gets ship by IMO from AVL.
+     *
+     * @param imo the ship's IMO
+     * @return the ship found by IMO
+     */
     public Ship getShipByIMO(String imo) {
         ShipByIMO ship = new ShipByIMO(imo);
         return shipByIMOAVL.find(ship);
     }
 
+    /**
+     * Gets ship by MMSI from BST.
+     *
+     * @param callSign the ship's call sign
+     * @return the ship by call sign
+     */
     public Ship getShipByCallSign(String callSign) {
         ShipByCallSign ship = new ShipByCallSign(callSign);
         return shipByCallSignAVL.find(ship);
     }
 
     /**
-     * Transforms BST in a list.
+     * Writes all ships from AVL in order.
      *
-     * @return BST as a list
-     */
-   /* public List<Ship> transformBSTintoList() {
-        Iterable<Ship> ls = shipBinarySearchTree.inOrder();
-        List<Ship> lShip = new ArrayList<>();
-        ls.iterator().forEachRemaining(lShip::add);
-
-        return lShip;
-    }*/
-
-    /**
-     * Writes all ships from BST in order.
-     *
-     * @return false if BST is empty, true if it isn't
+     * @return false if AVL is empty, true if it isn't
      */
     public boolean writeAllShips() {
         if (shipByIMOAVL.isEmpty() || shipByCallSignAVL.isEmpty() || shipByMmsiAVL.isEmpty()) {
@@ -140,7 +154,7 @@ public class ShipStore {
         }
 
         for (Ship s : shipByMmsiAVL.inOrder()) {
-            System.out.println(s); //Tiago passa isto para a UI
+            System.out.println(s);
         }
 
         return true;
@@ -152,15 +166,15 @@ public class ShipStore {
      * @return the pair of ships list
      */
     public List<PairOfShips> getPairsOfShipsSearchTree() {
-        return transformBSTintoListPairsOfShip();
+        return transformAVLintoListPairsOfShip();
     }
 
     /**
-     * Transforms BST in a pair of ships list.
+     * Transforms AVL in a pair of ships list.
      *
-     * @return BST in a pair of ships list
+     * @return AVL in a pair of ships list
      */
-    public List<PairOfShips> transformBSTintoListPairsOfShip() {
+    public List<PairOfShips> transformAVLintoListPairsOfShip() {
         Iterable<PairOfShips> ls = pairsOfShipsSearchTree.inOrder();
         List<PairOfShips> pairsShip = new ArrayList<>();
         ls.iterator().forEachRemaining(pairsShip::add);
@@ -225,20 +239,18 @@ public class ShipStore {
     }
 
     /**
-     * Gets ship summary by MMSI.
+     * Gets the ship summary by MMSI.
      *
      * @param mmsi the ship's MMSI
      * @return the ship's summary by MMSI
      */
     public String getShipSummaryByMMSI(int mmsi) {
-
         String returnString = null;
         StringBuilder sb = new StringBuilder();
 
         Ship s = getShipByMmsi(mmsi);
 
         if (s != null) {
-
             sb
                     .append("MMSI : " + s.getMmsi() + "\n")
                     .append(getShipSummaryStructure(s));
@@ -266,14 +278,13 @@ public class ShipStore {
         Ship s = getShipByIMO(imo);
 
         if (s != null) {
-
             sb
                     .append("IMO : " + s.getImo() + "\n")
                     .append(getShipSummaryStructure(s));
 
             returnString = sb.toString();
-
         }
+
         if (returnString == null || returnString.isEmpty()) {
             throw new IllegalArgumentException("Invalid Ship, please enter another one");
         } else {
@@ -295,13 +306,11 @@ public class ShipStore {
         Ship s = getShipByCallSign(callSign);
 
         if (s != null) {
-
             sb
                     .append("Call Sign : " + s.getCallSign() + "\n")
                     .append(getShipSummaryStructure(s));
 
             returnString = sb.toString();
-
         }
 
         if (returnString == null || returnString.isEmpty()) {
@@ -471,7 +480,12 @@ public class ShipStore {
         }
     }
 
-    public AVL<ShipByMmsi> getShipByMMSIBinarySearchTree() {
+    /**
+     * Gets the ship by MMSI AVL.
+     *
+     * @return the ship by MMSI AVL
+     */
+    public AVL<ShipByMmsi> getShipByMmsiAVL() {
         return shipByMmsiAVL;
     }
 
@@ -483,7 +497,7 @@ public class ShipStore {
      */
     public double getDepartureLatitude(Ship s) {
         try {
-            return (s.getSmallPosition().getLatitude());
+            return (s.getSmallestPosition().getLatitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -497,7 +511,7 @@ public class ShipStore {
      */
     public double getDepartureLongitude(Ship s) {
         try {
-            return (s.getSmallPosition().getLongitude());
+            return (s.getSmallestPosition().getLongitude());
         } catch (IndexOutOfBoundsException | NullPointerException e) {
             return 0;
         }
@@ -570,9 +584,9 @@ public class ShipStore {
 
 
     /**
-     * Transforms the AVL in a list.
+     * Transforms the MMSI AVL in a list.
      *
-     * @return the AVL in a list
+     * @return the MMSI AVL in a list
      */
     public List<Ship> transformAVLintoListMMSI() {
         List<Ship> slist = new ArrayList<>();
@@ -582,6 +596,11 @@ public class ShipStore {
         return slist;
     }
 
+    /**
+     * Transforms the IMO AVL in a list.
+     *
+     * @return the IMO AVL in a list
+     */
     public List<Ship> transformAVLintoListIMO() {
         List<Ship> slist = new ArrayList<>();
         Iterable<ShipByIMO> iterator = shipByIMOAVL.inOrder();
@@ -590,6 +609,11 @@ public class ShipStore {
         return slist;
     }
 
+    /**
+     * Transforms the Call Sign AVL in a list.
+     *
+     * @return the Call Sign AVL in a list
+     */
     public List<Ship> transformAVLintoListCallSign() {
         List<Ship> slist = new ArrayList<>();
         Iterable<ShipByCallSign> iterator = shipByCallSignAVL.inOrder();
@@ -609,7 +633,7 @@ public class ShipStore {
             for (int j = 1; j < lShip.size(); j++) {
                 Ship s2 = lShip.get(j);
                 if (!s1.equals(s2)) {
-                    if (DistanceCalculation.distanceTo(s1.getSmallPosition(), s2.getSmallPosition()) < 5000) {
+                    if (DistanceCalculation.distanceTo(s1.getSmallestPosition(), s2.getSmallestPosition()) < 5000) {
                         if (DistanceCalculation.distanceTo(s1.getBiggestPosition(), s2.getBiggestPosition()) < 5000) {
                             if (s1.getShipsTravelledDistance() != s2.getShipsTravelledDistance()) {
                                 if (s1.getShipsTravelledDistance() >= 10000 && s2.getShipsTravelledDistance() >= 10000) {
@@ -641,34 +665,29 @@ public class ShipStore {
         return sb.toString();
     }
 
+    /**
+     * Calculates the travelled distance of all ships.
+     */
     public void calculateTravelledDistanceOfAllShips() {
-
         for (Ship s1 : transformAVLintoListMMSI()) {
-
             s1.calculateTravelledDistance();
             s1.setBiggestPosition();
-            s1.setSmalllestPosition();
+            s1.setSmallestPosition();
             s1.setPosDateSize();
-
         }
 
         for (Ship s2 : transformAVLintoListIMO()) {
-
             s2.calculateTravelledDistance();
             s2.setBiggestPosition();
-            s2.setSmalllestPosition();
+            s2.setSmallestPosition();
             s2.setPosDateSize();
-
         }
 
         for (Ship s3 : transformAVLintoListCallSign()) {
-
             s3.calculateTravelledDistance();
             s3.setBiggestPosition();
-            s3.setSmalllestPosition();
+            s3.setSmallestPosition();
             s3.setPosDateSize();
-
         }
-
     }
 }

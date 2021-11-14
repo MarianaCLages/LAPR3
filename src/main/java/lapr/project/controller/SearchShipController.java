@@ -9,24 +9,50 @@ public class SearchShipController {
     private final Company cmpn;
     private final ShipStore ss;
 
-    public SearchShipController(){
+    /**
+     * Constructor.
+     */
+    public SearchShipController() {
         this.cmpn = App.getInstance().getCompany();
-        ss = cmpn.getShipStore();
+        this.ss = cmpn.getShipStore();
     }
 
+    /**
+     * Gets the ship by MMSI.
+     *
+     * @param p the MMSI
+     * @return the ship found
+     */
     public Ship searchShipByMMSI(int p) {
         return ss.getShipByMmsi(p);
     }
 
+    /**
+     * Gets the ship by IMO.
+     *
+     * @param p the IMO
+     * @return the ship found
+     */
     public Ship searchShipByIMO(String p) {
         return ss.getShipByIMO(p);
     }
 
+    /**
+     * Gets the ship by Call Sign.
+     *
+     * @param p the Call Sign
+     * @return the ship found
+     */
     public Ship searchShipByCallSign(String p) {
         return ss.getShipByCallSign(p);
     }
 
-    public ShipStore getShipStore(){
+    /**
+     * Gets the ship store.
+     *
+     * @return the ship store
+     */
+    public ShipStore getShipStore() {
         return ss;
     }
 }
