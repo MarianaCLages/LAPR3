@@ -748,4 +748,37 @@ class ShipStoreTest {
         }
 
     }
+
+    @Test
+    void calculateTravelledDistance() {
+
+        shipgeral.insertPosition(posgeral);
+        shipgeral.insertPosition(posgeral2);
+
+        shipstore.addShip(shipgeral);
+        shipstore.calculateTravelledDistanceOfAllShips();
+
+        for (Ship s : shipstore.transformAVLintoListMMSI()) {
+            if (s.getSmallPosition() == null) fail();
+            else if (s.getBiggestPosition() == null) fail();
+            else if (s.getPosDateSize() == 0) fail();
+            else if (s.getShipsTravelledDistance() == 0) fail();
+        }
+
+        for (Ship s : shipstore.transformAVLintoListIMO()) {
+            if (s.getSmallPosition() == null) fail();
+            else if (s.getBiggestPosition() == null) fail();
+            else if (s.getPosDateSize() == 0) fail();
+            else if (s.getShipsTravelledDistance() == 0) fail();
+        }
+
+        for (Ship s : shipstore.transformAVLintoListCallSign()) {
+            if (s.getSmallPosition() == null) fail();
+            else if (s.getBiggestPosition() == null) fail();
+            else if (s.getPosDateSize() == 0) fail();
+            else if (s.getShipsTravelledDistance() == 0) fail();
+        }
+
+    }
+
 }
