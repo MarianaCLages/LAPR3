@@ -51,6 +51,7 @@ public class ShipImporter {
             position = CallSignShip.createPosition(LocalDateTime.parse(line[1], formatter), Double.parseDouble(line[2]), Double.parseDouble(line[3]), Double.parseDouble(line[6]), Double.parseDouble(line[4]), Math.abs(Double.parseDouble(line[5])));
             CallSignShip.insertPosition(position);
         }
+
         return data.size() != 0;
     }
 }

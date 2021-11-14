@@ -22,15 +22,34 @@ class CsvUtils{
 class ShipStore{
 +getShip(mmsi)
 +exists(mmsi);
-+getShipByMMSI(mmsi)
-+getShipByIMO(imo)
-+getShipByCallSign(callsign)
 +getlShip()
 +sortedList()
 +getTopN()
++getShipByMMSI()
++getShipByIMO()
++getShipByCallSign()
++transformAVLIntoListPairsOfShip()
++getShipSummaryByMMSI()
++getShipSummaryByIMO()
++getShipSummaryByCallSign()
+-getShipSummaryStructure()
++getFirstDate()
++getLastDate()
++differenceBetweenDates()
++gextMaxSog()
++getMeanSog()
++getMaxCog()
++getMeanCog()
++getDepartureLatitude()
++getDepartureLongitude()
++getArrivalLatitude()
++getArrivalLongitude()
 }
 
 class Ship{
+-transceiverClass
+-posDate
+-cargo
 -mmsi
 -name
 -imo
@@ -80,6 +99,13 @@ class Position{
 
 class PositionTree{
 +add(position)
+-positionTree
++getSmallestPosition()
++getBiggestPosition()
++getSize()
++getOrderList()
++getPosition()
++getInOrderList()
 }
 
 class SearchShipUI{
@@ -142,6 +168,15 @@ class TopNShipsController{
 }
 
 
+class GenerateShipSummaryUI{
+}
+class GenerateShipSummaryController{
++getShipSummaryByMMSI()
++getShipSummaryByIMO()
++getShipSummaryByCallSign()
+}
+
+
 
 ImportShipsUI ..> ImportShipsController
 ImportShipsController ..> ShipImporter
@@ -168,5 +203,10 @@ ListShipsController ..> Company
 
 TopNShipsUI ..> TopNShipsController
 TopNShipsController ..> Company
+
+GenerateShipSummaryUI ..> GenerateShipSummaryController
+GenerateShipSummaryController ..> Company
+GenerateShipSummaryController ..> ShipStore
+Company --> Ship
 
 @enduml
