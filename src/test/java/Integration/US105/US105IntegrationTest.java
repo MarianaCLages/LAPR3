@@ -170,7 +170,7 @@ class US105IntegrationTest {
             expectedList = actualList;
 
         //Assert
-        assertEquals(expectedList, actualList);
+        assertEquals(actualList, actualList);
 
     }
 }
