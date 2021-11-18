@@ -205,6 +205,7 @@ public class US106IntegrationTest {
             assertEquals(expectedList5, actualList5);
         } catch (Exception e) {
 
+            
         }
 
         //Use this variable as true if necessary to print the output
