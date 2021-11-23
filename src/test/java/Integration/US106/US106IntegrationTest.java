@@ -1,4 +1,4 @@
-/*
+
 
 package Integration.US106;
 
@@ -223,4 +223,3 @@ public class US106IntegrationTest {
 
     }
 }
-*/
