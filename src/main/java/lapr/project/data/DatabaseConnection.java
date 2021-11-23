@@ -1,4 +1,4 @@
-package lapr.project.data;
+/*package lapr.project.data;
 
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -9,17 +9,11 @@ import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
-    /*
-     * To change this license header, choose License Headers in Project Properties.
-     * To change this template file, choose Tools | Templates
-     * and open the template in the editor.
-     */
-
     /**
      * @author nunocastro
      */
 
-    private OracleDataSource oracleDataSource;
+   /* private OracleDataSource oracleDataSource;
     private Connection connection;
     private SQLException error;
 
@@ -56,4 +50,4 @@ public class DatabaseConnection {
         registerError(null);
         return lastError;
     }
-}
+}*/
