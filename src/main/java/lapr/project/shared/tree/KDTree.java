@@ -1,12 +1,12 @@
 package lapr.project.shared.tree;
 
-import java.util.Arrays;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 
-public class KDTree {
+public class KDTree<E extends Comparable<E>> {
 
 
     KDNode root = null;
@@ -22,14 +22,86 @@ public class KDTree {
     }
 
 
-    public KDTree(List<List<Integer>> points) {
+    public KDTree(List<List<Double>> points) {
         numDims = points.get(0).size();
-        root = new KDNode(points.get(0));
+        root = new KDNode((List<E>) points.get(0));
 
         for (int i = 1, numPoints = points.size(); i < numPoints; i++) {
-            List<Integer> point = points.get(i);
-            KDNode n = new KDNode(point);
+            List<Double> point = points.get(i);
+            KDNode n = new KDNode((List<E>) point);
             root.add(n);
+        }
+    }
+
+    //Node
+
+
+    protected static class KDNode<E> {
+        KDNode left = null;
+        KDNode right = null;
+        final int numDims;
+
+
+        public final KDPoint point;
+
+        public KDNode(List<E> props) {
+            this.point = new KDPoint((List<Double>) props);
+            this.numDims = props.size();
+        }
+
+        public KDNode(KDPoint point) {
+            this.point = point;
+            this.numDims = point.props.size();
+        }
+
+        public void add(KDNode n) {
+            this.add(n, 0);
+        }
+
+        public void add(KDNode n, int k) {
+            if (n.point.get(k) < point.get(k)) {
+                if (left == null) {
+                    left = n;
+                } else {
+                    left.add(n, k+1);
+                }
+            } else {
+                if (right == null) {
+                    right = n;
+                } else {
+                    right.add(n, k+1);
+                }
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "(point: " + this.point.toString() + ")";
+        }
+    }
+
+
+    //Point
+    protected static class KDPoint<E> {
+
+        final List<Integer> props;
+
+        public KDPoint(List<Integer> props) {
+            this.props = props;
+        }
+
+
+        int get(int depth) {
+            return  props.get(( (depth % props.size())));
+        }
+
+        public int size() {
+            return props.size();
+        }
+
+        @Override
+        public String toString() {
+            return props.toString();
         }
     }
 
@@ -70,7 +142,7 @@ public class KDTree {
         KDNode best = closest(temp, root, target);
 
         long radiusSquared = distSquared(target, best.point);
-        long dist = target.get(depth) - root.point.get(depth);
+        double dist = target.get(depth) - root.point.get(depth);
 
         if (radiusSquared >= dist * dist) {
             temp = nearestNeighbor(otherBranch, target, depth + 1);
@@ -105,7 +177,7 @@ public class KDTree {
         int numDims = p0.props.size();
 
         for (int i = 0; i < numDims; i++) {
-            int diff = Math.abs(p0.get(i) - p1.get(i));
+            double diff = Math.abs(p0.get(i) - p1.get(i));
             total += Math.pow(diff, 2);
         }
         return total;

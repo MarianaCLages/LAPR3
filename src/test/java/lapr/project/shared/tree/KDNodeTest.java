@@ -7,15 +7,15 @@ import java.util.Arrays;
 
 public class KDNodeTest {
 
-    KDNode kd1 = new KDNode(Arrays.asList(0,1));
+    KDTree.KDNode kd1 = new KDTree.KDNode(Arrays.asList(0,1));
 
 
     @Test
     void addTest(){
 
         //Arrange
-        KDNode expected1 = new KDNode(Arrays.asList(2,2));
-        KDNode expected2 = new KDNode(Arrays.asList(0,5));
+        KDTree.KDNode expected1 = new KDTree.KDNode(Arrays.asList(2,2));
+        KDTree.KDNode expected2 = new KDTree.KDNode(Arrays.asList(0,5));
         //Act
         kd1.add(expected1);
         kd1.add(expected2);

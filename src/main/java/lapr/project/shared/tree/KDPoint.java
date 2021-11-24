@@ -1,4 +1,4 @@
-package lapr.project.shared.tree;
+/*package lapr.project.shared.tree;
 
 import java.util.List;
 
@@ -23,4 +23,4 @@ public class KDPoint {
     public String toString() {
         return props.toString();
     }
-}
+}*/

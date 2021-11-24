@@ -1,6 +1,6 @@
 package lapr.project.shared.tree;
 
-import lapr.project.shared.tree.KDPoint;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,18 +11,19 @@ import java.util.Arrays;
 
 public class KDPointTest {
 
-    KDPoint  kdp1 = new KDPoint(Arrays.asList(11,61));
-    KDPoint kdp2 = new KDPoint(Arrays.asList(50,51));
+    KDTree.KDPoint kdp1 = new KDTree.KDPoint(Arrays.asList(11,61));
+    KDTree.KDPoint kdp2 = new KDTree.KDPoint(Arrays.asList(50,51));
 
     @Test
     void getTest(){
 
         //Arrange
-        int expected = 11;
+        double expected = 11;
         //Act
-        int actual = kdp1.get(2);
+        double actual = kdp1.get(2);
 
         //Assert
+
         assertEquals(expected,actual);
     }
 

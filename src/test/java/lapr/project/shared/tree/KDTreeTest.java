@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 public class KDTreeTest {
 
+    KDTree tree = new KDTree(2);
+
     int[][] ar = new int[][] {
             {50, 50, 1},
             {80, 40, 2},
@@ -16,16 +18,17 @@ public class KDTreeTest {
 
     };
 
-    KDTree tree = new KDTree(2);
+
 
 
 
     @Test
     void toStringTest(){
 
+
         //Arrange
         for (int[] coord : ar) {
-            KDNode n = new KDNode(Arrays.asList(coord[0], coord[1]));
+            KDTree.KDNode n = new KDTree.KDNode(Arrays.asList(coord[0], coord[1]));
             tree.add(n);
         }
 
@@ -41,8 +44,8 @@ public class KDTreeTest {
     void distSquaredTest(){
 
         //Arrange
-        KDPoint  kdp1 = new KDPoint(Arrays.asList(11,61));
-        KDPoint  kdp2 = new KDPoint(Arrays.asList(50,51));
+        KDTree.KDPoint kdp1 = new KDTree.KDPoint(Arrays.asList(11,61));
+        KDTree.KDPoint kdp2 = new KDTree.KDPoint(Arrays.asList(50,51));
         long expected = 40;
         //Act
         long dis = KDTree.dist(kdp1,kdp2);
@@ -56,12 +59,12 @@ public class KDTreeTest {
     void closest(){
 
         //Arrange
-        KDPoint  kdp1 = new KDPoint(Arrays.asList(11,61));
-        KDNode kd1 = new KDNode(Arrays.asList(0,1));
-        KDNode kd2 = new KDNode(Arrays.asList(2,2));
-        KDNode kd3 = null;
-        KDNode kd4 = null;
-        KDNode expected1 = new KDNode(Arrays.asList(2,2));
+        KDTree.KDPoint kdp1 = new KDTree.KDPoint(Arrays.asList(11,61));
+        KDTree.KDNode kd1 = new KDTree.KDNode(Arrays.asList(0,1));
+        KDTree.KDNode kd2 = new KDTree.KDNode(Arrays.asList(2,2));
+        KDTree.KDNode kd3 = null;
+        KDTree.KDNode kd4 = null;
+        KDTree.KDNode expected1 = new KDTree.KDNode(Arrays.asList(2,2));
         //Act + Assert
         assertEquals(kd1,tree.closest(kd1,kd3,kdp1));
         assertEquals(null,tree.closest(kd4,kd3,kdp1));
@@ -75,16 +78,16 @@ public class KDTreeTest {
 
         //Arrange
         for (int[] coord : ar) {
-            KDNode n = new KDNode(Arrays.asList(coord[0], coord[1]));
+            KDTree.KDNode n = new KDTree.KDNode(Arrays.asList(coord[0], coord[1]));
             tree.add(n);
         }
 
         KDTree kdt2 = new KDTree(2);
-        KDPoint  kdp1 = new KDPoint(Arrays.asList(11,61));
-        KDNode expected = new KDNode(Arrays.asList(10,60));
+        KDTree.KDPoint kdp1 = new KDTree.KDPoint(Arrays.asList(11,61));
+        KDTree.KDNode expected = new KDTree.KDNode(Arrays.asList(10,60));
 
         //Act
-        KDNode actual = tree.nearestNeighbor(kdp1);
+        KDTree.KDNode actual = tree.nearestNeighbor(kdp1);
 
         //Assert
         assertEquals(null,kdt2.nearestNeighbor(kdp1));
@@ -96,12 +99,12 @@ public class KDTreeTest {
 
         //Arrange
         for (int[] coord : ar) {
-            KDNode n = new KDNode(Arrays.asList(coord[0], coord[1]));
+            KDTree.KDNode n = new KDTree.KDNode(Arrays.asList(coord[0], coord[1]));
             tree.add(n);
         }
 
-        KDNode kd1 = new KDNode(Arrays.asList(0,1));
-        KDNode kd2 = new KDNode(Arrays.asList(2,2));
+        KDTree.KDNode kd1 = new KDTree.KDNode(Arrays.asList(0,1));
+        KDTree.KDNode kd2 = new KDTree.KDNode(Arrays.asList(2,2));
         //Act
         tree.add(kd1);
         tree.add(kd2);

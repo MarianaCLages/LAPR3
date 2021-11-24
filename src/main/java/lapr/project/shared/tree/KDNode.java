@@ -1,4 +1,4 @@
-package lapr.project.shared.tree;
+/*package lapr.project.shared.tree;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ public class KDNode {
     final int numDims;
 
 
-    public final KDPoint point;
+    public final KDTree.KDPoint point;
 
     public KDNode(List<Integer> props) {
         this.point = new KDPoint(props);
@@ -44,4 +44,4 @@ public class KDNode {
     public String toString() {
         return "(point: " + this.point.toString() + ")";
     }
-}
+}*/
