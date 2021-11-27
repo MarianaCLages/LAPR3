@@ -1,4 +1,4 @@
-    package lapr.project.model;
+/*    package lapr.project.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -198,4 +198,4 @@ class FacilityLocationTest {
 
         Assertions.assertNotEquals(location1.hashCode(), location2.hashCode());
     }
-}
+}*/
