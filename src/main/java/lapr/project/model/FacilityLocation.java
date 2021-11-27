@@ -3,7 +3,7 @@ package lapr.project.model;
 import static lapr.project.shared.Constants.MAX_LATITUDE;
 import static lapr.project.shared.Constants.MAX_LONGITUDE;
 
-public class FacilityLocation {
+public class FacilityLocation implements Comparable<FacilityLocation> {
     private double latitude;
     private double longitude;
 
@@ -50,15 +50,6 @@ public class FacilityLocation {
     }
 
     /**
-     * Gets the longitude of the facility location
-     *
-     * @return the longitude of the facility location
-     */
-    public double getLongitude() {
-        return longitude;
-    }
-
-    /**
      * Sets the latitude of the facility location.
      *
      * @param latitude the latitude of the facility location
@@ -66,6 +57,15 @@ public class FacilityLocation {
     public void setLatitude(double latitude) {
         if (checkLatitude(latitude)) throw new IllegalArgumentException("Invalid latitude");
         this.latitude = latitude;
+    }
+
+    /**
+     * Gets the longitude of the facility location
+     *
+     * @return the longitude of the facility location
+     */
+    public double getLongitude() {
+        return longitude;
     }
 
     /**
@@ -109,6 +109,12 @@ public class FacilityLocation {
         temp = Double.doubleToLongBits(getLongitude());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+
+    @Override
+    public int compareTo(FacilityLocation o) {
+        return 0;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class Facility {
     private String identification;
     private String name;
@@ -19,23 +17,11 @@ public class Facility {
      * @param location       the facility's location
      */
     public Facility(String identification, String name, String continent, String country, FacilityLocation location) {
-        if (!checkId(identification)) throw new IllegalArgumentException("Invalid Identification");
         this.identification = identification;
         this.name = name;
         this.continent = continent;
         this.country = country;
         this.location = location;
-    }
-
-    /**
-     * Checks the facility's identification.
-     *
-     * @param id the facility's identification
-     * @return true if it is valid, false if it isn't
-     */
-    //Checks
-    public boolean checkId(String id) {
-        return StringUtils.isNumeric(id) && id.length() == 5;
     }
 
     //Getters
@@ -50,50 +36,21 @@ public class Facility {
     }
 
     /**
-     * Gets the facility's name.
-     *
-     * @return the facility's name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the facility's continent.
-     *
-     * @return the facility's continent
-     */
-    public String getContinent() {
-        return continent;
-    }
-
-    /**
-     * Gets the facility's country.
-     *
-     * @return the facility's country
-     */
-    public String getCountry() {
-        return country;
-    }
-
-    /**
-     * Gets the facility's location.
-     *
-     * @return the facility's location
-     */
-    public FacilityLocation getLocation() {
-        return location;
-    }
-
-    //Setters
-
-    /**
      * Sets the facility's identification.
      *
      * @param identification the facility's identification
      */
     public void setIdentification(String identification) {
         this.identification = identification;
+    }
+
+    /**
+     * Gets the facility's name.
+     *
+     * @return the facility's name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -106,6 +63,17 @@ public class Facility {
     }
 
     /**
+     * Gets the facility's continent.
+     *
+     * @return the facility's continent
+     */
+    public String getContinent() {
+        return continent;
+    }
+
+    //Setters
+
+    /**
      * Sets the facility's continent.
      *
      * @param continent the facility's continent
@@ -115,12 +83,30 @@ public class Facility {
     }
 
     /**
+     * Gets the facility's country.
+     *
+     * @return the facility's country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
      * Sets the facility's country.
      *
      * @param country the facility's country
      */
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    /**
+     * Gets the facility's location.
+     *
+     * @return the facility's location
+     */
+    public FacilityLocation getLocation() {
+        return location;
     }
 
     /**

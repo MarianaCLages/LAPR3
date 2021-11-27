@@ -12,7 +12,7 @@ public class Port extends Facility {
      * @param location       the port's location
      */
     public Port(String identification, String name, String continent, String country, FacilityLocation location) {
-        super(identification, name, continent, country, location);
+        super(continent, country, identification, name, location);
     }
 
 
