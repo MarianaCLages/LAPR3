@@ -160,4 +160,15 @@ public class Facility {
         result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Facility{" +
+                "identification='" + identification + '\'' +
+                ", name='" + name + '\'' +
+                ", continent='" + continent + '\'' +
+                ", country='" + country + '\'' +
+                ", location=" + location +
+                '}';
+    }
 }

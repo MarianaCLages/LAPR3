@@ -13,7 +13,7 @@ public class FacilityLocation {
      * @param latitude  the latitude of the facility location
      * @param longitude the longitude of the facility location
      */
-    public FacilityLocation(double latitude, double longitude) {
+    public FacilityLocation(double longitude, double latitude) {
         if (checkLatitude(latitude)) throw new IllegalArgumentException("Invalid latitude");
         if (checkLongitude(longitude)) throw new IllegalArgumentException("Invalid longitude");
         this.latitude = latitude;
@@ -109,5 +109,13 @@ public class FacilityLocation {
         temp = Double.doubleToLongBits(getLongitude());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "FacilityLocation{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
     }
 }

@@ -1,19 +1,25 @@
-package lapr.project.shared.tree;
+/*package lapr.project.shared.tree;
 
+
+import lapr.project.model.Port;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 
-public class KDTree<E extends Comparable<E>> {
+public class KDTree {
+
+
+
+
 
 
     KDNode root = null;
     final int numDims;
 
-    public KDTree(int numDims) {
-        this.numDims = numDims;
+    public KDTree() {
+        this.numDims = 2;
     }
 
     public KDTree(KDNode root) {
@@ -22,13 +28,13 @@ public class KDTree<E extends Comparable<E>> {
     }
 
 
-    public KDTree(List<List<Double>> points) {
+    public KDTree(List<List<Port>> points) {
         numDims = points.get(0).size();
-        root = new KDNode((List<E>) points.get(0));
+        root = new KDNode((List<Port>) points.get(0));
 
         for (int i = 1, numPoints = points.size(); i < numPoints; i++) {
-            List<Double> point = points.get(i);
-            KDNode n = new KDNode((List<E>) point);
+            List<Port> point = points.get(i);
+            KDNode n = new KDNode((List<Port>) point);
             root.add(n);
         }
     }
@@ -44,8 +50,8 @@ public class KDTree<E extends Comparable<E>> {
 
         public final KDPoint point;
 
-        public KDNode(List<E> props) {
-            this.point = new KDPoint((List<Double>) props);
+        public KDNode(List<Port> props) {
+            this.point = new KDPoint((List<Port>) props);
             this.numDims = props.size();
         }
 
@@ -82,17 +88,17 @@ public class KDTree<E extends Comparable<E>> {
 
 
     //Point
-    protected static class KDPoint<E> {
+    protected static class KDPoint<E extends Comparable <E>>  {
 
-        final List<Integer> props;
+        final List<E> props;
 
-        public KDPoint(List<Integer> props) {
+        public KDPoint(List<E> props) {
             this.props = props;
         }
 
 
-        int get(int depth) {
-            return  props.get(( (depth % props.size())));
+        double get(double depth) {
+            return   depth % props.size();
         }
 
         public int size() {
@@ -184,6 +190,8 @@ public class KDTree<E extends Comparable<E>> {
     }
 
 
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -206,4 +214,4 @@ public class KDTree<E extends Comparable<E>> {
         }
         return sb.toString();
     }
-}
+}*/
