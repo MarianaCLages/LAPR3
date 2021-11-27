@@ -1,2 +1,0 @@
-package lapr.project.ui;public class ShipCaptain {
-}
