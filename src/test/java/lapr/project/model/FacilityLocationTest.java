@@ -1,4 +1,4 @@
-/*    package lapr.project.model;
+package lapr.project.model;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ class FacilityLocationTest {
         double latitude = 50;
         double longitude = 150;
         try {
-            FacilityLocation location = new FacilityLocation(latitude, longitude);
+            FacilityLocation location = new FacilityLocation(longitude, latitude);
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -22,7 +22,7 @@ class FacilityLocationTest {
         double latitude = 90;
         double longitude = 180;
         try {
-            FacilityLocation location = new FacilityLocation(latitude, longitude);
+            FacilityLocation location = new FacilityLocation(longitude, latitude);
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -34,7 +34,7 @@ class FacilityLocationTest {
         double latitude = -90;
         double longitude = -180;
         try {
-            FacilityLocation location = new FacilityLocation(latitude, longitude);
+            FacilityLocation location = new FacilityLocation(longitude, latitude);
         } catch (Exception e) {
             Assertions.fail();
         }
@@ -46,7 +46,7 @@ class FacilityLocationTest {
         double latitude = 194;
         double longitude = 30.5;
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            FacilityLocation location = new FacilityLocation(latitude, longitude);
+            FacilityLocation location = new FacilityLocation(longitude, latitude);
         });
 
     }
@@ -56,7 +56,7 @@ class FacilityLocationTest {
         double latitude = 0;
         double longitude = -190;
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            FacilityLocation location = new FacilityLocation(latitude, longitude);
+            FacilityLocation location = new FacilityLocation(longitude, latitude);
         });
 
     }
@@ -65,7 +65,7 @@ class FacilityLocationTest {
     void getLatitude() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location = new FacilityLocation(latitude, longitude);
+        FacilityLocation location = new FacilityLocation(longitude, latitude);
         Assertions.assertEquals(latitude, location.getLatitude());
     }
 
@@ -74,7 +74,7 @@ class FacilityLocationTest {
     void getLongitude() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location = new FacilityLocation(latitude, longitude);
+        FacilityLocation location = new FacilityLocation(longitude, latitude);
         Assertions.assertEquals(longitude, location.getLongitude());
     }
 
@@ -82,7 +82,7 @@ class FacilityLocationTest {
     void setLatitude() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location = new FacilityLocation(latitude, longitude);
+        FacilityLocation location = new FacilityLocation(longitude, latitude);
         try {
             location.setLatitude(68.56456456);
         } catch (Exception e) {
@@ -95,7 +95,7 @@ class FacilityLocationTest {
     void setLongitude() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location = new FacilityLocation(latitude, longitude);
+        FacilityLocation location = new FacilityLocation(longitude, latitude);
         try {
             location.setLongitude(128.56456456);
         } catch (Exception e) {
@@ -108,11 +108,11 @@ class FacilityLocationTest {
     void equalsTest() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         double latitude2 = 50;
         double longitude2 = 150;
-        FacilityLocation location2 = new FacilityLocation(latitude2, longitude2);
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertEquals(location1, location2);
     }
@@ -121,7 +121,7 @@ class FacilityLocationTest {
     void equalsTestSameObject() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         Assertions.assertEquals(location1, location1);
     }
@@ -130,7 +130,7 @@ class FacilityLocationTest {
     void equalsTestOtherClass() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         Integer i = Integer.valueOf(5);
 
@@ -141,11 +141,11 @@ class FacilityLocationTest {
     void equalsTestNotEquals1() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         double latitude2 = 55;
         double longitude2 = 150;
-        FacilityLocation location2 = new FacilityLocation(latitude2, longitude2);
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertNotEquals(location1, location2);
     }
@@ -154,11 +154,11 @@ class FacilityLocationTest {
     void equalsTestNotEquals2() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         double latitude2 = 50;
         double longitude2 = 151;
-        FacilityLocation location2 = new FacilityLocation(latitude2, longitude2);
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertNotEquals(location1, location2);
     }
@@ -167,11 +167,11 @@ class FacilityLocationTest {
     void hashCodeTest() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         double latitude2 = 50;
         double longitude2 = 150;
-        FacilityLocation location2 = new FacilityLocation(latitude2, longitude2);
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertEquals(location1.hashCode(), location2.hashCode());
     }
@@ -180,7 +180,7 @@ class FacilityLocationTest {
     void hashCodeTestGetNumber() {
         double latitude = 50;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
 
         Assertions.assertEquals(154779648, location1.hashCode());
@@ -190,12 +190,12 @@ class FacilityLocationTest {
     void hashCodeTestNotEqual() {
         double latitude = 0;
         double longitude = 150;
-        FacilityLocation location1 = new FacilityLocation(latitude, longitude);
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
         double latitude2 = 50;
         double longitude2 = 0;
-        FacilityLocation location2 = new FacilityLocation(latitude2, longitude2);
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertNotEquals(location1.hashCode(), location2.hashCode());
     }
-}*/
+}
