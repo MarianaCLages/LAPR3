@@ -11,6 +11,8 @@ public class Container {
 
     private String isoCode;
 
+    private ContainerPosition position;
+
     /**
      * Constructor.
      *
@@ -26,6 +28,15 @@ public class Container {
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
+    }
+
+    public Container(String identification, int payload, int tare, int gross, String isoCode, ContainerPosition position) {
+        this.identification = identification;
+        this.payload = payload;
+        this.tare = tare;
+        this.gross = gross;
+        this.isoCode = isoCode;
+        this.position = position;
     }
 
     /**
@@ -74,6 +85,15 @@ public class Container {
     }
 
     /**
+     * Gets the container's position.
+     *
+     * @return the container's position
+     */
+    public ContainerPosition getPosition() {
+        return position;
+    }
+
+    /**
      * Sets the container's identification.
      *
      * @param identification the container's identification
@@ -119,7 +139,16 @@ public class Container {
     }
 
     /**
-     * Returns the textual description of the container info in the format: identification, payload, tare, gross, ISO code.
+     * Sets the container's position.
+     *
+     * @param position the container's position
+     */
+    public void setPosition(ContainerPosition position) {
+        this.position = position;
+    }
+
+    /**
+     * Returns the textual description of the container info in the format: identification, payload, tare, gross, ISO code, position.
      *
      * @return the container's characteristics
      */
@@ -131,6 +160,7 @@ public class Container {
                 ", tare=" + tare +
                 ", gross=" + gross +
                 ", isoCode='" + isoCode + '\'' +
+                ", position=" + position +
                 '}';
     }
 
@@ -142,14 +172,10 @@ public class Container {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Container container = (Container) o;
-        return payload == container.payload && tare == container.tare && gross == container.gross && identification.equals(container.identification) && isoCode.equals(container.isoCode);
+        return payload == container.payload && tare == container.tare && gross == container.gross && Objects.equals(identification, container.identification) && Objects.equals(isoCode, container.isoCode) && Objects.equals(position, container.position);
     }
 
     /**
@@ -159,6 +185,6 @@ public class Container {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(identification, payload, tare, gross, isoCode);
+        return Objects.hash(identification, payload, tare, gross, isoCode, position);
     }
 }

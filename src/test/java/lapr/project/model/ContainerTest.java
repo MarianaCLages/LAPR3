@@ -8,6 +8,9 @@ class ContainerTest {
 
     Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF");
 
+    ContainerPosition cp = new ContainerPosition(1, 1, 1);
+    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", cp);
+
     Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF");
 
     @Test
@@ -57,6 +60,16 @@ class ContainerTest {
         String expected = "20RF";
         //Act
         String actual = containerReal.getIsoCode();
+        //Assert
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void getPosition() {
+        //Arrange
+        ContainerPosition expected = cp;
+        //Act
+        ContainerPosition actual = containerPos.getPosition();
         //Assert
         assertEquals(actual, expected);
     }
@@ -117,9 +130,20 @@ class ContainerTest {
     }
 
     @Test
+    void setPosition() {
+        //Arrange
+        ContainerPosition expected = new ContainerPosition(2,2,2);
+        //Act
+        containerPos.setPosition(expected);
+        ContainerPosition actual = containerPos.getPosition();
+        //Assert
+        assertEquals(actual, expected);
+    }
+
+    @Test
     void testToString() {
         //Arrange
-        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF'}";
+        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=null}";
         //Act
         String actual = containerReal.toString();
         //Assert
@@ -164,9 +188,11 @@ class ContainerTest {
 
     @Test
     void testHashCode() {
-        Container container = new Container("20BD", 1000, 1000, 100, "20RF");
-        int expected = -1390046803;
-        assertEquals(expected, container.hashCode());
+        //Arrange
+        //Act
+        int expected = -141777933;
+        //Assert
+        assertEquals(expected, containerReal.hashCode());
     }
 
 
