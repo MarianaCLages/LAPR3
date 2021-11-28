@@ -11,14 +11,16 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
 
     String identification;
-    private ContainerStore containerStore;
+    private ContainerStore offLoaded;
+    private ContainerStore loaded;
     private Port port;
 
     public CargoManifest(String identification,Port port) {
 
         this.identification = identification;
         this.port = port;
-        containerStore = new ContainerStore();
+        offLoaded = new ContainerStore();
+        loaded = new ContainerStore();
 
     }
 
@@ -28,9 +30,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return identification;
     }
 
-    public ContainerStore getContainerStore() {
-        return containerStore;
+    public ContainerStore getOffLoaded() {
+        return offLoaded;
     }
+
+    public ContainerStore Loaded(){ return loaded;}
 
     public Port getPort() {
         return port;
@@ -46,17 +50,12 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
 
-    public void setContainerStore(ContainerStore containerStore) {
-        this.containerStore = containerStore;
-    }
-
-
 
     public boolean offLoadSign(){
 
-        if(containerStore.containerByAVL.isEmpty()) return false;
+        if(offLoaded.containerByAVL.isEmpty()) return false;
 
-        for(Container c : containerStore.getContainerByAVL().inOrder()){
+        for(Container c : offLoaded.getContainerByAVL().inOrder()){
             System.out.println(c.toString()+ "will be offloaded to" +port);
         }
         return true;
@@ -73,12 +72,12 @@ public class CargoManifest implements Comparable<CargoManifest> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CargoManifest that = (CargoManifest) o;
-        return Objects.equals(port, that.port) && Objects.equals(containerStore, that.containerStore) ;
+        return Objects.equals(port, that.port) && Objects.equals(offLoaded, that.offLoaded) && Objects.equals(Loaded(),that.Loaded()) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(port, containerStore);
+        return Objects.hash(port, offLoaded,loaded);
     }
 
 

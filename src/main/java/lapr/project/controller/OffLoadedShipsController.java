@@ -37,7 +37,7 @@ public class OffLoadedShipsController {
 
             Port p = portStore.getList().nearesNeighbor(pos);
 
-            return s.giveCargoASign(p);
+            return s.giveCargoASignOffLoaded(p);
 
 
 

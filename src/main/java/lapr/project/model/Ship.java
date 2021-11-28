@@ -406,7 +406,7 @@ public class Ship {
         else return true;
     }
 
-    public boolean giveCargoASign(Port p){
+    public boolean giveCargoASignOffLoaded(Port p){
 
         for(CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()){
 
