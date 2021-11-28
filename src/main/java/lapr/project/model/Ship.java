@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.model.stores.CargoManifestStore;
 import lapr.project.model.stores.PositionTreeStore;
 import lapr.project.shared.DistanceCalculation;
 import org.apache.commons.lang3.StringUtils;
@@ -27,6 +28,7 @@ public class Ship {
     private Position biggestPosition;
     private Position smallPosition;
     private double posDateSize;
+    private CargoManifestStore cargoManifestStore;
 
     /**
      * Constructor.
@@ -62,6 +64,8 @@ public class Ship {
         this.biggestPosition = null;
         this.smallPosition = null;
         this.posDateSize = 0;
+
+        this.cargoManifestStore = new CargoManifestStore();
     }
 
     /**
@@ -316,6 +320,11 @@ public class Ship {
         this.posDate = posDate;
     }
 
+
+    public CargoManifestStore getCargoManifestStore() {
+        return cargoManifestStore;
+    }
+
     /**
      * Gets the ship's draft.
      *
@@ -395,6 +404,19 @@ public class Ship {
         this.travelledDistance = getTravelledDistance();
         if (aux == this.travelledDistance) return false;
         else return true;
+    }
+
+    public boolean giveCargoASign(Port p){
+
+        for(CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()){
+
+            if(c.getPort().equals(p)){
+                c.offLoadSign();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

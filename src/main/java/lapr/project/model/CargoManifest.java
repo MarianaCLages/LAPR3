@@ -1,53 +1,71 @@
 package lapr.project.model;
 
+import lapr.project.model.stores.CargoManifestStore;
+import lapr.project.model.stores.ContainerStore;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class CargoManifest {
+public class CargoManifest implements Comparable<CargoManifest> {
 
-    private HashMap<String, Container> cargoManifest_Containers;
-    private HashMap<String, Integer> cargoManifest_ContainerGross;
-    private ContainerPosition cargoManifest_ContainerPosition;
 
-    public CargoManifest(HashMap<String, Container> cargoManifest_Containers, HashMap<String, Integer> cargoManifest_ContainerGross, ContainerPosition cargoManifest_ContainerPosition) {
-        this.cargoManifest_Containers = cargoManifest_Containers;
-        this.cargoManifest_ContainerGross = cargoManifest_ContainerGross;
-        this.cargoManifest_ContainerPosition = cargoManifest_ContainerPosition;
+    String identification;
+    private ContainerStore containerStore;
+    private Port port;
+
+    public CargoManifest(String identification,Port port) {
+
+        this.identification = identification;
+        this.port = port;
+        containerStore = new ContainerStore();
+
     }
 
     //Getters
-    public HashMap<String, Container> getCargoManifest_Containers() {
-        return cargoManifest_Containers;
+
+    public String getIdentification(){
+        return identification;
     }
 
-    public HashMap<String, Integer> getCargoManifest_ContainerGross() {
-        return cargoManifest_ContainerGross;
+    public ContainerStore getContainerStore() {
+        return containerStore;
     }
 
-    public ContainerPosition getCargoManifest_ContainerPosition() {
-        return cargoManifest_ContainerPosition;
+    public Port getPort() {
+        return port;
     }
 
     //Setters
-    public void setCargoManifest_Containers(HashMap<String, Container> cargoManifest_Containers) {
-        this.cargoManifest_Containers = cargoManifest_Containers;
+    public void setIdentification(String identification){
+        this.identification = identification;
     }
 
-    public void setCargoManifest_ContainerGross(HashMap<String, Integer> cargoManifest_ContainerGross) {
-        this.cargoManifest_ContainerGross = cargoManifest_ContainerGross;
+    public void setPort(Port port) {
+        this.port = port;
     }
 
-    public void setCargoManifest_ContainerPosition(ContainerPosition cargoManifest_ContainerPosition) {
-        this.cargoManifest_ContainerPosition = cargoManifest_ContainerPosition;
+
+    public void setContainerStore(ContainerStore containerStore) {
+        this.containerStore = containerStore;
+    }
+
+
+
+    public boolean offLoadSign(){
+
+        if(containerStore.containerByAVL.isEmpty()) return false;
+
+        for(Container c : containerStore.getContainerByAVL().inOrder()){
+            System.out.println(c.toString()+ "will be offloaded to" +port);
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "CargoManifest{" +
-                "cargoManifest_Containers=" + cargoManifest_Containers +
-                ", cargoManifest_ContainerGross=" + cargoManifest_ContainerGross +
-                ", cargoManifest_ContainerPosition=" + cargoManifest_ContainerPosition +
-                '}';
+        return  "Identification:"+identification+
+                "\nPort=" + port + "}";
     }
 
     @Override
@@ -55,11 +73,24 @@ public class CargoManifest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CargoManifest that = (CargoManifest) o;
-        return Objects.equals(cargoManifest_Containers, that.cargoManifest_Containers) && Objects.equals(cargoManifest_ContainerGross, that.cargoManifest_ContainerGross) && Objects.equals(cargoManifest_ContainerPosition, that.cargoManifest_ContainerPosition);
+        return Objects.equals(port, that.port) && Objects.equals(containerStore, that.containerStore) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cargoManifest_Containers, cargoManifest_ContainerGross, cargoManifest_ContainerPosition);
+        return Objects.hash(port, containerStore);
+    }
+
+
+    @Override
+    public int compareTo(CargoManifest o) {
+
+        if(Integer.parseInt(this.getIdentification()) < Integer.parseInt(o.getIdentification())){
+            return -1;
+        }
+        else if(Integer.parseInt(this.getIdentification()) > Integer.parseInt(o.getIdentification())){
+            return 1;
+        }
+        else return 0;
     }
 }

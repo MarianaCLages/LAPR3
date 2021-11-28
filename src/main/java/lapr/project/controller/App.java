@@ -94,10 +94,13 @@ public class App {
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
 
+
         //email: SC00001@lei.pt pass: 123
         ShipCaptain sc1 = new ShipCaptain(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CAPTAIN), "SC00001", "Ship Captain");
         this.authFacade.addUserWithRole(sc1.getName(), sc1.getEmail(), "123", Constants.ROLE_SHIP_CAPTAIN);
         return true;
+
+
 
     }
 

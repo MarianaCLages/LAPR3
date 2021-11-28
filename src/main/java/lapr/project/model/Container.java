@@ -2,16 +2,15 @@ package lapr.project.model;
 
 import java.util.Objects;
 
-public class Container {
+public class Container implements Comparable<Container> {
 
     private String identification;
     private int payload;
     private int tare;
     private int gross;
-
     private String isoCode;
-
     private ContainerPosition position;
+    private boolean to_OffLoad;
 
     /**
      * Constructor.
@@ -28,6 +27,7 @@ public class Container {
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
+        this.to_OffLoad = false;
     }
 
     public Container(String identification, int payload, int tare, int gross, String isoCode, ContainerPosition position) {
@@ -37,6 +37,7 @@ public class Container {
         this.gross = gross;
         this.isoCode = isoCode;
         this.position = position;
+        this.to_OffLoad = false;
     }
 
     /**
@@ -91,6 +92,24 @@ public class Container {
      */
     public ContainerPosition getPosition() {
         return position;
+    }
+
+    /**
+     * Gets the off Load.
+     *
+     * @return the off Load.
+     */
+    public boolean getOffLoad(){
+        return to_OffLoad;
+    }
+
+    /**
+     * Sets the off Load.
+     *
+     * @param to_OffLoad
+     */
+    public void setOffLoad(boolean to_OffLoad){
+        this.to_OffLoad = to_OffLoad;
     }
 
     /**
@@ -186,5 +205,17 @@ public class Container {
     @Override
     public int hashCode() {
         return Objects.hash(identification, payload, tare, gross, isoCode, position);
+    }
+
+    @Override
+    public int compareTo(Container o) {
+
+        if(Integer.parseInt(this.getIdentification()) < Integer.parseInt(o.getIdentification())){
+            return -1;
+        }else if(Integer.parseInt(this.getIdentification()) > Integer.parseInt(o.getIdentification())){
+            return 1;
+        }
+        else
+            return 0;
     }
 }

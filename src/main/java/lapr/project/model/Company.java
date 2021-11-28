@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.model.stores.CargoManifestStore;
+import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
 import lapr.project.model.stores.ShipStore;
 import lapr.project.utils.auth.AuthFacade;
@@ -12,6 +14,8 @@ public class Company {
     private final OrgRoleStore orgRoleStore;
     private final ShipStore shipStore;
     private final PortStore portStore;
+    private final ContainerStore containerStore;
+    private final CargoManifestStore cargoManifestStore;
 
     /**
      * Constructor.
@@ -26,6 +30,8 @@ public class Company {
         this.shipStore = new ShipStore();
         this.orgRoleStore = new OrgRoleStore();
         this.portStore = new PortStore();
+        this.containerStore = new ContainerStore();
+        this.cargoManifestStore = new CargoManifestStore();
     }
 
     /**
@@ -50,6 +56,9 @@ public class Company {
         return this.portStore;
     }
 
+    public ContainerStore getContainerStore(){return this.containerStore;}
+
+    public CargoManifestStore getCargoManifestStore(){return this.cargoManifestStore;}
     /**
      * Gets the Org Role Store.
      *

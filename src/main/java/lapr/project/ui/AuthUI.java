@@ -27,7 +27,7 @@ public class AuthUI {
                 System.out.println("User has not any role assigned.");
             } else {
                 UserRoleDTO role = selectsRole(roles);
-                if (!Objects.isNull(role)) {
+                if (!Objects.isNull(role) ) {
                     List<MenuItem> rolesUI = getMenuItemForRoles();
                     this.redirectToRoleUI(rolesUI, role);
                 } else {
@@ -61,6 +61,7 @@ public class AuthUI {
 
         rolesUI.add(new MenuItem(Constants.ROLE_CLIENT, new ClientUI()));
         rolesUI.add(new MenuItem(Constants.ROLE_TRAFFIC_MANAGER, new TrafficManagerUI()));
+        rolesUI.add(new MenuItem(Constants.SHIP_CAPTAIN,new ShipCaptainUI()));
 
         return rolesUI;
     }

@@ -2,7 +2,11 @@ package lapr.project.shared.tree;
 
 import lapr.project.model.FacilityLocation;
 import lapr.project.model.Port;
+import lapr.project.model.Position;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,6 +17,12 @@ public class TwoDTreeTest {
     Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
     Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
     Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
+
+
+    String sdate = "31/11/2020 23:16";
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
+    Position posgeral = new Position(10, 10, 0, 1, 1, date);
 
     TwoDTree tdt = new TwoDTree();
 
@@ -60,9 +70,9 @@ public class TwoDTreeTest {
         Port expected = port;
 
         //Act
-        TwoDTree.Node actual = tdt.nearesNeighbor(port5);
+        Port actual = tdt.nearesNeighbor(posgeral);
         //Assert
-        assertEquals(expected, actual.getElement());
+        assertEquals(expected, actual);
     }
 
     @Test

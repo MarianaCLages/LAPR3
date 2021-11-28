@@ -1,6 +1,7 @@
 package lapr.project.shared.tree;
 
 import lapr.project.model.Port;
+import lapr.project.model.Position;
 
 import java.awt.geom.Point2D;
 import java.util.Comparator;
@@ -99,12 +100,12 @@ public class TwoDTree {
         return distance;
     }*/
 
-    public Node nearesNeighbor(Port target) {
-        Node n = nearestNeighbor(root, target, true);
-        return n;
+    public Port nearesNeighbor(Position target) {
+        Port p = nearestNeighbor(root, target, true).getElement();
+        return p;
     }
 
-    private Node nearestNeighbor(Node root, Port target, boolean divX) {
+    private Node nearestNeighbor(Node root, Position target, boolean divX) {
 
 
         if (root == null) return null;
@@ -113,14 +114,14 @@ public class TwoDTree {
 
 
         double closestDist = Double.POSITIVE_INFINITY;
-        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLocation().getLongitude(), target.getLocation().getLongitude());
+        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLongitude());
 
         if (closestDist > d) {
             closestDist = d;
             closestNode = root;
         }
 
-        double delta = divX ? target.getLocation().getLongitude() - root.getX() : target.getLocation().getLatitude() - root.getY();
+        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY();
         double delta2 = delta * delta;
 
         Node node1 = delta < 0 ? root.left : root.right;
