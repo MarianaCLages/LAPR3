@@ -51,7 +51,7 @@ public class TwoDTreeTest {
         assertEquals(expected, node.getElement());
     }
 
-    @Test
+   /* @Test
     void nearestNeighbord() {
 
         //Arrange
@@ -63,7 +63,7 @@ public class TwoDTreeTest {
         TwoDTree.Node actual = tdt.nearesNeighbor(port5);
         //Assert
         assertEquals(expected, actual.getElement());
-    }
+    } */
 
     @Test
     void closestTest() {

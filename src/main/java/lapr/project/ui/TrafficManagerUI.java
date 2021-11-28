@@ -8,6 +8,8 @@ public class TrafficManagerUI implements Runnable {
     public void run() {
 
         List<MenuItem> options = new ArrayList<>();
+
+        //SPRINT 1
         options.add(new MenuItem("Import Ships from a file", new ImportShipsUI()));
         options.add(new MenuItem("Search the details of a certain Ship", new SearchShipUI()));
         options.add(new MenuItem("Positional Message of a Ship", new PositionalMessageUI()));
@@ -15,6 +17,10 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Get the list of ships", new ListShipsUI()));
         options.add(new MenuItem("Get the top N ships in a certain interval of dates", new TopNShipsUI()));
         options.add(new MenuItem("Show all pairs of ships", new PairsOfShipsUI()));
+
+        //SPRINT 2
+        options.add(new MenuItem("Find the closest port from a certain ship", new ClosestPortUI()));
+        options.add(new MenuItem("AQUI", new ImportPortsUI()));
 
 
         int option;

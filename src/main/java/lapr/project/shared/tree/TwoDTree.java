@@ -99,8 +99,8 @@ public class TwoDTree {
         return distance;
     }*/
 
-    public Node nearesNeighbor(Port target) {
-        Node n = nearestNeighbor(root, target, true);
+    public Port nearesNeighbor(Port target) {
+        Port n = nearestNeighbor(root, target, true).getElement();
         return n;
     }
 
@@ -167,6 +167,7 @@ public class TwoDTree {
     protected static class Node<Port> {
 
         private lapr.project.model.Port port;
+
         private final Comparator<Node<Port>> cmpX = new Comparator<Node<Port>>() {
             @Override
             public int compare(Node<Port> p1, Node<Port> p2) {
@@ -235,6 +236,8 @@ public class TwoDTree {
         }
 
     }
+
+
 
 
 }
