@@ -24,9 +24,8 @@ public class PortStore {
 
         Position position = ship.getPosDate().getPosition(dateTime);
 
-        Port shipPosition = new Port(null, null, null, null, new FacilityLocation(position.getLongitude(), position.getLatitude()));
 
-        return portList.nearesNeighbor(shipPosition);
+        return portList.nearesNeighbor(position);
 
     }
 

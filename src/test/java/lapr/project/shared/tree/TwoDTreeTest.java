@@ -78,7 +78,7 @@ public class TwoDTreeTest {
 =======
         assertEquals(expected, actual.getElement());
     } */
->>>>>>> 98b23395b68810f81348dd780d2c3aaa4f0c6fb6
+
 
     @Test
     void closestTest() {

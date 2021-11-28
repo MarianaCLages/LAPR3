@@ -100,16 +100,12 @@ public class TwoDTree {
         return distance;
     }*/
 
-<<<<<<< HEAD
+
     public Port nearesNeighbor(Position target) {
         Port p = nearestNeighbor(root, target, true).getElement();
-        return p;
-=======
-    public Port nearesNeighbor(Port target) {
-        Port n = nearestNeighbor(root, target, true).getElement();
-        return n;
->>>>>>> 98b23395b68810f81348dd780d2c3aaa4f0c6fb6
-    }
+        return p;}
+
+
 
     private Node nearestNeighbor(Node root, Position target, boolean divX) {
 
