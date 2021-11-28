@@ -9,30 +9,24 @@ public class OffloadedShipsUI implements Runnable {
 
     public void run() {
 
-       int op = 0;
+        int op;
 
-       do{
+        do {
 
-        try{
-           op = Utils.readIntegerFromConsole("Ships MMSI?");
-        }catch (NumberFormatException e){
-            System.out.println("Please enter a valid MMSI!");
-            op = 0;
+            try {
+                op = Utils.readIntegerFromConsole("Ship's MMSI?");
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid MMSI!");
+                op = 0;
+            }
+        } while (op == 0);
+
+        boolean bool = offLoadedShipsController.offLoadedShips(op);
+
+        if (bool) {
+            System.out.println("Operation was a success!");
+        } else {
+            System.out.println("Operation failed!");
         }
-       }while(op == 0);
-
-       boolean bool = offLoadedShipsController.offLoadedShips(op);
-
-       if(bool == true){
-           System.out.println("Operation was a success!");
-       }
-       else{
-           System.out.println("Operation failed!");
-       }
-
-
-
-
-
     }
 }

@@ -61,7 +61,7 @@ public class AuthUI {
 
         rolesUI.add(new MenuItem(Constants.ROLE_CLIENT, new ClientUI()));
         rolesUI.add(new MenuItem(Constants.ROLE_TRAFFIC_MANAGER, new TrafficManagerUI()));
-        rolesUI.add(new MenuItem(Constants.SHIP_CAPTAIN,new ShipCaptainUI()));
+        rolesUI.add(new MenuItem(Constants.ROLE_SHIP_CAPTAIN, new ShipCaptainUI()));
 
         return rolesUI;
     }

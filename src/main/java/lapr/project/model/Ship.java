@@ -406,16 +406,25 @@ public class Ship {
         else return true;
     }
 
-    public boolean giveCargoASignOffLoaded(Port p){
+    public boolean giveCargoASignOffLoaded(Port p) {
 
-        for(CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()){
-
-            if(c.getPort().equals(p)){
+        for (CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()) {
+            if (c.getPort().equals(p)) {
                 c.offLoadSign();
                 return true;
             }
         }
+        return false;
+    }
 
+    public boolean giveCargoASignLoaded(Port p) {
+
+        for (CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()) {
+            if (c.getPort().equals(p)) {
+                c.loadSign();
+                return true;
+            }
+        }
         return false;
     }
 

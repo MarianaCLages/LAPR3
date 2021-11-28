@@ -13,7 +13,7 @@ public class ShipCaptainUI implements Runnable {
 
         int option;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\nTraffic Manager Menu:");
+            option = Utils.showAndSelectIndex(options, "\n\nShip Captain Menu:");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

@@ -3,28 +3,25 @@ package lapr.project.model.stores;
 import lapr.project.model.Container;
 import lapr.project.shared.tree.AVL;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ContainerStore {
 
 
     public AVL<Container> containerByAVL;
 
-    public ContainerStore(){
+    public ContainerStore() {
         containerByAVL = new AVL<>();
     }
 
-    public void addContainer(Container c){
+    public void addContainer(Container c) {
         containerByAVL.insert(c);
     }
 
-    public boolean writeAllContainers(){
+    public boolean writeAllContainers() {
 
-        if(containerByAVL.isEmpty())
+        if (containerByAVL.isEmpty())
             return false;
 
-        for(Container c : containerByAVL.inOrder())
+        for (Container c : containerByAVL.inOrder())
             System.out.println(c);
 
         return true;
@@ -39,7 +36,7 @@ public class ContainerStore {
 
         StringBuilder sb = new StringBuilder();
 
-        for(Container c : containerByAVL.inOrder()){
+        for (Container c : containerByAVL.inOrder()) {
             sb.append(c.toString());
             sb.append("\n");
         }

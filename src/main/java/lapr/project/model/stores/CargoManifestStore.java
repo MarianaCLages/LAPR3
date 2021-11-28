@@ -10,19 +10,19 @@ public class CargoManifestStore {
 
     AVL<CargoManifest> cargoManifestByAVL;
 
-    public CargoManifestStore(){
+    public CargoManifestStore() {
         cargoManifestByAVL = new AVL<>();
     }
 
-    public void add(CargoManifest cargoManifest){
+    public void add(CargoManifest cargoManifest) {
         cargoManifestByAVL.insert(cargoManifest);
     }
 
-    public boolean writeCargoManifests(){
+    public boolean writeCargoManifests() {
 
-        if(cargoManifestByAVL.isEmpty()) return false;
+        if (cargoManifestByAVL.isEmpty()) return false;
 
-        for(CargoManifest c : cargoManifestByAVL.inOrder()){
+        for (CargoManifest c : cargoManifestByAVL.inOrder()) {
             System.out.println(c.toString());
         }
 
@@ -38,7 +38,7 @@ public class CargoManifestStore {
 
         StringBuilder sb = new StringBuilder();
 
-        for(CargoManifest c : cargoManifestByAVL.inOrder()){
+        for (CargoManifest c : cargoManifestByAVL.inOrder()) {
             sb.append(c);
         }
         return sb.toString();

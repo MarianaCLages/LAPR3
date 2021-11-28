@@ -20,7 +20,7 @@ public class TrafficManagerUI implements Runnable {
 
         //SPRINT 2
         options.add(new MenuItem("Find the closest port from a certain ship", new ClosestPortUI()));
-        options.add(new MenuItem("AQUI", new ImportPortsUI()));
+        options.add(new MenuItem("Import ports from a file", new ImportPortsUI())); //Mudar para Port Manager
 
 
         int option;

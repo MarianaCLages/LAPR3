@@ -209,13 +209,6 @@ public class Container implements Comparable<Container> {
 
     @Override
     public int compareTo(Container o) {
-
-        if(Integer.parseInt(this.getIdentification()) < Integer.parseInt(o.getIdentification())){
-            return -1;
-        }else if(Integer.parseInt(this.getIdentification()) > Integer.parseInt(o.getIdentification())){
-            return 1;
-        }
-        else
-            return 0;
+        return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
     }
 }
