@@ -33,4 +33,17 @@ public class ContainerStore {
     public AVL<Container> getContainerByAVL() {
         return containerByAVL;
     }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for(Container c : containerByAVL.inOrder()){
+            sb.append(c.toString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
