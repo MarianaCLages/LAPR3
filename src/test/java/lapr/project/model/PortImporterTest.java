@@ -39,7 +39,7 @@ class PortImporterTest {
     void importPortsSmallest() throws FileNotFoundException {
         Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667));
         PortStore store = App.getInstance().getCompany().getPortStore();
-        PortImporter.importPorts(tempFile);
+        PortImporter.importPorts(tempFile.toFile());
         Assertions.assertEquals(store.getList().smallestElement(), port);
     }
 
@@ -51,7 +51,7 @@ class PortImporterTest {
                 " --null--  --null--  --France--  --null-- \n" +
                 " --null--  --null-- \n";
         PortStore store = App.getInstance().getCompany().getPortStore();
-        PortImporter.importPorts(tempFile);
+        PortImporter.importPorts(tempFile.toFile());
         Assertions.assertEquals(string, store.getList().toString());
     }
 

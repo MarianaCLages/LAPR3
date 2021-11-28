@@ -20,6 +20,7 @@ public class TopNShipsUI implements Runnable {
 
     @Override
     public void run() {
+
         int n;
         Scanner read = new Scanner(System.in);
         String date;
@@ -33,8 +34,8 @@ public class TopNShipsUI implements Runnable {
 
         System.out.print("Please, insert the initial date (yyyy-mm-dd HH:mm:ss): ");
         date = Utils.readLineFromConsole("");
-
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
         LocalDateTime datei = LocalDateTime.parse(date, dateFormat);
 
         System.out.print("Please, insert the final date (yyyy-mm-dd HH:mm:ss): ");

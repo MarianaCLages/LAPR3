@@ -100,9 +100,15 @@ public class TwoDTree {
         return distance;
     }*/
 
+<<<<<<< HEAD
     public Port nearesNeighbor(Position target) {
         Port p = nearestNeighbor(root, target, true).getElement();
         return p;
+=======
+    public Port nearesNeighbor(Port target) {
+        Port n = nearestNeighbor(root, target, true).getElement();
+        return n;
+>>>>>>> 98b23395b68810f81348dd780d2c3aaa4f0c6fb6
     }
 
     private Node nearestNeighbor(Node root, Position target, boolean divX) {
@@ -168,6 +174,7 @@ public class TwoDTree {
     protected static class Node<Port> {
 
         private lapr.project.model.Port port;
+
         private final Comparator<Node<Port>> cmpX = new Comparator<Node<Port>>() {
             @Override
             public int compare(Node<Port> p1, Node<Port> p2) {
@@ -236,6 +243,8 @@ public class TwoDTree {
         }
 
     }
+
+
 
 
 }

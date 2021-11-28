@@ -5,11 +5,12 @@ import lapr.project.model.stores.PortStore;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 public class PortImporter {
-    public static void importPorts(Path path) throws FileNotFoundException {
+
+    public static boolean importPorts(File path) throws FileNotFoundException {
+
         PortStore portStore = App.getInstance().getCompany().getPortStore();
         Scanner sc = new Scanner(new File(String.valueOf(path)));
         sc.nextLine();
@@ -19,5 +20,8 @@ public class PortImporter {
         } while (sc.hasNextLine());
         sc.close();
 
+        return true;
+
     }
+
 }

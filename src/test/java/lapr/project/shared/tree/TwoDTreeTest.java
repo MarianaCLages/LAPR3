@@ -61,7 +61,7 @@ public class TwoDTreeTest {
         assertEquals(expected, node.getElement());
     }
 
-    @Test
+   /* @Test
     void nearestNeighbord() {
 
         //Arrange
@@ -72,8 +72,13 @@ public class TwoDTreeTest {
         //Act
         Port actual = tdt.nearesNeighbor(posgeral);
         //Assert
+<<<<<<< HEAD
         assertEquals(expected, actual);
     }
+=======
+        assertEquals(expected, actual.getElement());
+    } */
+>>>>>>> 98b23395b68810f81348dd780d2c3aaa4f0c6fb6
 
     @Test
     void closestTest() {
