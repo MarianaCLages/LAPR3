@@ -9,6 +9,8 @@ public class Container implements Comparable<Container> {
     private int tare;
     private int gross;
     private String isoCode;
+    double energyConsume;
+    double temperature;
     private ContainerPosition position;
     private boolean to_OffLoad;
 
@@ -21,22 +23,27 @@ public class Container implements Comparable<Container> {
      * @param gross          the container's gross
      * @param isoCode        the container's ISO Code
      */
-    public Container(String identification, int payload, int tare, int gross, String isoCode) {
+    public Container(String identification, int payload, int tare, int gross, String isoCode, double energyConsume, double temperature) {
         this.identification = identification;
         this.payload = payload;
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
+        this.energyConsume = energyConsume;
+        this.temperature = temperature;
         this.to_OffLoad = false;
     }
 
-    public Container(String identification, int payload, int tare, int gross, String isoCode, ContainerPosition position) {
+    public Container(String identification, int payload, int tare, int gross, String isoCode, ContainerPosition position,double energyConsume, double temperature) {
         this.identification = identification;
         this.payload = payload;
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
         this.position = position;
+        this.temperature = temperature;
+        this.energyConsume = energyConsume;
+
         this.to_OffLoad = false;
     }
 

@@ -1,21 +1,23 @@
 package lapr.project.model;
 
 import lapr.project.model.stores.ContainerStore;
+import lapr.project.shared.tree.AVL;
+
 import java.util.Objects;
 
 public class CargoManifest implements Comparable<CargoManifest> {
 
     String identification;
-    private ContainerStore offLoaded;
-    private ContainerStore loaded;
+    private AVL<Container> offLoaded;
+    private AVL<Container> loaded;
     private Port port;
 
     public CargoManifest(String identification, Port port) {
 
         this.identification = identification;
         this.port = port;
-        offLoaded = new ContainerStore();
-        loaded = new ContainerStore();
+        offLoaded = new AVL<>();
+        loaded = new AVL<>();
 
     }
 
@@ -25,11 +27,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return identification;
     }
 
-    public ContainerStore getOffLoaded() {
+    public AVL<Container> getOffLoaded() {
         return offLoaded;
     }
 
-    public ContainerStore getLoaded() {
+    public AVL<Container> getLoaded() {
         return loaded;
     }
 
@@ -49,11 +51,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
     public boolean offLoadSign() {
 
-        if (offLoaded.containerByAVL.isEmpty()) {
+        if (offLoaded.isEmpty()) {
             return false;
         }
 
-        for (Container c : offLoaded.getContainerByAVL().inOrder()) {
+        for (Container c : offLoaded.inOrder()) {
             System.out.println(c.toString() + "will be offloaded to" + port);
         }
         return true;
@@ -61,11 +63,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
     public boolean loadSign() {
 
-        if (loaded.containerByAVL.isEmpty()) {
+        if (loaded.isEmpty()) {
             return false;
         }
 
-        for (Container c : loaded.getContainerByAVL().inOrder()) {
+        for (Container c : loaded.inOrder()) {
             System.out.println(c.toString() + "will be loaded to" + port);
         }
         return true;

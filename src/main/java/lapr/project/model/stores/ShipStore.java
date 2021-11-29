@@ -68,8 +68,9 @@ public class ShipStore {
      * @param ship the ship to be inserted
      */
     public void insertIntoMmsiAVL(Ship ship) {
-        ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
+        ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass() );
         shipToInsert.setPosDate(ship.getPosDate());
+        shipToInsert.setCargoManifestAVL(ship.getCargoManifestAVL());
         shipByMmsiAVL.insert(shipToInsert);
     }
 
@@ -120,6 +121,8 @@ public class ShipStore {
         ShipByMmsi ship = new ShipByMmsi(mmsi);
         return shipByMmsiAVL.find(ship);
     }
+
+
 
     /**
      * Gets ship by IMO from AVL.

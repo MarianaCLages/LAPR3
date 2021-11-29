@@ -1,8 +1,8 @@
 package lapr.project.model;
 
-import lapr.project.model.stores.CargoManifestStore;
 import lapr.project.model.stores.PositionTreeStore;
 import lapr.project.shared.DistanceCalculation;
+import lapr.project.shared.tree.AVL;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
@@ -28,7 +28,7 @@ public class Ship {
     private Position biggestPosition;
     private Position smallPosition;
     private double posDateSize;
-    private CargoManifestStore cargoManifestStore;
+    private AVL<CargoManifest> cargoManifestAVL;
 
     /**
      * Constructor.
@@ -65,7 +65,7 @@ public class Ship {
         this.smallPosition = null;
         this.posDateSize = 0;
 
-        this.cargoManifestStore = new CargoManifestStore();
+        this.cargoManifestAVL = new AVL<>();
     }
 
     /**
@@ -104,6 +104,8 @@ public class Ship {
         this.biggestPosition = null;
         this.smallPosition = null;
         this.posDateSize = 0;
+
+        this.cargoManifestAVL = new AVL<>();
     }
 
     /**
@@ -321,8 +323,8 @@ public class Ship {
     }
 
 
-    public CargoManifestStore getCargoManifestStore() {
-        return cargoManifestStore;
+    public AVL<CargoManifest> getCargoManifestAVL() {
+        return cargoManifestAVL;
     }
 
     /**
@@ -390,6 +392,7 @@ public class Ship {
         }
     }
 
+
     /**
      * Inserts a position in the tree.
      *
@@ -408,7 +411,7 @@ public class Ship {
 
     public boolean giveCargoASignOffLoaded(Port p) {
 
-        for (CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()) {
+        for (CargoManifest c : cargoManifestAVL.inOrder()) {
             if (c.getPort().equals(p)) {
                 c.offLoadSign();
                 return true;
@@ -419,7 +422,7 @@ public class Ship {
 
     public boolean giveCargoASignLoaded(Port p) {
 
-        for (CargoManifest c : cargoManifestStore.getCargoManifestByAVL().inOrder()) {
+        for (CargoManifest c : cargoManifestAVL.inOrder()) {
             if (c.getPort().equals(p)) {
                 c.loadSign();
                 return true;
@@ -610,10 +613,14 @@ public class Ship {
     /**
      * Sets the smallest position.
      */
+
     public void setSmallestPosition() {
         smallPosition = this.getPosDate().getSmallestPosition();
     }
 
+    public void setCargoManifestAVL(AVL<CargoManifest> AVLCargo){
+        this.cargoManifestAVL = AVLCargo;
+    }
     /**
      * Sets the position date size.
      */
@@ -635,8 +642,37 @@ public class Ship {
         this.setSmallestPosition();
         this.setPosDateSize();
 
+
+
         if (case1 == this.travelledDistance || case2 == this.posDateSize) {
             return false;
         } else return true;
+    }
+
+    public boolean addOffLoadedContainer(Container c, Port p) {
+
+        for (CargoManifest cm : cargoManifestAVL.inOrder()) {
+
+            if (cm.getPort().equals(p)) {
+                cm.getOffLoaded().insert(c);
+                return true;
+            }
+
+
+        }
+        return false;
+    }
+
+    public boolean addLoadedContainer(Container c, Port p) {
+
+        for (CargoManifest cm : cargoManifestAVL.inOrder()) {
+
+            if (cm.getPort().equals(p)) {
+                cm.getLoaded().insert(c);
+                return true;
+            }
+
+        }
+        return false;
     }
 }

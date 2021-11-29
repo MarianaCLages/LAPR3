@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 
 public class App {
@@ -98,10 +99,60 @@ public class App {
         //email: SC00001@lei.pt pass: 123
         ShipCaptain sc1 = new ShipCaptain(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CAPTAIN), "SC00001", "Ship Captain");
         this.authFacade.addUserWithRole(sc1.getName(), sc1.getEmail(), "123", Constants.ROLE_SHIP_CAPTAIN);
+
+
+/*
+
+        //ContainerPosition
+        ContainerPosition containerPosition1 = new ContainerPosition(1,1,1);
+        ContainerPosition containerPosition2 = new ContainerPosition(3,3,3);
+        //Container
+        Container container1 = new Container("11",1,1,1,"11",containerPosition1, 1,1);
+        company.getContainerStore().addContainer(container1);
+
+        Container container2 = new Container("22",1,1,1,"22",containerPosition2, 1,1);
+        company.getContainerStore().addContainer(container2);
+
+        //Facility Location
+        FacilityLocation facilityLocation1 = new FacilityLocation(2,2);
+        FacilityLocation facilityLocation2 = new FacilityLocation(4,4);
+        //Port
+        Port port1 = new Port("Ilha Dos Pretos","Africa", "11","ola",facilityLocation1);
+        company.getPortStore().add(port1);
+        Port port2 = new Port("Ilha Das Cores","Africa", "11","ola",facilityLocation2);
+        company.getPortStore().add(port2);
+
+        //CargoManifest
+        CargoManifest cargoManifest1 = new CargoManifest("11",port1);
+        company.getCargoManifestStore().add(cargoManifest1);
+
+        CargoManifest cargoManifest2 = new CargoManifest("69",port2);
+        company.getCargoManifestStore().add(cargoManifest2);
+
+
+
+        //Ship
+        Ship ship = new Ship(696969699, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+        ship.getCargoManifestAVL().insert(cargoManifest1);
+        ship.getCargoManifestAVL().insert(cargoManifest2);
+        company.getShipStore().addShip(ship);
+
+
+        //position
+        String sdate = "31/11/2020 23:16";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
+        Position posgeral = new Position(1, 0, 0, 1, 1, date);
+
+        ship.insertPosition(posgeral);
+
+
+
+
+        ship.addLoadedContainer(container1,port1);
+        ship.addOffLoadedContainer(container2,port2);
+*/
         return true;
-
-
-
     }
 
     public AuthFacade getAuthFacade() {
