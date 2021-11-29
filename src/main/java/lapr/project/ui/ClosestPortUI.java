@@ -9,8 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class ClosestPortUI implements Runnable {
 
-    private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
-
+    private final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private final ClosestPortController closestPortController = new ClosestPortController();
 
     public ClosestPortUI() {
@@ -28,10 +27,11 @@ public class ClosestPortUI implements Runnable {
         do {
             try {
 
-                date = Utils.readLineFromConsole("Please, insert the desired date (dd-MM-yy HH:mm): ");
+                date = Utils.readLineFromConsole("Please, insert the desired date (yyyy-mm-dd HH:mm:ss): ");
                 dateS = LocalDateTime.parse(date, dateFormat);
 
             } catch (IllegalArgumentException | DateTimeParseException e) {
+
                 date = null;
                 System.out.println("Invalid date! Please enter another one! \n");
 
@@ -41,7 +41,7 @@ public class ClosestPortUI implements Runnable {
 
         try {
 
-            closestPortController.getNearestPortByCallSign(callSign, dateS);
+            System.out.println(closestPortController.getNearestPortByCallSign(callSign, dateS).toString());
 
         } catch (IllegalArgumentException e) {
 

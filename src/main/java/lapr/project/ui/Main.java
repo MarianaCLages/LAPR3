@@ -29,10 +29,13 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
-        AuthUI authUi = new AuthUI();
-        App app = new App();
+        try {
+            MainMenuUI mainMenuUI = new MainMenuUI();
 
-        authUi.run();
+            mainMenuUI.run();
+        } catch (Exception exception) {
+            System.out.println("Something went wrong!");
+        }
     }
 }
 
