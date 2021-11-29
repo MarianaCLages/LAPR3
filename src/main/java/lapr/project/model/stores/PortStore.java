@@ -15,7 +15,7 @@ public class PortStore {
         portList.insert(port);
     }
 
-    public TwoDTree getList() {
+    public TwoDTree getPortList() {
         return portList;
     }
 
@@ -23,7 +23,7 @@ public class PortStore {
 
         Position position = ship.getPosDate().getPosition(dateTime);
 
-        return portList.nearesNeighbor(position);
+        return portList.nearestNeighborPort(position);
 
     }
 

@@ -41,6 +41,21 @@ public class ShipTest {
     Position posgeral3 = new Position(20, 30, 40, 20, 10, date3);
     Position posgeral4 = new Position(20, 30, 40, 20, 10, date3);
 
+    //Container
+    Container container = new Container("111",11,1,1,"11",true);
+    Container container2 = new Container("222",22,2,2,"22",true);
+
+    //Location
+    FacilityLocation facilityLocation = new FacilityLocation(11,11);
+    FacilityLocation facilityLocation2 = new FacilityLocation(8,8);
+    //Port
+    Port port = new Port("Europa","Portugal","11","name",facilityLocation);
+    Port port2 = new Port("Asia","China","22","name",facilityLocation2);
+    //CargoManifest
+    CargoManifest cargoManifest = new CargoManifest("22",port);
+    CargoManifest cargoManifest2 = new CargoManifest("33",port2);
+
+
     @Test
     void checkMMSITest() {
 
@@ -1188,8 +1203,38 @@ public class ShipTest {
         if(actual) fail();
 
         assertFalse(actual);
+    }
 
+    @Test
+    void addLoadedContainer(){
+
+        //Assert
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Arrange
+        boolean actual = shipgeral.addLoadedContainer(container,port);
+        boolean actual2 = shipgeral.addLoadedContainer(container,port2);
+        //Act
+        assertEquals(true,actual);
+        assertEquals(false,actual2);
+    }
+
+    @Test
+    void addOffLoadedContainerTest(){
+
+        //Assert
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Arrange
+        boolean actual = shipgeral.addOffLoadedContainer(container,port);
+        boolean actual2 = shipgeral.addLoadedContainer(container,port2);
+        //Act
+        assertEquals(true,actual);
+        assertEquals(false,actual2);
 
     }
 
+    @Test
+    void giveCargoOffLoadedSignTest(){
+
+
+    }
 }

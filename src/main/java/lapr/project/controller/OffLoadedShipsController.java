@@ -20,19 +20,16 @@ public class OffLoadedShipsController {
     }
 
     public boolean offLoadedShips(int mmsi) {
-        try {
-            Ship s = shipStore.getShipByMmsi(mmsi);
 
-            s.setBiggestPosition();
-            Position pos = s.getBiggestPosition();
+            Ship ship = shipStore.getShipByMmsi(mmsi);
 
-            Port p = portStore.getList().nearesNeighbor(pos);
+            ship.setBiggestPosition();
+            Position position = ship.getBiggestPosition();
 
-            return s.giveCargoOffLoadedSign(p);
+            Port port = portStore.getPortList().nearestNeighborPort(position);
 
-        } catch (NullPointerException ex) {
-            System.out.println("The ship introduced doesn't exist.");
-            return false;
-        }
+            return ship.giveCargoOffLoadedSign(port);
+
+
     }
 }
