@@ -101,13 +101,13 @@ public class TwoDTree {
     }*/
 
 
-    public Port nearesNeighbor(Position target) {
-        Port p = nearestNeighbor(root, target, true).getElement();
+    public Port nearestNeighborPort(Position target) {
+        Port p = nearestNeighborNode(root, target, true).getElement();
         return p;}
 
 
 
-    private Node nearestNeighbor(Node root, Position target, boolean divX) {
+    private Node nearestNeighborNode(Node root, Position target, boolean divX) {
 
 
         if (root == null) return null;
@@ -129,10 +129,10 @@ public class TwoDTree {
         Node node1 = delta < 0 ? root.left : root.right;
         Node node2 = delta2 < 0 ? root.right : root.left;
 
-        nearestNeighbor(node1, target, !divX);
+        nearestNeighborNode(node1, target, !divX);
 
         if (delta2 < closestDist) {
-            nearestNeighbor(node2, target, !divX);
+            nearestNeighborNode(node2, target, !divX);
         }
         return closestNode;
     }
