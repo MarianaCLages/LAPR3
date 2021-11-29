@@ -1,4 +1,4 @@
-/*package lapr.project.data;
+package lapr.project.data;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,13 +10,13 @@ import java.util.logging.Logger;
 /**
  * @author nunocastro
  */
-//public class ConnectionFactory {
+public class ConnectionFactory {
     /**
      * Logger class.
      */
-  //  private static final Logger LOGGER = Logger.getLogger("MainLog");
+    private static final Logger LOGGER = Logger.getLogger("MainLog");
 
-    //private static ConnectionFactory instance = null;
+    private static ConnectionFactory instance = null;
 
     /**
      * This is the size of the connection pool.
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 
 
-    /*private final Integer connectionPoolCount = 1;
+    private final Integer connectionPoolCount = 1;
 
     private final List<DatabaseConnection> databaseConnectionList =
             new ArrayList<>();
@@ -47,7 +47,7 @@ import java.util.logging.Logger;
      * Load Properties from application.properties file.
      */
 
-/*private void loadProperties() throws IOException {
+private void loadProperties() throws IOException {
         //Load existing properties.
         Properties properties = new Properties(System.getProperties());
 
@@ -83,7 +83,7 @@ import java.util.logging.Logger;
      *
      * @return database.url property
      */
-   /* private String url() {
+    private String url() {
         return System.getProperty("database.url");
     }
 
@@ -92,7 +92,7 @@ import java.util.logging.Logger;
      *
      * @return database.user property
      */
-   /* private String user() {
+    private String user() {
         return System.getProperty("database.user");
     }
 
@@ -101,7 +101,7 @@ import java.util.logging.Logger;
      *
      * @return database.password property
      */
-    /*private String password() {
+    private String password() {
         return System.getProperty("database.password");
     }
-}*/
+}

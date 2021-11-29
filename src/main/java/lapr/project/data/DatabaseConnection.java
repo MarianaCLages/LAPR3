@@ -1,4 +1,4 @@
-/*package lapr.project.data;
+package lapr.project.data;
 
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -13,7 +13,7 @@ public class DatabaseConnection {
      * @author nunocastro
      */
 
-   /* private OracleDataSource oracleDataSource;
+    private OracleDataSource oracleDataSource;
     private Connection connection;
     private SQLException error;
 
@@ -50,4 +50,4 @@ public class DatabaseConnection {
         registerError(null);
         return lastError;
     }
-}*/
+}

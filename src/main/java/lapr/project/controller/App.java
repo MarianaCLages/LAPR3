@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.data.ConnectionFactory;
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
@@ -9,9 +11,7 @@ import lapr.project.utils.auth.domain.OrgRole;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Connection;
 import java.util.Properties;
 
 public class App {
@@ -19,9 +19,20 @@ public class App {
     private static App singleton = null;
     private final Company company;
     private final AuthFacade authFacade;
+    private DatabaseConnection databaseConnection = null;
 
 
     public App() {
+
+        try {
+            this.databaseConnection = ConnectionFactory.getInstance()
+                    .getDatabaseConnection();
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        Connection connection = databaseConnection.getConnection();
+        System.out.println("Connected to the database!");
 
 
         Properties props = getProperties();
