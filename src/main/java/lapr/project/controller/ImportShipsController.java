@@ -29,7 +29,10 @@ public class ImportShipsController {
     public boolean importShips(String fileName) throws InvalidLineException, FileNotFoundException {
         boolean returnValue;
         returnValue = ShipImporter.importsShips(new File(fileName));
+
         company.getShipStore().calculateTravelledDistanceOfAllShips();
+        company.getShipStore().saveShipsToDataBase();
+
         return returnValue;
     }
 }

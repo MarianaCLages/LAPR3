@@ -1,5 +1,6 @@
 package lapr.project.model.stores;
 
+import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Persistable;
 import lapr.project.model.*;
@@ -77,7 +78,7 @@ public class ShipStore implements Persistable {
      * @param ship the ship to be inserted
      */
     public void insertIntoMmsiAVL(Ship ship) {
-        ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass() );
+        ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipToInsert.setPosDate(ship.getPosDate());
         shipToInsert.setCargoManifestAVL(ship.getCargoManifestAVL());
         shipByMmsiAVL.insert(shipToInsert);
@@ -130,7 +131,6 @@ public class ShipStore implements Persistable {
         ShipByMmsi ship = new ShipByMmsi(mmsi);
         return shipByMmsiAVL.find(ship);
     }
-
 
 
     /**
@@ -703,19 +703,37 @@ public class ShipStore implements Persistable {
         }
     }
 
+    public boolean saveShipsToDataBase() {
+
+        for (Ship s : transformAVLintoListMMSI()) {
+
+            save(App.getInstance().getDatabaseConnection(), s);
+
+        }
+
+        return true;
+
+    }
+
+
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
 
         Connection connection = databaseConnection.getConnection();
         Ship ship = (Ship) object;
-
-        String sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
         ResultSet resultset;
+
+        updateVesselTypes(connection, ship);
+
+        String sqlCommand;
+
+        sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
         try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
 
                 if (addressesResultSet.next()) {
-                    sqlCommand = "update ship set imo = '" + ship.getImo() + "', callsign = '" + ship.getCallSign() + "', vesseltype =" + ship.getVesselType() + ", vesselname = '" + ship.getName() + "', length = " + ship.getLength() + ", width = " + ship.getWidth() + ", draft = " + ship.getDraft() + ", capacity = " + ship.getCapacity() + ", numgenerators = " + ship.getNumGen() + ", energyoutput = " + ship.getGenPowerOutput() + " where mmsi = " + ship.getMmsi();
+
+                    sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCapacity() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
 
                     try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         saveContainerPreparedStatement.executeUpdate();
@@ -726,20 +744,22 @@ public class ShipStore implements Persistable {
                     try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         saveContainerPreparedStatement.executeUpdate();
                     }
-/*
-                    sqlCommand = "select MAX(id) as id from transporter";
+
+                    sqlCommand = "select MAX(VEHICLEID) as vehicleid from vehicle";
 
                     PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand);
                     resultset = saveContainerPreparedStatement.executeQuery();
-                    resultset.next();
-                    int idTransportation = resultset.getInt(1) +1;
 
-                    sqlCommand = "insert into transporter (id) values (" + idTransportation + ")";
+                    resultset.next();
+
+                    int idTransportation = resultset.getInt(1) + 1;
+
+                    sqlCommand = "insert into vehicle (vehicleid) values (" + idTransportation + ")";
                     System.out.println(sqlCommand);
                     try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
                         saveContainerPreparedStatement1.executeUpdate();
-                    }*/
-                    sqlCommand = "insert into ship (mmsi, imo, callsign,  NAME, LENGTH, WIDTH, draft, CAPACITY, GENERATORPOW, NENERGYGEN) values (" + ship.getMmsi() + ", " + ship.getImo() + ", " + ship.getCallSign() + ", " + ship.getName() + ", " + ship.getLength() + ", " + ship.getWidth() + ", " + ship.getDraft() + ", " + ship.getCapacity() + ", " + ship.getNumGen() + ", " + ship.getGenPowerOutput() + ")";
+                    }
+                    sqlCommand = "INSERT INTO SHIP(MMSI, VEHICLEID, VESSELTYPE, IMO, CALLSIGN, NAME, LENGTH, WIDTH, CAPACITY, DRAFT) values (" + ship.getMmsi() + "," + idTransportation + "," + ship.getVesselType() + ",'" + ship.getImo() + "','" + ship.getCallSign() + "','" + ship.getName() + "'," + ship.getLength() + ',' + ship.getWidth() + ',' + ship.getCapacity() + ',' + ship.getDraft() + ")";
                     System.out.println(sqlCommand);
                     try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
                         saveContainerPreparedStatement1.executeUpdate();
@@ -754,6 +774,42 @@ public class ShipStore implements Persistable {
             return false;
         }
 
+    }
+
+    private boolean updateVesselTypes(Connection connection, Ship ship) {
+
+        String sqlCommand = "select VESSELTYPEID from VESSELTYPE vt where vt.VESSELTYPEID = '" + ship.getVesselType() + "'";
+
+        try (PreparedStatement getVesselTypePreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet vesselTypesResultSet = getVesselTypePreparedStatement.executeQuery()) {
+
+                if (vesselTypesResultSet.next()) {
+
+                    sqlCommand = "UPDATE VESSELTYPE SET VESSELTYPE = " + ship.getVesselType();
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                        return true;
+                    }
+
+                } else {
+
+                    sqlCommand = "INSERT INTO VESSELTYPE(VESSELTYPEID, VESSELTYPE) values ('" + ship.getVesselType() + "','" + ship.getVesselType() + "')";
+                    System.out.println(sqlCommand);
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                        return true;
+                    }
+
+
+                }
+
+            }
+
+        } catch (SQLException throwables) {
+            return false;
+        }
     }
 
     @Override

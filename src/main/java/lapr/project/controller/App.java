@@ -144,10 +144,12 @@ public class App {
         company.getCargoManifestStore().add(cargoManifest2);
 
         //Ship
-        Ship ship = new Ship(222222222, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+        Ship ship = new Ship(222222222,"aa","IMO1111111","AA","70",10,10,10,"AA",'a');
         ship.getCargoManifestAVL().insert(cargoManifest1);
         ship.getCargoManifestAVL().insert(cargoManifest2);
         company.getShipStore().addShip(ship);
+
+       // company.getShipStore().save(databaseConnection,ship);
 
         //Position
         String sdate = "31/11/2020 23:16";
@@ -161,6 +163,10 @@ public class App {
         ship.addOffLoadedContainer(container1, port1);
 
         return true;
+    }
+
+    public DatabaseConnection getDatabaseConnection() {
+        return databaseConnection;
     }
 
     public AuthFacade getAuthFacade() {
