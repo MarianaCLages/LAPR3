@@ -9,13 +9,12 @@ import lapr.project.model.stores.ShipStore;
 
 public class OffLoadedShipsController {
 
-    private Company company;
-    private ShipStore shipStore;
-    private PortStore portStore;
+    private final ShipStore shipStore;
+    private final PortStore portStore;
 
 
     public OffLoadedShipsController() {
-        company = App.getInstance().getCompany();
+        Company company = App.getInstance().getCompany();
         shipStore = company.getShipStore();
         portStore = company.getPortStore();
     }
@@ -29,10 +28,10 @@ public class OffLoadedShipsController {
 
             Port p = portStore.getList().nearesNeighbor(pos);
 
-            return s.giveCargoASignOffLoaded(p);
+            return s.giveCargoOffLoadedSign(p);
 
         } catch (NullPointerException ex) {
-            System.out.println("There is no such ship");
+            System.out.println("The ship introduced doesn't exist.");
             return false;
         }
     }

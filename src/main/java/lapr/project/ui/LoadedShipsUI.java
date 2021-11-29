@@ -18,10 +18,11 @@ public class LoadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
+        System.out.println();
         boolean bool = ctrl.loadedShips(op);
 
         if (bool) {
-            System.out.println("Operation was a success!");
+            System.out.println("");
         } else {
             System.out.println("Operation failed! Please, try again.");
         }
