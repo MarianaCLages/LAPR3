@@ -40,7 +40,7 @@ class PortImporterTest {
         Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667));
         PortStore store = App.getInstance().getCompany().getPortStore();
         PortImporter.importPorts(tempFile.toFile());
-        Assertions.assertEquals(store.getList().smallestElement(), port);
+        Assertions.assertEquals(store.getPortList().smallestElement(), port);
     }
 
 
@@ -52,7 +52,7 @@ class PortImporterTest {
                 " --null--  --null--  --null--  --null--  --null--  --null-- \n";
         PortStore store = App.getInstance().getCompany().getPortStore();
         PortImporter.importPorts(tempFile.toFile());
-        Assertions.assertEquals(string, store.getList().toString());
+        Assertions.assertEquals(string, store.getPortList().toString());
     }
 
 }
