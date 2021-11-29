@@ -9,9 +9,8 @@ public class Container implements Comparable<Container> {
     private int tare;
     private int gross;
     private String isoCode;
-    double energyConsume;
-    double temperature;
     private ContainerPosition position;
+    private boolean isRefrigerated;
     private boolean to_OffLoad;
 
     /**
@@ -23,30 +22,17 @@ public class Container implements Comparable<Container> {
      * @param gross          the container's gross
      * @param isoCode        the container's ISO Code
      */
-    public Container(String identification, int payload, int tare, int gross, String isoCode, double energyConsume, double temperature) {
+    public Container(String identification, int payload, int tare, int gross, String isoCode, boolean isRefrigerated) {
         this.identification = identification;
         this.payload = payload;
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
-        this.energyConsume = energyConsume;
-        this.temperature = temperature;
+        this.isRefrigerated = isRefrigerated;
         this.to_OffLoad = false;
     }
 
-    public Container(String identification, int payload, int tare, int gross, String isoCode, ContainerPosition position,double energyConsume, double temperature) {
-        this.identification = identification;
-        this.payload = payload;
-        this.tare = tare;
-        this.gross = gross;
-        this.isoCode = isoCode;
-        this.position = position;
-        this.temperature = temperature;
-        this.energyConsume = energyConsume;
-
-        this.to_OffLoad = false;
-    }
-
+    //Getters
     /**
      * Gets the container's identification.
      *
@@ -101,24 +87,16 @@ public class Container implements Comparable<Container> {
         return position;
     }
 
-    /**
-     * Gets the off Load.
-     *
-     * @return the off Load.
-     */
+
     public boolean getOffLoad(){
         return to_OffLoad;
     }
 
-    /**
-     * Sets the off Load.
-     *
-     * @param to_OffLoad
-     */
-    public void setOffLoad(boolean to_OffLoad){
-        this.to_OffLoad = to_OffLoad;
+    public boolean getIsRefrigerated() {
+        return isRefrigerated;
     }
 
+    //Setters
     /**
      * Sets the container's identification.
      *
@@ -171,6 +149,14 @@ public class Container implements Comparable<Container> {
      */
     public void setPosition(ContainerPosition position) {
         this.position = position;
+    }
+
+    public String containerType() {
+        if (isRefrigerated) {
+            return "Refrigerated";
+        } else {
+            return "Not refrigerated";
+        }
     }
 
     /**

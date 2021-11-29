@@ -409,18 +409,17 @@ public class Ship {
         else return true;
     }
 
-    public boolean giveCargoASignOffLoaded(Port p) {
+    public boolean giveCargoOffLoadedSign(Port p) {
 
         for (CargoManifest c : cargoManifestAVL.inOrder()) {
             if (c.getPort().equals(p)) {
-                c.offLoadSign();
-                return true;
+                return c.offLoadSign();
             }
         }
         return false;
     }
 
-    public boolean giveCargoASignLoaded(Port p) {
+    public boolean giveCargoLoadedSign(Port p) {
 
         for (CargoManifest c : cargoManifestAVL.inOrder()) {
             if (c.getPort().equals(p)) {
@@ -618,9 +617,10 @@ public class Ship {
         smallPosition = this.getPosDate().getSmallestPosition();
     }
 
-    public void setCargoManifestAVL(AVL<CargoManifest> AVLCargo){
+    public void setCargoManifestAVL(AVL<CargoManifest> AVLCargo) {
         this.cargoManifestAVL = AVLCargo;
     }
+
     /**
      * Sets the position date size.
      */
@@ -641,7 +641,6 @@ public class Ship {
         this.setBiggestPosition();
         this.setSmallestPosition();
         this.setPosDateSize();
-
 
 
         if (case1 == this.travelledDistance || case2 == this.posDateSize) {

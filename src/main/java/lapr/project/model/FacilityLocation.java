@@ -119,9 +119,6 @@ public class FacilityLocation implements Comparable<FacilityLocation> {
 
     @Override
     public String toString() {
-        return "FacilityLocation{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        return "latitude = " + latitude + ", longitude = " + longitude;
     }
 }

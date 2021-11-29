@@ -46,10 +46,10 @@ class PortImporterTest {
 
     @Test
     void importPortsAllString() throws FileNotFoundException {
-        String string = " --United States-- \n" +
-                " --United States--  --United Kingdom-- \n" +
-                " --null--  --null--  --France--  --null-- \n" +
-                " --null--  --null-- \n";
+        String string = " --Europa-- \n" +
+                " --United States--  --Asia-- \n" +
+                " --United States--  --United Kingdom--  --null--  --France-- \n" +
+                " --null--  --null--  --null--  --null--  --null--  --null-- \n";
         PortStore store = App.getInstance().getCompany().getPortStore();
         PortImporter.importPorts(tempFile.toFile());
         Assertions.assertEquals(string, store.getList().toString());

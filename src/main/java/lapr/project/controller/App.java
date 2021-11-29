@@ -12,6 +12,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class App {
@@ -51,11 +53,11 @@ public class App {
     public Properties getProperties() {
         Properties props = new Properties();
 
-        // Add default properties and values
+        // Add default properties and values.
         props.setProperty(Constants.PARAMS_COMPANY_DESIGNATION, "CargoShipping");
 
 
-        // Read configured values
+        // Read configured values.
         try {
             InputStream in = new FileInputStream(Constants.PARAMS_FILENAME);
             props.load(in);
@@ -112,44 +114,42 @@ public class App {
         this.authFacade.addUserWithRole(sc1.getName(), sc1.getEmail(), "123", Constants.ROLE_SHIP_CAPTAIN);
 
 
-/*
-
         //ContainerPosition
-        ContainerPosition containerPosition1 = new ContainerPosition(1,1,1);
-        ContainerPosition containerPosition2 = new ContainerPosition(3,3,3);
+        ContainerPosition containerPosition1 = new ContainerPosition(1, 1, 1);
+        ContainerPosition containerPosition2 = new ContainerPosition(3, 3, 3);
         //Container
-        Container container1 = new Container("11",1,1,1,"11",containerPosition1, 1,1);
+        Container container1 = new Container("01", 1, 1, 1, "11", false);
+        container1.setPosition(containerPosition1);
         company.getContainerStore().addContainer(container1);
 
-        Container container2 = new Container("22",1,1,1,"22",containerPosition2, 1,1);
+        Container container2 = new Container("02", 1, 1, 1, "22", false);
+        container2.setPosition(containerPosition2);
         company.getContainerStore().addContainer(container2);
 
-        //Facility Location
-        FacilityLocation facilityLocation1 = new FacilityLocation(2,2);
-        FacilityLocation facilityLocation2 = new FacilityLocation(4,4);
+        //FacilityLocation
+        FacilityLocation facilityLocation1 = new FacilityLocation(2, 2);
+        FacilityLocation facilityLocation2 = new FacilityLocation(4, 4);
+
         //Port
-        Port port1 = new Port("Ilha Dos Pretos","Africa", "11","ola",facilityLocation1);
+        Port port1 = new Port("Ilha Das Cores2", "Europa", "11", "ola", facilityLocation1);
         company.getPortStore().add(port1);
-        Port port2 = new Port("Ilha Das Cores","Africa", "11","ola",facilityLocation2);
+        Port port2 = new Port("Ilha Das Cores", "Asia", "11", "ola", facilityLocation2);
         company.getPortStore().add(port2);
 
         //CargoManifest
-        CargoManifest cargoManifest1 = new CargoManifest("11",port1);
+        CargoManifest cargoManifest1 = new CargoManifest("11", port1);
         company.getCargoManifestStore().add(cargoManifest1);
 
-        CargoManifest cargoManifest2 = new CargoManifest("69",port2);
+        CargoManifest cargoManifest2 = new CargoManifest("69", port2);
         company.getCargoManifestStore().add(cargoManifest2);
 
-
-
         //Ship
-        Ship ship = new Ship(696969699, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+        Ship ship = new Ship(222222222, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
         ship.getCargoManifestAVL().insert(cargoManifest1);
         ship.getCargoManifestAVL().insert(cargoManifest2);
         company.getShipStore().addShip(ship);
 
-
-        //position
+        //Position
         String sdate = "31/11/2020 23:16";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
@@ -157,12 +157,9 @@ public class App {
 
         ship.insertPosition(posgeral);
 
+        ship.addLoadedContainer(container1, port1);
+        ship.addOffLoadedContainer(container1, port1);
 
-
-
-        ship.addLoadedContainer(container1,port1);
-        ship.addOffLoadedContainer(container2,port2);
-*/
         return true;
     }
 

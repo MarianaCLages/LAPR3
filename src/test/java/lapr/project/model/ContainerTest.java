@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerTest {
 
-    Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF",1,1);
+    Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false);
 
     ContainerPosition cp = new ContainerPosition(1, 1, 1);
-    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", cp,1,1);
+    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false);
 
-    Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF",1,1);
+
+    Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", false);
 
     @Test
     void getGross() {
@@ -67,11 +68,13 @@ class ContainerTest {
     @Test
     void getPosition() {
         //Arrange
-        ContainerPosition expected = cp;
+        ContainerPosition cp = new ContainerPosition(1, 1, 1);
+        Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false);
+        containerPos.setPosition(cp);
         //Act
         ContainerPosition actual = containerPos.getPosition();
         //Assert
-        assertEquals(actual, expected);
+        assertEquals(actual, cp);
     }
 
     @Test
@@ -200,7 +203,7 @@ class ContainerTest {
     void compareContainers() {
 
         //Arrange + Act
-        boolean actual = containerReal.equals(new Container("20BD", 1100, 1100, 110, "20RF",1,1));
+        boolean actual = containerReal.equals(new Container("20BD", 1100, 1100, 110, "20RF", false));
         //Assert
         if (actual) {
             fail();
@@ -217,5 +220,4 @@ class ContainerTest {
             fail();
         }
     }
-
 }
