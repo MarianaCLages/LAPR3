@@ -4,7 +4,6 @@ import lapr.project.model.Company;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
 import lapr.project.model.stores.ShipStore;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

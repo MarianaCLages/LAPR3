@@ -120,7 +120,6 @@ public class TwoDTreeTest {
         tdt.insert(port2);
         tdt.insert(port3);
         tdt.insert(port4);
-        System.out.println(tdt.toString());
 
         //Act
         String expected = " --a1-- \n" +

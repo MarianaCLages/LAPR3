@@ -1,7 +1,6 @@
 package lapr.project.model.stores;
 import lapr.project.model.*;
 import lapr.project.shared.tree.TwoDTree;
-
 import java.time.LocalDateTime;
 
 public class PortStore {
@@ -24,12 +23,9 @@ public class PortStore {
 
         Position position = ship.getPosDate().getPosition(dateTime);
 
-
         return portList.nearesNeighbor(position);
 
     }
-
-
 
 }
 

@@ -1,16 +1,24 @@
 package lapr.project.model.stores;
 
+import lapr.project.data.DatabaseConnection;
+import lapr.project.data.Persistable;
 import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 import lapr.project.shared.tree.AVL;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class ShipStore {
+public class ShipStore implements Persistable {
 
     public AVL<ShipByMmsi> shipByMmsiAVL;
     public AVL<ShipByIMO> shipByIMOAVL;
@@ -61,6 +69,7 @@ public class ShipStore {
             return false;
         }
     }
+
 
     /**
      * Inserts a new ship in the MMSI AVL.
@@ -691,6 +700,124 @@ public class ShipStore {
             s3.setBiggestPosition();
             s3.setSmallestPosition();
             s3.setPosDateSize();
+        }
+    }
+
+    @Override
+    public boolean save(DatabaseConnection databaseConnection, Object object) {
+
+        Connection connection = databaseConnection.getConnection();
+        Ship ship = (Ship) object;
+
+        String sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
+        ResultSet resultset;
+        try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
+
+                if (addressesResultSet.next()) {
+                    sqlCommand = "update ship set imo = '" + ship.getImo() + "', callsign = '" + ship.getCallSign() + "', vesseltype =" + ship.getVesselType() + ", vesselname = '" + ship.getName() + "', length = " + ship.getLength() + ", width = " + ship.getWidth() + ", draft = " + ship.getDraft() + ", capacity = " + ship.getCapacity() + ", numgenerators = " + ship.getNumGen() + ", energyoutput = " + ship.getGenPowerOutput() + " where mmsi = " + ship.getMmsi();
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                        return true;
+                    }
+                } else {
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                    }
+/*
+                    sqlCommand = "select MAX(id) as id from transporter";
+
+                    PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand);
+                    resultset = saveContainerPreparedStatement.executeQuery();
+                    resultset.next();
+                    int idTransportation = resultset.getInt(1) +1;
+
+                    sqlCommand = "insert into transporter (id) values (" + idTransportation + ")";
+                    System.out.println(sqlCommand);
+                    try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement1.executeUpdate();
+                    }*/
+                    sqlCommand = "insert into ship (mmsi, imo, callsign,  NAME, LENGTH, WIDTH, draft, CAPACITY, GENERATORPOW, NENERGYGEN) values (" + ship.getMmsi() + ", " + ship.getImo() + ", " + ship.getCallSign() + ", " + ship.getName() + ", " + ship.getLength() + ", " + ship.getWidth() + ", " + ship.getDraft() + ", " + ship.getCapacity() + ", " + ship.getNumGen() + ", " + ship.getGenPowerOutput() + ")";
+                    System.out.println(sqlCommand);
+                    try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement1.executeUpdate();
+                    }
+                    return true;
+                }
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean delete(DatabaseConnection databaseConnection, Object object) {
+
+        Connection connection = databaseConnection.getConnection();
+        Ship ship = (Ship) object;
+
+        try {
+            String sqlCommand;
+            sqlCommand = "delete from ship where mmsi = " + ship.getMmsi();
+            try (PreparedStatement deleteShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                deleteShipPreparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            return false;
+        }
+    }
+
+    public boolean saveShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
+
+        Connection connection = databaseConnection.getConnection();
+        Position shipPosition = (Position) object;
+
+        String sqlCommand = "select * from shipPosition where shipmmsi = " + mmsi + " AND baseDataTime = '" + shipPosition.getDate() + "'";
+        try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
+
+                if (!addressesResultSet.next()) {
+                    sqlCommand = "insert into shipposition(shipmmsi,basedatatime, latitude, longitude, sog,cog,heading) values (" + mmsi + ",'" + shipPosition.getDate() + "' ," + shipPosition.getLatitude() + " ," + shipPosition.getLongitude() + " ," + shipPosition.getSog() + "," + shipPosition.getCog() + "," + shipPosition.getHeading();
+                } else {
+                    return false;
+                }
+
+                try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                    saveContainerPreparedStatement.executeUpdate();
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            return false;
+        }
+    }
+
+    public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
+        Connection connection = databaseConnection.getConnection();
+        Position shipPosition = (Position) object;
+
+        try {
+            String sqlCommand;
+            sqlCommand = "delete from shipposition where shipmmsi = " + mmsi + "AND basedatatime = " + shipPosition.getDate();
+            try (PreparedStatement deleteContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                deleteContainerPreparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            return false;
         }
     }
 }

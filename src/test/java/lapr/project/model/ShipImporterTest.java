@@ -2,22 +2,17 @@ package lapr.project.model;
 
 import lapr.project.controller.App;
 import lapr.project.model.stores.ShipStore;
-import lapr.project.shared.exceptions.InvalidLineException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 class ShipImporterTest {
 
