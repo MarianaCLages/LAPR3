@@ -32,7 +32,7 @@ public class LoadedShipsController {
             return s.giveCargoASignLoaded(p);
 
         } catch (NullPointerException ex) {
-            System.out.println("The ship introduced doesn't exist. Please, try again.");
+            System.out.println("The ship introduced doesn't exist. Please, try again...");
             return false;
         }
     }
