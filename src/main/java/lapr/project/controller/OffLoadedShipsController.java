@@ -20,7 +20,7 @@ public class OffLoadedShipsController {
     }
 
     public boolean offLoadedShips(int mmsi) {
-        try {
+
             Ship ship = shipStore.getShipByMmsi(mmsi);
 
             ship.setBiggestPosition();
@@ -30,9 +30,6 @@ public class OffLoadedShipsController {
 
             return ship.giveCargoOffLoadedSign(port);
 
-        } catch (NullPointerException ex) {
-            System.out.println("The ship introduced doesn't exist.");
-            return false;
-        }
+
     }
 }

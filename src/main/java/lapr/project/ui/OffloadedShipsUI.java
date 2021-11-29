@@ -10,6 +10,7 @@ public class OffloadedShipsUI implements Runnable {
     public void run() {
 
         int op;
+        boolean bool = false;
 
         do {
 
@@ -21,8 +22,12 @@ public class OffloadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
-        System.out.println();
-        boolean bool = offLoadedShipsController.offLoadedShips(op);
+        try{
+            System.out.println();
+            bool = offLoadedShipsController.offLoadedShips(op);
+            }catch (NullPointerException ex){
+                System.out.println("The ship introduced doesn't exist.");
+            }
 
         if (bool) {
             System.out.println("");
