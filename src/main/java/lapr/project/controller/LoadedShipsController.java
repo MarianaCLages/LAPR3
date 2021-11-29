@@ -16,19 +16,13 @@ public class LoadedShipsController {
     }
 
     public boolean loadedShips(int mmsi) {
-        try {
-            Ship ship = shipStore.getShipByMmsi(mmsi);
+        Ship ship = shipStore.getShipByMmsi(mmsi);
 
-            ship.setBiggestPosition();
-            Position position = ship.getBiggestPosition();
+        ship.setBiggestPosition();
+        Position position = ship.getBiggestPosition();
 
-            Port port = portStore.getPortList().nearestNeighborPort(position);
+        Port port = portStore.getPortList().nearestNeighborPort(position);
 
-            return ship.giveCargoLoadedSign(port);
-
-        } catch (NullPointerException ex) {
-            System.out.println("The ship introduced doesn't exist.");
-            return false;
-        }
+        return ship.giveCargoLoadedSign(port);
     }
 }

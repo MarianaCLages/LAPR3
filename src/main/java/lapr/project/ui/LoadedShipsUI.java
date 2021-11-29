@@ -19,12 +19,17 @@ public class LoadedShipsUI implements Runnable {
         } while (op == 0);
 
         System.out.println();
-        boolean bool = ctrl.loadedShips(op);
 
-        if (bool) {
-            System.out.println("");
-        } else {
-            System.out.println("Operation failed! Please, try again.");
+        try {
+            boolean bool = ctrl.loadedShips(op);
+
+            if (bool) {
+                System.out.println("");
+            } else {
+                System.out.println("Operation failed! Please, try again.");
+            }
+        } catch (NullPointerException exception) {
+            System.out.println("The ship introduced doesn't exist.");
         }
     }
 }

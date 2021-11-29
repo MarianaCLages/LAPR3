@@ -102,18 +102,17 @@ public class TwoDTree {
 
 
     public Port nearestNeighborPort(Position target) {
-        Port p = nearestNeighborNode(root, target, true).getElement();
-        return p;}
-
+        return nearestNeighborNode(root, target, true).getElement();
+    }
 
 
     private Node nearestNeighborNode(Node root, Position target, boolean divX) {
 
-
-        if (root == null) return null;
+        if (root == null) {
+            return null;
+        }
 
         Node closestNode = null;
-
 
         double closestDist = Double.POSITIVE_INFINITY;
         double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLongitude());
@@ -239,8 +238,6 @@ public class TwoDTree {
         }
 
     }
-
-
 
 
 }
