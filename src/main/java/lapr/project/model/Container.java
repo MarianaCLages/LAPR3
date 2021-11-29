@@ -11,7 +11,7 @@ public class Container implements Comparable<Container> {
     private String isoCode;
     private ContainerPosition position;
     private boolean isRefrigerated;
-    private boolean to_OffLoad;
+    private boolean toOffLoad;
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ public class Container implements Comparable<Container> {
         this.gross = gross;
         this.isoCode = isoCode;
         this.isRefrigerated = isRefrigerated;
-        this.to_OffLoad = false;
+        this.toOffLoad = false;
     }
 
     //Getters
@@ -89,7 +89,7 @@ public class Container implements Comparable<Container> {
 
 
     public boolean getOffLoad(){
-        return to_OffLoad;
+        return toOffLoad;
     }
 
     public boolean getIsRefrigerated() {
@@ -151,7 +151,7 @@ public class Container implements Comparable<Container> {
         this.position = position;
     }
 
-    public String containerType() {
+    public String getContainerType() {
         if (isRefrigerated) {
             return "Refrigerated";
         } else {

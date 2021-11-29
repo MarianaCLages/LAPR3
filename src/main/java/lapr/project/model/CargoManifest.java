@@ -55,7 +55,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
         }
 
         for (Container container : offLoaded.inOrder()) {
-            System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.containerType() + "; Position: " + port.getLocation() + "; Load: " + container.getPayload() + "\n");
+            System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Position: " + port.getLocation() + "; Load: " + container.getPayload() + "\n");
         }
         return true;
     }
@@ -67,7 +67,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
         }
 
         for (Container container : loaded.inOrder()) {
-            System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.containerType() + "; Load: " + container.getPayload() + "\n");
+            System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Load: " + container.getPayload() + "\n");
         }
         return true;
     }

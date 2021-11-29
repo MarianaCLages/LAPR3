@@ -411,9 +411,9 @@ public class Ship {
 
     public boolean giveCargoOffLoadedSign(Port p) {
 
-        for (CargoManifest c : cargoManifestAVL.inOrder()) {
-            if (c.getPort().equals(p)) {
-                return c.offLoadSign();
+        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
+            if (cargoManifest.getPort().equals(p)) {
+                return cargoManifest.offLoadSign();
             }
         }
         return false;
@@ -421,9 +421,9 @@ public class Ship {
 
     public boolean giveCargoLoadedSign(Port p) {
 
-        for (CargoManifest c : cargoManifestAVL.inOrder()) {
-            if (c.getPort().equals(p)) {
-                c.loadSign();
+        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
+            if (cargoManifest.getPort().equals(p)) {
+                cargoManifest.loadSign();
                 return true;
             }
         }
