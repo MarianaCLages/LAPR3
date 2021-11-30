@@ -6,7 +6,7 @@ public class RefrigeratedContainer extends Container {
     private final double temperature;
 
     public RefrigeratedContainer(String identification, int payload, int tare, int gross, String isoCode, double energyConsume, double temperature) {
-        super(identification, payload, tare, gross, isoCode, true);
+        super(identification, payload, tare, gross, isoCode, true, false);
         this.energyConsume = energyConsume;
         this.temperature = temperature;
     }

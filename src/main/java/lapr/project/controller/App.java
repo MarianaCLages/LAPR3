@@ -118,11 +118,11 @@ public class App {
         ContainerPosition containerPosition1 = new ContainerPosition(1, 1, 1);
         ContainerPosition containerPosition2 = new ContainerPosition(3, 3, 3);
         //Container
-        Container container1 = new Container("01", 1, 1, 1, "11", false);
+        Container container1 = new Container("01", 1, 1, 1, "11", false, false);
         container1.setPosition(containerPosition1);
         company.getContainerStore().addContainer(container1);
 
-        Container container2 = new Container("02", 1, 1, 1, "22", false);
+        Container container2 = new Container("02", 1, 1, 1, "22", false, false);
         container2.setPosition(containerPosition2);
         company.getContainerStore().addContainer(container2);
 

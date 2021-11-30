@@ -6,13 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ContainerTest {
 
-    Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false);
+    Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
-    ContainerPosition cp = new ContainerPosition(1, 1, 1);
-    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false);
-
-
-    Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", false);
+    Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
     @Test
     void getGross() {
@@ -69,12 +65,62 @@ class ContainerTest {
     void getPosition() {
         //Arrange
         ContainerPosition cp = new ContainerPosition(1, 1, 1);
-        Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false);
+        Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
         containerPos.setPosition(cp);
         //Act
         ContainerPosition actual = containerPos.getPosition();
         //Assert
         assertEquals(actual, cp);
+    }
+
+    @Test
+    void getOffLoadFalse() {
+        //Arrange
+
+        //Act
+        boolean actual = containerReal.getOffLoad();
+        //Assert
+        assertFalse(actual);
+    }
+
+    @Test
+    void getOffLoadTrue() {
+        //Arrange
+
+        //Act
+        boolean actual = containerEqualsTrue.getOffLoad();
+        //Assert
+        assertTrue(actual);
+    }
+
+    @Test
+    void getIsRefrigerated() {
+        //Arrange
+
+        //Act
+        boolean actual = containerEqualsTrue.getIsRefrigerated();
+        //Assert
+        assertTrue(actual);
+    }
+
+    @Test
+    void getContainerTypeFalse() {
+        //Arrange
+        String expected = "Not refrigerated";
+        //Act
+        String actual = containerReal.getContainerType();
+        //Assert
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void getContainerTypeTrue() {
+        //Arrange
+        String expected = "Refrigerated";
+        //Act
+        String actual = containerEqualsTrue.getContainerType();
+        //Assert
+        assertEquals(actual, expected);
     }
 
     @Test
@@ -137,8 +183,8 @@ class ContainerTest {
         //Arrange
         ContainerPosition expected = new ContainerPosition(2,2,2);
         //Act
-        containerPos.setPosition(expected);
-        ContainerPosition actual = containerPos.getPosition();
+        containerReal.setPosition(expected);
+        ContainerPosition actual = containerReal.getPosition();
         //Assert
         assertEquals(actual, expected);
     }
@@ -203,7 +249,7 @@ class ContainerTest {
     void compareContainers() {
 
         //Arrange + Act
-        boolean actual = containerReal.equals(new Container("20BD", 1100, 1100, 110, "20RF", false));
+        boolean actual = containerReal.equals(new Container("20BD", 1100, 1100, 110, "20RF", false, false));
         //Assert
         if (actual) {
             fail();

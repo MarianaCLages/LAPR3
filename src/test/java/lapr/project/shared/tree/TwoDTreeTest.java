@@ -61,23 +61,19 @@ public class TwoDTreeTest {
         assertEquals(expected, node.getElement());
     }
 
-   /* @Test
-    void nearestNeighbord() {
-
+    @Test
+    void nearestNeighbor() {
         //Arrange
         tdt.insert(port);
         tdt.insert(port2);
         Port expected = port;
 
         //Act
-        Port actual = tdt.nearesNeighbor(posgeral);
+        Port actual = tdt.nearestNeighborPort(posgeral);
+
         //Assert
-<<<<<<< HEAD
         assertEquals(expected, actual);
     }
-=======
-        assertEquals(expected, actual.getElement());
-    } */
 
 
     @Test

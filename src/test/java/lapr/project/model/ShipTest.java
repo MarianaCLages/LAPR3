@@ -42,8 +42,8 @@ public class ShipTest {
     Position posgeral4 = new Position(20, 30, 40, 20, 10, date3);
 
     //Container
-    Container container = new Container("111",11,1,1,"11",true);
-    Container container2 = new Container("222",22,2,2,"22",true);
+    Container container = new Container("111",11,1,1,"11",true, false);
+    Container container2 = new Container("222",22,2,2,"22",true, false);
 
     //Location
     FacilityLocation facilityLocation = new FacilityLocation(11,11);

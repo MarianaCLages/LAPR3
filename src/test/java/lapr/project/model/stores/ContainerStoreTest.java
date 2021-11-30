@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ContainerStoreTest {
 
-    Container c1 = new Container("20BD", 1000, 1000, 100, "20RF", false);
+    Container c1 = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
     ContainerStore containerStore = new ContainerStore();
     ContainerStore containerStore2 = new ContainerStore();
