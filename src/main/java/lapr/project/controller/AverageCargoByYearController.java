@@ -8,12 +8,16 @@ public class AverageCargoByYearController {
 
     private final ShipStore shipStore;
 
-    public AverageCargoByYearController(){
+    public AverageCargoByYearController() {
         Company company = App.getInstance().getCompany();
         shipStore = company.getShipStore();
     }
 
-    public String AverageCargoByYearController(int mmsi, int year){
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
+    public String averageCargoByYear(int mmsi, int year) {
         Ship ship = shipStore.getShipByMmsi(mmsi);
 
         return ship.writeCargoByYear(year);

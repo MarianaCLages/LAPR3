@@ -13,7 +13,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private Port port;
     private Date date;
 
-    public CargoManifest(String identification, Port port,Date date) {
+    public CargoManifest(String identification, Port port, Date date) {
 
         this.identification = identification;
         this.port = port;
@@ -24,7 +24,9 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     //Getters
-    public Date getDate(){return date;}
+    public Date getDate() {
+        return date;
+    }
 
     public String getIdentification() {
         return identification;
@@ -43,7 +45,9 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     //Setters
-    public void setDate(Date date){this.date = date;}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public void setIdentification(String identification) {
         this.identification = identification;
@@ -53,15 +57,14 @@ public class CargoManifest implements Comparable<CargoManifest> {
         this.port = port;
     }
 
-    public int countContainers(){
-
+    public int countContainers() {
         int count = 0;
 
-        for (Container container : offLoaded.inOrder()){
+        for (Container container : offLoaded.inOrder()) {
             count = count + 1;
         }
 
-        for (Container container : loaded.inOrder() ){
+        for (Container container : loaded.inOrder()) {
             count = count + 1;
         }
 
