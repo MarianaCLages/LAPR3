@@ -22,14 +22,14 @@ public class Container implements Comparable<Container> {
      * @param gross          the container's gross
      * @param isoCode        the container's ISO Code
      */
-    public Container(String identification, int payload, int tare, int gross, String isoCode, boolean isRefrigerated) {
+    public Container(String identification, int payload, int tare, int gross, String isoCode, boolean isRefrigerated, boolean toOffLoad) {
         this.identification = identification;
         this.payload = payload;
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
         this.isRefrigerated = isRefrigerated;
-        this.toOffLoad = false;
+        this.toOffLoad = toOffLoad;
     }
 
     //Getters
@@ -87,13 +87,20 @@ public class Container implements Comparable<Container> {
         return position;
     }
 
-
     public boolean getOffLoad(){
         return toOffLoad;
     }
 
     public boolean getIsRefrigerated() {
         return isRefrigerated;
+    }
+
+    public String getContainerType() {
+        if (isRefrigerated) {
+            return "Refrigerated";
+        } else {
+            return "Not refrigerated";
+        }
     }
 
     //Setters
@@ -149,14 +156,6 @@ public class Container implements Comparable<Container> {
      */
     public void setPosition(ContainerPosition position) {
         this.position = position;
-    }
-
-    public String getContainerType() {
-        if (isRefrigerated) {
-            return "Refrigerated";
-        } else {
-            return "Not refrigerated";
-        }
     }
 
     /**

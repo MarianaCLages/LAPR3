@@ -1,5 +1,5 @@
 
-/*
+
 package Integration.US106;
 
 import lapr.project.controller.App;
@@ -223,4 +223,3 @@ public class US106IntegrationTest {
 
     }
 }
-*/
