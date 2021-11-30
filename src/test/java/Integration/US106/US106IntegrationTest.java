@@ -1,4 +1,4 @@
-
+/*
 
 package Integration.US106;
 
@@ -222,4 +222,5 @@ public class US106IntegrationTest {
         }
 
     }
-}
+} Tiago mete os métodos dentro da classe Teste sff
+ */
