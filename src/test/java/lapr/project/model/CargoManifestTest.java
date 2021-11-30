@@ -7,7 +7,7 @@ public class CargoManifestTest {
 
 
     ContainerPosition cp = new ContainerPosition(1, 1, 1);
-    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false);
+    Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
     FacilityLocation f1 = new FacilityLocation(11,11);
     Port p1 = new Port("a","a","1","a",f1);
