@@ -14,7 +14,7 @@ public class CargoManifestStoreTest {
 
     FacilityLocation f1 = new FacilityLocation(11,11);
     Port p1 = new Port("a","a","1","a",f1);
-    CargoManifest cargo1 = new CargoManifest("11",p1);
+    CargoManifest cargo1 = new CargoManifest("11",p1,null);
 
     @Test
     void addTest(){
@@ -22,8 +22,7 @@ public class CargoManifestStoreTest {
         //Arrange
         //Act
         cargoManifestStore.add(cargo1);
-        String expected = "Identification:11\n" +
-                "Port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}}";
+        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}, date=null}";
         //Assert
         assertEquals(expected,cargoManifestStore.toString());
     }
@@ -34,8 +33,7 @@ public class CargoManifestStoreTest {
         //Arrange
         cargoManifestStore.add(cargo1);
         //Act
-        String expected = "Identification:11\n" +
-                "Port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}}\n";
+        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}, date=null}\n";
 
         //Assert
         assertEquals(expected,cargoManifestStore.getCargoManifestByAVL().toString());

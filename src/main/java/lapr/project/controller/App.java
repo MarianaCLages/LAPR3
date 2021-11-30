@@ -137,10 +137,10 @@ public class App {
         company.getPortStore().add(port2);
 
         //CargoManifest
-        CargoManifest cargoManifest1 = new CargoManifest("11", port1);
+        CargoManifest cargoManifest1 = new CargoManifest("11", port1,null);
         company.getCargoManifestStore().add(cargoManifest1);
 
-        CargoManifest cargoManifest2 = new CargoManifest("69", port2);
+        CargoManifest cargoManifest2 = new CargoManifest("69", port2,null);
         company.getCargoManifestStore().add(cargoManifest2);
 
         //Ship
