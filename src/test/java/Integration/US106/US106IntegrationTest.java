@@ -1,5 +1,5 @@
 
-/*
+
 package Integration.US106;
 
 import lapr.project.controller.App;
@@ -23,81 +23,82 @@ import static org.junit.jupiter.api.Assertions.*;
 public class US106IntegrationTest {
 
 
-    App app = App.getInstance();
-    Company company = app.getCompany();
-
-    ShipStore shipStore = company.getShipStore();
-    TopNShipsController topNShipsController = new TopNShipsController();
-
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-    //If necessary to print the output in the console use this boolean as true
-    boolean printInTheConsole = false;
-
-    //Creation of the dates for the Ship positions
-
-    String sdate = "31-12-2020 17:03";
-    LocalDateTime date = LocalDateTime.parse(sdate, formatter);
-
-    String sdate2 = "31-12-2020 17:19";
-    LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
-
-    String sdate3 = "31-12-2020 22:01";
-    LocalDateTime date3 = LocalDateTime.parse(sdate3, formatter);
-
-    String sdate4 = "31-12-2020 22:03";
-    LocalDateTime date4 = LocalDateTime.parse(sdate4, formatter);
-
-    String sdate5 = "31-12-2020 10:36";
-    LocalDateTime date5 = LocalDateTime.parse(sdate5, formatter);
-
-    String sdate6 = "31-12-2020 12:26";
-    LocalDateTime date6 = LocalDateTime.parse(sdate6, formatter);
-
-    String sdate7 = "29-12-2020 01:17";
-    LocalDateTime date7 = LocalDateTime.parse(sdate7, formatter);
-
-    String sdate8 = "31-12-2020 20:59";
-    LocalDateTime date8 = LocalDateTime.parse(sdate8, formatter);
-
-    String sdate9 = "31-12-2020 21:16";
-    LocalDateTime date9 = LocalDateTime.parse(sdate9, formatter);
-
-    String sdate10 = "31-12-2020 23:22";
-    LocalDateTime date10 = LocalDateTime.parse(sdate10, formatter);
-
-    String sdate11 = "31-12-2020 20:12";
-    LocalDateTime date11 = LocalDateTime.parse(sdate11, formatter);
-
-    String sdate12 = "31-12-2020 23:21";
-    LocalDateTime date12 = LocalDateTime.parse(sdate12, formatter);
-
-    String sdate13 = "29-12-2020 21:43";
-    LocalDateTime date13 = LocalDateTime.parse(sdate13, formatter);
-
-    String sdate14 = "31-12-2020 23:44";
-    LocalDateTime date14 = LocalDateTime.parse(sdate14, formatter);
-
-    String sdate15 = "31-12-2020 20:50";
-    LocalDateTime date15 = LocalDateTime.parse(sdate15, formatter);
-
-    String sdate16 = "31-12-2020 23:52";
-    LocalDateTime date16 = LocalDateTime.parse(sdate16, formatter);
-
-    String sdate17 = "31-12-2020 18:54";
-    LocalDateTime date17 = LocalDateTime.parse(sdate17, formatter);
-
-    String sdate18 = "31-12-2020 23:54";
-    LocalDateTime date18 = LocalDateTime.parse(sdate18, formatter);
-
-    String sdate19 = "31-12-2020 18:56";
-    LocalDateTime date19 = LocalDateTime.parse(sdate19, formatter);
-
-    String sdate20 = "31-12-2020 23:59";
-    LocalDateTime date20 = LocalDateTime.parse(sdate20, formatter);
-
     @Test
     void runUS106() {
+
+        App app = App.getInstance();
+        Company company = app.getCompany();
+
+        ShipStore shipStore = company.getShipStore();
+        TopNShipsController topNShipsController = new TopNShipsController();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+        //If necessary to print the output in the console use this boolean as true
+        boolean printInTheConsole = false;
+
+        //Creation of the dates for the Ship positions
+
+        String sdate = "31-12-2020 17:03";
+        LocalDateTime date = LocalDateTime.parse(sdate, formatter);
+
+        String sdate2 = "31-12-2020 17:19";
+        LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
+
+        String sdate3 = "31-12-2020 22:01";
+        LocalDateTime date3 = LocalDateTime.parse(sdate3, formatter);
+
+        String sdate4 = "31-12-2020 22:03";
+        LocalDateTime date4 = LocalDateTime.parse(sdate4, formatter);
+
+        String sdate5 = "31-12-2020 10:36";
+        LocalDateTime date5 = LocalDateTime.parse(sdate5, formatter);
+
+        String sdate6 = "31-12-2020 12:26";
+        LocalDateTime date6 = LocalDateTime.parse(sdate6, formatter);
+
+        String sdate7 = "29-12-2020 01:17";
+        LocalDateTime date7 = LocalDateTime.parse(sdate7, formatter);
+
+        String sdate8 = "31-12-2020 20:59";
+        LocalDateTime date8 = LocalDateTime.parse(sdate8, formatter);
+
+        String sdate9 = "31-12-2020 21:16";
+        LocalDateTime date9 = LocalDateTime.parse(sdate9, formatter);
+
+        String sdate10 = "31-12-2020 23:22";
+        LocalDateTime date10 = LocalDateTime.parse(sdate10, formatter);
+
+        String sdate11 = "31-12-2020 20:12";
+        LocalDateTime date11 = LocalDateTime.parse(sdate11, formatter);
+
+        String sdate12 = "31-12-2020 23:21";
+        LocalDateTime date12 = LocalDateTime.parse(sdate12, formatter);
+
+        String sdate13 = "29-12-2020 21:43";
+        LocalDateTime date13 = LocalDateTime.parse(sdate13, formatter);
+
+        String sdate14 = "31-12-2020 23:44";
+        LocalDateTime date14 = LocalDateTime.parse(sdate14, formatter);
+
+        String sdate15 = "31-12-2020 20:50";
+        LocalDateTime date15 = LocalDateTime.parse(sdate15, formatter);
+
+        String sdate16 = "31-12-2020 23:52";
+        LocalDateTime date16 = LocalDateTime.parse(sdate16, formatter);
+
+        String sdate17 = "31-12-2020 18:54";
+        LocalDateTime date17 = LocalDateTime.parse(sdate17, formatter);
+
+        String sdate18 = "31-12-2020 23:54";
+        LocalDateTime date18 = LocalDateTime.parse(sdate18, formatter);
+
+        String sdate19 = "31-12-2020 18:56";
+        LocalDateTime date19 = LocalDateTime.parse(sdate19, formatter);
+
+        String sdate20 = "31-12-2020 23:59";
+        LocalDateTime date20 = LocalDateTime.parse(sdate20, formatter);
+
 
         UserSession verifyLogin = app.getAuthFacade().doLogin("TM00001@lei.pt", "495");
 
@@ -223,4 +224,3 @@ public class US106IntegrationTest {
 
     }
 }
-*/
