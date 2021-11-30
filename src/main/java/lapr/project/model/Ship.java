@@ -439,20 +439,20 @@ public class Ship {
         return this.travelledDistance;
     }
 
-    public String writeCargoByYear(int year){
+    public String writeCargoByYear(int year) {
         int countCargo = 0;
         int countContainer = 0;
         StringBuilder sb = new StringBuilder();
-        for(CargoManifest c : cargoManifestAVL.inOrder()){
-            if(c.getDate().getYear()  == year){
-                sb.append(c);
+        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
+            if (cargoManifest.getDate().getYear() == year) {
+                sb.append(cargoManifest);
                 countCargo = countCargo + 1;
-                countContainer = countContainer + c.countContainers();
+                countContainer = countContainer + cargoManifest.countContainers();
                 sb.append("\n");
             }
         }
-        sb.append("\nAverage Containers by Cargo Manifest:" );
-        sb.append((double) countContainer/countCargo);
+        sb.append("\nAverage Containers by Cargo Manifest:");
+        sb.append((double) countContainer / countCargo);
 
         return sb.toString();
     }
