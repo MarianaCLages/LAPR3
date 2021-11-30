@@ -728,10 +728,12 @@ public class ShipStore implements Persistable {
         String sqlCommand;
 
         sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
-        try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
+        try (PreparedStatement getShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet addressesResultSet = getShipPreparedStatement.executeQuery()) {
 
                 if (addressesResultSet.next()) {
+
+                    System.out.println(addressesResultSet.getInt(1));
 
                     sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCapacity() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
 
@@ -739,11 +741,8 @@ public class ShipStore implements Persistable {
                         saveContainerPreparedStatement.executeUpdate();
                         return true;
                     }
-                } else {
 
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                    }
+                } else {
 
                     sqlCommand = "select MAX(VEHICLEID) as vehicleid from vehicle";
 
