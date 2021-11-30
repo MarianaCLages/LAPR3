@@ -11,8 +11,8 @@ public class CargoManifestTest {
 
     FacilityLocation f1 = new FacilityLocation(11,11);
     Port p1 = new Port("a","a","1","a",f1);
-    CargoManifest cargo1 = new CargoManifest("11",p1);
-    CargoManifest cargo2 = new CargoManifest("11",p1);
+    CargoManifest cargo1 = new CargoManifest("11",p1,null);
+    CargoManifest cargo2 = new CargoManifest("11",p1,null);
 
     @Test
     void getIdentificationTest(){

@@ -439,6 +439,23 @@ public class Ship {
         return this.travelledDistance;
     }
 
+    public String writeCargoByYear(int year){
+        int countCargo = 0;
+        int countContainer = 0;
+        StringBuilder sb = new StringBuilder();
+        for(CargoManifest c : cargoManifestAVL.inOrder()){
+            if(c.getDate().getYear()  == year){
+                sb.append(c);
+                countCargo = countCargo + 1;
+                countContainer = countContainer + c.countContainers();
+                sb.append("\n");
+            }
+        }
+        sb.append("\nAverage Containers by Cargo Manifest:" );
+        sb.append((double) countContainer/countCargo);
+
+        return sb.toString();
+    }
 
     /**
      * Writes all the positional messages in a period of time.

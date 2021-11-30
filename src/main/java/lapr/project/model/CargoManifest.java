@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.shared.tree.AVL;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class CargoManifest implements Comparable<CargoManifest> {
@@ -10,17 +11,20 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private AVL<Container> offLoaded;
     private AVL<Container> loaded;
     private Port port;
+    private Date date;
 
-    public CargoManifest(String identification, Port port) {
+    public CargoManifest(String identification, Port port,Date date) {
 
         this.identification = identification;
         this.port = port;
         offLoaded = new AVL<>();
         loaded = new AVL<>();
+        this.date = date;
 
     }
 
     //Getters
+    public Date getDate(){return date;}
 
     public String getIdentification() {
         return identification;
@@ -39,6 +43,8 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     //Setters
+    public void setDate(Date date){this.date = date;}
+
     public void setIdentification(String identification) {
         this.identification = identification;
     }
@@ -47,6 +53,20 @@ public class CargoManifest implements Comparable<CargoManifest> {
         this.port = port;
     }
 
+    public int countContainers(){
+
+        int count = 0;
+
+        for (Container container : offLoaded.inOrder()){
+            count = count + 1;
+        }
+
+        for (Container container : loaded.inOrder() ){
+            count = count + 1;
+        }
+
+        return count;
+    }
 
     public boolean offLoadSign() {
 
@@ -74,8 +94,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
     @Override
     public String toString() {
-        return "Identification:" + identification +
-                "\nPort=" + port + "}";
+        return "CargoManifest{" +
+                "identification='" + identification + '\'' +
+                ", port=" + port +
+                ", date=" + date +
+                '}';
     }
 
     @Override

@@ -52,8 +52,8 @@ public class ShipTest {
     Port port = new Port("Europa","Portugal","11","name",facilityLocation);
     Port port2 = new Port("Asia","China","22","name",facilityLocation2);
     //CargoManifest
-    CargoManifest cargoManifest = new CargoManifest("22",port);
-    CargoManifest cargoManifest2 = new CargoManifest("33",port2);
+    CargoManifest cargoManifest = new CargoManifest("22",port,null);
+    CargoManifest cargoManifest2 = new CargoManifest("33",port2, null);
 
 
     @Test
