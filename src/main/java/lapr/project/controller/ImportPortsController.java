@@ -34,8 +34,6 @@ public class ImportPortsController {
 
         returnValue = PortImporter.importPorts(new File(fileName));
 
-        company.getShipStore().calculateTravelledDistanceOfAllShips();
-
         return returnValue;
 
     }

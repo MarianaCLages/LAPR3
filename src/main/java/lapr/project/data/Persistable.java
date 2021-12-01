@@ -22,5 +22,15 @@ public interface Persistable {
      */
     boolean delete(DatabaseConnection databaseConnection, Object object);
 
-    //TODO: não faltará aqui uma operação para obter um objeto da base de dados?
+
+    /**
+     * Gets a object from the database.
+     *
+     * @param databaseConnection
+     * @param object
+     * @return Operation success.
+     */
+    Object getElement(DatabaseConnection databaseConnection, Object object);
+
+
 }

@@ -1,25 +1,19 @@
 package lapr.project.model.stores;
 
-import lapr.project.controller.App;
-import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Persistable;
 import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 import lapr.project.shared.tree.AVL;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class ShipStore implements Persistable {
+
+public class ShipStore {
 
     public AVL<ShipByMmsi> shipByMmsiAVL;
     public AVL<ShipByIMO> shipByIMOAVL;
@@ -703,7 +697,7 @@ public class ShipStore implements Persistable {
         }
     }
 
-    public boolean saveShipsToDataBase() {
+    /*public boolean saveShipsToDataBase() {
 
         for (Ship s : transformAVLintoListMMSI()) {
 
@@ -713,166 +707,6 @@ public class ShipStore implements Persistable {
 
         return true;
 
-    }
+    }*/
 
-
-    @Override
-    public boolean save(DatabaseConnection databaseConnection, Object object) {
-
-        Connection connection = databaseConnection.getConnection();
-        Ship ship = (Ship) object;
-        ResultSet resultset;
-
-        updateVesselTypes(connection, ship);
-
-        String sqlCommand;
-
-        sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
-        try (PreparedStatement getShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet addressesResultSet = getShipPreparedStatement.executeQuery()) {
-
-                if (addressesResultSet.next()) {
-
-                    System.out.println(addressesResultSet.getInt(1));
-
-                    sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCapacity() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
-
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-
-                } else {
-
-                    sqlCommand = "select MAX(VEHICLEID) as vehicleid from vehicle";
-
-                    PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand);
-                    resultset = saveContainerPreparedStatement.executeQuery();
-
-                    resultset.next();
-
-                    int idTransportation = resultset.getInt(1) + 1;
-
-                    sqlCommand = "insert into vehicle (vehicleid) values (" + idTransportation + ")";
-                    System.out.println(sqlCommand);
-                    try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement1.executeUpdate();
-                    }
-                    sqlCommand = "INSERT INTO SHIP(MMSI, VEHICLEID, VESSELTYPE, IMO, CALLSIGN, NAME, LENGTH, WIDTH, CAPACITY, DRAFT) values (" + ship.getMmsi() + "," + idTransportation + "," + ship.getVesselType() + ",'" + ship.getImo() + "','" + ship.getCallSign() + "','" + ship.getName() + "'," + ship.getLength() + ',' + ship.getWidth() + ',' + ship.getCapacity() + ',' + ship.getDraft() + ")";
-                    System.out.println(sqlCommand);
-                    try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement1.executeUpdate();
-                    }
-                    return true;
-                }
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-            databaseConnection.registerError(ex);
-            return false;
-        }
-
-    }
-
-    private boolean updateVesselTypes(Connection connection, Ship ship) {
-
-        String sqlCommand = "select VESSELTYPEID from VESSELTYPE vt where vt.VESSELTYPEID = '" + ship.getVesselType() + "'";
-
-        try (PreparedStatement getVesselTypePreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet vesselTypesResultSet = getVesselTypePreparedStatement.executeQuery()) {
-
-                if (vesselTypesResultSet.next()) {
-
-                    sqlCommand = "UPDATE VESSELTYPE SET VESSELTYPE = " + ship.getVesselType();
-
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-
-                } else {
-
-                    sqlCommand = "INSERT INTO VESSELTYPE(VESSELTYPEID, VESSELTYPE) values ('" + ship.getVesselType() + "','" + ship.getVesselType() + "')";
-                    System.out.println(sqlCommand);
-
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-
-
-                }
-
-            }
-
-        } catch (SQLException throwables) {
-            return false;
-        }
-    }
-
-    @Override
-    public boolean delete(DatabaseConnection databaseConnection, Object object) {
-
-        Connection connection = databaseConnection.getConnection();
-        Ship ship = (Ship) object;
-
-        try {
-            String sqlCommand;
-            sqlCommand = "delete from ship where mmsi = " + ship.getMmsi();
-            try (PreparedStatement deleteShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                deleteShipPreparedStatement.executeUpdate();
-                return true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-            databaseConnection.registerError(ex);
-            return false;
-        }
-    }
-
-    public boolean saveShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
-
-        Connection connection = databaseConnection.getConnection();
-        Position shipPosition = (Position) object;
-
-        String sqlCommand = "select * from shipPosition where shipmmsi = " + mmsi + " AND baseDataTime = '" + shipPosition.getDate() + "'";
-        try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
-
-                if (!addressesResultSet.next()) {
-                    sqlCommand = "insert into shipposition(shipmmsi,basedatatime, latitude, longitude, sog,cog,heading) values (" + mmsi + ",'" + shipPosition.getDate() + "' ," + shipPosition.getLatitude() + " ," + shipPosition.getLongitude() + " ," + shipPosition.getSog() + "," + shipPosition.getCog() + "," + shipPosition.getHeading();
-                } else {
-                    return false;
-                }
-
-                try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                    saveContainerPreparedStatement.executeUpdate();
-                    return true;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-            databaseConnection.registerError(ex);
-            return false;
-        }
-    }
-
-    public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
-        Connection connection = databaseConnection.getConnection();
-        Position shipPosition = (Position) object;
-
-        try {
-            String sqlCommand;
-            sqlCommand = "delete from shipposition where shipmmsi = " + mmsi + "AND basedatatime = " + shipPosition.getDate();
-            try (PreparedStatement deleteContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                deleteContainerPreparedStatement.executeUpdate();
-                return true;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-            databaseConnection.registerError(ex);
-            return false;
-        }
-    }
 }

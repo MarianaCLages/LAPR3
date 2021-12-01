@@ -33,15 +33,18 @@ public class App {
             System.out.println(exception.getMessage());
         }
 
-        Connection connection = databaseConnection.getConnection();
-        System.out.println("Connected to the database!");
-
-
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
 
         bootstrap();
+
+       // company.getShipStore().delete(databaseConnection,new Ship(999999999,"baseShip","IMO1112222","DDbbCDD","10",10,10,10,"10",'A')); Funciona
+
+       // System.out.println(company.getShipStore().getElement(databaseConnection,366934280)); Funciona
+
+      //  System.out.println(company.getShipStore().getShipPosition(databaseConnection,"2020-12-31 18:34:00",211331640)); Funfa tbm
+
     }
 
 

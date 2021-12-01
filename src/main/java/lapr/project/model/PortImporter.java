@@ -16,7 +16,12 @@ public class PortImporter {
         sc.nextLine();
         do {
             String[] line = sc.nextLine().split(",");
-            portStore.add(new Port(line[0], line[1], line[2], line[3], new FacilityLocation(Double.valueOf(line[5]), Double.valueOf(line[4]))));
+
+            Port port = new Port(line[0], line[1], line[2], line[3], new FacilityLocation(Double.valueOf(line[5]), Double.valueOf(line[4])));
+            portStore.add(port);
+
+          //  App.getInstance().getCompany().getPortStoreData().save(App.getInstance().getDatabaseConnection(),port);
+
         } while (sc.hasNextLine());
         sc.close();
 

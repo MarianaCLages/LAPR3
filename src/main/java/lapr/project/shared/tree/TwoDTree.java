@@ -4,9 +4,7 @@ import lapr.project.model.Port;
 import lapr.project.model.Position;
 
 import java.awt.geom.Point2D;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class TwoDTree {
 
@@ -185,7 +183,6 @@ public class TwoDTree {
         private Node left;
         private Node right;
 
-
         public Node(lapr.project.model.Port port, Node leftChild, Node rightChild) {
             this.port = port;
             left = leftChild;
@@ -236,6 +233,7 @@ public class TwoDTree {
         public double getY() {
             return port.getLocation().getLatitude();
         }
+
 
     }
 

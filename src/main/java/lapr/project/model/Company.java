@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.data.PortStoreData;
+import lapr.project.data.ShipStoreData;
 import lapr.project.model.stores.CargoManifestStore;
 import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
@@ -16,6 +18,8 @@ public class Company {
     private final PortStore portStore;
     private final ContainerStore containerStore;
     private final CargoManifestStore cargoManifestStore;
+    private final ShipStoreData shipStoreData;
+    private final PortStoreData portStoreData;
 
     /**
      * Constructor.
@@ -32,6 +36,8 @@ public class Company {
         this.portStore = new PortStore();
         this.containerStore = new ContainerStore();
         this.cargoManifestStore = new CargoManifestStore();
+        this.shipStoreData = new ShipStoreData();
+        this.portStoreData = new PortStoreData();
     }
 
     /**
@@ -67,4 +73,13 @@ public class Company {
     public OrgRoleStore getOrgRoleStore() {
         return this.orgRoleStore;
     }
+
+    public ShipStoreData getShipStoreData() {
+        return shipStoreData;
+    }
+
+    public PortStoreData getPortStoreData() {
+        return portStoreData;
+    }
+
 }
