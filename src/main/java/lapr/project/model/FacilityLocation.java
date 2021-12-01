@@ -3,7 +3,7 @@ package lapr.project.model;
 import static lapr.project.shared.Constants.MAX_LATITUDE;
 import static lapr.project.shared.Constants.MAX_LONGITUDE;
 
-public class FacilityLocation implements Comparable<FacilityLocation> {
+public class FacilityLocation {
     private double latitude;
     private double longitude;
 
@@ -109,12 +109,6 @@ public class FacilityLocation implements Comparable<FacilityLocation> {
         temp = Double.doubleToLongBits(getLongitude());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
-    }
-
-
-    @Override
-    public int compareTo(FacilityLocation o) {
-        return 0;
     }
 
     @Override

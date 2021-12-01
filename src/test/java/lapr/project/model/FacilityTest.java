@@ -137,4 +137,42 @@ class FacilityTest {
         facility.setLocation(new FacilityLocation(53.4666667, -3.033383333));
         assertEquals(expected, facility.getLocation());
     }
+
+    @Test
+    void CompareToEquals(){
+        Facility facility1 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Facility facility2 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        assertEquals(0, facility1.compareTo(facility2));
+
+    }
+
+
+    @Test
+    void CompareToGreaterLongitude(){
+        Facility facility1 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(54, -3.033333333));
+        Facility facility2 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        assertEquals(1, facility1.compareTo(facility2));
+
+    }
+
+    @Test
+    void CompareToGreaterLatitude(){
+        Facility facility1 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -2.033333333));
+        Facility facility2 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        assertEquals(1, facility1.compareTo(facility2));
+
+    }
+
+    @Test
+    void CompareToLowerLatitude(){
+        Facility facility1 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -2.033333333));
+        Facility facility2 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        assertEquals(-1, facility2.compareTo(facility1));
+    }
+    @Test
+    void CompareToLowerLongitude(){
+        Facility facility1 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(52.46666667, -3.033333333));
+        Facility facility2 = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        assertEquals(-1, facility1.compareTo(facility2));
+    }
 }
