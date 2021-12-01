@@ -81,6 +81,8 @@ public class ShipStore implements Persistable {
         ShipByMmsi shipToInsert = new ShipByMmsi(ship.getMmsi(), ship.getName(), ship.getImo(), ship.getCallSign(), ship.getVesselType(), ship.getLength(), ship.getWidth(), ship.getDraft(), ship.getCargo(), ship.getTransceiverClass());
         shipToInsert.setPosDate(ship.getPosDate());
         shipToInsert.setCargoManifestAVL(ship.getCargoManifestAVL());
+        shipToInsert.setCapacity(ship.getCapacity());
+        shipToInsert.setCurrentCapacity(ship.getCurrentCapacity());
         shipByMmsiAVL.insert(shipToInsert);
     }
 

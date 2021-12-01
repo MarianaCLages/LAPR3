@@ -5,6 +5,7 @@ import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.tree.AVL;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -23,6 +24,7 @@ public class Ship {
     private double length;
     private double width;
     private double capacity;
+    private double currentCapacity;
     private double draft;
     private double travelledDistance;
     private Position biggestPosition;
@@ -64,6 +66,7 @@ public class Ship {
         this.biggestPosition = null;
         this.smallPosition = null;
         this.posDateSize = 0;
+        this.currentCapacity = 0;
 
         this.cargoManifestAVL = new AVL<>();
     }
@@ -104,6 +107,7 @@ public class Ship {
         this.biggestPosition = null;
         this.smallPosition = null;
         this.posDateSize = 0;
+        this.currentCapacity = 0;
 
         this.cargoManifestAVL = new AVL<>();
     }
@@ -305,7 +309,7 @@ public class Ship {
      *
      * @param capacity the ship's capacity
      */
-    public void setCapacity(long capacity) {
+    public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
 
@@ -365,6 +369,9 @@ public class Ship {
         this.genPowerOutput = genPowerOutput;
     }
 
+    public double getCurrentCapacity(){return currentCapacity;}
+
+    public void setCurrentCapacity(double currentCapacity){this.currentCapacity = currentCapacity;}
     /**
      * Checks the ship's MMSI
      *
@@ -456,6 +463,8 @@ public class Ship {
 
         return sb.toString();
     }
+
+
 
     /**
      * Writes all the positional messages in a period of time.
@@ -669,7 +678,7 @@ public class Ship {
 
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
 
-            if (cm.getPort().equals(p)) {
+            if (cm.getPort().equals(p) && addIfContainer(c)) {
                 cm.getOffLoaded().insert(c);
                 return true;
             }
@@ -683,12 +692,40 @@ public class Ship {
 
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
 
-            if (cm.getPort().equals(p)) {
+            if ( cm.getPort().equals(p) && addIfContainer(c)) {
                 cm.getLoaded().insert(c);
                 return true;
             }
 
         }
         return false;
+    }
+
+    public String getOccupancyRate(){
+
+        StringBuilder sb = new StringBuilder();
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+        double occupancyRate = currentCapacity / capacity;
+        occupancyRate = occupancyRate * 100;
+
+        sb.append("Occupancy Rate: ");
+        sb.append(numberFormat.format(occupancyRate));
+        sb.append("%");
+        return  sb.toString();
+    }
+
+
+    //Before adding a cargo is added, we have to check if there is enough capacity for the container's cargo
+    public boolean addIfContainer(Container c){
+
+
+        if( this.currentCapacity + 1 > this.capacity){
+            return false;
+        }
+        else{
+            setCurrentCapacity(this.currentCapacity + 1);
+            return true;
+        }
     }
 }
