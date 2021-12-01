@@ -31,7 +31,10 @@ public class ImportShipsController {
         returnValue = ShipImporter.importsShips(new File(fileName));
 
         company.getShipStore().calculateTravelledDistanceOfAllShips();
-       // company.getShipStore().saveShipsToDataBase();
+
+       //company.getShipStore().saveShipsToDataBase();
+
+       //company.getShipStore().saveShipsToDataBase();
 
         return returnValue;
     }

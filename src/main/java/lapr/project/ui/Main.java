@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.controller.App;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -38,6 +37,3 @@ class Main {
         }
     }
 }
-
-
-

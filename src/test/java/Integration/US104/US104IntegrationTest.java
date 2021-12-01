@@ -25,7 +25,7 @@ class US104IntegrationTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     //If necessary to print the output in the console use this boolean as true
-    boolean printInTheConsole = true;
+    boolean printInTheConsole = false;
 
     //Creation of the dates for the Ship positions
 

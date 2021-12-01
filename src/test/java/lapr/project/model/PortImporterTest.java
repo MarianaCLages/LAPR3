@@ -1,6 +1,5 @@
 package lapr.project.model;
 
-import lapr.project.controller.App;
 import lapr.project.model.stores.PortStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,20 +37,20 @@ class PortImporterTest {
     @Test
     void importPortsSmallest() throws FileNotFoundException {
         Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667));
-        PortStore store = App.getInstance().getCompany().getPortStore();
-        PortImporter.importPorts(tempFile.toFile());
+        PortStore store = new PortStore();
+        PortImporter.importPorts(tempFile.toFile(), store);
         Assertions.assertEquals(store.getPortList().smallestElement(), port);
     }
 
 
     @Test
     void importPortsAllString() throws FileNotFoundException {
-        String string = " --Europa-- \n" +
-                " --United States--  --Asia-- \n" +
-                " --United States--  --United Kingdom--  --null--  --France-- \n" +
-                " --null--  --null--  --null--  --null--  --null--  --null-- \n";
-        PortStore store = App.getInstance().getCompany().getPortStore();
-        PortImporter.importPorts(tempFile.toFile());
+        String string = " --Liverpool-- \n" +
+                " --New Jersey--  --Dunkirk-- \n" +
+                " --Los Angeles--  --null--  --null--  --null-- \n" +
+                " --null--  --null-- \n";
+        PortStore store = new PortStore();
+        PortImporter.importPorts(tempFile.toFile(), store);
         Assertions.assertEquals(string, store.getPortList().toString());
     }
 

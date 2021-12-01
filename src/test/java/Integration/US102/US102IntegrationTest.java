@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class US102IntegrationTest {
 
@@ -25,7 +26,7 @@ class US102IntegrationTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     //If necessary to print the output in the console use this boolean as true
-    boolean printInTheConsole = true;
+    boolean printInTheConsole = false;
 
     //Creation of the dates for the Ship positions
 
@@ -209,7 +210,6 @@ class US102IntegrationTest {
         }
 
         //Getting a Ship Summary by IMO code
-
 
 
         //Actual

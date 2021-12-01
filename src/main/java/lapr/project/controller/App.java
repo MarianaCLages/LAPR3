@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 
 public class App {
@@ -140,17 +141,17 @@ public class App {
         company.getPortStore().add(port2);
 
         //CargoManifest
-        CargoManifest cargoManifest1 = new CargoManifest("11", port1,null);
+        CargoManifest cargoManifest1 = new CargoManifest("11", port1,new Date(2020,11,21));
         company.getCargoManifestStore().add(cargoManifest1);
 
-        CargoManifest cargoManifest2 = new CargoManifest("69", port2,null);
+        CargoManifest cargoManifest2 = new CargoManifest("69", port2,new Date(2020,11,21));
         company.getCargoManifestStore().add(cargoManifest2);
 
         //Ship
-        Ship ship = new Ship(222222222,"aa","IMO1111111","AA","70",10,10,10,"AA",'a');
+        Ship ship = new Ship(222222222,"aa","IMO1111111",11,11,"AA","70",30,30,30,30);
         ship.getCargoManifestAVL().insert(cargoManifest1);
         ship.getCargoManifestAVL().insert(cargoManifest2);
-        company.getShipStore().addShip(ship);
+
 
        // company.getShipStore().save(databaseConnection,ship);
 
@@ -164,6 +165,7 @@ public class App {
 
         ship.addLoadedContainer(container1, port1);
         ship.addOffLoadedContainer(container1, port1);
+        company.getShipStore().addShip(ship);
 
         return true;
     }

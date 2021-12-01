@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-public class Facility {
+public class Facility implements Comparable<Facility> {
     private String identification;
     private String name;
     private String continent;
@@ -132,20 +132,6 @@ public class Facility {
         return getIdentification().equals(facility.getIdentification()) && getName().equals(facility.getName()) && getContinent().equals(facility.getContinent()) && getCountry().equals(facility.getCountry()) && getLocation().equals(facility.getLocation());
     }
 
-    /**
-     * Generates a hash code for the facility values.
-     *
-     * @return the hash code for the facility values
-     */
-    @Override
-    public int hashCode() {
-        int result = getIdentification() != null ? getIdentification().hashCode() : 0;
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getContinent() != null ? getContinent().hashCode() : 0);
-        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
-        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
-        return result;
-    }
 
     @Override
     public String toString() {
@@ -156,5 +142,15 @@ public class Facility {
                 ", country='" + country + '\'' +
                 ", location=" + location +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Facility o) {
+
+        if (this.location.getLongitude() > o.location.getLongitude()) return 1;
+        if (this.location.getLongitude() < o.location.getLongitude()) return -1;
+        if (this.location.getLatitude() > o.location.getLatitude()) return 1;
+        if (this.location.getLatitude() < o.location.getLatitude()) return -1;
+        return 0;
     }
 }
