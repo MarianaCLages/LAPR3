@@ -19,17 +19,18 @@ public class OffLoadedShipsController {
         portStore = company.getPortStore();
     }
 
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
     public boolean offLoadedShips(int mmsi) {
+        Ship ship = shipStore.getShipByMmsi(mmsi);
 
-            Ship ship = shipStore.getShipByMmsi(mmsi);
+        ship.setBiggestPosition();
+        Position position = ship.getBiggestPosition();
 
-            ship.setBiggestPosition();
-            Position position = ship.getBiggestPosition();
+        Port port = portStore.getPortList().nearestNeighborPort(position);
 
-            Port port = portStore.getPortList().nearestNeighborPort(position);
-
-            return ship.giveCargoOffLoadedSign(port);
-
-
+        return ship.giveCargoOffLoadedSign(port);
     }
 }

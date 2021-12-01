@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FacilityTest {
 
+    Facility facility = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+
     @Test
     void facilityTest() {
         try {

@@ -1,14 +1,13 @@
 package lapr.project.ui;
 
-import lapr.project.controller.AverageCargoByYearController;
+import lapr.project.controller.OccupancyRateController;
 
-public class AverageCargoByYearUI implements Runnable {
+public class OccupancyRateUI implements Runnable {
 
     @Override
     public void run() {
-        AverageCargoByYearController ctrl = new AverageCargoByYearController();
-        int mmsi;
-        int year;
+        OccupancyRateController occupancyRateController = new OccupancyRateController();
+        int mmsi = 0;
 
         do {
             try {
@@ -21,18 +20,8 @@ public class AverageCargoByYearUI implements Runnable {
 
         System.out.println();
 
-        do {
-            try {
-                year = Utils.readIntegerFromConsole("Please enter the year:");
-            } catch (Exception ex) {
-                System.out.println("Please enter a valid year!");
-                year = 0;
-            }
-
-        } while (year == 0);
-
         try {
-            String str = ctrl.averageCargoByYear(mmsi, year);
+            String str = occupancyRateController.OccupancyRateController(mmsi);
 
             if (str == null) {
                 System.out.println("Operation Failed!");
