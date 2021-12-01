@@ -27,7 +27,7 @@ class OffLoadedShipsControllerTest {
 
     CargoManifest cargoManifest = new CargoManifest("11", port, null);
 
-    @Test
+/*    @Test
     void offLoadedShips() {
         //Arrange
         ship.insertPosition(position);
@@ -41,5 +41,5 @@ class OffLoadedShipsControllerTest {
         boolean actual = ctrl.offLoadedShips(ship.getMmsi());
         //Assert
         assertEquals(expected, actual);
-    }
+    }*/
 }
