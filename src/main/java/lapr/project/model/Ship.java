@@ -425,7 +425,7 @@ public class Ship {
         return this.travelledDistance;
     }
 
-<<<<<<< HEAD
+
     public String writeCargoByYear(int year) {
         int countCargo = 0;
         int countContainer = 0;
@@ -443,11 +443,6 @@ public class Ship {
 
         return sb.toString();
     }
-
-
-
-=======
->>>>>>> 828377fae9c25514fdbcbd877a1ed6ac3b3fb68b
     /**
      * Writes all the positional messages in a period of time.
      *
@@ -659,14 +654,15 @@ public class Ship {
     public boolean addOffLoadedContainer(Container c, Port p) {
 
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
-<<<<<<< HEAD
+
 
             if (cm.getPort().equals(p) && addIfContainer(c)) {
-=======
-            if (cm.getPort().equals(p)) {
->>>>>>> 828377fae9c25514fdbcbd877a1ed6ac3b3fb68b
-                cm.getOffLoaded().insert(c);
-                return true;
+
+                if (cm.getPort().equals(p)) {
+
+                    cm.getOffLoaded().insert(c);
+                    return true;
+                }
             }
         }
         return false;
@@ -675,14 +671,14 @@ public class Ship {
     public boolean addLoadedContainer(Container c, Port p) {
 
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
-<<<<<<< HEAD
 
-            if ( cm.getPort().equals(p) && addIfContainer(c)) {
-=======
-            if (cm.getPort().equals(p)) {
->>>>>>> 828377fae9c25514fdbcbd877a1ed6ac3b3fb68b
-                cm.getLoaded().insert(c);
-                return true;
+            if (cm.getPort().equals(p) && addIfContainer(c)) {
+
+                if (cm.getPort().equals(p)) {
+
+                    cm.getLoaded().insert(c);
+                    return true;
+                }
             }
         }
         return false;
@@ -698,7 +694,7 @@ public class Ship {
         return false;
     }
 
-<<<<<<< HEAD
+
     public String getOccupancyRate(){
 
         StringBuilder sb = new StringBuilder();
@@ -718,14 +714,14 @@ public class Ship {
     public boolean addIfContainer(Container c){
 
 
-        if( this.currentCapacity + 1 > this.capacity){
-            return false;
-        }
-        else{
-            setCurrentCapacity(this.currentCapacity + 1);
-            return true;
-        }
-=======
+                if (this.currentCapacity + 1 > this.capacity) {
+                    return false;
+                } else {
+                    setCurrentCapacity(this.currentCapacity + 1);
+                    return true;
+                }
+            }
+
     public boolean giveCargoLoadedSign(Port p) {
 
         for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
@@ -737,22 +733,5 @@ public class Ship {
         return false;
     }
 
-    public String writeCargoByYear(int year) {
-        int countCargo = 0;
-        int countContainer = 0;
-        StringBuilder sb = new StringBuilder();
-        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
-            if (cargoManifest.getDate().getYear() == year) {
-                sb.append(cargoManifest);
-                countCargo = countCargo + 1;
-                countContainer = countContainer + cargoManifest.countContainers();
-                sb.append("\n");
-            }
-        }
-        sb.append("\nAverage Containers by Cargo Manifest: ");
-        sb.append((double) countContainer / countCargo);
 
-        return sb.toString();
->>>>>>> 828377fae9c25514fdbcbd877a1ed6ac3b3fb68b
-    }
 }
