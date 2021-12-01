@@ -15,6 +15,10 @@ public class LoadedShipsController {
         this.portStore = company.getPortStore();
     }
 
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
     public boolean loadedShips(int mmsi) {
         Ship ship = shipStore.getShipByMmsi(mmsi);
 

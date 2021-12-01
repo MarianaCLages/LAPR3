@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FacilityTest {
 
+    Facility facility = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+
     @Test
     void facilityTest() {
         try {
@@ -136,5 +138,15 @@ class FacilityTest {
         Facility facility = new Facility("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
         facility.setLocation(new FacilityLocation(53.4666667, -3.033383333));
         assertEquals(expected, facility.getLocation());
+    }
+
+    @Test
+    void hashcodeTest() {
+        //Arrange
+        int expected = -1318043393;
+        //Act
+        int actual = facility.hashCode();
+        //Assert
+        assertEquals(expected, actual);
     }
 }

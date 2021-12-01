@@ -6,7 +6,7 @@ public class AverageCargoByYearUI implements Runnable {
 
     @Override
     public void run() {
-        AverageCargoByYearController averageCargoByYearController = new AverageCargoByYearController();
+        AverageCargoByYearController ctrl = new AverageCargoByYearController();
         int mmsi;
         int year;
 
@@ -32,7 +32,7 @@ public class AverageCargoByYearUI implements Runnable {
         } while (year == 0);
 
         try {
-            String str = averageCargoByYearController.AverageCargoByYearController(mmsi, year);
+            String str = ctrl.averageCargoByYear(mmsi, year);
 
             if (str == null) {
                 System.out.println("Operation Failed!");

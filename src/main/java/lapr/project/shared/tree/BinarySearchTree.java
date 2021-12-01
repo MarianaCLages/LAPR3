@@ -12,20 +12,23 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
 
     //----------- end of nested Node class -----------
 
-    /* Constructs an empty binary search tree. */
+    /**
+     * Constructs an empty binary search tree.
+     */
     public BinarySearchTree() {
         root = null;
     }
 
-    /*
+    /**
      * @return root Node of the tree (or null if tree is empty)
      */
     public Node<E> root() {
         return root;
     }
 
-    /*
+    /**
      * Verifies if the tree is empty
+     *
      * @return true if the tree is empty, false otherwise
      */
     public boolean isEmpty() {
@@ -54,7 +57,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         return find(node.getRight(), element);
     }
 
-    /*
+    /**
      * Inserts an element in the tree.
      */
     public void insert(E element) {
@@ -112,7 +115,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         return node;
     }
 
-    /*
+    /**
      * Returns the number of nodes in the tree.
      * @return number of nodes in the tree
      */
@@ -128,7 +131,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         }
     }
 
-    /*
+    /**
      * Returns the height of the tree
      * @return height
      */
@@ -136,7 +139,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         return height(root);
     }
 
-    /*
+    /**
      * Returns the height of the subtree rooted at Node node.
      * @param node A valid Node within the tree
      * @return height
@@ -166,7 +169,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements BSTInterface<E
         return smallestElement(node.getLeft());
     }
 
-    /*
+    /**
      * Returns an iterable collection of elements of the tree, reported in in-order.
      * @return iterable collection of the tree's elements reported in in-order
      */

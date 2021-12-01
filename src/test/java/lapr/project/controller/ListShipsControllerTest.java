@@ -21,8 +21,6 @@ class ListShipsControllerTest {
     void getShipList() {
         //Arrange
         Ship ship1 = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
-        Ship ship2 = new Ship(222222222, "name", "IMO1121111", 1, 1, "B", "A", 1, 1, 1, 1);
-
 
         ctrl.getShipStore().addShip(ship1);
 
