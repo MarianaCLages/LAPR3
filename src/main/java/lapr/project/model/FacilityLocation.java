@@ -3,7 +3,7 @@ package lapr.project.model;
 import static lapr.project.shared.Constants.MAX_LATITUDE;
 import static lapr.project.shared.Constants.MAX_LONGITUDE;
 
-public class FacilityLocation {
+public class FacilityLocation implements Comparable<FacilityLocation> {
     private double latitude;
     private double longitude;
 
@@ -114,5 +114,11 @@ public class FacilityLocation {
     @Override
     public String toString() {
         return "latitude = " + latitude + ", longitude = " + longitude;
+    }
+
+
+    @Override
+    public int compareTo(FacilityLocation o) {
+        return 0;
     }
 }
