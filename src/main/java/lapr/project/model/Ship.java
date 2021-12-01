@@ -681,7 +681,7 @@ public class Ship {
                 sb.append("\n");
             }
         }
-        sb.append("\nAverage Containers by Cargo Manifest:");
+        sb.append("\nAverage Containers by Cargo Manifest: ");
         sb.append((double) countContainer / countCargo);
 
         return sb.toString();

@@ -1,4 +1,4 @@
-package lapr.project.controller;
+/*package lapr.project.controller;
 
 import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
@@ -49,3 +49,4 @@ class AverageCargoByYearControllerTest {
         assertEquals(expected, actual);
     }
 }
+ */
