@@ -32,7 +32,15 @@ public class Container implements Comparable<Container> {
         this.toOffLoad = toOffLoad;
     }
 
-    //Getters
+    public Container(String identification, int payload, int tare, int gross, String isoCode){
+        this.identification = identification;
+        this.payload = payload;
+        this.tare = tare;
+        this.gross = gross;
+        this.isoCode = isoCode;
+    }
+
+                     //Getters
     /**
      * Gets the container's identification.
      *
