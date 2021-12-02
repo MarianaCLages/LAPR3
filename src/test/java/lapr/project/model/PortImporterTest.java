@@ -45,9 +45,9 @@ class PortImporterTest {
 
     @Test
     void importPortsAllString() throws FileNotFoundException {
-        String string = " --Liverpool-- \n" +
-                " --New Jersey--  --Dunkirk-- \n" +
-                " --Los Angeles--  --null--  --null--  --null-- \n" +
+        String string = " --United Kingdom-- \n" +
+                " --United States--  --France-- \n" +
+                " --United States--  --null--  --null--  --null-- \n" +
                 " --null--  --null-- \n";
         PortStore store = new PortStore();
         PortImporter.importPorts(tempFile.toFile(), store);
