@@ -207,6 +207,11 @@ public class Container implements Comparable<Container> {
         return Objects.hash(identification, payload, tare, gross, isoCode, position);
     }
 
+    /**
+     * Compares two container objects.
+     * @param o the object
+     * @return the result of the comparation (0 or 1)
+     */
     @Override
     public int compareTo(Container o) {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
