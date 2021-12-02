@@ -170,8 +170,10 @@ public class App {
         company.getShipStore().addShip(ship);
 
 
+        // Scripts
         // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
         // averageCargoByYearScript.numberOfContainers(databaseConnection);
+
         //OffLoadedContainers off = new OffLoadedContainers();
         //off.wtv(databaseConnection);
 
