@@ -19,7 +19,7 @@ public class OccupancyRateController {
     /**
      * Gets the occupancy rate of a given ship for a given cargo manifest.
      *
-     * @param mmsi the ship's mmsi
+     * @param mmsi the ship's MMSI
      * @return the occupancy rate of a given ship for a given cargo manifest
      */
     public String occupancyRate(int mmsi) {
