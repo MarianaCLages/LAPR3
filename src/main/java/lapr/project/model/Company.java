@@ -60,6 +60,7 @@ public class Company {
 
     /**
      * Gets the Port Store.
+     *
      * @return the Port Store
      */
     public PortStore getPortStore() {
@@ -68,6 +69,7 @@ public class Company {
 
     /**
      * Gets the Container Store.
+     *
      * @return the Container Store
      */
     public ContainerStore getContainerStore() {
@@ -76,6 +78,7 @@ public class Company {
 
     /**
      * Gets the CargoManifest Store.
+     *
      * @return the CargoManifest Store
      */
     public CargoManifestStore getCargoManifestStore() {
@@ -91,10 +94,20 @@ public class Company {
         return this.orgRoleStore;
     }
 
+    /**
+     * Gets the Ship Store Data.
+     *
+     * @return the Ship Store Data
+     */
     public ShipStoreData getShipStoreData() {
         return shipStoreData;
     }
 
+    /**
+     * Gets the Port Store Data.
+     *
+     * @return the Port Store Data
+     */
     public PortStoreData getPortStoreData() {
         return portStoreData;
     }

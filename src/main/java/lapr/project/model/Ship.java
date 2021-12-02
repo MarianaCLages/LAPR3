@@ -115,7 +115,6 @@ public class Ship {
     /**
      * Empty constructor.
      */
-
     public Ship() {
         this.posDate = new PositionTreeStore();
     }
@@ -141,30 +140,12 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's MMSI.
-     *
-     * @param mmsi the ship's MMSI
-     */
-    public void setMmsi(int mmsi) {
-        this.mmsi = mmsi;
-    }
-
-    /**
      * Gets the ship's name.
      *
      * @return the ship's name
      **/
     public String getName() {
         return name;
-    }
-
-    /**
-     * Sets the ship's name.
-     *
-     * @param name the ship's name
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -177,30 +158,12 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's IMO.
-     *
-     * @param imo the ship's IMO
-     */
-    public void setImo(String imo) {
-        this.imo = imo;
-    }
-
-    /**
      * Gets the ship's number of energy generators
      *
      * @return the ship's number of energy generators
      **/
     public int getNumGen() {
         return numGen;
-    }
-
-    /**
-     * Sets the ship's number of energy generators
-     *
-     * @param numGen the ship's number of energy generators
-     */
-    public void setNumGen(int numGen) {
-        this.numGen = numGen;
     }
 
     /**
@@ -231,15 +194,6 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's call sign.
-     *
-     * @param callSign the ship's call sign
-     */
-    public void setCallSign(String callSign) {
-        this.callSign = callSign;
-    }
-
-    /**
      * Gets the ship's vessel type.
      *
      * @return the ship's vessel type
@@ -249,32 +203,12 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's vessel type.
-     *
-     * @param vesselType the ship's vessel type
-     */
-    public void setVesselType(String vesselType) {
-        this.vesselType = vesselType;
-    }
-
-    //Setters
-
-    /**
      * Gets the ship's length.
      *
      * @return the ship's length
      **/
     public double getLength() {
         return length;
-    }
-
-    /**
-     * Sets the ship's length.
-     *
-     * @param length the ship's length
-     */
-    public void setLength(long length) {
-        this.length = length;
     }
 
     /**
@@ -287,15 +221,6 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's width.
-     *
-     * @param width the ship's width
-     */
-    public void setWidth(long width) {
-        this.width = width;
-    }
-
-    /**
      * Gets the ship's capacity.
      *
      * @return the ship's capacity
@@ -305,30 +230,12 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's capacity.
-     *
-     * @param capacity the ship's capacity
-     */
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
-
-    /**
      * Gets the position date.
      *
      * @return the position date
      **/
     public PositionTreeStore getPosDate() {
         return posDate;
-    }
-
-    public void setPosDate(PositionTreeStore posDate) {
-        this.posDate = posDate;
-    }
-
-
-    public AVL<CargoManifest> getCargoManifestAVL() {
-        return cargoManifestAVL;
     }
 
     /**
@@ -341,15 +248,6 @@ public class Ship {
     }
 
     /**
-     * Sets the ship's draft.
-     *
-     * @param draft the ship's draft
-     */
-    public void setDraft(long draft) {
-        this.draft = draft;
-    }
-
-    /**
      * Gets the generator's power output.
      *
      * @return the generator's power output
@@ -358,7 +256,151 @@ public class Ship {
         return genPowerOutput;
     }
 
-    //Checks
+    /**
+     * Gets the ship's current capacity.
+     *
+     * @return the ship's current capacity
+     */
+    public double getCurrentCapacity() {
+        return currentCapacity;
+    }
+
+    /**
+     * Gets the cargo manifest AVL.
+     *
+     * @return the cargo manifest AVL
+     */
+    public AVL<CargoManifest> getCargoManifestAVL() {
+        return cargoManifestAVL;
+    }
+
+    /**
+     * Gets the biggest position.
+     *
+     * @return the biggest position
+     */
+    public Position getBiggestPosition() {
+        return biggestPosition;
+    }
+
+    /**
+     * Gets the smallest position.
+     *
+     * @return the smallest position
+     */
+    public Position getSmallestPosition() {
+        return smallPosition;
+    }
+
+    /**
+     * Gets the position date size.
+     *
+     * @return the position date size
+     */
+    public double getPosDateSize() {
+        return posDateSize;
+    }
+
+    //Setters
+
+    /**
+     * Sets the ship's MMSI.
+     *
+     * @param mmsi the ship's MMSI
+     */
+    public void setMmsi(int mmsi) {
+        this.mmsi = mmsi;
+    }
+
+    /**
+     * Sets the ship's name.
+     *
+     * @param name the ship's name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the ship's IMO.
+     *
+     * @param imo the ship's IMO
+     */
+    public void setImo(String imo) {
+        this.imo = imo;
+    }
+
+    /**
+     * Sets the ship's number of energy generators
+     *
+     * @param numGen the ship's number of energy generators
+     */
+    public void setNumGen(int numGen) {
+        this.numGen = numGen;
+    }
+
+    /**
+     * Sets the ship's call sign.
+     *
+     * @param callSign the ship's call sign
+     */
+    public void setCallSign(String callSign) {
+        this.callSign = callSign;
+    }
+
+    /**
+     * Sets the ship's vessel type.
+     *
+     * @param vesselType the ship's vessel type
+     */
+    public void setVesselType(String vesselType) {
+        this.vesselType = vesselType;
+    }
+
+    /**
+     * Sets the ship's length.
+     *
+     * @param length the ship's length
+     */
+    public void setLength(long length) {
+        this.length = length;
+    }
+
+    /**
+     * Sets the ship's width.
+     *
+     * @param width the ship's width
+     */
+    public void setWidth(long width) {
+        this.width = width;
+    }
+
+    /**
+     * Sets the ship's capacity.
+     *
+     * @param capacity the ship's capacity
+     */
+    public void setCapacity(double capacity) {
+        this.capacity = capacity;
+    }
+
+    /**
+     * Sets the position date.
+     *
+     * @param posDate the position date
+     */
+    public void setPosDate(PositionTreeStore posDate) {
+        this.posDate = posDate;
+    }
+
+    /**
+     * Sets the ship's draft.
+     *
+     * @param draft the ship's draft
+     */
+    public void setDraft(long draft) {
+        this.draft = draft;
+    }
 
     /**
      * Sets the generator's power output.
@@ -369,11 +411,49 @@ public class Ship {
         this.genPowerOutput = genPowerOutput;
     }
 
-    public double getCurrentCapacity(){return currentCapacity;}
-
-    public void setCurrentCapacity(double currentCapacity){this.currentCapacity = currentCapacity;}
     /**
-     * Checks the ship's MMSI
+     * Sets the ship's current capacity.
+     *
+     * @param currentCapacity the ship's current capacity
+     */
+    public void setCurrentCapacity(double currentCapacity) {
+        this.currentCapacity = currentCapacity;
+    }
+
+    /**
+     * Sets the cargo manifest AVL.
+     *
+     * @param cargoManifestAVL the cargo manifest AVL
+     */
+    public void setCargoManifestAVL(AVL<CargoManifest> cargoManifestAVL) {
+        this.cargoManifestAVL = cargoManifestAVL;
+    }
+
+    /**
+     * Sets the biggest position.
+     */
+    public void setBiggestPosition() {
+        biggestPosition = this.getPosDate().getBiggestPosition();
+    }
+
+    /**
+     * Sets the smallest position.
+     */
+    public void setSmallestPosition() {
+        smallPosition = this.getPosDate().getSmallestPosition();
+    }
+
+    /**
+     * Sets the position date size.
+     */
+    public void setPosDateSize() {
+        this.posDateSize = this.posDate.getSize();
+    }
+
+    //Checks
+
+    /**
+     * Checks the ship's MMSI.
      *
      * @param mmsi the ship's MMSI
      * @return true if it is valid, false if it isn't
@@ -399,6 +479,20 @@ public class Ship {
         }
     }
 
+    /**
+     * Checks if there's enough capacity for the cargo.
+     *
+     * @return true (after increasing the capacity), false if there's not enough capacity
+     */
+    //Before adding a cargo, we have to check if there is enough capacity for the container's cargo
+    public boolean addIfContainer() {
+        if (this.currentCapacity + 1 > this.capacity) {
+            return false;
+        } else {
+            setCurrentCapacity(this.currentCapacity + 1);
+            return true;
+        }
+    }
 
     /**
      * Inserts a position in the tree.
@@ -409,11 +503,15 @@ public class Ship {
         posDate.addPosition(position);
     }
 
+    /**
+     * Calculates the ship's travelled distance.
+     *
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean calculateTravelledDistance() {
         double aux = this.travelledDistance;
         this.travelledDistance = getTravelledDistance();
-        if (aux == this.travelledDistance) return false;
-        else return true;
+        return aux != this.travelledDistance;
     }
 
     /**
@@ -425,7 +523,12 @@ public class Ship {
         return this.travelledDistance;
     }
 
-
+    /**
+     * Gets all the cargo manifests of a given year and calculates the average number of containers per manifest.
+     *
+     * @param year the year
+     * @return all the cargo manifests of a given year and the average number of containers per manifest
+     */
     public String writeCargoByYear(int year) {
         int countCargo = 0;
         int countContainer = 0;
@@ -443,6 +546,7 @@ public class Ship {
 
         return sb.toString();
     }
+
     /**
      * Writes all the positional messages in a period of time.
      *
@@ -470,7 +574,6 @@ public class Ship {
         PositionTreeStore binaryTest = this.getPosDate();
         Iterable<Position> posIterable = binaryTest.getInOrderList();
         Iterator<Position> posIterator = posIterable.iterator();
-
 
         while (!initiald.after(finald)) {
             while (posIterator.hasNext()) {
@@ -579,59 +682,6 @@ public class Ship {
     }
 
     /**
-     * Gets the biggest position.
-     *
-     * @return the biggest position
-     */
-    public Position getBiggestPosition() {
-        return biggestPosition;
-    }
-
-    /**
-     * Gets the smallest position.
-     *
-     * @return the smallest position
-     */
-    public Position getSmallestPosition() {
-        return smallPosition;
-    }
-
-    /**
-     * Gets the position date size.
-     *
-     * @return the position date size
-     */
-    public double getPosDateSize() {
-        return posDateSize;
-    }
-
-    /**
-     * Sets the biggest position.
-     */
-    public void setBiggestPosition() {
-        biggestPosition = this.getPosDate().getBiggestPosition();
-    }
-
-    /**
-     * Sets the smallest position.
-     */
-
-    public void setSmallestPosition() {
-        smallPosition = this.getPosDate().getSmallestPosition();
-    }
-
-    public void setCargoManifestAVL(AVL<CargoManifest> AVLCargo) {
-        this.cargoManifestAVL = AVLCargo;
-    }
-
-    /**
-     * Sets the position date size.
-     */
-    public void setPosDateSize() {
-        this.posDateSize = this.posDate.getSize();
-    }
-
-    /**
      * Sets the ship's info.
      *
      * @return true if it succeeds, false if it doesn't
@@ -646,21 +696,21 @@ public class Ship {
         this.setPosDateSize();
 
 
-        if (case1 == this.travelledDistance || case2 == this.posDateSize) {
-            return false;
-        } else return true;
+        return case1 != this.travelledDistance && case2 != this.posDateSize;
     }
 
-    public boolean addOffLoadedContainer(Container c, Port p) {
-
+    /**
+     * Adds an offloaded container in the container AVL.
+     *
+     * @param container the container
+     * @param port      the port
+     * @return true if it succeeds, false if it doesn't
+     */
+    public boolean addOffLoadedContainer(Container container, Port port) {
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
-
-
-            if (cm.getPort().equals(p) && addIfContainer(c)) {
-
-                if (cm.getPort().equals(p)) {
-
-                    cm.getOffLoaded().insert(c);
+            if (cm.getPort().equals(port) && addIfContainer()) {
+                if (cm.getPort().equals(port)) {
+                    cm.getOffLoaded().insert(container);
                     return true;
                 }
             }
@@ -668,15 +718,18 @@ public class Ship {
         return false;
     }
 
-    public boolean addLoadedContainer(Container c, Port p) {
-
+    /**
+     * Adds a loaded container in the container AVL.
+     *
+     * @param container the container
+     * @param port      the port
+     * @return true if it succeeds, false if it doesn't
+     */
+    public boolean addLoadedContainer(Container container, Port port) {
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
-
-            if (cm.getPort().equals(p) && addIfContainer(c)) {
-
-                if (cm.getPort().equals(p)) {
-
-                    cm.getLoaded().insert(c);
+            if (cm.getPort().equals(port) && addIfContainer()) {
+                if (cm.getPort().equals(port)) {
+                    cm.getLoaded().insert(container);
                     return true;
                 }
             }
@@ -684,19 +737,43 @@ public class Ship {
         return false;
     }
 
-    public boolean giveCargoOffLoadedSign(Port p) {
-
+    /**
+     * Gives cargo manifest an offloaded sign.
+     *
+     * @param port the port
+     * @return true if it succeeds, false if it doesn't
+     */
+    public boolean giveCargoOffLoadedSign(Port port) {
         for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
-            if (cargoManifest.getPort().equals(p)) {
+            if (cargoManifest.getPort().equals(port)) {
                 return cargoManifest.offLoadSign();
             }
         }
         return false;
     }
 
+    /**
+     * Gives cargo manifest a loaded sign.
+     *
+     * @param port the port
+     * @return true if it succeeds, false if it doesn't
+     */
+    public boolean giveCargoLoadedSign(Port port) {
+        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
+            if (cargoManifest.getPort().equals(port)) {
+                cargoManifest.loadSign();
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public String getOccupancyRate(){
-
+    /**
+     * Calculates the ship's occupancy rate (percentage).
+     *
+     * @return the ship's occupancy rate (percentage)
+     */
+    public String getOccupancyRate() {
         StringBuilder sb = new StringBuilder();
         DecimalFormat numberFormat = new DecimalFormat("#.00");
 
@@ -706,33 +783,6 @@ public class Ship {
         sb.append("Occupancy Rate: ");
         sb.append(numberFormat.format(occupancyRate));
         sb.append("%");
-        return  sb.toString();
+        return sb.toString();
     }
-
-
-    //Before adding a cargo is added, we have to check if there is enough capacity for the container's cargo
-    public boolean addIfContainer(Container c){
-
-
-                if (this.currentCapacity + 1 > this.capacity) {
-                    return false;
-                } else {
-                    setCurrentCapacity(this.currentCapacity + 1);
-                    return true;
-                }
-            }
-
-    public boolean giveCargoLoadedSign(Port p) {
-
-        for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
-            if (cargoManifest.getPort().equals(p)) {
-                cargoManifest.loadSign();
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 }
-

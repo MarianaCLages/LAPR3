@@ -8,6 +8,12 @@ import java.util.List;
 
 public class PortMapper {
 
+    /**
+     * Converts the port info to DTO.
+     *
+     * @param port the port
+     * @return the port info in DTO
+     */
     private PortDTO toDTO(Port port) {
         return new PortDTO(port.getContinent(), port.getCountry(), port.getIdentification(), port.getName(), port.getLocation());
     }
@@ -16,7 +22,7 @@ public class PortMapper {
      * Converts the port list to DTO.
      *
      * @param pList the port list
-     * @return the ship list in DTO
+     * @return the port list in DTO
      */
     public List<PortDTO> toDTO(List<Port> pList) {
         List<PortDTO> portListDto = new ArrayList<>();

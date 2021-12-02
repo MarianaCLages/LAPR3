@@ -132,7 +132,7 @@ class FacilityLocationTest {
         double longitude = 150;
         FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
-        Integer i = Integer.valueOf(5);
+        Integer i = 5;
 
         Assertions.assertNotEquals(location1, i);
     }
@@ -197,20 +197,5 @@ class FacilityLocationTest {
         FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
 
         Assertions.assertNotEquals(location1.hashCode(), location2.hashCode());
-    }
-
-    @Test
-    void compareToTest() {
-        //Arrange
-        double latitude = 0;
-        double longitude = 50;
-        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
-
-        double latitude2 = 0;
-        double longitude2 = 50;
-        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
-
-        //Assert
-        Assertions.assertEquals(location1.compareTo(location2), location2.compareTo(location1));
     }
 }

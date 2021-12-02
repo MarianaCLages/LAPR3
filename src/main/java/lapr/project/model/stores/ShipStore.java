@@ -1,6 +1,5 @@
 package lapr.project.model.stores;
 
-import lapr.project.data.Persistable;
 import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
@@ -226,8 +225,8 @@ public class ShipStore {
 
             while (count < n) {
                 for (Ship s : shipsByVessel) {
-                    if (max < distance.traveledDistanceBaseDateTime(s, dt, dt2)) {
-                        max = distance.traveledDistanceBaseDateTime(s, dt, dt2);
+                    if (max < distance.travelledDistanceBaseDateTime(s, dt, dt2)) {
+                        max = distance.travelledDistanceBaseDateTime(s, dt, dt2);
                         maxShip = s;
                     }
                 }

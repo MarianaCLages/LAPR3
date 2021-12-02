@@ -233,9 +233,5 @@ public class TwoDTree {
         public double getY() {
             return port.getLocation().getLatitude();
         }
-
-
     }
-
-
 }

@@ -196,8 +196,8 @@ public class CargoManifest implements Comparable<CargoManifest> {
     /**
      * Compares two cargo manifest objects.
      *
-     * @param o the object
-     * @return the result of the comparation (0 or 1)
+     * @param o the object (CargoManifest)
+     * @return the result of the comparison (0 or 1)
      */
     @Override
     public int compareTo(CargoManifest o) {

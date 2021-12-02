@@ -4,27 +4,39 @@ import lapr.project.model.FacilityLocation;
 
 public class PortDTO {
 
-    private final String continent;
-    private final String country;
     private final String identification;
     private final String name;
+    private final String continent;
+    private final String country;
     private final FacilityLocation facilityLocation;
 
-    public PortDTO(String continent, String country, String identification, String name, FacilityLocation location) {
-        this.continent = continent;
-        this.country = country;
+    /**
+     * @param identification the port's identification
+     * @param name           the port's name
+     * @param continent      the port's continent
+     * @param country        the port's country
+     * @param location       the port's location
+     */
+    public PortDTO(String identification, String name, String continent, String country, FacilityLocation location) {
         this.identification = identification;
         this.name = name;
+        this.continent = continent;
+        this.country = country;
         this.facilityLocation = location;
     }
 
+    /**
+     * Returns the textual description of the port info in the format: identification, name, continent, country, facilityLocation.
+     *
+     * @return the Port's characteristics
+     */
     @Override
     public String toString() {
-        return "Port{" +
-                "continent='" + continent + '\'' +
-                ", country='" + country + '\'' +
-                ", identification='" + identification + '\'' +
+        return "PortDTO{" +
+                "identification='" + identification + '\'' +
                 ", name='" + name + '\'' +
+                ", continent='" + continent + '\'' +
+                ", country='" + country + '\'' +
                 ", facilityLocation=" + facilityLocation +
                 '}';
     }

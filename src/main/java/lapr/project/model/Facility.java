@@ -132,7 +132,11 @@ public class Facility implements Comparable<Facility> {
         return getIdentification().equals(facility.getIdentification()) && getName().equals(facility.getName()) && getContinent().equals(facility.getContinent()) && getCountry().equals(facility.getCountry()) && getLocation().equals(facility.getLocation());
     }
 
-
+    /**
+     * Returns the textual description of the facility in the format: identification, name, continent, country, location.
+     *
+     * @return the facility's characteristics
+     */
     @Override
     public String toString() {
         return "Facility{" +
@@ -144,13 +148,20 @@ public class Facility implements Comparable<Facility> {
                 '}';
     }
 
+    /**
+     * Compares two facility objects.
+     *
+     * @param o the object (Facility)
+     * @return the result of the comparison (0 or 1)
+     */
     @Override
     public int compareTo(Facility o) {
-
         if (this.location.getLongitude() > o.location.getLongitude()) return 1;
         if (this.location.getLongitude() < o.location.getLongitude()) return -1;
+
         if (this.location.getLatitude() > o.location.getLatitude()) return 1;
         if (this.location.getLatitude() < o.location.getLatitude()) return -1;
+
         return 0;
     }
 }
