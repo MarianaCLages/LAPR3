@@ -28,6 +28,7 @@ public class OffLoadedContainers {
     private List<Container> containerList = new ArrayList<>();
     private List<CargoManifest> cargoManifests = new ArrayList<>();
     private int countCargos = 0;
+    private int countContainers = 0;
 
 
 
@@ -70,17 +71,25 @@ public class OffLoadedContainers {
 
 
         int j = countCargoManifestByFacility(f,s);
+        int k = countContainerByCargo();
         int count = 0;
+        int count2 = 0;
 
 
         while( j != 0){
 
             CargoManifest cargoManifest = getCargoManifestByShipTrip(s,f,count);
 
-            for(Container c : cargoManifest.getOffLoaded().inOrder()){
+            while(k != 0){
+                Container c = getContainerByCargoManifest(k);
                 containerList.add(c);
+                count2++;
+                k--;
             }
 
+
+            count2 = 0;
+            k = countContainerByCargo();
             count++;
             j--;
 
@@ -95,7 +104,7 @@ public class OffLoadedContainers {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "select count(cm.CARGOMANIFESTID) CountCargo from CARGOMANIFEST cm\n" +
+        String sqlCommand = "select cm.CARGOMANIFESTID, cm.CARGOMANIFESTDATE CountCargo from CARGOMANIFEST cm\n" +
                 "    where cm.CARGOMANIFESTTYPE = 1\n" +
                 "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
                 "        inner join FacilityTrip ft\n" +
@@ -129,6 +138,86 @@ public class OffLoadedContainers {
         }
     }
 
+    private Container getContainerByCargoManifest(int j){
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select * from CONTAINER c\n" +
+                "inner join CARGOMANIFESTCONTAINER cmc\n" +
+                "on cmc.CONTAINERID = c.CONTAINERID\n" +
+                "where cmc.CARGOMANIFESTID = (select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
+                "where cm.CARGOMANIFESTTYPE = 1\n" +
+                "    and cm.IDTRIP = (select  t.IDTRIP FROM TRIP t\n" +
+                "        inner join VEHICLE v\n" +
+                "        on t.VEHICLEID = v.VEHICLEID\n" +
+                "        where v.VEHICLEID =(select  s.VEHICLEID from SHIP s\n" +
+                "            where s.MMSI = 366976870))\n" +
+                "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
+                "        inner join FACILITYTRIP ft\n" +
+                "        on ft.IDTRIP = t.IDTRIP\n" +
+                "        where ft.FACILITYID = (select f.FACILITYID from FACILITY f\n" +
+                "            where f.FACILITYID = '14635')))";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+                for (int i = 0; i < j; i++){
+                    resultSet.next();
+                }
+                if(resultSet.next()){
+
+                    String identification = resultSet.getString("CONTAINERID");
+                    int payload = resultSet.getInt("PAYLOAD");
+                    int tare = resultSet.getInt("TARE");
+                    int gross = resultSet.getInt("GROSS");
+                    String isoCode = resultSet.getString("ISOCODE");
+
+                    return new Container(identification,payload,tare,gross,isoCode);
+
+                }else return null;
+            }
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+            return null;
+        }
+    }
+
+    private int countContainerByCargo(){
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlDataBase= "select count(c.ContainerId) COUNTCONTAINERS from CONTAINER c\n" +
+                "inner join CARGOMANIFESTCONTAINER cmc\n" +
+                "on cmc.CONTAINERID = c.CONTAINERID\n" +
+                "where cmc.CARGOMANIFESTID = (select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
+                "where cm.CARGOMANIFESTTYPE = 1\n" +
+                "    and cm.IDTRIP = (select  t.IDTRIP FROM TRIP t\n" +
+                "        inner join VEHICLE v\n" +
+                "        on t.VEHICLEID = v.VEHICLEID\n" +
+                "        where v.VEHICLEID =(select  s.VEHICLEID from SHIP s\n" +
+                "            where s.MMSI = 366976870))\n" +
+                "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
+                "        inner join FACILITYTRIP ft\n" +
+                "        on ft.IDTRIP = t.IDTRIP\n" +
+                "        where ft.FACILITYID = (select f.FACILITYID from FACILITY f\n" +
+                "            where f.FACILITYID = '14635')))";
+
+        try(PreparedStatement getPreparedStatment = connection.prepareStatement(sqlDataBase)){
+            try (ResultSet resultSet = getPreparedStatment.executeQuery()){
+
+                if(resultSet.next()){
+                    return countContainers += resultSet.getInt("COUNTCONTAINERS");
+                }
+                else {
+                    return 0;
+                }
+            }
+        }catch (SQLException throwables){
+            throwables.printStackTrace();
+            return 0;
+        }
+    }
+
+
 
     public void wtv(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
@@ -141,4 +230,7 @@ public class OffLoadedContainers {
         }
 
     }
+
+
+
 }
