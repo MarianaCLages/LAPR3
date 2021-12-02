@@ -72,7 +72,7 @@ public class PortStore {
 
         return portList.nearestNeighborPort(position);
     }
-<<<<<<< HEAD
+
 
     public Port getPortById(String id) {
 
@@ -84,6 +84,5 @@ public class PortStore {
         return null;
     }
 
-=======
->>>>>>> 15fab8dd6ee5dc6b73318a9f6422655e19416c22
+
 }
