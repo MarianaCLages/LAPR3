@@ -22,22 +22,18 @@ public class ImportPortsController {
     }
 
     /**
-     * Imports ships from file.
+     * Imports ports from file.
      *
      * @param fileName the file
      * @return true if it succeeds, false if it doesn't
      * @throws InvalidLineException
      * @throws FileNotFoundException
      */
-
     public boolean importPorts(String fileName) throws FileNotFoundException {
-
         boolean returnValue;
 
         returnValue = PortImporter.importPorts(new File(fileName), store);
 
         return returnValue;
-
     }
-
 }

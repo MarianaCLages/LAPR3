@@ -6,21 +6,25 @@ import lapr.project.model.stores.ShipStore;
 
 public class OccupancyRateController {
 
-    private Company company;
-    private ShipStore shipStore;
+    private final ShipStore shipStore;
 
-    public OccupancyRateController(){
-
-        this.company = App.getInstance().getCompany();
+    /**
+     * Constructor.
+     */
+    public OccupancyRateController() {
+        Company company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
     }
 
-    public String OccupancyRateController(int mmsi){
-
+    /**
+     * Gets the occupancy rate of a given ship for a given cargo manifest.
+     *
+     * @param mmsi the ship's mmsi
+     * @return the occupancy rate of a given ship for a given cargo manifest
+     */
+    public String occupancyRate(int mmsi) {
         Ship ship = shipStore.getShipByMmsi(mmsi);
 
-        String s = ship.getOccupancyRate();
-
-        return s;
+        return ship.getOccupancyRate();
     }
 }

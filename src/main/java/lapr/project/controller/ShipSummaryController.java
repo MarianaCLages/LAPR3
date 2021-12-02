@@ -17,6 +17,15 @@ public class ShipSummaryController {
     }
 
     /**
+     * Gets the ship store.
+     *
+     * @return the ship store
+     */
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
+    /**
      * Gets the ship summary by its MMSI.
      *
      * @param mmsi the ship's MMSI
@@ -50,14 +59,5 @@ public class ShipSummaryController {
      */
     public String getShipSummaryByCallSign(String callSign) throws IllegalArgumentException, NullPointerException {
         return shipStore.getShipSummaryByCallSign(callSign);
-    }
-
-    /**
-     * Gets the ship store.
-     *
-     * @return the ship store
-     */
-    public ShipStore getShipStore() {
-        return shipStore;
     }
 }

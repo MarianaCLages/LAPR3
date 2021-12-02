@@ -14,14 +14,13 @@ import java.util.logging.Logger;
 public class PortStoreData implements Persistable{
 
     public PortStoreData(){
-
+        //Empty constructor
     }
 
     private static int i = 1;
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         Port port = (Port) object;
 
@@ -29,9 +28,7 @@ public class PortStoreData implements Persistable{
 
         try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet portsResultSet = getContainerPreparedStatement.executeQuery()) {
-
                 if (portsResultSet.next()) {
-
                     sqlCommand = "UPDATE FACILITY SET LONGITUDE = " + port.getLocation().getLongitude() + ", LATITUDE = " + port.getLocation().getLongitude() + " Where FACILITYID = '" + port.getIdentification() + "'";
 
                     try (PreparedStatement updatePortPreparedStatement = connection.prepareStatement(sqlCommand)) {
@@ -40,14 +37,11 @@ public class PortStoreData implements Persistable{
                     }
 
                 } else {
-
                     sqlCommand = "select * from COUNTRY where NAME = '" + port.getCountry() + "'";
 
                     try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         try (ResultSet resultSetCountry = getCountryPreparedStatement.executeQuery()) {
-
                             if (resultSetCountry.next()) {
-
                                 String portCountryID = resultSetCountry.getString("COUNTRYID");
                                 int facilityType = 1; //Port
 
@@ -59,12 +53,10 @@ public class PortStoreData implements Persistable{
                                 }
 
                             } else {
-
                                 sqlCommand = "select MAX(COUNTRYID) as COUNTRYID from COUNTRY";
 
                                 try (PreparedStatement getCountryMaxPreparedStatement = connection.prepareStatement(sqlCommand)) {
                                     try (ResultSet resultSetMaxCountry = getCountryMaxPreparedStatement.executeQuery()) {
-
                                         resultSetMaxCountry.next();
 
                                         int countryID = resultSetMaxCountry.getInt(1);
@@ -89,20 +81,17 @@ public class PortStoreData implements Persistable{
                                             insertIntoFacilityPreparedStatement.executeUpdate();
                                             return true;
                                         }
-
                                     }
                                 }
                             }
                         }
                     }
                 }
-
             } catch (SQLException throwables) {
                 Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, throwables);
                 databaseConnection.registerError(throwables);
                 return false;
             }
-
         } catch (SQLException throwables) {
             Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
@@ -112,7 +101,6 @@ public class PortStoreData implements Persistable{
 
     @Override
     public boolean delete(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         Port port = (Port) object;
 
@@ -132,7 +120,6 @@ public class PortStoreData implements Persistable{
 
     @Override
     public Object getElement(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         String portIdentification = (String) object;
 
@@ -141,9 +128,7 @@ public class PortStoreData implements Persistable{
 
         try (PreparedStatement getFacilityPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet portsResultSet = getFacilityPreparedStatement.executeQuery()) {
-
                 if (portsResultSet.next()) {
-
                     int countryID = portsResultSet.getInt("COUNTRYID");
                     int continentID = portsResultSet.getInt("CONTINENTID");
 
@@ -157,9 +142,7 @@ public class PortStoreData implements Persistable{
                     return new Port(countryName, countryName, portIdentification, portName, new FacilityLocation(portLongitude, portLatitude));
 
                 } else return null;
-
             }
-
         } catch (SQLException throwables) {
             Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
@@ -168,7 +151,6 @@ public class PortStoreData implements Persistable{
     }
 
     public String getCountry(DatabaseConnection databaseConnection, int countryID) {
-
         Connection connection = databaseConnection.getConnection();
         String sqlCommand;
 
@@ -178,24 +160,19 @@ public class PortStoreData implements Persistable{
 
         try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet countrySet = getCountryPreparedStatement.executeQuery()) {
-
                 if (countrySet.next()) {
-
                     return countrySet.getString("NAME");
 
                 } else return null;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
             return null;
         }
-
     }
 
     public String getContinent(DatabaseConnection databaseConnection, int continentID) {
-
         Connection connection = databaseConnection.getConnection();
         String sqlCommand;
 
@@ -205,22 +182,15 @@ public class PortStoreData implements Persistable{
 
         try (PreparedStatement getContinentPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet continentSet = getContinentPreparedStatement.executeQuery()) {
-
                 if (continentSet.next()) {
-
                     return continentSet.getString("NAME");
 
                 } else return null;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
             return null;
         }
-
     }
-
-
-
 }

@@ -24,7 +24,7 @@ public interface Persistable {
 
 
     /**
-     * Gets a object from the database.
+     * Gets an object from the database.
      *
      * @param databaseConnection
      * @param object

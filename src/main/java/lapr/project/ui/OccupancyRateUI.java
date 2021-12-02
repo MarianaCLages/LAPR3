@@ -21,7 +21,7 @@ public class OccupancyRateUI implements Runnable {
         System.out.println();
 
         try {
-            String str = occupancyRateController.OccupancyRateController(mmsi);
+            String str = occupancyRateController.occupancyRate(mmsi);
 
             if (str == null) {
                 System.out.println("Operation Failed!");

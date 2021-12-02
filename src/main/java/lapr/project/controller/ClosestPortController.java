@@ -17,15 +17,22 @@ public class ClosestPortController {
     private final PortStore portStore;
     private final PortMapper portMapper;
 
+    /**
+     * Constructor.
+     */
     public ClosestPortController() {
-
         portStore = company.getPortStore();
         portMapper = new PortMapper();
-
     }
 
+    /**
+     * Gets the nearest port by call sign (in DTO)
+     *
+     * @param callSign      the ship's call sign
+     * @param localDateTime the time
+     * @return the nearest port by call sign (in DTO)
+     */
     public PortDTO getNearestPortByCallSign(String callSign, LocalDateTime localDateTime) {
-
         Ship ship = company.getShipStore().getShipByCallSign(callSign);
         Port port = portStore.getNearestNeighbourByTime(ship, localDateTime);
 
@@ -34,7 +41,5 @@ public class ClosestPortController {
 
         List<PortDTO> listOfPortsDTO = portMapper.toDTO(portList);
         return (listOfPortsDTO.get(0));
-
     }
-
 }

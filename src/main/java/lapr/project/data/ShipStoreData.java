@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class ShipStoreData implements Persistable {
 
-    public ShipStoreData(){
+    public ShipStoreData() {
         //Empty constructor
     }
 
@@ -24,7 +24,6 @@ public class ShipStoreData implements Persistable {
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         Ship ship = (Ship) object;
         ResultSet resultset;
@@ -36,9 +35,7 @@ public class ShipStoreData implements Persistable {
         sqlCommand = "select * from ship where mmsi = " + ship.getMmsi();
         try (PreparedStatement getShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet addressesResultSet = getShipPreparedStatement.executeQuery()) {
-
                 if (addressesResultSet.next()) {
-
                     System.out.println(addressesResultSet.getInt(1));
 
                     sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCapacity() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
@@ -49,12 +46,10 @@ public class ShipStoreData implements Persistable {
                     }
 
                 } else {
-
                     sqlCommand = "select MAX(VEHICLEID) as vehicleID from VEHICLE";
 
                     try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         try (ResultSet resultSet = saveContainerPreparedStatement.executeQuery()) {
-
                             resultSet.next();
 
                             int idTransportation = resultSet.getInt(1);
@@ -78,30 +73,23 @@ public class ShipStoreData implements Persistable {
                                 saveContainerPreparedStatement1.executeUpdate();
                                 return true;
                             }
-
                         }
                     }
-
                 }
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
             databaseConnection.registerError(ex);
             return false;
         }
-
     }
 
     private boolean updateVesselTypes(Connection connection, Ship ship) {
-
         String sqlCommand = "select VESSELTYPEID from VESSELTYPE vt where vt.VESSELTYPEID = '" + ship.getVesselType() + "'";
 
         try (PreparedStatement getVesselTypePreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet vesselTypesResultSet = getVesselTypePreparedStatement.executeQuery()) {
-
                 if (vesselTypesResultSet.next()) {
-
                     sqlCommand = "UPDATE VESSELTYPE SET VESSELTYPE = " + ship.getVesselType();
 
                     try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
@@ -110,7 +98,6 @@ public class ShipStoreData implements Persistable {
                     }
 
                 } else {
-
                     sqlCommand = "INSERT INTO VESSELTYPE(VESSELTYPEID, VESSELTYPE) values ('" + ship.getVesselType() + "','" + ship.getVesselType() + "')";
                     System.out.println(sqlCommand);
 
@@ -118,12 +105,8 @@ public class ShipStoreData implements Persistable {
                         saveContainerPreparedStatement.executeUpdate();
                         return true;
                     }
-
-
                 }
-
             }
-
         } catch (SQLException throwables) {
             return false;
         }
@@ -131,15 +114,14 @@ public class ShipStoreData implements Persistable {
 
     @Override
     public boolean delete(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         Ship ship = (Ship) object;
 
-        int i = getShipPositionDateSize(databaseConnection,ship.getMmsi());
+        int i = getShipPositionDateSize(databaseConnection, ship.getMmsi());
         int j = 0;
 
-        while (i!=0){
-            Position shipPos = getShipPositionWithoutDate(databaseConnection,ship.getMmsi(),j);
+        while (i != 0) {
+            Position shipPos = getShipPositionWithoutDate(databaseConnection, ship.getMmsi(), j);
             if (shipPos != null) deleteShipPosition(databaseConnection, shipPos, ship.getMmsi());
             i--;
             j++;
@@ -161,7 +143,6 @@ public class ShipStoreData implements Persistable {
 
     @Override
     public Object getElement(DatabaseConnection databaseConnection, Object object) {
-
         Connection connection = databaseConnection.getConnection();
         Integer mmsiInteger = (Integer) object;
 
@@ -172,7 +153,6 @@ public class ShipStoreData implements Persistable {
 
         try (PreparedStatement getShipPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet shipResultSet = getShipPreparedStatement.executeQuery()) {
-
                 if (shipResultSet.next()) {
 
                     // int transceiverID = shipResultSet.getInt("TRANSCEIVERID");
@@ -203,20 +183,16 @@ public class ShipStoreData implements Persistable {
             databaseConnection.registerError(throwables);
             return null;
         }
-
     }
 
     public char getTransceiver(DatabaseConnection databaseConnection, int transceiverID) {
-
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "SELECT * from TRANSCEIVER where MMSI = " + transceiverID;
 
         try (PreparedStatement getTransceiverPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet transceiverResultSet = getTransceiverPreparedStatement.executeQuery()) {
-
                 if (transceiverResultSet.next()) {
-
                     String transceiverString = transceiverResultSet.getString("TRANSCEIVER");
                     char[] transceiverCharArray = transceiverString.toCharArray();
                     return transceiverCharArray[0];
@@ -231,10 +207,8 @@ public class ShipStoreData implements Persistable {
     }
 
     public boolean saveShipPosition(DatabaseConnection databaseConnection, Object object, Ship ship) {
-
         Connection connection = databaseConnection.getConnection();
         Position shipPosition = (Position) object;
-
 
         String date = getDate(shipPosition);
 
@@ -242,7 +216,6 @@ public class ShipStoreData implements Persistable {
 
         try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet addressesResultSet = getContainerPreparedStatement.executeQuery()) {
-
                 if (addressesResultSet.next()) {
                     sqlCommand = "update POSITIONALMESSAGE SET LONGITUDE = " + shipPosition.getLongitude() + ", LATITUDE = " + shipPosition.getLatitude() + ", SOG = " + shipPosition.getSog() + ",  COG = " + shipPosition.getCog() + ", HEADING = " + shipPosition.getHeading() + " where MMSI = " + ship.getMmsi() + " AND BASEDATETIME = '" + date + "'";
 
@@ -252,24 +225,19 @@ public class ShipStoreData implements Persistable {
                     }
 
                 } else {
-
                     sqlCommand = "SELECT VEHICLEID FROM SHIP where MMSI = " + ship.getMmsi();
 
                     try (PreparedStatement getVehicleIDPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         try (ResultSet vehicleSet = getVehicleIDPreparedStatement.executeQuery()) {
-
                             vehicleSet.next();
 
                             int vehicleID = vehicleSet.getInt(1);
 
                             sqlCommand = "SELECT TRANSCEIVERID FROM TRANSCEIVER where TRANSCEIVER = '" + ship.getTransceiverClass() + "'";
 
-
                             try (PreparedStatement getTransceiverPreparedStatement = connection.prepareStatement(sqlCommand)) {
                                 try (ResultSet resultsetT = getTransceiverPreparedStatement.executeQuery()) {
-
                                     if (resultsetT.next()) {
-
                                         int transceiverID = resultsetT.getInt(1);
 
                                         sqlCommand = "INSERT INTO POSITIONALMESSAGE (BASEDATETIME, MMSI, VEHICLEID, LONGITUDE, LATITUDE, SOG, COG, HEADING, TRANSCEIVERID)  VALUES ('" + date + "'," + ship.getMmsi() + "," + vehicleID + "," + shipPosition.getLongitude() + "," + shipPosition.getLatitude() + "," + shipPosition.getSog() + "," + shipPosition.getCog() + "," + shipPosition.getHeading() + "," + transceiverID + ")";
@@ -277,16 +245,13 @@ public class ShipStoreData implements Persistable {
                                         try (PreparedStatement insertPossitionalMessagePreparedStatement1 = connection.prepareStatement(sqlCommand)) {
                                             insertPossitionalMessagePreparedStatement1.executeUpdate();
                                         }
-
                                         return true;
 
                                     } else {
-
                                         sqlCommand = "select MAX(TRANSCEIVERID) as TRANSCEIVERID from TRANSCEIVER";
 
                                         try (PreparedStatement getTransceiverIDMaxPreparedStatement = connection.prepareStatement(sqlCommand)) {
                                             try (ResultSet resultsetTT = getTransceiverIDMaxPreparedStatement.executeQuery()) {
-
                                                 resultsetTT.next();
 
                                                 int transceiverID = resultsetTT.getInt(1) + 1;
@@ -302,9 +267,7 @@ public class ShipStoreData implements Persistable {
                                                 try (PreparedStatement insertPossitionalMessagePreparedStatement1 = connection.prepareStatement(sqlCommand)) {
                                                     insertPossitionalMessagePreparedStatement1.executeUpdate();
                                                 }
-
                                                 return true;
-
                                             }
                                         }
                                     }
@@ -322,7 +285,6 @@ public class ShipStoreData implements Persistable {
     }
 
     public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
-
         Connection connection = databaseConnection.getConnection();
         Position shipPosition = (Position) object;
 
@@ -330,7 +292,7 @@ public class ShipStoreData implements Persistable {
 
         try {
             String sqlCommand;
-            sqlCommand = "delete from POSITIONALMESSAGE where (MMSI = " + mmsi + "and BASEDATETIME = '" + dateTime +"')";
+            sqlCommand = "delete from POSITIONALMESSAGE where (MMSI = " + mmsi + "and BASEDATETIME = '" + dateTime + "')";
             try (PreparedStatement deleteContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
                 deleteContainerPreparedStatement.executeUpdate();
                 return true;
@@ -343,20 +305,17 @@ public class ShipStoreData implements Persistable {
     }
 
     public Position getShipPosition(DatabaseConnection databaseConnection, String dateTime, int mmsi) {
-
         Connection connection = databaseConnection.getConnection();
 
         dateTime = verifyString(dateTime);
 
-        DateTimeFormatter formatter = DateTimeFormatter. ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         String sqlCommand = "select * from POSITIONALMESSAGE where mmsi = " + mmsi + " AND baseDateTime = '" + dateTime + "'";
 
         try (PreparedStatement getShipPositionPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet shipPositionResultSet = getShipPositionPreparedStatement.executeQuery()) {
-
                 if (shipPositionResultSet.next()) {
-
                     String positionalDate = shipPositionResultSet.getString("BASEDATETIME");
                     double longitude = shipPositionResultSet.getDouble("LONGITUDE");
                     double latitude = shipPositionResultSet.getDouble("LATITUDE");
@@ -364,24 +323,23 @@ public class ShipStoreData implements Persistable {
                     double cog = shipPositionResultSet.getDouble("COG");
                     double heading = shipPositionResultSet.getDouble("HEADING");
 
-                    LocalDateTime date = LocalDateTime. parse(positionalDate, formatter);
+                    LocalDateTime date = LocalDateTime.parse(positionalDate, formatter);
 
                     return new Position(latitude, longitude, heading, sog, cog, date);
 
-                } else return null;
+                } else {
+                    return null;
+                }
             }
-
         } catch (SQLException throwables) {
             Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
             return null;
         }
-
     }
 
-    public Position getShipPositionWithoutDate(DatabaseConnection databaseConnection,int mmsi,int i) {
-
-        DateTimeFormatter formatter = DateTimeFormatter. ofPattern("yyyy-MM-dd HH:mm:ss");
+    public Position getShipPositionWithoutDate(DatabaseConnection databaseConnection, int mmsi, int i) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         Connection connection = databaseConnection.getConnection();
 
@@ -389,13 +347,11 @@ public class ShipStoreData implements Persistable {
 
         try (PreparedStatement getShipPositionWithoutDatePreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet shipPositionResultSet = getShipPositionWithoutDatePreparedStatement.executeQuery()) {
-
-                for(int j = 0 ; j < i ; j++){
+                for (int j = 0; j < i; j++) {
                     shipPositionResultSet.next();
                 }
 
-                if (shipPositionResultSet.next()){
-
+                if (shipPositionResultSet.next()) {
                     String positionalDate = shipPositionResultSet.getString("BASEDATETIME");
                     double longitude = shipPositionResultSet.getDouble("LONGITUDE");
                     double latitude = shipPositionResultSet.getDouble("LATITUDE");
@@ -403,47 +359,43 @@ public class ShipStoreData implements Persistable {
                     double cog = shipPositionResultSet.getDouble("COG");
                     double heading = shipPositionResultSet.getDouble("HEADING");
 
-                    LocalDateTime date = LocalDateTime. parse(positionalDate, formatter);
+                    LocalDateTime date = LocalDateTime.parse(positionalDate, formatter);
 
                     return new Position(latitude, longitude, heading, sog, cog, date);
 
-                } else return null;
+                } else {
+                    return null;
+                }
             }
-
         } catch (SQLException throwables) {
             Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
             return null;
         }
-
     }
 
     public int getShipPositionDateSize(DatabaseConnection databaseConnection, int mmsi) {
-
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage where mmsi = " + mmsi;
 
         try (PreparedStatement getNumberPositions = connection.prepareStatement(sqlCommand)) {
             try (ResultSet getNumberPositionsResultSet = getNumberPositions.executeQuery()) {
-
                 if (getNumberPositionsResultSet.next()) {
-
                     return getNumberPositionsResultSet.getInt(1);
 
-                } else return 0;
+                } else {
+                    return 0;
+                }
             }
-
         } catch (SQLException throwables) {
             Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
             return 0;
         }
-
     }
 
     public String getDate(Position shipPosition) {
-
         String localDateTime = shipPosition.getDate().toString();
 
         char[] temp = localDateTime.toCharArray();
@@ -457,14 +409,14 @@ public class ShipStoreData implements Persistable {
         return localDateTime;
     }
 
-    public String verifyString(String time){
+    public String verifyString(String time) {
 
-        char[] stringintoArrayChar = time.toCharArray();
+        char[] stringIntoArrayChar = time.toCharArray();
 
-        if(stringintoArrayChar[10] == ' ') stringintoArrayChar[10] = ' ';
+        if (stringIntoArrayChar[10] == ' ') {
+            stringIntoArrayChar[10] = ' ';
+        }
 
-        return String.valueOf(stringintoArrayChar);
-
+        return String.valueOf(stringIntoArrayChar);
     }
-
 }
