@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.DataBaseScripts.AverageCargoByYearScript;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
@@ -11,7 +12,6 @@ import lapr.project.utils.auth.domain.OrgRole;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -40,11 +40,11 @@ public class App {
 
         bootstrap();
 
-       // company.getShipStore().delete(databaseConnection,new Ship(999999999,"baseShip","IMO1112222","DDbbCDD","10",10,10,10,"10",'A')); Funciona
+        // company.getShipStore().delete(databaseConnection,new Ship(999999999,"baseShip","IMO1112222","DDbbCDD","10",10,10,10,"10",'A')); Funciona
 
-       // System.out.println(company.getShipStore().getElement(databaseConnection,366934280)); Funciona
+        // System.out.println(company.getShipStore().getElement(databaseConnection,366934280)); Funciona
 
-      //  System.out.println(company.getShipStore().getShipPosition(databaseConnection,"2020-12-31 18:34:00",211331640)); Funfa tbm
+        //  System.out.println(company.getShipStore().getShipPosition(databaseConnection,"2020-12-31 18:34:00",211331640)); Funfa tbm
 
     }
 
@@ -141,19 +141,19 @@ public class App {
         company.getPortStore().add(port2);
 
         //CargoManifest
-        CargoManifest cargoManifest1 = new CargoManifest("11", port1,new Date(2020,11,21));
+        CargoManifest cargoManifest1 = new CargoManifest("11", port1, new Date(2020, 11, 21));
         company.getCargoManifestStore().add(cargoManifest1);
 
-        CargoManifest cargoManifest2 = new CargoManifest("69", port2,new Date(2020,11,21));
+        CargoManifest cargoManifest2 = new CargoManifest("69", port2, new Date(2020, 11, 21));
         company.getCargoManifestStore().add(cargoManifest2);
 
         //Ship
-        Ship ship = new Ship(222222222,"aa","IMO1111111",11,11,"AA","70",30,30,30,30);
+        Ship ship = new Ship(222222222, "aa", "IMO1111111", 11, 11, "AA", "70", 30, 30, 30, 30);
         ship.getCargoManifestAVL().insert(cargoManifest1);
         ship.getCargoManifestAVL().insert(cargoManifest2);
 
 
-       // company.getShipStore().save(databaseConnection,ship);
+        // company.getShipStore().save(databaseConnection,ship);
 
         //Position
         String sdate = "31/11/2020 23:16";
@@ -166,6 +166,10 @@ public class App {
         ship.addLoadedContainer(container1, port1);
         ship.addOffLoadedContainer(container1, port1);
         company.getShipStore().addShip(ship);
+
+
+        // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
+        // averageCargoByYearScript.numberOfContainers(databaseConnection);
 
         return true;
     }
