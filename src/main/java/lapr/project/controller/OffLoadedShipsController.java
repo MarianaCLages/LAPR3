@@ -19,6 +19,7 @@ public class OffLoadedShipsController {
         Company company = App.getInstance().getCompany();
         shipStore = company.getShipStore();
         portStore = company.getPortStore();
+
     }
 
     /**

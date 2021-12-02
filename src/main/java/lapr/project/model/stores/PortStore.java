@@ -49,4 +49,14 @@ public class PortStore {
 
     }
 
+    public Port getPortById(String id) {
+
+        for(Facility f : tempList){
+            if(f.getIdentification().equals(id)){
+                return (Port) f;
+            }
+        }
+        return null;
+    }
+
 }
