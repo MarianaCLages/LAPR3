@@ -13,50 +13,102 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private Port port;
     private Date date;
 
+    /**
+     * Constructor.
+     *
+     * @param identification the cargo manifest's identification
+     * @param port           the cargo manifest's port
+     * @param date           the cargo manifest's date
+     */
     public CargoManifest(String identification, Port port, Date date) {
-
         this.identification = identification;
         this.port = port;
         offLoaded = new AVL<>();
         loaded = new AVL<>();
         this.date = date;
-
     }
 
     //Getters
-    public Date getDate() {
-        return date;
-    }
 
+    /**
+     * Gets the cargo manifest's identification.
+     *
+     * @return the cargo manifest's identification
+     */
     public String getIdentification() {
         return identification;
     }
 
+    /**
+     * Gets the off loaded containers AVL.
+     *
+     * @return the off loaded containers AVL
+     */
     public AVL<Container> getOffLoaded() {
         return offLoaded;
     }
 
+    /**
+     * gets the loaded containers AVL.
+     *
+     * @return the loaded containers AVL
+     */
     public AVL<Container> getLoaded() {
         return loaded;
     }
 
+    /**
+     * Gets the cargo manifest's port.
+     *
+     * @return the cargo manifest's port
+     */
     public Port getPort() {
         return port;
     }
 
-    //Setters
-    public void setDate(Date date) {
-        this.date = date;
+    /**
+     * Gets the cargo manifest's date.
+     *
+     * @return the cargo manifest's date
+     */
+    public Date getDate() {
+        return date;
     }
 
+    //Setters
+
+    /**
+     * Sets the cargo manifest's identification.
+     *
+     * @param identification the cargo manifest's identification
+     */
     public void setIdentification(String identification) {
         this.identification = identification;
     }
 
+    /**
+     * Sets the cargo manifest's port.
+     *
+     * @param port the cargo manifest's port
+     */
     public void setPort(Port port) {
         this.port = port;
     }
 
+    /**
+     * Sets the cargo manifest's date.
+     *
+     * @param date the cargo manifest's date
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * Counts the off loaded and loaded containers in each AVL.
+     *
+     * @return the amount of off loaded and loaded containers in each AVL
+     */
     public int countContainers() {
         int count = 0;
 
@@ -71,8 +123,12 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return count;
     }
 
+    /**
+     * Prints the info of the off loaded containers.
+     *
+     * @return true if it succeeds, false if it doesn't (AVL is empty)
+     */
     public boolean offLoadSign() {
-
         if (offLoaded.isEmpty()) {
             return false;
         }
@@ -83,8 +139,12 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return true;
     }
 
+    /**
+     * Prints the info of the loaded containers.
+     *
+     * @return true if it succeeds, false if it doesn't (AVL is empty)
+     */
     public boolean loadSign() {
-
         if (loaded.isEmpty()) {
             return false;
         }
@@ -95,6 +155,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return true;
     }
 
+    /**
+     * Returns the textual description of the cargo manifest in the format: identification, port, date.
+     *
+     * @return the cargo manifest's characteristics
+     */
     @Override
     public String toString() {
         return "CargoManifest{" +
@@ -104,6 +169,12 @@ public class CargoManifest implements Comparable<CargoManifest> {
                 '}';
     }
 
+    /**
+     * Checks if two objects (CargoManifest) are equal.
+     *
+     * @param o the object
+     * @return true if objects are equal, false if they aren't
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -112,12 +183,22 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return Objects.equals(identification, that.identification) && Objects.equals(offLoaded, that.offLoaded) && Objects.equals(loaded, that.loaded) && Objects.equals(port, that.port);
     }
 
+    /**
+     * Generates a hash code for the cargo manifest values.
+     *
+     * @return the hash code for the cargo manifest values
+     */
     @Override
     public int hashCode() {
         return Objects.hash(port, offLoaded, loaded);
     }
 
-
+    /**
+     * Compares two cargo manifest objects.
+     *
+     * @param o the object
+     * @return the result of the comparation (0 or 1)
+     */
     @Override
     public int compareTo(CargoManifest o) {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
