@@ -34,6 +34,7 @@ public class PortImporter {
             returnValue = portStore.add(port);
 
             returnValue = portStoreData.save(dbConnection, port);
+
         } while (sc.hasNextLine());
         sc.close();
         portStore.fillTree();

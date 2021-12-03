@@ -21,6 +21,13 @@ public class PortStoreData implements Persistable {
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
+
+        try {
+            Connection connection = databaseConnection.getConnection();
+        } catch (Exception e) {
+            return false;
+        }
+
         Connection connection = databaseConnection.getConnection();
         Port port = (Port) object;
 
