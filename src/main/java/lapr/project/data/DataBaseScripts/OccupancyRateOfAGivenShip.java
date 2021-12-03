@@ -12,7 +12,7 @@ public class OccupancyRateOfAGivenShip {
     private DatabaseConnection databaseConnection = null;
 
     public OccupancyRateOfAGivenShip() {
-
+        // empty
     }
 
     public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, int cargoManifestID) {

@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 public class PortStore {
@@ -56,11 +58,10 @@ public class PortStore {
      */
     public boolean fillTree() {
         if (tempList.isEmpty()) return false;
-        MedianElement median = new MedianElement(tempList.toArray(new Facility[0]));
-        portList.insert((Port) median.median());
-        for (Facility p : tempList) {
+        portList.insert(tempList.toArray(new Port[0]));
+        /*for (Facility p : tempList) {
             portList.insert((Port) p);
-        }
+        }*/
         return true;
     }
 
