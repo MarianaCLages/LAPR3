@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.data.DatabaseConnection;
+import lapr.project.data.PortStoreData;
 import lapr.project.model.stores.PortStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +13,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class PortImporterTest {
     @TempDir
@@ -35,22 +40,32 @@ class PortImporterTest {
     }
 
     @Test
-    void importPortsSmallest() throws FileNotFoundException {
+    void importPortsNullConnection() throws FileNotFoundException {
+        PortStoreData portStoreData = new PortStoreData();
+        DatabaseConnection databaseConnection = null;
+
         Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667));
         PortStore store = new PortStore();
-        PortImporter.importPorts(tempFile.toFile(), store);
-        Assertions.assertEquals(store.getPortList().smallestElement(), port);
+
+        boolean actual = PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
+
+        Assertions.assertFalse(actual);
     }
 
 
     @Test
     void importPortsAllString() throws FileNotFoundException {
-        String string = " --United Kingdom-- \n" +
-                " --United States--  --France-- \n" +
-                " --United States--  --null--  --null--  --null-- \n" +
-                " --null--  --null-- \n";
+        PortStoreData portStoreData = mock(PortStoreData.class);
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+        String string = " --France-- \n" +
+                " --United States--  --null-- \n" +
+                " --United States--  --United Kingdom-- \n" +
+                " --null--  --null--  --null--  --null-- \n";
         PortStore store = new PortStore();
-        PortImporter.importPorts(tempFile.toFile(), store);
+
+        when(portStoreData.save(databaseConnection, new Object())).thenReturn(
+                true);
+        PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
         Assertions.assertEquals(string, store.getPortList().toString());
     }
 

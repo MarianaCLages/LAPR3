@@ -31,7 +31,6 @@ public class App {
             this.databaseConnection = ConnectionFactory.getInstance()
                     .getDatabaseConnection();
         } catch (IOException exception) {
-            System.out.println(exception.getMessage());
         }
 
         Properties props = getProperties();
@@ -60,12 +59,9 @@ public class App {
         // Add default properties and values.
         props.setProperty(Constants.PARAMS_COMPANY_DESIGNATION, "CargoShipping");
 
-
         // Read configured values.
-        try {
-            InputStream in = new FileInputStream(Constants.PARAMS_FILENAME);
+        try(InputStream in = new FileInputStream(Constants.PARAMS_FILENAME)) {
             props.load(in);
-            in.close();
         } catch (IOException ex) {
 
         }

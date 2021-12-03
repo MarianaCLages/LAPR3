@@ -1,11 +1,15 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.*;
+import lapr.project.model.Facility;
+import lapr.project.model.Port;
+import lapr.project.model.Position;
+import lapr.project.model.Ship;
 import lapr.project.shared.MedianElement;
 import lapr.project.shared.tree.TwoDTree;
 
 
 import java.time.LocalDateTime;
+
 
 
 import java.util.ArrayList;
@@ -37,10 +41,11 @@ public class PortStore {
      * Adds a new port to the list.
      *
      * @param port the port to be added
+     * @return
      */
-    public void add(Port port) {
+    public boolean add(Port port) {
         //save(App.getInstance().getDatabaseConnection(),port);
-        tempList.add(port);
+        return tempList.add(port);
         //portList.insert(port);
     }
 
@@ -68,6 +73,7 @@ public class PortStore {
      * @throws IllegalArgumentException
      */
     public Port getNearestNeighbourByTime(Ship ship, LocalDateTime dateTime) throws IllegalArgumentException {
+
         Position position = ship.getPosDate().getPosition(dateTime);
 
         return portList.nearestNeighborPort(position);

@@ -46,7 +46,9 @@ public class TwoDTree {
             return root;
         }
 
-        int cmpResult = (divX ? root.cmpX : root.cmpY).compare(point, root);
+        int cmpResult;
+        if (divX) cmpResult = root.cmpX.compare(point, root);
+        else cmpResult = root.cmpY.compare(point, root);
 
         if (cmpResult == -1) {
             if (root.left == null) {
