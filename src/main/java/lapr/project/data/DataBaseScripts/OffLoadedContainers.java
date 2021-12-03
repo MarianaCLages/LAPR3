@@ -60,16 +60,18 @@ public class OffLoadedContainers {
         int count = 0;
         int count2 = 0;
 
+        System.out.println(k);
+        System.out.println(j);
         while (j != 0) {
             CargoManifest cargoManifest = getCargoManifestByShipTrip(s, f, count);
 
-            while (k != 0) {
-                Container c = getContainerByCargoManifest(k);
+
+           while (k != 0) {
+                Container c = getContainerByCargoManifest(count2);
                 containerList.add(c);
                 count2++;
                 k--;
             }
-
             count2 = 0;
             k = countContainerByCargo();
             count++;
@@ -119,23 +121,13 @@ public class OffLoadedContainers {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select * from CONTAINER c\n" +
-                "inner join CARGOMANIFESTCONTAINER cmc\n" +
-                "on cmc.CONTAINERID = c.CONTAINERID\n" +
-                "where cmc.CARGOMANIFESTID = (select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
-                "where cm.CARGOMANIFESTTYPE = 1\n" +
-                "    and cm.IDTRIP = (select  t.IDTRIP FROM TRIP t\n" +
-                "        inner join VEHICLE v\n" +
-                "        on t.VEHICLEID = v.VEHICLEID\n" +
-                "        where v.VEHICLEID =(select  s.VEHICLEID from SHIP s\n" +
-                "            where s.MMSI = 366976870))\n" +
-                "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
-                "        inner join FACILITYTRIP ft\n" +
-                "        on ft.IDTRIP = t.IDTRIP\n" +
-                "        where ft.FACILITYID = (select f.FACILITYID from FACILITY f\n" +
-                "            where f.FACILITYID = '14635')))";
+                "    inner join CARGOMANIFESTCONTAINER cmc\n" +
+                "        on c.CONTAINERID = cmc.CONTAINERID\n" +
+                "        where cmc.CARGOMANIFESTID =26";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
                 for (int i = 0; i < j; i++) {
                     resultSet.next();
                 }
@@ -146,6 +138,7 @@ public class OffLoadedContainers {
                     int tare = resultSet.getInt("TARE");
                     int gross = resultSet.getInt("GROSS");
                     String isoCode = resultSet.getString("ISOCODE");
+
 
                     return new Container(identification, payload, tare, gross, isoCode);
 
@@ -194,10 +187,10 @@ public class OffLoadedContainers {
     public void wtv(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
 
-        System.out.println(countCargoManifestByFacility(null, null));
+        containerList = getContainersPerCargoOffLoad(null,null);
 
-        for (Container c : getContainersPerCargoOffLoad(null, null)) {
-            System.out.println(c.toString());
+        for (Container c : containerList) {
+            System.out.println(c);
         }
     }
 }
