@@ -1,9 +1,8 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.OffLoadedContainers;
+import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.data.DataBaseScripts.AverageCargoByYearScript;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
@@ -16,7 +15,6 @@ import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 
 public class App {
@@ -172,10 +170,13 @@ public class App {
 
         // Scripts
         // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
-        // averageCargoByYearScript.numberOfContainers(databaseConnection);
+        // averageCargoByYearScript.occupancyRateInAShip(databaseConnection);
 
-        OffLoadedContainers off = new OffLoadedContainers();
-        off.wtv(databaseConnection);
+        OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
+        System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
+
+        // OffLoadedContainers off = new OffLoadedContainers();
+        // off.wtv(databaseConnection);
 
 
         return true;

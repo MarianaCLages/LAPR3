@@ -29,7 +29,7 @@ public class PortStoreData implements Persistable{
         try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet portsResultSet = getContainerPreparedStatement.executeQuery()) {
                 if (portsResultSet.next()) {
-                    sqlCommand = "UPDATE FACILITY SET LONGITUDE = " + port.getLocation().getLongitude() + ", LATITUDE = " + port.getLocation().getLongitude() + " Where FACILITYID = '" + port.getIdentification() + "'";
+                    sqlCommand = "UPDATE FACILITY SET LONGITUDE = " + port.getLocation().getLongitude() + ", LATITUDE = " + port.getLocation().getLongitude() + ", NAME = " + port.getName() + " Where FACILITYID = '" + port.getIdentification() + "'";
 
                     try (PreparedStatement updatePortPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         updatePortPreparedStatement.executeUpdate();

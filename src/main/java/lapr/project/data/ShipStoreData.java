@@ -38,7 +38,7 @@ public class ShipStoreData implements Persistable {
                 if (addressesResultSet.next()) {
                     System.out.println(addressesResultSet.getInt(1));
 
-                    sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCapacity() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
+                    sqlCommand = "UPDATE SHIP SET CALLSIGN = '" + ship.getCallSign() + "', VESSELTYPE = '" + ship.getVesselType() + "', IMO = '" + ship.getImo() + "', NAME = '" + ship.getName() + "', LENGTH = " + ship.getLength() + ", WIDTH = " + ship.getWidth() + ", CAPACITY = " + ship.getCargo() + ", DRAFT = " + ship.getDraft() + " where MMSI = " + ship.getMmsi();
 
                     try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         saveContainerPreparedStatement.executeUpdate();
@@ -67,7 +67,7 @@ public class ShipStoreData implements Persistable {
                                 saveContainerPreparedStatement1.executeUpdate();
                             }
 
-                            sqlCommand = "INSERT INTO SHIP(MMSI, VEHICLEID, VESSELTYPE, IMO, CALLSIGN, NAME, LENGTH, WIDTH, CAPACITY, DRAFT) values (" + ship.getMmsi() + "," + idTransportation + "," + ship.getVesselType() + ",'" + ship.getImo() + "','" + ship.getCallSign() + "','" + ship.getName() + "'," + ship.getLength() + ',' + ship.getWidth() + ',' + ship.getCapacity() + ',' + ship.getDraft() + ")";
+                            sqlCommand = "INSERT INTO SHIP(MMSI, VEHICLEID, VESSELTYPE, IMO, CALLSIGN, NAME, LENGTH, WIDTH, CAPACITY, DRAFT) values (" + ship.getMmsi() + "," + idTransportation + "," + ship.getVesselType() + ",'" + ship.getImo() + "','" + ship.getCallSign() + "','" + ship.getName() + "'," + ship.getLength() + ',' + ship.getWidth() + ',' + ship.getCargo() + ',' + ship.getDraft() + ")";
                             System.out.println(sqlCommand);
                             try (PreparedStatement saveContainerPreparedStatement1 = connection.prepareStatement(sqlCommand)) {
                                 saveContainerPreparedStatement1.executeUpdate();
@@ -375,13 +375,18 @@ public class ShipStoreData implements Persistable {
     }
 
     public int getShipPositionDateSize(DatabaseConnection databaseConnection, int mmsi) {
-        Connection connection = databaseConnection.getConnection();
+        String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage pm where pm.mmsi = '999999999'";
 
-        String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage where mmsi = " + mmsi;
+        Connection connection = databaseConnection.getConnection();
 
         try (PreparedStatement getNumberPositions = connection.prepareStatement(sqlCommand)) {
             try (ResultSet getNumberPositionsResultSet = getNumberPositions.executeQuery()) {
                 if (getNumberPositionsResultSet.next()) {
+
+                    int number = getNumberPositionsResultSet.getInt(1);
+
+                    System.out.println(number);
+
                     return getNumberPositionsResultSet.getInt(1);
 
                 } else {
