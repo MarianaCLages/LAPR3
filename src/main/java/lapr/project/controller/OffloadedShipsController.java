@@ -7,7 +7,7 @@ import lapr.project.model.Ship;
 import lapr.project.model.stores.PortStore;
 import lapr.project.model.stores.ShipStore;
 
-public class OffLoadedShipsController {
+public class OffloadedShipsController {
 
     private final ShipStore shipStore;
     private final PortStore portStore;
@@ -15,7 +15,7 @@ public class OffLoadedShipsController {
     /**
      * Constructor
      */
-    public OffLoadedShipsController() {
+    public OffloadedShipsController() {
         Company company = App.getInstance().getCompany();
         shipStore = company.getShipStore();
         portStore = company.getPortStore();

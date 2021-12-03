@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OffLoadedContainers {
+public class OffloadedContainers {
 
-    public OffLoadedContainers() {
+    public OffloadedContainers() {
         //Empty constructor.
     }
 

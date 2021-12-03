@@ -8,7 +8,7 @@ import java.util.Objects;
 public class CargoManifest implements Comparable<CargoManifest> {
 
     String identification;
-    private AVL<Container> offLoaded;
+    private AVL<Container> offloaded;
     private AVL<Container> loaded;
     private Port port;
     private Date date;
@@ -23,7 +23,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
     public CargoManifest(String identification, Port port, Date date) {
         this.identification = identification;
         this.port = port;
-        offLoaded = new AVL<>();
+        offloaded = new AVL<>();
         loaded = new AVL<>();
         this.date = date;
     }
@@ -44,8 +44,8 @@ public class CargoManifest implements Comparable<CargoManifest> {
      *
      * @return the off loaded containers AVL
      */
-    public AVL<Container> getOffLoaded() {
-        return offLoaded;
+    public AVL<Container> getOffloaded() {
+        return offloaded;
     }
 
     /**
@@ -112,7 +112,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
     public int countContainers() {
         int count = 0;
 
-        for (Container container : offLoaded.inOrder()) {
+        for (Container container : offloaded.inOrder()) {
             count = count + 1;
         }
 
@@ -129,11 +129,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
      * @return true if it succeeds, false if it doesn't (AVL is empty)
      */
     public boolean offLoadSign() {
-        if (offLoaded.isEmpty()) {
+        if (offloaded.isEmpty()) {
             return false;
         }
 
-        for (Container container : offLoaded.inOrder()) {
+        for (Container container : offloaded.inOrder()) {
             System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Position: " + port.getLocation() + "; Load: " + container.getPayload() + "\n");
         }
         return true;
@@ -180,7 +180,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CargoManifest that = (CargoManifest) o;
-        return Objects.equals(identification, that.identification) && Objects.equals(offLoaded, that.offLoaded) && Objects.equals(loaded, that.loaded) && Objects.equals(port, that.port);
+        return Objects.equals(identification, that.identification) && Objects.equals(offloaded, that.offloaded) && Objects.equals(loaded, that.loaded) && Objects.equals(port, that.port);
     }
 
     /**
@@ -190,7 +190,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(port, offLoaded, loaded);
+        return Objects.hash(port, offloaded, loaded);
     }
 
     /**

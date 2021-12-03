@@ -33,9 +33,9 @@ public class CargoManifestTest {
         //Assert
         String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=null}\n";
         //Act
-        cargo1.getOffLoaded().insert(containerPos);
+        cargo1.getOffloaded().insert(containerPos);
         //Assert
-        assertEquals(expected, cargo1.getOffLoaded().toString());
+        assertEquals(expected, cargo1.getOffloaded().toString());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CargoManifestTest {
         //Arrange
         boolean expected1 = false;
         boolean expected2 = true;
-        cargo2.getOffLoaded().insert(containerPos);
+        cargo2.getOffloaded().insert(containerPos);
 
         //Act + Assert
         assertEquals(expected1, cargo1.offLoadSign());
