@@ -27,31 +27,31 @@
       ><path d="M0 0 L502 0 L502 104 L0 104 L0 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath8"
-      ><path d="M86 7 L86 15 L418 15 L418 45 L80 45 L80 22 L6 22 L6 7 ZM337 60 L337 75 L159 75 L159 60 ZM0 0 L0 104 L180 104 L180 97 L315 97 L315 104 L502 104 L502 0 Z"
+      ><path d="M86 7 L86 15 L418 15 L418 45 L80 45 L80 22 L6 22 L6 7 ZM386 60 L386 75 L108 75 L108 60 ZM0 0 L0 104 L180 104 L180 97 L315 97 L315 104 L502 104 L502 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath9"
-      ><path d="M337 30 L337 45 L159 45 L159 30 ZM315 67 L315 82 L180 82 L180 67 ZM0 0 L0 104 L111 104 L111 98 L385 98 L385 104 L502 104 L502 0 L418 0 L418 15 L80 15 L80 0 Z"
+      ><path d="M386 30 L386 45 L108 45 L108 30 ZM315 67 L315 82 L180 82 L180 67 ZM0 0 L0 104 L109 104 L109 98 L386 98 L386 104 L502 104 L502 0 L418 0 L418 15 L80 15 L80 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath10"
-      ><path d="M315 30 L315 45 L180 45 L180 30 ZM385 61 L385 76 L111 76 L111 61 ZM0 0 L0 104 L163 104 L163 92 L333 92 L333 104 L502 104 L502 0 L337 0 L337 8 L159 8 L159 0 Z"
+      ><path d="M315 30 L315 45 L180 45 L180 30 ZM386 61 L386 76 L109 76 L109 61 ZM0 0 L0 104 L163 104 L163 92 L333 92 L333 104 L502 104 L502 0 L386 0 L386 8 L108 8 L108 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath11"
-      ><path d="M385 30 L385 45 L111 45 L111 30 ZM333 61 L333 76 L163 76 L163 61 ZM0 0 L0 104 L502 104 L502 0 L315 0 L315 14 L180 14 L180 0 Z"
+      ><path d="M386 30 L386 45 L109 45 L109 30 ZM333 61 L333 76 L163 76 L163 61 ZM0 0 L0 104 L502 104 L502 0 L315 0 L315 14 L180 14 L180 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath12"
-      ><path d="M333 30 L333 45 L163 45 L163 30 ZM0 0 L0 104 L502 104 L502 0 L385 0 L385 14 L111 14 L111 0 Z"
+      ><path d="M333 30 L333 45 L163 45 L163 30 ZM0 0 L0 104 L502 104 L502 0 L386 0 L386 14 L109 14 L109 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
       ><path d="M-170 -15 L340 -15 L340 30 L-170 30 L-170 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath14"
-      ><path d="M-274 -15 L548 -15 L548 30 L-274 30 L-274 -15 Z"
+      ><path d="M-277 -15 L554 -15 L554 30 L-277 30 L-277 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath15"
       ><path d="M-135 -15 L270 -15 L270 30 L-135 30 L-135 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath16"
-      ><path d="M-178 -15 L356 -15 L356 30 L-178 30 L-178 -15 Z"
+      ><path d="M-278 -15 L556 -15 L556 30 L-278 30 L-278 -15 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath17"
       ><path d="M-338 -30 L676 -30 L676 60 L-338 60 L-338 -30 Z"
@@ -129,20 +129,20 @@
       /><text fill="black" x="9" xml:space="preserve" y="12" clip-path="url(#clipPath13)" stroke="none"
       >2.2: informs operation success</text
     ></g
-    ><g font-size="11px" transform="translate(107,158)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
-    ><rect x="0" width="274" height="15" y="0" clip-path="url(#clipPath14)" stroke="none"
-      /><text fill="black" x="9" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
-      >2.1: shows the occupancy rate of the ship intriduced</text
+    ><g font-size="11px" transform="translate(105,158)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
+    ><rect x="0" width="277" height="15" y="0" clip-path="url(#clipPath14)" stroke="none"
+      /><text fill="black" x="10" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
+      >2.1: shows the occupancy rate of the ship introduced</text
     ></g
     ><g font-size="11px" transform="translate(176,127)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="135" height="15" y="0" clip-path="url(#clipPath15)" stroke="none"
       /><text fill="black" x="10" xml:space="preserve" y="12" clip-path="url(#clipPath15)" stroke="none"
       >2: types requested data</text
     ></g
-    ><g font-size="11px" transform="translate(155,90)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
-    ><rect x="0" width="178" height="15" y="0" clip-path="url(#clipPath16)" stroke="none"
+    ><g font-size="11px" transform="translate(104,90)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
+    ><rect x="0" width="278" height="15" y="0" clip-path="url(#clipPath16)" stroke="none"
       /><text fill="black" x="10" xml:space="preserve" y="12" clip-path="url(#clipPath16)" stroke="none"
-      >1.1: requests data (ship's MMSI)</text
+      >1.1: requests data (ship's MMSI, cargo manifest's ID)</text
     ></g
     ><g font-size="11px" transform="translate(76,45)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="338" height="30" y="0" clip-path="url(#clipPath17)" stroke="none"
