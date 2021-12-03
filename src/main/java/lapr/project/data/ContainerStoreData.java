@@ -1,5 +1,6 @@
 package lapr.project.data;
 
+import lapr.project.controller.App;
 import lapr.project.model.Container;
 import lapr.project.model.stores.ContainerStore;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +19,8 @@ public class ContainerStoreData implements Persistable {
     }
 
     private static int i = 1;
+
+    private Set<Container> listContainers = new HashSet<>();
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
@@ -147,4 +151,37 @@ public class ContainerStoreData implements Persistable {
             return null;
         }
     }
+
+    public Set<Container> getListContainers() {
+
+        if (listContainers.isEmpty()) fillContainerList();
+
+        return listContainers;
+    }
+
+    private void fillContainerList() {
+
+        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand;
+
+        sqlCommand = "SELECT * from CONTAINER";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    listContainers.add(new Container(resultSet.getString("CONTAINERID"), resultSet.getInt("PAYLOAD"), resultSet.getInt("TARE"), resultSet.getInt("GROSS"), resultSet.getString("CONTAINERID")));
+                }
+
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ContainerStore.class.getName()).log(Level.SEVERE, null, e);
+            databaseConnection.registerError(e);
+        }
+
+    }
+
 }
