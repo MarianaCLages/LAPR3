@@ -710,7 +710,7 @@ public class Ship {
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
             if (cm.getPort().equals(port) && addIfContainer()) {
                 if (cm.getPort().equals(port)) {
-                    cm.getOffLoaded().insert(container);
+                    cm.getOffloaded().insert(container);
                     return true;
                 }
             }
