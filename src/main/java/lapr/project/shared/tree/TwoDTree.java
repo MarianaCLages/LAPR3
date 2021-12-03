@@ -9,13 +9,21 @@ import java.util.*;
 public class TwoDTree {
 
 
-    Node root = null;
+    Node root;
 
-
+    /**
+     * Constructor.
+     */
     public TwoDTree() {
-        root = null;
+        this.root = null;
     }
 
+    /**
+     *
+     * @param n0 node of the 2D tree
+     * @param port port inputted by the user
+     * @return the distance between that node and the port
+     */
     private static double dist(Node n0, Port port) {
         double total;
 
@@ -24,13 +32,24 @@ public class TwoDTree {
         return total;
     }
 
+    /**
+     *
+     * @param n0 node of the 2D tree
+     * @param port port inputted by the user
+     * @return the squared between that node and the port
+     */
     private static double distsquared(Node n0, Port port) {
 
-        double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLatitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLongitude(), 2));
+        double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLongitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLatitude(), 2));
 
         return total;
     }
 
+    /**
+     *
+     * @param port inputted by the user
+     * Inserts a Port into the 2D Tree
+     */
     public void insert(Port port) {
         root = insert(new Node(port, null, null), root, true);
     }
@@ -68,6 +87,10 @@ public class TwoDTree {
         return root;
     }
 
+    /**
+     *
+     * @return returns the Port with the smallest coordinates
+     */
     public Port smallestElement() {
         return smallestElement(root);
     }
@@ -77,6 +100,14 @@ public class TwoDTree {
         if (node.getLeft() == null) return node.getElement();
         return smallestElement(node.getLeft());
     }
+
+    /**
+     *
+     * @param n0 the first node the user wishes to compare
+     * @param n1 the second node the user wishes to compare
+     * @param target the Port that will be compared by the two nodes
+     * @return whichever of the two nodes is the closest to the Port
+     */
 
     public Node closest(Node n0, Node n1, Port target) {
         if (n0 == null) return n1;
@@ -92,14 +123,11 @@ public class TwoDTree {
             return n1;
     }
 
-
-  /*  public double distanceOfAPoint(double x, double y) {
-
-        double distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-
-        return distance;
-    }*/
-
+    /**
+     *
+     * @param target is the latest position of the ship
+     * @return the closest Port of that Position.
+     */
 
     public Port nearestNeighborPort(Position target) {
         return nearestNeighborNode(root, target, true).getElement();
@@ -114,28 +142,34 @@ public class TwoDTree {
 
         Node closestNode = null;
 
-        double closestDist = Double.POSITIVE_INFINITY;
-        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLongitude());
+        double closestDist = Double.POSITIVE_INFINITY; //distancia mais proxima
+        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLatitude());
 
         if (closestDist > d) {
             closestDist = d;
             closestNode = root;
         }
 
-        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY();
+        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY(); //se divX = true, subtrai as posições x se não as posições y
         double delta2 = delta * delta;
 
-        Node node1 = delta < 0 ? root.left : root.right;
+        Node node1 = delta < 0 ? root.left : root.right; //se delta é negativo vai para a root esquerda else root direita
         Node node2 = delta2 < 0 ? root.right : root.left;
 
         nearestNeighborNode(node1, target, !divX);
 
-        if (delta2 < closestDist) {
+        if (delta2 < closestDist) { //se, durante a recursão houver um delta2 maior que o atual closesDist, utiliza-se o node2
             nearestNeighborNode(node2, target, !divX);
         }
         return closestNode;
     }
 
+    /**
+     * Returns the textual description of the ship in the format: (x,y), x being the longitude of the port
+     * and the y being the latitude of the Port.
+     *
+     * @return the ship's characteristics
+     */
     @Override
     public String toString() {
 

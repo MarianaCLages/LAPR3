@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OffLoadedContainers {
+public class LoadedContainers {
 
-    public OffLoadedContainers() {
+    public LoadedContainers() {
         //Empty constructor.
     }
 
@@ -27,17 +27,17 @@ public class OffLoadedContainers {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select count(cm.CARGOMANIFESTID) CountCargo from CARGOMANIFEST cm\n" +
-                "    where cm.CARGOMANIFESTTYPE = 1\n" +
+                "    where cm.CARGOMANIFESTTYPE = 2\n" +
                 "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
                 "        inner join FacilityTrip ft\n" +
                 "        on t.IDTRIP = ft.IDTRIP\n" +
                 "        where ft.facilityId = (select f.FACILITYID from FACILITY f\n" +
-                "            where f.FACILITYID = " + "14635" + "))\n" +
+                "            where f.FACILITYID = '14635'))\n" +
                 "    and cm.IDTRIP  = (select t.IDTRIP from TRIP t\n" +
                 "        inner join VEHICLE v\n" +
                 "        on t.VEHICLEID = v.VEHICLEID\n" +
                 "        where v.VEHICLEID = (select s.VEHICLEID from SHIP s\n" +
-                "        where s.MMSI =" + 366976870 + "))";
+                "        where s.MMSI = 366976870))";
 
         try (PreparedStatement getPreparedStatment = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatment.executeQuery()) {
@@ -66,7 +66,7 @@ public class OffLoadedContainers {
             CargoManifest cargoManifest = getCargoManifestByShipTrip(s, f, count);
 
 
-           while (k != 0) {
+            while (k != 0) {
                 Container c = getContainerByCargoManifest(count2);
                 containerList.add(c);
                 count2++;
@@ -123,7 +123,7 @@ public class OffLoadedContainers {
         String sqlCommand = "select * from CONTAINER c\n" +
                 "    inner join CARGOMANIFESTCONTAINER cmc\n" +
                 "        on c.CONTAINERID = cmc.CONTAINERID\n" +
-                "        where cmc.CARGOMANIFESTID =26";
+                "        where cmc.CARGOMANIFESTID =6";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -157,7 +157,7 @@ public class OffLoadedContainers {
                 "inner join CARGOMANIFESTCONTAINER cmc\n" +
                 "on cmc.CONTAINERID = c.CONTAINERID\n" +
                 "where cmc.CARGOMANIFESTID = (select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
-                "where cm.CARGOMANIFESTTYPE = 1\n" +
+                "where cm.CARGOMANIFESTTYPE = 2\n" +
                 "    and cm.IDTRIP = (select  t.IDTRIP FROM TRIP t\n" +
                 "        inner join VEHICLE v\n" +
                 "        on t.VEHICLEID = v.VEHICLEID\n" +
