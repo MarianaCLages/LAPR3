@@ -30,7 +30,7 @@ public class LoadedShipsController {
     /**
      * Gets the ships to be loaded in the nearest port.
      *
-     * @param mmsi the ship's mmsi
+     * @param mmsi the ship's MMSI
      * @return the ships to be loaded in the nearest port
      */
     public boolean loadedShips(int mmsi) {

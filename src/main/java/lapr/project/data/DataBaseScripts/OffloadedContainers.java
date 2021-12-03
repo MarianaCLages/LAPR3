@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OffLoadedContainers {
+public class OffloadedContainers {
 
-    public OffLoadedContainers() {
+    public OffloadedContainers() {
         //Empty constructor.
     }
 
@@ -84,17 +84,17 @@ public class OffLoadedContainers {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select cm.CARGOMANIFESTID, cm.CARGOMANIFESTDATE from CARGOMANIFEST cm\n" +
-                "    where cm.CARGOMANIFESTTYPE = 1\n" +
-                "    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
-                "        inner join FacilityTrip ft\n" +
-                "        on t.IDTRIP = ft.IDTRIP\n" +
-                "        where ft.facilityId = (select f.FACILITYID from FACILITY f\n" +
-                "            where f.FACILITYID =" + "14635" + "))\n" +
-                "    and cm.IDTRIP  = (select t.IDTRIP from TRIP t\n" +
-                "        inner join VEHICLE v\n" +
-                "        on t.VEHICLEID = v.VEHICLEID\n" +
-                "        where v.VEHICLEID = (select s.VEHICLEID from SHIP s\n" +
-                "        where s.MMSI = " + 366976870 + "))";
+                "                    where cm.CARGOMANIFESTTYPE = 2\n" +
+                "                    and cm.IDTRIP = (select t.IDTRIP from TRIP t\n" +
+                "                        inner join FacilityTrip ft\n" +
+                "                        on t.IDTRIP = ft.IDTRIP\n" +
+                "                        where ft.facilityId = (select f.FACILITYID from FACILITY f\n" +
+                "                            where f.FACILITYID ='14635'))\n" +
+                "                    and cm.IDTRIP  = (select t.IDTRIP from TRIP t\n" +
+                "                        inner join VEHICLE v\n" +
+                "                        on t.VEHICLEID = v.VEHICLEID\n" +
+                "                        where v.VEHICLEID = (select s.VEHICLEID from SHIP s\n" +
+                "                        where s.MMSI =  366976870  ))";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {

@@ -7,7 +7,7 @@ public class OccupancyRateUI implements Runnable {
     @Override
     public void run() {
         OccupancyRateController occupancyRateController = new OccupancyRateController();
-        int mmsi = 0;
+        int mmsi;
 
         do {
             try {

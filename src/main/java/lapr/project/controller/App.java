@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
+import lapr.project.data.DataBaseScripts.LoadedContainers;
 import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
@@ -171,6 +172,8 @@ public class App {
         OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
         System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
 
+        //LoadedContainers load = new LoadedContainers();
+        //load.wtv(databaseConnection);
         // OffLoadedContainers off = new OffLoadedContainers();
         // off.wtv(databaseConnection);
 
