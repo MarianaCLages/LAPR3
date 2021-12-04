@@ -4,7 +4,6 @@ import lapr.project.model.Facility;
 import lapr.project.model.Port;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
-import lapr.project.shared.MedianElement;
 import lapr.project.shared.tree.TwoDTree;
 
 
@@ -62,6 +61,7 @@ public class PortStore {
         /*for (Facility p : tempList) {
             portList.insert((Port) p);
         }*/
+        System.out.println(portList.toString());
         return true;
     }
 

@@ -28,7 +28,7 @@ public class PortImporter {
         do {
             String[] line = sc.nextLine().split(",");
 
-            Port port = new Port(line[0], line[1], line[2], line[3], new FacilityLocation(Double.valueOf(line[5]), Double.valueOf(line[4])));
+            Port port = new Port(line[0], line[1], line[2], line[3], new FacilityLocation(Double.parseDouble(line[5]), Double.parseDouble(line[4])));
             portStore.add(port);
 
             portStoreData.save(dbConnection, port);
