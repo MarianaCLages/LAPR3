@@ -169,13 +169,17 @@ public class App {
         // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
         // averageCargoByYearScript.occupancyRateInAShip(databaseConnection);
 
-        OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
+        /*OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
         System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
 
         //LoadedContainers load = new LoadedContainers();
         //load.wtv(databaseConnection);
         // OffLoadedContainers off = new OffLoadedContainers();
         // off.wtv(databaseConnection);
+
+       /* for(Facility f : company.getPortStoreData().getListPort(databaseConnection)){
+            System.out.println(f);
+        } */
 
 
         return true;

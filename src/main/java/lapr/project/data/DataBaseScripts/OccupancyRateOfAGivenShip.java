@@ -1,6 +1,10 @@
 package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.CargoManifestIDException;
+import lapr.project.shared.exceptions.ContainerGrossException;
+import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
+import lapr.project.shared.exceptions.ShipCargoCapacityException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,32 +19,55 @@ public class OccupancyRateOfAGivenShip {
         // empty
     }
 
-    public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, int cargoManifestID) {
+    public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException {
 
         this.databaseConnection = databaseConnection;
 
         return occupancyRate(mmsi, cargoManifestID);
     }
 
-    public double occupancyRateInAShipGivenACargoManifestDate(DatabaseConnection databaseConnection,int mmsi, String date) {
+    public double occupancyRateInAShipGivenACargoManifestDate(DatabaseConnection databaseConnection, int mmsi, String date) throws ContainersInsideCargoManifestListSizeException, ShipCargoCapacityException, ContainerGrossException, CargoManifestIDException {
 
         this.databaseConnection = databaseConnection;
 
-        int cargoManifestID = getCargoManifestID(date);
+        String cargoManifestID = null;
+
+        try {
+            cargoManifestID = getCargoManifestID(date);
+        } catch (SQLException ex4) {
+            throw new CargoManifestIDException();
+        }
 
         return occupancyRate(mmsi, cargoManifestID);
     }
 
-    public double occupancyRate(int mmsi, int cargoManifestID) {
+    public double occupancyRate(int mmsi, String cargoManifestID) throws ContainersInsideCargoManifestListSizeException, ContainerGrossException, ShipCargoCapacityException {
 
         int inc = 0;
-        int iterator = getContainersInsideCargoManifestListSize(cargoManifestID);
+        int iterator = 0;
+        double sum = 0;
 
-        double sum = (getShipCargoCapacity(mmsi) * 1000);
+        try {
+            iterator = getContainersInsideCargoManifestListSize(cargoManifestID);
+        } catch (SQLException ex1) {
+            throw new ContainersInsideCargoManifestListSizeException();
+        }
+
+        try {
+            sum = (getShipCargoCapacity(mmsi) * 1000);
+        } catch (SQLException ex2) {
+            throw new ShipCargoCapacityException();
+        }
+
         double containersGross = 0;
 
         while (iterator != 0) {
-            containersGross += getContainerGross(cargoManifestID, inc);
+
+            try {
+                containersGross += getContainerGross(cargoManifestID, inc);
+            } catch (SQLException ex3) {
+                throw new ContainerGrossException();
+            }
 
             inc++;
             iterator--;
@@ -50,37 +77,34 @@ public class OccupancyRateOfAGivenShip {
 
     }
 
-    public int getCargoManifestID(String date) {
+    public String getCargoManifestID(String date) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "select * from CARGOMANIFEST where CARGOMANIFESTDATE = " + date;
+        String sqlCommand = "select * from CARGOMANIFEST where CARGOMANIFESTDATE = TO_DATE('" + date + "','YYYY-MM-DD HH24:MI:SS')";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
 
-                    return resultSet.getInt("CARGOMANIFESTID");
+                    return resultSet.getString("CARGOMANIFESTID");
 
-                } else return 0;
+                } else return null;
 
             }
-        } catch (SQLException throwables) {
-            System.out.println("Nop Container Size");
-            return 0;
         }
 
     }
 
-    public int getContainersInsideCargoManifestListSize(int cargoManifestID) {
+    public int getContainersInsideCargoManifestListSize(String cargoManifestID) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "select COUNT(*) COUNT_SIZE\n" +
+        String sqlCommand = " select COUNT(*) COUNT_SIZE\n" +
                 "from CONTAINER c\n" +
                 "         inner join CARGOMANIFESTCONTAINER cm on c.CONTAINERID = cm.CONTAINERID\n" +
-                "where cm.CARGOMANIFESTID = " + cargoManifestID;
+                "where cm.CARGOMANIFESTID = '" + cargoManifestID + "'";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -92,13 +116,10 @@ public class OccupancyRateOfAGivenShip {
                 } else return 0;
 
             }
-        } catch (SQLException throwables) {
-            System.out.println("Nop Container Size");
-            return 0;
         }
     }
 
-    public int getShipCargoCapacity(int mmsi) {
+    public int getShipCargoCapacity(int mmsi) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -116,21 +137,18 @@ public class OccupancyRateOfAGivenShip {
                 } else return 0;
 
             }
-        } catch (SQLException throwables) {
-            System.out.println("Nop Ship");
-            return 0;
         }
 
     }
 
-    public int getContainerGross(int cargoManifestID, int inc) {
+    public int getContainerGross(String cargoManifestID, int inc) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select GROSS CONTAINER_GROSS\n" +
                 "from CONTAINER c\n" +
                 "         inner join CARGOMANIFESTCONTAINER cm on c.CONTAINERID = cm.CONTAINERID\n" +
-                "where cm.CARGOMANIFESTID = " + cargoManifestID;
+                "where cm.CARGOMANIFESTID = '" + cargoManifestID + "'";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -146,10 +164,6 @@ public class OccupancyRateOfAGivenShip {
                 } else return 0;
 
             }
-        } catch (SQLException throwables) {
-            System.out.println("Nop Container");
-            return 0;
         }
     }
-
 }
