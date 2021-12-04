@@ -13,13 +13,11 @@ public class OffloadedShipsUI implements Runnable {
 
 
     public void run() {
-
         int op;
         int decision;
         boolean bool = false;
 
         do {
-
             try {
                 op = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
             } catch (NumberFormatException e) {
@@ -28,12 +26,11 @@ public class OffloadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
-        do{
-
+        do {
             decision = Utils.readIntegerFromConsole("1.BDDAD | 2.Java");
-        }while(decision != 1 && decision != 2);
+        } while (decision != 1 && decision != 2);
 
-        if(decision == 1){
+        if (decision == 1) {
 
             String facilityId;
             DatabaseConnection databaseConnection = null;
@@ -44,23 +41,23 @@ public class OffloadedShipsUI implements Runnable {
                 ioException.printStackTrace();
             }
 
-            facilityId = Utils.readLineFromConsole("Facility Id?");
+            facilityId = Utils.readLineFromConsole("Please enter the facility ID:");
 
-            offOrLoadContainers.wtv(databaseConnection,facilityId,op,1);
-        }
+            offOrLoadContainers.getResult(databaseConnection, facilityId, op, 1);
 
-        else{
-        try{
-            System.out.println();
-            bool = offLoadedShipsController.offLoadedShips(op);
-            }catch (NullPointerException ex){
+        } else {
+            try {
+                System.out.println();
+                bool = offLoadedShipsController.offLoadedShips(op);
+            } catch (NullPointerException ex) {
                 System.out.println("The ship introduced doesn't exist.");
             }
 
-        if (bool) {
-            System.out.println("");
-        } else {
-            System.out.println("Operation failed!");
-        }}
+            if (bool) {
+                System.out.println("");
+            } else {
+                System.out.println("Operation failed! Please, try again.");
+            }
+        }
     }
 }
