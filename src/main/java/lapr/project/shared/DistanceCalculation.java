@@ -9,7 +9,7 @@ import java.util.*;
 public class DistanceCalculation {
 
     public DistanceCalculation() {
-
+        //Empty constructor.
     }
 
     public static double distanceTo(Position pos, Position pos2) {
@@ -31,7 +31,7 @@ public class DistanceCalculation {
         return (Math.round(distance * 100) / 100.0);
     }
 
-    public double traveledDistanceBaseDateTime(Ship ship, LocalDateTime localinitiald, LocalDateTime localfinald) {
+    public double travelledDistanceBaseDateTime(Ship ship, LocalDateTime localinitiald, LocalDateTime localfinald) {
 
 
         if (ship == null || localinitiald == null || localfinald == null || localinitiald.equals(localfinald)) return 0;

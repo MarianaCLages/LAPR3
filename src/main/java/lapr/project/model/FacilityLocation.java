@@ -1,9 +1,11 @@
 package lapr.project.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import static lapr.project.shared.Constants.MAX_LATITUDE;
 import static lapr.project.shared.Constants.MAX_LONGITUDE;
 
-public class FacilityLocation implements Comparable<FacilityLocation> {
+public class FacilityLocation implements Comparable<FacilityLocation>  {
     private double latitude;
     private double longitude;
 
@@ -111,14 +113,23 @@ public class FacilityLocation implements Comparable<FacilityLocation> {
         return result;
     }
 
-
-    @Override
-    public int compareTo(FacilityLocation o) {
-        return 0;
-    }
-
+    /**
+     * Returns the textual description of the facility location in the format: latitude, longitude.
+     * @return the facility location's characteristics
+     */
     @Override
     public String toString() {
         return "latitude = " + latitude + ", longitude = " + longitude;
+    }
+
+    @Override
+    public int compareTo(FacilityLocation o) {
+        if (this.getLongitude() > o.getLongitude()) return 1;
+        if (this.getLongitude() < o.getLongitude()) return -1;
+
+        if (this.getLatitude() > o.getLatitude()) return 1;
+        if (this.getLatitude() < o.getLatitude()) return -1;
+
+        return 0;
     }
 }

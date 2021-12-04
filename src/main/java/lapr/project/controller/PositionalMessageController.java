@@ -19,6 +19,15 @@ public class PositionalMessageController {
     }
 
     /**
+     * Gets the Ship Store.
+     *
+     * @return the Ship Store
+     */
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
+    /**
      * Gets the positional messages of a ship by its MMSI on a certain period of time.
      */
     public String getPositionalMessages(int mmsi, LocalDateTime di, LocalDateTime df) {
@@ -35,14 +44,5 @@ public class PositionalMessageController {
             return null;
         }
         return null;
-    }
-
-    /**
-     * Gets the Ship Store.
-     *
-     * @return the Ship Store
-     */
-    public ShipStore getShipStore() {
-        return shipStore;
     }
 }

@@ -31,6 +31,7 @@ public class Position implements Comparable<Position> {
         setDate(date);
     }
 
+    //Getters
     /**
      * Gets the position's latitude
      *
@@ -85,6 +86,7 @@ public class Position implements Comparable<Position> {
         return date;
     }
 
+    //Setters
     /**
      * Sets the position's latitude.
      *

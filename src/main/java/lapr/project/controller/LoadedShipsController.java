@@ -9,12 +9,30 @@ public class LoadedShipsController {
     private final ShipStore shipStore;
     private final PortStore portStore;
 
+    /**
+     * Constructor.
+     */
     public LoadedShipsController() {
         Company company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
         this.portStore = company.getPortStore();
     }
 
+    /**
+     * Gets the ship store.
+     *
+     * @return the ship store
+     */
+    public ShipStore getShipStore() {
+        return shipStore;
+    }
+
+    /**
+     * Gets the ships to be loaded in the nearest port.
+     *
+     * @param mmsi the ship's MMSI
+     * @return the ships to be loaded in the nearest port
+     */
     public boolean loadedShips(int mmsi) {
         Ship ship = shipStore.getShipByMmsi(mmsi);
 

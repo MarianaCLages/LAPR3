@@ -2,8 +2,10 @@ package lapr.project.shared.tree;
 
 import lapr.project.model.Port;
 import lapr.project.model.Position;
+import lapr.project.shared.MedianElement;
 
 import java.awt.geom.Point2D;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -33,36 +35,52 @@ public class TwoDTree {
         return total;
     }
 
-    public void insert(Port port) {
-        root = insert(new Node(port, null, null), root, true);
+    public void insert(Port[] port) {
+
+        if (port == null) return;
+        if (port.length == 1) return;
+        root = insert(port, root, true);
     }
 
-    public Node insert(Node point, Node root, boolean divX) {
+    public Node insert(Port[] point, Node root, boolean divX) {
+        MedianElement medianElement;
+        if (divX) {
+            medianElement = new MedianElement(point, root.cmpX);
+        } else {
+            medianElement = new MedianElement(point, root.cmpY);
+        }
+
+        Port elementToInsert = (Port) medianElement.median();
+        Node nodeToInsert = new Node(elementToInsert, null, null);
 
         if (root == null) {
-            return point;
+            return nodeToInsert;
         }
 
 
-        if (root.getX() == point.getElement().getLocation().getLongitude() && root.getY() == point.getElement().getLocation().getLatitude()) {
+        if (root.getX() == nodeToInsert.getElement().getLocation().getLongitude() && root.getY() == nodeToInsert.getElement().getLocation().getLatitude()) {
             return root;
         }
 
-        int cmpResult = (divX ? root.cmpX : root.cmpY).compare(point, root);
+
+        int cmpResult;
+        if (divX) cmpResult = root.cmpX.compare(nodeToInsert, root);
+        else cmpResult = root.cmpY.compare(nodeToInsert, root);
+
 
         if (cmpResult == -1) {
             if (root.left == null) {
-                root.left = point;
+                root.left = nodeToInsert;
             } else {
-                insert(point, root.left, !divX);
+                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
             }
 
         } else {
 
             if (root.right == null)
-                root.right = point;
+                root.right = nodeToInsert;
             else
-                insert(point, root.right, !divX);
+                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
         }
 
         return root;
@@ -170,21 +188,10 @@ public class TwoDTree {
 
         private lapr.project.model.Port port;
 
-        private final Comparator<Node<Port>> cmpX = new Comparator<Node<Port>>() {
-            @Override
-            public int compare(Node<Port> p1, Node<Port> p2) {
-                return Double.compare(p1.getX(), p2.getX());
-            }
-        };
-        private final Comparator<Node<Port>> cmpY = new Comparator<Node<Port>>() {
-            @Override
-            public int compare(Node<Port> p1, Node<Port> p2) {
-                return Double.compare(p1.getY(), p2.getY());
-            }
-        };
+        private final Comparator<Node<Port>> cmpX = Comparator.comparingDouble(Node::getX);
+        private final Comparator<Node<Port>> cmpY = Comparator.comparingDouble(Node::getY);
         private Node left;
         private Node right;
-
 
         public Node(lapr.project.model.Port port, Node leftChild, Node rightChild) {
             this.port = port;
@@ -236,8 +243,5 @@ public class TwoDTree {
         public double getY() {
             return port.getLocation().getLatitude();
         }
-
     }
-
-
 }

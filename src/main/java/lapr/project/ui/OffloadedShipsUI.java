@@ -1,10 +1,10 @@
 package lapr.project.ui;
 
-import lapr.project.controller.OffLoadedShipsController;
+import lapr.project.controller.OffloadedShipsController;
 
 public class OffloadedShipsUI implements Runnable {
 
-    OffLoadedShipsController offLoadedShipsController = new OffLoadedShipsController();
+    OffloadedShipsController offLoadedShipsController = new OffloadedShipsController();
 
 
     public void run() {

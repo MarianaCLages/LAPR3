@@ -42,18 +42,18 @@ public class ShipTest {
     Position posgeral4 = new Position(20, 30, 40, 20, 10, date3);
 
     //Container
-    Container container = new Container("111",11,1,1,"11",true, false);
-    Container container2 = new Container("222",22,2,2,"22",true, false);
+    Container container = new Container("111", 11, 1, 1, "11", true, false);
+    Container container2 = new Container("222", 22, 2, 2, "22", true, false);
 
     //Location
-    FacilityLocation facilityLocation = new FacilityLocation(11,11);
-    FacilityLocation facilityLocation2 = new FacilityLocation(8,8);
+    FacilityLocation facilityLocation = new FacilityLocation(11, 11);
+    FacilityLocation facilityLocation2 = new FacilityLocation(8, 8);
     //Port
-    Port port = new Port("Europa","Portugal","11","name",facilityLocation);
-    Port port2 = new Port("Asia","China","22","name",facilityLocation2);
+    Port port = new Port("Europa", "Portugal", "11", "name", facilityLocation);
+    Port port2 = new Port("Asia", "China", "22", "name", facilityLocation2);
     //CargoManifest
-    CargoManifest cargoManifest = new CargoManifest("22",port);
-    CargoManifest cargoManifest2 = new CargoManifest("33",port2);
+    CargoManifest cargoManifest = new CargoManifest("22", port, null);
+    CargoManifest cargoManifest2 = new CargoManifest("33", port2, null);
 
 
     @Test
@@ -1152,7 +1152,7 @@ public class ShipTest {
     }
 
     @Test
-    void getCalculatedDistance(){
+    void getCalculatedDistance() {
 
         boolean actual = shipgeral.calculateTravelledDistance();
 
@@ -1162,7 +1162,7 @@ public class ShipTest {
     }
 
     @Test
-    void getCalculatedDistanceMutation(){
+    void getCalculatedDistanceMutation() {
 
         shipgeral.insertPosition(posgeral);
         shipgeral.insertPosition(posgeral2);
@@ -1171,7 +1171,7 @@ public class ShipTest {
 
         boolean actual = shipgeral.calculateTravelledDistance();
 
-        if(!actual) fail();
+        if (!actual) fail();
 
         assertTrue(actual);
 
@@ -1179,7 +1179,7 @@ public class ShipTest {
     }
 
     @Test
-    void setAllDynamicDataMutation(){
+    void setAllDynamicDataMutation() {
 
         shipgeral.insertPosition(posgeral);
         shipgeral.insertPosition(posgeral2);
@@ -1188,7 +1188,7 @@ public class ShipTest {
 
         boolean actual = shipgeral.setShipData();
 
-        if(!actual) fail();
+        if (!actual) fail();
 
         assertTrue(actual);
 
@@ -1196,45 +1196,60 @@ public class ShipTest {
     }
 
     @Test
-    void setAllDynamicDataMutation2(){
+    void setAllDynamicDataMutation2() {
 
         boolean actual = shipgeral.setShipData();
 
-        if(actual) fail();
+        if (actual) fail();
 
         assertFalse(actual);
     }
 
     @Test
-    void addLoadedContainer(){
-
-        //Assert
-        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+    void addLoadedContainer() {
         //Arrange
-        boolean actual = shipgeral.addLoadedContainer(container,port);
-        boolean actual2 = shipgeral.addLoadedContainer(container,port2);
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
         //Act
-        assertEquals(true,actual);
-        assertEquals(false,actual2);
+        boolean actual = shipgeral.addLoadedContainer(container, port);
+        boolean actual2 = shipgeral.addLoadedContainer(container, port2);
+        //Assert
+        assertTrue(actual);
+        assertFalse(actual2);
     }
 
     @Test
-    void addOffLoadedContainerTest(){
-
-        //Assert
-        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+    void addOffLoadedContainerTest() {
         //Arrange
-        boolean actual = shipgeral.addOffLoadedContainer(container,port);
-        boolean actual2 = shipgeral.addLoadedContainer(container,port2);
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
         //Act
-        assertEquals(true,actual);
-        assertEquals(false,actual2);
-
+        boolean actual = shipgeral.addOffLoadedContainer(container, port);
+        boolean actual2 = shipgeral.addOffLoadedContainer(container, port2);
+        //Assert
+        assertTrue(actual);
+        assertFalse(actual2);
     }
 
     @Test
-    void giveCargoOffLoadedSignTest(){
+    void giveCargoOffLoadedSignTest() {
+        //Arrange
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Act
+        boolean actual = shipgeral.giveCargoOffLoadedSign(port);
+        boolean actual2 = shipgeral.giveCargoOffLoadedSign(port2);
+        //Assert
+        assertFalse(actual);
+        assertFalse(actual2);
+    }
 
-
+    @Test
+    void giveCargoLoadedSignTest() {
+        //Arrange
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Act
+        boolean actual = shipgeral.giveCargoLoadedSign(port);
+        boolean actual2 = shipgeral.giveCargoLoadedSign(port2);
+        //Assert
+        assertTrue(actual);
+        assertFalse(actual2);
     }
 }

@@ -132,7 +132,7 @@ class FacilityLocationTest {
         double longitude = 150;
         FacilityLocation location1 = new FacilityLocation(longitude, latitude);
 
-        Integer i = Integer.valueOf(5);
+        Integer i = 5;
 
         Assertions.assertNotEquals(location1, i);
     }

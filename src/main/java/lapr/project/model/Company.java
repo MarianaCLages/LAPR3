@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.data.PortStoreData;
+import lapr.project.data.ShipStoreData;
 import lapr.project.model.stores.CargoManifestStore;
 import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
@@ -18,6 +20,8 @@ public class Company {
     private final ContainerStore containerStore;
     private final CargoManifestStore cargoManifestStore;
     private final UserStore userStore;
+    private final ShipStoreData shipStoreData;
+    private final PortStoreData portStoreData;
 
     /**
      * Constructor.
@@ -35,6 +39,8 @@ public class Company {
         this.containerStore = new ContainerStore();
         this.cargoManifestStore = new CargoManifestStore();
         this.userStore = new UserStore();
+        this.shipStoreData = new ShipStoreData();
+        this.portStoreData = new PortStoreData();
     }
 
     /**
@@ -55,13 +61,32 @@ public class Company {
         return this.shipStore;
     }
 
+    /**
+     * Gets the Port Store.
+     *
+     * @return the Port Store
+     */
     public PortStore getPortStore() {
         return this.portStore;
     }
 
-    public ContainerStore getContainerStore(){return this.containerStore;}
+    /**
+     * Gets the Container Store.
+     *
+     * @return the Container Store
+     */
+    public ContainerStore getContainerStore() {
+        return this.containerStore;
+    }
 
-    public CargoManifestStore getCargoManifestStore(){return this.cargoManifestStore;}
+    /**
+     * Gets the CargoManifest Store.
+     *
+     * @return the CargoManifest Store
+     */
+    public CargoManifestStore getCargoManifestStore() {
+        return this.cargoManifestStore;
+    }
 
     public UserStore getUserStore() {
         return this.userStore;
@@ -76,5 +101,21 @@ public class Company {
         return this.orgRoleStore;
     }
 
+    /**
+     * Gets the Ship Store Data.
+     *
+     * @return the Ship Store Data
+     */
+    public ShipStoreData getShipStoreData() {
+        return shipStoreData;
+    }
 
+    /**
+     * Gets the Port Store Data.
+     *
+     * @return the Port Store Data
+     */
+    public PortStoreData getPortStoreData() {
+        return portStoreData;
+    }
 }

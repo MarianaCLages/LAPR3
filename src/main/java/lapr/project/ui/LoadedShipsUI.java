@@ -24,7 +24,7 @@ public class LoadedShipsUI implements Runnable {
             boolean bool = ctrl.loadedShips(op);
 
             if (bool) {
-                System.out.println("");
+                System.out.println();
             } else {
                 System.out.println("Operation failed! Please, try again.");
             }

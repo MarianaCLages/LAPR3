@@ -18,41 +18,41 @@ public class SearchShipController {
     }
 
     /**
-     * Gets the ship by MMSI.
-     *
-     * @param p the MMSI
-     * @return the ship found
-     */
-    public Ship searchShipByMMSI(int p) {
-        return ss.getShipByMmsi(p);
-    }
-
-    /**
-     * Gets the ship by IMO.
-     *
-     * @param p the IMO
-     * @return the ship found
-     */
-    public Ship searchShipByIMO(String p) {
-        return ss.getShipByIMO(p);
-    }
-
-    /**
-     * Gets the ship by Call Sign.
-     *
-     * @param p the Call Sign
-     * @return the ship found
-     */
-    public Ship searchShipByCallSign(String p) {
-        return ss.getShipByCallSign(p);
-    }
-
-    /**
      * Gets the ship store.
      *
      * @return the ship store
      */
     public ShipStore getShipStore() {
         return ss;
+    }
+
+    /**
+     * Gets the ship by MMSI.
+     *
+     * @param mmsi the ship's MMSI
+     * @return the ship found
+     */
+    public Ship searchShipByMMSI(int mmsi) {
+        return ss.getShipByMmsi(mmsi);
+    }
+
+    /**
+     * Gets the ship by IMO.
+     *
+     * @param imo the ship's IMO
+     * @return the ship found
+     */
+    public Ship searchShipByIMO(String imo) {
+        return ss.getShipByIMO(imo);
+    }
+
+    /**
+     * Gets the ship by Call Sign.
+     *
+     * @param callSign the ship's Call Sign
+     * @return the ship found
+     */
+    public Ship searchShipByCallSign(String callSign) {
+        return ss.getShipByCallSign(callSign);
     }
 }

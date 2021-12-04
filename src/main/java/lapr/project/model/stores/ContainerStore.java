@@ -5,42 +5,61 @@ import lapr.project.shared.tree.AVL;
 
 public class ContainerStore {
 
-
     public AVL<Container> containerByAVL;
 
+    /**
+     * Constructor.
+     */
     public ContainerStore() {
         containerByAVL = new AVL<>();
     }
 
-    public void addContainer(Container c) {
-        containerByAVL.insert(c);
-    }
-
-    public boolean writeAllContainers() {
-
-        if (containerByAVL.isEmpty())
-            return false;
-
-        for (Container c : containerByAVL.inOrder())
-            System.out.println(c);
-
-        return true;
-    }
-
+    /**
+     * Gets the container AVL.
+     *
+     * @return the container AVL
+     */
     public AVL<Container> getContainerByAVL() {
         return containerByAVL;
     }
 
+    /**
+     * Adds a container in the AVL.
+     *
+     * @param container the container to be added
+     */
+    public void addContainer(Container container) {
+        containerByAVL.insert(container);
+    }
+
+    /**
+     * Writes all the containers.
+     *
+     * @return all the containers (in a String)
+     */
+    public boolean writeAllContainers() {
+        if (containerByAVL.isEmpty())
+            return false;
+
+        for (Container container : containerByAVL.inOrder())
+            System.out.println(container);
+
+        return true;
+    }
+
+    /**
+     * Returns the textual description of the containers AVL info.
+     *
+     * @return the container AVL characteristics
+     */
     @Override
     public String toString() {
-
         StringBuilder sb = new StringBuilder();
 
         for (Container c : containerByAVL.inOrder()) {
             sb.append(c.toString());
             sb.append("\n");
         }
-
         return sb.toString();
     }
 }

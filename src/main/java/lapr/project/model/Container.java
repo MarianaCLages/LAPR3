@@ -32,7 +32,16 @@ public class Container implements Comparable<Container> {
         this.toOffLoad = toOffLoad;
     }
 
+    public Container(String identification, int payload, int tare, int gross, String isoCode) {
+        this.identification = identification;
+        this.payload = payload;
+        this.tare = tare;
+        this.gross = gross;
+        this.isoCode = isoCode;
+    }
+
     //Getters
+
     /**
      * Gets the container's identification.
      *
@@ -87,14 +96,29 @@ public class Container implements Comparable<Container> {
         return position;
     }
 
-    public boolean getOffLoad(){
+    /**
+     * Checks if the ship's containers are to offload.
+     *
+     * @return true if they are, false if they aren't
+     */
+    public boolean getOffLoad() {
         return toOffLoad;
     }
 
+    /**
+     * Checks if the ship is refrigerated.
+     *
+     * @return true if it is, false if it isn't
+     */
     public boolean getIsRefrigerated() {
         return isRefrigerated;
     }
 
+    /**
+     * Gets the container type (refrigerated or not).
+     *
+     * @return "Refrigerated" or "Not refrigerated"
+     */
     public String getContainerType() {
         if (isRefrigerated) {
             return "Refrigerated";
@@ -104,6 +128,7 @@ public class Container implements Comparable<Container> {
     }
 
     //Setters
+
     /**
      * Sets the container's identification.
      *
@@ -199,6 +224,12 @@ public class Container implements Comparable<Container> {
         return Objects.hash(identification, payload, tare, gross, isoCode, position);
     }
 
+    /**
+     * Compares two container objects.
+     *
+     * @param o the object (Container)
+     * @return the result of the comparison (0 or 1)
+     */
     @Override
     public int compareTo(Container o) {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
