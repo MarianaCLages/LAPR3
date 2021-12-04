@@ -152,16 +152,14 @@ public class ContainerStoreData implements Persistable {
         }
     }
 
-    public Set<Container> getListContainers() {
+    public Set<Container> getListContainers(DatabaseConnection databaseConnection) {
 
-        if (listContainers.isEmpty()) fillContainerList();
+        if (listContainers.isEmpty()) fillContainerList(databaseConnection);
 
         return listContainers;
     }
 
-    private void fillContainerList() {
-
-        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+    private void fillContainerList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
 

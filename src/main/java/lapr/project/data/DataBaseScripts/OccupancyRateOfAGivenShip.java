@@ -34,13 +34,13 @@ public class OccupancyRateOfAGivenShip {
     public double occupancyRate(int mmsi, int cargoManifestID) {
 
         int inc = 0;
-        int iterator = getContainersSize(cargoManifestID);
+        int iterator = getContainersInsideCargoManifestListSize(cargoManifestID);
 
         double sum = (getShipCargoCapacity(mmsi) * 1000);
         double containersGross = 0;
 
         while (iterator != 0) {
-            containersGross += getContainer(cargoManifestID, inc);
+            containersGross += getContainerGross(cargoManifestID, inc);
 
             inc++;
             iterator--;
@@ -73,7 +73,7 @@ public class OccupancyRateOfAGivenShip {
 
     }
 
-    public int getContainersSize(int cargoManifestID) {
+    public int getContainersInsideCargoManifestListSize(int cargoManifestID) {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -123,7 +123,7 @@ public class OccupancyRateOfAGivenShip {
 
     }
 
-    public int getContainer(int cargoManifestID, int inc) {
+    public int getContainerGross(int cargoManifestID, int inc) {
 
         Connection connection = databaseConnection.getConnection();
 
