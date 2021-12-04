@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.LoadedContainers;
+import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
 import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
@@ -9,6 +9,7 @@ import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -174,8 +175,11 @@ public class App {
 
         //LoadedContainers load = new LoadedContainers();
         //load.wtv(databaseConnection);
-        // OffLoadedContainers off = new OffLoadedContainers();
-        // off.wtv(databaseConnection);
+        //OffOrLoadContainers off = new OffOrLoadContainers();
+        //off.wtv(databaseConnection,"10860", 366873510,2);
+        //Test t = new Test();
+
+        //t.wtv(databaseConnection,"216593",366906610);
 
 
         return true;
