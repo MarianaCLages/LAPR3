@@ -156,7 +156,7 @@ public class TwoDTree {
         Node closestNode = null;
 
         double closestDist = Double.POSITIVE_INFINITY;
-        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLongitude());
+        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLatitude());
 
         if (closestDist > d) {
             closestDist = d;
