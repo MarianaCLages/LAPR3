@@ -1,7 +1,10 @@
 package lapr.project.data;
 
+import lapr.project.data.Utils.DataBaseUtils;
+import lapr.project.model.Port;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
 import lapr.project.model.stores.ShipStore;
 
@@ -11,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +25,7 @@ public class ShipStoreData implements Persistable {
         //Empty constructor
     }
 
+    private Set<Ship> listShip = new HashSet<>();
     private int i = 1;
 
     @Override
@@ -421,4 +427,53 @@ public class ShipStoreData implements Persistable {
 
         return String.valueOf(stringIntoArrayChar);
     }
+
+    private void fillShipList(DatabaseConnection databaseConnection) {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand;
+
+        sqlCommand = "SELECT * from SHIP";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
+                    String s = resultSet.getString("VESSELTYPE");
+                    char[] transceiverArray = s.toCharArray();
+                    char transceiver = transceiverArray[0];
+
+                    int mmsi = resultSet.getInt("MMSI");
+                    String name = resultSet.getString("NAME");
+                    String imo = resultSet.getString("IMO");
+                    String callSign = resultSet.getString("CALLSIGN");
+                    double length = resultSet.getDouble("LENGTH");
+                    double width = resultSet.getDouble("WIDTH");
+                    double draft = resultSet.getDouble("DRAFT");
+                    String cargo = resultSet.getString("CAPACITY");
+
+                    String vesselTYPe = resultSet.getString("VESSELTYPE");
+
+                    Ship ship = new Ship(mmsi, name, imo, callSign, vesselTYPe, length, width, draft, cargo, transceiver);
+
+                    listShip.add(ship);
+                }
+
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ContainerStore.class.getName()).log(Level.SEVERE, null, e);
+            databaseConnection.registerError(e);
+        }
+
+    }
+
+    public Set<Ship> getListShips(DatabaseConnection databaseConnection) {
+
+        if (listShip.isEmpty()) fillShipList(databaseConnection);
+
+        return listShip;
+    }
+
 }

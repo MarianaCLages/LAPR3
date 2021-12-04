@@ -1,11 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.OccupancyRateGivenCargoManifestDateController;
-import lapr.project.controller.OccupancyRateGivenCargoManifestIDController;
-import lapr.project.shared.exceptions.CargoManifestIDException;
-import lapr.project.shared.exceptions.ContainerGrossException;
-import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
-import lapr.project.shared.exceptions.ShipCargoCapacityException;
+import lapr.project.shared.exceptions.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +43,7 @@ public class OccupancyRateGivenCargoManifestDateUI implements Runnable {
 
         try {
             System.out.printf("For the given information, the occupancy rate its : %.2f%%\n", occupancyRateGivenCargoManifestDateController.getOccupancyRate(shipMmsi, date));
-        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException ex1) {
+        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException ex1) {
             System.out.println(ex1.getMessage());
         }
 

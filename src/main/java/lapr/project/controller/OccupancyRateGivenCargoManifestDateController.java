@@ -3,12 +3,7 @@ package lapr.project.controller;
 import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.Company;
-import lapr.project.shared.exceptions.CargoManifestIDException;
-import lapr.project.shared.exceptions.ContainerGrossException;
-import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
-import lapr.project.shared.exceptions.ShipCargoCapacityException;
-
-import java.time.LocalDateTime;
+import lapr.project.shared.exceptions.*;
 
 public class OccupancyRateGivenCargoManifestDateController {
 
@@ -23,7 +18,7 @@ public class OccupancyRateGivenCargoManifestDateController {
     }
 
 
-    public double getOccupancyRate(int mmsi, String date) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException {
+    public double getOccupancyRate(int mmsi, String date) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
 
         return occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestDate(databaseConnection,mmsi,date);
 
