@@ -198,4 +198,81 @@ class FacilityLocationTest {
 
         Assertions.assertNotEquals(location1.hashCode(), location2.hashCode());
     }
+
+    @Test
+    void compareTo1() {
+        double latitude = 50;
+        double longitude = 150;
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
+
+        double latitude2 = 50;
+        double longitude2 = 140;
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
+
+        if (location1.compareTo(location2) == -1) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    void compareTo2() {
+        double latitude = 60;
+        double longitude = 140;
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
+
+        double latitude2 = 50;
+        double longitude2 = 140;
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
+
+        if (location1.compareTo(location2) == -1) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    void compareTo3() {
+        double latitude = 40;
+        double longitude = 140;
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
+
+        double latitude2 = 60;
+        double longitude2 = 140;
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
+
+        if (location1.compareTo(location2) == 1) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    void compareTo4() {
+        double latitude = 50;
+        double longitude = 140;
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
+
+        double latitude2 = 50;
+        double longitude2 = 150;
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
+
+        if (location1.compareTo(location2) == 1) {
+            Assertions.fail();
+        }
+    }
+
+    @Test
+    void compareTo5() {
+        double latitude = 50;
+        double longitude = 140;
+        FacilityLocation location1 = new FacilityLocation(longitude, latitude);
+
+        double latitude2 = 50;
+        double longitude2 = 150;
+        FacilityLocation location2 = new FacilityLocation(longitude2, latitude2);
+
+        boolean actual = (location1.compareTo(location2) == -1);
+        boolean expected = true;
+
+        Assertions.assertEquals(expected, actual);
+
+    }
 }

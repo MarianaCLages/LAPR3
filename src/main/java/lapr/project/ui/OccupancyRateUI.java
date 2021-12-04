@@ -21,10 +21,10 @@ public class OccupancyRateUI implements Runnable {
         System.out.println();
 
         try {
-            String str = occupancyRateController.occupancyRate(mmsi);
+            double str = occupancyRateController.occupancyRate(mmsi);
 
-            if (str == null) {
-                System.out.println("Operation Failed!");
+            if (str == 0) {
+                System.out.println("The Ship cannot carry containers");
             } else {
                 System.out.println(str);
             }
