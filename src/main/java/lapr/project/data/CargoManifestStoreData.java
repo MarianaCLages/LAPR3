@@ -1,14 +1,14 @@
 package lapr.project.data;
 
-import lapr.project.controller.App;
+import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.CargoManifest;
-import lapr.project.model.Container;
-import lapr.project.model.stores.ContainerStore;
+import lapr.project.model.Port;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -37,16 +37,14 @@ public class CargoManifestStoreData implements Persistable {
         return null;
     }
 
-    public Set<CargoManifest> getListCargoManifest() {
+    public Set<CargoManifest> getListCargoManifest(DatabaseConnection databaseConnection) {
 
-        if (listCargoManifest.isEmpty()) fillCargoManifestList();
+        if (listCargoManifest.isEmpty()) fillCargoManifestList(databaseConnection);
 
         return listCargoManifest;
     }
 
-    private void fillCargoManifestList() {
-
-        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+    private void fillCargoManifestList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -58,7 +56,14 @@ public class CargoManifestStoreData implements Persistable {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    //  listCargoManifest.add(new CargoManifest(resultSet.getString("CARGOMANIFESTID"),);
+                    String identification = resultSet.getString("CARGOMANIFESTID");
+
+                    Port port = DataBaseUtils.getPort(resultSet.getString("FACILITYID"), databaseConnection);
+
+                    Date date = (Date) resultSet.getObject("CARGOMANIFESTDATE");
+
+                    CargoManifest cargoManifest = new CargoManifest(identification, port, date);
+                    listCargoManifest.add(cargoManifest);
                 }
 
             }

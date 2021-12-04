@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.LoadedContainers;
+import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
 import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
@@ -9,6 +9,7 @@ import lapr.project.shared.Constants;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -96,10 +97,12 @@ public class App {
         this.authFacade.addUserRole(Constants.ROLE_CLIENT, Constants.ROLE_CLIENT);
         this.authFacade.addUserRole(Constants.ROLE_TRAFFIC_MANAGER, Constants.ROLE_TRAFFIC_MANAGER);
         this.authFacade.addUserRole(Constants.ROLE_SHIP_CAPTAIN, Constants.ROLE_SHIP_CAPTAIN);
+        this.authFacade.addUserRole(Constants.ROLE_PORT_MANAGER, Constants.ROLE_PORT_MANAGER);
 
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.CLIENT, Constants.MODEL_CLASS_PATH + "" + Constants.CLIENT));
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.TRAFFIC_MANAGER, Constants.MODEL_CLASS_PATH + "" + Constants.TRAFFIC_MANAGER));
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.SHIP_CAPTAIN, Constants.MODEL_CLASS_PATH + "" + Constants.SHIP_CAPTAIN));
+        this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.PORT_MANAGER, Constants.MODEL_CLASS_PATH + "" + Constants.PORT_MANAGER));
 
         //email: R00001@lei.pt pass: 123
         Client c1 = new Client(this.company.getOrgRoleStore().getRoleById(Constants.CLIENT), "R00001", "Receptionist1");
@@ -109,10 +112,13 @@ public class App {
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
         this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
 
-
         //email: SC00001@lei.pt pass: 123
         ShipCaptain sc1 = new ShipCaptain(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CAPTAIN), "SC00001", "Ship Captain");
         this.authFacade.addUserWithRole(sc1.getName(), sc1.getEmail(), "123", Constants.ROLE_SHIP_CAPTAIN);
+
+        //email: PM00001@lei.pt pass: 123
+        PortManager pm1 = new PortManager(this.company.getOrgRoleStore().getRoleById(Constants.PORT_MANAGER), "PM00001", "Port Manager");
+        this.authFacade.addUserWithRole(pm1.getName(), pm1.getEmail(), "123", Constants.ROLE_PORT_MANAGER);
 
 
         //ContainerPosition
@@ -169,13 +175,20 @@ public class App {
         // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
         // averageCargoByYearScript.occupancyRateInAShip(databaseConnection);
 
-        OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
+        /*OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
         System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
 
         //LoadedContainers load = new LoadedContainers();
-        //load.wtv(databaseConnection);
-        // OffLoadedContainers off = new OffLoadedContainers();
-        // off.wtv(databaseConnection);
+        //load.getResult(databaseConnection);
+        //OffOrLoadContainers off = new OffOrLoadContainers();
+        //off.getResult(databaseConnection,"10860", 366873510,2);
+        //Test t = new Test();
+
+        //t.getResult(databaseConnection,"216593",366906610);
+
+       /* for(Facility f : company.getPortStoreData().getListPort(databaseConnection)){
+            System.out.println(f);
+        } */
 
 
         return true;

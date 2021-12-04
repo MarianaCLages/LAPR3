@@ -225,10 +225,10 @@ public class Container implements Comparable<Container> {
     }
 
     /**
-     * Compares two container objects.
+     * Compares the identification of two different objects (Container).
      *
-     * @param o the object (Container)
-     * @return the result of the comparison (0 or 1)
+     * @param o the object to compare (Container)
+     * @return 0 if they're equal, -1 or 1 if they're different
      */
     @Override
     public int compareTo(Container o) {

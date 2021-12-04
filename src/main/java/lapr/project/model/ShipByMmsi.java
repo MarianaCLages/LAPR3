@@ -30,7 +30,7 @@ public class ShipByMmsi extends Ship implements Comparable<ShipByMmsi> {
     }
 
     /**
-     * Compares the position date of two different objects (ShipByMMSI).
+     * Compares the MMSI of two different objects (ShipByMMSI).
      *
      * @param o the object to compare (ShipByMMSI)
      * @return 0 if they're equal, -1 or 1 if they're different

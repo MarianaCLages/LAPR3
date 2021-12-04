@@ -30,7 +30,7 @@ public class ShipByCallSign extends Ship implements Comparable<ShipByCallSign> {
     }
 
     /**
-     * Compares the position date of two different objects (ShipByCallSign).
+     * Compares the Call Sign of two different objects (ShipByCallSign).
      *
      * @param o the object to compare (ShipByCallSign)
      * @return 0 if they're equal, -1 or 1 if they're different

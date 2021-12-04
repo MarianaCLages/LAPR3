@@ -26,7 +26,6 @@ public class ShipStoreData implements Persistable {
     public boolean save(DatabaseConnection databaseConnection, Object object) {
         Connection connection = databaseConnection.getConnection();
         Ship ship = (Ship) object;
-        ResultSet resultset;
 
         updateVesselTypes(connection, ship);
 
@@ -375,7 +374,7 @@ public class ShipStoreData implements Persistable {
     }
 
     public int getShipPositionDateSize(DatabaseConnection databaseConnection, int mmsi) {
-        String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage pm where pm.mmsi = '999999999'";
+        String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage pm where pm.mmsi = '" + mmsi + "'";
 
         Connection connection = databaseConnection.getConnection();
 
@@ -408,8 +407,6 @@ public class ShipStoreData implements Persistable {
         temp[10] = ' ';
 
         localDateTime = String.valueOf(temp);
-
-        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         return localDateTime;
     }
