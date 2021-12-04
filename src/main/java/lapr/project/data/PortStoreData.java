@@ -1,9 +1,6 @@
 package lapr.project.data;
 
-import lapr.project.controller.App;
-import lapr.project.model.Container;
-import lapr.project.model.Facility;
-import lapr.project.model.FacilityLocation;
+import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.Port;
 import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
@@ -140,19 +137,7 @@ public class PortStoreData implements Persistable {
 
                 if (portsResultSet.next()) {
 
-                    String countryID = portsResultSet.getString("COUNTRYID");
-
-                    String continentID = getContinentID(databaseConnection, countryID);
-
-                   // String countryName = getCountry(databaseConnection, countryID);
-                   // String continentName = getContinent(databaseConnection, continentID);
-                    String portName = portsResultSet.getString("NAME");
-
-                    double portLongitude = portsResultSet.getDouble("LONGITUDE");
-                    double portLatitude = portsResultSet.getDouble("LATITUDE");
-
-                   // return new Port(portIdentification, portName, continentName, countryName, new FacilityLocation(portLongitude, portLatitude));
-                    return null;
+                    return DataBaseUtils.getPort(portIdentification, databaseConnection);
 
                 } else return null;
 
@@ -165,96 +150,23 @@ public class PortStoreData implements Persistable {
         }
     }
 
-    public String getContinentID(DatabaseConnection databaseConnection, String countryID) {
-
-        Connection connection = databaseConnection.getConnection();
-
-        String sqlCommand = "SELECT * FROM COUNTRY WHERE COUNTRYID = " + countryID;
-
-        try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet countryResultSet = getCountryPreparedStatement.executeQuery()) {
-
-                if (countryResultSet.next()) {
-                    return countryResultSet.getString("NAME");
-                } else return null;
-
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
-        }
-
-    }
-
-    public String getCountry(DatabaseConnection databaseConnection, int countryID) {
-
-        Connection connection = databaseConnection.getConnection();
-        String sqlCommand;
-
-        String countryName = null;
-
-        sqlCommand = "SELECT * from COUNTRY where COUNTRYID = " + countryID;
-
-        try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet countrySet = getCountryPreparedStatement.executeQuery()) {
-
-                if (countrySet.next()) {
-
-                    return countrySet.getString("NAME");
-
-                } else return null;
-
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, e);
-            databaseConnection.registerError(e);
-            return null;
-        }
-
-    }
-
-    public String getContinent(DatabaseConnection databaseConnection, int continentID) {
-
-        Connection connection = databaseConnection.getConnection();
-        String sqlCommand;
-
-        String continentName = null;
-
-        sqlCommand = "SELECT * from CONTINENT where CONTINENTID = " + continentID;
-
-        try (PreparedStatement getContinentPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet continentSet = getContinentPreparedStatement.executeQuery()) {
-
-                if (continentSet.next()) {
-
-                    return continentSet.getString("NAME");
-
-                } else return null;
-
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, e);
-            databaseConnection.registerError(e);
-            return null;
-        }
-
-    }
-
-    private void fillPortList() {
-
-        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+    private void fillPortList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand;
 
-        sqlCommand = "SELECT * from FACILITY where FACILITYTYPE = 1";
+        sqlCommand = "SELECT * from FACILITY";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    //  listPort.add(new Facility(resultSet.getString("FACILITYID"), resultSet.getString("NAME"), resultSet.getInt("TARE"), resultSet.getInt("GROSS"), resultSet.getString("CONTAINERID")));
+
+
+                    String facilityID = resultSet.getString("FACILITYID");
+
+                    listPort.add(DataBaseUtils.getPort(facilityID, databaseConnection));
                 }
 
             }
@@ -266,9 +178,9 @@ public class PortStoreData implements Persistable {
     }
 
 
-    public Set<Port> getListPort() {
+    public Set<Port> getListPort(DatabaseConnection databaseConnection) {
 
-        if (listPort.isEmpty()) fillPortList();
+        if (listPort.isEmpty()) fillPortList(databaseConnection);
 
         return listPort;
     }

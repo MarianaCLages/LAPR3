@@ -149,10 +149,10 @@ public class Facility implements Comparable<Facility> {
     }
 
     /**
-     * Compares two facility objects.
+     * Compares the latitude and longitude of two different objects (Facility).
      *
-     * @param o the object (Facility)
-     * @return the result of the comparison (0 or 1)
+     * @param o the object to compare (Facility)
+     * @return 0 if they're equal, -1 or 1 if they're different
      */
     @Override
     public int compareTo(Facility o) {

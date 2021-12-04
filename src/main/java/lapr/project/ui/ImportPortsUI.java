@@ -16,6 +16,7 @@ public class ImportPortsUI implements Runnable {
         do {
             try {
                 String readOption = Utils.readLineFromConsole("Do you wish to import a file (Y - yes/ N - no)");
+                readOption = readOption.toUpperCase();
                 if (readOption.equals("Y")) {
                     readOptionBoolean = true;
                     fileName = Utils.readLineFromConsole("Please enter the file path");
@@ -25,7 +26,7 @@ public class ImportPortsUI implements Runnable {
                 } else if (!readOption.equals("Y") || !readOption.equals("N")) throw new IllegalArgumentException();
 
             } catch (IllegalArgumentException ex1) {
-                System.out.println("Please enter a valid option! (Y - yes / N - no)");
+                System.out.println("Please enter a valid option!");
             } catch (FileNotFoundException ex2) {
                 System.out.println("Please enter a valid file! (See the file names before entering one)");
             }
