@@ -2,28 +2,24 @@ package lapr.project.shared.tree;
 
 import lapr.project.model.Port;
 import lapr.project.model.Position;
+import lapr.project.shared.MedianElement;
 
 import java.awt.geom.Point2D;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class TwoDTree {
 
 
-    Node root;
+    Node root = null;
 
-    /**
-     * Constructor.
-     */
+
     public TwoDTree() {
-        this.root = null;
+        root = null;
     }
 
-    /**
-     *
-     * @param n0 node of the 2D tree
-     * @param port port inputted by the user
-     * @return the distance between that node and the port
-     */
     private static double dist(Node n0, Port port) {
         double total;
 
@@ -32,65 +28,64 @@ public class TwoDTree {
         return total;
     }
 
-    /**
-     *
-     * @param n0 node of the 2D tree
-     * @param port port inputted by the user
-     * @return the squared between that node and the port
-     */
     private static double distsquared(Node n0, Port port) {
 
-        double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLongitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLatitude(), 2));
+        double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLatitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLongitude(), 2));
 
         return total;
     }
 
-    /**
-     *
-     * @param port inputted by the user
-     * Inserts a Port into the 2D Tree
-     */
-    public void insert(Port port) {
-        root = insert(new Node(port, null, null), root, true);
+    public void insert(Port[] port) {
+
+        if (port == null) return;
+        if (port.length == 1) return;
+        root = insert(port, root, true);
     }
 
-    public Node insert(Node point, Node root, boolean divX) {
+    public Node insert(Port[] point, Node root, boolean divX) {
+        MedianElement medianElement;
+        if (divX) {
+            medianElement = new MedianElement(point, root.cmpX);
+        } else {
+            medianElement = new MedianElement(point, root.cmpY);
+        }
+
+        Port elementToInsert = (Port) medianElement.median();
+        Node nodeToInsert = new Node(elementToInsert, null, null);
 
         if (root == null) {
-            return point;
+            return nodeToInsert;
         }
 
 
-        if (root.getX() == point.getElement().getLocation().getLongitude() && root.getY() == point.getElement().getLocation().getLatitude()) {
+        if (root.getX() == nodeToInsert.getElement().getLocation().getLongitude() && root.getY() == nodeToInsert.getElement().getLocation().getLatitude()) {
             return root;
         }
 
+
         int cmpResult;
-        if (divX) cmpResult = root.cmpX.compare(point, root);
-        else cmpResult = root.cmpY.compare(point, root);
+        if (divX) cmpResult = root.cmpX.compare(nodeToInsert, root);
+        else cmpResult = root.cmpY.compare(nodeToInsert, root);
+
 
         if (cmpResult == -1) {
             if (root.left == null) {
-                root.left = point;
+                root.left = nodeToInsert;
             } else {
-                insert(point, root.left, !divX);
+                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
             }
 
         } else {
 
             if (root.right == null)
-                root.right = point;
+                root.right = nodeToInsert;
             else
-                insert(point, root.right, !divX);
+                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
         }
 
         return root;
     }
 
-    /**
-     *
-     * @return returns the Port with the smallest coordinates
-     */
     public Port smallestElement() {
         return smallestElement(root);
     }
@@ -100,14 +95,6 @@ public class TwoDTree {
         if (node.getLeft() == null) return node.getElement();
         return smallestElement(node.getLeft());
     }
-
-    /**
-     *
-     * @param n0 the first node the user wishes to compare
-     * @param n1 the second node the user wishes to compare
-     * @param target the Port that will be compared by the two nodes
-     * @return whichever of the two nodes is the closest to the Port
-     */
 
     public Node closest(Node n0, Node n1, Port target) {
         if (n0 == null) return n1;
@@ -123,11 +110,14 @@ public class TwoDTree {
             return n1;
     }
 
-    /**
-     *
-     * @param target is the latest position of the ship
-     * @return the closest Port of that Position.
-     */
+
+  /*  public double distanceOfAPoint(double x, double y) {
+
+        double distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+        return distance;
+    }*/
+
 
     public Port nearestNeighborPort(Position target) {
         return nearestNeighborNode(root, target, true).getElement();
@@ -142,34 +132,28 @@ public class TwoDTree {
 
         Node closestNode = null;
 
-        double closestDist = Double.POSITIVE_INFINITY; //distancia mais proxima
-        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLatitude());
+        double closestDist = Double.POSITIVE_INFINITY;
+        double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLongitude());
 
         if (closestDist > d) {
             closestDist = d;
             closestNode = root;
         }
 
-        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY(); //se divX = true, subtrai as posições x se não as posições y
+        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY();
         double delta2 = delta * delta;
 
-        Node node1 = delta < 0 ? root.left : root.right; //se delta é negativo vai para a root esquerda else root direita
+        Node node1 = delta < 0 ? root.left : root.right;
         Node node2 = delta2 < 0 ? root.right : root.left;
 
         nearestNeighborNode(node1, target, !divX);
 
-        if (delta2 < closestDist) { //se, durante a recursão houver um delta2 maior que o atual closesDist, utiliza-se o node2
+        if (delta2 < closestDist) {
             nearestNeighborNode(node2, target, !divX);
         }
         return closestNode;
     }
 
-    /**
-     * Returns the textual description of the ship in the format: (x,y), x being the longitude of the port
-     * and the y being the latitude of the Port.
-     *
-     * @return the ship's characteristics
-     */
     @Override
     public String toString() {
 
@@ -204,18 +188,8 @@ public class TwoDTree {
 
         private lapr.project.model.Port port;
 
-        private final Comparator<Node<Port>> cmpX = new Comparator<Node<Port>>() {
-            @Override
-            public int compare(Node<Port> p1, Node<Port> p2) {
-                return Double.compare(p1.getX(), p2.getX());
-            }
-        };
-        private final Comparator<Node<Port>> cmpY = new Comparator<Node<Port>>() {
-            @Override
-            public int compare(Node<Port> p1, Node<Port> p2) {
-                return Double.compare(p1.getY(), p2.getY());
-            }
-        };
+        private final Comparator<Node<Port>> cmpX = Comparator.comparingDouble(Node::getX);
+        private final Comparator<Node<Port>> cmpY = Comparator.comparingDouble(Node::getY);
         private Node left;
         private Node right;
 
