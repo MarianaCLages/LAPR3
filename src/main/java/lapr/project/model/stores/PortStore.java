@@ -6,20 +6,14 @@ import lapr.project.model.Position;
 import lapr.project.model.Ship;
 import lapr.project.shared.tree.TwoDTree;
 
-
 import java.time.LocalDateTime;
-
-
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 
 public class PortStore {
 
     private final TwoDTree portList;
-    private ArrayList<Facility> tempList;
+    private final ArrayList<Facility> tempList;
 
     /**
      * Constructor.
@@ -45,9 +39,9 @@ public class PortStore {
      * @return
      */
     public boolean add(Port port) {
-        //save(App.getInstance().getDatabaseConnection(),port);
-        return tempList.add(port);
-        //portList.insert(port);
+        if (port == null) return false;
+        tempList.add(port);
+        return true;
     }
 
     /**
@@ -58,10 +52,6 @@ public class PortStore {
     public boolean fillTree() {
         if (tempList.isEmpty()) return false;
         portList.insert(tempList.toArray(new Port[0]));
-        /*for (Facility p : tempList) {
-            portList.insert((Port) p);
-        }*/
-        System.out.println(portList.toString());
         return true;
     }
 
@@ -79,17 +69,4 @@ public class PortStore {
 
         return portList.nearestNeighborPort(position);
     }
-
-
-    public Port getPortById(String id) {
-
-        for(Facility f : tempList){
-            if(f.getIdentification().equals(id)){
-                return (Port) f;
-            }
-        }
-        return null;
-    }
-
-
 }

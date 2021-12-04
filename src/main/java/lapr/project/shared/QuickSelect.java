@@ -3,10 +3,7 @@ package lapr.project.shared;
 import java.util.Comparator;
 import java.util.Random;
 
-//
-// Java implementation of quickselect algorithm.
-// See https://en.wikipedia.org/wiki/Quickselect
-//
+
 public class QuickSelect {
     private static final Random random = new Random();
 
