@@ -7,8 +7,6 @@ import lapr.project.shared.QuickSelect;
 
 import java.awt.geom.Point2D;
 import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class TwoDTree {
     private final Comparator<Facility> cmpX = Comparator.comparingDouble(o -> o.getLocation().getLongitude());
@@ -28,12 +26,12 @@ public class TwoDTree {
     private static double dist(Node n0, Port port) {
         double total;
 
-        total = Math.sqrt(distsquared(n0, port));
+        total = Math.sqrt(distSquared(n0, port));
 
         return total;
     }
 
-    private static double distsquared(Node n0, Port port) {
+    private static double distSquared(Node n0, Port port) {
 
         double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLatitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLongitude(), 2));
 
@@ -59,95 +57,17 @@ public class TwoDTree {
         if (divX) {
             nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpX), null, null);
         } else {
-            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpX), null, null);
+            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpY), null, null);
         }
         nodeToInsert.setLeft(insert(point, beg, n, !divX));
         nodeToInsert.setRight(insert(point, n + 1, end, !divX));
         return nodeToInsert;
-
-        /*MedianElement medianElement;
-        if (divX) {
-            medianElement = new MedianElement(point, cmpX);
-        } else {
-            medianElement = new MedianElement(point, cmpY);
-        }
-        Port elementToInsert = (Port) medianElement.median();
-        Node nodeToInsert = new Node(elementToInsert, null, null);
-
-        if (point.length == 0) return nodeToInsert;
-
-        if (root == null) {
-            root = nodeToInsert;
-            return insert(Arrays.copyOfRange(point, 0, point.length / 2), root, !divX);
-        }
-
-
-        if (root.getX() == nodeToInsert.getElement().getLocation().getLongitude() && root.getY() == nodeToInsert.getElement().getLocation().getLatitude()) {
-            return root;
-        }
-
-
-        int cmpResult;
-        if (divX) cmpResult = cmpX.compare(nodeToInsert.getElement(), root.getElement());
-        else cmpResult = cmpY.compare(nodeToInsert.getElement(), root.getElement());
-
-
-        if (cmpResult == -1) {
-            if (root.left == null) {
-                root.left = nodeToInsert;
-                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
-            } else {
-                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
-            }
-
-        } else {
-
-            if (root.right == null) {
-                root.right = nodeToInsert;
-                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
-            } else {
-                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
-            }
-        }
-*/
-    }
-
-    public Port smallestElement() {
-        return smallestElement(root);
-    }
-
-    protected Port smallestElement(Node node) {
-        if (node == null) return null;
-        if (node.getLeft() == null) return node.getElement();
-        return smallestElement(node.getLeft());
-    }
-
-    public Node closest(Node n0, Node n1, Port target) {
-        if (n0 == null) return n1;
-
-        if (n1 == null) return n0;
-
-        double d1 = dist(n0, target);
-        double d2 = dist(n1, target);
-
-        if (d1 < d2)
-            return n0;
-        else
-            return n1;
-    }
-
-
-    public double distanceOfAPoint(double x, double y) {
-
-        double distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-
-        return distance;
     }
 
 
     public Port nearestNeighborPort(Position target) {
 
-        closesDist = 1000000;
+        closesDist = Double.MAX_VALUE;
         closestNode = null;
         return nearestNeighborNode(root, target, true).getElement();
     }
@@ -156,10 +76,8 @@ public class TwoDTree {
     private Node nearestNeighborNode(Node root, Position target, boolean divX) {
 
         if (root == null) {
-            return null;
+            return closestNode;
         }
-
-
 
 
         double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLatitude());
@@ -179,40 +97,10 @@ public class TwoDTree {
         nearestNeighborNode(node1, target,!divX);
 
         if (delta2 < closesDist) {
-           closestNode = nearestNeighborNode(node2, target, !divX);
+            closestNode = nearestNeighborNode(node2, target, !divX);
         }
 
         return closestNode;
-    }
-
-    @Override
-    public String toString() {
-
-
-        StringBuilder sb = new StringBuilder();
-        Queue<Node> q = new LinkedList<>();
-
-
-        q.add(this.root);
-
-
-        while (!q.isEmpty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                Node n = q.poll();
-                if (n != null) {
-                    sb.append(" --").append(n.getElement().getCountry()).append("-- ");
-                    q.add(n.left);
-                    q.add(n.right);
-                } else {
-                    sb.append(" --null-- ");
-                }
-            }
-            sb.append('\n');
-        }
-
-
-        return sb.toString();
     }
 
     protected static class Node<Port> {

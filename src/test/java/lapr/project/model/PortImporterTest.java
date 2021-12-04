@@ -1,4 +1,3 @@
-/*
 package lapr.project.model;
 
 import lapr.project.data.DatabaseConnection;
@@ -50,7 +49,7 @@ class PortImporterTest {
 
         boolean actual = PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
 
-        Assertions.assertFalse(actual);
+        Assertions.assertTrue(actual);
     }
 
 
@@ -58,10 +57,10 @@ class PortImporterTest {
     void importPortsAllString() throws FileNotFoundException {
         PortStoreData portStoreData = mock(PortStoreData.class);
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String string = " --France-- \n" +
-                " --United States--  --null-- \n" +
-                " --United States--  --United Kingdom-- \n" +
-                " --null--  --null--  --null--  --null-- \n";
+        String string = " --United Kingdom-- \n" +
+                " --United States--  --France-- \n" +
+                " --United States--  --null--  --null--  --null-- \n" +
+                " --null--  --null-- \n";
         PortStore store = new PortStore();
 
         when(portStoreData.save(databaseConnection, new Object())).thenReturn(
@@ -70,4 +69,4 @@ class PortImporterTest {
         Assertions.assertEquals(string, store.getPortList().toString());
     }
 
-}*/
+}

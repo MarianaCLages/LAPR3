@@ -36,7 +36,7 @@ public class PortImporter {
         } while (sc.hasNextLine());
         sc.close();
         returnValue = portStore.fillTree();
-
+        System.out.println(portStore.getPortList());
 
         return returnValue;
     }

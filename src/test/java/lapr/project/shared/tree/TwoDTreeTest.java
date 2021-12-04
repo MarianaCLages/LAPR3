@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TwoDTreeTest {
+class TwoDTreeTest {
 
 
     String sdate = "31/11/2020 23:16";
@@ -37,42 +37,15 @@ public class TwoDTreeTest {
         portList.add(port4);
         portList.add(port5);
 
-
-        //Arrange
-        String expected = " --a1-- \n" +
-                " --a3--  --a5-- \n" +
-                " --a4--  --null--  --a2--  --null-- \n" +
-                " --null--  --null--  --null--  --null-- \n";
-        //Act
         tdt.insert(portList.toArray(new Port[0]));
 
 
         //Assert
-        assertEquals(expected, tdt.toString());
+        assertEquals(tdt.nearestNeighborPort(posgeral), port2);
 
 
     }
 
-
-    @Test
-    void closest() {
-        List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13));
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12));
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
-
-        portList.add(port);
-        portList.add(port2);
-        tdt.insert(portList.toArray(new Port[0]));
-
-        Port expected = port2;
-        //Act
-        TwoDTree.Node node = tdt.closest(tdt.root, tdt.root.getRight(), port5);
-        //Assert
-        assertEquals(expected, node.getElement());
-    }
 
     @Test
     void nearestNeighbor() {
@@ -86,102 +59,20 @@ public class TwoDTreeTest {
 
 
         Position posgeral = new Position(19, 19, 0, 1, 1, date);
-        portList.add(port);
-        portList.add(port2);
         portList.add(port3);
-        portList.add(port4);
+        portList.add(port2);
+        portList.add(port);
         portList.add(port5);
 
         tdt.insert(portList.toArray(new Port[0]));
 
-
-
-        //System.out.println(tdt.toString());
-
-        Port expected = port5;
+        System.out.println(tdt.toString());
 
         //Act
         Port actual = tdt.nearestNeighborPort(posgeral);
 
         System.out.println(actual.toString());
         //Assert
-        assertEquals(expected, actual);
-    }
-
-
-    @Test
-    void closestTest() {
-
-        //Arrange
-        List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13));
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12));
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
-
-        portList.add(port);
-        portList.add(port2);
-        portList.add(port3);
-        portList.add(port4);
-
-        tdt.insert(portList.toArray(new Port[0]));
-
-        Port expected = port2;
-        //Act
-        TwoDTree.Node actual = tdt.closest(tdt.root.getLeft(), tdt.root.getRight(), port5);
-
-        //Arrange
-        assertEquals(expected, actual.getElement());
-    }
-/*
-    @Test
-    void smallestElementTest() {
-        List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13));
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12));
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
-
-        portList.add(port);
-        portList.add(port2);
-        portList.add(port3);
-        portList.add(port4);
-        //Arrange
-        tdt.insert(portList.toArray(new Port[0]));
-
-        Port expected = port3;
-        //Act
-        Port actual = tdt.smallestElement();
-        //Assert
-        assertEquals(expected, actual);
-    }
-*/
-    @Test
-    void toStringTest() {
-
-        //Arrange
-        List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13));
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12));
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
-
-        portList.add(port);
-        portList.add(port2);
-        portList.add(port3);
-        portList.add(port4);
-        //Arrange
-        tdt.insert(portList.toArray(new Port[0]));
-
-        //Act
-        String expected = " --a1-- \n" +
-                " --a3--  --a2-- \n" +
-                " --a4--  --null--  --null--  --null-- \n" +
-                " --null--  --null-- \n";
-        //Assert
-        assertEquals(expected, tdt.toString());
+        assertEquals(port2, actual);
     }
 }
