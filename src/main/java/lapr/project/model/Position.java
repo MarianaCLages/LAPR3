@@ -184,7 +184,7 @@ public class Position implements Comparable<Position> {
     }
 
     /**
-     * Compares the position date of two different objects (Position).
+     * Compares the date of two different objects (Position).
      *
      * @param o the object to compare (Position)
      * @return 0 if they're equal, -1 or 1 if they're different
