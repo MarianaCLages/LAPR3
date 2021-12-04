@@ -15,6 +15,9 @@ public class TwoDTree {
 
     private final Comparator<Facility> cmpY = Comparator.comparingDouble(o -> o.getLocation().getLatitude());
 
+    double closesDist;
+    Node closestNode;
+
     Node root = null;
 
 
@@ -143,6 +146,9 @@ public class TwoDTree {
 
 
     public Port nearestNeighborPort(Position target) {
+
+        closesDist = 1000000;
+        closestNode = null;
         return nearestNeighborNode(root, target, true).getElement();
     }
 
@@ -153,13 +159,13 @@ public class TwoDTree {
             return null;
         }
 
-        Node closestNode = null;
 
-        double closestDist = Double.POSITIVE_INFINITY;
+
+
         double d = Point2D.distanceSq(root.getX(), root.getY(), target.getLongitude(), target.getLatitude());
 
-        if (closestDist > d) {
-            closestDist = d;
+        if (closesDist > d) {
+            closesDist = d;
             closestNode = root;
         }
 
@@ -169,11 +175,13 @@ public class TwoDTree {
         Node node1 = delta < 0 ? root.left : root.right;
         Node node2 = delta2 < 0 ? root.right : root.left;
 
-        nearestNeighborNode(node1, target, !divX);
 
-        if (delta2 < closestDist) {
-            nearestNeighborNode(node2, target, !divX);
+        nearestNeighborNode(node1, target,!divX);
+
+        if (delta2 < closesDist) {
+           closestNode = nearestNeighborNode(node2, target, !divX);
         }
+
         return closestNode;
     }
 
