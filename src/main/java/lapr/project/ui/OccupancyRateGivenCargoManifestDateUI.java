@@ -2,6 +2,11 @@ package lapr.project.ui;
 
 import lapr.project.controller.OccupancyRateGivenCargoManifestDateController;
 import lapr.project.shared.exceptions.*;
+import lapr.project.shared.exceptions.CargoManifestIDException;
+import lapr.project.shared.exceptions.ContainerGrossException;
+import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
+import lapr.project.shared.exceptions.ShipCargoCapacityException;
+
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +29,7 @@ public class OccupancyRateGivenCargoManifestDateUI implements Runnable {
 
         do {
             try {
-                shipMmsi = Utils.readIntegerFromConsole("Please enter the desired MMSI: ");
+                shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI!");
                 shipMmsi = 0;
@@ -33,20 +38,18 @@ public class OccupancyRateGivenCargoManifestDateUI implements Runnable {
 
         do {
             try {
-                date = Utils.readLineFromConsole("Please enter the date of the cargo manifest (Format - yyyy-MM-dd HH:mm:ss): ");
+                date = Utils.readLineFromConsole("Please enter the date of the cargo manifest (Format: yyyy-MM-dd HH:mm:ss): ");
                 dateTime = LocalDateTime.from(formatter.parse(date));
             } catch (Exception e) {
-                System.out.println("Please enter a valid date! (Or a valid date format!)");
+                System.out.println("Please enter a valid date! (Or in valid date format!)");
                 date = null;
             }
         } while (date == null);
 
         try {
-            System.out.printf("For the given information, the occupancy rate its : %.2f%%\n", occupancyRateGivenCargoManifestDateController.getOccupancyRate(shipMmsi, date));
+            System.out.printf("For the given information, the occupancy rate is : %.2f%%\n\n", occupancyRateGivenCargoManifestDateController.getOccupancyRate(shipMmsi, date));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException ex1) {
             System.out.println(ex1.getMessage());
         }
-
     }
-
 }

@@ -1,17 +1,19 @@
 package lapr.project.shared.tree;
 
+import lapr.project.model.Facility;
 import lapr.project.model.Port;
 import lapr.project.model.Position;
-import lapr.project.shared.MedianElement;
+import lapr.project.shared.QuickSelect;
 
 import java.awt.geom.Point2D;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class TwoDTree {
+    private final Comparator<Facility> cmpX = Comparator.comparingDouble(o -> o.getLocation().getLongitude());
 
+    private final Comparator<Facility> cmpY = Comparator.comparingDouble(o -> o.getLocation().getLatitude());
 
     Node root = null;
 
@@ -38,23 +40,42 @@ public class TwoDTree {
     public void insert(Port[] port) {
 
         if (port == null) return;
-        if (port.length == 1) return;
-        root = insert(port, root, true);
+        if (port.length == 0) return;
+
+
+        root = insert(port, 0, port.length, true);
     }
 
-    public Node insert(Port[] point, Node root, boolean divX) {
-        MedianElement medianElement;
-        if (divX) {
-            medianElement = new MedianElement(point, root.cmpX);
-        } else {
-            medianElement = new MedianElement(point, root.cmpY);
+    public Node insert(Port[] point, int beg, int end, boolean divX) {
+        if (end <= beg) {
+            return null;
         }
+        int n = beg + (end - beg) / 2;
 
+        Node nodeToInsert;
+        if (divX) {
+            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpX), null, null);
+        } else {
+            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpX), null, null);
+        }
+        nodeToInsert.setLeft(insert(point, beg, n, !divX));
+        nodeToInsert.setRight(insert(point, n + 1, end, !divX));
+        return nodeToInsert;
+
+        /*MedianElement medianElement;
+        if (divX) {
+            medianElement = new MedianElement(point, cmpX);
+        } else {
+            medianElement = new MedianElement(point, cmpY);
+        }
         Port elementToInsert = (Port) medianElement.median();
         Node nodeToInsert = new Node(elementToInsert, null, null);
 
+        if (point.length == 0) return nodeToInsert;
+
         if (root == null) {
-            return nodeToInsert;
+            root = nodeToInsert;
+            return insert(Arrays.copyOfRange(point, 0, point.length / 2), root, !divX);
         }
 
 
@@ -64,26 +85,28 @@ public class TwoDTree {
 
 
         int cmpResult;
-        if (divX) cmpResult = root.cmpX.compare(nodeToInsert, root);
-        else cmpResult = root.cmpY.compare(nodeToInsert, root);
+        if (divX) cmpResult = cmpX.compare(nodeToInsert.getElement(), root.getElement());
+        else cmpResult = cmpY.compare(nodeToInsert.getElement(), root.getElement());
 
 
         if (cmpResult == -1) {
             if (root.left == null) {
                 root.left = nodeToInsert;
+                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
             } else {
-                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
+                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getLeft(), !divX);
             }
 
         } else {
 
-            if (root.right == null)
+            if (root.right == null) {
                 root.right = nodeToInsert;
-            else
-                insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
+                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
+            } else {
+                return insert(Arrays.copyOfRange(point, 0, point.length / 2), root.getRight(), !divX);
+            }
         }
-
-        return root;
+*/
     }
 
     public Port smallestElement() {
@@ -111,12 +134,12 @@ public class TwoDTree {
     }
 
 
-  /*  public double distanceOfAPoint(double x, double y) {
+    public double distanceOfAPoint(double x, double y) {
 
         double distance = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 
         return distance;
-    }*/
+    }
 
 
     public Port nearestNeighborPort(Position target) {
@@ -170,7 +193,7 @@ public class TwoDTree {
             for (int i = 0; i < size; i++) {
                 Node n = q.poll();
                 if (n != null) {
-                    sb.append(" --").append(n.getElement().getName()).append("-- ");
+                    sb.append(" --").append(n.getElement().getCountry()).append("-- ");
                     q.add(n.left);
                     q.add(n.right);
                 } else {
@@ -188,8 +211,7 @@ public class TwoDTree {
 
         private lapr.project.model.Port port;
 
-        private final Comparator<Node<Port>> cmpX = Comparator.comparingDouble(Node::getX);
-        private final Comparator<Node<Port>> cmpY = Comparator.comparingDouble(Node::getY);
+
         private Node left;
         private Node right;
 
@@ -214,11 +236,6 @@ public class TwoDTree {
             return left;
         }
 
-        /**
-         * Sets the left node.
-         *
-         * @param leftChild the left node
-         */
         public void setLeft(Node leftChild) {
             left = leftChild;
         }
@@ -227,11 +244,6 @@ public class TwoDTree {
             return right;
         }
 
-        /**
-         * Sets the right node.
-         *
-         * @param rightChild the right node
-         */
         public void setRight(Node rightChild) {
             right = rightChild;
         }
@@ -245,3 +257,121 @@ public class TwoDTree {
         }
     }
 }
+
+/*
+
+import lapr.project.model.Facility;
+import lapr.project.shared.MedianElement;
+
+import java.util.*;
+
+public class KdTree {
+    private int dimesions;
+    private Node root = null;
+    private Node best = null;
+    private double bestDistance = 0;
+    private int visited = 0;
+
+    public KdTree(int dimensions, List<Node> nodes) {
+        this.dimesions = dimensions;
+        this.root = makeTree(nodes, 0, nodes.size(), 0);
+    }
+
+    public Node findNearest(Node target) {
+        if (this.root == null)
+            throw new IllegalStateException("Tree is empty!");
+        this.best = null;
+        this.visited = 0;
+        this.bestDistance = 0;
+        nearest(this.root, target, 0);
+        return this.best;
+    }
+
+    public int visited() {
+        return this.visited;
+    }
+
+    public double distance() {
+        return Math.sqrt(this.bestDistance);
+    }
+
+    private void nearest(Node root, Node target, int index) {
+        if (root == null)
+            return;
+        ++this.visited;
+        double d = root.distance(target);
+        if (this.best == null || d < this.bestDistance) {
+            this.bestDistance = d;
+            this.best = root;
+        }
+        if (this.bestDistance == 0)
+            return;
+        double dx = root.get(index) - target.get(index);
+        index = (index + 1) % this.dimesions;
+        nearest(dx > 0 ? root.left_ : root.right_, target, index);
+        if (dx * dx >= this.bestDistance)
+            return;
+        nearest(dx > 0 ? root.right_ : root.left_, target, index);
+    }
+
+    private Node makeTree(List<Node> nodes, int beg, int end, int index) {
+        if (end <= beg) {
+            return null;
+        }
+        MedianElement medianElement = new MedianElement(nodes.toArray(new Facility[0]),);
+        int n = beg + (end - beg)/2;
+        Node node = QuickSelect.select(nodes, beg, end - 1, n, new NodeComparator(index));
+        index = (index + 1) % this.dimesions;
+        node.left_ = makeTree(nodes, beg, n, index);
+        node.right_ = makeTree(nodes, n + 1, end, index);
+        return node;
+    }
+
+    private static class NodeComparator implements Comparator<Node> {
+        private int index_;
+
+        private NodeComparator(int index) {
+            index_ = index;
+        }
+        public int compare(Node n1, Node n2) {
+            return Double.compare(n1.get(index_), n2.get(index_));
+        }
+    }
+
+    public static class Node {
+        private double[] coords;
+        private Node left_ = null;
+        private Node right_ = null;
+
+        public Node(double[] coords) {
+           this.coords = coords;
+        }
+        public Node(double x, double y) {
+            this(new double[]{x, y});
+        }
+        public Node(double x, double y, double z) {
+            this(new double[]{x, y, z});
+        }
+        double get(int index) {
+            return this.coords[index];
+        }
+        double distance(Node node) {
+            double dist = 0;
+            for (int i = 0; i < this.coords.length; ++i) {
+                double d = this.coords[i] - node.coords[i];
+                dist += d * d;
+            }
+            return dist;
+        }
+        public String toString() {
+            StringBuilder s = new StringBuilder("(");
+            for (int i = 0; i < this.coords.length; ++i) {
+                if (i > 0)
+                    s.append(", ");
+                s.append(this.coords[i]);
+            }
+            s.append(')');
+            return s.toString();
+        }
+    }
+}*/

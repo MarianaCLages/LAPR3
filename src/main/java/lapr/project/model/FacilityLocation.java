@@ -122,6 +122,11 @@ public class FacilityLocation implements Comparable<FacilityLocation>  {
         return "latitude = " + latitude + ", longitude = " + longitude;
     }
 
+    /**
+     * Compares two FacilityLocation objects.
+     * @param o the object to compare (FacilityLocation)
+     * @return 0 if they're equal, -1 or 1 if they're different
+     */
     @Override
     public int compareTo(FacilityLocation o) {
         if (this.getLongitude() > o.getLongitude()) return 1;

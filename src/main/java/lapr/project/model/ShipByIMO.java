@@ -30,7 +30,7 @@ public class ShipByIMO extends Ship implements Comparable<ShipByIMO> {
     }
 
     /**
-     * Compares the position date of two different objects (ShipByIMO).
+     * Compares the IMO of two different objects (ShipByIMO).
      *
      * @param o the object to compare (ShipByIMO)
      * @return 0 if they're equal, -1 or 1 if they're different
