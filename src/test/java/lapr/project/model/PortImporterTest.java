@@ -57,9 +57,9 @@ class PortImporterTest {
     void importPortsAllString() throws FileNotFoundException {
         PortStoreData portStoreData = mock(PortStoreData.class);
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String string = " --United Kingdom-- \n" +
-                " --United States--  --France-- \n" +
-                " --United States--  --null--  --null--  --null-- \n" +
+        String string = " --Liverpool-- \n" +
+                " --New Jersey--  --Dunkirk-- \n" +
+                " --Los Angeles--  --null--  --null--  --null-- \n" +
                 " --null--  --null-- \n";
         PortStore store = new PortStore();
 

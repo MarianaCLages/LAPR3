@@ -41,7 +41,7 @@ class TwoDTreeTest {
 
 
         //Assert
-        assertEquals(tdt.nearestNeighborPort(posgeral), port2);
+        assertEquals(tdt.nearestNeighborPort(posgeral), port5);
 
 
     }
@@ -66,13 +66,38 @@ class TwoDTreeTest {
 
         tdt.insert(portList.toArray(new Port[0]));
 
-        System.out.println(tdt.toString());
 
         //Act
         Port actual = tdt.nearestNeighborPort(posgeral);
 
-        System.out.println(actual.toString());
+
         //Assert
-        assertEquals(port2, actual);
+        assertEquals(port5, actual);
+    }
+
+    @Test
+    void toStringTest() {
+
+        //Arrange
+        List<Port> portList = new ArrayList<>();
+        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13));
+        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12));
+        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20));
+        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22));
+        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10));
+
+        portList.add(port);
+        portList.add(port2);
+        portList.add(port3);
+        portList.add(port4);
+        //Arrange
+        tdt.insert(portList.toArray(new Port[0]));
+        //Act
+        String expected = " --a1-- \n" +
+                " --a4--  --a2-- \n" +
+                " --a3--  --null--  --null--  --null-- \n" +
+                " --null--  --null-- \n";
+        //Assert
+        assertEquals(expected, tdt.toString());
     }
 }

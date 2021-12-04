@@ -3,10 +3,12 @@ package lapr.project.shared.tree;
 import lapr.project.model.Facility;
 import lapr.project.model.Port;
 import lapr.project.model.Position;
-import lapr.project.shared.QuickSelect;
 
 import java.awt.geom.Point2D;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class TwoDTree {
     private final Comparator<Facility> cmpX = Comparator.comparingDouble(o -> o.getLocation().getLongitude());
@@ -44,23 +46,24 @@ public class TwoDTree {
         if (port.length == 0) return;
 
 
-        root = insert(port, 0, port.length, true);
+        root = insert(port, true);
     }
 
-    public Node insert(Port[] point, int beg, int end, boolean divX) {
-        if (end <= beg) {
+    public Node insert(Port[] point, boolean divX) {
+        if (point.length == 0) {
             return null;
         }
-        int n = beg + (end - beg) / 2;
+        int n = point.length / 2;
 
-        Node nodeToInsert;
+
         if (divX) {
-            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpX), null, null);
+            Arrays.sort(point, cmpX);
         } else {
-            nodeToInsert = new Node<Port>(QuickSelect.select(point, n, cmpY), null, null);
+            Arrays.sort(point, cmpY);
         }
-        nodeToInsert.setLeft(insert(point, beg, n, !divX));
-        nodeToInsert.setRight(insert(point, n + 1, end, !divX));
+        Node nodeToInsert = new Node<>(point[n], null, null);
+        nodeToInsert.setLeft(insert(Arrays.copyOfRange(point, 0, n), !divX));
+        nodeToInsert.setRight(insert(Arrays.copyOfRange(point, n + 1, point.length), !divX));
         return nodeToInsert;
     }
 
@@ -94,13 +97,38 @@ public class TwoDTree {
         Node node2 = delta2 < 0 ? root.right : root.left;
 
 
-        nearestNeighborNode(node1, target,!divX);
+        nearestNeighborNode(node1, target, !divX);
 
         if (delta2 < closesDist) {
             closestNode = nearestNeighborNode(node2, target, !divX);
         }
 
         return closestNode;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Queue<Node> q = new LinkedList<>();
+
+        q.add(this.root);
+
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                Node n = q.poll();
+                if (n != null) {
+                    sb.append(" --").append(n.getElement().getName()).append("-- ");
+                    q.add(n.left);
+                    q.add(n.right);
+                } else {
+                    sb.append(" --null-- ");
+                }
+            }
+            sb.append('\n');
+        }
+
+        return sb.toString();
     }
 
     protected static class Node<Port> {
