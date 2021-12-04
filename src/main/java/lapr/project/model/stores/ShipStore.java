@@ -875,4 +875,17 @@ public class ShipStore implements Persistable {
             return false;
         }
     }
+
+    public List<Ship> getAvailableShipsAtDate(Date pDate) {
+        List<Ship> rShip = null;
+
+        for (Ship s : shipByMmsiAVL.inOrder()){
+            if(s.getPosDateSize() == 0){
+                rShip.add(s);
+            } else {
+
+            }
+        }
+        return rShip;
+    }
 }

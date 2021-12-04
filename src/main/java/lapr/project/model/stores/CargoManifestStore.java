@@ -1,6 +1,8 @@
 package lapr.project.model.stores;
 
 import lapr.project.model.CargoManifest;
+import lapr.project.model.Container;
+import lapr.project.model.Position;
 import lapr.project.shared.tree.AVL;
 
 
@@ -15,6 +17,19 @@ public class CargoManifestStore {
     public void add(CargoManifest cargoManifest) {
         cargoManifestByAVL.insert(cargoManifest);
     }
+
+    public void updateCargoManifest(CargoManifest cargoManifest){
+
+    }
+
+    public void removeCargoManifest(CargoManifest cargoManifest){
+
+    }
+
+    private void createCargoManifest(){
+
+    }
+
 
     public boolean writeCargoManifests() {
 

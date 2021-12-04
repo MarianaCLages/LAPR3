@@ -30,6 +30,10 @@ public class Ship {
     private double posDateSize;
     private AVL<CargoManifest> cargoManifestAVL;
 
+    //..
+
+    private CargoManifest cargoManifest;
+
     /**
      * Constructor.
      *
@@ -409,7 +413,7 @@ public class Ship {
         else return true;
     }
 
-    public boolean giveCargoOffLoadedSign(Port p) {
+    /*public boolean giveCargoOffLoadedSign(Port p) {
 
         for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
             if (cargoManifest.getPort().equals(p)) {
@@ -417,7 +421,7 @@ public class Ship {
             }
         }
         return false;
-    }
+    }*/
 
     public boolean giveCargoLoadedSign(Port p) {
 
@@ -648,7 +652,7 @@ public class Ship {
         } else return true;
     }
 
-    public boolean addOffLoadedContainer(Container c, Port p) {
+    /*public boolean addOffLoadedContainer(Container c, Port p) {
 
         for (CargoManifest cm : cargoManifestAVL.inOrder()) {
 
@@ -660,7 +664,7 @@ public class Ship {
 
         }
         return false;
-    }
+    }*/
 
     public boolean addLoadedContainer(Container c, Port p) {
 
@@ -673,5 +677,14 @@ public class Ship {
 
         }
         return false;
+    }
+
+    public CargoManifest getCargoManifest() {
+        return cargoManifest;
+    }
+
+    public Date calculateTimeLeft(){
+        double distance = getDeltaDistance();
+
     }
 }
