@@ -4,11 +4,11 @@ import lapr.project.data.DatabaseConnection;
 import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OffOrLoadContainers {
@@ -105,11 +105,82 @@ public class OffOrLoadContainers {
         }
     }
 
-    public void getResult(DatabaseConnection databaseConnection, String facilityId, int mmsi, int type) {
+    public String getResult(DatabaseConnection databaseConnection, int mmsi, String type) throws SQLException {
         this.databaseConnection = databaseConnection;
 
-        countContainers = countContainerByCargo(facilityId, mmsi, type);
+       // countContainers = countContainerByCargo(facilityId, mmsi, type);
 
-        getContainersPerCargoOffLoad(facilityId, mmsi, type);
+        return query(databaseConnection,type,mmsi);
     }
+
+    public String query(DatabaseConnection databaseConnection, String type, int mmsi) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        LocalDate ld = LocalDate.now();
+        String todayDate = ld.getYear() + "-" + ld.getMonthValue() + "-" + ld.getDayOfMonth();
+
+        LocalDate cargoManifestNearestDate = getDate(databaseConnection, type, ld);
+
+        String sqlCommand = "select c.CONTAINERID,c.PAYLOAD\n" +
+                "from CONTAINER c\n" +
+                "         inner join CARGOMANIFESTCONTAINER cmc\n" +
+                "                    on cmc.CONTAINERID = c.CONTAINERID\n" +
+                "where cmc.CARGOMANIFESTID in (select cm.CARGOMANIFESTID\n" +
+                "                              from CARGOMANIFEST cm\n" +
+                "                              where cm.CARGOMANIFESTTYPE = '" + type + "'\n" +
+                "                                and cm.IDTRIP = (select t.IDTRIP\n" +
+                "                                                 FROM TRIP t\n" +
+                "                                                          inner join VEHICLE v\n" +
+                "                                                                     on t.VEHICLEID = v.VEHICLEID\n" +
+                "                                                 where v.VEHICLEID = (select s.VEHICLEID\n" +
+                "                                                                      from SHIP s\n" +
+                "                                                                      where s.MMSI = '" + mmsi + "') and t.STARTDATE < '" + todayDate + "' and t.ENDDATE > '" + todayDate + "')\n" +
+                "    and cm.CARGOMANIFESTDATE = '" + cargoManifestNearestDate + "')";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
+                    stringBuilder.append("ContainerID" + resultSet.getString(1)).append("\n").append("Payload" + resultSet.getString(2)).append("\n");
+
+                }
+
+                return stringBuilder.toString();
+
+            }
+        }
+    }
+
+    public LocalDate getDate(DatabaseConnection databaseConnection, String type, LocalDate ld) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select CARGOMANIFESTDATE from CARGOMANIFEST\n" +
+                "where CARGOMANIFESTTYPE = '" + type + "'\n" +
+                "ORDER BY 1";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
+                    Timestamp timestamp = (Timestamp) resultSet.getObject(1);
+
+                    LocalDate iteration = timestamp.toLocalDateTime().toLocalDate();
+
+                    if (ld.isBefore(iteration)) {
+                        return iteration;
+                    }
+                }
+
+            }
+        }
+        return null;
+    }
+
+
 }

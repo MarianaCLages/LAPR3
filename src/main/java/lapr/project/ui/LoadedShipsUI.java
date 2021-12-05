@@ -1,62 +1,37 @@
 package lapr.project.ui;
 
 import lapr.project.controller.LoadedShipsController;
-import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
-import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.*;
 
-import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoadedShipsUI implements Runnable {
 
-    LoadedShipsController ctrl = new LoadedShipsController();
+    LoadedShipsController ctrl;
+
+    public LoadedShipsUI() {
+        this.ctrl = new LoadedShipsController();
+    }
 
     public void run() {
-        int op;
-        int decision;
-        boolean bool = false;
+        int shipMmsi;
+        String facilityId;
+        String type = "2";
 
         do {
             try {
-                op = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
+                shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI!");
-                op = 0;
+                shipMmsi = 0;
             }
-        } while (op == 0);
+        } while (shipMmsi == 0);
 
-        do {
-            decision = Utils.readIntegerFromConsole("1.BDDAD | 2.Java");
-        } while (decision != 1 && decision != 2);
-
-        if (decision == 1) {
-            String facilityId;
-            DatabaseConnection databaseConnection = null;
-            OffOrLoadContainers offOrLoadContainers = new OffOrLoadContainers();
-            try {
-                databaseConnection = ConnectionFactory.getInstance().getDatabaseConnection();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-
-            facilityId = Utils.readLineFromConsole("Please enter the facility ID:");
-
-            offOrLoadContainers.getResult(databaseConnection, facilityId, op, 2);
-
-        } else {
-            try {
-                System.out.println();
-                bool = ctrl.loadedShips(op);
-            } catch (NullPointerException ex) {
-                System.out.println("The ship introduced doesn't exist.");
-            }
-
-            if (bool) {
-                System.out.println("");
-            } else {
-                System.out.println("Operation failed! Please, try again.");
-            }
+        try {
+            System.out.println("Ships to be loaded:");
+            System.out.println(ctrl.getLoadedShips(shipMmsi, type));
+        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 }
-

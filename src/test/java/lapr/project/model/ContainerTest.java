@@ -266,4 +266,18 @@ class ContainerTest {
             fail();
         }
     }
+
+    @Test
+    void compareContainersNullMutant() {
+
+        //Arrange + Act
+        Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+
+        boolean actual = containerReal.equals(shipgeral);
+        //Assert
+        if (actual) {
+            fail();
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
 import lapr.project.data.DatabaseConnection;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class OffloadedShipsUI implements Runnable {
 
@@ -43,7 +44,11 @@ public class OffloadedShipsUI implements Runnable {
 
             facilityId = Utils.readLineFromConsole("Please enter the facility ID:");
 
-            offOrLoadContainers.getResult(databaseConnection, facilityId, op, 1);
+            try {
+                offOrLoadContainers.getResult(databaseConnection, op, "1");
+            } catch (SQLException exception) {
+                System.out.println(exception.getMessage());
+            }
 
         } else {
             try {

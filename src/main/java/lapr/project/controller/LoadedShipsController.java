@@ -1,46 +1,27 @@
 package lapr.project.controller;
 
-import lapr.project.model.*;
-import lapr.project.model.stores.PortStore;
-import lapr.project.model.stores.ShipStore;
+import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
+import lapr.project.data.DatabaseConnection;
+import lapr.project.model.Company;
+import lapr.project.shared.exceptions.*;
+
+import java.sql.SQLException;
 
 public class LoadedShipsController {
 
-    private final ShipStore shipStore;
-    private final PortStore portStore;
+    private final Company company;
+    private final OffOrLoadContainers offOrLoadContainers;
+    private final DatabaseConnection databaseConnection;
 
-    /**
-     * Constructor.
-     */
+
     public LoadedShipsController() {
-        Company company = App.getInstance().getCompany();
-        this.shipStore = company.getShipStore();
-        this.portStore = company.getPortStore();
+        this.company = App.getInstance().getCompany();
+        this.offOrLoadContainers = new OffOrLoadContainers();
+        this.databaseConnection = App.getInstance().getDatabaseConnection();
     }
 
-    /**
-     * Gets the ship store.
-     *
-     * @return the ship store
-     */
-    public ShipStore getShipStore() {
-        return shipStore;
-    }
 
-    /**
-     * Gets the ships to be loaded in the nearest port.
-     *
-     * @param mmsi the ship's MMSI
-     * @return the ships to be loaded in the nearest port
-     */
-    public boolean loadedShips(int mmsi) {
-        Ship ship = shipStore.getShipByMmsi(mmsi);
-
-        ship.setBiggestPosition();
-        Position position = ship.getBiggestPosition();
-
-        Port port = portStore.getPortList().nearestNeighborPort(position);
-
-        return ship.giveCargoLoadedSign(port);
+    public String getLoadedShips(int mmsi, String type) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException, SQLException {
+        return (offOrLoadContainers.getResult(databaseConnection, mmsi, type));
     }
 }
