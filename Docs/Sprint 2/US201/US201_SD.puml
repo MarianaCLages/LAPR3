@@ -1,0 +1,41 @@
+@startuml
+autonumber
+actor PortManager
+participant ImportPortsUI as UI
+participant ImportPortsController as Controller
+participant PortImporter as Import
+participant "Company" as Company
+participant ":PortStore" as PStore
+participant "newPort:Port" as Port
+participant ":PortTree" as PortTree
+
+
+activate PortManager
+
+
+PortManager -> UI: Asks to import the ships
+activate UI
+UI --> PortManager: Asks for file path
+deactivate UI
+
+PortManager -> UI: Introduces the path
+activate UI
+UI -> Controller: importPorts(path)
+activate Controller
+Controller -> Company: getPortStore()
+activate Company
+return portStore
+Controller -> Import: importPorts(path,portStore)
+activate Import
+loop while has information on file
+    Import -> Port**: new Port(information)
+    Import -> portStore: addPort(newPort)
+    activate portStore
+    deactivate
+    deactivate
+end
+deactivate Controller
+PortManager <-- UI: Informs the success of the operation
+deactivate UI
+deactivate PortManager
+@enduml

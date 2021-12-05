@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ImportPortsUI{
+}
+
+class ImportPortsController{
++importShips(path)
+
+}
+
+class PortImporter{
+}
+
+class Company{
++getPortStore()
+}
+
+class PortStore{
++fillTree()
++addPort(port)
+}
+
+class Port{
+}
+
+class Position{
+}
+
+
+
+ImportPortsUI ..> ImportPortsController
+ImportPortsController ..> PortImporter
+PortImporter --> Company
+Company --> PortStore
+PortStore --> Port
+PortImporter -> Port
+@enduml

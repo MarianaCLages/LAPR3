@@ -1,0 +1,16 @@
+@startuml
+autonumber
+actor PortManager
+activate PortManager
+
+PortManager -> System: Asks to import the ports
+activate System
+System --> PortManager: Asks for file path
+deactivate System
+
+PortManager -> System: Introduces the path
+activate System
+PortManager <-- System: Informs the success of the operation
+deactivate System
+deactivate PortManager
+@enduml

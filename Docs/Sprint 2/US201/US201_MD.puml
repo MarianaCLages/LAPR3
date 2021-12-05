@@ -1,0 +1,16 @@
+@startuml
+hide methods
+
+class Port{
+-Identification
+-Name
+-Continent
+-Country
+-Location
+}
+class Company{
+}
+
+Company --> Port : owns >
+
+@enduml
