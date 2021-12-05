@@ -45,6 +45,5 @@ public class AverageCargoByYearUI implements Runnable {
         } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTrip | NoCargoManifestInThatDateException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }

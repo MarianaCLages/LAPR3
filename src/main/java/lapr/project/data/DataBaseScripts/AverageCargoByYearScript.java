@@ -127,7 +127,7 @@ public class AverageCargoByYearScript {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Number of cargo manifests in the given year: ").append(getCargoManifestOfATripSize(mmsi, date)).append("\n").append("Number of containers in the given year: ").append(getNumberOfContainersPerTrip(mmsi, date));
+        stringBuilder.append("\nNumber of cargo manifests transported in the given year: ").append(getCargoManifestOfATripSize(mmsi, date)).append("\n").append("Average number of containers per manifest: ").append(getNumberOfContainersPerTrip(mmsi, date));
 
         return stringBuilder.toString();
     }
