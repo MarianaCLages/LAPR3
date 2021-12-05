@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.controller.App;
 import lapr.project.controller.ClosestPortController;
 
 import java.time.DateTimeException;
@@ -47,13 +48,16 @@ public class ClosestPortUI implements Runnable {
 
         } while (date == null);
 
+
         try {
 
-            System.out.println(closestPortController.getNearestPortByCallSign(callSign, dateS).toString());
+            if (App.getInstance().getCompany().getShipStore().getShipByMmsiAVL().isEmpty())
+                throw new IllegalArgumentException();
+            System.out.println("\n" + closestPortController.getNearestPortByCallSign(callSign, dateS).toString());
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ex1) {
 
-            System.out.println("Invalid Position! Impossible to get the nearest port from a non exist position");
+            System.out.println("Invalid Position or Ship! Impossible to get the nearest port from a non exist position, or there is no ship with the CallSign that you entered! Please verify the data.");
 
         }
 
