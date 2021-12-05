@@ -23,6 +23,8 @@ public class OffOrLoadContainers {
         //Empty constructor
     }
 
+    //US205 AND US208 METHODS FOR BOTH USER STORIES
+
     private String getFacility(int mmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 

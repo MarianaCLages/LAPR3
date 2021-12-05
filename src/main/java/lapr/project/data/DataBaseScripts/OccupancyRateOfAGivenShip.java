@@ -16,6 +16,8 @@ public class OccupancyRateOfAGivenShip {
         // empty
     }
 
+    //US2018 AND US209 METHODS USED BY BOTH USER STORIES
+
     public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         this.databaseConnection = databaseConnection;
 

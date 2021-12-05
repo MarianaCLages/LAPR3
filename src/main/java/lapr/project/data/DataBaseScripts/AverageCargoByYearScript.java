@@ -16,6 +16,8 @@ public class AverageCargoByYearScript {
         //Empty constructor
     }
 
+    //US207
+
     private DatabaseConnection databaseConnection = null;
 
     public int getCargoManifestsOfATripFromDataBase(int mmsi, int date, int j) throws SQLException {
