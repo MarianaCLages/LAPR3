@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="665px" preserveAspectRatio="none" style="width:262px;height:665px;background:#FFFFFF;" version="1.1" viewBox="0 0 262 665" width="262px" zoomAndPan="magnify"><defs><filter height="300%" id="fz51p5i9rs0t5" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[504fbadd8bbd9d704c0fb02b173767fe]
+class ImportPortsUI--><rect codeLine="3" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="48" id="ImportPortsUI" style="stroke:#A80036;stroke-width:1.5;" width="108" x="28" y="7"/><ellipse cx="43" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M45,19.5 Q45.2031,19 45.4375,18.75 Q45.6719,18.5 45.9375,18.5 Q46.4063,18.5 46.7031,18.7813 Q47,19.0625 47,19.7188 L47,21.2813 Q47,21.9375 46.7188,22.2188 Q46.4375,22.5 46,22.5 Q45.6094,22.5 45.3594,22.3281 Q45.1094,22.1563 45,21.7031 Q44.9531,21.3906 44.7813,21.2188 Q44.4688,20.8906 43.9063,20.7031 Q43.3438,20.5 42.7813,20.5 Q42.0781,20.5 41.4844,20.7813 Q40.9063,21.0625 40.4531,21.6875 Q40,22.3125 40,23.1719 L40,24.0938 Q40,25.125 40.8438,25.8125 Q41.6875,26.5 43.1875,26.5 Q44.0781,26.5 44.7031,26.2969 Q45.0625,26.1875 45.4688,25.8281 Q45.7344,25.625 45.875,25.5625 Q46.0156,25.5 46.1875,25.5 Q46.5156,25.5 46.75,25.7656 Q47,26.0156 47,26.375 Q47,26.7188 46.6563,27.125 Q46.1563,27.7188 45.3594,28.0469 Q44.3125,28.5 43.0313,28.5 Q41.5313,28.5 40.3281,27.9063 Q39.3594,27.4375 38.6719,26.4219 Q38,25.4063 38,24.2031 L38,23.1094 Q38,21.8594 38.5938,20.7656 Q39.2031,19.6719 40.25,19.0938 Q41.3125,18.5 42.5,18.5 Q43.2188,18.5 43.8438,18.75 Q44.4688,19 45,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="76" x="57" y="27.9102">ImportPortsUI</text><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="135" y1="39" y2="39"/><line style="stroke:#A80036;stroke-width:1.5;" x1="29" x2="135" y1="47" y2="47"/><!--MD5=[7fa9be3100fa8818883210857b4be419]
+class ImportPortsController--><rect codeLine="6" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="61.8359" id="ImportPortsController" style="stroke:#A80036;stroke-width:1.5;" width="150" x="7" y="115"/><ellipse cx="22" cy="131" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M24,127.5 Q24.2031,127 24.4375,126.75 Q24.6719,126.5 24.9375,126.5 Q25.4063,126.5 25.7031,126.7813 Q26,127.0625 26,127.7188 L26,129.2813 Q26,129.9375 25.7188,130.2188 Q25.4375,130.5 25,130.5 Q24.6094,130.5 24.3594,130.3281 Q24.1094,130.1563 24,129.7031 Q23.9531,129.3906 23.7813,129.2188 Q23.4688,128.8906 22.9063,128.7031 Q22.3438,128.5 21.7813,128.5 Q21.0781,128.5 20.4844,128.7813 Q19.9063,129.0625 19.4531,129.6875 Q19,130.3125 19,131.1719 L19,132.0938 Q19,133.125 19.8438,133.8125 Q20.6875,134.5 22.1875,134.5 Q23.0781,134.5 23.7031,134.2969 Q24.0625,134.1875 24.4688,133.8281 Q24.7344,133.625 24.875,133.5625 Q25.0156,133.5 25.1875,133.5 Q25.5156,133.5 25.75,133.7656 Q26,134.0156 26,134.375 Q26,134.7188 25.6563,135.125 Q25.1563,135.7188 24.3594,136.0469 Q23.3125,136.5 22.0313,136.5 Q20.5313,136.5 19.3281,135.9063 Q18.3594,135.4375 17.6719,134.4219 Q17,133.4063 17,132.2031 L17,131.1094 Q17,129.8594 17.5938,128.7656 Q18.2031,127.6719 19.25,127.0938 Q20.3125,126.5 21.5,126.5 Q22.2188,126.5 22.8438,126.75 Q23.4688,127 24,127.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="118" x="36" y="135.9102">ImportPortsController</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="156" y1="147" y2="147"/><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="156" y1="155" y2="155"/><ellipse cx="18" cy="166" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="85" x="27" y="170.4189">importShips(path)</text><!--MD5=[42e7a5901aabdab085f2013efb09743b]
+class PortImporter--><rect codeLine="11" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="48" id="PortImporter" style="stroke:#A80036;stroke-width:1.5;" width="100" x="32" y="237"/><ellipse cx="47" cy="253" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M49,249.5 Q49.2031,249 49.4375,248.75 Q49.6719,248.5 49.9375,248.5 Q50.4063,248.5 50.7031,248.7813 Q51,249.0625 51,249.7188 L51,251.2813 Q51,251.9375 50.7188,252.2188 Q50.4375,252.5 50,252.5 Q49.6094,252.5 49.3594,252.3281 Q49.1094,252.1563 49,251.7031 Q48.9531,251.3906 48.7813,251.2188 Q48.4688,250.8906 47.9063,250.7031 Q47.3438,250.5 46.7813,250.5 Q46.0781,250.5 45.4844,250.7813 Q44.9063,251.0625 44.4531,251.6875 Q44,252.3125 44,253.1719 L44,254.0938 Q44,255.125 44.8438,255.8125 Q45.6875,256.5 47.1875,256.5 Q48.0781,256.5 48.7031,256.2969 Q49.0625,256.1875 49.4688,255.8281 Q49.7344,255.625 49.875,255.5625 Q50.0156,255.5 50.1875,255.5 Q50.5156,255.5 50.75,255.7656 Q51,256.0156 51,256.375 Q51,256.7188 50.6563,257.125 Q50.1563,257.7188 49.3594,258.0469 Q48.3125,258.5 47.0313,258.5 Q45.5313,258.5 44.3281,257.9063 Q43.3594,257.4375 42.6719,256.4219 Q42,255.4063 42,254.2031 L42,253.1094 Q42,251.8594 42.5938,250.7656 Q43.2031,249.6719 44.25,249.0938 Q45.3125,248.5 46.5,248.5 Q47.2188,248.5 47.8438,248.75 Q48.4688,249 49,249.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="61" y="257.9102">PortImporter</text><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="131" y1="269" y2="269"/><line style="stroke:#A80036;stroke-width:1.5;" x1="33" x2="131" y1="277" y2="277"/><!--MD5=[02e4b9b7573f1156f41e60aa5b4e25a4]
+class Company--><rect codeLine="14" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="61.8359" id="Company" style="stroke:#A80036;stroke-width:1.5;" width="94" x="85" y="345"/><ellipse cx="104.05" cy="361" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M106.05,357.5 Q106.2531,357 106.4875,356.75 Q106.7219,356.5 106.9875,356.5 Q107.4563,356.5 107.7531,356.7813 Q108.05,357.0625 108.05,357.7188 L108.05,359.2813 Q108.05,359.9375 107.7688,360.2188 Q107.4875,360.5 107.05,360.5 Q106.6594,360.5 106.4094,360.3281 Q106.1594,360.1563 106.05,359.7031 Q106.0031,359.3906 105.8313,359.2188 Q105.5188,358.8906 104.9563,358.7031 Q104.3938,358.5 103.8313,358.5 Q103.1281,358.5 102.5344,358.7813 Q101.9563,359.0625 101.5031,359.6875 Q101.05,360.3125 101.05,361.1719 L101.05,362.0938 Q101.05,363.125 101.8938,363.8125 Q102.7375,364.5 104.2375,364.5 Q105.1281,364.5 105.7531,364.2969 Q106.1125,364.1875 106.5188,363.8281 Q106.7844,363.625 106.925,363.5625 Q107.0656,363.5 107.2375,363.5 Q107.5656,363.5 107.8,363.7656 Q108.05,364.0156 108.05,364.375 Q108.05,364.7188 107.7063,365.125 Q107.2063,365.7188 106.4094,366.0469 Q105.3625,366.5 104.0813,366.5 Q102.5813,366.5 101.3781,365.9063 Q100.4094,365.4375 99.7219,364.4219 Q99.05,363.4063 99.05,362.2031 L99.05,361.1094 Q99.05,359.8594 99.6438,358.7656 Q100.2531,357.6719 101.3,357.0938 Q102.3625,356.5 103.55,356.5 Q104.2688,356.5 104.8938,356.75 Q105.5188,357 106.05,357.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="53" x="118.95" y="365.9102">Company</text><line style="stroke:#A80036;stroke-width:1.5;" x1="86" x2="178" y1="377" y2="377"/><line style="stroke:#A80036;stroke-width:1.5;" x1="86" x2="178" y1="385" y2="385"/><ellipse cx="96" cy="396" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="68" x="105" y="400.4189">getPortStore()</text><!--MD5=[f70d2b281f9eefc1b49373c49159755a]
+class PortStore--><rect codeLine="18" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="75.6719" id="PortStore" style="stroke:#A80036;stroke-width:1.5;" width="90" x="86" y="467"/><ellipse cx="104.15" cy="483" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M106.15,479.5 Q106.3531,479 106.5875,478.75 Q106.8219,478.5 107.0875,478.5 Q107.5563,478.5 107.8531,478.7813 Q108.15,479.0625 108.15,479.7188 L108.15,481.2813 Q108.15,481.9375 107.8688,482.2188 Q107.5875,482.5 107.15,482.5 Q106.7594,482.5 106.5094,482.3281 Q106.2594,482.1563 106.15,481.7031 Q106.1031,481.3906 105.9313,481.2188 Q105.6188,480.8906 105.0563,480.7031 Q104.4938,480.5 103.9313,480.5 Q103.2281,480.5 102.6344,480.7813 Q102.0563,481.0625 101.6031,481.6875 Q101.15,482.3125 101.15,483.1719 L101.15,484.0938 Q101.15,485.125 101.9938,485.8125 Q102.8375,486.5 104.3375,486.5 Q105.2281,486.5 105.8531,486.2969 Q106.2125,486.1875 106.6188,485.8281 Q106.8844,485.625 107.025,485.5625 Q107.1656,485.5 107.3375,485.5 Q107.6656,485.5 107.9,485.7656 Q108.15,486.0156 108.15,486.375 Q108.15,486.7188 107.8063,487.125 Q107.3063,487.7188 106.5094,488.0469 Q105.4625,488.5 104.1813,488.5 Q102.6813,488.5 101.4781,487.9063 Q100.5094,487.4375 99.8219,486.4219 Q99.15,485.4063 99.15,484.2031 L99.15,483.1094 Q99.15,481.8594 99.7438,480.7656 Q100.3531,479.6719 101.4,479.0938 Q102.4625,478.5 103.65,478.5 Q104.3688,478.5 104.9938,478.75 Q105.6188,479 106.15,479.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="118.85" y="487.9102">PortStore</text><line style="stroke:#A80036;stroke-width:1.5;" x1="87" x2="175" y1="499" y2="499"/><line style="stroke:#A80036;stroke-width:1.5;" x1="87" x2="175" y1="507" y2="507"/><ellipse cx="97" cy="518" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="40" x="106" y="522.4189">fillTree()</text><ellipse cx="97" cy="531.8359" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="64" x="106" y="536.2549">addPort(port)</text><!--MD5=[a0bfe97ac0a38e6e74cc1c7c7b744b71]
+class Port--><rect codeLine="23" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="48" id="Port" style="stroke:#A80036;stroke-width:1.5;" width="54" x="54" y="603"/><ellipse cx="69" cy="619" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M71,615.5 Q71.2031,615 71.4375,614.75 Q71.6719,614.5 71.9375,614.5 Q72.4063,614.5 72.7031,614.7813 Q73,615.0625 73,615.7188 L73,617.2813 Q73,617.9375 72.7188,618.2188 Q72.4375,618.5 72,618.5 Q71.6094,618.5 71.3594,618.3281 Q71.1094,618.1563 71,617.7031 Q70.9531,617.3906 70.7813,617.2188 Q70.4688,616.8906 69.9063,616.7031 Q69.3438,616.5 68.7813,616.5 Q68.0781,616.5 67.4844,616.7813 Q66.9063,617.0625 66.4531,617.6875 Q66,618.3125 66,619.1719 L66,620.0938 Q66,621.125 66.8438,621.8125 Q67.6875,622.5 69.1875,622.5 Q70.0781,622.5 70.7031,622.2969 Q71.0625,622.1875 71.4688,621.8281 Q71.7344,621.625 71.875,621.5625 Q72.0156,621.5 72.1875,621.5 Q72.5156,621.5 72.75,621.7656 Q73,622.0156 73,622.375 Q73,622.7188 72.6563,623.125 Q72.1563,623.7188 71.3594,624.0469 Q70.3125,624.5 69.0313,624.5 Q67.5313,624.5 66.3281,623.9063 Q65.3594,623.4375 64.6719,622.4219 Q64,621.4063 64,620.2031 L64,619.1094 Q64,617.8594 64.5938,616.7656 Q65.2031,615.6719 66.25,615.0938 Q67.3125,614.5 68.5,614.5 Q69.2188,614.5 69.8438,614.75 Q70.4688,615 71,615.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="22" x="83" y="623.9102">Port</text><line style="stroke:#A80036;stroke-width:1.5;" x1="55" x2="107" y1="635" y2="635"/><line style="stroke:#A80036;stroke-width:1.5;" x1="55" x2="107" y1="643" y2="643"/><!--MD5=[a64a835c3d62471a77f615251fdde58a]
+class Position--><rect codeLine="26" fill="#FEFECE" filter="url(#fz51p5i9rs0t5)" height="48" id="Position" style="stroke:#A80036;stroke-width:1.5;" width="77" x="171.5" y="7"/><ellipse cx="186.5" cy="23" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M188.5,19.5 Q188.7031,19 188.9375,18.75 Q189.1719,18.5 189.4375,18.5 Q189.9063,18.5 190.2031,18.7813 Q190.5,19.0625 190.5,19.7188 L190.5,21.2813 Q190.5,21.9375 190.2188,22.2188 Q189.9375,22.5 189.5,22.5 Q189.1094,22.5 188.8594,22.3281 Q188.6094,22.1563 188.5,21.7031 Q188.4531,21.3906 188.2813,21.2188 Q187.9688,20.8906 187.4063,20.7031 Q186.8438,20.5 186.2813,20.5 Q185.5781,20.5 184.9844,20.7813 Q184.4063,21.0625 183.9531,21.6875 Q183.5,22.3125 183.5,23.1719 L183.5,24.0938 Q183.5,25.125 184.3438,25.8125 Q185.1875,26.5 186.6875,26.5 Q187.5781,26.5 188.2031,26.2969 Q188.5625,26.1875 188.9688,25.8281 Q189.2344,25.625 189.375,25.5625 Q189.5156,25.5 189.6875,25.5 Q190.0156,25.5 190.25,25.7656 Q190.5,26.0156 190.5,26.375 Q190.5,26.7188 190.1563,27.125 Q189.6563,27.7188 188.8594,28.0469 Q187.8125,28.5 186.5313,28.5 Q185.0313,28.5 183.8281,27.9063 Q182.8594,27.4375 182.1719,26.4219 Q181.5,25.4063 181.5,24.2031 L181.5,23.1094 Q181.5,21.8594 182.0938,20.7656 Q182.7031,19.6719 183.75,19.0938 Q184.8125,18.5 186,18.5 Q186.7188,18.5 187.3438,18.75 Q187.9688,19 188.5,19.5 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="45" x="200.5" y="27.9102">Position</text><line style="stroke:#A80036;stroke-width:1.5;" x1="172.5" x2="247.5" y1="39" y2="39"/><line style="stroke:#A80036;stroke-width:1.5;" x1="172.5" x2="247.5" y1="47" y2="47"/><!--MD5=[c8b954a22f817a8eb8cfff52e120def3]
+link ImportPortsUI to ImportPortsController--><path codeLine="31" d="M82,55.14 C82,70.71 82,91.53 82,109.22 " fill="none" id="ImportPortsUI-to-ImportPortsController" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="82,114.6,86,105.6,82,109.6,78,105.6,82,114.6" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4f3845275cf3df74017d4aef2e8d0622]
+link ImportPortsController to PortImporter--><path codeLine="32" d="M82,177.28 C82,194.08 82,214.85 82,231.38 " fill="none" id="ImportPortsController-to-PortImporter" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="82,236.81,86,227.81,82,231.81,78,227.81,82,236.81" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[944fa50a2d237c8f0bbf1b41c1d3e43e]
+link PortImporter to Company--><path codeLine="33" d="M92.24,285.14 C99.19,300.84 108.5,321.89 116.37,339.67 " fill="none" id="PortImporter-to-Company" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="118.55,344.6,118.5815,334.7512,116.5339,340.0245,111.2606,337.9769,118.55,344.6" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5a03d6507d51d9583d52cfaf8d4720dd]
+link Company to PortStore--><path codeLine="34" d="M131.76,407.1 C131.64,423.32 131.48,443.6 131.34,461.41 " fill="none" id="Company-to-PortStore" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="131.29,466.86,135.367,457.8946,131.3329,461.8602,127.3673,457.826,131.29,466.86" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c8440d88291d09ff9b1204d56899ac6f]
+link PortStore to Port--><path codeLine="35" d="M115.45,543.31 C108.13,560.89 99.53,581.53 92.76,597.78 " fill="none" id="PortStore-to-Port" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="90.72,602.68,97.8813,595.9186,92.6481,598.0667,90.5,592.8336,90.72,602.68" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4503f58967b744b83438603e4d0b4f64]
+link PortImporter to Port--><path codeLine="36" d="M76.68,285.1 C73.14,301.67 68.83,324.58 67,345 C64.59,371.9 64.25,496.97 68,543 C69.49,561.29 72.66,581.64 75.49,597.61 " fill="none" id="PortImporter-to-Port" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="76.43,602.86,78.7482,593.2879,75.5318,597.9413,70.8783,594.725,76.43,602.86" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[c2bc61a0eda0f9e1f32a40bc65574f2c]
+@startuml
+'https://plantuml.com/class-diagram
+
+class ImportPortsUI{
+}
+
+class ImportPortsController{
++importShips(path)
+
+}
+
+class PortImporter{
+}
+
+class Company{
++getPortStore()
+}
+
+class PortStore{
++fillTree()
++addPort(port)
+}
+
+class Port{
+}
+
+class Position{
+}
+
+
+
+ImportPortsUI ..> ImportPortsController
+ImportPortsController ..> PortImporter
+PortImporter - -> Company
+Company - -> PortStore
+PortStore - -> Port
+PortImporter -> Port
+@enduml
+
+@startuml
+
+class ImportPortsUI{
+}
+
+class ImportPortsController{
++importShips(path)
+
+}
+
+class PortImporter{
+}
+
+class Company{
++getPortStore()
+}
+
+class PortStore{
++fillTree()
++addPort(port)
+}
+
+class Port{
+}
+
+class Position{
+}
+
+
+
+ImportPortsUI ..> ImportPortsController
+ImportPortsController ..> PortImporter
+PortImporter - -> Company
+Company - -> PortStore
+PortStore - -> Port
+PortImporter -> Port
+@enduml
+
+PlantUML version 1.2021.11(Sat Oct 02 14:26:11 BST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

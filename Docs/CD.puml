@@ -1,19 +1,126 @@
 @startuml
 'https://plantuml.com/class-diagram
+class FindAvailableShipsUI{
+}
+class FindAvailableShipsController{
+}
+FindAvailableShipsUI ..> FindAvailableShipsController
+FindAvailableShipsController ..> Company
 
-@startuml
-'https://plantuml.com/class-diagram
+class OccupancyRateUI{
+}
 
+class OccupancyRateController{
+}
+OccupancyRateController -> ShipStore
+OccupancyRateController ..> Company
+class CargoManifest{
+-String identification
+-AVL offloaded
+-AVL loaded
++getIdentification()
+}
+class Container{
+-String identification
+-int payload
+-int tare
+-int gross
+-String isoCode
+-ContainerPosition position
+-boolean isRefrigerated
+-boolean toOffload
+}
+Ship --> CargoManifest
+CargoManifest --> Container
+
+class AverageCargoByYearUI{
+}
+
+class AverageCargoByYearController{
+}
+AverageCargoByYearUI --> AverageCargoByYearController
+AverageCargoByYearController --> Company
+
+class LoadedShipsUI{
+}
+
+class LoadedShipsController{
+}
+LoadedShipsUI ..> ListShipsController
+ListShipsController ..> Company
+class PortStore{
+-TwoDTree portList
++getPortList()
++getNearestNeighbourByTime(
+}
+
+class Port{
+-String continent
+-String country
+-String identification
+-String name
+-FacilityLocation location
+}
+Company --> PortStore
+PortStore -> Port
+
+class OffLoadedUI{
+}
+
+class OffLoadedController{
+}
+OffLoadedUI ..> OffLoadedController
+OffLoadedController ..> Company
+
+class ContainerStore{
+-ContainerAVL
++getContainer()
+}
+Company --> ContainerStore
+ContainerStore --> Container
+
+class CargoManifestStore{
+-CargoManifestAVL
+}
+Company --> CargoManifestStore
+CargoManifestStore --> CargoManifest
+
+class SearchContainerLocationByClientUI{
+}
+
+class SearchContainerLocationByClientUI{
+}
+SearchContainerLocationByClientUI ..> SearchContainerLocationByClientController
+SearchContainerLocationByClientController ..> Company
+
+class ImportPortsUI{
+}
+
+class ImportPortsController{
+}
+
+class PortImporter{
+}
+ImportPortsUI ..> ImportPortsController
+ImportPortsController ..> PortImporter
+
+PortImporter ..> Company
 class ImportShipsUI{
 }
 
 class ImportShipsController{
 +importShips(path)
+}
 
+class ClosestPortUI{
+}
+class ClosestPortController{
 }
 
 class ShipImporter{
 }
+ClosestPortUI ..> ClosestPortController
+ClosestPortController ..> Company
 
 class CsvUtils{
 +readFile(path)
