@@ -32,6 +32,18 @@ public class Ship {
     private AVL<CargoManifest> cargoManifestAVL;
     private CargoManifest cargoManifest;
 
+    public Ship(int mmsi,String name,String imo,String callSign,String vesselType,int length,int width ,int draft,String capacity){
+        this.mmsi = mmsi;
+        this.name = name;
+        this.imo = imo;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.draft = draft;
+        this.capacity = Double.parseDouble(capacity);
+    }
+
     /**
      * Constructor.
      *
