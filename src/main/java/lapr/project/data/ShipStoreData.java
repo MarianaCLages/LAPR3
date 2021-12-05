@@ -160,8 +160,6 @@ public class ShipStoreData implements Persistable {
             try (ResultSet shipResultSet = getShipPreparedStatement.executeQuery()) {
                 if (shipResultSet.next()) {
 
-                    // int transceiverID = shipResultSet.getInt("TRANSCEIVERID");
-
                     String vesselType = shipResultSet.getString("VESSELTYPE");
 
                     String imo = shipResultSet.getString("IMO");
@@ -173,11 +171,9 @@ public class ShipStoreData implements Persistable {
                     String capacity = shipResultSet.getString("CAPACITY");
                     int draft = shipResultSet.getInt("DRAFT");
 
-                    //   char transceiver = getTransceiver(databaseConnection, transceiverID);
+                    Ship ship = new Ship(mmsi, shipName, imo, callSign, vesselType, lenght, width, draft, capacity, 'A');
 
-                    //   if (transceiver == '0') throw new SQLException("Transceiver not found!");
-
-                    return new Ship(mmsi, shipName, imo, callSign, vesselType, lenght, width, draft, capacity);
+                    return ship;
 
                 } else return null;
 

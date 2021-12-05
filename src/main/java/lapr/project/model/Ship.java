@@ -70,42 +70,8 @@ public class Ship {
         this.currentCapacity = 0;
 
         this.cargoManifestAVL = new AVL<>();
+        this.cargoManifestAVL.insert(cargoManifest);
         this.cargoManifest = cargoManifest;
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param mmsi       the ship's MMSI
-     * @param name       the ship's name
-     * @param imo        the ship's IMO
-     * @param callSign   the ship's call sign
-     * @param vesselType the ship's vessel type
-     * @param length     the ship's length
-     * @param width      the ship's width
-     * @param draft      the ship's draft
-     */
-    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft) {
-        checkIMO(imo);
-        checkMMSI(mmsi);
-
-        this.mmsi = mmsi;
-        this.name = name;
-        this.imo = imo;
-        this.callSign = callSign;
-        this.vesselType = vesselType;
-        this.length = length;
-        this.width = width;
-        this.draft = draft;
-
-        this.posDate = new PositionTreeStore();
-        this.travelledDistance = 0;
-        this.biggestPosition = null;
-        this.smallPosition = null;
-        this.posDateSize = 0;
-        this.currentCapacity = 0;
-
-        this.cargoManifestAVL = new AVL<>();
     }
 
     /**
@@ -123,6 +89,9 @@ public class Ship {
      * @param transceiver
      */
     public Ship(int mmsi, String name, String imo, String callSign, String vesselTYPe, double length, double width, double draft, String cargo, char transceiver) {
+        checkIMO(imo);
+        checkMMSI(mmsi);
+
         this.mmsi = mmsi;
         this.name = name;
         this.imo = imo;
@@ -133,6 +102,15 @@ public class Ship {
         this.width = width;
         this.cargo = cargo;
         this.transceiverClass = transceiver;
+
+        this.posDate = new PositionTreeStore();
+        this.travelledDistance = 0;
+        this.biggestPosition = null;
+        this.smallPosition = null;
+        this.posDateSize = 0;
+        this.currentCapacity = 0;
+
+        this.cargoManifestAVL = new AVL<>();
     }
 
     /**

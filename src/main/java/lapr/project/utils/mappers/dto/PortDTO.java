@@ -32,12 +32,12 @@ public class PortDTO {
      */
     @Override
     public String toString() {
-        return "PortDTO{" +
-                "identification='" + identification + '\'' +
-                ", name='" + name + '\'' +
-                ", continent='" + continent + '\'' +
-                ", country='" + country + '\'' +
-                ", facilityLocation=" + facilityLocation +
-                '}';
+        return "Port Information :" + "\n" +
+                "Identification: " + identification + "\n" +
+                "Name: " + name + "\n" +
+                "Continent: " + continent + "\n" +
+                "Country: " + country + "\n" +
+                "Longitude = " + facilityLocation.getLongitude() + "\n" +
+                "Latitude = " + facilityLocation.getLatitude() + "\n";
     }
 }

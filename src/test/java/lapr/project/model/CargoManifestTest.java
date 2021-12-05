@@ -456,9 +456,9 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
-
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
+
+        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A',cargoManifest);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
