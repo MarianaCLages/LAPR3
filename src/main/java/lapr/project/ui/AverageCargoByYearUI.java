@@ -1,25 +1,31 @@
 package lapr.project.ui;
 
 import lapr.project.controller.AverageCargoByYearController;
+import lapr.project.shared.exceptions.*;
+
+import java.sql.SQLException;
 
 public class AverageCargoByYearUI implements Runnable {
 
+    AverageCargoByYearController ctrl;
+
+    public AverageCargoByYearUI() {
+        this.ctrl = new AverageCargoByYearController();
+    }
+
     @Override
     public void run() {
-        AverageCargoByYearController ctrl = new AverageCargoByYearController();
-        int mmsi;
+        int shipMmsi;
         int year;
 
         do {
             try {
-                mmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
+                shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI!");
-                mmsi = 0;
+                shipMmsi = 0;
             }
-        } while (mmsi == 0);
-
-        System.out.println();
+        } while (shipMmsi == 0);
 
         do {
             try {
@@ -32,15 +38,9 @@ public class AverageCargoByYearUI implements Runnable {
         } while (year == 0);
 
         try {
-            String str = ctrl.averageCargoByYear(mmsi, year);
-
-            if (str == null) {
-                System.out.println("Operation Failed!");
-            } else {
-                System.out.println(str);
-            }
-
-        } catch (NullPointerException exception) {
+            System.out.println("\nAverage:");
+            System.out.print(ctrl.averageCargoByYear(shipMmsi, year));
+        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
             System.out.println("The ship introduced doesn't exist.");
         }
     }

@@ -8,8 +8,8 @@ public class ShipCaptainUI implements Runnable {
     public void run() {
 
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("List of containers to be offloaded in the next port", new OffloadedShipsUI()));
-        options.add(new MenuItem("List of containers to be loaded in the next port", new LoadedShipsUI()));
+        options.add(new MenuItem("List of containers to be offloaded in the next port", new OffloadedContainersUI()));
+        options.add(new MenuItem("List of containers to be loaded in the next port", new LoadedContainersUI()));
         options.add(new MenuItem("Cargo manifests in a certain year and average number of containers per manifest", new AverageCargoByYearUI()));
         options.add(new MenuItem("Occupancy rate of a ship by cargo manifest ID", new OccupancyRateGivenCargoManifestIDUI()));
         options.add(new MenuItem("Occupancy rate of a ship by cargo manifest date", new OccupancyRateGivenCargoManifestDateUI()));

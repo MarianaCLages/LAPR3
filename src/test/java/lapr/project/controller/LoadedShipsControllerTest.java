@@ -1,16 +1,13 @@
 package lapr.project.controller;
 
 import lapr.project.model.*;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LoadedShipsControllerTest {
 
-    LoadedShipsController ctrl = new LoadedShipsController();
+    LoadedContainersController ctrl = new LoadedContainersController();
 
     Ship ship = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
 

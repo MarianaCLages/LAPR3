@@ -6,7 +6,7 @@ import lapr.project.shared.exceptions.*;
 
 import java.sql.SQLException;
 
-public class LoadedShipsController {
+public class LoadedContainersController {
 
     private final OffOrLoadContainers offOrLoadContainers;
     private final DatabaseConnection databaseConnection;
@@ -14,7 +14,7 @@ public class LoadedShipsController {
     /**
      * Constructor.
      */
-    public LoadedShipsController() {
+    public LoadedContainersController() {
         this.offOrLoadContainers = new OffOrLoadContainers();
         this.databaseConnection = App.getInstance().getDatabaseConnection();
     }

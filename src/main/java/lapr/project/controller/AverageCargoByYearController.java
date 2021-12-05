@@ -1,28 +1,22 @@
 package lapr.project.controller;
 
-import lapr.project.model.Company;
-import lapr.project.model.Ship;
-import lapr.project.model.stores.ShipStore;
+import lapr.project.data.DataBaseScripts.AverageCargoByYearScript;
+import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.*;
+
+import java.sql.SQLException;
 
 public class AverageCargoByYearController {
 
-    private final ShipStore shipStore;
+    private final AverageCargoByYearScript averageCargoByYear;
+    private final DatabaseConnection databaseConnection;
 
     /**
      * Constructor.
      */
     public AverageCargoByYearController() {
-        Company company = App.getInstance().getCompany();
-        shipStore = company.getShipStore();
-    }
-
-    /**
-     * Gets the ship store.
-     *
-     * @return the ship store
-     */
-    public ShipStore getShipStore() {
-        return shipStore;
+        this.averageCargoByYear = new AverageCargoByYearScript();
+        this.databaseConnection = App.getInstance().getDatabaseConnection();
     }
 
     /**
@@ -32,9 +26,7 @@ public class AverageCargoByYearController {
      * @param year the year
      * @return the total number of cargo manifests and the average number of containers
      */
-    public String averageCargoByYear(int mmsi, int year) {
-        Ship ship = shipStore.getShipByMmsi(mmsi);
-
-        return ship.writeCargoByYear(year);
+    public int averageCargoByYear(int mmsi, int year) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException, SQLException {
+        return averageCargoByYear.numberOfContainers(databaseConnection, mmsi, year);
     }
 }

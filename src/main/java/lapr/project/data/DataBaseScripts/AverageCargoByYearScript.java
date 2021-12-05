@@ -101,9 +101,9 @@ public class AverageCargoByYearScript {
         return sumContainers / aux;
     }
 
-    public int numberOfContainers(DatabaseConnection databaseConnection) {
+    public int numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) {
         this.databaseConnection = databaseConnection;
 
-        return getNumberOfContainersPerTrip(366772990, 2020);
+        return getNumberOfContainersPerTrip(mmsi, date);
     }
 }

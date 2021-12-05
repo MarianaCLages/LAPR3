@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 class OffloadedShipsControllerTest {
 
-    OffloadedShipsController ctrl = new OffloadedShipsController();
+    OffloadedContainersController ctrl = new OffloadedContainersController();
 
     Ship ship = new Ship(222222222, "name", "IMO2222222", 1, 1, "A", "A", 1, 1, 1, 1);
 

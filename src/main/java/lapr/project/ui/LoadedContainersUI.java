@@ -1,15 +1,15 @@
 package lapr.project.ui;
 
-import lapr.project.controller.LoadedShipsController;
+import lapr.project.controller.LoadedContainersController;
 import lapr.project.shared.exceptions.*;
 import java.sql.SQLException;
 
-public class LoadedShipsUI implements Runnable {
+public class LoadedContainersUI implements Runnable {
 
-    LoadedShipsController ctrl;
+    LoadedContainersController ctrl;
 
-    public LoadedShipsUI() {
-        this.ctrl = new LoadedShipsController();
+    public LoadedContainersUI() {
+        this.ctrl = new LoadedContainersController();
     }
 
     public void run() {
@@ -29,7 +29,7 @@ public class LoadedShipsUI implements Runnable {
             System.out.println("\nContainers to be loaded in the next port:");
             System.out.print(ctrl.getLoadContainers(shipMmsi, type));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
-            System.out.println(exception.getMessage());
+            System.out.println("Operation failed! Please, try again.");
         }
     }
 }
