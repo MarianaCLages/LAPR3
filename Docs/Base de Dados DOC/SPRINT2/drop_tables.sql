@@ -1,0 +1,29 @@
+-- Drop tables
+
+DROP TABLE APPUSER cascade constraints;
+DROP TABLE CARGOMANIFEST cascade constraints;
+DROP TABLE CARGOMANIFESTCONTAINER cascade constraints;
+DROP TABLE CONTINENT cascade constraints;
+DROP TABLE CARGOMANIFESTTYPE cascade constraints;
+DROP TABLE CLIENT cascade constraints;
+DROP TABLE CONTAINER cascade constraints;
+DROP TABLE CONTAINERCLIENT cascade constraints;
+DROP TABLE CONTAINERPOSITION cascade constraints;
+DROP TABLE COUNTRY cascade constraints;
+DROP TABLE EMPLOYEE cascade constraints;
+DROP TABLE EMPLOYEEFACILITY cascade constraints;
+DROP TABLE FACILITY cascade constraints;
+DROP TABLE FACILITYTRIP cascade constraints;
+DROP TABLE FACILITYTYPE cascade constraints;
+DROP TABLE GENERATOR cascade constraints;
+DROP TABLE ISOCODE cascade constraints;
+DROP TABLE POSITIONALMESSAGE cascade constraints;
+DROP TABLE REFRIGERATORCONTAINER cascade constraints;
+DROP TABLE ROLE cascade constraints;
+DROP TABLE SHIP cascade constraints;
+DROP TABLE SHIPGENERATOR cascade constraints;
+DROP TABLE TRANSCEIVER cascade constraints;
+DROP TABLE TRIP cascade constraints;
+DROP TABLE TRIPEMPLOYEES cascade constraints;
+DROP TABLE VEHICLE cascade constraints;
+DROP TABLE VESSELTYPE cascade constraints;

@@ -1,11 +1,14 @@
 package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
+import lapr.project.model.Port;
 import lapr.project.model.Position;
 import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
 import lapr.project.shared.exceptions.FacilityNotFoundException;
+import lapr.project.utils.mappers.dto.PortDTO;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -111,6 +114,17 @@ public class OffOrLoadContainers {
 
                     stringBuilder.append("\nContainers Information: ").append("\nIdentification: ").append(identification).append("\nType: ").append(typeC).append("\n").append(getContainerPosition(mmsi)).append("\nPayload: ").append(payload).append("\n");
 
+                    try {
+                        Port port = DataBaseUtils.getPort(getFacility(mmsi), databaseConnection);
+
+                        PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
+
+                        stringBuilder.append("\n" + portDTO);
+
+                    } catch (Exception e){
+
+                    }
+
                     return stringBuilder.toString();
 
                 } else return null;
@@ -183,7 +197,7 @@ public class OffOrLoadContainers {
             k--;
         }
 
-        if(c == null) throw new ContainersInsideCargoManifestListSizeException();
+        if (c == null) throw new ContainersInsideCargoManifestListSizeException();
 
         return c;
     }
@@ -236,6 +250,18 @@ public class OffOrLoadContainers {
                         stringBuilder.append("Container ID: " + resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Not refrigerated\n");
                     }
                 }
+
+                try {
+                    Port port = DataBaseUtils.getPort(getFacility(mmsi), databaseConnection);
+
+                    PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
+
+                    stringBuilder.append("\n" + portDTO);
+
+                } catch (Exception e){
+
+                }
+
                 return stringBuilder.toString();
             }
         }

@@ -1,3 +1,5 @@
+-- Tables creation
+
 
 create table Role
 (
@@ -157,30 +159,6 @@ create table Facility
         foreign key (facilityType)
             references FacilityType
 );
-
-create table Warehouse
-(
-    facilityId varchar2(32),
-
-    constraint WAREHOUSE_PK
-        primary key (facilityId),
-    constraint WarehouseFacilityID_FK
-        foreign key (facilityId)
-            references Facility (facilityId)
-);
-
-
-create table Port
-(
-    facilityId varchar2(32),
-
-    constraint PORT_PK
-        primary key (facilityId),
-    constraint PortFacilityID_FK
-        foreign key (facilityId)
-            references Facility (facilityId)
-);
-
 
 create table EmployeeFacility
 (
