@@ -32,7 +32,7 @@ public class ClosestPortController {
      * @param localDateTime the time
      * @return the nearest port by call sign (in DTO)
      */
-    public PortDTO getNearestPortByCallSign(String callSign, LocalDateTime localDateTime) {
+    public PortDTO getNearestPortByCallSign(String callSign, LocalDateTime localDateTime) throws IllegalArgumentException {
         Ship ship = company.getShipStore().getShipByCallSign(callSign);
         Port port = portStore.getNearestNeighbourByTime(ship, localDateTime);
 

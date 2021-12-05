@@ -477,8 +477,6 @@ public class CargoManifestTest {
         String actual = "\n" +
                 "Average Containers by Cargo Manifest:NaN";
 
-        assertEquals(null,ship.writeCargoByYear(2019));
-
         if(ship.writeCargoByYear(2019) == actual) fail();
 
 

@@ -179,12 +179,12 @@ public class App {
         System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
 
         //LoadedContainers load = new LoadedContainers();
-        //load.getResult(databaseConnection);
+        //load.getResultOffLoaded(databaseConnection);
         //OffOrLoadContainers off = new OffOrLoadContainers();
-        //off.getResult(databaseConnection,"10860", 366873510,2);
+        //off.getResultOffLoaded(databaseConnection,"10860", 366873510,2);
         //Test t = new Test();
 
-        //t.getResult(databaseConnection,"216593",366906610);
+        //t.getResultOffLoaded(databaseConnection,"216593",366906610);
 
        /* for(Facility f : company.getPortStoreData().getListPort(databaseConnection)){
             System.out.println(f);

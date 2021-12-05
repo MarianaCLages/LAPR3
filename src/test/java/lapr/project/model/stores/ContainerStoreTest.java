@@ -35,4 +35,15 @@ public class ContainerStoreTest {
         assertEquals(false,containerStore.writeAllContainers());
         assertEquals(true,containerStore2.writeAllContainers());
     }
+
+    @Test
+    void getContainerAVL(){
+
+        //Arrange
+        containerStore2.addContainer(c1);
+        //Act
+         //Assert
+        if(!containerStore.getContainerByAVL().isEmpty()) fail();
+    }
+
 }

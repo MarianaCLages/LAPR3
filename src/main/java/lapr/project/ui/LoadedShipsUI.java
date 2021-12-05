@@ -2,7 +2,6 @@ package lapr.project.ui;
 
 import lapr.project.controller.LoadedShipsController;
 import lapr.project.shared.exceptions.*;
-
 import java.sql.SQLException;
 
 public class LoadedShipsUI implements Runnable {
@@ -14,9 +13,13 @@ public class LoadedShipsUI implements Runnable {
     }
 
     public void run() {
+
         int shipMmsi;
         String facilityId;
         String type = "2";
+
+        int op;
+
 
         do {
             try {
@@ -35,3 +38,4 @@ public class LoadedShipsUI implements Runnable {
         }
     }
 }
+

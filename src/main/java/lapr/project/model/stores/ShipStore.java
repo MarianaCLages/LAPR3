@@ -161,7 +161,7 @@ public class ShipStore {
         }
 
         for (Ship s : shipByMmsiAVL.inOrder()) {
-            System.out.println(s);
+          //  System.out.println(s);
         }
 
         return true;

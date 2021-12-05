@@ -22,6 +22,6 @@ public class LoadedShipsController {
 
 
     public String getLoadedShips(int mmsi, String type) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException, SQLException {
-        return (offOrLoadContainers.getResult(databaseConnection, mmsi, type));
+        return (offOrLoadContainers.getResultLoaded(databaseConnection, mmsi, type));
     }
 }
