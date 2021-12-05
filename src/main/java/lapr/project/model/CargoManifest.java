@@ -1,7 +1,6 @@
 package lapr.project.model;
 
 import lapr.project.shared.tree.AVL;
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
 import java.util.Date;
 

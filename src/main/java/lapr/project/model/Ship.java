@@ -49,6 +49,7 @@ public class Ship {
      * @param draft            the ship's draft
      * @param cargo            the ship's cargo
      * @param transceiverClass the ship's transceiver class
+     * @param cargoManifest    the ship's latest cargo manifest
      */
     public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transceiverClass, CargoManifest cargoManifest) {
         checkIMO(imo);
@@ -75,6 +76,42 @@ public class Ship {
         this.cargoManifestAVL = new AVL<>();
         this.cargoManifest = cargoManifest;
     }
+
+    /**
+     * Constructor.
+     *
+     * @param mmsi             the ship's MMSI
+     * @param name             the ship's name
+     * @param imo              the ship's IMO
+     * @param callSign         the ship's call sign
+     * @param vesselType       the ship's vessel type
+     * @param length           the ship's length
+     * @param width            the ship's width
+     * @param draft            the ship's draft
+     */
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft) {
+        checkIMO(imo);
+        checkMMSI(mmsi);
+
+        this.mmsi = mmsi;
+        this.name = name;
+        this.imo = imo;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.draft = draft;
+
+        this.posDate = new PositionTreeStore();
+        this.travelledDistance = 0;
+        this.biggestPosition = null;
+        this.smallPosition = null;
+        this.posDateSize = 0;
+        this.currentCapacity = 0;
+
+        this.cargoManifestAVL = new AVL<>();
+    }
+
 
     /**
      * Constructor.
@@ -122,6 +159,29 @@ public class Ship {
      */
     public Ship() {
         this.posDate = new PositionTreeStore();
+    }
+
+    public Ship(int mmsi, String shipName, String imo, String callSign, String vesselType, int lenght, int width, int draft, String capacity) {
+        this.mmsi = mmsi;
+        this.imo = imo;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.capacity = Double.parseDouble(capacity);
+    }
+
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselTYPe, double length, double width, double draft, String cargo, char transceiver) {
+        this.mmsi = mmsi;
+        this.name = name;
+        this.imo = imo;
+        this.vesselType = vesselTYPe;
+        this.draft = draft;
+        this.callSign = callSign;
+        this.length = length;
+        this.width = width;
+        this.cargo = cargo;
+        this.transceiverClass = transceiver;
     }
 
     /**
@@ -797,8 +857,4 @@ public class Ship {
         return cargoManifest;
     }
 
-    public Date calculateTimeLeft(){
-        double distance = getDeltaDistance();
-
-    }
 }

@@ -177,7 +177,7 @@ public class ShipStoreData implements Persistable {
 
                     //   if (transceiver == '0') throw new SQLException("Transceiver not found!");
 
-                    return new Ship(mmsi, shipName, imo, callSign, vesselType, lenght, width, draft, capacity, 'a');
+                    return new Ship(mmsi, shipName, imo, callSign, vesselType, lenght, width, draft, capacity);
 
                 } else return null;
 

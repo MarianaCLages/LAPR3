@@ -1,16 +1,22 @@
 package lapr.project.model.stores;
 
+import lapr.project.controller.App;
+import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.PairOfShips;
 import lapr.project.shared.tree.AVL;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ShipStore {
@@ -699,47 +705,33 @@ public class ShipStore {
         }
     }
 
-    public boolean saveShipsToDataBase() {
-        try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                            saveContainerPreparedStatement.executeUpdate();
-                            return true;
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-                    databaseConnection.registerError(ex);
-                    return false;
-                }
-            }
+    /*public boolean saveShipsToDataBase() {
 
-            public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
-                Connection connection = databaseConnection.getConnection();
-                Position shipPosition = (Position) object;
+        for (Ship s : transformAVLintoListMMSI()) {
 
-                try {
-                    String sqlCommand;
-                    sqlCommand = "delete from shipposition where shipmmsi = " + mmsi + "AND basedatatime = " + shipPosition.getDate();
-                    try (PreparedStatement deleteContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        deleteContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
-                    databaseConnection.registerError(ex);
-                    return false;
-                }
-            }
+            save(App.getInstance().getDatabaseConnection(), s);
 
-            public List<Ship> getAvailableShipsAtDate(Date pDate) {
-                List<Ship> rShip = null;
-
-                for (Ship s : shipByMmsiAVL.inOrder()){
-                    if(s.getPosDateSize() == 0){
-                        rShip.add(s);
-                    } else {
-
-                    }
-                }
-                return rShip;
-            }
         }
+
+        return true;
+
+    }*/
+
+    public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
+        Connection connection = databaseConnection.getConnection();
+        Position shipPosition = (Position) object;
+
+        try {
+            String sqlCommand;
+            sqlCommand = "delete from shipposition where shipmmsi = " + mmsi + "AND basedatatime = " + shipPosition.getDate();
+            try (PreparedStatement deleteContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                deleteContainerPreparedStatement.executeUpdate();
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShipStore.class.getName()).log(Level.SEVERE, null, ex);
+            databaseConnection.registerError(ex);
+            return false;
+        }
+    }
+}

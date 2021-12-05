@@ -1,6 +1,10 @@
 package lapr.project.ui;
 
 
+import lapr.project.controller.App;
+import lapr.project.controller.SearchContainerLocationForClientController;
+import lapr.project.data.DataBaseScripts.AvailableShipsOnMondayScript;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
@@ -28,12 +32,16 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
-        try {
+
+        SearchContainerLocationForClientUI searchContainerLocationForClientController = new SearchContainerLocationForClientUI();
+        searchContainerLocationForClientController.run();
+
+        /*try {
             MainMenuUI mainMenuUI = new MainMenuUI();
 
             mainMenuUI.run();
         } catch (Exception exception) {
             System.out.println("Something went wrong!");
-        }
+        }*/
     }
 }
