@@ -19,11 +19,20 @@ public class TwoDTree {
     Node closestNode;
     Node root = null;
 
+    /**
+     * Constructor
+     */
 
     public TwoDTree() {
         root = null;
     }
 
+    /**
+     *
+     * @param n0 node inputted by the user
+     * @param port port inputted by the user
+     * @return the distance between the node and the port
+     */
     private static double dist(Node n0, Port port) {
         double total;
 
@@ -32,6 +41,13 @@ public class TwoDTree {
         return total;
     }
 
+
+    /**
+     *
+     * @param n0
+     * @param port
+     * @return
+     */
     private static double distSquared(Node n0, Port port) {
 
         double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLatitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLongitude(), 2));
@@ -39,6 +55,12 @@ public class TwoDTree {
         return total;
     }
 
+    /**
+     *
+     * @param port an array of Ports
+     *
+     * Inserts the group of Ports into the 2D-Tree
+     */
     public void insert(Port[] port) {
 
         if (port == null) return;
@@ -48,6 +70,12 @@ public class TwoDTree {
         root = insert(port, true);
     }
 
+    /**
+     *
+     * @param point an array of Ports
+     * @param divX boolean to check if it's going to be calculated by X or Y
+     * @return Node
+     */
     public Node insert(Port[] point, boolean divX) {
         if (point.length == 0) {
             return null;
@@ -67,6 +95,11 @@ public class TwoDTree {
     }
 
 
+    /**
+     *
+     * @param target the last position of a ship
+     * @return the nearest Port
+     */
     public Port nearestNeighborPort(Position target) {
 
         closesDist = Double.MAX_VALUE;
@@ -75,6 +108,13 @@ public class TwoDTree {
     }
 
 
+    /**
+     *
+     * @param root the root of the 2D-Tree
+     * @param target the last position of a ship
+     * @param divX the boolean that decides if the algorithm calculates with X or Y
+     * @return the closest Node given a certain Position
+     */
     private Node nearestNeighborNode(Node root, Position target, boolean divX) {
 
         if (root == null) {
@@ -104,6 +144,11 @@ public class TwoDTree {
 
         return closestNode;
     }
+
+    /**
+     *
+     * @return The-2D Tree as a String
+     */
 
     @Override
     public String toString() {
@@ -138,6 +183,13 @@ public class TwoDTree {
         private Node left;
         private Node right;
 
+        /**
+         * Constructor.
+         *
+         * @param port port imported by the program
+         * @param leftChild the left port of the current node
+         * @param rightChild the right port of the current node
+         */
         public Node(lapr.project.model.Port port, Node leftChild, Node rightChild) {
             this.port = port;
             left = leftChild;
@@ -145,36 +197,69 @@ public class TwoDTree {
 
         }
 
+        /**
+         *
+         * @return gets the current port
+         */
+
         public lapr.project.model.Port getElement() {
             return port;
         }
 
         // Update methods
 
+        /**
+         *
+         * @param e the Port that will be introduced to the tree
+         */
         public void setElement(lapr.project.model.Port e) {
             port = e;
         }
 
+        /**
+         *
+         * @return gets the left Node of the current node
+         */
         public Node getLeft() {
             return left;
         }
 
+        /**
+         *
+         * @param leftChild sets the left node of the current node
+         */
         public void setLeft(Node leftChild) {
             left = leftChild;
         }
 
+        /**
+         *
+         * @return gets the right node of the current node
+         */
         public Node getRight() {
             return right;
         }
 
+        /**
+         *
+         * @param rightChild sets the right node of the current node
+         */
         public void setRight(Node rightChild) {
             right = rightChild;
         }
 
+        /**
+         *
+         * @return gets the x value of the current port
+         */
         public double getX() {
             return port.getLocation().getLongitude();
         }
 
+        /**
+         *
+         * @return gets the y value of the current port
+         */
         public double getY() {
             return port.getLocation().getLatitude();
         }
