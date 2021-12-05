@@ -1,10 +1,11 @@
 package lapr.project.data.DataBaseScripts;
 
+import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.shared.exceptions.CargoManifestIDException;
-import lapr.project.shared.exceptions.ContainerGrossException;
-import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
-import lapr.project.shared.exceptions.ShipCargoCapacityException;
+import lapr.project.data.ShipStoreData;
+import lapr.project.data.Utils.DataBaseUtils;
+import lapr.project.model.Ship;
+import lapr.project.shared.exceptions.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,15 +20,15 @@ public class OccupancyRateOfAGivenShip {
         // empty
     }
 
-    public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException {
-
+    public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         this.databaseConnection = databaseConnection;
+
+        verifyIntegrity(databaseConnection, mmsi, cargoManifestID);
 
         return occupancyRate(mmsi, cargoManifestID);
     }
 
-    public double occupancyRateInAShipGivenACargoManifestDate(DatabaseConnection databaseConnection, int mmsi, String date) throws ContainersInsideCargoManifestListSizeException, ShipCargoCapacityException, ContainerGrossException, CargoManifestIDException {
-
+    public double occupancyRateInAShipGivenACargoManifestDate(DatabaseConnection databaseConnection, int mmsi, String date) throws ContainersInsideCargoManifestListSizeException, ShipCargoCapacityException, ContainerGrossException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         this.databaseConnection = databaseConnection;
 
         String cargoManifestID = null;
@@ -38,10 +39,30 @@ public class OccupancyRateOfAGivenShip {
             throw new CargoManifestIDException();
         }
 
+        verifyIntegrity(databaseConnection, mmsi, cargoManifestID);
+
         return occupancyRate(mmsi, cargoManifestID);
     }
 
-    public double occupancyRate(int mmsi, String cargoManifestID) throws ContainersInsideCargoManifestListSizeException, ContainerGrossException, ShipCargoCapacityException {
+    private void verifyIntegrity(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException {
+
+        String shipVehicleID = null;
+        String cargoManifestAssociatedVehicleID = null;
+
+        try {
+            shipVehicleID = getShipVehicleID(databaseConnection, mmsi);
+            cargoManifestAssociatedVehicleID = getAssociatedVehicleID(databaseConnection, cargoManifestID);
+
+        } catch (SQLException exception) {
+            throw new VehicleIDNotValidException();
+        }
+
+        if (!shipVehicleID.equals(cargoManifestAssociatedVehicleID))
+            throw new CargoManifestDoesntBelongToThatShipException();
+
+    }
+
+    public double occupancyRate(int mmsi, String cargoManifestID) throws ContainersInsideCargoManifestListSizeException, ContainerGrossException, ShipCargoCapacityException, IllegalArgumentException {
 
         int inc = 0;
         int iterator = 0;
@@ -54,7 +75,7 @@ public class OccupancyRateOfAGivenShip {
         }
 
         try {
-            sum = (getShipCargoCapacity(mmsi) * 1000);
+            sum = (getShipCargoCapacity(databaseConnection, mmsi) * 1000);
         } catch (SQLException ex2) {
             throw new ShipCargoCapacityException();
         }
@@ -73,6 +94,8 @@ public class OccupancyRateOfAGivenShip {
             iterator--;
         }
 
+        if(sum==0) throw new IllegalArgumentException("The ship that you selected doesn't carry cargo manifests");
+
         return ((containersGross / sum) * 100);
 
     }
@@ -87,7 +110,6 @@ public class OccupancyRateOfAGivenShip {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-
                     return resultSet.getString("CARGOMANIFESTID");
 
                 } else return null;
@@ -119,20 +141,17 @@ public class OccupancyRateOfAGivenShip {
         }
     }
 
-    public int getShipCargoCapacity(int mmsi) throws SQLException {
+    public int getShipCargoCapacity(DatabaseConnection databaseConnection, int mmsi) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "select * from SHIP where mmsi = " + mmsi;
+        String sqlCommand = "select * from SHIP where mmsi = '" + mmsi + "'";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+            try (ResultSet resultSetCargoCapacity = getPreparedStatement.executeQuery()) {
 
-                if (resultSet.next()) {
-
-                    int number = resultSet.getInt("CAPACITY");
-
-                    return resultSet.getInt("CAPACITY");
+                if (resultSetCargoCapacity.next()) {
+                    return resultSetCargoCapacity.getInt("CAPACITY");
 
                 } else return 0;
 
@@ -166,4 +185,45 @@ public class OccupancyRateOfAGivenShip {
             }
         }
     }
+
+    public String getShipVehicleID(DatabaseConnection databaseConnection, int mmsi) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select VEHICLEID FROM SHIP WHERE MMSI = '" + mmsi + "'";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    return resultSet.getString("VEHICLEID");
+
+                } else return null;
+
+            }
+        }
+
+    }
+
+    public String getAssociatedVehicleID(DatabaseConnection databaseConnection, String cargoManifestID) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select VEHICLEID FROM CARGOMANIFEST WHERE CARGOMANIFESTID = '" + cargoManifestID + "'";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    return resultSet.getString("VEHICLEID");
+
+                } else return null;
+
+            }
+        }
+
+    }
+
 }

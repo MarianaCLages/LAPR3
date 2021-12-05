@@ -1,9 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.OccupancyRateGivenCargoManifestIDController;
-import lapr.project.shared.exceptions.ContainerGrossException;
-import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
-import lapr.project.shared.exceptions.ShipCargoCapacityException;
+import lapr.project.shared.exceptions.*;
 
 public class OccupancyRateGivenCargoManifestIDUI implements Runnable {
 
@@ -38,8 +36,8 @@ public class OccupancyRateGivenCargoManifestIDUI implements Runnable {
         } while (cargoManifestID == null);
 
         try {
-            System.out.printf("For the given information, the occupancy rate is: %.2f%%\n\n", occupancyRateGivenCargoManifestIDController.getOccupancyRate(shipMmsi, cargoManifestID));
-        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException ex1) {
+            System.out.printf("For the given information, the occupancy rate is : %.2f%%\n",occupancyRateGivenCargoManifestIDController.getOccupancyRate(shipMmsi,cargoManifestID));
+        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException ex1) {
             System.out.println(ex1.getMessage());
         }
 
