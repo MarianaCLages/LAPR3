@@ -1,10 +1,10 @@
 package lapr.project.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,11 +17,10 @@ public class CargoManifestTest {
 
     FacilityLocation f1 = new FacilityLocation(11, 11);
     Port p1 = new Port("a", "a", "1", "a", f1);
-    FacilityLocation f2 = new FacilityLocation(20, 20);
-    Port p2 = new Port("a", "a", "2", "a", f2);
-
     CargoManifest cargo1 = new CargoManifest("11", p1, null);
     CargoManifest cargo2 = new CargoManifest("11", p1, null);
+    FacilityLocation f2 = new FacilityLocation(20, 20);
+    Port p2 = new Port("a", "a", "2", "a", f2);
 
     @Test
     void getIdentificationTest() {
@@ -114,7 +113,7 @@ public class CargoManifestTest {
     }
 
     @Test
-    void countContainersMutant(){
+    void countContainersMutant() {
 
         Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
@@ -122,29 +121,29 @@ public class CargoManifestTest {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        Ship ship = new Ship(999999999,"name","IMO1234234","AABB","70",10,10,10,"10",'A');
+        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
-        ship.addLoadedContainer(containerReal,port);
-        ship.addOffLoadedContainer(containerReal,port);
+        ship.addLoadedContainer(containerReal, port);
+        ship.addOffLoadedContainer(containerReal, port);
 
-        ship.addLoadedContainer(containerEqualsTrue,port);
-        ship.addOffLoadedContainer(containerEqualsTrue,port);
+        ship.addLoadedContainer(containerEqualsTrue, port);
+        ship.addOffLoadedContainer(containerEqualsTrue, port);
 
         cargoManifest.addContainersOffLoaded(containerReal);
 
         cargoManifest.addContainersLoaded(containerEqualsTrue);
 
-        if(cargoManifest.countContainers() == 0) fail();
+        if (cargoManifest.countContainers() == 0) fail();
 
 
     }
 
     @Test
-    void countContainersMutantAVLEmpties(){
+    void countContainersMutantAVLEmpties() {
 
         Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
@@ -152,71 +151,71 @@ public class CargoManifestTest {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        Ship ship = new Ship(999999999,"name","IMO1234234","AABB","70",10,10,10,"10",'A');
+        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
-        ship.addLoadedContainer(containerReal,port);
-        ship.addOffLoadedContainer(containerReal,port);
+        ship.addLoadedContainer(containerReal, port);
+        ship.addOffLoadedContainer(containerReal, port);
 
-        ship.addLoadedContainer(containerEqualsTrue,port);
-        ship.addOffLoadedContainer(containerEqualsTrue,port);
+        ship.addLoadedContainer(containerEqualsTrue, port);
+        ship.addOffLoadedContainer(containerEqualsTrue, port);
 
         cargoManifest.addContainersOffLoaded(containerReal);
 
         cargoManifest.addContainersLoaded(containerEqualsTrue);
 
-        if(cargoManifest.getOffloaded().isEmpty()) fail();
+        if (cargoManifest.getOffloaded().isEmpty()) fail();
 
-        if(cargoManifest.getLoaded().isEmpty()) fail();
-
-
-    }
-
-    @Test
-    void equalsSameObject(){
-
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
-
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
-
-        assertEquals(cargoManifest,cargoManifest);
+        if (cargoManifest.getLoaded().isEmpty()) fail();
 
 
     }
 
     @Test
-    void equalsDifferentObject(){
+    void equalsSameObject() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
-        assertNotEquals(null,cargoManifest);
+        assertEquals(cargoManifest, cargoManifest);
 
 
     }
 
     @Test
-    void equalsSameObjectByMethod(){
+    void equalsDifferentObject() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
-        assertEquals(cargoManifest,cargoManifest);
+        assertNotEquals(null, cargoManifest);
 
 
     }
 
     @Test
-    void equalsDifferentObjectByMethod(){
+    void equalsSameObjectByMethod() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
+
+        assertEquals(cargoManifest, cargoManifest);
+
+
+    }
+
+    @Test
+    void equalsDifferentObjectByMethod() {
+
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
         assertFalse(cargoManifest.equals(new Object()));
 
@@ -224,16 +223,16 @@ public class CargoManifestTest {
     }
 
     @Test
-    void equalsDifferentObjectByMethod2(){
+    void equalsDifferentObjectByMethod2() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1Ab",port2,null);
+        CargoManifest cargoManifest2 = new CargoManifest("1Ab", port2, null);
 
         assertFalse(cargoManifest.equals(cargoManifest2));
 
@@ -241,11 +240,11 @@ public class CargoManifestTest {
     }
 
     @Test
-    void equalsDifferentObjectByMethod3(){
+    void equalsDifferentObjectByMethod3() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
         assertFalse(cargoManifest.equals(new Object()));
 
@@ -253,16 +252,16 @@ public class CargoManifestTest {
     }
 
     @Test
-    void equalsDifferentObjectByMethod4(){
+    void equalsDifferentObjectByMethod4() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1Ab",port2,null);
+        CargoManifest cargoManifest2 = new CargoManifest("1Ab", port2, null);
 
         assertFalse(cargoManifest.equals(cargoManifest2));
 
@@ -270,95 +269,95 @@ public class CargoManifestTest {
     }
 
     @Test
-    void equalsDifferentObjectByMethodMutant1(){
+    void equalsDifferentObjectByMethodMutant1() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1Ab",port2,null);
+        CargoManifest cargoManifest2 = new CargoManifest("1Ab", port2, null);
 
         boolean actual = cargoManifest2.equals(cargoManifest);
 
-        if(actual) fail();
+        if (actual) fail();
 
 
     }
 
     @Test
-    void equalsDifferentObjectByMethodMutant3(){
+    void equalsDifferentObjectByMethodMutant3() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
         boolean actual = cargoManifest.equals(port);
 
-        if(actual) fail();
+        if (actual) fail();
 
 
     }
 
     @Test
-    void equalsDifferentObjectByMethodMutant4(){
+    void equalsDifferentObjectByMethodMutant4() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
         boolean actual = cargoManifest.equals(null);
 
-        if(actual) fail();
+        if (actual) fail();
 
 
     }
 
 
     @Test
-    void equalsDifferentObjectByMethodMutant2(){
+    void equalsDifferentObjectByMethodMutant2() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1Ab",port,null);
+        CargoManifest cargoManifest2 = new CargoManifest("1Ab", port, null);
 
-       if(cargoManifest.equals(cargoManifest2)) fail();
+        if (cargoManifest.equals(cargoManifest2)) fail();
 
 
     }
 
     @Test
-    void equalsDifferentObjectByMethodMutant5(){
+    void equalsDifferentObjectByMethodMutant5() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
         Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1AA",port2,null);
+        CargoManifest cargoManifest2 = new CargoManifest("1AA", port2, null);
 
-        if(cargoManifest.equals(cargoManifest2)) fail();
+        if (cargoManifest.equals(cargoManifest2)) fail();
 
 
     }
 
     @Test
-    void equalsDifferentObjectByMethodMutant6(){
+    void equalsDifferentObjectByMethodMutant6() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
@@ -371,34 +370,33 @@ public class CargoManifestTest {
 
         try {
             date = sdf.parse(dt);
-        } catch (ParseException e){
+        } catch (ParseException e) {
 
         }
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
-        CargoManifest cargoManifest2 = new CargoManifest("1AA",port2,date);
+        CargoManifest cargoManifest2 = new CargoManifest("1AA", port2, date);
 
-        if(cargoManifest.equals(cargoManifest2)) fail();
+        if (cargoManifest.equals(cargoManifest2)) fail();
 
 
     }
 
     @Test
-    void hashCodeMutant(){
+    void hashCodeMutant() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        CargoManifest cargoManifest = new CargoManifest("1AA",port,null);
+        CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
         assertNotNull(cargoManifest.hashCode());
 
 
-
     }
 
     @Test
-    void writeCargoByYear(){
+    void writeCargoByYear() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
@@ -409,7 +407,7 @@ public class CargoManifestTest {
 
         try {
             date = sdf.parse(dt);
-        } catch (ParseException e){
+        } catch (ParseException e) {
 
         }
 
@@ -417,29 +415,29 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        Ship ship = new Ship(999999999,"name","IMO1234234","AABB","70",10,10,10,"10",'A');
+        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,date);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
-        ship.addLoadedContainer(containerReal,port);
-        ship.addOffLoadedContainer(containerReal,port);
+        ship.addLoadedContainer(containerReal, port);
+        ship.addOffLoadedContainer(containerReal, port);
 
-        ship.addLoadedContainer(containerEqualsTrue,port);
-        ship.addOffLoadedContainer(containerEqualsTrue,port);
+        ship.addLoadedContainer(containerEqualsTrue, port);
+        ship.addOffLoadedContainer(containerEqualsTrue, port);
 
         cargoManifest.addContainersOffLoaded(containerReal);
 
         cargoManifest.addContainersLoaded(containerEqualsTrue);
 
-        if(ship.writeCargoByYear(2020) == null) fail();
+        if (ship.writeCargoByYear(2020) == null) fail();
 
 
     }
 
     @Test
-    void writeCargoByYearMutant(){
+    void writeCargoByYearMutant() {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
@@ -450,7 +448,7 @@ public class CargoManifestTest {
 
         try {
             date = sdf.parse(dt);
-        } catch (ParseException e){
+        } catch (ParseException e) {
 
         }
 
@@ -458,17 +456,17 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        Ship ship = new Ship(999999999,"name","IMO1234234","AABB","70",10,10,10,"10",'A');
+        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,date);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
-        ship.addLoadedContainer(containerReal,port);
-        ship.addOffLoadedContainer(containerReal,port);
+        ship.addLoadedContainer(containerReal, port);
+        ship.addOffLoadedContainer(containerReal, port);
 
-        ship.addLoadedContainer(containerEqualsTrue,port);
-        ship.addOffLoadedContainer(containerEqualsTrue,port);
+        ship.addLoadedContainer(containerEqualsTrue, port);
+        ship.addOffLoadedContainer(containerEqualsTrue, port);
 
         cargoManifest.addContainersOffLoaded(containerReal);
 
@@ -477,10 +475,36 @@ public class CargoManifestTest {
         String actual = "\n" +
                 "Average Containers by Cargo Manifest:NaN";
 
-        if(ship.writeCargoByYear(2019) == actual) fail();
+        if (ship.writeCargoByYear(2019) == actual) fail();
 
 
     }
 
 
+    @Test
+    void getInTransport() {
+        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B'), true);
+        Assertions.assertTrue(cargoManifest.getInTransport());
+    }
+    @Test
+    void getInTransportFalse() {
+        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B'), false);
+        assertFalse(cargoManifest.getInTransport());
+    }
+
+    @Test
+    void getShip() {
+        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B');
+        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, ship3, true);
+        assertEquals(cargoManifest.getShip(), ship3);
+    }
+
+    @Test
+    void setShip() {
+        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B');
+        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, ship3, true);
+        Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B');
+        cargoManifest.setShip(ship4);
+        assertEquals(cargoManifest.getShip(), ship4);
+    }
 }

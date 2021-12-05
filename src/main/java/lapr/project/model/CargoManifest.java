@@ -185,62 +185,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return true;
     }
 
-    //--------------------- new methods
-    public Boolean checkContainerInAVL(Container container) {
-        return loaded.find(container) != null;
-    }
-
-    public boolean addContainerToAVL(Container container) {
-        if (loaded.find(container).equals(null)) {
-            loaded.insert(container);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean addContainerToMap(PositionXYZ rPosXYZ, Container rContainer) {
-        if (ContainerMap.containsKey(rPosXYZ) && ContainerMap.containsValue(rContainer)) {
-            return false;
-        }
-        ContainerMap.put(rPosXYZ, rContainer);
-        return true;
-    }
-
-    public void refreshContainerMap() {
-        for (PositionXYZ oPosXYZ : ContainerMap.navigableKeySet()) {
-
-        }
-    }
-
-    public PositionXYZ getNextAvailablePositionXYZ() {
-        PositionXYZ lPosXYZ = ContainerMap.lastKey();
-        int X;
-        int Y;
-        int Z = -1;
-
-        if (lPosXYZ.getFirst() < ship.getWidth()) {
-            X = lPosXYZ.getFirst() + 1;
-            Y = lPosXYZ.getSecond();
-            Z = lPosXYZ.getThird();
-
-        } else {
-            X = 0;
-
-            if (lPosXYZ.getSecond() < ship.getLength()) {
-                Y = lPosXYZ.getSecond() + 1;
-                Z = lPosXYZ.getThird();
-            } else {
-                Y = 0;
-
-                if (lPosXYZ.getThird() < ship.getCapacity()) {
-                    Z = lPosXYZ.getThird() + 1;
-                }
-            }
-        }
-
-        return new PositionXYZ(X, Y, Z);
-    }
-
     /**
      * Returns the textual description of the cargo manifest in the format: identification, port, date.
      *
@@ -255,29 +199,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
                 '}';
     }
 
-    /**
-     * Checks if two objects (CargoManifest) are equal.
-     *
-     * @param o the object
-     * @return true if objects are equal, false if they aren't
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CargoManifest that = (CargoManifest) o;
-        return Objects.equals(identification, that.identification) && Objects.equals(offloaded, that.offloaded) && Objects.equals(loaded, that.loaded) && Objects.equals(port, that.port);
-    }
-
-    /**
-     * Generates a hash code for the cargo manifest values.
-     *
-     * @return the hash code for the cargo manifest values
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(port, offloaded, loaded);
-    }
 
     /**
      * Compares the identification of two different objects (CargoManifest).
