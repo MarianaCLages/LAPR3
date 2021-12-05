@@ -2,6 +2,10 @@ package lapr.project.shared;
 
 public class Constants {
 
+    public Constants(){
+        //Empty
+    }
+
     public static final String PARAMS_FILENAME = "config.properties";
     public static final String PARAMS_COMPANY_DESIGNATION = "Company.Designation";
     public static final String MODEL_CLASS_PATH = "auth.domain.model";

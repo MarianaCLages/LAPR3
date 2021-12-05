@@ -93,4 +93,35 @@ class PairOfShipsTest {
 
         assertTrue(pairOfShips.compareTo(pairOfShips1) == 0);
     }
+
+    @Test
+    void equals() {
+
+        Ship ship3 = new Ship(210911000, "VAAAMO", "IMO9392044", "C1SQ2", "60", 176, 21, 9.1, "NB", 'C');
+
+        PairOfShips pairOfShips = new PairOfShips(ship3, ship2);
+        PairOfShips pairOfShips2 = new PairOfShips(ship2,ship1);
+
+
+        boolean actual = pairOfShips.equals(pairOfShips2);
+
+        if(actual) fail();
+
+
+    }
+
+    @Test
+    void equals2() {
+
+        Ship ship3 = new Ship(210911000, "VAAAMO", "IMO9392044", "C1SQ2", "60", 176, 21, 9.1, "NB", 'C');
+
+        PairOfShips pairOfShips = new PairOfShips(ship3, ship2);
+
+        boolean actual = pairOfShips.equals(pairOfShips);
+
+        if(!actual) fail();
+
+
+    }
+
 }

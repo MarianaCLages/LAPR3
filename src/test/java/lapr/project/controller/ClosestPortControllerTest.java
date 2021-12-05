@@ -25,7 +25,7 @@ class ClosestPortControllerTest {
         LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
 
         when(closestPortController.getNearestPortByCallSign("AA", date)).thenReturn(new PortDTO("1", "1", "1", "1", new FacilityLocation(1, 1)));
-        
+
     }
 
 }
