@@ -17,7 +17,6 @@ public class TwoDTree {
 
     double closesDist;
     Node closestNode;
-
     Node root = null;
 
 
@@ -90,16 +89,16 @@ public class TwoDTree {
             closestNode = root;
         }
 
-        double delta = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY();
-        double delta2 = delta * delta;
+        double disCoor = divX ? target.getLongitude() - root.getX() : target.getLatitude() - root.getY();
+        double disCoor2 = disCoor * disCoor;
 
-        Node node1 = delta < 0 ? root.left : root.right;
-        Node node2 = delta2 < 0 ? root.right : root.left;
+        Node node1 = disCoor < 0 ? root.left : root.right;
+        Node node2 = disCoor2 < 0 ? root.right : root.left;
 
 
         nearestNeighborNode(node1, target, !divX);
 
-        if (delta2 < closesDist) {
+        if (disCoor2 < closesDist) {
             closestNode = nearestNeighborNode(node2, target, !divX);
         }
 
