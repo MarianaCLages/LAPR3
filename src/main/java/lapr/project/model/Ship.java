@@ -44,6 +44,7 @@ public class Ship {
         this.capacity = Double.parseDouble(capacity);
 
         this.cargoManifestAVL = new AVL<>();
+        this.posDate = new PositionTreeStore();
     }
 
     /**
@@ -149,6 +150,7 @@ public class Ship {
         this.transceiverClass = transceiver;
 
         this.cargoManifestAVL = new AVL<>();
+        this.posDate = new PositionTreeStore();
     }
 
     /**
