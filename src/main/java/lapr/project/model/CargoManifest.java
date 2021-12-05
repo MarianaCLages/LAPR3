@@ -3,11 +3,8 @@ package lapr.project.model;
 import lapr.project.shared.tree.AVL;
 
 import java.util.Date;
-
 import java.util.NavigableMap;
-
 import java.util.Objects;
-import java.util.zip.ZipEntry;
 
 public class CargoManifest implements Comparable<CargoManifest> {
 
@@ -61,6 +58,15 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     /**
+     * Sets the cargo manifest's identification.
+     *
+     * @param identification the cargo manifest's identification
+     */
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    /**
      * Gets the off loaded containers AVL.
      *
      * @return the off loaded containers AVL
@@ -87,32 +93,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return port;
     }
 
-    public boolean getInTransport(){
-        return inTransport;
-    }
-
-    public Ship getShip(){ return ship;}
-
-    /**
-     * Gets the cargo manifest's date.
-     *
-     * @return the cargo manifest's date
-     */
-    public Date getDate() {
-        return date;
-    }
-
-    //Setters
-
-    /**
-     * Sets the cargo manifest's identification.
-     *
-     * @param identification the cargo manifest's identification
-     */
-    public void setIdentification(String identification) {
-        this.identification = identification;
-    }
-
     /**
      * Sets the cargo manifest's port.
      *
@@ -122,7 +102,28 @@ public class CargoManifest implements Comparable<CargoManifest> {
         this.port = port;
     }
 
-    public void setShip(Ship ship) { this.ship = ship;}
+    public boolean getInTransport() {
+        return inTransport;
+    }
+
+    //Setters
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
+    /**
+     * Gets the cargo manifest's date.
+     *
+     * @return the cargo manifest's date
+     */
+    public Date getDate() {
+        return date;
+    }
 
     /**
      * Sets the cargo manifest's date.
@@ -163,7 +164,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
         }
 
         for (Container container : offloaded.inOrder()) {
-          //  System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Position: " + port.getLocation() + "; Load: " + container.getPayload() + "\n");
+            //  System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Position: " + port.getLocation() + "; Load: " + container.getPayload() + "\n");
         }
         return true;
     }
@@ -185,39 +186,39 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     //--------------------- new methods
-    public Boolean checkContainerInAVL(Container container){
+    public Boolean checkContainerInAVL(Container container) {
         return loaded.find(container) != null;
     }
 
     public boolean addContainerToAVL(Container container) {
-        if(loaded.find(container).equals(null)){
+        if (loaded.find(container).equals(null)) {
             loaded.insert(container);
             return true;
         }
         return false;
     }
 
-    public boolean addContainerToMap(PositionXYZ rPosXYZ, Container rContainer){
-        if (ContainerMap.containsKey(rPosXYZ) && ContainerMap.containsValue(rContainer)){
+    public boolean addContainerToMap(PositionXYZ rPosXYZ, Container rContainer) {
+        if (ContainerMap.containsKey(rPosXYZ) && ContainerMap.containsValue(rContainer)) {
             return false;
         }
-        ContainerMap.put(rPosXYZ,rContainer);
+        ContainerMap.put(rPosXYZ, rContainer);
         return true;
     }
 
-    public void refreshContainerMap(){
-        for (PositionXYZ oPosXYZ : ContainerMap.navigableKeySet()){
+    public void refreshContainerMap() {
+        for (PositionXYZ oPosXYZ : ContainerMap.navigableKeySet()) {
 
         }
     }
 
-    public PositionXYZ getNextAvailablePositionXYZ(){
+    public PositionXYZ getNextAvailablePositionXYZ() {
         PositionXYZ lPosXYZ = ContainerMap.lastKey();
         int X;
         int Y;
         int Z = -1;
 
-        if(lPosXYZ.getFirst() < ship.getWidth()){
+        if (lPosXYZ.getFirst() < ship.getWidth()) {
             X = lPosXYZ.getFirst() + 1;
             Y = lPosXYZ.getSecond();
             Z = lPosXYZ.getThird();
@@ -225,13 +226,13 @@ public class CargoManifest implements Comparable<CargoManifest> {
         } else {
             X = 0;
 
-            if(lPosXYZ.getSecond() < ship.getLength()){
+            if (lPosXYZ.getSecond() < ship.getLength()) {
                 Y = lPosXYZ.getSecond() + 1;
                 Z = lPosXYZ.getThird();
             } else {
                 Y = 0;
 
-                if(lPosXYZ.getThird() < ship.getCapacity()) {
+                if (lPosXYZ.getThird() < ship.getCapacity()) {
                     Z = lPosXYZ.getThird() + 1;
                 }
             }
@@ -289,11 +290,11 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
     }
 
-    public void addContainersOffLoaded(Container container){
+    public void addContainersOffLoaded(Container container) {
         offloaded.insert(container);
     }
 
-    public void addContainersLoaded(Container container){
+    public void addContainersLoaded(Container container) {
         loaded.insert(container);
     }
 

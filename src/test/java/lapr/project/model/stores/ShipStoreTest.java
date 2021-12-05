@@ -39,7 +39,7 @@ class ShipStoreTest {
     Position posgeral4 = new Position(10, 20, 30, 20, 10, date4);
 
     @Test
-    void addShipMutant(){
+    void addShipMutant() {
 
         String dt = "2020-01-01";  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,7 +48,7 @@ class ShipStoreTest {
 
         try {
             date = sdf.parse(dt);
-        } catch (ParseException e){
+        } catch (ParseException e) {
 
         }
 
@@ -57,20 +57,20 @@ class ShipStoreTest {
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab",port,date);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
         shipgeral.getCargoManifestAVL().insert(cargoManifest);
 
-        shipgeral.addLoadedContainer(containerReal,port);
-        shipgeral.addOffLoadedContainer(containerReal,port);
+        shipgeral.addLoadedContainer(containerReal, port);
+        shipgeral.addOffLoadedContainer(containerReal, port);
 
 
         shipstore.insertIntoMmsiAVL(shipgeral);
 
         Ship s = shipstore.getShipByMmsi(shipgeral.getMmsi());
 
-        if(s.getCargoManifestAVL().isEmpty()) fail();
-        if(s.getCurrentCapacity() == 0) fail();
+        if (s.getCargoManifestAVL().isEmpty()) fail();
+        if (s.getCurrentCapacity() == 0) fail();
 
         assertNotNull(s);
 
@@ -78,86 +78,86 @@ class ShipStoreTest {
     }
 
     @Test
-    void getCargoMutant(){
+    void getCargoMutant() {
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
     @Test
-    void getCargoMutant2(){
+    void getCargoMutant2() {
 
 
         shipstore.insertIntoMmsiAVL(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
     @Test
-    void getCargoMutant3(){
+    void getCargoMutant3() {
 
         shipstore.insertIntoMmsiAVL(shipgeral);
         shipstore.insertIntoCallSign(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
     @Test
-    void getCargoMutant4(){
+    void getCargoMutant4() {
 
         shipstore.insertIntoCallSign(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
 
     @Test
-    void getCargoMutant5(){
+    void getCargoMutant5() {
 
         shipstore.insertIntoImoAVL(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
 
     @Test
-    void getCargoMutant6(){
+    void getCargoMutant6() {
 
         shipstore.insertIntoImoAVL(shipgeral);
         shipstore.insertIntoCallSign(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
     @Test
-    void getCargoMutant7(){
+    void getCargoMutant7() {
 
         shipstore.insertIntoImoAVL(shipgeral);
         shipstore.insertIntoMmsiAVL(shipgeral);
 
-        if(shipstore.writeAllShips()) fail();
+        if (shipstore.writeAllShips()) fail();
 
 
     }
 
     @Test
-    void getMMSIAVl(){
+    void getMMSIAVl() {
 
         shipstore.insertIntoMmsiAVL(shipgeral);
 
 
-        if(shipstore.getShipByMmsiAVL().isEmpty()) fail();
+        if (shipstore.getShipByMmsiAVL().isEmpty()) fail();
 
 
     }
@@ -790,14 +790,15 @@ class ShipStoreTest {
 
         Ship ship1 = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B');
         Ship ship2 = new Ship(228339600, "CMA CGM ALMAVIVA", "IMO9450648", "FLSU", "70", 334, 42, 15, "79", 'B');
-        shipstore.addShip(ship1);
-        shipstore.addShip(ship2);
         ship1.insertPosition(ship1.createPosition(LocalDateTime.parse("31-12-2020 23:16", formatter), 0, 0, 0, 0, 1));
         ship1.insertPosition(ship1.createPosition(LocalDateTime.parse("01-01-2021 00:16", formatter), 25, 0, 0, 0, 1));
 
         ship2.insertPosition(ship2.createPosition(LocalDateTime.parse("02-01-2021 00:16", formatter), 0, 0, 0, 0, 1));
         ship2.insertPosition(ship2.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 15, 0, 0, 0, 1));
         ship2.insertPosition(ship2.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 25.0001, 0, 0, 0, 1));
+
+        shipstore.addShip(ship1);
+        shipstore.addShip(ship2);
 
         Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B');
         Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B');

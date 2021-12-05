@@ -1,7 +1,11 @@
 package lapr.project.ui;
 
 import lapr.project.controller.SearchContainerLocationForClientController;
-import lapr.project.model.*;
+import lapr.project.model.CargoManifest;
+import lapr.project.model.Container;
+import lapr.project.model.FacilityLocation;
+import lapr.project.model.Position;
+
 import java.util.ArrayList;
 
 public class SearchContainerLocationForClientUI implements Runnable {
@@ -28,17 +32,17 @@ public class SearchContainerLocationForClientUI implements Runnable {
         } catch (NullPointerException e) {
             System.out.print("Please enter a valid Client's ID!\n");
 
-        } while(clientID.isEmpty());
+        } while (clientID.isEmpty());
 
         System.out.print("\n\n");
 
-        try{
+        try {
             lContainer = ctrl.getClientContainers(clientID);
             rContainer = (Container) Utils.selectsObject(lContainer);
 
             rCargoManifest = ctrl.findContainerVessel(rContainer);
 
-            if (rCargoManifest.getInTransport()){
+            if (rCargoManifest.getInTransport()) {
                 System.out.println("Container is aboard the: " + rCargoManifest.getShip().getCallSign());
                 System.out.println("Coordinates: \n" +
                         "   Lat : " + rPosition.getLatitude() + "\n" +
@@ -49,7 +53,7 @@ public class SearchContainerLocationForClientUI implements Runnable {
                         "   Lat : " + rLocation.getLatitude() + "\n" +
                         "   Long: " + rLocation.getLongitude() + "\n");
             }
-        } catch (NullPointerException e2){
+        } catch (NullPointerException e2) {
             System.out.print("Container doesn't exist/is invalid!\n");
         }
     }

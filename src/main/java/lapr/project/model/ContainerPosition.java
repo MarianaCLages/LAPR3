@@ -31,26 +31,6 @@ public class ContainerPosition {
     }
 
     /**
-     * Gets the container position's y coordinate.
-     *
-     * @return the container position's y coordinate
-     */
-    public int getyPos() {
-        return yPos;
-    }
-
-    /**
-     * Gets the container position's z coordinate.
-     *
-     * @return the container position's z coordinate
-     */
-    public int getzPos() {
-        return zPos;
-    }
-
-    //Setters
-
-    /**
      * Sets the container position's x coordinate.
      *
      * @param xPos the container position's x coordinate
@@ -60,12 +40,32 @@ public class ContainerPosition {
     }
 
     /**
+     * Gets the container position's y coordinate.
+     *
+     * @return the container position's y coordinate
+     */
+    public int getyPos() {
+        return yPos;
+    }
+
+    //Setters
+
+    /**
      * Sets the container position's y coordinate.
      *
      * @param yPos the container position's y coordinate
      */
     public void setyPos(int yPos) {
         this.yPos = yPos;
+    }
+
+    /**
+     * Gets the container position's z coordinate.
+     *
+     * @return the container position's z coordinate
+     */
+    public int getzPos() {
+        return zPos;
     }
 
     /**
