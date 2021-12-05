@@ -7,6 +7,7 @@ import lapr.project.data.PortStoreData;
 import lapr.project.data.ShipStoreData;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
+import lapr.project.utils.auth.domain.store.UserStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -86,6 +87,15 @@ class CompanyTest {
         ContainerStoreData containerStoreData = company.getContainerStoreData();
 
         if(containerStoreData==null) fail();
+
+    }
+
+    @Test
+    void getUserStoreData() {
+
+        UserStore userStore = company.getUserStore();
+
+        if(userStore ==null) fail();
 
     }
 
