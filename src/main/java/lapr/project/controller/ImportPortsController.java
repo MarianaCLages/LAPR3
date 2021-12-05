@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 
 public class ImportPortsController {
 
-    private final Company company;
     private final PortStore store;
     private final PortStoreData portStoreData;
     private final DatabaseConnection dbConnection;
@@ -22,7 +21,7 @@ public class ImportPortsController {
      */
     public ImportPortsController() {
         this.dbConnection = App.getInstance().getDatabaseConnection();
-        this.company = App.getInstance().getCompany();
+        Company company = App.getInstance().getCompany();
         this.store = company.getPortStore();
         this.portStoreData = company.getPortStoreData();
     }
@@ -37,14 +36,11 @@ public class ImportPortsController {
      */
 
     public boolean importPorts(String fileName) throws FileNotFoundException {
-
         boolean returnValue;
 
         returnValue = PortImporter.importPorts(new File(fileName), store, portStoreData,dbConnection);
 
         return returnValue;
-
     }
-
 }
 
