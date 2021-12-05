@@ -20,6 +20,7 @@ public class TrafficManagerUI implements Runnable {
 
         //SPRINT 2
         options.add(new MenuItem("Find the closest port from a certain ship", new ClosestPortUI()));
+        options.add(new MenuItem("Which ships will be available on monday next week and their location", new FindAvailableShipsUI()));
 
 
         int option;

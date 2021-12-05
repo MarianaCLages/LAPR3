@@ -72,6 +72,7 @@ public class OccupancyRateOfAGivenShip {
 
         try {
             sum = (getShipCargoCapacity(databaseConnection, mmsi) * 1000);
+            if(sum == 0) throw new SQLException();
         } catch (SQLException ex2) {
             throw new ShipCargoCapacityException();
         }

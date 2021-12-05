@@ -30,18 +30,21 @@ public class AverageCargoByYearUI implements Runnable {
         do {
             try {
                 year = Utils.readIntegerFromConsole("Please enter the year:");
+
+                if (year < 0) throw new IllegalArgumentException();
+
             } catch (Exception ex) {
-                System.out.println("Please enter a valid year!");
+                System.out.println("Please enter a valid year (No negatives values allowed)!");
                 year = 0;
             }
 
         } while (year == 0);
 
         try {
-            System.out.println("\nAverage:");
             System.out.print(ctrl.averageCargoByYear(shipMmsi, year));
-        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
-            System.out.println("The ship introduced doesn't exist.");
+        } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTrip | NoCargoManifestInThatDateException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
+            System.out.println(e.getMessage());
         }
+
     }
 }

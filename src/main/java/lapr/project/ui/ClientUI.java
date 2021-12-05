@@ -7,11 +7,11 @@ public class ClientUI implements Runnable {
 
     public void run() {
         List<MenuItem> options = new ArrayList<>();
-        options.add(new MenuItem("Pls don't bug", new ShowTextUI("OLA")));
+        options.add(new MenuItem("Current situation of a specific container being used to transport my goods", new SearchContainerLocationForClientUI()));
 
         int option;
         do {
-            option = Utils.showAndSelectIndex(options, "\n\nReceptionist Menu:");
+            option = Utils.showAndSelectIndex(options, "\n\nClient Menu:");
 
             if ((option >= 0) && (option < options.size())) {
                 options.get(option).run();

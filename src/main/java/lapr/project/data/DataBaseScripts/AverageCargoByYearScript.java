@@ -1,6 +1,9 @@
 package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.NoCargoManifestInThatDateException;
+import lapr.project.shared.exceptions.NoCargoManifestsWereFoundInThatTrip;
+import lapr.project.shared.exceptions.NoContainersInsideThatTripException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +17,8 @@ public class AverageCargoByYearScript {
     }
 
     private DatabaseConnection databaseConnection = null;
-    private int sumContainers = 0;
 
-    public int getCargoManifestsOfATripFromDataBase(int mmsi, int date, int j) {
+    public int getCargoManifestsOfATripFromDataBase(int mmsi, int date, int j) throws SQLException {
         String sqlCommand = "select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
                 "                                   inner join TRIP T on T.IDTRIP = cm.IDTRIP and T.VEHICLEID = cm.VEHICLEID and Extract(YEAR from CARGOMANIFESTDATE) = " + date +
                 "where t.VEHICLEID = (select v.VEHICLEID from VEHICLE v inner join Ship S on v.vehicleId = S.vehicleId\n" +
@@ -35,13 +37,10 @@ public class AverageCargoByYearScript {
 
                 } else return 0;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return 0;
         }
     }
 
-    private int getCargoManifestOfATripSize(int mmsi, int date) {
+    private int getCargoManifestOfATripSize(int mmsi, int date) throws SQLException {
         String sqlCommand = "select COUNT(*) COUNT_MANIFESTS from CARGOMANIFEST cm\n" +
                 "                                   inner join TRIP T on T.IDTRIP = cm.IDTRIP and T.VEHICLEID = cm.VEHICLEID and Extract(YEAR from CARGOMANIFESTDATE) = " + date +
                 "where t.VEHICLEID = (select v.VEHICLEID from VEHICLE v inner join Ship S on v.vehicleId = S.vehicleId\n" +
@@ -58,13 +57,10 @@ public class AverageCargoByYearScript {
                     return 0;
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return 0;
         }
     }
 
-    private void getContainersCargoManifestOfATripSize(int cargoManifestID) {
+    private int getContainersCargoManifestOfATripSize(int cargoManifestID) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select count(c.CONTAINERID) COUNT_CONTAINERS\n" +
@@ -75,35 +71,64 @@ public class AverageCargoByYearScript {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    sumContainers += resultSet.getInt("COUNT_CONTAINERS");
+                    return (resultSet.getInt("COUNT_CONTAINERS"));
                 }
+
+                return 0;
+
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
     }
 
-    public int getNumberOfContainersPerTrip(int mmsi, int date) {
-        int j = getCargoManifestOfATripSize(mmsi, date);
+    public int getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTrip {
+
+        int j = 0;
+
+        try {
+            j = getCargoManifestOfATripSize(mmsi, date);
+        } catch (SQLException e) {
+            throw new NoCargoManifestsWereFoundInThatTrip();
+        }
+
         int cargoManifestID = 0;
+
+        int sumContainers = 0;
 
         int count = 0;
         int aux = j;
 
         while (j != 0) {
-            cargoManifestID = getCargoManifestsOfATripFromDataBase(mmsi, date, count);
-            getContainersCargoManifestOfATripSize(cargoManifestID);
+
+            try {
+                cargoManifestID = getCargoManifestsOfATripFromDataBase(mmsi, date, count);
+            } catch (SQLException e) {
+                throw new NoCargoManifestInThatDateException();
+            }
+
+            try {
+                sumContainers += getContainersCargoManifestOfATripSize(cargoManifestID);
+            } catch (SQLException e) {
+                throw new NoContainersInsideThatTripException();
+            }
 
             count++;
             j--;
         }
 
-        return sumContainers / aux;
+        if (aux == 0) {
+            throw new NoCargoManifestsWereFoundInThatTrip();
+        }
+
+        return (sumContainers / aux);
     }
 
-    public int numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) {
+    public String numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) throws SQLException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTrip, NoContainersInsideThatTripException {
         this.databaseConnection = databaseConnection;
 
-        return getNumberOfContainersPerTrip(mmsi, date);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("Number of cargo manifests in the given year: ").append(getCargoManifestOfATripSize(mmsi, date)).append("\n").append("Number of containers in the given year: ").append(getNumberOfContainersPerTrip(mmsi, date));
+
+        return stringBuilder.toString();
     }
 }

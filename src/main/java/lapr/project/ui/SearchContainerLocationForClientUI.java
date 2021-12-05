@@ -32,7 +32,7 @@ public class SearchContainerLocationForClientUI implements Runnable {
 
         } while (clientID.isEmpty());
 
-        System.out.print("\n\n");
+        System.out.print("\n");
 
         try {
             lContainer = ctrl.getClientContainers(clientID);
