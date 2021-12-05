@@ -307,14 +307,13 @@ create table CargoManifestType
     primary key (CargoManifestType)
 );
 
-
-
 create table CargoManifest
 (
     cargoManifestId   varchar2(32),
     idTrip            varchar2(32),
     vehicleId         varchar2(32),
     CargoManifestType varchar2(32),
+    facilityId        varchar2(32),
     CargoManifestDate date,
 
     constraint CargoManifest_PK
@@ -324,7 +323,10 @@ create table CargoManifest
             references Trip,
     constraint CargoManifestTypeId_FK
         foreign key (CargoManifestType)
-            references CargoManifest
+            references CargoManifestType,
+    constraint CARGOMANIFESTFACILITYID_FK
+        foreign key (facilityId)
+            references FACILITY
 );
 
 
