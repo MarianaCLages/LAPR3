@@ -9,7 +9,6 @@ import lapr.project.shared.tree.TwoDTree;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-
 public class PortStore {
 
     private final TwoDTree portList;
@@ -36,7 +35,7 @@ public class PortStore {
      * Adds a new port to the list.
      *
      * @param port the port to be added
-     * @return
+     * @return true if it succeeds, false if it doesn't
      */
     public boolean add(Port port) {
         if (port == null) return false;

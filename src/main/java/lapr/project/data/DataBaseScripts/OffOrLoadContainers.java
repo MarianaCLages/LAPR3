@@ -3,13 +3,10 @@ package lapr.project.data.DataBaseScripts;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
-import lapr.project.model.Facility;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class OffOrLoadContainers {
@@ -142,23 +139,16 @@ public class OffOrLoadContainers {
         return true;
     }
 
-
-    public String getResultLoaded(DatabaseConnection databaseConnection, int mmsi, String type) throws SQLException {
-        this.databaseConnection = databaseConnection;
-
-        return query(databaseConnection, type, mmsi);
-
-    }
-
     public boolean getResultOffLoaded(DatabaseConnection databaseConnection, int mmsi, int type) {
         this.databaseConnection = databaseConnection;
 
         return getContainersPerCargoOffLoad(mmsi, type);
-
     }
 
-    public String query(DatabaseConnection databaseConnection, String type, int mmsi) throws SQLException {
 
+    //LoadContainers ------------------------------------------------------------
+
+    public String getContainersToLoad(DatabaseConnection databaseConnection, String type, int mmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -189,18 +179,20 @@ public class OffOrLoadContainers {
 
                 while (resultSet.next()) {
 
-                    stringBuilder.append("ContainerID" + resultSet.getString(1)).append("\n").append("Payload" + resultSet.getString(2)).append("\n");
+                    boolean refrigerated = verifyContainerType(databaseConnection, resultSet.getString(1));
 
+                    if (refrigerated) {
+                        stringBuilder.append("Container ID: " + resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Refrigerated\n");
+                    } else {
+                        stringBuilder.append("Container ID: " + resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Not refrigerated\n");
+                    }
                 }
-
                 return stringBuilder.toString();
-
             }
         }
     }
 
     public LocalDate getDate(DatabaseConnection databaseConnection, String type, LocalDate ld) throws SQLException {
-
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select CARGOMANIFESTDATE from CARGOMANIFEST\n" +
@@ -211,20 +203,38 @@ public class OffOrLoadContainers {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-
                     Timestamp timestamp = (Timestamp) resultSet.getObject(1);
-
                     LocalDate iteration = timestamp.toLocalDateTime().toLocalDate();
 
                     if (ld.isBefore(iteration)) {
                         return iteration;
                     }
                 }
-
             }
         }
         return null;
     }
 
+    public boolean verifyContainerType(DatabaseConnection databaseConnection, String idContainer) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
 
+        String sqlCommand = "select * from CONTAINER\n" +
+                "inner join REFRIGERATORCONTAINER R on CONTAINER.CONTAINERID = R.CONTAINERID\n" +
+                "where R.CONTAINERID = '" + idContainer + "'";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String getResultLoaded(DatabaseConnection databaseConnection, int mmsi, String type) throws SQLException {
+        this.databaseConnection = databaseConnection;
+
+        return getContainersToLoad(databaseConnection, type, mmsi);
+    }
 }

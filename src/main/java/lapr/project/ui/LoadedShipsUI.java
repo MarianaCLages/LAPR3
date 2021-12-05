@@ -13,13 +13,8 @@ public class LoadedShipsUI implements Runnable {
     }
 
     public void run() {
-
         int shipMmsi;
-        String facilityId;
         String type = "2";
-
-        int op;
-
 
         do {
             try {
@@ -31,8 +26,8 @@ public class LoadedShipsUI implements Runnable {
         } while (shipMmsi == 0);
 
         try {
-            System.out.println("Ships to be loaded:");
-            System.out.println(ctrl.getLoadedShips(shipMmsi, type));
+            System.out.println("\nContainers to be loaded in the next port:");
+            System.out.print(ctrl.getLoadContainers(shipMmsi, type));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
             System.out.println(exception.getMessage());
         }
