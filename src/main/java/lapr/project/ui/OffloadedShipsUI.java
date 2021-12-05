@@ -20,15 +20,14 @@ public class OffloadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
-            boolean b = offLoadedShipsController.offLoadedShips(op);
+        boolean b = offLoadedShipsController.offLoadedShips(op);
 
 
 
-            if (b) {
-                System.out.println("");
-            } else {
-                System.out.println("Operation failed! Please, try again.");
-            }
+        if (b) {
+            System.out.println("");
+        } else {
+            System.out.println("Operation failed! Please, try again.");
         }
     }
-
+}

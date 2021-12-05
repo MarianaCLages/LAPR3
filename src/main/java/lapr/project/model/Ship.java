@@ -842,7 +842,7 @@ public class Ship {
      */
     public double getOccupancyRate() {
         double occupancyRate = currentCapacity / capacity;
-        return (occupancyRate *= 100);
+        return (occupancyRate * 100);
     }
 
     public CargoManifest getCargoManifest() {

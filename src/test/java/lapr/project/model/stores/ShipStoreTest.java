@@ -1,13 +1,15 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.Position;
-import lapr.project.model.Ship;
+import lapr.project.model.*;
 import lapr.project.shared.PairOfShips;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,6 +37,130 @@ class ShipStoreTest {
     String sdate4 = "31-12-2020 23:58";
     LocalDateTime date4 = LocalDateTime.parse(sdate4, formatter);
     Position posgeral4 = new Position(10, 20, 30, 20, 10, date4);
+
+    @Test
+    void addShipMutant(){
+
+        String dt = "2020-01-01";  // Start date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date date = null;
+
+        try {
+            date = sdf.parse(dt);
+        } catch (ParseException e){
+
+        }
+
+        Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
+
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+
+
+        CargoManifest cargoManifest = new CargoManifest("1Ab",port,date);
+
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+
+        shipgeral.addLoadedContainer(containerReal,port);
+        shipgeral.addOffLoadedContainer(containerReal,port);
+
+
+        shipstore.insertIntoMmsiAVL(shipgeral);
+
+        Ship s = shipstore.getShipByMmsi(shipgeral.getMmsi());
+
+        if(s.getCargoManifestAVL().isEmpty()) fail();
+        if(s.getCurrentCapacity() == 0) fail();
+
+        assertNotNull(s);
+
+
+    }
+
+    @Test
+    void getCargoMutant(){
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+    @Test
+    void getCargoMutant2(){
+
+
+        shipstore.insertIntoMmsiAVL(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+    @Test
+    void getCargoMutant3(){
+
+        shipstore.insertIntoMmsiAVL(shipgeral);
+        shipstore.insertIntoCallSign(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+    @Test
+    void getCargoMutant4(){
+
+        shipstore.insertIntoCallSign(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+
+    @Test
+    void getCargoMutant5(){
+
+        shipstore.insertIntoImoAVL(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+
+    @Test
+    void getCargoMutant6(){
+
+        shipstore.insertIntoImoAVL(shipgeral);
+        shipstore.insertIntoCallSign(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+    @Test
+    void getCargoMutant7(){
+
+        shipstore.insertIntoImoAVL(shipgeral);
+        shipstore.insertIntoMmsiAVL(shipgeral);
+
+        if(shipstore.writeAllShips()) fail();
+
+
+    }
+
+    @Test
+    void getMMSIAVl(){
+
+        shipstore.insertIntoMmsiAVL(shipgeral);
+
+
+        if(shipstore.getShipByMmsiAVL().isEmpty()) fail();
+
+
+    }
 
     @Test
     void existsShip() {

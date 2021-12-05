@@ -5,11 +5,11 @@ import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
 import lapr.project.model.Facility;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OffOrLoadContainers {
@@ -23,17 +23,17 @@ public class OffOrLoadContainers {
         //Empty constructor
     }
 
-    private String getFacility(int mmsi){
+    private String getFacility(int mmsi) {
         Connection connection = databaseConnection.getConnection();
 
 
         String sqlCommand = "Select  f.FACILITYID from FACILITY f\n" +
                 "inner join POSITIONALMESSAGE pm\n" +
                 "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) >0\n" +
-                "where pm.MMSI = "+mmsi+"\n" +
+                "where pm.MMSI = " + mmsi + "\n" +
                 "and f.FACILITYID = (Select cm.FACILITYID from CargoManifest cm\n" +
                 "    where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
-                "        where s.MMSI = "+mmsi+")\n" +
+                "        where s.MMSI = " + mmsi + ")\n" +
                 "    and cm.CargoManifestDate > pm.BASEDATETIME FETCH FIRST 1 ROW  ONLY )\n" +
                 "order by f.FACILITYID Desc\n" +
                 "FETCH first 1 ROW ONLY";
@@ -122,11 +122,13 @@ public class OffOrLoadContainers {
     }
 
 
-    public boolean getContainersPerCargoOffLoad( int mmsi, int type) {
+    public boolean getContainersPerCargoOffLoad(int mmsi, int type) {
 
         String facilityId = getFacility(mmsi);
         int k = countContainerByCargo(facilityId, mmsi, type);
-        if(k == 0){return  false;}
+        if (k == 0) {
+            return false;
+        }
         int count2 = 0;
 
         while (k != 0) {
@@ -140,9 +142,89 @@ public class OffOrLoadContainers {
         return true;
     }
 
-    public boolean getResult(DatabaseConnection databaseConnection,  int mmsi, int type) {
+
+    public String getResultLoaded(DatabaseConnection databaseConnection, int mmsi, String type) throws SQLException {
         this.databaseConnection = databaseConnection;
 
-        return getContainersPerCargoOffLoad( mmsi, type);
+        return query(databaseConnection, type, mmsi);
+
     }
+
+    public boolean getResultOffLoaded(DatabaseConnection databaseConnection, int mmsi, int type) {
+        this.databaseConnection = databaseConnection;
+
+        return getContainersPerCargoOffLoad(mmsi, type);
+
+    }
+
+    public String query(DatabaseConnection databaseConnection, String type, int mmsi) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        LocalDate ld = LocalDate.now();
+        String todayDate = ld.getYear() + "-" + ld.getMonthValue() + "-" + ld.getDayOfMonth();
+
+        LocalDate cargoManifestNearestDate = getDate(databaseConnection, type, ld);
+
+        String sqlCommand = "select c.CONTAINERID,c.PAYLOAD\n" +
+                "from CONTAINER c\n" +
+                "         inner join CARGOMANIFESTCONTAINER cmc\n" +
+                "                    on cmc.CONTAINERID = c.CONTAINERID\n" +
+                "where cmc.CARGOMANIFESTID in (select cm.CARGOMANIFESTID\n" +
+                "                              from CARGOMANIFEST cm\n" +
+                "                              where cm.CARGOMANIFESTTYPE = '" + type + "'\n" +
+                "                                and cm.IDTRIP = (select t.IDTRIP\n" +
+                "                                                 FROM TRIP t\n" +
+                "                                                          inner join VEHICLE v\n" +
+                "                                                                     on t.VEHICLEID = v.VEHICLEID\n" +
+                "                                                 where v.VEHICLEID = (select s.VEHICLEID\n" +
+                "                                                                      from SHIP s\n" +
+                "                                                                      where s.MMSI = '" + mmsi + "') and t.STARTDATE < '" + todayDate + "' and t.ENDDATE > '" + todayDate + "')\n" +
+                "    and cm.CARGOMANIFESTDATE = '" + cargoManifestNearestDate + "')";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
+                    stringBuilder.append("ContainerID" + resultSet.getString(1)).append("\n").append("Payload" + resultSet.getString(2)).append("\n");
+
+                }
+
+                return stringBuilder.toString();
+
+            }
+        }
+    }
+
+    public LocalDate getDate(DatabaseConnection databaseConnection, String type, LocalDate ld) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select CARGOMANIFESTDATE from CARGOMANIFEST\n" +
+                "where CARGOMANIFESTTYPE = '" + type + "'\n" +
+                "ORDER BY 1";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+
+                    Timestamp timestamp = (Timestamp) resultSet.getObject(1);
+
+                    LocalDate iteration = timestamp.toLocalDateTime().toLocalDate();
+
+                    if (ld.isBefore(iteration)) {
+                        return iteration;
+                    }
+                }
+
+            }
+        }
+        return null;
+    }
+
+
 }

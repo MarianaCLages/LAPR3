@@ -38,13 +38,17 @@ public class ContainerStore {
      * @return all the containers (in a String)
      */
     public boolean writeAllContainers() {
-        if (containerByAVL.isEmpty())
+
+        if (containerByAVL.isEmpty()) {
             return false;
+        }
 
-        for (Container container : containerByAVL.inOrder())
-            System.out.println(container);
+        for (Container container : containerByAVL.inOrder()){
+            //    System.out.println(container);
 
-        return true;
+        }
+
+            return true;
     }
 
     /**

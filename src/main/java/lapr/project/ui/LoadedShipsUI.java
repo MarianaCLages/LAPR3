@@ -1,35 +1,41 @@
 package lapr.project.ui;
 
 import lapr.project.controller.LoadedShipsController;
+import lapr.project.shared.exceptions.*;
+import java.sql.SQLException;
 
 public class LoadedShipsUI implements Runnable {
 
-    LoadedShipsController ctrl = new LoadedShipsController();
+    LoadedShipsController ctrl;
+
+    public LoadedShipsUI() {
+        this.ctrl = new LoadedShipsController();
+    }
 
     public void run() {
+
+        int shipMmsi;
+        String facilityId;
+        String type = "2";
+
         int op;
+
 
         do {
             try {
-                op = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
+                shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI!");
-                op = 0;
+                shipMmsi = 0;
             }
-        } while (op == 0);
-
-        System.out.println();
+        } while (shipMmsi == 0);
 
         try {
-            boolean bool = ctrl.loadedShips(op);
-
-            if (bool) {
-                System.out.println();
-            } else {
-                System.out.println("Operation failed! Please, try again.");
-            }
-        } catch (NullPointerException exception) {
-            System.out.println("The ship introduced doesn't exist.");
+            System.out.println("Ships to be loaded:");
+            System.out.println(ctrl.getLoadedShips(shipMmsi, type));
+        } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 }
+

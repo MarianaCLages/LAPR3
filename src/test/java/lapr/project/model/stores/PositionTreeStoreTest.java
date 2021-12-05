@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PositionTreeStoreTest {
 
@@ -39,10 +38,22 @@ class PositionTreeStoreTest {
         //Arrange + Act + Assert
         try {
             shipgeral2.insertPosition(posgeral);
+            positionTreeStore.addPosition(posgeral);
+            positionTreeStore.getPosition(date);
             assertNotNull(positionTreeStore.getPosition(date));
         } catch (Exception e) {
-
+            positionTreeStore.getPosition(date);
         }
+    }
+
+    @Test
+    void insertPosition() {
+        //Arrange + Act + Assert
+
+        boolean actual = positionTreeStore.addPosition(null);
+
+        if(!actual) fail();
+
     }
 
 }
