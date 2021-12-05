@@ -15,7 +15,7 @@ public class OffloadedShipsUI implements Runnable {
     public void run() {
         int op;
         int decision;
-        boolean bool = false;
+
 
         do {
             try {
@@ -26,38 +26,15 @@ public class OffloadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
-        do {
-            decision = Utils.readIntegerFromConsole("1.BDDAD | 2.Java");
-        } while (decision != 1 && decision != 2);
+            boolean b = offLoadedShipsController.offLoadedShips(op);
 
-        if (decision == 1) {
 
-            String facilityId;
-            DatabaseConnection databaseConnection = null;
-            OffOrLoadContainers offOrLoadContainers = new OffOrLoadContainers();
-            try {
-                databaseConnection = ConnectionFactory.getInstance().getDatabaseConnection();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
 
-            facilityId = Utils.readLineFromConsole("Please enter the facility ID:");
-
-            offOrLoadContainers.getResult(databaseConnection, facilityId, op, 1);
-
-        } else {
-            try {
-                System.out.println();
-                bool = offLoadedShipsController.offLoadedShips(op);
-            } catch (NullPointerException ex) {
-                System.out.println("The ship introduced doesn't exist.");
-            }
-
-            if (bool) {
+            if (b) {
                 System.out.println("");
             } else {
                 System.out.println("Operation failed! Please, try again.");
             }
         }
     }
-}
+
