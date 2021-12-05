@@ -1,11 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.LoadedShipsController;
-import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
-import lapr.project.data.DatabaseConnection;
-
-import java.io.IOException;
 
 public class LoadedShipsUI implements Runnable {
 
@@ -13,8 +8,6 @@ public class LoadedShipsUI implements Runnable {
 
     public void run() {
         int op;
-        int decision;
-        boolean bool = false;
 
         do {
             try {
@@ -25,38 +18,18 @@ public class LoadedShipsUI implements Runnable {
             }
         } while (op == 0);
 
-        do {
-            decision = Utils.readIntegerFromConsole("1.BDDAD | 2.Java");
-        } while (decision != 1 && decision != 2);
+        System.out.println();
 
-        if (decision == 1) {
-            String facilityId;
-            DatabaseConnection databaseConnection = null;
-            OffOrLoadContainers offOrLoadContainers = new OffOrLoadContainers();
-            try {
-                databaseConnection = ConnectionFactory.getInstance().getDatabaseConnection();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-
-            facilityId = Utils.readLineFromConsole("Please enter the facility ID:");
-
-            offOrLoadContainers.getResult(databaseConnection, facilityId, op, 2);
-
-        } else {
-            try {
-                System.out.println();
-                bool = ctrl.loadedShips(op);
-            } catch (NullPointerException ex) {
-                System.out.println("The ship introduced doesn't exist.");
-            }
+        try {
+            boolean bool = ctrl.loadedShips(op);
 
             if (bool) {
-                System.out.println("");
+                System.out.println();
             } else {
                 System.out.println("Operation failed! Please, try again.");
             }
+        } catch (NullPointerException exception) {
+            System.out.println("The ship introduced doesn't exist.");
         }
     }
 }
-

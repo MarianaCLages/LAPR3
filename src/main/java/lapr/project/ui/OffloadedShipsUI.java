@@ -1,11 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.OffloadedShipsController;
-import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
-import lapr.project.data.DatabaseConnection;
-
-import java.io.IOException;
 
 public class OffloadedShipsUI implements Runnable {
 
@@ -14,7 +9,6 @@ public class OffloadedShipsUI implements Runnable {
 
     public void run() {
         int op;
-        int decision;
 
 
         do {
