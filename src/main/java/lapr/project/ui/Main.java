@@ -32,16 +32,12 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, SQLException {
-
-        SearchContainerLocationForClientUI searchContainerLocationForClientController = new SearchContainerLocationForClientUI();
-        searchContainerLocationForClientController.run();
-
-        /*try {
+        try {
             MainMenuUI mainMenuUI = new MainMenuUI();
 
             mainMenuUI.run();
         } catch (Exception exception) {
             System.out.println("Something went wrong!");
-        }*/
+        }
     }
 }

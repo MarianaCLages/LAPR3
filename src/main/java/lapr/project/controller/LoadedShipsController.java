@@ -9,13 +9,11 @@ import java.sql.SQLException;
 
 public class LoadedShipsController {
 
-    private final Company company;
     private final OffOrLoadContainers offOrLoadContainers;
     private final DatabaseConnection databaseConnection;
 
-
     public LoadedShipsController() {
-        this.company = App.getInstance().getCompany();
+        Company company = App.getInstance().getCompany();
         this.offOrLoadContainers = new OffOrLoadContainers();
         this.databaseConnection = App.getInstance().getDatabaseConnection();
     }
