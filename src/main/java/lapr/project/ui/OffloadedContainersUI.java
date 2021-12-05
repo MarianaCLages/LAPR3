@@ -1,33 +1,33 @@
 package lapr.project.ui;
 
 import lapr.project.controller.OffloadedContainersController;
+import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
+import lapr.project.shared.exceptions.FacilityNotFoundException;
 
 public class OffloadedContainersUI implements Runnable {
 
     OffloadedContainersController offLoadedShipsController = new OffloadedContainersController();
 
-
     public void run() {
-        int op;
 
+        int mmsi;
 
         do {
             try {
-                op = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
+                mmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
+                if(mmsi > 99999999 && mmsi < 1000000000) throw new NumberFormatException();
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid MMSI!");
-                op = 0;
+                System.out.println("Please enter a valid MMSI (The MMSI must have 9 digits)!");
+                mmsi = 0;
             }
-        } while (op == 0);
+        } while (mmsi == 0);
 
-        boolean b = offLoadedShipsController.offLoadedShips(op);
-
-
-
-        if (b) {
-            System.out.println("");
-        } else {
-            System.out.println("Operation failed! Please, try again.");
+        try {
+            System.out.println(offLoadedShipsController.offLoadedShips(mmsi));
+        } catch (FacilityNotFoundException | ContainersInsideCargoManifestListSizeException e) {
+            System.out.println(e.getMessage());
         }
+
+
     }
 }

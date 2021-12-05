@@ -5,6 +5,8 @@ import lapr.project.data.DatabaseConnection;
 import lapr.project.model.Company;
 import lapr.project.model.stores.PortStore;
 import lapr.project.model.stores.ShipStore;
+import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
+import lapr.project.shared.exceptions.FacilityNotFoundException;
 
 public class OffloadedContainersController {
 
@@ -25,7 +27,7 @@ public class OffloadedContainersController {
      * @param mmsi the ship's MMSI
      * @return the ships to be offloaded in the nearest port
      */
-    public boolean offLoadedShips(int mmsi) {
+    public String offLoadedShips(int mmsi) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
 
         return offOrLoadContainers.getResultOffLoaded(databaseConnection,mmsi,1);
     }

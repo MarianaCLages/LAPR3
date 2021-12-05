@@ -21,8 +21,16 @@ public class ClosestPortUI implements Runnable {
 
         String date = null;
         LocalDateTime dateS = null;
+        String callSign = null;
 
-        String callSign = Utils.readLineFromConsole("Please enter the callSign");
+        do {
+            try {
+                callSign = Utils.readLineFromConsole("Please enter the callSign");
+            } catch (NumberFormatException err) {
+                System.out.println("Please enter a valid Call Sign!");
+                callSign = null;
+            }
+        } while (callSign == null);
 
         do {
             try {

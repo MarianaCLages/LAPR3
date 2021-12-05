@@ -3,6 +3,9 @@ package lapr.project.data.DataBaseScripts;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
+import lapr.project.model.Position;
+import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
+import lapr.project.shared.exceptions.FacilityNotFoundException;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -20,9 +23,8 @@ public class OffOrLoadContainers {
         //Empty constructor
     }
 
-    private String getFacility(int mmsi) {
+    private String getFacility(int mmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
-
 
         String sqlCommand = "Select  f.FACILITYID from FACILITY f\n" +
                 "inner join POSITIONALMESSAGE pm\n" +
@@ -44,13 +46,10 @@ public class OffOrLoadContainers {
                     return null;
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
         }
     }
 
-    private int countContainerByCargo(String facilityId, int mmsi, int type) {
+    private int countContainerByCargo(String facilityId, int mmsi, int type) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select count(c.CONTAINERID) CountContainers  from CONTAINER c\n" +
@@ -73,14 +72,13 @@ public class OffOrLoadContainers {
                     return 0;
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return 0;
         }
     }
 
-    private Container getContainerByCargoManifest(String facilityId, int mmsi, int j, int type) {
+    private String getContainerByCargoManifest(String facilityId, int mmsi, int j, int type) throws SQLException {
         Connection connection = databaseConnection.getConnection();
+
+        StringBuilder stringBuilder = new StringBuilder();
 
         String sqlCommand = "select * from CONTAINER c\n" +
                 "inner join CARGOMANIFESTCONTAINER cmc\n" +
@@ -103,43 +101,92 @@ public class OffOrLoadContainers {
 
                     String identification = resultSet.getString("CONTAINERID");
                     int payload = resultSet.getInt("PAYLOAD");
-                    int tare = resultSet.getInt("TARE");
-                    int gross = resultSet.getInt("GROSS");
-                    String isoCode = resultSet.getString("ISOCODE");
 
+                    String typeC;
 
-                    return new Container(identification, payload, tare, gross, isoCode);
+                    if (verifyContainerType(databaseConnection, identification)) typeC = "Refrigerated";
+                    else typeC = "Not Refrigerated";
+
+                    stringBuilder.append("\nContainers Information: ").append("\nIdentification: ").append(identification).append("\nType: ").append(typeC).append("\n").append(getContainerPosition(mmsi)).append("\nPayload: ").append(payload).append("\n");
+
+                    return stringBuilder.toString();
 
                 } else return null;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return null;
         }
     }
 
+    private String getContainerPosition(int mmsi) throws SQLException {
 
-    public boolean getContainersPerCargoOffLoad(int mmsi, int type) {
+        Connection connection = databaseConnection.getConnection();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        String facilityId = getFacility(mmsi);
-        int k = countContainerByCargo(facilityId, mmsi, type);
+        String sqlCommand = "select * from POSITIONALMESSAGE WHERE MMSI = " + mmsi + "\n" +
+                "order by 1 DESC";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    double longitude = resultSet.getDouble(4);
+                    double latitude = resultSet.getDouble(5);
+
+                    if (longitude < -180) longitude += 180;
+                    if (latitude < -90) latitude += 90;
+
+                    stringBuilder.append("Longitude : ").append(longitude).append("\n").append("Latitude : ").append(latitude);
+
+                }
+
+            }
+        }
+
+        return stringBuilder.toString();
+
+    }
+
+
+    public String getContainersPerCargoOffLoad(int mmsi, int type) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
+
+        String facilityId = null;
+        int k = 0;
+
+        try {
+            facilityId = getFacility(mmsi);
+        } catch (SQLException e) {
+            throw new FacilityNotFoundException();
+        }
+
+        try {
+            k = countContainerByCargo(facilityId, mmsi, type);
+        } catch (SQLException e) {
+            throw new ContainersInsideCargoManifestListSizeException();
+        }
+
         if (k == 0) {
-            return false;
+            return null;
         }
         int count2 = 0;
 
+        String c = null;
+
         while (k != 0) {
-            Container c = getContainerByCargoManifest(facilityId, mmsi, count2, type);
-            if (c != null) {
-                System.out.println(c);
+            try {
+                c = getContainerByCargoManifest(facilityId, mmsi, count2, type);
+            } catch (SQLException e) {
+                throw new ContainersInsideCargoManifestListSizeException();
             }
             count2++;
             k--;
         }
-        return true;
+
+        if(c == null) throw new ContainersInsideCargoManifestListSizeException();
+
+        return c;
     }
 
-    public boolean getResultOffLoaded(DatabaseConnection databaseConnection, int mmsi, int type) {
+    public String getResultOffLoaded(DatabaseConnection databaseConnection, int mmsi, int type) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
         this.databaseConnection = databaseConnection;
 
         return getContainersPerCargoOffLoad(mmsi, type);
