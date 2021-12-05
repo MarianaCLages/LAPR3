@@ -1316,6 +1316,8 @@ public class ShipTest {
         if(shipgeral.getBiggestPosition() == null) fail();
         else if(shipgeral.getSmallestPosition() == null) fail();
 
+        shipgeral.getCargoManifestAVL();
+
 
     }
 
