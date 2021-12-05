@@ -3,8 +3,6 @@ package lapr.project.model;
 import lapr.project.shared.tree.AVL;
 
 import java.util.Date;
-import java.util.NavigableMap;
-import java.util.Objects;
 
 public class CargoManifest implements Comparable<CargoManifest> {
 
@@ -17,7 +15,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
     //--------------- new parameters
     private Ship ship;
     private boolean inTransport;
-    private NavigableMap<PositionXYZ, Container> ContainerMap;
 
     public CargoManifest(String identification, Port port, Ship ship, boolean inTransport) {
 
