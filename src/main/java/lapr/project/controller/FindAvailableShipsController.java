@@ -13,6 +13,9 @@ public class FindAvailableShipsController {
     private final ShipStore shipStore;
     AvailableShipsOnMondayScript script = new AvailableShipsOnMondayScript(App.getInstance().getDatabaseConnection());
 
+    /**
+     * Constructor
+     */
     public FindAvailableShipsController() {
 
         Company company = App.getInstance().getCompany();
@@ -20,6 +23,11 @@ public class FindAvailableShipsController {
 
     }
 
+    /**
+     * Gets all available ships on next monday
+     *
+     * @return list of available ships
+     */
     public List<Ship> getAvailableShips() {
         ArrayList<String> lShipID = script.get();
         List<Ship> rlShip = null;
