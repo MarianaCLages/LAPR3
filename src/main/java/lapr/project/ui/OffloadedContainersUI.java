@@ -15,7 +15,6 @@ public class OffloadedContainersUI implements Runnable {
         do {
             try {
                 mmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
-                if(mmsi > 99999999 && mmsi < 1000000000) throw new NumberFormatException();
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI (The MMSI must have 9 digits)!");
                 mmsi = 0;

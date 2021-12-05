@@ -21,7 +21,6 @@ public class AverageCargoByYearUI implements Runnable {
         do {
             try {
                 shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
-                if (shipMmsi > 99999999 && shipMmsi < 1000000000) throw new NumberFormatException();
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid MMSI! (Digits: 9)");
                 shipMmsi = 0;
@@ -43,7 +42,7 @@ public class AverageCargoByYearUI implements Runnable {
 
         try {
             System.out.print(ctrl.averageCargoByYear(shipMmsi, year));
-        } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTrip | NoCargoManifestInThatDateException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
+        } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTripException | NoCargoManifestInThatDateException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
             System.out.println(e.getMessage());
         }
     }

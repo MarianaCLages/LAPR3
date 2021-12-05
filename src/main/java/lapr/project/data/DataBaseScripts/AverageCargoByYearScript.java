@@ -2,7 +2,7 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.NoCargoManifestInThatDateException;
-import lapr.project.shared.exceptions.NoCargoManifestsWereFoundInThatTrip;
+import lapr.project.shared.exceptions.NoCargoManifestsWereFoundInThatTripException;
 import lapr.project.shared.exceptions.NoContainersInsideThatTripException;
 
 import java.sql.Connection;
@@ -82,14 +82,14 @@ public class AverageCargoByYearScript {
         }
     }
 
-    public int getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTrip {
+    public int getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException {
 
         int j = 0;
 
         try {
             j = getCargoManifestOfATripSize(mmsi, date);
         } catch (SQLException e) {
-            throw new NoCargoManifestsWereFoundInThatTrip();
+            throw new NoCargoManifestsWereFoundInThatTripException();
         }
 
         int cargoManifestID = 0;
@@ -118,13 +118,13 @@ public class AverageCargoByYearScript {
         }
 
         if (aux == 0) {
-            throw new NoCargoManifestsWereFoundInThatTrip();
+            throw new NoCargoManifestsWereFoundInThatTripException();
         }
 
         return (sumContainers / aux);
     }
 
-    public String numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) throws SQLException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTrip, NoContainersInsideThatTripException {
+    public String numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) throws SQLException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException, NoContainersInsideThatTripException {
         this.databaseConnection = databaseConnection;
 
         StringBuilder stringBuilder = new StringBuilder();

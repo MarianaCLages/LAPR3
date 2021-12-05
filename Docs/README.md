@@ -32,8 +32,8 @@ Throughout the project's development period, the distribution of _tasks / requir
 | US 107 | [1200920 and 1201487](Sprint 1/US107/US107.md)             |          |          |          |
 | US 201 | [1200920](Sprint 2/US201/US201.md)                         |          |          |          |
 | US 202 | [1201487](Sprint 2/US202/US202.md)                         |          |          |          |
-| US 203 | [1181032]()                                                |          |          |          |
-| US 204 | [1191008](Sprint 2/US204/US204.md)                         |          |          |          |
+| US 203 | [1201487]()                                                |          |          |          |
+| US 204 | [1191008 and 1181032](Sprint 2/US204/US204.md)                         |          |          |          |
 | US 205 | [1200601](Sprint 2/US205/US205.md)                         |          |          |          |
 | US 206 | [1200902](Sprint 2/US206/US206.md)                         |          |          |          |
 | US 207 | [1200601 and 1200902](Sprint 2/US207/US207.md)             |          |          |          |

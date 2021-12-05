@@ -20,7 +20,6 @@ public class OccupancyRateGivenCargoManifestIDUI implements Runnable {
         do {
             try {
                 shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
-                if(shipMmsi > 99999999 && shipMmsi < 1000000000) throw new NumberFormatException();
             } catch (NumberFormatException  e) {
                 System.out.println("Please enter a valid MMSI (9 Digits)!");
                 shipMmsi = 0;

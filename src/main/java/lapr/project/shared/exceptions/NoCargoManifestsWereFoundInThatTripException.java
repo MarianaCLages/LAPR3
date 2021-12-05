@@ -1,8 +1,8 @@
 package lapr.project.shared.exceptions;
 
-public class NoCargoManifestsWereFoundInThatTrip extends Exception{
+public class NoCargoManifestsWereFoundInThatTripException extends Exception{
 
-    public NoCargoManifestsWereFoundInThatTrip(){
+    public NoCargoManifestsWereFoundInThatTripException(){
 
         super("There is no cargo manifests inside that trip! Please verify the data.");
 
