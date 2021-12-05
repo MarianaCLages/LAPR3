@@ -5,7 +5,6 @@ import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.tree.AVL;
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -31,9 +30,6 @@ public class Ship {
     private Position smallPosition;
     private double posDateSize;
     private AVL<CargoManifest> cargoManifestAVL;
-
-    //..
-
     private CargoManifest cargoManifest;
 
     /**
@@ -112,6 +108,55 @@ public class Ship {
         this.cargoManifestAVL = new AVL<>();
     }
 
+    /**
+     * Constructor
+     *
+     * @param mmsi
+     * @param shipName
+     * @param imo
+     * @param callSign
+     * @param vesselType
+     * @param lenght
+     * @param width
+     * @param draft
+     * @param capacity
+     */
+    public Ship(int mmsi, String shipName, String imo, String callSign, String vesselType, int lenght, int width, int draft, String capacity) {
+        this.mmsi = mmsi;
+        this.imo = imo;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.capacity = Double.parseDouble(capacity);
+    }
+
+    /**
+     * Constructor
+     *
+     * @param mmsi
+     * @param name
+     * @param imo
+     * @param callSign
+     * @param vesselTYPe
+     * @param length
+     * @param width
+     * @param draft
+     * @param cargo
+     * @param transceiver
+     */
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselTYPe, double length, double width, double draft, String cargo, char transceiver) {
+        this.mmsi = mmsi;
+        this.name = name;
+        this.imo = imo;
+        this.vesselType = vesselTYPe;
+        this.draft = draft;
+        this.callSign = callSign;
+        this.length = length;
+        this.width = width;
+        this.cargo = cargo;
+        this.transceiverClass = transceiver;
+    }
 
     /**
      * Constructor.
@@ -161,28 +206,7 @@ public class Ship {
         this.posDate = new PositionTreeStore();
     }
 
-    public Ship(int mmsi, String shipName, String imo, String callSign, String vesselType, int lenght, int width, int draft, String capacity) {
-        this.mmsi = mmsi;
-        this.imo = imo;
-        this.callSign = callSign;
-        this.vesselType = vesselType;
-        this.length = length;
-        this.width = width;
-        this.capacity = Double.parseDouble(capacity);
-    }
 
-    public Ship(int mmsi, String name, String imo, String callSign, String vesselTYPe, double length, double width, double draft, String cargo, char transceiver) {
-        this.mmsi = mmsi;
-        this.name = name;
-        this.imo = imo;
-        this.vesselType = vesselTYPe;
-        this.draft = draft;
-        this.callSign = callSign;
-        this.length = length;
-        this.width = width;
-        this.cargo = cargo;
-        this.transceiverClass = transceiver;
-    }
 
     /**
      * Creates a new position.

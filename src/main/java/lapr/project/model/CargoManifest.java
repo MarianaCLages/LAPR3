@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.NavigableMap;
 
 import java.util.Objects;
-import java.util.zip.ZipEntry;
 
 public class CargoManifest implements Comparable<CargoManifest> {
 
@@ -16,8 +15,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private AVL<Container> loaded;
     private Port port;
     private Date date;
-
-    //--------------- new parameters
     private Ship ship;
     private boolean inTransport;
     private NavigableMap<PositionXYZ, Container> ContainerMap;
@@ -26,10 +23,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
         this.identification = identification;
         this.port = port;
-        //offLoaded = new AVL<>();
         loaded = new AVL<>();
-
-        //--------------
         this.ship = ship;
         this.inTransport = inTransport;
     }
@@ -182,62 +176,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
             //System.out.println("Container identifier: " + container.getIdentification() + "; Type: " + container.getContainerType() + "; Load: " + container.getPayload() + "\n");
         }
         return true;
-    }
-
-    //--------------------- new methods
-    public Boolean checkContainerInAVL(Container container){
-        return loaded.find(container) != null;
-    }
-
-    public boolean addContainerToAVL(Container container) {
-        if(loaded.find(container).equals(null)){
-            loaded.insert(container);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean addContainerToMap(PositionXYZ rPosXYZ, Container rContainer){
-        if (ContainerMap.containsKey(rPosXYZ) && ContainerMap.containsValue(rContainer)){
-            return false;
-        }
-        ContainerMap.put(rPosXYZ,rContainer);
-        return true;
-    }
-
-    public void refreshContainerMap(){
-        for (PositionXYZ oPosXYZ : ContainerMap.navigableKeySet()){
-
-        }
-    }
-
-    public PositionXYZ getNextAvailablePositionXYZ(){
-        PositionXYZ lPosXYZ = ContainerMap.lastKey();
-        int X;
-        int Y;
-        int Z = -1;
-
-        if(lPosXYZ.getFirst() < ship.getWidth()){
-            X = lPosXYZ.getFirst() + 1;
-            Y = lPosXYZ.getSecond();
-            Z = lPosXYZ.getThird();
-
-        } else {
-            X = 0;
-
-            if(lPosXYZ.getSecond() < ship.getLength()){
-                Y = lPosXYZ.getSecond() + 1;
-                Z = lPosXYZ.getThird();
-            } else {
-                Y = 0;
-
-                if(lPosXYZ.getThird() < ship.getCapacity()) {
-                    Z = lPosXYZ.getThird() + 1;
-                }
-            }
-        }
-
-        return new PositionXYZ(X, Y, Z);
     }
 
     /**

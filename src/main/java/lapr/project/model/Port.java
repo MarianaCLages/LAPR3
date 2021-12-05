@@ -1,11 +1,5 @@
 package lapr.project.model;
-
-import java.util.List;
-
 public class Port extends Facility {
-
-    private List<Container> lContainer;
-    private CargoManifest cargoManifest;
 
     /**
      * Constructor.

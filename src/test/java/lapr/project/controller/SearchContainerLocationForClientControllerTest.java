@@ -10,6 +10,11 @@ class SearchContainerLocationForClientControllerTest {
 
     @Test
     void getClientContainers() {
-        
+
+    }
+
+    @Test
+    void findContainerVessel(){
+
     }
 }

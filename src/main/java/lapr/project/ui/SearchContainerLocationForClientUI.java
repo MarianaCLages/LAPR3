@@ -38,17 +38,9 @@ public class SearchContainerLocationForClientUI implements Runnable {
 
             rCargoManifest = ctrl.findContainerVessel(rContainer);
 
-            if (rCargoManifest.getInTransport()){
-                System.out.println("Container is aboard the: " + rCargoManifest.getShip().getCallSign());
-                System.out.println("Coordinates: \n" +
-                        "   Lat : " + rPosition.getLatitude() + "\n" +
-                        "   Long: " + rPosition.getLongitude() + "\n");
-            } else {
-                System.out.println("Container is currently stored in: " + rCargoManifest.getPort().getIdentification());
-                System.out.println("Coordinates: \n" +
-                        "   Lat : " + rLocation.getLatitude() + "\n" +
-                        "   Long: " + rLocation.getLongitude() + "\n");
-            }
+            System.out.println(ctrl.printLocation(rCargoManifest));
+
+
         } catch (NullPointerException e2){
             System.out.print("Container doesn't exist/is invalid!\n");
         }
