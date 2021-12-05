@@ -2,6 +2,6 @@ package lapr.project.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SearchContainerLocationForClientControllerTest1 {
+class SearchContainerLocationForClientControllerTest {
 
 }

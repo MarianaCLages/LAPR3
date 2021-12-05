@@ -1,44 +1,38 @@
 package lapr.project.controller;
 
+import lapr.project.data.CargoManifestStoreData;
+import lapr.project.data.ContainerStoreData;
+import lapr.project.data.DataBaseScripts.GetClientsContainerScript;
 import lapr.project.model.*;
 import lapr.project.model.stores.CargoManifestStore;
-import lapr.project.model.stores.ContainerStore;
-import lapr.project.utils.auth.domain.store.UserStore;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class SearchContainerLocationForClientController {
 
-    private final UserStore userStore;
-    private final ContainerStore containerStore;
-    private final CargoManifestStore cargoManifestStore;
+    private final CargoManifestStoreData cargoManifestStore;
+    private GetClientsContainerScript script = new GetClientsContainerScript(App.getInstance().getDatabaseConnection());
 
     public SearchContainerLocationForClientController() {
         Company company = App.getInstance().getCompany();
-        this.userStore = company.getUserStore();
-        this.containerStore = company.getContainerStore();
-        this.cargoManifestStore = company.getCargoManifestStore();
+        this.cargoManifestStore = company.getCargoManifestStoreData();
     }
 
-    public List<Container> getClientContainers(Client client) { //por enquanto parametro client nao faz nada
-        List<Container> lResult = null;
-        for(Container c : containerStore.containerByAVL.inOrder()){
-            //condicao para filtrar containers do client
-        }
+    public ArrayList<String> getClientContainers(String clientID) {
+        ArrayList<String> lResult = script.getClientContainers(clientID);
 
         return lResult;
     }
 
     public CargoManifest findContainerVessel(Container rContainer) {
-        for(CargoManifest cm: cargoManifestStore.getCargoManifestByAVL().inOrder()){
-            if (cm.getLoaded().find(rContainer).equals(rContainer)){
-                return cm;
+        CargoManifest rCargoManifest = null;
+        for(CargoManifest cm: cargoManifestStore.getListCargoManifest(App.getInstance().getDatabaseConnection())){
+            if (cm.getLoaded().find(rContainer).equals(rContainer) && rCargoManifest.equals(null)){
+                rCargoManifest = cm;
+            } else if(cm.getDate().after(rCargoManifest.getDate())){
+                rCargoManifest = cm;
             }
         }
-        return null;
+        return rCargoManifest;
     }
-
-    /*public Client getClientFromClientID(String clientID){
-        return usrStore.getById(clientID);
-    }*/
 }
