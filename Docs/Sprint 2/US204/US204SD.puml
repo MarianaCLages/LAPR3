@@ -1,0 +1,43 @@
+@startuml
+
+actor Client as ACT
+participant SearchContainerLocationByClientUI as UI
+participant SearchContainerLocationByClientController as CTRL
+participant ContainerStore as CStore
+participant CargoManifestStore as CMStore
+
+activate ACT
+ACT -> UI : starts process
+activate UI
+UI -> ACT : asks for client's email
+deactivate UI
+
+ACT -> UI : inputs email
+activate UI
+UI -> CTRL : getClientContainers(Client client)
+activate CTRL
+CTRL -> CStore : containerByAVL()
+activate CSTORE
+CStore -> CTRL : List(Container container)
+deactivate CSTORE
+CTRL -> UI : List(Container)
+deactivate CTRL
+UI -> ACT : shows list of client's containers
+deactivate UI
+
+ACT -> UI : picks one container
+activate UI
+UI -> CTRL : findContainerVessel(rContainer)
+activate CTRL
+CTRL -> CMStore : getCargoManifestByAVL()
+activate CMStore
+CMStore -> CTRL : List(CargoManifest)
+deactivate CMStore
+CTRL -> UI : CargoManifest
+deactivate CTRL
+
+UI -> ACT : returns containers lastest location
+deactivate UI
+deactivate ACT
+
+@enduml

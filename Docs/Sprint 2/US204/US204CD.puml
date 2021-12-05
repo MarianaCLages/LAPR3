@@ -1,0 +1,30 @@
+@startuml
+
+class SearchContainerLocationByClientUI{
+  +run()
+}
+
+class SearchContainerLocationByClientController{
+  +getClientContainers(String)
+  +findContainerVessel(Container)
+}
+
+class Container{
+
+}
+
+class CargoManifest{
+
+}
+
+class Company{
+  +getCargoManifestStore
+}
+
+ SearchContainerLocationByClientUI ..>  SearchContainerLocationByClientCTRL
+ SearchContainerLocationByClientController ..> Company
+Company --> CargoManifestStore
+CargoManifestStore --> CargoManifest
+ SearchContainerLocationByClientController --> Container
+
+@enduml
