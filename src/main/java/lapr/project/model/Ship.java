@@ -42,6 +42,8 @@ public class Ship {
         this.width = width;
         this.draft = draft;
         this.capacity = Double.parseDouble(capacity);
+
+        this.cargoManifestAVL = new AVL<>();
     }
 
     /**
@@ -145,6 +147,8 @@ public class Ship {
         this.width = width;
         this.cargo = cargo;
         this.transceiverClass = transceiver;
+
+        this.cargoManifestAVL = new AVL<>();
     }
 
     /**
