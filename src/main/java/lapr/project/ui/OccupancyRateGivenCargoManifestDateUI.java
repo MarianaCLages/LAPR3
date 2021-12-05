@@ -47,7 +47,7 @@ public class OccupancyRateGivenCargoManifestDateUI implements Runnable {
         } while (date == null);
 
         try {
-            System.out.printf("For the given information, the occupancy rate is : %.2f%%\n\n", occupancyRateGivenCargoManifestDateController.getOccupancyRate(shipMmsi, date));
+            System.out.printf("\nFor the given information, the occupancy rate is : %.2f%%\n\n", occupancyRateGivenCargoManifestDateController.getOccupancyRate(shipMmsi, date));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException ex1) {
             System.out.println(ex1.getMessage());
         }

@@ -20,8 +20,8 @@ public class ImportShipsUI implements Runnable {
                 if (readOption.equals("Y")) {
                     readOptionBoolean = true;
                     fileName = Utils.readLineFromConsole("Please enter the file path");
-                    controller.importShips(fileName);
                     System.out.println("This operation may take a while!");
+                    controller.importShips(fileName);
                 } else if (readOption.equals("N")) {
                     readOptionBoolean = true;
                 } else if (!readOption.equals("Y") || !readOption.equals("N")) throw new IllegalArgumentException();

@@ -36,7 +36,7 @@ public class OccupancyRateGivenCargoManifestIDUI implements Runnable {
         } while (cargoManifestID == null);
 
         try {
-            System.out.printf("For the given information, the occupancy rate is : %.2f%%\n",occupancyRateGivenCargoManifestIDController.getOccupancyRate(shipMmsi,cargoManifestID));
+            System.out.printf("\nFor the given information, the occupancy rate is : %.2f%%\n",occupancyRateGivenCargoManifestIDController.getOccupancyRate(shipMmsi,cargoManifestID));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException ex1) {
             System.out.println(ex1.getMessage());
         }
