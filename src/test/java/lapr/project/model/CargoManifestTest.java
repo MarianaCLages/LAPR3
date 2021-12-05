@@ -456,7 +456,7 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
+        CargoManifest cargoManifest = new CargoManifest("111", port, date);
 
         Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A',cargoManifest);
 

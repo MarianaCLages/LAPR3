@@ -13,7 +13,13 @@ class PortDTOTest {
     @Test
     void testToString() {
 
-        String expected = "PortDTO{identification='America', name='USA', continent='01', country='Port', facilityLocation=latitude = 10.0, longitude = 10.0}";
+        String expected = "Port Information :\n" +
+                "Identification: America\n" +
+                "Name: USA\n" +
+                "Continent: 01\n" +
+                "Country: Port\n" +
+                "Longitude = 10.0\n" +
+                "Latitude = 10.0\n";
 
         String actual = portDTO.toString();
 
