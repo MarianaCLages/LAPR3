@@ -1,10 +1,6 @@
 package lapr.project.data.DataBaseScripts;
 
-import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.data.ShipStoreData;
-import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.model.Ship;
 import lapr.project.shared.exceptions.*;
 
 import java.sql.Connection;

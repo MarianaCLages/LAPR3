@@ -2,10 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.controller.SearchContainerLocationForClientController;
 import lapr.project.model.*;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 public class SearchContainerLocationForClientUI implements Runnable {
 
@@ -53,7 +50,7 @@ public class SearchContainerLocationForClientUI implements Runnable {
                         "   Long: " + rLocation.getLongitude() + "\n");
             }
         } catch (NullPointerException e2){
-            System.out.print("Container doesn't exist/is invalid!!");
+            System.out.print("Container doesn't exist/is invalid!\n");
         }
     }
 }

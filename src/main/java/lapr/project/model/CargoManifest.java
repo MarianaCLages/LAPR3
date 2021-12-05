@@ -288,4 +288,13 @@ public class CargoManifest implements Comparable<CargoManifest> {
     public int compareTo(CargoManifest o) {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
     }
+
+    public void addContainersOffLoaded(Container container){
+        offloaded.insert(container);
+    }
+
+    public void addContainersLoaded(Container container){
+        loaded.insert(container);
+    }
+
 }

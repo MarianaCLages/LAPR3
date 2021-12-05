@@ -3,6 +3,7 @@ package lapr.project.data.DataBaseScripts;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.CargoManifest;
 import lapr.project.model.Container;
+import lapr.project.model.Facility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +21,36 @@ public class OffOrLoadContainers {
 
     public OffOrLoadContainers() {
         //Empty constructor
+    }
+
+    private String getFacility(int mmsi){
+        Connection connection = databaseConnection.getConnection();
+
+
+        String sqlCommand = "Select  f.FACILITYID from FACILITY f\n" +
+                "inner join POSITIONALMESSAGE pm\n" +
+                "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) >0\n" +
+                "where pm.MMSI = "+mmsi+"\n" +
+                "and f.FACILITYID = (Select cm.FACILITYID from CargoManifest cm\n" +
+                "    where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
+                "        where s.MMSI = "+mmsi+")\n" +
+                "    and cm.CargoManifestDate > pm.BASEDATETIME FETCH FIRST 1 ROW  ONLY )\n" +
+                "order by f.FACILITYID Desc\n" +
+                "FETCH first 1 ROW ONLY";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return resultSet.getString("FACILITYID");
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 
     private int countContainerByCargo(String facilityId, int mmsi, int type) {
@@ -91,8 +122,11 @@ public class OffOrLoadContainers {
     }
 
 
-    public void getContainersPerCargoOffLoad(String facilityId, int mmsi, int type) {
+    public boolean getContainersPerCargoOffLoad( int mmsi, int type) {
+
+        String facilityId = getFacility(mmsi);
         int k = countContainerByCargo(facilityId, mmsi, type);
+        if(k == 0){return  false;}
         int count2 = 0;
 
         while (k != 0) {
@@ -103,13 +137,12 @@ public class OffOrLoadContainers {
             count2++;
             k--;
         }
+        return true;
     }
 
-    public void getResult(DatabaseConnection databaseConnection, String facilityId, int mmsi, int type) {
+    public boolean getResult(DatabaseConnection databaseConnection,  int mmsi, int type) {
         this.databaseConnection = databaseConnection;
 
-        countContainers = countContainerByCargo(facilityId, mmsi, type);
-
-        getContainersPerCargoOffLoad(facilityId, mmsi, type);
+        return getContainersPerCargoOffLoad( mmsi, type);
     }
 }

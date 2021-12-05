@@ -1252,4 +1252,72 @@ public class ShipTest {
         assertTrue(actual);
         assertFalse(actual2);
     }
+
+    @Test
+    void getOccupancyRate() {
+
+        shipgeral.setCapacity(10);
+        shipgeral.setCurrentCapacity(2);
+
+        double value = shipgeral.getOccupancyRate();
+
+        if (value != 20) fail();
+
+        assertNotNull(value);
+
+    }
+
+    @Test
+    void giveCargoOffLoadedSign(){
+
+        if(shipgeral.giveCargoOffLoadedSign(port)) fail();
+
+    }
+
+    @Test
+    void giveCargoLoadedSign(){
+
+        if(shipgeral.giveCargoLoadedSign(port)) fail();
+
+    }
+
+    @Test
+    void addLoadedContainerMutant() {
+        //Arrange
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Act
+        boolean actual = shipgeral.addLoadedContainer(container, port);
+        boolean actual2 = shipgeral.addLoadedContainer(container, port2);
+        //Assert
+        if(cargoManifest.getLoaded().isEmpty()) fail();
+    }
+
+    @Test
+    void addOffLoadedContainerTestMutant2() {
+        //Arrange
+        shipgeral.getCargoManifestAVL().insert(cargoManifest);
+        //Act
+        boolean actual = shipgeral.addOffLoadedContainer(container, port);
+        boolean actual2 = shipgeral.addOffLoadedContainer(container, port2);
+        //Assert
+        if(cargoManifest.getOffloaded().isEmpty()) fail();
+    }
+
+    @Test
+    void shipSetData(){
+
+        shipgeral.getPosDate().addPosition(posgeral2);
+        shipgeral.getPosDate().addPosition(posgeral);
+        shipgeral.getPosDate().addPosition(posgeral4);
+        shipgeral.getPosDate().addPosition(posgeral3);
+
+        shipgeral.setShipData();
+
+        if(shipgeral.getBiggestPosition() == null) fail();
+        else if(shipgeral.getSmallestPosition() == null) fail();
+
+
+    }
+
+
 }

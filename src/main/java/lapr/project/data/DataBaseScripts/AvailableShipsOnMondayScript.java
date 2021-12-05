@@ -37,7 +37,7 @@ public class AvailableShipsOnMondayScript {
         DateTimeFormatter ft = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String ld = "TO_DATE('" + ld1.format(ft) + "', 'DD/MM/YYYY')";
 
-        String query = "select SHIP.CALLSIGN AS SHIP_MMSI, " + ld + " as NEXT_MONDAY\n" +
+        String query = "select SHIP.CALLSIGN AS SHIP_CALLSIGN, " + ld + " as NEXT_MONDAY\n" +
                 "from SHIP\n" +
                 "         INNER JOIN TRIP ON TRIP.VEHICLEID = SHIP.VEHICLEID\n" +
                 "WHERE (EXTRACT(DAY FROM ENDDATE) = EXTRACT(DAY FROM " + ld + ")\n" +

@@ -1,6 +1,10 @@
 package lapr.project.model;
 
 
+import lapr.project.data.CargoManifestStoreData;
+import lapr.project.data.ContainerStoreData;
+import lapr.project.data.PortStoreData;
+import lapr.project.data.ShipStoreData;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
 import org.junit.jupiter.api.Assertions;
@@ -48,5 +52,43 @@ class CompanyTest {
         if(orgRoleStore==null) fail();
 
     }
+
+    @Test
+    void getShipStoreData() {
+
+        ShipStoreData shipStoreData = company.getShipStoreData();
+
+        if(shipStoreData==null) fail();
+
+    }
+
+    @Test
+    void getPortStoreData() {
+
+        PortStoreData portStoreData = company.getPortStoreData();
+
+        if(portStoreData ==null) fail();
+
+    }
+
+    @Test
+    void getCargoManifestPortStore() {
+
+        CargoManifestStoreData cargoManifestStoreData = company.getCargoManifestStoreData();
+
+        if(cargoManifestStoreData==null) fail();
+
+    }
+
+    @Test
+    void getContainerStoreData() {
+
+        ContainerStoreData containerStoreData = company.getContainerStoreData();
+
+        if(containerStoreData==null) fail();
+
+    }
+
+
 
 }

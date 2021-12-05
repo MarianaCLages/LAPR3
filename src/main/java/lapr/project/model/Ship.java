@@ -840,17 +840,9 @@ public class Ship {
      *
      * @return the ship's occupancy rate (percentage)
      */
-    public String getOccupancyRate() {
-        StringBuilder sb = new StringBuilder();
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-
+    public double getOccupancyRate() {
         double occupancyRate = currentCapacity / capacity;
-        occupancyRate = occupancyRate * 100;
-
-        sb.append("Occupancy Rate: ");
-        sb.append(numberFormat.format(occupancyRate));
-        sb.append("%");
-        return sb.toString();
+        return (occupancyRate *= 100);
     }
 
     public CargoManifest getCargoManifest() {
