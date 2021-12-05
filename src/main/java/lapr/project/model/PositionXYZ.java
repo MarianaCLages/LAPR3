@@ -1,14 +1,14 @@
 package lapr.project.model;
 
-class PositionXYZ <X, Y, Z> {
+class PositionXYZ {
     private int X;
     private int Y;
     private int Z;
 
-    public PositionXYZ(X first, Y second, Z third) {
-        this.X = (int) first;
-        this.Y = (int) second;
-        this.Z = (int) third;
+    public PositionXYZ(int first, int second, int third) {
+        this.X =first;
+        this.Y = second;
+        this.Z = third;
     }
 
     public int getFirst() { return X; }

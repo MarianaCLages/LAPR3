@@ -18,19 +18,20 @@ public class GetClientsContainerScript {
 
     }
 
-    public ArrayList<String> getClientContainers(String clientID){
+    public ArrayList<String> getClientContainers(String clientID) {
         ArrayList<String> rlcontainerID = new ArrayList<>();
 
         Connection connection = databaseConnection.getConnection();
 
 
+        String query = " SELECT CONTAINERID as CLIENTID \n" +
+                " FROM CONTAINERCLIENT \n" +
+                " WHERE (CLIENTID = " + clientID + ") \n";
 
-        String query = "SELECT CONTAINERID FROM CONTAINERCLIENT\n" +
-                        "WHERE CLIENTID = " + clientID + ";\n";
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(query)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    rlcontainerID.add(resultSet.getString("clientID"));
+                    rlcontainerID.add(resultSet.getString("CLIENTID"));
                 } else {
                     return rlcontainerID;
                 }
