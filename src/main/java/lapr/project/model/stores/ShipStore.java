@@ -1,6 +1,5 @@
 package lapr.project.model.stores;
 
-import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.DistanceCalculation;
