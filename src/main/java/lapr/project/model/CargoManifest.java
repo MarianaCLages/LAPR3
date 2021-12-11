@@ -209,31 +209,33 @@ public class CargoManifest implements Comparable<CargoManifest> {
 
     public boolean addContainersOffLoaded(Container container) {
 
-        int x ;
-        int y ;
-        int z ;
+        int x;
+        int y;
+        int z;
         int capacity = (int) ship.getCapacity() / 3;
 
-        if(positionContainer.isEmpty()){
+        if (positionContainer.isEmpty()) {
             positionContainer.insert(container.getPosition());
             offloaded.insert(container);
-            return true;}
+            return true;
+        }
 
 
         for (ContainerPosition cp : positionContainer.inOrder()) {
 
-            for(z = 0; z < capacity; z++ ){
-                for(y = 0 ; y < capacity; y++) {
-                    for (x = 0; x < capacity; x++){
+            for (z = 0; z < capacity; z++) {
+                for (y = 0; y < capacity; y++) {
+                    for (x = 0; x < capacity; x++) {
 
-                        if(container.getPosition().compareTo(cp) != 0){
+                        if (container.getPosition().compareTo(cp) != 0) {
 
-                            try{
-                                positionContainer.find(container.getPosition());}
-                            catch(NullPointerException  ex){
+                            try {
+                                positionContainer.find(container.getPosition());
+                            } catch (NullPointerException ex) {
                                 offloaded.insert(container);
-                            positionContainer.insert(container.getPosition());
-                            return true;}
+                                positionContainer.insert(container.getPosition());
+                                return true;
+                            }
                         }
                         container.getPosition().setxPos(x);
                     }
@@ -247,37 +249,39 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
 
-    public AVL<ContainerPosition> getAVLContainerPosition(){
-        return  this.positionContainer;
+    public AVL<ContainerPosition> getAVLContainerPosition() {
+        return this.positionContainer;
     }
 
     public boolean addContainersLoaded(Container container) {
-        int x ;
-        int y ;
-        int z ;
+        int x;
+        int y;
+        int z;
         int capacity = (int) ship.getCapacity() / 3;
 
 
-        if(positionContainer.isEmpty()){
+        if (positionContainer.isEmpty()) {
             positionContainer.insert(container.getPosition());
             loaded.insert(container);
-            return true;}
+            return true;
+        }
 
 
         for (ContainerPosition cp : positionContainer.inOrder()) {
 
-            for(z = 0; z < capacity; z++ ){
-                for(y = 0 ; y < capacity; y++) {
-                    for (x = 0; x < capacity; x++){
+            for (z = 0; z < capacity; z++) {
+                for (y = 0; y < capacity; y++) {
+                    for (x = 0; x < capacity; x++) {
 
-                        if(container.getPosition().compareTo(cp) != 0){
+                        if (container.getPosition().compareTo(cp) != 0) {
 
-                            try{
-                                positionContainer.find(container.getPosition());}
-                            catch(NullPointerException  ex){
+                            try {
+                                positionContainer.find(container.getPosition());
+                            } catch (NullPointerException ex) {
                                 loaded.insert(container);
                                 positionContainer.insert(container.getPosition());
-                                return true;}
+                                return true;
+                            }
                         }
                         container.getPosition().setxPos(x);
                     }
