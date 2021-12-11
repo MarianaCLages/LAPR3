@@ -33,7 +33,7 @@ public class CargoManifestTest {
     @Test
     void getOffLoadedTest() {
         //Assert
-        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=null}\n";
+        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=ContainerPosition{xPos=0, yPos=0, zPos=0}}\n";
         //Act
         cargo1.getOffloaded().insert(containerPos);
         //Assert
@@ -43,9 +43,10 @@ public class CargoManifestTest {
     @Test
     void getLoadedTest() {
         //Assert
-        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=null}\n";
+        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=ContainerPosition{xPos=0, yPos=0, zPos=0}}\n";
         //Act
         cargo1.getLoaded().insert(containerPos);
+        System.out.println(cargo1.getLoaded().toString());
         //Assert
         assertEquals(expected, cargo1.getLoaded().toString());
     }
@@ -121,9 +122,8 @@ public class CargoManifestTest {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
-
-        CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
+        Ship ship = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 15,20);
+        CargoManifest cargoManifest = new CargoManifest("1Ab", port,ship, true);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
@@ -151,7 +151,7 @@ public class CargoManifestTest {
 
         Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
 
-        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A');
+        Ship ship = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 15,20);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -163,9 +163,8 @@ public class CargoManifestTest {
         ship.addLoadedContainer(containerEqualsTrue, port);
         ship.addOffLoadedContainer(containerEqualsTrue, port);
 
-        cargoManifest.addContainersOffLoaded(containerReal);
 
-        cargoManifest.addContainersLoaded(containerEqualsTrue);
+
 
         if (cargoManifest.getOffloaded().isEmpty()) fail();
 
@@ -427,9 +426,7 @@ public class CargoManifestTest {
         ship.addLoadedContainer(containerEqualsTrue, port);
         ship.addOffLoadedContainer(containerEqualsTrue, port);
 
-        cargoManifest.addContainersOffLoaded(containerReal);
 
-        cargoManifest.addContainersLoaded(containerEqualsTrue);
 
         if (ship.writeCargoByYear(2020) == null) fail();
 
@@ -458,7 +455,7 @@ public class CargoManifestTest {
 
         CargoManifest cargoManifest = new CargoManifest("111", port, date);
 
-        Ship ship = new Ship(999999999, "name", "IMO1234234", "AABB", "70", 10, 10, 10, "10", 'A',cargoManifest);
+        Ship ship = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 15,20);
 
         ship.getCargoManifestAVL().insert(cargoManifest);
 
@@ -468,12 +465,11 @@ public class CargoManifestTest {
         ship.addLoadedContainer(containerEqualsTrue, port);
         ship.addOffLoadedContainer(containerEqualsTrue, port);
 
-        cargoManifest.addContainersOffLoaded(containerReal);
 
-        cargoManifest.addContainersLoaded(containerEqualsTrue);
 
         String actual = "\n" +
                 "Average Containers by Cargo Manifest:NaN";
+
 
         if (ship.writeCargoByYear(2019) == actual) fail();
 
@@ -506,5 +502,27 @@ public class CargoManifestTest {
         Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B');
         cargoManifest.setShip(ship4);
         assertEquals(cargoManifest.getShip(), ship4);
+    }
+
+    @Test
+    void getAVLContainer(){
+
+        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 20,20);
+        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, ship3, true);
+        Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
+        Container containerPos2 = new Container("20DD",1000,1000,100,"20RF");
+        Container containerPos3 = new Container("20DD",1000,1000,100,"20RF");
+
+        cargoManifest.addContainersOffLoaded(containerPos);
+        cargoManifest.addContainersOffLoaded(containerPos2);
+        cargoManifest.addContainersOffLoaded(containerPos3);
+
+
+
+
+
+        for(ContainerPosition cp : cargoManifest.getAVLContainerPosition().inOrder()){
+            System.out.println(cp);
+        }
     }
 }

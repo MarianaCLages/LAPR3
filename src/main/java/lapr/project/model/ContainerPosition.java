@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-public class ContainerPosition {
+public class ContainerPosition implements Comparable<ContainerPosition> {
 
     public int xPos;
     public int yPos;
@@ -75,5 +75,36 @@ public class ContainerPosition {
      */
     public void setzPos(int zPos) {
         this.zPos = zPos;
+    }
+
+    @Override
+    public int compareTo(ContainerPosition containerPosition){
+
+        int dec1 = Integer.compare(this.xPos,containerPosition.xPos) ;
+
+        if(dec1 == 0){
+
+         int dec2 = Integer.compare(this.yPos,containerPosition.yPos);
+
+         if(dec2 == 0){
+             int dec3 = Integer.compare(this.zPos,containerPosition.zPos);
+
+             return dec3;
+         }
+
+         return dec2;
+        }
+
+        return dec1;
+
+    }
+
+    @Override
+    public String toString() {
+        return "ContainerPosition{" +
+                "xPos=" + xPos +
+                ", yPos=" + yPos +
+                ", zPos=" + zPos +
+                '}';
     }
 }

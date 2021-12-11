@@ -30,6 +30,7 @@ public class Container implements Comparable<Container> {
         this.isoCode = isoCode;
         this.isRefrigerated = isRefrigerated;
         this.toOffLoad = toOffLoad;
+        this.position = new ContainerPosition(0,0,0);
     }
 
     public Container(String identification, int payload, int tare, int gross, String isoCode) {
@@ -38,6 +39,7 @@ public class Container implements Comparable<Container> {
         this.tare = tare;
         this.gross = gross;
         this.isoCode = isoCode;
+        this.position = new ContainerPosition(0,0,0);
     }
 
     //Getters
@@ -232,6 +234,6 @@ public class Container implements Comparable<Container> {
      */
     @Override
     public int compareTo(Container o) {
-        return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
+        return this.getPosition().compareTo(o.getPosition());
     }
 }

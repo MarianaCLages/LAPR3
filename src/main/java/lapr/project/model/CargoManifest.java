@@ -13,14 +13,17 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private Date date;
     private Ship ship;
     private boolean inTransport;
+    private AVL<ContainerPosition> positionContainer;
 
     public CargoManifest(String identification, Port port, Ship ship, boolean inTransport) {
 
         this.identification = identification;
         this.port = port;
+        offloaded = new AVL<>();
         loaded = new AVL<>();
         this.ship = ship;
         this.inTransport = inTransport;
+        positionContainer = new AVL<>();
     }
 
     /**
@@ -36,6 +39,7 @@ public class CargoManifest implements Comparable<CargoManifest> {
         offloaded = new AVL<>();
         loaded = new AVL<>();
         this.date = date;
+        positionContainer = new AVL<>();
     }
 
     //Getters
@@ -203,12 +207,89 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
     }
 
-    public void addContainersOffLoaded(Container container) {
-        offloaded.insert(container);
+    public boolean addContainersOffLoaded(Container container) {
+
+        int x ;
+        int y ;
+        int z ;
+        int capacity = (int) ship.getCapacity() / 3;
+
+        if(positionContainer.isEmpty()){
+            positionContainer.insert(container.getPosition());
+            offloaded.insert(container);
+            return true;}
+
+
+        for (ContainerPosition cp : positionContainer.inOrder()) {
+
+            for(z = 0; z < capacity; z++ ){
+                for(y = 0 ; y < capacity; y++) {
+                    for (x = 0; x < capacity; x++){
+
+                        if(container.getPosition().compareTo(cp) != 0){
+
+                            try{
+                                positionContainer.find(container.getPosition());}
+                            catch(NullPointerException  ex){
+                                offloaded.insert(container);
+                            positionContainer.insert(container.getPosition());
+                            return true;}
+                        }
+                        container.getPosition().setxPos(x);
+                    }
+
+                    container.getPosition().setyPos(y);
+                }
+                container.getPosition().setzPos(z);
+            }
+        }
+        return false;
     }
 
-    public void addContainersLoaded(Container container) {
-        loaded.insert(container);
+
+    public AVL<ContainerPosition> getAVLContainerPosition(){
+        return  this.positionContainer;
+    }
+
+    public boolean addContainersLoaded(Container container) {
+        int x ;
+        int y ;
+        int z ;
+        int capacity = (int) ship.getCapacity() / 3;
+
+
+        if(positionContainer.isEmpty()){
+            positionContainer.insert(container.getPosition());
+            loaded.insert(container);
+            return true;}
+
+
+        for (ContainerPosition cp : positionContainer.inOrder()) {
+
+            for(z = 0; z < capacity; z++ ){
+                for(y = 0 ; y < capacity; y++) {
+                    for (x = 0; x < capacity; x++){
+
+                        if(container.getPosition().compareTo(cp) != 0){
+
+                            try{
+                                positionContainer.find(container.getPosition());}
+                            catch(NullPointerException  ex){
+                                loaded.insert(container);
+                                positionContainer.insert(container.getPosition());
+                                return true;}
+                        }
+                        container.getPosition().setxPos(x);
+                    }
+
+                    container.getPosition().setyPos(y);
+                }
+                container.getPosition().setzPos(z);
+            }
+        }
+        return false;
     }
 
 }
+
+

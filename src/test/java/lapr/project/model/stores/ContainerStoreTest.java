@@ -18,7 +18,7 @@ public class ContainerStoreTest {
         //Arrange
         //Act
         containerStore.addContainer(c1);
-        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=null}\n";
+        String expected = "Container{identification='20BD', payload=1000, tare=1000, gross=100, isoCode='20RF', position=ContainerPosition{xPos=0, yPos=0, zPos=0}}\n";
 
         assertEquals(expected,containerStore.toString());
     }
