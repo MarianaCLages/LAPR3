@@ -11,7 +11,7 @@ public class MapVertex<V, E> {
     private final Map<V, Edge<V, E>> outVerts;    // Adjacent vertices
 
     public MapVertex(V vert) {
-        if (vert == null) throw new RuntimeException("Vertice information cannot be null!");
+        if (vert == null) throw new RuntimeException("Vertex information cannot be null!");
         element = vert;
         outVerts = new LinkedHashMap<>();
     }
