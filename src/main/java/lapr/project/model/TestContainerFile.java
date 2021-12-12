@@ -57,8 +57,8 @@ public class TestContainerFile {
             myWriter.close();
 
         } catch (IOException e) {
-            System.out.println("An error occurred");
-            e.printStackTrace();
+            System.out.println("An error has occurred!");
+            System.out.println(e.getMessage());
         }
     }
 }
