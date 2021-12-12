@@ -504,25 +504,5 @@ public class CargoManifestTest {
         assertEquals(cargoManifest.getShip(), ship4);
     }
 
-    @Test
-    void getAVLContainer(){
 
-        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 20,20);
-        CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, ship3, true);
-        Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
-        Container containerPos2 = new Container("20DD",1000,1000,100,"20RF");
-        Container containerPos3 = new Container("20DD",1000,1000,100,"20RF");
-
-        cargoManifest.addContainersOffLoaded(containerPos);
-        cargoManifest.addContainersOffLoaded(containerPos2);
-        cargoManifest.addContainersOffLoaded(containerPos3);
-
-
-
-
-
-        for(ContainerPosition cp : cargoManifest.getAVLContainerPosition().inOrder()){
-            System.out.println(cp);
-        }
-    }
 }

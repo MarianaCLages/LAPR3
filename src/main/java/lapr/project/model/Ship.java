@@ -31,6 +31,7 @@ public class Ship {
     private double posDateSize;
     private AVL<CargoManifest> cargoManifestAVL;
     private CargoManifest cargoManifest;
+    private AVL<ContainerPosition> containerPositionAVL;
 
     /**
      * Constructor.
@@ -72,6 +73,7 @@ public class Ship {
         this.cargoManifestAVL = new AVL<>();
         this.cargoManifestAVL.insert(cargoManifest);
         this.cargoManifest = cargoManifest;
+        this.containerPositionAVL = new AVL<>();
     }
 
     /**
@@ -111,6 +113,7 @@ public class Ship {
         this.currentCapacity = 0;
 
         this.cargoManifestAVL = new AVL<>();
+        this.containerPositionAVL = new AVL<>();
     }
 
     /**
@@ -152,6 +155,7 @@ public class Ship {
         this.currentCapacity = 0;
 
         this.cargoManifestAVL = new AVL<>();
+        this.containerPositionAVL = new AVL<>();
     }
 
     /**
@@ -451,6 +455,11 @@ public class Ship {
      */
     public Position getBiggestPosition() {
         return biggestPosition;
+    }
+
+
+    public AVL<ContainerPosition> getContainerPositionAVL() {
+        return containerPositionAVL;
     }
 
     /**
