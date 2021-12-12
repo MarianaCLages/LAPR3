@@ -1,7 +1,5 @@
 package lapr.project.data;
 
-import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.model.Port;
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
 import lapr.project.model.stores.ContainerStore;

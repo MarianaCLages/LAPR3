@@ -8,9 +8,9 @@ import java.util.Objects;
  * @author DEI-ESINF
  */
 public class Edge<V, E> {
-    private final V vOrig;        // vertex origin
+    private final V vOrig;         // vertex origin
     private final V vDest;        // vertex destination
-    private E weight;        // Edge weight
+    private E weight;            // Edge weight
 
 
     public Edge(V vOrig, V vDest, E weight) {
