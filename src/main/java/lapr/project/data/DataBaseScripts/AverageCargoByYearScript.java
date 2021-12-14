@@ -82,7 +82,7 @@ public class AverageCargoByYearScript {
         }
     }
 
-    public int getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException {
+    public double getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException {
 
         int j = 0;
 

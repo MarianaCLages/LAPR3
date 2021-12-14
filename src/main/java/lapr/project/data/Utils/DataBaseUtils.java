@@ -26,7 +26,6 @@ public class DataBaseUtils {
                 if (resultSet.next()) {
 
                     String continentID = getContinentID(resultSet.getString("ALPHA3CODE"), databaseConnection);
-                    String continent = getContinent(continentID, databaseConnection);
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
@@ -38,7 +37,7 @@ public class DataBaseUtils {
                     if (latitude < -90) latitude += 90;
                     if (longitude < -180) longitude += 180;
 
-                    return new Port(identification, name, continent, country, new FacilityLocation(longitude, latitude));
+                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude));
 
                 } else return null;
 
