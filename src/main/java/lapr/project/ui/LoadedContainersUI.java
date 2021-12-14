@@ -29,7 +29,7 @@ public class LoadedContainersUI implements Runnable {
             System.out.println("\nContainers to be loaded in the next port:");
             System.out.print(ctrl.getLoadContainers(shipMmsi, type));
         } catch (ShipCargoCapacityException | ContainerGrossException | ContainersInsideCargoManifestListSizeException | CargoManifestIDException | CargoManifestDoesntBelongToThatShipException | VehicleIDNotValidException | IllegalArgumentException | SQLException exception) {
-            System.out.println("Operation failed! Please, try again.");
+            System.out.println(exception.getMessage());
         }
     }
 }

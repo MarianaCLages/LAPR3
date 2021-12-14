@@ -25,12 +25,12 @@ public class DataBaseUtils {
 
                 if (resultSet.next()) {
 
-                    String continentID = getContinentID(resultSet.getString("COUNTRYID"), databaseConnection);
+                    String continentID = resultSet.getString("ALPHA3CODE");
                     String continent = getContinent(continentID, databaseConnection);
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
-                    String country = resultSet.getString("COUNTRYID");
+                    String country = resultSet.getString("ALPHA3CODE");
 
                     double longitude = resultSet.getDouble("LONGITUDE");
                     double latitude = resultSet.getDouble("LATITUDE");
@@ -64,7 +64,7 @@ public class DataBaseUtils {
 
     public static String getContinent(String continentID, DatabaseConnection databaseConnection) {
 
-        String sqlCommand = "SELECT Name FROM CONTINENT WHERE CONTINENTID = '" + continentID + "'";
+        String sqlCommand = "SELECT CONTINENTID FROM COUNTRY WHERE ALPHA3CODE = '" + continentID + "'";
 
         return executeQueryAndReturnString(sqlCommand, databaseConnection);
 
