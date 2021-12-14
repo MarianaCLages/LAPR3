@@ -24,7 +24,7 @@ public class DataBaseUtils {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-
+                    
                     String continentID = getContinentID(resultSet.getString("ALPHA3CODE"), databaseConnection);
                     String continent = getContinent(continentID, databaseConnection);
 
@@ -64,7 +64,8 @@ public class DataBaseUtils {
 
     public static String getContinent(String continentID, DatabaseConnection databaseConnection) {
 
-        String sqlCommand = "SELECT CONTINENTID FROM CONTINENT WHERE CONTINENTID = '" + continentID + "'";
+
+        String sqlCommand = "SELECT CONTINENTID FROM COUNTRY WHERE ALPHA3CODE = '" + continentID + "'";
 
         return executeQueryAndReturnString(sqlCommand, databaseConnection);
 
