@@ -8,6 +8,15 @@ public class City implements Vertex {
     private double latitude;
     private double longitude;
 
+    @Override
+    public String toString() {
+        return "City{" +
+                "name='" + name + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
+
     public City(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
