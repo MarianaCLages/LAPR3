@@ -1,5 +1,7 @@
 package lapr.project.shared.graph;
 
+import lapr.project.shared.exceptions.NullVerticesException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -10,8 +12,8 @@ public class MapVertex<V, E> {
     private final V element;                       // Vertex information
     private final Map<V, Edge<V, E>> outVerts;    // Adjacent vertices
 
-    public MapVertex(V vert) {
-        if (vert == null) throw new RuntimeException("Vertex information cannot be null!");
+    public MapVertex(V vert) throws NullVerticesException {
+        if (vert == null) throw new NullVerticesException();
         element = vert;
         outVerts = new LinkedHashMap<>();
     }

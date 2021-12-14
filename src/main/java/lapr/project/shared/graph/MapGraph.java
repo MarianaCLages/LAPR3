@@ -1,5 +1,7 @@
 package lapr.project.shared.graph;
 
+import lapr.project.shared.exceptions.NullVerticesException;
+
 import java.util.*;
 
 public class MapGraph<V, E> extends CommonGraph<V, E> {
@@ -12,7 +14,7 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         mapVertices = new LinkedHashMap<>();
     }
 
-    public MapGraph(Graph<V, E> g) {
+    public MapGraph(Graph<V, E> g) throws NullVerticesException {
         this(g.isDirected());
         copy(g, this);
     }
@@ -121,9 +123,9 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
     }
 
     @Override
-    public boolean addVertex(V vert) {
+    public boolean addVertex(V vert) throws NullVerticesException {
 
-        if (vert == null) throw new RuntimeException("Vertices cannot be null!");
+        if (vert == null) throw new NullVerticesException();
         if (validVertex(vert))
             return false;
 
@@ -136,9 +138,9 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
     }
 
     @Override
-    public boolean addEdge(V vOrig, V vDest, E weight) {
+    public boolean addEdge(V vOrig, V vDest, E weight) throws NullVerticesException {
 
-        if (vOrig == null || vDest == null) throw new RuntimeException("Vertices cannot be null!");
+        if (vOrig == null || vDest == null) throw new NullVerticesException();
         if (edge(vOrig, vDest) != null)
             return false;
 
@@ -168,9 +170,9 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
     }
 
     @Override
-    public boolean removeVertex(V vert) {
+    public boolean removeVertex(V vert) throws NullVerticesException {
 
-        if (vert == null) throw new RuntimeException("Vertices cannot be null!");
+        if (vert == null) throw new NullVerticesException();
         if (!validVertex(vert))
             return false;
 
@@ -192,9 +194,9 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
     }
 
     @Override
-    public boolean removeEdge(V vOrig, V vDest) {
+    public boolean removeEdge(V vOrig, V vDest) throws NullVerticesException {
 
-        if (vOrig == null || vDest == null) throw new RuntimeException("Vertices cannot be null!");
+        if (vOrig == null || vDest == null) throw new NullVerticesException();
         if (!validVertex(vOrig) || !validVertex(vDest))
             return false;
 
@@ -226,7 +228,11 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
 
         MapGraph<V, E> g = new MapGraph<>(this.isDirected);
 
-        copy(this, g);
+        try {
+            copy(this, g);
+        } catch (NullVerticesException e) {
+            e.printStackTrace();
+        }
 
         return g;
     }
