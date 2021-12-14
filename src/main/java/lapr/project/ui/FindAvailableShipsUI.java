@@ -25,7 +25,7 @@ public class FindAvailableShipsUI implements Runnable {
             }
 
         } catch (NullPointerException e) {
-            System.out.print(e.getMessage());
+            System.out.print("There are no available ships on next Monday!");
         }
     }
 }

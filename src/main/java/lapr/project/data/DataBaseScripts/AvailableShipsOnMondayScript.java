@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import lapr.project.data.DatabaseConnection;
+
 import java.time.DayOfWeek;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -59,11 +60,9 @@ public class AvailableShipsOnMondayScript {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(query)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    //System.out.println(resultSet.getInt("SHIP_CALLSIGN"));
                     shipList.add(resultSet.getString("SHIP_CALLSIGN"));
-                } else {
-                    return shipList;
                 }
+                return shipList;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

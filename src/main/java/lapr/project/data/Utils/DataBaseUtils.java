@@ -24,7 +24,7 @@ public class DataBaseUtils {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    
+
                     String continentID = getContinentID(resultSet.getString("ALPHA3CODE"), databaseConnection);
                     String continent = getContinent(continentID, databaseConnection);
 

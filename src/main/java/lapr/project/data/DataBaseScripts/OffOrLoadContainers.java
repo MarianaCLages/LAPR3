@@ -228,7 +228,7 @@ public class OffOrLoadContainers {
                 "where cmc.CARGOMANIFESTID in (select cm.CARGOMANIFESTID\n" +
                 "                              from CARGOMANIFEST cm\n" +
                 "                              where cm.CARGOMANIFESTTYPE = '" + type + "'\n" +
-                "                                and cm.IDTRIP = (select t.IDTRIP\n" +
+                "                                and cm.IDTRIP in (select t.IDTRIP\n" +
                 "                                                 FROM TRIP t\n" +
                 "                                                          inner join VEHICLE v\n" +
                 "                                                                     on t.VEHICLEID = v.VEHICLEID\n" +
@@ -272,7 +272,7 @@ public class OffOrLoadContainers {
 
         String sqlCommand = "select CARGOMANIFESTDATE from CARGOMANIFEST\n" +
                 "where CARGOMANIFESTTYPE = '" + type + "'\n" +
-                "ORDER BY 1";
+                "ORDER BY 1 DESC";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
