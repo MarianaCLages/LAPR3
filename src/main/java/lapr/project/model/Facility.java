@@ -1,6 +1,8 @@
 package lapr.project.model;
 
-public class Facility implements Comparable<Facility> {
+import lapr.project.shared.graph.Vertex;
+
+public class Facility implements Vertex {
     private String identification;
     private String name;
     private String continent;
@@ -155,13 +157,30 @@ public class Facility implements Comparable<Facility> {
      * @return 0 if they're equal, -1 or 1 if they're different
      */
     @Override
-    public int compareTo(Facility o) {
-        if (this.location.getLongitude() > o.location.getLongitude()) return 1;
-        if (this.location.getLongitude() < o.location.getLongitude()) return -1;
+    public int compareTo(Vertex o) {
+        if (this.getLongitude() > o.getLongitude()) return 1;
+        if (this.getLongitude() < o.getLongitude()) return -1;
 
-        if (this.location.getLatitude() > o.location.getLatitude()) return 1;
-        if (this.location.getLatitude() < o.location.getLatitude()) return -1;
+        if (this.getLatitude() > o.getLatitude()) return 1;
+        if (this.getLatitude() < o.getLatitude()) return -1;
 
         return 0;
     }
+
+    @Override
+    public String getDesignation() {
+        return this.name;
+    }
+
+    @Override
+    public double getLongitude() {
+        return location.getLongitude();
+    }
+
+    @Override
+    public double getLatitude() {
+        return location.getLatitude();
+    }
+
+
 }

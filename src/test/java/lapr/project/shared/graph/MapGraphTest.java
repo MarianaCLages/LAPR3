@@ -1,5 +1,6 @@
 package lapr.project.shared.graph;
 
+import lapr.project.shared.exceptions.NullVerticesException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ class MapGraphTest {
      * Test of copy constructor of class Graph.
      */
     @Test
-    void testCopyConstructor() {
+    void testCopyConstructor() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -53,7 +54,7 @@ class MapGraphTest {
      * Test of numVertices method, of class Graph.
      */
     @Test
-    void testNumVertices() {
+    void testNumVertices() throws NullVerticesException {
 
         assertEquals(0, instance.numVertices(), "result should be zero");
         instance.addVertex("A");
@@ -70,7 +71,7 @@ class MapGraphTest {
      * Test of vertices method, of class Graph.
      */
     @Test
-    void testVertices() {
+    void testVertices() throws NullVerticesException {
 
         assertEquals(0, instance.vertices().size(), "vertices should be empty");
 
@@ -98,7 +99,7 @@ class MapGraphTest {
      * Test of validVertex method, of class Graph.
      */
     @Test
-    void testValidVertex() {
+    void testValidVertex() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -114,7 +115,7 @@ class MapGraphTest {
      * Test of key method, of class Graph.
      */
     @Test
-    void testKey() {
+    void testKey() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -129,7 +130,7 @@ class MapGraphTest {
      * Test of testAdjVertices method, of class Graph.
      */
     @Test
-    void testAdjVertices() {
+    void testAdjVertices() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -154,7 +155,7 @@ class MapGraphTest {
      * Test of numEdges method, of class Graph.
      */
     @Test
-    void testNumEdges() {
+    void testNumEdges() throws NullVerticesException {
 
         assertEquals(0, instance.numEdges(), "result should be zero");
 
@@ -175,7 +176,7 @@ class MapGraphTest {
      * Test of edges method, of class Graph.
      */
     @Test
-    void testEdges() {
+    void testEdges() throws NullVerticesException {
 
         assertEquals(0, instance.edges().size(), "edges should be empty");
 
@@ -222,7 +223,7 @@ class MapGraphTest {
      * Test of getEdge method, of class Graph.
      */
     @Test
-    void testGetEdge() {
+    void testGetEdge() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -240,7 +241,7 @@ class MapGraphTest {
      * Test of getEdge by key method, of class Graph.
      */
     @Test
-    void testGetEdgeByKey() {
+    void testGetEdgeByKey() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -259,7 +260,7 @@ class MapGraphTest {
      * Test of outDegree method, of class Graph.
      */
     @Test
-    void testOutDegree() {
+    void testOutDegree() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -274,7 +275,7 @@ class MapGraphTest {
      * Test of inDegree method, of class Graph.
      */
     @Test
-    void testInDegree() {
+    void testInDegree() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -289,7 +290,7 @@ class MapGraphTest {
      * Test of outgoingEdges method, of class Graph.
      */
     @Test
-    void testOutgoingEdges() {
+    void testOutgoingEdges() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -321,7 +322,7 @@ class MapGraphTest {
      * Test of incomingEdges method, of class Graph.
      */
     @Test
-    void testIncomingEdges() {
+    void testIncomingEdges() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -354,7 +355,7 @@ class MapGraphTest {
      * Test of removeVertex method, of class Graph.
      */
     @Test
-    void testRemoveVertex() {
+    void testRemoveVertex() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -383,7 +384,7 @@ class MapGraphTest {
      * Test of removeEdge method, of class Graph.
      */
     @Test
-    void testRemoveEdge() {
+    void testRemoveEdge() throws NullVerticesException {
 
         assertEquals(0, instance.numEdges(), "Num edges should be 0");
 
@@ -410,7 +411,7 @@ class MapGraphTest {
      * Test of toString method, of class Graph.
      */
     @Test
-    void testClone() {
+    void testClone() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -437,7 +438,7 @@ class MapGraphTest {
     }
 
     @Test
-    void testEquals() {
+    void testEquals() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -466,7 +467,7 @@ class MapGraphTest {
     }
 
     @Test
-    void testUnDirectedGraph() {
+    void testUnDirectedGraph() throws NullVerticesException {
         instance = new MapGraph<>(false);
 
         for (int i = 0; i < co.size(); i++)

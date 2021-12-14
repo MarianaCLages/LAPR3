@@ -1,5 +1,7 @@
 package lapr.project.shared.graph;
 
+import lapr.project.shared.exceptions.NullVerticesException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Predicate;
@@ -147,7 +149,7 @@ public interface Graph<V, E> extends Cloneable {
      * @param vert the vertex to add
      * @return true if vert is not already in the graph, false otherwise
      */
-    boolean addVertex(V vert);
+    boolean addVertex(V vert) throws NullVerticesException;
 
     /**
      * Adds a new edge between two vertices. If the vertices are not already in the graph, they are added.
@@ -157,7 +159,7 @@ public interface Graph<V, E> extends Cloneable {
      * @param weight the weight of the edge
      * @return false if edge is already present, true otherwise
      */
-    boolean addEdge(V vOrig, V vDest, E weight);
+    boolean addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;
 
     /**
      * Removes a vertex and all its incident edges from the graph
@@ -165,7 +167,7 @@ public interface Graph<V, E> extends Cloneable {
      * @param vert the vertex to remove
      * @return true if vert was present in the graph, false otherwise
      */
-    boolean removeVertex(V vert);
+    boolean removeVertex(V vert) throws NullVerticesException;
 
     /**
      * Removes the edge between two vertices
@@ -174,7 +176,7 @@ public interface Graph<V, E> extends Cloneable {
      * @param vDest vertex destination of the edge
      * @return true if an edge between vOrig and vDest was present in the graph, false otherwise
      */
-    boolean removeEdge(V vOrig, V vDest);
+    boolean removeEdge(V vOrig, V vDest) throws NullVerticesException;
 
     /**
      * Creates a deep copy clone of the graph

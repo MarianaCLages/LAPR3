@@ -1,5 +1,7 @@
 package lapr.project.shared.graph;
 
+import lapr.project.shared.exceptions.NullVerticesException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
@@ -71,7 +73,7 @@ public abstract class CommonGraph<V, E> implements Graph<V, E> {
      * @param from graph from which to copy
      * @param to   graph for which to copy
      */
-    protected void copy(Graph<V, E> from, Graph<V, E> to) {
+    protected void copy(Graph<V, E> from, Graph<V, E> to) throws NullVerticesException {
         //insert all vertices
         for (V v : from.vertices()) {
             to.addVertex(v);
@@ -104,12 +106,12 @@ public abstract class CommonGraph<V, E> implements Graph<V, E> {
         // graph must have same vertices
         Collection<V> tvc = this.vertices();
         tvc.removeAll(otherGraph.vertices());
-        if (tvc.size() > 0) return false;
+        if (!tvc.isEmpty()) return false;
 
         // graph must have same edges
         Collection<Edge<V, E>> tec = this.edges();
         tec.removeAll(otherGraph.edges());
-        return (tec.size() == 0);
+        return (tec.isEmpty());
     }
 
     public abstract Graph<V, E> clone();
