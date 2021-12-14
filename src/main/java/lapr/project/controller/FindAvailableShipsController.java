@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.DataBaseScripts.AvailableShipsOnMondayScript;
+import lapr.project.data.ShipStoreData;
 import lapr.project.model.Company;
 import lapr.project.model.Ship;
 import lapr.project.model.stores.ShipStore;
@@ -11,6 +12,7 @@ import java.util.List;
 public class FindAvailableShipsController {
 
     private final ShipStore shipStore;
+    private final ShipStoreData shipStoreData;
     AvailableShipsOnMondayScript script = new AvailableShipsOnMondayScript(App.getInstance().getDatabaseConnection());
 
     /**
@@ -20,6 +22,7 @@ public class FindAvailableShipsController {
 
         Company company = App.getInstance().getCompany();
         shipStore = company.getShipStore();
+        shipStoreData = company.getShipStoreData();
 
     }
 
@@ -32,10 +35,14 @@ public class FindAvailableShipsController {
         ArrayList<String> lShipID = script.get();
         List<Ship> rlShip = null;
 
-        for(String shipID : lShipID){
-            rlShip.add(shipStore.getShipByCallSign(shipID));
-        }
+        for (String shipID : lShipID) {
+            for (Ship s : shipStoreData.getListShips(App.getInstance().getDatabaseConnection())) {
+                if (shipID.equals(s.getCallSign())) {
+                    rlShip.add(s);
+                }
 
+            }
+        }
         return rlShip;
     }
 }
