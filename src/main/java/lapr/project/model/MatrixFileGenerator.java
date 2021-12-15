@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatrixFileGenerator {
@@ -59,7 +60,7 @@ public class MatrixFileGenerator {
     public int getCargoManifestCount(int mmsi) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
-        int count;
+
 
         String sqlCommand = "select count(*) CARGOCOUNT from CARGOMANIFEST cm\n" +
                 "inner join SHIP s\n" +
@@ -70,7 +71,7 @@ public class MatrixFileGenerator {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return count = resultSet.getInt("CARGOCOUNT");
+                    return resultSet.getInt("CARGOCOUNT");
                 } else {
                     return 0;
                 }
@@ -107,11 +108,66 @@ public class MatrixFileGenerator {
         }
     }
 
+    public int countContainerByCargo(String id) throws SQLException {
+
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "Select count(*) COUNTCONTAINERS from CONTAINER c\n" +
+                "inner join  CargoManifestContainer cm\n" +
+                "where cm.CargoManifestId =" +id;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return resultSet.getInt("COUNTCONTAINERS");
+                } else {
+                    return 0;
+                }
+            }
+        }
+    }
+
+    public Container getContainerByCargo(String id, int j) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+
+        String sqlCommand = "Select *  from CONTAINER c\n" +
+                "inner join  CargoManifestContainer cm\n" +
+                "where cm.CargoManifestId =" + id;
+
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                for (int i = 0; i < j; i++) {
+                    resultSet.next();
+                }
+                if (resultSet.next()) {
+
+
+                    String identification = resultSet.getString("CONTAINERID");
+                    int payload = resultSet.getInt("PAYLOAD");
+                    int tare = resultSet.getInt("TARE");
+                    int gross = resultSet.getInt("GROSS");
+                    String isoCode = resultSet.getString("ISOCODE");
+                    return new Container(identification,payload,tare,gross,isoCode);
+                }
+            }
+            return null;
+        }
+    }
+
+
 
     public boolean generateMatrixFile(int mmsi) throws SQLException {
 
+
         Ship s = getShipByMmsi(mmsi);
         int count = getCargoManifestCount(mmsi);
+        int countContainers;
 
 
         if (count == 0) {
@@ -120,6 +176,20 @@ public class MatrixFileGenerator {
 
         while (count != 0) {
             cargoManifestList.add(getCargoByMmsi(mmsi, count, s));
+            count--;
+        }
+
+        for(CargoManifest cm : cargoManifestList){
+
+            countContainers = countContainerByCargo(cm.getIdentification());
+
+            while (countContainers != 0){
+
+                Container c = getContainerByCargo(cm.getIdentification(),countContainers);
+                cm.addContainersLoaded(c);
+                countContainers--;
+            }
+
         }
 
 
@@ -160,4 +230,4 @@ public class MatrixFileGenerator {
         return false;
     }
 }
- */
+*/
