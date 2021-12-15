@@ -1,4 +1,4 @@
-package lapr.project.model;
+/*package lapr.project.model;
 
 import lapr.project.controller.App;
 import lapr.project.data.CargoManifestStoreData;
@@ -31,7 +31,9 @@ public class MatrixFileGenerator {
 
     public Ship getShipByMmsi(int mmsi) throws SQLException {
         return (Ship) shipStoreData.getElement(databaseConnection, mmsi);
-        /*Connection connection = databaseConnection.getConnection();
+        */
+        /*
+        Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select * from SHIP where MMSI = " + mmsi;
 
@@ -58,6 +60,7 @@ public class MatrixFileGenerator {
             }
         }
          */
+/*
     }
 
 
@@ -231,3 +234,4 @@ public class MatrixFileGenerator {
         return false;
     }
 }
+*/
