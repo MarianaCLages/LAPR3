@@ -1,32 +1,25 @@
-/*package lapr.project.controller;
+package lapr.project.controller;
 
-import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.model.Company;
 import lapr.project.model.MatrixFileGenerator;
-import lapr.project.model.stores.CargoManifestStore;
+import lapr.project.shared.exceptions.MatrixFileException;
 
-import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
 public class Create3DMatrixController {
 
-    private final CargoManifestStore cargoManifestStore;
-    private final CargoManifestStoreData cargoManifestStoreData;
     private final DatabaseConnection databaseConnection;
+    private final MatrixFileGenerator matrixFileGenerator;
 
     public Create3DMatrixController() {
-        Company company = App.getInstance().getCompany();
-        this.cargoManifestStore = company.getCargoManifestStore();
-        this.cargoManifestStoreData = company.getCargoManifestStoreData();
         this.databaseConnection = App.getInstance().getDatabaseConnection();
+        this.matrixFileGenerator = new MatrixFileGenerator(databaseConnection);
     }
 
-    public boolean createMatrix() throws FileNotFoundException {
-        boolean returnValue;
+    public boolean createMatrix(int mmsi) throws MatrixFileException, SQLException {
 
-        returnValue = MatrixFileGenerator.generateMatrixFile(databaseConnection);
+        return matrixFileGenerator.generateMatrixFile(mmsi);
 
-        return returnValue;
     }
+
 }
-*/
