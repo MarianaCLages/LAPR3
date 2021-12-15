@@ -70,35 +70,26 @@ create table RefrigeratorContainer
 create table Continent
 (
     continentId varchar2(32),
+    name        varchar2(32)
+        CONSTRAINT nnNameContinent not null,
     constraint pkContinent
         primary key (continentId)
 );
 
 create table Country
 (
-    alpha2Code  char(2)
-        CONSTRAINT nnAlpha2Code not null,
-    alpha3Code  char(3)
-        CONSTRAINT nnAlpha3Code not null,
+    alpha2Code  char(2),
+    alpha3Code  char(3),
     continentID varchar2(32),
     capital     varchar2(32)
         CONSTRAINT nnCapital not null,
     population  number
         CONSTRAINT nnPopulation not null,
     constraint pkCountry
-        primary key (alpha2Code,alpha3Code),
+        primary key (alpha2Code, alpha3Code),
     constraint fkCountryContinent
         foreign key (continentID)
             references Continent (continentId)
-);
-
-create table FacilityType
-(
-    facilityType varchar2(32),
-    type         varchar2(32)
-        CONSTRAINT nnTypeFacility not null,
-    constraint pkFacilityType
-        primary key (facilityType)
 );
 
 create table VesselType
@@ -110,33 +101,12 @@ create table VesselType
         primary key (vesselTypeId)
 );
 
-create table Generator
-(
-    generatorId              varchar2(32),
-    nEnergyGen               number
-        CONSTRAINT nnEnergyGen not null,
-    generatorPow             number
-        CONSTRAINT nnGeneratorPow not null,
-    refrigerationTemperature number
-        CONSTRAINT nnRefrigerationTemperature not null,
-    constraint pkGenerator
-        primary key (generatorId)
-);
-
 create table Vehicle
 (
     vehicleId varchar2(32),
     constraint pkVehicle
         primary key (vehicleId)
 
-);
-
-create table Transceiver
-(
-    transceiverID varchar2(32),
-    transceiver   varchar2(32),
-    constraint pkTransceiver
-        primary key (transceiverID)
 );
 
 create table CargoManifestType
@@ -150,61 +120,114 @@ create table CargoManifestType
 
 CREATE table Border
 (
-    firstCountryID  varchar2(32),
-    secondCountryID varchar2(32),
+    firstCountryAlpha2Code  char(2),
+    firstCountryAlpha3Code  char(3),
+    secondCountryAlpha2Code char(2),
+    secondCountryAlpha3Code char(3),
     constraint pkBorder
-        primary key (firstCountryID, secondCountryID),
-    constraint fkBorderFirstCountryID
-        foreign key (firstCountryID)
-            references COUNTRY (countryId),
-    constraint fkBorderSecondCountryID
-        foreign key (secondCountryID)
-            references COUNTRY (countryId)
+        primary key (firstCountryAlpha2Code, firstCountryAlpha3Code, secondCountryAlpha2Code, secondCountryAlpha3Code),
+    constraint fkBorderFirstCountryAlpha2Code
+        foreign key (firstCountryAlpha2Code, secondCountryAlpha2Code)
+            references COUNTRY,
+    constraint fkBorderFirstCountryAlpha3Code
+        foreign key (firstCountryAlpha3Code, secondCountryAlpha3Code)
+            references COUNTRY
 );
 
 create table City
 (
-    cityID    varchar2(32)
-        constraint pkCity primary key,
-    countryID varchar2(32),
-    name      varchar2(32)
+    cityID            varchar2(32),
+    countryAlpha2Code char(2),
+    countryAlpha3Code char(3),
+    name              varchar2(32)
         CONSTRAINT nnNameCity not null,
-    constraint fkCityCountryID foreign key (countryID) references COUNTRY (countryId)
+    constraint pkCity
+        primary key (cityID),
+    constraint fkCityCountryID
+        foreign key (countryAlpha2Code, countryAlpha3Code)
+            references COUNTRY (alpha2Code, alpha3Code)
 );
 
 create table Address
 (
-    idAddress  varchar2(32)
-        constraint pkAddress primary key,
+    idAddress  varchar2(32),
     cityId     varchar2(32),
-    constraint fkAddressCityID foreign key (cityId) references CITY,
     street     varchar2(32)
         CONSTRAINT nnStreetAddress not null,
     postalCode varchar2(32)
-        CONSTRAINT nnPostalCodeAdress not null
+        CONSTRAINT nnPostalCodeAdress not null,
+    constraint pkAddress
+        primary key (idAddress),
+    constraint fkAddressCityID
+        foreign key (cityId)
+            references CITY
 );
 
 create table Facility
 (
-    facilityId   varchar2(32),
-    facilityType varchar2(32),
-    countryId    varchar2(32),
-    longitude    number
+    facilityId varchar2(32),
+    alpha2Code char(2),
+    alpha3Code char(3),
+    longitude  number
         CONSTRAINT ckLongitude CHECK (longitude BETWEEN -180 and 180),
-    latitude     number
+    latitude   number
         CONSTRAINT ckLatitude CHECK (latitude BETWEEN -90 and 90),
-    name         varchar(32)
+    name       varchar(32)
         CONSTRAINT nnNameFacility not null,
-    capacity     varchar2(32)
+    capacity   varchar2(32)
         constraint nnCapacity not null,
     constraint pkFacilityID
         primary key (facilityId),
     constraint fkFacilityCountryID
-        foreign key (countryId)
-            references Country (countryId),
-    constraint fkFacilityType
-        foreign key (facilityType)
-            references FacilityType (facilityType)
+        foreign key (alpha2Code, alpha3Code)
+            references Country (alpha2Code, alpha3Code)
+);
+
+create table Port
+(
+
+    id          varchar2(32),
+    facilityID  varchar2(32),
+    dockingArea varchar2(32)
+        CONSTRAINT nnDockingArea not null,
+    CONSTRAINT pkIdPortID
+        primary key (id),
+    CONSTRAINT fkFacilityPortID
+        foreign key (facilityID)
+            references FACILITY
+);
+
+create table Warehouse
+(
+
+    id         varchar2(32),
+    facilityID varchar2(32),
+    portID     varchar2(32),
+    CONSTRAINT pkIdWarehouseID
+        primary key (id),
+    CONSTRAINT fkFacilityWarehouseID
+        foreign key (facilityID)
+            references FACILITY,
+    CONSTRAINT fkPortID
+        foreign key (portID)
+            references Port
+);
+
+CREATE table SeaDistance
+(
+    firstPortID  varchar2(32),
+    secondPortID varchar2(32),
+    seaDistance  NUMBER
+        CONSTRAINT ckSeaDistance check (seaDistance > 0),
+
+    CONSTRAINT pkSeaDistance
+        primary key (firstPortID, secondPortID),
+    CONSTRAINT fkFirstPortID
+        foreign key (firstPortID)
+            references Port (id),
+    CONSTRAINT fkSecondPortID
+        foreign key (secondPortID)
+            references Port (id)
 );
 
 create table Employee
@@ -252,20 +275,6 @@ create table Client
             references ADDRESS (idAddress)
 );
 
-create table ContainerClient
-(
-    clientId    varchar2(32),
-    containerId varchar2(64),
-    vehicleID   varchar2(64),
-    tripID      varchar2(64),
-    constraint pkContainerClient
-        primary key (clientId, containerId),
-    constraint fkContainerClientContainerID
-        foreign key (containerId) references Container (containerId),
-    constraint fkContainerClientClientID
-        foreign key (clientId) references Client (id)
-);
-
 create table EmployeeFacility
 (
     facilityId varchar2(32)
@@ -278,12 +287,46 @@ create table EmployeeFacility
         primary key (facilityId, employeeId)
 );
 
+CREATE TABLE MaterialType
+(
+    id   varchar2(32),
+    type varchar2(32)
+        CONSTRAINT nnMaterialType not null,
+    CONSTRAINT pkMaterialType
+        primary key (id)
+);
+
+CREATE TABLE Material
+(
+
+    id             varchar2(32),
+    materialTypeID varchar2(32),
+    constraint pkMaterial
+        primary key (id),
+    constraint fkMaterialTypeID
+        foreign key (materialTypeID)
+            references MaterialType (id)
+
+);
+
+CREATE TABLE ContainerMaterial
+(
+    refrigeratedContainerID varchar2(32),
+    materialID              varchar2(32),
+    constraint pkContainerMaterial
+        primary key (refrigeratedContainerID, materialID),
+    constraint fkMaterial
+        foreign key (materialID)
+            references Material (id),
+    constraint fkRefrigeratedContainer
+        foreign key (refrigeratedContainerID)
+            references RefrigeratorContainer (containerId)
+);
+
 create table Ship
 (
     mmsi       char(9),
-    vehicleId  varchar2(32)
-        constraint fkShipTransportID
-            references Vehicle (vehicleId),
+    vehicleId  varchar2(32),
     vesselType varchar2(32),
     imo        char(10)
         CONSTRAINT uImo unique,
@@ -299,31 +342,36 @@ create table Ship
         CONSTRAINT nnCapacityShip not null,
     draft      number
         CONSTRAINT nnDraftShip not null,
+    constraint fkShipTransportID
+        foreign key (vehicleId)
+            references Vehicle (vehicleId),
     constraint pkShip
-        primary key (mmsi, vehicleId),
+        primary key (mmsi),
     constraint fkShipVesselType
         foreign key (vesselType)
             references VesselType (vesselTypeId)
 );
 
-create table ShipGenerator
+create table Transceiver
 (
-    MMSI        CHAR(9),
-    vehicleId   VARCHAR2(32),
-    generatorId VARCHAR2(32),
-    constraint fkShipGeneratorGeneratorID
-        foreign key (generatorID) references GENERATOR (generatorId),
-    constraint pkShipGenerator
-        primary key (MMSI, vehicleId, generatorId),
-    constraint fkShipGeneratorMMSI
-        foreign key (MMSI, vehicleId) references SHIP (mmsi, vehicleId)
+    transceiverID varchar2(32),
+    transceiver   varchar2(32)
+        CONSTRAINT nnTransceiver not null,
+    mmsi          char(9),
+    class         varchar2(32)
+        CONSTRAINT nnClass not null,
+    constraint pkTransceiver
+        primary key (transceiverID, mmsi),
+    CONSTRAINT fkMMSI
+        foreign key (mmsi)
+            references Ship (mmsi)
 );
 
 create table PositionalMessage
 (
     baseDateTime  date,
     mmsi          char(9),
-    vehicleId     varchar2(32),
+    transceiverID varchar2(32),
     longitude     number
         CONSTRAINT ckLongitudePositionalMessage CHECK (longitude between -180 and 180),
     latitude      number
@@ -334,13 +382,11 @@ create table PositionalMessage
         CONSTRAINT ckCogPositionalMessage CHECK ( COG between 0 and 359),
     heading       number
         Constraint ckHeadingPositionalMessage CHECK ( heading between 0 and 359),
-    transceiverID varchar2(32),
     constraint pkPositionalMessage
-        primary key (baseDateTime, mmsi, vehicleId),
-    constraint fkPositionalMessageShip
-        foreign key (mmsi, vehicleId) references Ship,
-    constraint fkPositionalMessageTransceiverID
-        foreign key (Transceiverid) references Transceiver (Transceiverid)
+        primary key (baseDateTime, mmsi, transceiverID),
+    constraint fkPositionalMessage
+        foreign key (mmsi,transceiverID)
+            references Transceiver (mmsi,transceiverID)
 );
 
 
@@ -369,7 +415,7 @@ create table FacilityTrip
     departureDate date
         CONSTRAINT nnDepartureID not null,
     constraint pkFacilityTrip
-        primary key (facilityId, idTrip),
+        primary key (facilityId, idTrip, vehicleId),
     constraint fkFacilityTripVehicleId
         foreign key (vehicleId, idTrip)
             references Trip,
@@ -391,7 +437,7 @@ create table CargoManifest
     constraint pkCargoManifest
         primary key (cargoManifestId),
     constraint fkCargoManifestVehicleId
-        foreign key (vehicleId, idTrip)
+        foreign key (idTrip, vehicleId)
             references Trip,
     constraint fkCargoManifestTypeId
         foreign key (CargoManifestType)
@@ -419,6 +465,38 @@ create table CargoManifestContainer
     constraint fkCargoManifestContainerContainer
         foreign key (containerId)
             references Container (containerId)
+);
+
+create table ContainerClient
+(
+    clientId        varchar2(32),
+    containerId     varchar2(64),
+    cargoManifestID varchar2(32),
+    constraint pkContainerClient
+        primary key (clientId, containerId, cargoManifestID),
+    constraint fkCargoManifestContainer
+        foreign key (containerId, cargoManifestID)
+            references CargoManifestContainer (containerId, cargoManifestID),
+    constraint fkContainerClientClientID
+        foreign key (clientId)
+            references Client (id)
+);
+
+CREATE TABLE AuditTrail
+(
+    cargoManifestID        varchar2(32),
+    containerID            varchar2(32),
+    writeOperationsSummary varchar2(255)
+        CONSTRAINT nnWriteOperationsSummary not null,
+    operationDate          date
+        CONSTRAINT nnOperationDate not null,
+    userLogged             varchar2(32)
+        CONSTRAINT nnUserLogged not null,
+    CONSTRAINT pkAuditTrail
+        primary key (cargoManifestID, containerID),
+    CONSTRAINT fkCargoManifestContainerAuditTrail
+        foreign key (containerID, cargoManifestID)
+            references CargoManifestContainer (containerID, cargoManifestID)
 );
 
 create table TripEmployee
@@ -451,4 +529,33 @@ create table SeaDistance
             references Facility (facilityId),
     constraint pkSeaDistance
         primary key (firstPortID, secondPortID)
+);
+
+create table Stock
+(
+
+    facilityID  varchar2(32),
+    containerID varchar2(32),
+
+    CONSTRAINT pkStock
+        primary key (facilityID, containerID),
+    CONSTRAINT fkFacilityIDStock
+        foreign key (facilityID)
+            references FACILITY (facilityId),
+    CONSTRAINT fkContainerID
+        foreign key (containerID)
+            references Container (containerId)
+);
+
+create table Generator
+(
+    generatorId  varchar2(32),
+    mmsi         char(9),
+    generatorPow number
+        CONSTRAINT nnGeneratorPow not null,
+    constraint pkGenerator
+        primary key (generatorId),
+    CONSTRAINT fkShipMMSI
+        foreign key (mmsi)
+            references Ship (mmsi)
 );
