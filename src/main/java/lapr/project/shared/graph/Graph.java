@@ -13,6 +13,8 @@ import java.util.function.Predicate;
  */
 public interface Graph<V, E> extends Cloneable {
 
+    String toString();
+
     /**
      * Check if graph is directed
      *

@@ -74,6 +74,7 @@ public class Ship {
         this.cargoManifestAVL.insert(cargoManifest);
         this.cargoManifest = cargoManifest;
         this.containerPositionAVL = new AVL<>();
+
     }
 
     /**
