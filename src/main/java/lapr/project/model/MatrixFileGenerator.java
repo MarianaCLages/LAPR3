@@ -1,7 +1,6 @@
 /*package lapr.project.model;
 
 import lapr.project.controller.App;
-import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipStoreData;
 
@@ -12,26 +11,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MatrixFileGenerator {
 
-    private Company company;
-    private CargoManifestStoreData cargoManifestStoreData;
-    private ShipStoreData shipStoreData;
-    private DatabaseConnection databaseConnection;
-    private List<CargoManifest> cargoManifestList;
+    private final ShipStoreData shipStoreData;
+    private final DatabaseConnection databaseConnection;
+    private final List<CargoManifest> cargoManifestList;
 
     public MatrixFileGenerator(DatabaseConnection databaseConnection) {
-        company = App.getInstance().getCompany();
-        this.cargoManifestStoreData = company.getCargoManifestStoreData();
+        Company company = App.getInstance().getCompany();
         this.shipStoreData = company.getShipStoreData();
         this.databaseConnection = databaseConnection;
+        this.cargoManifestList = new ArrayList<>();
     }
 
     public Ship getShipByMmsi(int mmsi) throws SQLException {
         return (Ship) shipStoreData.getElement(databaseConnection, mmsi);
-        */
+ */
         /*
         Connection connection = databaseConnection.getConnection();
 
@@ -168,11 +166,9 @@ public class MatrixFileGenerator {
 
     public boolean generateMatrixFile(int mmsi) throws SQLException {
 
-
         Ship s = getShipByMmsi(mmsi);
         int count = countCargoManifest(mmsi);
         int countContainers;
-
 
         if (count == 0) {
             return false;
@@ -234,4 +230,4 @@ public class MatrixFileGenerator {
         return false;
     }
 }
-*/
+ */
