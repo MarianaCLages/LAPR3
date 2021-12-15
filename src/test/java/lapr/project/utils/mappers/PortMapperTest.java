@@ -14,7 +14,7 @@ class PortMapperTest {
 
     PortMapper portMapper = new PortMapper();
 
-    Port port = new Port("America", "USA", "01", "Port", new FacilityLocation(10, 10));
+    Port port = new Port("America", "USA", "01", "Port", new FacilityLocation(10, 10),0);
 
     List<Port> portList = new ArrayList<>();
 

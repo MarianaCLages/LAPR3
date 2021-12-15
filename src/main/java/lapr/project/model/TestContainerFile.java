@@ -10,7 +10,7 @@ public class TestContainerFile {
     public static void main(String[] args) {
 
         FacilityLocation f1 = new FacilityLocation(11, 11);
-        Port p1 = new Port("a", "a", "1", "a", f1);
+        Port p1 = new Port("a", "a", "1", "a", f1,0);
         Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12, 12, "9HA2954", "70", 334, 42, 15, 20);
         CargoManifest cargoManifest = new CargoManifest("aaaaa", p1, ship3, true);
         Container containerPos = new Container("123", 1000, 1000, 100, "20RF", false, false);

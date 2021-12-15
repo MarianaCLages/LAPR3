@@ -54,7 +54,7 @@ class ShipStoreTest {
 
         Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
@@ -748,7 +748,7 @@ class ShipStoreTest {
 
         }
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
@@ -814,7 +814,7 @@ class ShipStoreTest {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 

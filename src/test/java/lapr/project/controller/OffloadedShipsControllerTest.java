@@ -20,7 +20,7 @@ class OffloadedShipsControllerTest {
     Container container = new Container("01", 1, 1, 1, "11", false, true);
 
     FacilityLocation facilityLocation = new FacilityLocation(2, 2);
-    Port port = new Port("Asia", "Japan", "11", "port", facilityLocation);
+    Port port = new Port("Asia", "Japan", "11", "port", facilityLocation,0);
 
     CargoManifest cargoManifest = new CargoManifest("11", port, null);
 

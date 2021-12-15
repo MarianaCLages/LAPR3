@@ -37,7 +37,7 @@ public class DataBaseUtils {
                     if (latitude < -90) latitude += 90;
                     if (longitude < -180) longitude += 180;
 
-                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude));
+                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude),0);
 
                 } else return null;
 

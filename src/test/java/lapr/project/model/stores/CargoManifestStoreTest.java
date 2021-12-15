@@ -15,7 +15,7 @@ class CargoManifestStoreTest {
     CargoManifestStore cargoManifestStore2 = new CargoManifestStore();
 
     FacilityLocation f1 = new FacilityLocation(11, 11);
-    Port p1 = new Port("a", "a", "1", "a", f1);
+    Port p1 = new Port("a", "a", "1", "a", f1,0);
     CargoManifest cargo1 = new CargoManifest("11", p1, null);
 
     @Test

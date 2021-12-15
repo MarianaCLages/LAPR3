@@ -11,7 +11,7 @@ public class Warehouse extends Facility {
      * @param country        the warehouse's country
      * @param location       the warehouse's location
      */
-    public Warehouse(String identification, String name, String continent, String country, FacilityLocation location) {
-        super(identification, name, continent, country, location);
+    public Warehouse(String identification, String name, String continent, String country, FacilityLocation location,int capacity) {
+        super(identification, name, continent, country, location,capacity);
     }
 }

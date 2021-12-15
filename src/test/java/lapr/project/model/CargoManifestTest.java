@@ -16,11 +16,11 @@ public class CargoManifestTest {
     Container containerPos = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
 
     FacilityLocation f1 = new FacilityLocation(11, 11);
-    Port p1 = new Port("a", "a", "1", "a", f1);
+    Port p1 = new Port("a", "a", "1", "a", f1,0);
     CargoManifest cargo1 = new CargoManifest("11", p1, null);
     CargoManifest cargo2 = new CargoManifest("11", p1, null);
     FacilityLocation f2 = new FacilityLocation(20, 20);
-    Port p2 = new Port("a", "a", "2", "a", f2);
+    Port p2 = new Port("a", "a", "2", "a", f2,0);
 
     @Test
     void getIdentificationTest() {
@@ -120,7 +120,7 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         Ship ship = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 15,20);
         CargoManifest cargoManifest = new CargoManifest("1Ab", port,ship, true);
@@ -149,7 +149,7 @@ public class CargoManifestTest {
 
         Container containerEqualsTrue = new Container("20BD", 1000, 1000, 100, "20RF", true, true);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         Ship ship = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", 12,12,"9HA2954", "70", 334, 42, 15,20);
 
@@ -176,7 +176,7 @@ public class CargoManifestTest {
     @Test
     void equalsSameObject() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -188,7 +188,7 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObject() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -200,7 +200,7 @@ public class CargoManifestTest {
     @Test
     void equalsSameObjectByMethod() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -212,7 +212,7 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethod() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -224,9 +224,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethod2() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -241,7 +241,7 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethod3() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, null);
 
@@ -253,9 +253,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethod4() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -270,9 +270,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant1() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -289,9 +289,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant3() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -306,9 +306,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant4() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -324,9 +324,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant2() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -341,9 +341,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant5() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
@@ -358,9 +358,9 @@ public class CargoManifestTest {
     @Test
     void equalsDifferentObjectByMethodMutant6() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
-        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port2 = new Port("29111", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         String dt = "2020-01-01";  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -385,7 +385,7 @@ public class CargoManifestTest {
     @Test
     void hashCodeMutant() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         CargoManifest cargoManifest = new CargoManifest("1AA", port, null);
 
@@ -397,7 +397,7 @@ public class CargoManifestTest {
     @Test
     void writeCargoByYear() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         String dt = "2020-01-01";  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -436,7 +436,7 @@ public class CargoManifestTest {
     @Test
     void writeCargoByYearMutant() {
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
 
         String dt = "2020-01-01";  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

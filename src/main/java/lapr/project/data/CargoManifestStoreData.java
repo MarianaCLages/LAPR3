@@ -71,8 +71,8 @@ public class CargoManifestStoreData implements Persistable {
             Logger.getLogger(CargoManifestStoreData.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
         }
-
     }
+
 
 
 }
