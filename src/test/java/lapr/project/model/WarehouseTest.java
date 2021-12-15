@@ -9,7 +9,7 @@ class WarehouseTest {
     @Test
     void warehouseTest() {
         try {
-            Warehouse warehouse = new Warehouse("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333));
+            Warehouse warehouse = new Warehouse("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
         } catch (Exception e) {
             fail();
         }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +16,7 @@ class AppTest {
     App app = App.getInstance();
 
     @Test
-    void appMutant() {
+    void appMutant() throws SQLException {
 
         App app = new App();
 

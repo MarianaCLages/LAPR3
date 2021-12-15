@@ -8,6 +8,7 @@ public class Facility implements Vertex {
     private String continent;
     private String country;
     private FacilityLocation location;
+    private int capacity;
 
     /**
      * Constructor.
@@ -18,12 +19,13 @@ public class Facility implements Vertex {
      * @param country        the facility's country
      * @param location       the facility's location
      */
-    public Facility(String identification, String name, String continent, String country, FacilityLocation location) {
+    public Facility(String identification, String name, String continent, String country, FacilityLocation location,int capacity) {
         this.identification = identification;
         this.name = name;
         this.continent = continent;
         this.country = country;
         this.location = location;
+        this.capacity = capacity;
     }
 
     //Getters
@@ -102,6 +104,7 @@ public class Facility implements Vertex {
         this.country = country;
     }
 
+    public int getCapacity(){return capacity;}
     /**
      * Gets the facility's location.
      *

@@ -15,7 +15,7 @@ class PortStoreTest {
     @Test
     void addPortTest() {
         PortStore portStore = new PortStore();
-        Assertions.assertTrue(portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87))));
+        Assertions.assertTrue(portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0)));
     }
 
     @Test
@@ -33,14 +33,14 @@ class PortStoreTest {
     @Test
     void fillTreeNotEmpty() {
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87)));
+        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
         Assertions.assertTrue(portStore.fillTree());
     }
 
     @Test
     void fillTreeGetTree() {
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87)));
+        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
         portStore.fillTree();
         Assertions.assertNotNull(portStore.getPortList());
     }
@@ -62,7 +62,7 @@ class PortStoreTest {
         LocalDateTime localDateTime = posgeral.getDate();
 
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87)));
+        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
         portStore.fillTree();
 
 

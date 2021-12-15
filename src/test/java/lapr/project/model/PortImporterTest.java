@@ -44,7 +44,7 @@ class PortImporterTest {
         PortStoreData portStoreData = new PortStoreData();
         DatabaseConnection databaseConnection = null;
 
-        Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667));
+        Port port = new Port("America", "United States", "14635", "Los Angeles", new FacilityLocation(-118.2666667, 33.71666667),0);
         PortStore store = new PortStore();
 
         boolean actual = PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);

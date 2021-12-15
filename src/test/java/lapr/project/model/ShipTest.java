@@ -49,8 +49,8 @@ public class ShipTest {
     FacilityLocation facilityLocation = new FacilityLocation(11, 11);
     FacilityLocation facilityLocation2 = new FacilityLocation(8, 8);
     //Port
-    Port port = new Port("Europa", "Portugal", "11", "name", facilityLocation);
-    Port port2 = new Port("Asia", "China", "22", "name", facilityLocation2);
+    Port port = new Port("Europa", "Portugal", "11", "name", facilityLocation,0);
+    Port port2 = new Port("Asia", "China", "22", "name", facilityLocation2,0);
     //CargoManifest
     CargoManifest cargoManifest = new CargoManifest("22", port, null);
     CargoManifest cargoManifest2 = new CargoManifest("33", port2, null);

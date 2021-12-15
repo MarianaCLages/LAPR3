@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
+//import lapr.project.data.DataBaseScripts.FacilityResourcesScript;
 import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
 import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
@@ -14,6 +15,7 @@ import lapr.project.utils.auth.domain.OrgRole;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -138,9 +140,9 @@ public class App {
         FacilityLocation facilityLocation2 = new FacilityLocation(4, 4);
 
         //Port
-        Port port1 = new Port("Ilha Das Cores2", "Europa", "11", "ola", facilityLocation1);
+        Port port1 = new Port("Ilha Das Cores2", "Europa", "11", "ola", facilityLocation1,0);
         company.getPortStore().add(port1);
-        Port port2 = new Port("Ilha Das Cores", "Asia", "11", "ola", facilityLocation2);
+        Port port2 = new Port("Ilha Das Cores", "Asia", "11", "ola", facilityLocation2,0);
         company.getPortStore().add(port2);
 
         //CargoManifest
@@ -190,6 +192,13 @@ public class App {
             System.out.println(f);
         } */
 
+/*
+        FacilityResourcesScript facilityResourcesScript = new FacilityResourcesScript();
+        try {
+            facilityResourcesScript.resources(databaseConnection,"8",10,2021);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
 
         return true;
     }
