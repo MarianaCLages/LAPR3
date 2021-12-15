@@ -15,8 +15,9 @@ import static org.mockito.Mockito.when;
 
 class ClosestPortControllerTest {
 
+
     @Test
-    void closestPort() {
+    void closestPortMock() {
 
         ClosestPortController closestPortController = mock(ClosestPortController.class);
 
@@ -25,6 +26,23 @@ class ClosestPortControllerTest {
         LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
 
         when(closestPortController.getNearestPortByCallSign("AA", date)).thenReturn(new PortDTO("1", "1", "1", "1", new FacilityLocation(1, 1)));
+
+    }
+
+    @Test
+    void closestPortMemory() {
+
+        ClosestPortController closestPortController = new ClosestPortController();
+
+        String sdate = "31/11/2020 23:16";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
+
+        try {
+            Assertions.assertNotNull(closestPortController.getNearestPortByCallSign("a", date));
+        } catch (Exception e) {
+
+        }
 
     }
 
