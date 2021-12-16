@@ -166,11 +166,11 @@ public class ShipStoreData implements Persistable {
 
                     double length = shipResultSet.getDouble("LENGTH");
                     double width = shipResultSet.getDouble("WIDTH");
-                    String capacity = shipResultSet.getString("CAPACITY");
+                    double capacity = shipResultSet.getDouble("CAPACITY");
                     double draft = shipResultSet.getDouble("DRAFT");
 
-                    Ship ship = new Ship(mmsi, shipName, imo, callSign, vesselType, length, width, draft, capacity, 'A');
-
+                    //Ship ship = new Ship(mmsi, shipName, imo, callSign, vesselType, length, width, draft, capacity, 'A');
+                    Ship ship = new Ship(mmsi,shipName,imo,1,1,callSign,vesselType,length,width,capacity,draft);
                     return ship;
 
                 } else return null;
