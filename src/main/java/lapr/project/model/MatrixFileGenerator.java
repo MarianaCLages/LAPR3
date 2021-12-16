@@ -36,6 +36,11 @@ public class MatrixFileGenerator {
             count--;
         }
 
+
+        for(CargoManifest cm : cargoManifestList) {
+            System.out.println(cm);
+        }
+
         for (CargoManifest cm : cargoManifestList) {
 
             countContainers = DataBaseUtils.countContainerByCargoManifest(cm.getIdentification(), this.databaseConnection);

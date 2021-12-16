@@ -130,7 +130,7 @@ public class DataBaseUtils {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
-                for (int i = 0; i < j; i++) {
+                for (int i = 1; i < j; i++) {
                     resultSet.next();
                 }
                 if (resultSet.next()) {
@@ -152,15 +152,15 @@ public class DataBaseUtils {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "Select count(*) COUNTCONTAINERS from CONTAINER c\n" +
-                "inner join  CargoManifestContainer cm\n" +
-                "where cm.CargoManifestId =" + id;
+        String sqlCommand = "Select count(*) COUNTCONTAINERS from CARGOMANIFESTCONTAINER cmc\n" +
+                "where cmc.CargoManifestId =" + id;
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return resultSet.getInt("COUNTCONTAINERS");
+                    int count = resultSet.getInt("COUNTCONTAINERS");
+                    return count;
                 } else {
                     return 0;
                 }
@@ -172,15 +172,14 @@ public class DataBaseUtils {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "Select *  from CONTAINER c\n" +
-                "inner join  CargoManifestContainer cm\n" +
-                "where cm.CargoManifestId =" + id;
+        String sqlCommand = "SELECT  cmc.CONTAINERID from CARGOMANIFESTCONTAINER cmc\n" +
+                "where cmc.CARGOMANIFESTID =" + id;
 
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
-                for (int i = 0; i < j; i++) {
+                for (int i = 1; i < j; i++) {
                     resultSet.next();
                 }
 
@@ -188,11 +187,7 @@ public class DataBaseUtils {
 
 
                     String identification = resultSet.getString("CONTAINERID");
-                    int payload = resultSet.getInt("PAYLOAD");
-                    int tare = resultSet.getInt("TARE");
-                    int gross = resultSet.getInt("GROSS");
-                    String isoCode = resultSet.getString("ISOCODE");
-                    return new Container(identification, payload, tare, gross, isoCode);
+                    return new Container(identification, 0, 0, 0, "iso");
                 }
             }
             return null;
