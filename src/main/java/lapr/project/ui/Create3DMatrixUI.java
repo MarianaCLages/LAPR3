@@ -3,6 +3,7 @@ package lapr.project.ui;
 import lapr.project.controller.Create3DMatrixController;
 import lapr.project.shared.exceptions.MatrixFileException;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Create3DMatrixUI implements Runnable {
@@ -27,7 +28,7 @@ public class Create3DMatrixUI implements Runnable {
 
         try {
             ctrl.createMatrix(shipMmsi);
-        } catch (MatrixFileException | SQLException e) {
+        } catch (MatrixFileException | SQLException | IOException e) {
             System.out.println(e.getMessage());
         }
     }
