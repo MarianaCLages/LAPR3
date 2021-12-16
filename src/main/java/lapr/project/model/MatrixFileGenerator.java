@@ -23,7 +23,7 @@ public class MatrixFileGenerator {
 
     public boolean generateMatrixFile(int mmsi) throws SQLException, MatrixFileException {
 
-        Ship s = DataBaseUtils.getShipByMmsi(mmsi, databaseConnection);
+        Ship ship = DataBaseUtils.getShipByMmsi(mmsi, databaseConnection);
         int count = DataBaseUtils.countCargoManifestByShip(mmsi, this.databaseConnection);
         int countContainers;
 
@@ -32,7 +32,7 @@ public class MatrixFileGenerator {
         }
 
         while (count != 0) {
-            cargoManifestList.add(DataBaseUtils.getCargoManifestByMmsi(mmsi, count, s, this.databaseConnection));
+            cargoManifestList.add(DataBaseUtils.getCargoManifestByMmsi(mmsi, count, ship, this.databaseConnection));
             count--;
         }
 
