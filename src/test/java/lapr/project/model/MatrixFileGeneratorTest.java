@@ -13,9 +13,10 @@ class MatrixFileGeneratorTest {
         MatrixFileGenerator matrixFileGenerator = new MatrixFileGenerator(App.getInstance().getDatabaseConnection());
 
         int mmsi = 257799000;
+        String id = "1";
 
         try {
-            matrixFileGenerator.generateMatrixFile(mmsi);
+            matrixFileGenerator.generateMatrixFile(id,mmsi);
         } catch (Exception e) {
 
         }

@@ -14,49 +14,34 @@ import java.util.List;
 public class MatrixFileGenerator {
 
     private final DatabaseConnection databaseConnection;
-    private final List<CargoManifest> cargoManifestList;
+
 
     public MatrixFileGenerator(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
-        this.cargoManifestList = new ArrayList<>();
+
     }
 
-    public boolean generateMatrixFile(int mmsi) throws SQLException, MatrixFileException, IOException {
+    public boolean generateMatrixFile(String id, int mmsi) throws SQLException, MatrixFileException, IOException {
 
-        Ship ship = DataBaseUtils.getShipByMmsi(mmsi, databaseConnection);
-        int count = DataBaseUtils.countCargoManifestByShip(mmsi, this.databaseConnection);
+        Ship s = DataBaseUtils.getShipByMmsi(mmsi,databaseConnection);
         int countContainers;
+        CargoManifest cm = DataBaseUtils.getACargoByID(id,s, databaseConnection);
 
-        if (count == 0) {
-            return false;
-        }
+        if(cm == null){return false;}
 
-        while (count != 0) {
-            cargoManifestList.add(DataBaseUtils.getCargoManifestByMmsi(mmsi, count, ship, this.databaseConnection));
-            count--;
-        }
+        s.getCargoManifestAVL().insert(cm);
 
 
+        countContainers = DataBaseUtils.countContainerByCargoManifest(cm.getIdentification(), this.databaseConnection);
 
-        for (CargoManifest cm : cargoManifestList) {
-
-            countContainers = DataBaseUtils.countContainerByCargoManifest(cm.getIdentification(), this.databaseConnection);
-
-            while (countContainers != 0) {
+        while (countContainers != 0) {
 
                 Container c = DataBaseUtils.getContainerByCargo(cm.getIdentification(), countContainers, this.databaseConnection);
                 cm.addContainersLoaded(c);
                 countContainers--;
-            }
-
         }
 
-       /* for (CargoManifest cm : cargoManifestList) {
-            for (Container container : cm.getLoaded().inOrder()) {
 
-                System.out.println(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
-
-            }}*/
 
 
         File myObj = new File("container.txt");
@@ -64,14 +49,12 @@ public class MatrixFileGenerator {
         try (FileWriter myWriter = new FileWriter(myObj)) {
 
 
+            for (Container container : cm.getLoaded().inOrder()) {
 
-                for (CargoManifest cargoManifest : cargoManifestList) {
-                    for (Container container : cargoManifest.getLoaded().inOrder()) {
+                myWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
 
-                        myWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
+            }
 
-                    }
-                }
 
             }
 

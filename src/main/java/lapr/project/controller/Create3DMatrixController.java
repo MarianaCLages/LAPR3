@@ -16,7 +16,7 @@ public class Create3DMatrixController {
         this.matrixFileGenerator = new MatrixFileGenerator(databaseConnection);
     }
 
-    public boolean createMatrix(int mmsi) throws MatrixFileException, SQLException, IOException {
-        return matrixFileGenerator.generateMatrixFile(mmsi);
+    public boolean createMatrix(String cargoId,int mmsi) throws MatrixFileException, SQLException, IOException {
+        return matrixFileGenerator.generateMatrixFile(cargoId,mmsi);
     }
 }

@@ -168,6 +168,30 @@ public class DataBaseUtils {
         }
     }
 
+    public static CargoManifest getACargoByID(String id,Ship s, DatabaseConnection databaseConnection) throws SQLException {
+
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "SELECT * from CargoManifest where CARGOMANIFESTID =" +id;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    String idCargo = resultSet.getString("CARGOMANIFESTID");
+
+                    return new CargoManifest(idCargo,null,s,true);
+                } else {
+                    return null;
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public static Container getContainerByCargo(String id, int j, DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
