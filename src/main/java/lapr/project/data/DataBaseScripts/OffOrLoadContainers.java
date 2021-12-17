@@ -187,9 +187,11 @@ public class OffOrLoadContainers {
 
         String c = null;
 
+        c = "Facility ID "+facilityId + ":\n";
+
         while (k != 0) {
             try {
-                c = getContainerByCargoManifest(facilityId, mmsi, count2, type);
+                c = c + getContainerByCargoManifest(facilityId, mmsi, count2, type);
             } catch (SQLException e) {
                 throw new ContainersInsideCargoManifestListSizeException();
             }
