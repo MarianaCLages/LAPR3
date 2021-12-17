@@ -1,8 +1,6 @@
 package lapr.project.shared.tree;
 
-import lapr.project.model.FacilityLocation;
-import lapr.project.model.Port;
-import lapr.project.model.Position;
+import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -19,17 +17,18 @@ class TwoDTreeTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date = LocalDateTime.from(formatter.parse(sdate));
     Position posgeral = new Position(20, 20, 0, 1, 1, date);
+    Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
     TwoDTree tdt = new TwoDTree();
 
     @Test
     void insert() {
         List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13),0);
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12),0);
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20),0);
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22),0);
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(20, 20),0);
+        Port port = new Port("11111", "a1", "a1", co1, new FacilityLocation(10, 13), 0);
+        Port port2 = new Port("22222", "a2", "a2", co1, new FacilityLocation(11, 12), 0);
+        Port port3 = new Port("33333", "a3", "a3", co1, new FacilityLocation(3, 20), 0);
+        Port port4 = new Port("33333", "a4", "a4", co1, new FacilityLocation(2, 22), 0);
+        Port port5 = new Port("33333", "a5", "a5", co1, new FacilityLocation(20, 20), 0);
 
         portList.add(port);
         portList.add(port2);
@@ -51,11 +50,11 @@ class TwoDTreeTest {
     void nearestNeighbor() {
         //Arrange
         List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13),0);
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12),0);
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20),0);
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22),0);
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(20, 20),0);
+        Port port = new Port("11111", "a1", "a1", co1, new FacilityLocation(10, 13), 0);
+        Port port2 = new Port("22222", "a2", "a2", co1, new FacilityLocation(11, 12), 0);
+        Port port3 = new Port("33333", "a3", "a3", co1, new FacilityLocation(3, 20), 0);
+        Port port4 = new Port("33333", "a4", "a4", co1, new FacilityLocation(2, 22), 0);
+        Port port5 = new Port("33333", "a5", "a5", co1, new FacilityLocation(20, 20), 0);
 
 
         Position posgeral = new Position(19, 19, 0, 1, 1, date);
@@ -80,11 +79,11 @@ class TwoDTreeTest {
 
         //Arrange
         List<Port> portList = new ArrayList<>();
-        Port port = new Port("11111", "a1", "a1", "a1", new FacilityLocation(10, 13),0);
-        Port port2 = new Port("22222", "a2", "a2", "a2", new FacilityLocation(11, 12),0);
-        Port port3 = new Port("33333", "a3", "a3", "a3", new FacilityLocation(3, 20),0);
-        Port port4 = new Port("33333", "a4", "a4", "a4", new FacilityLocation(2, 22),0);
-        Port port5 = new Port("33333", "a5", "a5", "a5", new FacilityLocation(10, 10),0);
+        Port port = new Port("11111", "a1", "a1", co1, new FacilityLocation(10, 13), 0);
+        Port port2 = new Port("22222", "a2", "a2", co1, new FacilityLocation(11, 12), 0);
+        Port port3 = new Port("33333", "a3", "a3", co1, new FacilityLocation(3, 20), 0);
+        Port port4 = new Port("33333", "a4", "a4", co1, new FacilityLocation(2, 22), 0);
+        Port port5 = new Port("33333", "a5", "a5", co1, new FacilityLocation(10, 10), 0);
 
         portList.add(port);
         portList.add(port2);
