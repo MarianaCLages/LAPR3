@@ -180,7 +180,7 @@ public class DataBaseUtils {
         }
     }
 
-    public static CargoManifest getACargoByID(String id, Ship s, DatabaseConnection databaseConnection) throws SQLException {
+    public static CargoManifest getCargoManifestByID(String id, Ship s, DatabaseConnection databaseConnection) throws SQLException {
 
 
         Connection connection = databaseConnection.getConnection();
