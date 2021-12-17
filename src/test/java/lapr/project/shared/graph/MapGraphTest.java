@@ -1,5 +1,6 @@
 package lapr.project.shared.graph;
 
+
 import lapr.project.shared.exceptions.NullVerticesException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,31 +11,34 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
- class MatrixGraphTest {
+/**
+ * @author DEI-ISEP
+ */
+class MapGraphTest {
 
     final ArrayList<String> co = new ArrayList<>(Arrays.asList("A", "A", "B", "C", "C", "D", "E", "E"));
     final ArrayList<String> cd = new ArrayList<>(Arrays.asList("B", "C", "D", "D", "E", "A", "D", "E"));
     final ArrayList<Integer> cw = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8));
 
     final ArrayList<String> ov = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E"));
-    MatrixGraph<String, Integer> instance = null;
+    MapGraph<String, Integer> instance = null;
 
     @BeforeEach
     public void initializeGraph() {
-        instance = new MatrixGraph<>(true);
+        instance = new MapGraph<>(true);
     }
 
     /**
      * Test of copy constructor of class Graph.
      */
     @Test
-     void testCopyConstructor() throws NullVerticesException {
+    void testCopyConstructor() throws NullVerticesException {
         System.out.println("Test copy constructor");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
 
-        Graph<String, Integer> g = new MatrixGraph<>(instance);
+        Graph<String, Integer> g = new MapGraph<>(instance);
         assertEquals(instance.getClass(), g.getClass(), "The graphs should be from the same class");
         assertEquals(instance, g, "The graphs should have equal contents");
     }
@@ -43,11 +47,11 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of isDirected method, of class Graph.
      */
     @Test
-     void testIsDirected() {
+    void testIsDirected() {
         System.out.println("Test isDirected");
 
         assertTrue(instance.isDirected(), "result should be true");
-        instance = new MatrixGraph<>(false);
+        instance = new MapGraph<>(false);
         assertFalse(instance.isDirected(), "result should be false");
     }
 
@@ -55,7 +59,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of numVertices method, of class Graph.
      */
     @Test
-     void testNumVertices() {
+    void testNumVertices() throws NullVerticesException {
         System.out.println("Test numVertices");
 
         assertEquals(0, instance.numVertices(), "result should be zero");
@@ -73,7 +77,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of vertices method, of class Graph.
      */
     @Test
-     void testVertices() {
+    void testVertices() throws NullVerticesException {
         System.out.println("Test vertices");
 
         assertEquals(0, instance.vertices().size(), "vertices should be empty");
@@ -102,7 +106,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of validVertex method, of class Graph.
      */
     @Test
-     void testValidVertex() {
+    void testValidVertex() throws NullVerticesException {
         System.out.println("Test validVertex");
 
         for (int i = 0; i < co.size(); i++)
@@ -119,7 +123,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of key method, of class Graph.
      */
     @Test
-     void testKey() {
+    void testKey() throws NullVerticesException {
         System.out.println("Test key");
 
         for (int i = 0; i < co.size(); i++)
@@ -135,7 +139,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of testAdjVertices method, of class Graph.
      */
     @Test
-     void testAdjVertices() {
+    void testAdjVertices() throws NullVerticesException {
         System.out.println("Test adjVertices");
 
         for (int i = 0; i < co.size(); i++)
@@ -161,7 +165,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of numEdges method, of class Graph.
      */
     @Test
-     void testNumEdges() {
+    void testNumEdges() throws NullVerticesException {
         System.out.println("Test numEdges");
 
         assertEquals(0, instance.numEdges(), "result should be zero");
@@ -183,7 +187,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of edges method, of class Graph.
      */
     @Test
-     void testEdges() {
+    void testEdges() throws NullVerticesException {
         System.out.println("Test Edges");
 
         assertEquals(0, instance.edges().size(), "edges should be empty");
@@ -231,7 +235,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of getEdge method, of class Graph.
      */
     @Test
-     void testGetEdge() {
+    void testGetEdge() throws NullVerticesException {
         System.out.println("Test getEdge");
 
         for (int i = 0; i < co.size(); i++)
@@ -250,7 +254,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of getEdge by key method, of class Graph.
      */
     @Test
-     void testGetEdgeByKey() {
+    void testGetEdgeByKey() throws NullVerticesException {
         System.out.println("Test getEdge");
 
         for (int i = 0; i < co.size(); i++)
@@ -270,7 +274,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of outDegree method, of class Graph.
      */
     @Test
-     void testOutDegree() {
+    void testOutDegree() throws NullVerticesException {
         System.out.println("Test outDegree");
 
         for (int i = 0; i < co.size(); i++)
@@ -286,7 +290,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of inDegree method, of class Graph.
      */
     @Test
-     void testInDegree() {
+    void testInDegree() throws NullVerticesException {
         System.out.println("Test inDegree");
 
         for (int i = 0; i < co.size(); i++)
@@ -302,7 +306,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of outgoingEdges method, of class Graph.
      */
     @Test
-     void testOutgoingEdges() {
+    void testOutgoingEdges() throws NullVerticesException {
         System.out.println(" Test outgoingEdges");
 
         for (int i = 0; i < co.size(); i++)
@@ -335,7 +339,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of incomingEdges method, of class Graph.
      */
     @Test
-     void testIncomingEdges() {
+    void testIncomingEdges() throws NullVerticesException {
         System.out.println(" Test incomingEdges");
 
         for (int i = 0; i < co.size(); i++)
@@ -369,7 +373,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of removeVertex method, of class Graph.
      */
     @Test
-    public void testRemoveVertex() {
+    void testRemoveVertex() throws NullVerticesException {
         System.out.println("Test removeVertex");
 
         for (int i = 0; i < co.size(); i++)
@@ -399,7 +403,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of removeEdge method, of class Graph.
      */
     @Test
-    public void testRemoveEdge() {
+    void testRemoveEdge() throws NullVerticesException {
         System.out.println("Test removeEdge");
 
         assertEquals(0, instance.numEdges(), "Num edges should be 0");
@@ -427,7 +431,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of toString method, of class Graph.
      */
     @Test
-    public void testClone() throws NullVerticesException {
+    void testClone() throws NullVerticesException {
         System.out.println("Test Clone");
 
         for (int i = 0; i < co.size(); i++)
@@ -455,13 +459,13 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-    public void testEquals() {
+    void testEquals() throws NullVerticesException {
         System.out.println("Test Equals");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
 
-        MatrixGraph<String, Integer> otherInst = new MatrixGraph<>(true);
+        MapGraph<String, Integer> otherInst = new MapGraph<>(true);
         for (int i = 0; i < co.size(); i++)
             otherInst.addEdge(co.get(i), cd.get(i), cw.get(i));
 
@@ -485,8 +489,8 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-    public void testUnDirectedGraph() {
-        instance = new MatrixGraph<>(false);
+    void testUnDirectedGraph() throws NullVerticesException {
+        instance = new MapGraph<>(false);
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -515,6 +519,5 @@ import static org.junit.jupiter.api.Assertions.*;
             assertEquals(cw.get(i), ecu.getWeight());
         }
     }
-
 }
 

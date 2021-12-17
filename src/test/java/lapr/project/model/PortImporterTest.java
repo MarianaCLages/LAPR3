@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+/*
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.PortStoreData;
 import lapr.project.model.stores.PortStore;
@@ -16,8 +17,10 @@ import java.nio.file.Path;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+*/
 
 class PortImporterTest {
+/*
     @TempDir
     static Path tempDir;
     static Path tempFile;
@@ -68,5 +71,6 @@ class PortImporterTest {
         PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
         Assertions.assertEquals(string, store.getPortList().toString());
     }
+*/
 
 }

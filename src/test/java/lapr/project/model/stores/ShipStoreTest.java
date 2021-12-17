@@ -53,8 +53,9 @@ class ShipStoreTest {
         }
 
         Container containerReal = new Container("20BD", 1000, 1000, 100, "20RF", false, false);
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
+        Port port = new Port("29002", "Liverpool", "Europe", co1, new FacilityLocation(53.46666667, -3.033333333), 0);
 
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
@@ -747,13 +748,14 @@ class ShipStoreTest {
         } catch (ParseException e) {
 
         }
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
+        Port port = new Port("29002", "Liverpool", "Europe", co1, new FacilityLocation(53.46666667, -3.033333333), 0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
-        Ship ship1 = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B',cargoManifest);
-        Ship ship2 = new Ship(228339600, "CMA CGM ALMAVIVA", "IMO9450648", "FLSU", "70", 334, 42, 15, "79", 'B',cargoManifest);
+        Ship ship1 = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B', cargoManifest);
+        Ship ship2 = new Ship(228339600, "CMA CGM ALMAVIVA", "IMO9450648", "FLSU", "70", 334, 42, 15, "79", 'B', cargoManifest);
         shipstore.addShip(ship1);
         shipstore.addShip(ship2);
         ship1.insertPosition(ship1.createPosition(LocalDateTime.parse("31-12-2020 23:16", formatter), 0, 0, 0, 0, 1));
@@ -763,8 +765,8 @@ class ShipStoreTest {
         ship2.insertPosition(ship2.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 15, 0, 0, 0, 1));
         ship2.insertPosition(ship2.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 25.0001, 0, 0, 0, 1));
 
-        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B',cargoManifest);
-        Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B',cargoManifest);
+        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B', cargoManifest);
+        Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B', cargoManifest);
 
         ship3.insertPosition(ship3.createPosition(LocalDateTime.parse("03-01-2021 01:16", formatter), 50, 0, 0, 0, 1));
         ship3.insertPosition(ship3.createPosition(LocalDateTime.parse("04-01-2021 01:16", formatter), 15.645, 0, 0, 0, 1));
@@ -772,8 +774,8 @@ class ShipStoreTest {
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:16", formatter), 50, 0, 0, 0, 1));
         ship4.insertPosition(ship4.createPosition(LocalDateTime.parse("02-01-2021 01:26", formatter), 15.6456, 0, 0, 0, 1));
 
-        Ship ship5 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B',cargoManifest);
-        Ship ship6 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B',cargoManifest);
+        Ship ship5 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B', cargoManifest);
+        Ship ship6 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B', cargoManifest);
 
         ship5.insertPosition(ship5.createPosition(LocalDateTime.parse("03-01-2021 01:16", formatter), 0, 0, 0, 0, 1));
         ship5.insertPosition(ship5.createPosition(LocalDateTime.parse("04-01-2021 01:16", formatter), 15, 0, 0, 0, 1));
@@ -813,13 +815,14 @@ class ShipStoreTest {
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
-        Port port = new Port("29002", "Liverpool", "Europe", "United Kingdom", new FacilityLocation(53.46666667, -3.033333333),0);
+        Port port = new Port("29002", "Liverpool", "Europe", co1, new FacilityLocation(53.46666667, -3.033333333), 0);
 
         CargoManifest cargoManifest = new CargoManifest("1Ab", port, date);
 
-        Ship ship1 = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B',cargoManifest);
-        Ship ship2 = new Ship(228339600, "CMA CGM ALMAVIVA", "IMO9450648", "FLSU", "70", 334, 42, 15, "79", 'B',cargoManifest);
+        Ship ship1 = new Ship(210950000, "VARAMO", "IMO9395044", "C4SQ2", "70", 166, 25, 9.5, "NA", 'B', cargoManifest);
+        Ship ship2 = new Ship(228339600, "CMA CGM ALMAVIVA", "IMO9450648", "FLSU", "70", 334, 42, 15, "79", 'B', cargoManifest);
         ship1.insertPosition(ship1.createPosition(LocalDateTime.parse("31-12-2020 23:16", formatter), 0, 0, 0, 0, 1));
         ship1.insertPosition(ship1.createPosition(LocalDateTime.parse("01-01-2021 00:16", formatter), 25, 0, 0, 0, 1));
 
@@ -830,8 +833,8 @@ class ShipStoreTest {
         shipstore.addShip(ship1);
         shipstore.addShip(ship2);
 
-        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B',cargoManifest);
-        Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B',cargoManifest);
+        Ship ship3 = new Ship(256888000, "CMA CGM MELISANDE", "IMO9473028", "9HA2954", "70", 334, 42, 14.7, "70", 'B', cargoManifest);
+        Ship ship4 = new Ship(257881000, "SPAR ARIES", "IMO9701920", "LATO7", "70", 199, 32, 13.3, "NA", 'B', cargoManifest);
 
         ship3.insertPosition(ship3.createPosition(LocalDateTime.parse("03-01-2021 01:16", formatter), 50, 0, 0, 0, 1));
         ship3.insertPosition(ship3.createPosition(LocalDateTime.parse("04-01-2021 01:16", formatter), 15.645, 0, 0, 0, 1));

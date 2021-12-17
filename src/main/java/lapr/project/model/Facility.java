@@ -6,7 +6,7 @@ public class Facility implements Vertex {
     private String identification;
     private String name;
     private String continent;
-    private String country;
+    private Country country;
     private FacilityLocation location;
     private int capacity;
 
@@ -19,7 +19,7 @@ public class Facility implements Vertex {
      * @param country        the facility's country
      * @param location       the facility's location
      */
-    public Facility(String identification, String name, String continent, String country, FacilityLocation location,int capacity) {
+    public Facility(String identification, String name, String continent, Country country, FacilityLocation location, int capacity) {
         this.identification = identification;
         this.name = name;
         this.continent = continent;
@@ -92,7 +92,7 @@ public class Facility implements Vertex {
      * @return the facility's country
      */
     public String getCountry() {
-        return country;
+        return country.toString();
     }
 
     /**
@@ -100,11 +100,14 @@ public class Facility implements Vertex {
      *
      * @param country the facility's country
      */
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
-    public int getCapacity(){return capacity;}
+    public int getCapacity() {
+        return capacity;
+    }
+
     /**
      * Gets the facility's location.
      *

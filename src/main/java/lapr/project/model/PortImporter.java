@@ -1,7 +1,6 @@
 package lapr.project.model;
 
 import lapr.project.data.DatabaseConnection;
-import lapr.project.data.PortStoreData;
 import lapr.project.model.stores.PortStore;
 
 import java.io.File;
@@ -13,15 +12,18 @@ public class PortImporter {
         //Empty constructor
     }
 
-    /**
+/*
+    */
+/**
      * Imports the ports from a file.
      *
      * @param path      the path of the file
      * @param portStore the port store
      * @return true if it imports the file, false if it doesn't
      * @throws FileNotFoundException
-     */
-    public static boolean importPorts(File path, PortStore portStore, PortStoreData portStoreData, DatabaseConnection dbConnection) throws FileNotFoundException {
+     *//*
+
+    public static boolean importPorts(File path, PortStore portStore, PortS portStoreData, DatabaseConnection dbConnection) throws FileNotFoundException {
         boolean returnValue = false;
         Scanner sc = new Scanner(new File(String.valueOf(path)));
         sc.nextLine();
@@ -39,5 +41,6 @@ public class PortImporter {
 
         return returnValue;
     }
+*/
 
 }

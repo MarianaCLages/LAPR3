@@ -1,9 +1,6 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.FacilityLocation;
-import lapr.project.model.Port;
-import lapr.project.model.Position;
-import lapr.project.model.Ship;
+import lapr.project.model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +11,10 @@ class PortStoreTest {
 
     @Test
     void addPortTest() {
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+
         PortStore portStore = new PortStore();
-        Assertions.assertTrue(portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0)));
+        Assertions.assertTrue(portStore.add(new Port("1sda", "Leixões", "Europe", co1, new FacilityLocation(66, 87), 0)));
     }
 
     @Test
@@ -32,15 +31,19 @@ class PortStoreTest {
 
     @Test
     void fillTreeNotEmpty() {
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
+        portStore.add(new Port("1sda", "Leixões", "Europe", co1, new FacilityLocation(66, 87), 0));
         Assertions.assertTrue(portStore.fillTree());
     }
 
     @Test
     void fillTreeGetTree() {
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+
+        portStore.add(new Port("1sda", "Leixões", "Europe", co1, new FacilityLocation(66, 87), 0));
         portStore.fillTree();
         Assertions.assertNotNull(portStore.getPortList());
     }
@@ -60,9 +63,10 @@ class PortStoreTest {
         shipgeral.getPosDate().addPosition(posgeral);
 
         LocalDateTime localDateTime = posgeral.getDate();
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
         PortStore portStore = new PortStore();
-        portStore.add(new Port("1sda", "Leixões", "Europe", "Portugal", new FacilityLocation(66, 87),0));
+        portStore.add(new Port("1sda", "Leixões", "Europe", co1, new FacilityLocation(66, 87), 0));
         portStore.fillTree();
 
 

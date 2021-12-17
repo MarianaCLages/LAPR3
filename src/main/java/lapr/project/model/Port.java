@@ -1,4 +1,5 @@
 package lapr.project.model;
+
 public class Port extends Facility {
 
     /**
@@ -10,12 +11,13 @@ public class Port extends Facility {
      * @param country        the port's country
      * @param location       the port's location
      */
-    public Port(String identification, String name, String continent, String country, FacilityLocation location,int capacity) {
-        super(identification, name, continent, country, location,capacity);
+    public Port(String identification, String name, String continent, Country country, FacilityLocation location, int capacity) {
+        super(identification, name, continent, country, location, capacity);
     }
 
     /**
      * Returns the textual description of the facility in the format: identification, name, continent, country, location.
+     *
      * @return the port's characteristics
      */
     @Override

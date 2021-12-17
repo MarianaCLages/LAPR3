@@ -19,28 +19,21 @@ public class ShipTest {
 
     String sdate = "29-12-2020 00:16";
     LocalDateTime date = LocalDateTime.parse(sdate, formatter);
-
-    String sdate2 = "31-12-2020 23:50";
-    LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
-
-    String sdate3 = "31-12-2020 23:16";
-    LocalDateTime date3 = LocalDateTime.parse(sdate, formatter);
-
-    String sdate4 = "31-12-2020 00:17";
-    LocalDateTime date4 = LocalDateTime.parse(sdate, formatter);
-
-    String sdate5 = "31-12-2020 00:00";
-    LocalDateTime date5 = LocalDateTime.parse(sdate, formatter);
-
-    String sdate6 = "31-12-2020 00:00";
-    LocalDateTime date6 = LocalDateTime.parse(sdate, formatter);
-
     //Position
     Position posgeral = new Position(0, 0, 0, 0, 1, date);
+    String sdate2 = "31-12-2020 23:50";
+    LocalDateTime date2 = LocalDateTime.parse(sdate2, formatter);
     Position posgeral2 = new Position(10, 20, 30, 20, 10, date2);
+    String sdate3 = "31-12-2020 23:16";
+    LocalDateTime date3 = LocalDateTime.parse(sdate, formatter);
     Position posgeral3 = new Position(20, 30, 40, 20, 10, date3);
     Position posgeral4 = new Position(20, 30, 40, 20, 10, date3);
-
+    String sdate4 = "31-12-2020 00:17";
+    LocalDateTime date4 = LocalDateTime.parse(sdate, formatter);
+    String sdate5 = "31-12-2020 00:00";
+    LocalDateTime date5 = LocalDateTime.parse(sdate, formatter);
+    String sdate6 = "31-12-2020 00:00";
+    LocalDateTime date6 = LocalDateTime.parse(sdate, formatter);
     //Container
     Container container = new Container("111", 11, 1, 1, "11", true, false);
     Container container2 = new Container("222", 22, 2, 2, "22", true, false);
@@ -49,10 +42,11 @@ public class ShipTest {
     FacilityLocation facilityLocation = new FacilityLocation(11, 11);
     FacilityLocation facilityLocation2 = new FacilityLocation(8, 8);
     //Port
-    Port port = new Port("Europa", "Portugal", "11", "name", facilityLocation,0);
-    Port port2 = new Port("Asia", "China", "22", "name", facilityLocation2,0);
+    Country c1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+    Port port = new Port("Europa", "Portugal", "11", c1, facilityLocation, 0);
     //CargoManifest
     CargoManifest cargoManifest = new CargoManifest("22", port, null);
+    Port port2 = new Port("Asia", "China", "22", c1, facilityLocation2, 0);
     CargoManifest cargoManifest2 = new CargoManifest("33", port2, null);
 
 
@@ -1268,16 +1262,16 @@ public class ShipTest {
     }
 
     @Test
-    void giveCargoOffLoadedSign(){
+    void giveCargoOffLoadedSign() {
 
-        if(shipgeral.giveCargoOffLoadedSign(port)) fail();
+        if (shipgeral.giveCargoOffLoadedSign(port)) fail();
 
     }
 
     @Test
-    void giveCargoLoadedSign(){
+    void giveCargoLoadedSign() {
 
-        if(shipgeral.giveCargoLoadedSign(port)) fail();
+        if (shipgeral.giveCargoLoadedSign(port)) fail();
 
     }
 
@@ -1289,7 +1283,7 @@ public class ShipTest {
         boolean actual = shipgeral.addLoadedContainer(container, port);
         boolean actual2 = shipgeral.addLoadedContainer(container, port2);
         //Assert
-        if(cargoManifest.getLoaded().isEmpty()) fail();
+        if (cargoManifest.getLoaded().isEmpty()) fail();
     }
 
     @Test
@@ -1300,11 +1294,11 @@ public class ShipTest {
         boolean actual = shipgeral.addOffLoadedContainer(container, port);
         boolean actual2 = shipgeral.addOffLoadedContainer(container, port2);
         //Assert
-        if(cargoManifest.getOffloaded().isEmpty()) fail();
+        if (cargoManifest.getOffloaded().isEmpty()) fail();
     }
 
     @Test
-    void shipSetData(){
+    void shipSetData() {
 
         shipgeral.getPosDate().addPosition(posgeral2);
         shipgeral.getPosDate().addPosition(posgeral);
@@ -1313,8 +1307,8 @@ public class ShipTest {
 
         shipgeral.setShipData();
 
-        if(shipgeral.getBiggestPosition() == null) fail();
-        else if(shipgeral.getSmallestPosition() == null) fail();
+        if (shipgeral.getBiggestPosition() == null) fail();
+        else if (shipgeral.getSmallestPosition() == null) fail();
 
         shipgeral.getCargoManifestAVL();
 

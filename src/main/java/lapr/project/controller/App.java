@@ -1,9 +1,6 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
-//import lapr.project.data.DataBaseScripts.FacilityResourcesScript;
-import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
-import lapr.project.data.DataBaseScripts.OccupancyRateOfAGivenShip;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
@@ -11,11 +8,9 @@ import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -51,11 +46,18 @@ public class App {
 
     }
 
+    public static App getInstance() {
+        if (singleton == null) {
+            synchronized (App.class) {
+                singleton = new App();
+            }
+        }
+        return singleton;
+    }
 
     public Company getCompany() {
         return this.company;
     }
-
 
     public Properties getProperties() {
         Properties props = new Properties();
@@ -64,21 +66,12 @@ public class App {
         props.setProperty(Constants.PARAMS_COMPANY_DESIGNATION, "CargoShipping");
 
         // Read configured values.
-        try(InputStream in = new FileInputStream(Constants.PARAMS_FILENAME)) {
+        try (InputStream in = new FileInputStream(Constants.PARAMS_FILENAME)) {
             props.load(in);
         } catch (IOException ex) {
 
         }
         return props;
-    }
-
-    public static App getInstance() {
-        if (singleton == null) {
-            synchronized (App.class) {
-                singleton = new App();
-            }
-        }
-        return singleton;
     }
 
     public UserSession getCurrentUserSession() {
@@ -146,9 +139,10 @@ public class App {
         FacilityLocation facilityLocation2 = new FacilityLocation(4, 4);
 
         //Port
-        Port port1 = new Port("Ilha Das Cores2", "Europa", "11", "ola", facilityLocation1,0);
+        Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+        Port port1 = new Port("Ilha Das Cores2", "Europa", "11", co1, facilityLocation1, 0);
         company.getPortStore().add(port1);
-        Port port2 = new Port("Ilha Das Cores", "Asia", "11", "ola", facilityLocation2,0);
+        Port port2 = new Port("Ilha Das Cores", "Asia", "11", co1, facilityLocation2, 0);
         company.getPortStore().add(port2);
 
         //CargoManifest

@@ -1,3 +1,4 @@
+/*
 package lapr.project.data;
 
 import lapr.project.data.Utils.DataBaseUtils;
@@ -56,7 +57,7 @@ public class PortStoreData implements Persistable {
                     try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         try (ResultSet resultSetCountry = getCountryPreparedStatement.executeQuery()) {
 
-                            char stringToChar[] = port.getCountry().toCharArray();
+                            char stringToChar[] = port.getCountry().g;
 
                             String alpha2Code = Character.toString(stringToChar[0]) + Character.toString(stringToChar[1]);
                             String alpha3Code = alpha2Code + Character.toString(stringToChar[2]);
@@ -197,3 +198,4 @@ public class PortStoreData implements Persistable {
     }
 
 }
+*/

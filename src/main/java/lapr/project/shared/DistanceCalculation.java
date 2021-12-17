@@ -59,7 +59,6 @@ public class DistanceCalculation {
         while (!initiald.after(finald)) {
 
 
-
             while (posIterator.hasNext()) {
 
                 Position pos = posIterator.next();
@@ -78,12 +77,10 @@ public class DistanceCalculation {
         }
         //out of the loop
 
-
         int count = 0;
         Position[] posA = new Position[2];
 
         for (Position pos : positionList) {
-
 
             posA[count] = pos;
             count++;
@@ -96,41 +93,8 @@ public class DistanceCalculation {
                 posA[count] = pos;
                 count++;
             }
-
-
         }
         return d;
     }
 
-  /* public static double traveledDistance(Ship ship) {
-
-        Iterable<Position> allPos = ship.getBinaryTreePosition().inOrder();
-        Iterator<Position> iteratorPos = allPos.iterator();
-
-        double d = 0;
-        int count = 0;
-        Position posA[] = new Position[2];
-
-
-        while (iteratorPos.hasNext()) {
-
-
-            posA[count] = iteratorPos.next();
-
-            count++;
-
-            if (count == 2 && posA[0] != null && posA[1] != null) {
-
-                d = d + distanceTo(posA[0], posA[1]);
-
-                count = 0;
-                posA[count] = posA[1];
-                count++;
-            }
-
-
-        }
-        return d;
-
-    }*/
 }

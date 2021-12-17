@@ -18,9 +18,10 @@ class LoadedShipsControllerTest {
 
     ContainerPosition containerPosition = new ContainerPosition(1, 1, 1);
     Container container = new Container("01", 1, 1, 1, "11", false, false);
+    Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
     FacilityLocation facilityLocation = new FacilityLocation(2, 2);
-    Port port = new Port("Asia", "Japan", "11", "port", facilityLocation,0);
+    Port port = new Port("Asia", "Japan", "11", co1, facilityLocation, 0);
 
     CargoManifest cargoManifest = new CargoManifest("11", port, null);
 

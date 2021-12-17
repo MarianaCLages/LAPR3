@@ -1,8 +1,6 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.CargoManifest;
-import lapr.project.model.FacilityLocation;
-import lapr.project.model.Port;
+import lapr.project.model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +13,9 @@ class CargoManifestStoreTest {
     CargoManifestStore cargoManifestStore2 = new CargoManifestStore();
 
     FacilityLocation f1 = new FacilityLocation(11, 11);
-    Port p1 = new Port("a", "a", "1", "a", f1,0);
+    Country co1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
+
+    Port p1 = new Port("a", "a", "1", co1, f1, 0);
     CargoManifest cargo1 = new CargoManifest("11", p1, null);
 
     @Test
@@ -24,7 +24,7 @@ class CargoManifestStoreTest {
         //Arrange
         //Act
         cargoManifestStore.add(cargo1);
-        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}, date=null}";
+        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='United Kingdom', location=latitude = 11.0, longitude = 11.0}, date=null}";
         //Assert
         assertEquals(expected, cargoManifestStore.toString());
     }
@@ -35,7 +35,7 @@ class CargoManifestStoreTest {
         //Arrange
         cargoManifestStore.add(cargo1);
         //Act
-        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='a', location=latitude = 11.0, longitude = 11.0}, date=null}\n";
+        String expected = "CargoManifest{identification='11', port=Facility{identification='a', name='a', continent='1', country='United Kingdom', location=latitude = 11.0, longitude = 11.0}, date=null}\n";
 
         //Assert
         assertEquals(expected, cargoManifestStore.getCargoManifestByAVL().toString());

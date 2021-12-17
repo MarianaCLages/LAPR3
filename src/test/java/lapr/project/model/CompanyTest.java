@@ -3,7 +3,6 @@ package lapr.project.model;
 
 import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.ContainerStoreData;
-import lapr.project.data.PortStoreData;
 import lapr.project.data.ShipStoreData;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
@@ -63,6 +62,7 @@ class CompanyTest {
 
     }
 
+/*
     @Test
     void getPortStoreData() {
 
@@ -71,6 +71,7 @@ class CompanyTest {
         if(portStoreData ==null) fail();
 
     }
+*/
 
     @Test
     void getCargoManifestPortStore() {

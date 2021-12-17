@@ -1,7 +1,6 @@
 package lapr.project.data.Utils;
 
 import lapr.project.controller.App;
-import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipStoreData;
 import lapr.project.model.*;
@@ -10,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class DataBaseUtils {
 
@@ -21,7 +22,19 @@ public class DataBaseUtils {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "SELECT * FROM FACILITY WHERE FACILITYID = '" + facilityID + "'";
+        String sqlCommand = "SELECT FACILITYID,\n" +
+                "       LONGITUDE,\n" +
+                "       LATITUDE,\n" +
+                "       CAPACITY,\n" +
+                "       CONTINENT,\n" +
+                "       C2.ALPHA2CODE,\n" +
+                "       C2.ALPHA3CODE,\n" +
+                "       C2.NAME,\n" +
+                "       CAPITAL,\n" +
+                "       POPULATION\n" +
+                "FROM FACILITY\n" +
+                "         inner join COUNTRY C2 on FACILITY.ALPHA2CODE = C2.ALPHA2CODE\n" +
+                "WHERE FACILITYID = '" + facilityID + "'";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -32,15 +45,14 @@ public class DataBaseUtils {
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
-                    String country = resultSet.getString("ALPHA3CODE");
-
+                    Country country = new Country(resultSet.getString("NAME"), resultSet.getString("ALPHA2CODE").toCharArray(), resultSet.getString("ALPHA3CODE").toCharArray(), resultSet.getDouble("POPULATION"), Continent.valueOfName(resultSet.getString("CONTINENT")));
                     double longitude = resultSet.getDouble("LONGITUDE");
                     double latitude = resultSet.getDouble("LATITUDE");
 
                     if (latitude < -90) latitude += 90;
                     if (longitude < -180) longitude += 180;
 
-                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude),0);
+                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude), 0);
 
                 } else return null;
 
@@ -168,12 +180,12 @@ public class DataBaseUtils {
         }
     }
 
-    public static CargoManifest getACargoByID(String id,Ship s, DatabaseConnection databaseConnection) throws SQLException {
+    public static CargoManifest getACargoByID(String id, Ship s, DatabaseConnection databaseConnection) throws SQLException {
 
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "SELECT * from CargoManifest where CARGOMANIFESTID =" +id;
+        String sqlCommand = "SELECT * from CargoManifest where CARGOMANIFESTID =" + id;
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -181,7 +193,7 @@ public class DataBaseUtils {
                 if (resultSet.next()) {
                     String idCargo = resultSet.getString("CARGOMANIFESTID");
 
-                    return new CargoManifest(idCargo,null,s,true);
+                    return new CargoManifest(idCargo, null, s, true);
                 } else {
                     return null;
                 }
@@ -222,5 +234,64 @@ public class DataBaseUtils {
         return (Ship) shipStoreData.getElement(databaseConnection, mmsi);
     }
 
+    public static Map<City, LinkedList<City>> getBorders(DatabaseConnection databaseConnection) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+        HashMap<City, LinkedList<City>> borders = new HashMap<>();
+        String sqlCommand = "Select * from BORDER";
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+                resultSet.next();
+                do {
+                    sqlCommand = "Select c2.ALPHA3CODE,\n" +
+                            "       C2.ALPHA2CODE,\n" +
+                            "       C2.NAME,\n" +
+                            "       C2.CONTINENT,\n" +
+                            "       C2.POPULATION,\n" +
+                            "       C3.NAME,\n" +
+                            "       C3.LONGITUDE,\n" +
+                            "       C3.LONGITUDE\n" +
+                            "from COUNTRY C2\n" +
+                            "         inner join CITY C3 on C2.ALPHA2CODE = C3.COUNTRYALPHA2CODE and C2.ALPHA3CODE = C3.COUNTRYALPHA3CODE\n" +
+                            "where C2.ALPHA3CODE like '" + resultSet.getString(2) + "'";
+                    try (PreparedStatement getPrepared1Statement = connection.prepareStatement(sqlCommand)) {
+                        try (ResultSet resultSet1 = getPrepared1Statement.executeQuery()) {
+                            resultSet1.next();
+                            Country country = new Country(resultSet1.getString(3), resultSet1.getString(1).toCharArray(), resultSet1.getString(2).toCharArray(), resultSet1.getDouble(5), Continent.valueOfName(resultSet1.getString(4)));
+                            City capital = new City(resultSet1.getString(6), resultSet1.getDouble(7), resultSet1.getDouble(8), country);
+                            if (!borders.containsKey(capital)) {
+                                borders.put(capital, new LinkedList<>());
+                            }
+                            sqlCommand = "Select c2.ALPHA3CODE,\n" +
+                                    "       C2.ALPHA2CODE,\n" +
+                                    "       C2.NAME,\n" +
+                                    "       C2.CONTINENT,\n" +
+                                    "       C2.POPULATION,\n" +
+                                    "       C3.NAME,\n" +
+                                    "       C3.LONGITUDE,\n" +
+                                    "       C3.LONGITUDE\n" +
+                                    "from COUNTRY C2\n" +
+                                    "         inner join CITY C3 on C2.ALPHA2CODE = C3.COUNTRYALPHA2CODE and C2.ALPHA3CODE = C3.COUNTRYALPHA3CODE\n" +
+                                    "where C2.ALPHA3CODE like '" + resultSet.getString(4) + "'";
+                            try (PreparedStatement getPrepared2Statement = connection.prepareStatement(sqlCommand)) {
+                                try (ResultSet resultSet2 = getPrepared2Statement.executeQuery()) {
+                                    resultSet2.next();
+                                    Country country1 = new Country(resultSet2.getString(3), resultSet2.getString(1).toCharArray(), resultSet2.getString(2).toCharArray(), resultSet2.getDouble(5), Continent.valueOfName(resultSet2.getString(4)));
+                                    City capital1 = new City(resultSet2.getString(6), resultSet2.getDouble(7), resultSet2.getDouble(8), country1);
+                                    borders.get(capital).add(capital1);
+                                }
+                            }
+                        }
+                    }
+
+
+                } while (resultSet.next());
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return Collections.emptyMap();
+        }
+        return borders;
+
+    }
 }
 

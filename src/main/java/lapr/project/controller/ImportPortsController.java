@@ -1,19 +1,16 @@
 package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
-import lapr.project.data.PortStoreData;
 import lapr.project.model.Company;
-import lapr.project.model.PortImporter;
 import lapr.project.model.stores.PortStore;
 import lapr.project.shared.exceptions.InvalidLineException;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class ImportPortsController {
 
     private final PortStore store;
-    private final PortStoreData portStoreData;
+    //    private final PortStoreData portStoreData;
     private final DatabaseConnection dbConnection;
 
     /**
@@ -23,7 +20,7 @@ public class ImportPortsController {
         this.dbConnection = App.getInstance().getDatabaseConnection();
         Company company = App.getInstance().getCompany();
         this.store = company.getPortStore();
-        this.portStoreData = company.getPortStoreData();
+//        this.portStoreData = company.getPortStoreData();
     }
 
     /**
@@ -38,8 +35,8 @@ public class ImportPortsController {
     public boolean importPorts(String fileName) throws FileNotFoundException {
         boolean returnValue;
 
-        returnValue = PortImporter.importPorts(new File(fileName), store, portStoreData,dbConnection);
-
+        // returnValue = PortImporter.importPorts(new File(fileName), store, portStoreData,dbConnection);
+        returnValue = true;
         return returnValue;
     }
 }

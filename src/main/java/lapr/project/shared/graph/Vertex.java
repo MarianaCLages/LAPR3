@@ -6,4 +6,6 @@ public interface Vertex extends Comparable<Vertex> {
     double getLongitude();
 
     double getLatitude();
+
+    String getCountry();
 }
