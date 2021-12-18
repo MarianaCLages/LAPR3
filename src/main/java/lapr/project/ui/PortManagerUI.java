@@ -11,6 +11,7 @@ public class PortManagerUI implements Runnable {
 
         //SPRINT 2
         options.add(new MenuItem("Import ports from a file", new ImportPortsUI()));
+        options.add(new MenuItem("Occupation of the existing resources during a month",new FacilityResourcesUI()));
 
 
         int option;
