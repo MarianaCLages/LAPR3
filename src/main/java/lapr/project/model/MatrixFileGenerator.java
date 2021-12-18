@@ -16,11 +16,16 @@ public class MatrixFileGenerator {
         this.databaseConnection = databaseConnection;
     }
 
-    public boolean generateMatrixFile(String id, int mmsi) throws SQLException, IOException {
+    public boolean generateMatrixFile(String cargoManifestId) throws SQLException, IOException {
 
-        Ship ship = DataBaseUtils.getShipByMmsi(mmsi, databaseConnection);
+        Ship ship = DataBaseUtils.getMmsiByCargoManifest(databaseConnection, cargoManifestId);
+
+        if (ship == null) {
+            return false;
+        }
+
         int countContainers;
-        CargoManifest cargoManifest = DataBaseUtils.getCargoManifestByID(id, ship, databaseConnection);
+        CargoManifest cargoManifest = DataBaseUtils.getCargoManifestByID(cargoManifestId, ship, databaseConnection);
 
         if (cargoManifest == null) {
             return false;

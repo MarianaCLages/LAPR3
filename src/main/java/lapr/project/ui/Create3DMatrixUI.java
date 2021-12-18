@@ -15,17 +15,7 @@ public class Create3DMatrixUI implements Runnable {
     }
 
     public void run() {
-        int shipMmsi;
         String cargoManifestId = null;
-
-        do {
-            try {
-                shipMmsi = Utils.readIntegerFromConsole("Please enter the ship's MMSI:");
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid MMSI!");
-                shipMmsi = 0;
-            }
-        } while (shipMmsi == 0);
 
         try {
             cargoManifestId = Utils.readLineFromConsole("Please enter the cargo manifest ID:");
@@ -34,7 +24,7 @@ public class Create3DMatrixUI implements Runnable {
         }
 
         try {
-            ctrl.createMatrix(cargoManifestId, shipMmsi);
+            ctrl.createMatrix(cargoManifestId);
             System.out.println("Operation success!");
         } catch (MatrixFileException | SQLException | IOException e) {
             System.out.println(e.getMessage());
