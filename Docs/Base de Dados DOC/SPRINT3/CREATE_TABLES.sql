@@ -559,3 +559,74 @@ create table Generator
         foreign key (mmsi)
             references Ship (mmsi)
 );
+
+
+CREATE TABLE TRUCK
+(
+
+    vehicleID varchar2(32),
+    name      varchar2(255)
+        CONSTRAINT nnNameTruck not null,
+
+    CONSTRAINT pkTruck
+        primary key (vehicleID),
+    CONSTRAINT fkTruck
+        foreign key (vehicleID)
+            references VEHICLE (vehicleID)
+
+
+);
+
+CREATE TABLE TRUCKEMPLOYEE
+(
+
+    vehicleID  varchar2(32),
+    employeeID varchar2(255),
+
+    CONSTRAINT pkTruckEmployee
+        primary key (vehicleID, employeeID),
+    CONSTRAINT fkTruckEmployeeVehicleID
+        foreign key (vehicleID)
+            references TRUCK (vehicleID),
+    CONSTRAINT fkTruckEmployeeID
+        foreign key (employeeID)
+            references EMPLOYEE (ID)
+
+
+);
+
+CREATE TABLE SHIPEMPLOYEE
+(
+
+    mmsi       char(9),
+    employeeID varchar2(32),
+
+    CONSTRAINT pkShipEmployee
+        primary key (employeeID, mmsi),
+    CONSTRAINT fkShipEmployeeMmsi
+        foreign key (mmsi)
+            references SHIP (MMSI),
+    CONSTRAINT fkShipEmployeeID
+        foreign key (employeeID)
+            references EMPLOYEE (ID)
+
+
+);
+
+CREATE TABLE PORTWAREHOUSE
+(
+
+    portId      varchar2(32),
+    warehouseId varchar2(32),
+
+    CONSTRAINT pkPortWarehouse
+        primary key (portId, warehouseId),
+    CONSTRAINT fkPortWarehousePortID
+        foreign key (portId)
+            references PORT (ID),
+    CONSTRAINT fkPortWarehouseWarehouseID
+        foreign key (warehouseId)
+            references WAREHOUSE (ID)
+
+
+)
