@@ -6,6 +6,9 @@ public class VertexDistanceCalculator {
     }
 
     public static double distanceCalculator(Vertex v1, Vertex v2) {
+        if ((v1 == null) || (v2 == null)) {
+            return Double.MAX_VALUE;
+        }
         if (v1.getLatitude() == 0 && v1.getLongitude() == 0 && v2.getLatitude() == 0 && v2.getLongitude() == 0)
             return 0;
         double radius = 6371000;

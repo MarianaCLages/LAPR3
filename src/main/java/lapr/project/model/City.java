@@ -25,21 +25,13 @@ public class City implements Vertex {
 
         City city = (City) o;
 
-        if (Double.compare(city.getLatitude(), getLatitude()) != 0) return false;
-        if (Double.compare(city.getLongitude(), getLongitude()) != 0) return false;
         if (!Objects.equals(name, city.name)) return false;
         return getCountry() != null ? getCountry().equals(city.getCountry()) : city.getCountry() == null;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = name != null ? name.hashCode() : 0;
-        temp = Double.doubleToLongBits(getLatitude());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getLongitude());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
         return result;
     }
@@ -50,6 +42,7 @@ public class City implements Vertex {
                 "name='" + name + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", country=" + country +
                 '}';
     }
 
