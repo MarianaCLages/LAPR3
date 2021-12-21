@@ -177,7 +177,7 @@ public class DataBaseUtils {
         }
     }
 
-    public static CargoManifest getACargoByID(String id, Ship s, DatabaseConnection databaseConnection) throws SQLException {
+    public static CargoManifest getCargoManifestByID(String id, Ship s, DatabaseConnection databaseConnection) throws SQLException {
 
 
         Connection connection = databaseConnection.getConnection();
@@ -373,5 +373,24 @@ public class DataBaseUtils {
     }
 
 
+    public static Ship getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId) throws SQLException {
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select MMSI from SHIP s\n" +
+                "inner join CARGOMANIFEST cm on s.VEHICLEID = cm.VEHICLEID\n" +
+                "where cm.CARGOMANIFESTID = " + cargoManifestId;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    int shipMmsi = resultSet.getInt("MMSI");
+
+                    return getShipByMmsi(shipMmsi, databaseConnection);
+                }
+            }
+        }
+        return null;
+    }
 }
 

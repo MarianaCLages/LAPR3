@@ -2,67 +2,54 @@ package lapr.project.model;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.shared.exceptions.MatrixFileException;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MatrixFileGenerator {
 
     private final DatabaseConnection databaseConnection;
 
-
     public MatrixFileGenerator(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
-
     }
 
-    public boolean generateMatrixFile(String id, int mmsi) throws SQLException, MatrixFileException, IOException {
+    public boolean generateMatrixFile(String cargoManifestId) throws SQLException, IOException {
 
-        Ship s = DataBaseUtils.getShipByMmsi(mmsi,databaseConnection);
+        Ship ship = DataBaseUtils.getMmsiByCargoManifest(databaseConnection, cargoManifestId);
+
+        if (ship == null) {
+            return false;
+        }
+
         int countContainers;
-        CargoManifest cm = DataBaseUtils.getACargoByID(id,s, databaseConnection);
+        CargoManifest cargoManifest = DataBaseUtils.getCargoManifestByID(cargoManifestId, ship, databaseConnection);
 
-        if(cm == null){return false;}
+        if (cargoManifest == null) {
+            return false;
+        }
 
-        s.getCargoManifestAVL().insert(cm);
+        ship.getCargoManifestAVL().insert(cargoManifest);
 
-
-        countContainers = DataBaseUtils.countContainerByCargoManifest(cm.getIdentification(), this.databaseConnection);
+        countContainers = DataBaseUtils.countContainerByCargoManifest(cargoManifest.getIdentification(), this.databaseConnection);
 
         while (countContainers != 0) {
 
-                Container c = DataBaseUtils.getContainerByCargo(cm.getIdentification(), countContainers, this.databaseConnection);
-                cm.addContainersLoaded(c);
-                countContainers--;
+            Container c = DataBaseUtils.getContainerByCargo(cargoManifest.getIdentification(), countContainers, this.databaseConnection);
+            cargoManifest.addContainersLoaded(c);
+            countContainers--;
         }
-
-
 
 
         File myObj = new File("container.txt");
 
         try (FileWriter myWriter = new FileWriter(myObj)) {
-
-
-            for (Container container : cm.getLoaded().inOrder()) {
-
+            for (Container container : cargoManifest.getLoaded().inOrder()) {
                 myWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
-
             }
-
-
-            }
-
-        return true;
         }
-
-
-
-
-
+        return true;
+    }
 }
