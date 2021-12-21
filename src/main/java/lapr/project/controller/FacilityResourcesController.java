@@ -58,7 +58,6 @@ public class FacilityResourcesController {
 
 
 
-
         return callTheAvailableResourcesFunction.callFunction(cstmt,cstmt2);
         /*
         if(facilityResourcesScript.resources(connection,id,month,year)){

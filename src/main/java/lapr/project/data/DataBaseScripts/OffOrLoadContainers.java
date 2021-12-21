@@ -31,16 +31,13 @@ public class OffOrLoadContainers {
     private String getFacility(int mmsi) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "Select  f.FACILITYID from FACILITY f\n" +
+        String sqlCommand = "Select f.FacilityID from FACILITY f\n" +
                 "inner join POSITIONALMESSAGE pm\n" +
                 "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) >0\n" +
-                "where pm.MMSI = " + mmsi + "\n" +
+                "where pm.MMSI = "+mmsi+ "\n" +
                 "and f.FACILITYID = (Select cm.FACILITYID from CargoManifest cm\n" +
-                "    where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
-                "        where s.MMSI = " + mmsi + ")\n" +
-                "    and cm.CargoManifestDate > pm.BASEDATETIME FETCH FIRST 1 ROW  ONLY )\n" +
-                "order by f.FACILITYID Desc\n" +
-                "FETCH first 1 ROW ONLY";
+                "where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
+                " where s.MMSI = "+mmsi+ "))";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
