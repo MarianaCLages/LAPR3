@@ -13,8 +13,8 @@ public class CallTheAvailableResourcesFunction {
         String resources = new String();
 
 
-        resources = "CargoManifest Capacity:"+ cstmt.getInt(1) + "\n";
-        resources = resources + "Container Capcity:" +  cstmt2.getInt(1);
+        resources = "CargoManifest Capacity:"+ cstmt.getInt(1) + "%\n";
+        resources = resources + "Container Capcity:" +  cstmt2.getInt(1) + "%";
 
 
 

@@ -1,4 +1,3 @@
-/*
 package lapr.project.data;
 
 import lapr.project.data.Utils.DataBaseUtils;
@@ -11,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,12 +36,12 @@ public class PortStoreData implements Persistable {
         Connection connection = databaseConnection.getConnection();
         Port port = (Port) object;
 
-        String sqlCommand = "select * from facility where FACILITYID = '" + port.getIdentification() + "'";
+        String sqlCommand = "select * from PORT where FACILITYID = '" + port.getIdentification() + "'";
 
         try (PreparedStatement getContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet portsResultSet = getContainerPreparedStatement.executeQuery()) {
                 if (portsResultSet.next()) {
-                    sqlCommand = "UPDATE FACILITY SET LONGITUDE = " + port.getLocation().getLongitude() + ", LATITUDE = " + port.getLocation().getLongitude() + ", NAME = '" + port.getName() + "' Where FACILITYID = '" + port.getIdentification() + "'";
+                    sqlCommand = "UPDATE FACILITY SET LONGITUDE = " + port.getLocation().getLongitude() + ", LATITUDE = " + port.getLocation().getLatitude() + ", NAME = '" + port.getName() + "' Where FACILITYID = '" + port.getIdentification() + "'";
 
                     try (PreparedStatement updatePortPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         updatePortPreparedStatement.executeUpdate();
@@ -57,39 +55,30 @@ public class PortStoreData implements Persistable {
                     try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
                         try (ResultSet resultSetCountry = getCountryPreparedStatement.executeQuery()) {
 
-                            char stringToChar[] = port.getCountry().g;
+                            resultSetCountry.next();
 
-                            String alpha2Code = Character.toString(stringToChar[0]) + Character.toString(stringToChar[1]);
-                            String alpha3Code = alpha2Code + Character.toString(stringToChar[2]);
+                            sqlCommand = "insert into FACILITY (FACILITYID, ALPHA2CODE, ALPHA3CODE, LONGITUDE, LATITUDE, NAME, CAPACITY) values ('" + port.getIdentification() + "','" + resultSetCountry.getString(1) + "','" + resultSetCountry.getString(2) + "'," + port.getLocation().getLongitude() + "," + port.getLocation().getLatitude() + ",'" + port.getName() + "','" + 200 + "')";
 
-                            alpha2Code = alpha2Code.toUpperCase(Locale.ROOT);
-                            alpha3Code = alpha3Code.toUpperCase(Locale.ROOT);
+                            try (PreparedStatement updatePortPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                                updatePortPreparedStatement.executeUpdate();
+                            }
 
+                       /*     } else {
 
-                            if (resultSetCountry.next()) {
-
-                                sqlCommand = "insert into FACILITY (FACILITYID, ALPHA2CODE, ALPHA3CODE, LONGITUDE, LATITUDE, NAME, CAPACITY) values ('" + port.getIdentification() + "','" + alpha2Code + "','" + alpha3Code + "'," + port.getLocation().getLongitude() + "," + port.getLocation().getLatitude() + ",'" + port.getName() + "','" + 200 + "')";
-
-                                try (PreparedStatement updatePortPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                                    updatePortPreparedStatement.executeUpdate();
-                                }
-
-                            } else {
-
-                                sqlCommand = "insert into COUNTRY (ALPHA2CODE, ALPHA3CODE, CONTINENT, NAME, CAPITAL, POPULATION) VALUES ('" + alpha2Code + "','" + alpha3Code + "',' " + 1 + "','" + port.getCountry() + "','" + "Invalid" + "','" + 1 + "')";
+                                sqlCommand = "insert into COUNTRY (ALPHA2CODE, ALPHA3CODE, CONTINENT, NAME, CAPITAL, POPULATION) VALUES ('" + resultSetCountry.getString(1) + "','" + resultSetCountry.getString(2) + "',' " + 1 + "','" + port.getCountry() + "','" + "Invalid" + "','" + 1 + "')";
 
                                 try (PreparedStatement updateCOUNTRYPreparedStatement = connection.prepareStatement(sqlCommand)) {
                                     updateCOUNTRYPreparedStatement.executeUpdate();
                                 }
 
-                                sqlCommand = "insert into FACILITY (FACILITYID, ALPHA2CODE, ALPHA3CODE, LONGITUDE, LATITUDE, NAME, CAPACITY) values ('" + port.getIdentification() + "','" + alpha2Code + "','" + alpha3Code + "'," + port.getLocation().getLongitude() + "," + port.getLocation().getLatitude() + ",'" + port.getName() + "','" + 200 + "')";
+                                sqlCommand = "insert into FACILITY (FACILITYID, ALPHA2CODE, ALPHA3CODE, LONGITUDE, LATITUDE, NAME, CAPACITY) values ('" + port.getIdentification() + "','" + resultSetCountry.getString(1) + "','" + resultSetCountry.getString(2) + "'," + port.getLocation().getLongitude() + "," + port.getLocation().getLatitude() + ",'" + port.getName() + "','" + 200 + "')";
 
                                 try (PreparedStatement insertIntoFacilityPreparedStatement = connection.prepareStatement(sqlCommand)) {
                                     insertIntoFacilityPreparedStatement.executeUpdate();
                                 }
 
                             }
-
+*/
                             sqlCommand = "insert into PORT (ID, FACILITYID, DOCKINGAREA) values ('" + port.getIdentification() + "','" + port.getIdentification() + "','" + 300 + "')";
 
                             try (PreparedStatement insertIntoPortPreparedStatement = connection.prepareStatement(sqlCommand)) {
@@ -105,14 +94,15 @@ public class PortStoreData implements Persistable {
             } catch (SQLException throwables) {
                 Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, throwables);
                 databaseConnection.registerError(throwables);
-                return false;
+
             }
 
         } catch (SQLException throwables) {
             Logger.getLogger(PortStore.class.getName()).log(Level.SEVERE, null, throwables);
             databaseConnection.registerError(throwables);
-            return false;
+
         }
+        return true;
     }
 
     @Override
@@ -198,4 +188,4 @@ public class PortStoreData implements Persistable {
     }
 
 }
-*/
+

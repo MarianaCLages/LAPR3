@@ -150,9 +150,7 @@ public class DataBaseUtils {
                     String cargoManifestId = resultSet.getString("CARGOMANIFESTID");
                     Port p = null;
 
-                    CargoManifest cargoManifest = new CargoManifest(cargoManifestId, p, s, true);
-
-                    return cargoManifest;
+                    return new CargoManifest(cargoManifestId, p, s, true);
                 }
             }
             return null;
@@ -171,8 +169,7 @@ public class DataBaseUtils {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    int count = resultSet.getInt("COUNTCONTAINERS");
-                    return count;
+                    return resultSet.getInt("COUNTCONTAINERS");
                 } else {
                     return 0;
                 }
@@ -230,9 +227,91 @@ public class DataBaseUtils {
         }
     }
 
-    public static Ship getShipByMmsi(int mmsi, DatabaseConnection databaseConnection) throws SQLException {
+    public static Ship getShipByMmsi(int mmsi, DatabaseConnection databaseConnection) {
         return (Ship) shipStoreData.getElement(databaseConnection, mmsi);
     }
+
+    public static Map<Port, Map<Port, Double>> getSeaDist(DatabaseConnection databaseConnection) {
+        Connection connection = databaseConnection.getConnection();
+        Map<Port, Map<Port, Double>> seaDists = new HashMap<>();
+        String sqlCommand = "Select * from SEADISTANCE";
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    sqlCommand = "SELECT ID,\n" +
+                            "       PORT.FACILITYID,\n" +
+                            "       DOCKINGAREA,\n" +
+                            "       F.LONGITUDE   as FacilityLongitude,\n" +
+                            "       F.LATITUDE    as FacilityLatitude,\n" +
+                            "       f.NAME        as FacilitiName,\n" +
+                            "       CAPACITY,\n" +
+                            "       c2.ALPHA2CODE as ALPHA2CODE,\n" +
+                            "       c2.ALPHA3CODE as ALPHA3CODE,\n" +
+                            "       CONTINENT,\n" +
+                            "       C2.NAME       as CountryName,\n" +
+                            "       CAPITAL,\n" +
+                            "       POPULATION\n" +
+                            "from PORT\n" +
+                            "         join FACILITY F on F.FACILITYID = PORT.FACILITYID\n" +
+                            "         join COUNTRY C2 on F.ALPHA2CODE = C2.ALPHA2CODE\n" +
+                            "where F.FACILITYID like ('" + resultSet.getString(1) + "')";
+
+                    try (PreparedStatement getPrepared1Statement = connection.prepareStatement(sqlCommand)) {
+                        try (ResultSet resultSet1 = getPrepared1Statement.executeQuery()) {
+                            if (resultSet1.next()) {
+                                Country country = new Country(resultSet1.getString(11), resultSet1.getString(8).toCharArray(), resultSet1.getString(9).toCharArray(), resultSet1.getDouble(13), Continent.valueOfName(resultSet1.getString(10)));
+
+                                Port port = new Port(resultSet1.getString(1), resultSet1.getString(6), resultSet1.getString(10), country, new FacilityLocation(resultSet1.getDouble(4), resultSet1.getDouble(5)), resultSet1.getInt(7));
+
+
+                                if (!seaDists.containsKey(port)) {
+                                    seaDists.put(port, new HashMap<>());
+                                }
+
+                                sqlCommand = "SELECT ID,\n" +
+                                        "       PORT.FACILITYID,\n" +
+                                        "       DOCKINGAREA,\n" +
+                                        "       F.LONGITUDE   as FacilityLongitude,\n" +
+                                        "       F.LATITUDE    as FacilityLatitude,\n" +
+                                        "       f.NAME        as FacilitiName,\n" +
+                                        "       CAPACITY,\n" +
+                                        "       c2.ALPHA2CODE as ALPHA2CODE,\n" +
+                                        "       c2.ALPHA3CODE as ALPHA3CODE,\n" +
+                                        "       CONTINENT,\n" +
+                                        "       C2.NAME       as CountryName,\n" +
+                                        "       CAPITAL,\n" +
+                                        "       POPULATION\n" +
+                                        "from PORT\n" +
+                                        "         join FACILITY F on F.FACILITYID = PORT.FACILITYID\n" +
+                                        "         join COUNTRY C2 on F.ALPHA2CODE = C2.ALPHA2CODE\n" +
+                                        "where F.FACILITYID like ('" + resultSet.getString(2) + "')";
+
+
+                                try (PreparedStatement getPrepared2Statement = connection.prepareStatement(sqlCommand)) {
+                                    try (ResultSet resultSet2 = getPrepared2Statement.executeQuery()) {
+
+                                        if (resultSet2.next()) {
+                                            Country country1 = new Country(resultSet2.getString(11), resultSet2.getString(8).toCharArray(), resultSet2.getString(9).toCharArray(), resultSet2.getDouble(13), Continent.valueOfName(resultSet2.getString(10)));
+
+                                            Port port1 = new Port(resultSet2.getString(1), resultSet2.getString(6), resultSet2.getString(10), country1, new FacilityLocation(resultSet2.getDouble(4), resultSet2.getDouble(5)), resultSet2.getInt(7));
+                                            seaDists.get(port).put(port1, resultSet.getDouble(3));
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return Collections.emptyMap();
+        }
+        System.out.println("Portos = " + seaDists.keySet().size());
+        return seaDists;
+    }
+
 
     public static Map<City, LinkedList<City>> getBorders(DatabaseConnection databaseConnection) throws SQLException {
         Connection connection = databaseConnection.getConnection();
@@ -248,7 +327,7 @@ public class DataBaseUtils {
                             "       C2.CONTINENT,\n" +
                             "       C2.POPULATION,\n" +
                             "       C3.NAME,\n" +
-                            "       C3.LONGITUDE,\n" +
+                            "       C3.LATITUDE,\n" +
                             "       C3.LONGITUDE\n" +
                             "from COUNTRY C2\n" +
                             "         inner join CITY C3 on C2.ALPHA2CODE = C3.COUNTRYALPHA2CODE and C2.ALPHA3CODE = C3.COUNTRYALPHA3CODE\n" +
@@ -267,7 +346,7 @@ public class DataBaseUtils {
                                     "       C2.CONTINENT,\n" +
                                     "       C2.POPULATION,\n" +
                                     "       C3.NAME,\n" +
-                                    "       C3.LONGITUDE,\n" +
+                                    "       C3.LATITUDE,\n" +
                                     "       C3.LONGITUDE\n" +
                                     "from COUNTRY C2\n" +
                                     "         inner join CITY C3 on C2.ALPHA2CODE = C3.COUNTRYALPHA2CODE and C2.ALPHA3CODE = C3.COUNTRYALPHA3CODE\n" +
@@ -291,8 +370,8 @@ public class DataBaseUtils {
             return Collections.emptyMap();
         }
         return borders;
-
     }
+
 
     public static Ship getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId) throws SQLException {
         Connection connection = databaseConnection.getConnection();

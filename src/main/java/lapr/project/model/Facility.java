@@ -7,6 +7,7 @@ public class Facility implements Vertex {
     private String name;
     private String continent;
     private Country country;
+    private String countryName;
     private FacilityLocation location;
     private int capacity;
 
@@ -24,6 +25,15 @@ public class Facility implements Vertex {
         this.name = name;
         this.continent = continent;
         this.country = country;
+        this.location = location;
+        this.capacity = capacity;
+    }
+
+    public Facility(String identification, String name, String continent, String countryName, FacilityLocation location, int capacity) {
+        this.identification = identification;
+        this.name = name;
+        this.continent = continent;
+        this.countryName = countryName;
         this.location = location;
         this.capacity = capacity;
     }
@@ -92,6 +102,9 @@ public class Facility implements Vertex {
      * @return the facility's country
      */
     public String getCountry() {
+        if (country == null) {
+            return countryName;
+        }
         return country.toString();
     }
 
@@ -126,18 +139,19 @@ public class Facility implements Vertex {
         this.location = location;
     }
 
-    /**
-     * Checks if two objects (Facility) are equal.
-     *
-     * @param o the object
-     * @return true if objects are equal, false if they aren't
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Facility)) return false;
+
         Facility facility = (Facility) o;
-        return getIdentification().equals(facility.getIdentification()) && getName().equals(facility.getName()) && getContinent().equals(facility.getContinent()) && getCountry().equals(facility.getCountry()) && getLocation().equals(facility.getLocation());
+
+        return getIdentification() != null ? getIdentification().equals(facility.getIdentification()) : facility.getIdentification() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getIdentification() != null ? getIdentification().hashCode() : 0;
     }
 
     /**

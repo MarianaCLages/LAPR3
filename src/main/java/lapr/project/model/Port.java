@@ -15,6 +15,10 @@ public class Port extends Facility {
         super(identification, name, continent, country, location, capacity);
     }
 
+    public Port(String identification, String name, String continent, String countryName, FacilityLocation location, int capacity) {
+        super(identification, name, continent, countryName, location, capacity);
+    }
+
     /**
      * Returns the textual description of the facility in the format: identification, name, continent, country, location.
      *

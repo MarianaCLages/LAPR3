@@ -7,6 +7,7 @@ import lapr.project.data.DatabaseConnection;
 import lapr.project.model.Company;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,6 +55,8 @@ public class FacilityResourcesController {
         cstmt2.setDate(3,dateI);
 
         cstmt2.executeUpdate();
+
+
 
 
         return callTheAvailableResourcesFunction.callFunction(cstmt,cstmt2);

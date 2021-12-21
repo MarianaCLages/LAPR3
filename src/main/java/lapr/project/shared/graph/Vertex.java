@@ -8,4 +8,6 @@ public interface Vertex extends Comparable<Vertex> {
     double getLatitude();
 
     String getCountry();
+
+    boolean equals(Object o);
 }
