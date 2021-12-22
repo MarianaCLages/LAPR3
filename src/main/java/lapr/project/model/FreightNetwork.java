@@ -125,15 +125,6 @@ public class FreightNetwork {
         return true;
     }
 
-    public boolean addVertex(Vertex v) {
-        try {
-            graph.addVertex(v);
-            return true;
-        } catch (NullVerticesException e) {
-            return false;
-        }
-    }
-
     protected boolean addEdgeAndCalculateWeight(Vertex v1, Vertex v2) {
         try {
             double weight = VertexDistanceCalculator.distanceCalculator(v1, v2);
