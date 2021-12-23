@@ -10,7 +10,7 @@ public class CallTheAvailableResourcesFunction {
 
     public String callFunction(CallableStatement cstmt, CallableStatement cstmt2 ) throws SQLException {
 
-        String resources = new String();
+        String resources;
 
 
         resources = "CargoManifest Capacity:"+ cstmt.getInt(1) + "%\n";
