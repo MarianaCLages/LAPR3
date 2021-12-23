@@ -4,6 +4,7 @@ import lapr.project.data.ConnectionFactory;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
+import lapr.project.shared.exceptions.NullVerticesException;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
@@ -173,32 +174,8 @@ public class App {
         company.getShipStore().addShip(ship);
 
 
-        // Scripts
-        // AverageCargoByYearScript averageCargoByYearScript = new AverageCargoByYearScript();
-        // averageCargoByYearScript.occupancyRateInAShip(databaseConnection);
 
-        /*OccupancyRateOfAGivenShip occupancyRateOfAGivenShip = new OccupancyRateOfAGivenShip();
-        System.out.println(occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection,366772990,3) + "%");
 
-        //LoadedContainers load = new LoadedContainers();
-        //load.getResultOffLoaded(databaseConnection);
-        //OffOrLoadContainers off = new OffOrLoadContainers();
-        //off.getResultOffLoaded(databaseConnection,"10860", 366873510,2);
-        //Test t = new Test();
-
-        //t.getResultOffLoaded(databaseConnection,"216593",366906610);
-
-       /* for(Facility f : company.getPortStoreData().getListPort(databaseConnection)){
-            System.out.println(f);
-        } */
-
-/*
-        FacilityResourcesScript facilityResourcesScript = new FacilityResourcesScript();
-        try {
-            facilityResourcesScript.resources(databaseConnection,"8",10,2021);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
 
         return true;
     }
