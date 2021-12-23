@@ -78,6 +78,10 @@ public class CallTheAvailableResourcesFunction {
                     "Facility Area capcity:" + split2[i] + "%\n";
         }
 
+<<<<<<< HEAD
+=======
+        String resources;
+>>>>>>> 1ce026a12d1305dcd733398ca4acca4a6db6ab59
 
 
 
