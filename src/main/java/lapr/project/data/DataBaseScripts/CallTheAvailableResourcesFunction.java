@@ -11,17 +11,18 @@ import java.util.Calendar;
 public class CallTheAvailableResourcesFunction {
 
 
-    public CallTheAvailableResourcesFunction(){}
+    public CallTheAvailableResourcesFunction() {
+    }
 
     public String callFunction(int month, int year, int id, DatabaseConnection connection) throws SQLException {
 
         int day;
 
-        if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
             day = 31;
-        else if(month == 2 &&  (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+        else if (month == 2 && (year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
             day = 29;
-        else if(month == 2  &&  (year % 4 != 0) && (year % 100 == 0) || (year % 400 != 0))
+        else if (month == 2 && (year % 4 != 0) && (year % 100 == 0) || (year % 400 != 0))
             day = 28;
         else
             day = 30;
@@ -38,50 +39,36 @@ public class CallTheAvailableResourcesFunction {
         CallableStatement cstmt = connection.getConnection().prepareCall("{? = call getShipAreaByDate1223(?,?,?)}");
 
         cstmt.registerOutParameter(1, Types.VARCHAR);
-        cstmt.setInt(2,id); //8
-        cstmt.setDate(3,dateI);
-        cstmt.setInt(4,day);
+        cstmt.setInt(2, id); //8
+        cstmt.setDate(3, dateI);
+        cstmt.setInt(4, day);
 
         cstmt.executeUpdate();
 
-
-
         CallableStatement cstmt2 = connection.getConnection().prepareCall("{? = call getContainerByDate1223(?,?,?)}");
 
-        cstmt2.registerOutParameter(1,Types.VARCHAR);
-        cstmt2.setInt(2,id);
-        cstmt2.setDate(3,dateI);
-        cstmt2.setInt(4,day);
+        cstmt2.registerOutParameter(1, Types.VARCHAR);
+        cstmt2.setInt(2, id);
+        cstmt2.setDate(3, dateI);
+        cstmt2.setInt(4, day);
 
         cstmt2.executeUpdate();
 
-
-
-
-
-
         String containerCapacity;
-        String areaFacility ;
-
-
+        String areaFacility;
 
         containerCapacity = cstmt2.getString(1);
         areaFacility = cstmt.getString(1);
 
-        String [] split = containerCapacity.split(",");
-        String [] split2 = areaFacility.split(",");
+        String[] split = containerCapacity.split(",");
+        String[] split2 = areaFacility.split(",");
         containerCapacity = "";
 
-        for(int i = 1; i < split.length; i++){
-            containerCapacity = containerCapacity +"Day" +i+ ": " +
-                    "\nContainer Capacity:"+ split[i] + "%\n" +
+        for (int i = 1; i < split.length; i++) {
+            containerCapacity = containerCapacity + "Day" + i + ": " +
+                    "\nContainer Capacity:" + split[i] + "%\n" +
                     "Facility Area capcity:" + split2[i] + "%\n";
         }
-
-
-
-
-
 
         return containerCapacity;
     }

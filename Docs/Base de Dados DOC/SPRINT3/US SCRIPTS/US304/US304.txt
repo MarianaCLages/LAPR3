@@ -1,0 +1,89 @@
+--DML
+
+select *
+from CARGOMANIFESTCONTAINER
+where containerId = 405
+  and cargoManifestId = 1;
+
+select *
+from STOCK
+    where CONTAINERID = 405;
+
+select *
+from AUDITTRAIL;
+
+--DDL
+
+insert into CARGOMANIFESTCONTAINER (CARGOMANIFESTID, CONTAINERID, XPOS, YPOS, ZPOS)
+VALUES (1, 405, 1, 1, 1);
+commit;
+
+DROP TRIGGER trgAvailableWarehouseCapacity;
+
+update CARGOMANIFESTCONTAINER
+set XPOS = 2,
+    YPOS = 1,
+    ZPOS = 2
+where CARGOMANIFESTID = 1
+  and CONTAINERID = 405;
+
+DELETE
+FROM CARGOMANIFESTCONTAINER
+WHERE CARGOMANIFESTID = 1
+  AND CONTAINERID = 405;
+
+SELECT * from AUDITTRAIL;
+
+-- DISABLE TRIGGERS
+
+ALTER TRIGGER trgCargoManifestContainerAuditTrail disable;
+ALTER TRIGGER trgAvailableWarehouseCapacity disable;
+
+-- ENABLE TRIGGERS
+
+ALTER TRIGGER trgCargoManifestContainerAuditTrail enable;
+ALTER TRIGGER trgAvailableWarehouseCapacity enable ;
+
+--DROP TRIGGERS
+
+DROP TRIGGER trgCargoManifestContainerAuditTrail;
+
+--DROP FUNCTIONS
+
+DROP FUNCTION fnUserLogged;
+
+--Function
+
+create or replace function fnUserLogged return varchar
+    is
+    vName varchar2(32);
+begin
+    SELECT SYS_CONTEXT('USERENV', 'SESSION_USER')
+    into vName
+    FROM DUAL;
+    return (vName);
+end;
+
+--Triggers
+
+CREATE OR REPLACE TRIGGER trgCargoManifestContainerAuditTrail
+    AFTER
+        INSERT OR
+        UPDATE OF XPOS, YPOS, ZPOS OR
+        DELETE
+    ON CARGOMANIFESTCONTAINER
+    for each row
+
+BEGIN
+    CASE
+        WHEN INSERTING THEN
+            insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
+            VALUES (:NEW.CARGOMANIFESTID, :NEW.CONTAINERID, SYSDATE, 'INSERT', FNUSERLOGGED());
+        WHEN UPDATING THEN
+            insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
+            VALUES (:NEW.CARGOMANIFESTID, :NEW.CONTAINERID, SYSDATE, 'UPDATE', FNUSERLOGGED());
+        WHEN DELETING THEN
+            insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
+            VALUES (:OLD.CARGOMANIFESTID, :OLD.CONTAINERID, SYSDATE, 'DELETE', FNUSERLOGGED());
+        END CASE;
+END;

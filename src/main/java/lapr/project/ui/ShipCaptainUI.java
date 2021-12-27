@@ -13,6 +13,8 @@ public class ShipCaptainUI implements Runnable {
         options.add(new MenuItem("Cargo manifests in a certain year and average number of containers per manifest", new AverageCargoByYearUI()));
         options.add(new MenuItem("Occupancy rate of a ship by cargo manifest ID", new OccupancyRateGivenCargoManifestIDUI()));
         options.add(new MenuItem("Occupancy rate of a ship by cargo manifest date", new OccupancyRateGivenCargoManifestDateUI()));
+        options.add(new MenuItem("Get Audit Trail", new GetAuditTrailUI()));
+
 
         int option;
         do {
