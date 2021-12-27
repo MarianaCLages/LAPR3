@@ -1,0 +1,106 @@
+
+--Trigger
+
+create or replace trigger trgAvailableWarehouseCapacity
+    after insert
+    on CARGOMANIFESTCONTAINER
+    for each row
+DECLARE
+    facility_Capacity_Full EXCEPTION;
+    vFacilityCapacity FACILITY.CAPACITY%TYPE;
+    vSumCapacity      CONTAINER.GROSS%TYPE;
+    vContainerGross   CONTAINER.GROSS%TYPE;
+    vContainer        CARGOMANIFESTCONTAINER.CONTAINERID%TYPE;
+    vFacilityID       FACILITY.FACILITYID%TYPE;
+    vStockFacilityID  STOCK.FACILITYID%TYPE;
+    vStockContainerID STOCK.CONTAINERID%Type;
+    CURSOR container_Inside_Stock
+        is select CONTAINERID
+           from STOCK
+           where FACILITYID = (SELECT FACILITYID
+                               FROM CARGOMANIFEST cm
+                               where cm.CARGOMANIFESTID = :new.cargoManifestID
+                               group by FACILITYID
+                                   FETCH FIRST ROW ONLY);
+
+begin
+
+    open container_Inside_Stock;
+
+    SELECT GROSS CONTAINER_GROSS
+    INTO vContainerGross
+    FROM CONTAINER c
+    where c.CONTAINERID = :new.containerID;
+
+    SELECT FACILITYID
+    INTO vFacilityID
+    FROM CARGOMANIFEST cm
+    where cm.CARGOMANIFESTID = :new.cargoManifestID
+    group by FACILITYID
+        FETCH FIRST ROW ONLY;
+
+    SELECT CAPACITY FACILITY_CAPACITY
+    INTO vFacilityCapacity
+    FROM FACILITY
+    WHERE FACILITYID = vFacilityID;
+
+    vSumCapacity := vContainerGross;
+
+    LOOP
+        FETCH container_Inside_Stock INTO
+            vContainer;
+        EXIT WHEN container_Inside_Stock%notfound;
+
+        SELECT GROSS CONTAINER_GROSS
+        INTO vContainerGross
+        FROM CONTAINER C
+        where C.CONTAINERID = vContainer;
+
+        vSumCapacity := vSumCapacity + vContainerGross;
+
+    end loop;
+
+    IF (vSumCapacity > vFacilityCapacity) THEN
+        raise facility_Capacity_Full;
+
+    ELSE
+
+        vStockFacilityID := null;
+        vStockContainerID := null;
+
+        SELECT *
+        into vStockFacilityID,vStockContainerID
+        from STOCK s
+        where s.FACILITYID = vFacilityID
+          and s.CONTAINERID = :new.CONTAINERID;
+
+        if (vStockFacilityID is not null and vContainer is not null) then
+
+            insert
+            into STOCK (FACILITYID, CONTAINERID)
+            values (vFacilityID, : new.ContainerID);
+
+        end if;
+
+    end if;
+
+exception
+    when facility_Capacity_Full then
+        raise_application_error(-20001,
+                                'Facility capacity full! Please enter other facility or liberate some space in the specified facility!');
+
+end;
+/
+
+
+-- Disable Trigger
+
+ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY DISABLE ;
+
+-- Enable Trigger
+
+ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY ENABLE ;
+
+-- DROP TRIGGER
+
+DROP TRIGGER TRGAVAILABLEWAREHOUSECAPACITY;
