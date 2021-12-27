@@ -11,7 +11,10 @@ int main(void) {
 	int matrix3D[50][50][50];
 
 	
-	fp = fopen("container.txt", "r+");
+	fp = fopen("container1.txt", "r");
+	
+	
+
 
   	int i = 0;
 	char c;
@@ -22,11 +25,14 @@ int main(void) {
             count++;
 		}
 	}
+	
 
 	fclose(fp);
 	
 	
-	fp = fopen("container.txt","r+");
+	fp = fopen("container1.txt", "r");
+	
+
 	
 	while (i != count) {
 
