@@ -8,6 +8,7 @@ public class ClientUI implements Runnable {
     public void run() {
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Current situation of a specific container being used to transport my goods", new SearchContainerLocationForClientUI()));
+        options.add(new MenuItem("Get container route until the moment", new GetContainerRouteUI()));
 
         int option;
         do {
