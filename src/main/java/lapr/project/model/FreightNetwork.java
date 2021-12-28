@@ -29,6 +29,7 @@ public class FreightNetwork {
 
     private boolean ports(int n, DatabaseConnection connection) throws NullVerticesException {
         Map<Port, Map<Port, Double>> map = DataBaseUtils.getSeaDist(connection);
+        System.out.println("DB -> Ports");
         for (Map.Entry<Port, Map<Port, Double>> entry : map.entrySet()) {
             for (Map.Entry<Port, Double> dest : entry.getValue().entrySet()) {
                 this.addEdgeWithWeight(entry.getKey(), dest.getKey(), dest.getValue());
@@ -110,6 +111,7 @@ public class FreightNetwork {
     private boolean capitals(DatabaseConnection connection) {
         try {
             Map<City, LinkedList<City>> map = DataBaseUtils.getBorders(connection);
+            System.out.println("borderData impor");
             for (Map.Entry<City, LinkedList<City>> c : map.entrySet()) {
                 LinkedList<City> list = c.getValue();
                 while (!list.isEmpty()) {

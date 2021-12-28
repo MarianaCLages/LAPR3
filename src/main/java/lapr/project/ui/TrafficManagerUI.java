@@ -22,6 +22,8 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Find the closest port from a certain ship", new ClosestPortUI()));
         options.add(new MenuItem("Which ships will be available on monday next week and their location", new FindAvailableShipsUI()));
 
+        //SPRINT 3
+        options.add(new MenuItem("Build a freight network", new FreightNetworkUI()));
 
         int option;
         do {
