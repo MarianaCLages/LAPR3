@@ -5,13 +5,13 @@
 int main(void) {
 	
 	FILE *fp;
-	char buff[255];
+	char buffer[255];
 
 	int x = -999, y = -999, z = -999;
 	int matrix3D[50][50][50];
 
 	
-	fp = fopen("container1.txt", "r");
+	fp = fopen("container.txt", "r");
 	
 	
 
@@ -30,15 +30,15 @@ int main(void) {
 	fclose(fp);
 	
 	
-	fp = fopen("container1.txt", "r");
+	fp = fopen("container.txt", "r");
 	
 
 	
 	while (i != count) {
 
-		fgets(buff, 255, (FILE*)fp);
+		fgets(buffer, 255, (FILE*)fp);
    	
-		//printf("%s",buff);
+		//printf("%s",buffer);
 		
 		char* separate = strtok(buff,",");
 		

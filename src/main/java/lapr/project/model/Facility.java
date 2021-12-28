@@ -10,6 +10,7 @@ public class Facility implements Vertex {
     private String countryName;
     private FacilityLocation location;
     private int capacity;
+    private int color;
 
     /**
      * Constructor.
@@ -27,6 +28,7 @@ public class Facility implements Vertex {
         this.country = country;
         this.location = location;
         this.capacity = capacity;
+        this.color = -1;
     }
 
     public Facility(String identification, String name, String continent, String countryName, FacilityLocation location, int capacity) {
@@ -36,6 +38,7 @@ public class Facility implements Vertex {
         this.countryName = countryName;
         this.location = location;
         this.capacity = capacity;
+        this.color = -1;
     }
 
     //Getters
@@ -202,5 +205,23 @@ public class Facility implements Vertex {
         return location.getLatitude();
     }
 
+    @Override
+    public boolean isColor() {
+        if (color != -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(int colour) {
+        this.color = colour;
+    }
 
 }
