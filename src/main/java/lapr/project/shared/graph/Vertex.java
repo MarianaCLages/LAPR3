@@ -10,4 +10,10 @@ public interface Vertex extends Comparable<Vertex> {
     String getCountry();
 
     boolean equals(Object o);
+
+    boolean isColor();
+
+    int getColor();
+
+    void setColor(int colour);
 }

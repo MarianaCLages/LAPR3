@@ -10,12 +10,14 @@ public class City implements Vertex {
     private double latitude;
     private double longitude;
     private Country country;
+    private int color;
 
     public City(String name, double latitude, double longitude, Country country) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
+        this.color = -1;
     }
 
     @Override
@@ -69,5 +71,20 @@ public class City implements Vertex {
     @Override
     public int compareTo(@NotNull Vertex o) {
         return 0;
+    }
+
+    @Override
+    public boolean isColor() {
+        return color != -1;
+    }
+
+    @Override
+    public int getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(int colour) {
+        this.color = colour;
     }
 }
