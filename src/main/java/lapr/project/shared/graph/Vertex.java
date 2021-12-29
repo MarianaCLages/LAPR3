@@ -13,9 +13,9 @@ public interface Vertex extends Comparable<Vertex> {
 
     boolean equals(Object o);
 
-    boolean isColor();
+    boolean isColour();
 
-    int getColor();
+    int getColour();
 
-    void setColor(int colour);
+    void setColour(int colour);
 }

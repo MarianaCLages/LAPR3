@@ -206,7 +206,7 @@ public class Facility implements Vertex {
     }
 
     @Override
-    public boolean isColor() {
+    public boolean isColour() {
         if (color != -1) {
             return true;
         } else {
@@ -215,12 +215,12 @@ public class Facility implements Vertex {
     }
 
     @Override
-    public int getColor() {
+    public int getColour() {
         return color;
     }
 
     @Override
-    public void setColor(int colour) {
+    public void setColour(int colour) {
         this.color = colour;
     }
 
