@@ -39,6 +39,12 @@ public class Constants {
     public static final double MAX_HEADING= 359;
     public static final double MIN_HEADING= 0;
 
-    //Months
+    //Container Dimensions by m
+    public static final double LENGTH = 5.9;
+    public static final double WIDTH = 2.35;
+    public static final double HEIGHT = 2.39;
+    public static final double AREA = 2 * HEIGHT * LENGTH + 2 * HEIGHT * WIDTH + 2 * WIDTH * LENGTH;
 
+    //Material Gross m
+    public static final double GROSS = 0.2;
 }

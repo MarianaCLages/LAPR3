@@ -2,11 +2,11 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import oracle.jdbc.internal.OracleTypes;
+import oracle.jdbc.OracleType;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
 
 public class GetContainerRouteScript {
 
@@ -20,7 +20,8 @@ public class GetContainerRouteScript {
             containerRouteStatement.registerOutParameter(1, OracleTypes.CURSOR);
             containerRouteStatement.setString(2, clientID);
             containerRouteStatement.setString(3, containerID);
-
+            containerRouteStatement.execute();
+            
             containerRouteStatement.execute();
 
             try (ResultSet containerRoute = (ResultSet) containerRouteStatement.getObject(1)) {
