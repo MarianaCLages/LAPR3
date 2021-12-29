@@ -9,6 +9,8 @@ public interface Vertex extends Comparable<Vertex> {
 
     String getCountry();
 
+    String getContinent();
+
     boolean equals(Object o);
 
     boolean isColor();

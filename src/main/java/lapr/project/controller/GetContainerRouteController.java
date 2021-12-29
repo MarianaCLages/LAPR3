@@ -13,7 +13,7 @@ public class GetContainerRouteController {
         this.databaseConnection = App.getInstance().getDatabaseConnection();
     }
 
-    public String getContainerRoute(int containerID, int clientID) throws SQLException {
+    public String getContainerRoute(int containerID, int clientID) throws SQLException, NullPointerException {
 
         String clientIDString = Integer.toString(clientID);
         String containerIDString = Integer.toString(containerID);

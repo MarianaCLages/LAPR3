@@ -41,7 +41,7 @@ public class GetContainerRouteUI implements Runnable {
 
         try {
             System.out.println(getContainerRouteController.getContainerRoute(containerID, clientID));
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             System.out.println(e.getMessage());
         }
 

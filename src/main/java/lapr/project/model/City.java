@@ -69,6 +69,11 @@ public class City implements Vertex {
     }
 
     @Override
+    public String getContinent() {
+        return this.country.getContinent().getName();
+    }
+
+    @Override
     public int compareTo(@NotNull Vertex o) {
         return 0;
     }

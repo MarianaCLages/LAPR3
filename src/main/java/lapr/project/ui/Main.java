@@ -1,9 +1,5 @@
 package lapr.project.ui;
 
-
-import lapr.project.shared.exceptions.NullVerticesException;
-
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
@@ -28,7 +24,7 @@ class Main {
      *
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, NullVerticesException {
+    public static void main(String[] args){
         try {
             MainMenuUI mainMenuUI = new MainMenuUI();
 
