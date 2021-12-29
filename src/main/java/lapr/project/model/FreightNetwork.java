@@ -33,7 +33,6 @@ public class FreightNetwork {
 
     private boolean ports(int n, DatabaseConnection connection) throws NullVerticesException {
         Map<Port, Map<Port, Double>> map = DataBaseUtils.getSeaDist(connection);
-        System.out.println("DB -> Ports");
         for (Map.Entry<Port, Map<Port, Double>> entry : map.entrySet()) {
             for (Map.Entry<Port, Double> dest : entry.getValue().entrySet()) {
                 this.addEdgeWithWeight(entry.getKey(), dest.getKey(), dest.getValue());
@@ -43,7 +42,7 @@ public class FreightNetwork {
         linkPortToCapital();
         linkPortToNClosestPorts(n);
 
-        return false;
+        return true;
     }
 
     private boolean linkPortToNClosestPorts(int n) throws NullVerticesException {
@@ -70,7 +69,7 @@ public class FreightNetwork {
             }
         }
 
-        return false;
+        return true;
     }
 
     private void dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects) {
