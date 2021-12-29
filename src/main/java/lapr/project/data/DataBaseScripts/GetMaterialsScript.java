@@ -16,7 +16,7 @@ public class GetMaterialsScript {
     public GetMaterialsScript(){}
 
 
-    public String getThermalResistence(int containerID, DatabaseConnection databaseConnection) throws SQLException {
+    public String getThermalResistance(int containerID, DatabaseConnection databaseConnection) throws SQLException {
 
         this.databaseConnection = databaseConnection;
         StringBuilder stringBuilder = new StringBuilder();

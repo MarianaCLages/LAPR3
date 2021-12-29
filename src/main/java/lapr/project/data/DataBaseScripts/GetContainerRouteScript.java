@@ -7,21 +7,20 @@ import oracle.jdbc.OracleType;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public class GetContainerRouteScript {
 
     public static String callFunction(String containerID, String clientID, DatabaseConnection databaseConnection) throws SQLException, NullPointerException {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Container Route:");
+        sb.append("\nContainer Route:");
 
         try (CallableStatement containerRouteStatement = databaseConnection.getConnection().prepareCall("{? = call fnGetContainerRouteCursor(?,?)}")) {
 
             containerRouteStatement.registerOutParameter(1, OracleTypes.CURSOR);
             containerRouteStatement.setString(2, clientID);
             containerRouteStatement.setString(3, containerID);
-            containerRouteStatement.execute();
-            
             containerRouteStatement.execute();
 
             try (ResultSet containerRoute = (ResultSet) containerRouteStatement.getObject(1)) {
@@ -31,23 +30,30 @@ public class GetContainerRouteScript {
 
                 while (containerRoute.next()) {
 
-                    sb.append("\nVehicle Type: ").append(containerRoute.getString("VEHICLETYPE"))
-                            .append("\nVehicle Name: ").append(containerRoute.getString("VEHICLENAME"))
-                            .append("\nFacility Name: ").append(containerRoute.getString("FACILITYNAME"))
-                            .append("\nTrip Start Date: ").append(containerRoute.getObject("TRIPSTARTDATE"))
-                            .append("\nTrip End Date: ").append(containerRoute.getObject("TRIPENDDATE"))
-                            .append("\nCargo Manifest Date").append(containerRoute.getObject("MANIFESTDATE"))
-                            .append("\n\n");
+                    try (CallableStatement vehicleType = databaseConnection.getConnection().prepareCall("{? = call fnGetVehicleType(?)}")) {
 
+                        vehicleType.registerOutParameter(1, Types.VARCHAR);
+                        vehicleType.setString(2, containerRoute.getString("VEHICLE_NAME"));
+
+                        vehicleType.execute();
+
+                        sb.append("\nVehicle Type: ").append(vehicleType.getString(1))
+                                .append("\nVehicle Name: ").append(containerRoute.getString("VEHICLE_NAME"))
+                                .append("\nFacility Name: ").append(containerRoute.getString("FACILITY_NAME"))
+                                .append("\nTrip Start Date: ").append(containerRoute.getObject("TRIP_START_DATE"))
+                                .append("\nTrip End Date: ").append(containerRoute.getObject("TRIP_END_DATE"))
+                                .append("\nCargo Manifest Date: ").append(containerRoute.getObject("CARGOMANIFEST_DATE"))
+                                .append("\n\n");
+
+                    }
                 }
 
                 return sb.toString();
-
             }
 
-
         }
-    }
 
+
+    }
 }
 
