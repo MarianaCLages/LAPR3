@@ -27,6 +27,10 @@ public class FreightNetwork {
         return ret;
     }
 
+    public Graph<Vertex, Double> getGraph() {
+        return graph;
+    }
+
     private boolean ports(int n, DatabaseConnection connection) throws NullVerticesException {
         Map<Port, Map<Port, Double>> map = DataBaseUtils.getSeaDist(connection);
         System.out.println("DB -> Ports");
@@ -111,7 +115,6 @@ public class FreightNetwork {
     private boolean capitals(DatabaseConnection connection) {
         try {
             Map<City, LinkedList<City>> map = DataBaseUtils.getBorders(connection);
-            System.out.println("borderData impor");
             for (Map.Entry<City, LinkedList<City>> c : map.entrySet()) {
                 LinkedList<City> list = c.getValue();
                 while (!list.isEmpty()) {

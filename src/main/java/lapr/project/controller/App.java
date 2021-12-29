@@ -1,6 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
+import lapr.project.data.DataBaseScripts.GetMaterialsScript;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
@@ -12,6 +13,7 @@ import lapr.project.utils.auth.domain.OrgRole;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -172,9 +174,15 @@ public class App {
         ship.addLoadedContainer(container1, port1);
         ship.addOffLoadedContainer(container1, port1);
         company.getShipStore().addShip(ship);
+/*
+        GetMaterialsScript getMaterialsScript = new GetMaterialsScript();
 
+        try {
+            System.out.println(getMaterialsScript.getThermalResistence(2592,databaseConnection));
 
-
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }*/
 
 
         return true;

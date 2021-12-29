@@ -24,6 +24,7 @@ public class TrafficManagerUI implements Runnable {
 
         //SPRINT 3
         options.add(new MenuItem("Build a freight network", new FreightNetworkUI()));
+        options.add(new MenuItem("Colour the map using as few colours as possible", new ColourGraphUI()));
 
         int option;
         do {
