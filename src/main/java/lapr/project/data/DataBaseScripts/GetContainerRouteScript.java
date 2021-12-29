@@ -1,6 +1,7 @@
 package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
+import oracle.jdbc.internal.OracleTypes;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -9,38 +10,43 @@ import java.sql.Types;
 
 public class GetContainerRouteScript {
 
-    public static String callFunction(String containerID, String clientID, DatabaseConnection databaseConnection) throws SQLException {
+    public static String callFunction(String containerID, String clientID, DatabaseConnection databaseConnection) throws SQLException, NullPointerException {
 
         StringBuilder sb = new StringBuilder();
         sb.append("Container Route:");
 
         try (CallableStatement containerRouteStatement = databaseConnection.getConnection().prepareCall("{? = call fnGetContainerRouteCursor(?,?)}")) {
 
-            containerRouteStatement.registerOutParameter(1, Types.REF_CURSOR);
+            containerRouteStatement.registerOutParameter(1, OracleTypes.CURSOR);
             containerRouteStatement.setString(2, clientID);
             containerRouteStatement.setString(3, containerID);
 
-            try (ResultSet containerRoute = containerRouteStatement.executeQuery()) {
-                try (ResultSet containerRouteCursor = (ResultSet) containerRoute.getObject(1)) {
+            containerRouteStatement.execute();
 
-                    while (containerRouteCursor.next()) {
+            try (ResultSet containerRoute = (ResultSet) containerRouteStatement.getObject(1)) {
 
-                        sb.append("\nVehicle Type: ").append(containerRouteCursor.getString("VEHICLETYPE"))
-                                .append("\nVehicle Name: ").append(containerRouteCursor.getString("VEHICLENAME"))
-                                .append("\nFacility Name: ").append(containerRouteCursor.getString("FACILITYNAME"))
-                                .append("\nTrip Start Date: ").append(containerRouteCursor.getObject("TRIPSTARTDATE"))
-                                .append("\nTrip End Date: ").append(containerRouteCursor.getObject("TRIPENDDATE"))
-                                .append("\nCargo Manifest Date").append(containerRouteCursor.getObject("MANIFESTDATE"))
-                                .append("\n\n");
+                if (containerRoute == null)
+                    throw new NullPointerException("There is no information available for that specific container/client!");
 
-                    }
+                while (containerRoute.next()) {
 
-                    return sb.toString();
+                    sb.append("\nVehicle Type: ").append(containerRoute.getString("VEHICLETYPE"))
+                            .append("\nVehicle Name: ").append(containerRoute.getString("VEHICLENAME"))
+                            .append("\nFacility Name: ").append(containerRoute.getString("FACILITYNAME"))
+                            .append("\nTrip Start Date: ").append(containerRoute.getObject("TRIPSTARTDATE"))
+                            .append("\nTrip End Date: ").append(containerRoute.getObject("TRIPENDDATE"))
+                            .append("\nCargo Manifest Date").append(containerRoute.getObject("MANIFESTDATE"))
+                            .append("\n\n");
 
                 }
+
+                return sb.toString();
+
             }
 
-        }
 
+        }
     }
+
 }
+
