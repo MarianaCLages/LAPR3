@@ -79,17 +79,17 @@ public class City implements Vertex {
     }
 
     @Override
-    public boolean isColor() {
+    public boolean isColour() {
         return color != -1;
     }
 
     @Override
-    public int getColor() {
+    public int getColour() {
         return color;
     }
 
     @Override
-    public void setColor(int colour) {
+    public void setColour(int colour) {
         this.color = colour;
     }
 }

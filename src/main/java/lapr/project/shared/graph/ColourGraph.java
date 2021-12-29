@@ -27,8 +27,8 @@ public class ColourGraph {
 
                 // Banish colors from the adjacent vertices (make them -1)
                 for (Vertex vCheck : vAdj) {
-                    if (vCheck.isColor()) {
-                        colours[vCheck.getColor()] = -1;
+                    if (vCheck.isColour()) {
+                        colours[vCheck.getColour()] = -1;
                     }
                 }
 
@@ -42,11 +42,11 @@ public class ColourGraph {
                     aux++;
                 } while (colour == -1);
 
-                v.setColor(colour);
+                v.setColour(colour);
             }
 
             if (v instanceof City) {
-                System.out.println("City: " + v.getDesignation() + ", Colour: " + v.getColor());
+                System.out.println("City: " + v.getDesignation() + ", Colour: " + v.getColour());
             } else {
                 return null;
             }
