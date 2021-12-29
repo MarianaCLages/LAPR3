@@ -4,29 +4,35 @@
 .global posicao_x
 .global tamanho_y
 .global tamanho_x
+.global tamanho_z
 .global matrix
+.global rederecoTest
 
 .section .text
 .global existe
 existe:
-//a verdaeira posição do elemento que queremos encontrar irá ser dada por (posicao_z*tamanho_y +posicao_y*tamanho_x+posicao_x), uma vez que todos os elementos se econtram seguidos em memória
+//a verdaeira posição do elemento que queremos encontrar irá ser dada por (posicao_x*tamanho_y*tamanho_z +posicao_y*tamanho_z+posicao_z), uma vez que todos os elementos se econtram seguidos em memória
 
+	
+	movq matrix(%rip), %r12	
+	
 	movl posicao_y(%rip), %eax
-	mull tamanho_x(%rip)
+	mull tamanho_z(%rip)
 	movl %eax, %ecx
 	
-	movl posicao_z(%rip), %eax
+	movl posicao_x(%rip), %eax
 	mull tamanho_y(%rip)
-	mull tamanho_x(%rip)
+	mull tamanho_z(%rip)
 	
-	addl posicao_x(%rip), %eax
+	addl posicao_z(%rip), %eax
 	addl %ecx, %eax
 	
-	movl %eax, %edx
+    movl (%r12,%rax,4), %edx
+			
+	cmpl $0, %edx
 	
-	cmpl (matrix(%rip),%edx,4), 0
 	je vazio
-	movb %1, %al
+	movb $1, %al
 	jmp fim
 	
 vazio:
