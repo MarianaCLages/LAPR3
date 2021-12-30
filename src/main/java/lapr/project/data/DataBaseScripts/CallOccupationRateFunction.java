@@ -12,7 +12,7 @@ public class CallOccupationRateFunction {
 
     public static double occupationRateFunction(DatabaseConnection connection, String facilityId) {
         double returnValue = 0;
-        String sqlString = "{? = CALL GETWAREHOUSEOCCUPATIONRATE(?)}";
+        String sqlString = "{? = call GETWAREHOUSEOCCUPATIONRATE(?)}";
         try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {
             cstmt.registerOutParameter(1, Types.FLOAT);
             cstmt.setString(2, facilityId);

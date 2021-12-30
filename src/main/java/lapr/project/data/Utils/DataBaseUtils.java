@@ -308,7 +308,6 @@ public class DataBaseUtils {
             ex.printStackTrace();
             return Collections.emptyMap();
         }
-        System.out.println("Portos = " + seaDists.keySet().size());
         return seaDists;
     }
 

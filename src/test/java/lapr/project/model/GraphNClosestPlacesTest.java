@@ -39,6 +39,24 @@ public class GraphNClosestPlacesTest {
 
         assertEquals(GraphNClosestPlaces.getTheNPlacesClosest(graph,0),"No values returned!");
 
-        System.out.println(GraphNClosestPlaces.getTheNPlacesClosest(graph,1));
+        //System.out.println(GraphNClosestPlaces.getTheNPlacesClosest(graph,1));
+
+        String expected = "The 1 closest places per continent are :\n" +
+                "EUROPE :\n" +
+                "City{name='Madrid', latitude=12.0, longitude=36.0, country=Espanha}n closest city/port:\n" +
+                "[][City{name='Bailundo', latitude=-12.0, longitude=15.0, country=Angola}]\n" +
+                "AFRICA :\n" +
+                "City{name='Luanda', latitude=-8.0, longitude=13.0, country=Angola}n closest city/port:\n" +
+                "[][City{name='Lisboa', latitude=10.0, longitude=40.0, country=Portugal}]\n" +
+                "AMERICA :\n" +
+                "\n" +
+                "OCEANIA :\n" +
+                "\n" +
+                "ANTARCTICA :\n" +
+                "\n" +
+                "ASIA :\n" +
+                "\n";
+
+        assertEquals(expected,GraphNClosestPlaces.getTheNPlacesClosest(graph,1));
     }
 }

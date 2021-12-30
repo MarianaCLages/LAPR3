@@ -7,7 +7,6 @@ import lapr.project.model.Company;
 
 import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class FacilityOccupationRateController {
     private Company company;
@@ -31,14 +30,13 @@ public class FacilityOccupationRateController {
     }
 
 
-    public String getNumberContainersLeaving(String id, String date) throws ParseException {
+    public String getNumberContainersLeaving(String id) throws ParseException {
         int numberOfContainers = 0;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date parsed = (Date) format.parse(date);
-        Date dateDate = new Date(parsed.getTime());
+
+        Date dateDate = new Date(System.currentTimeMillis());
         numberOfContainers = CallNumberOfContainersLeavingFunction.numberOfContainers(connection, id, dateDate);
 
-        return "There are " + numberOfContainers + " leaving facility " + id + " in the month next to " + date;
+        return "There are " + numberOfContainers + " leaving facility " + id + " in the next month";
     }
 
 }
