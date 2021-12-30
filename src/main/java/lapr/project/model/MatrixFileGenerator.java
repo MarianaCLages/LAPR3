@@ -37,17 +37,17 @@ public class MatrixFileGenerator {
 
         while (countContainers != 0) {
 
-            Container c = DataBaseUtils.getContainerByCargo(cargoManifest.getIdentification(), countContainers, this.databaseConnection);
-            cargoManifest.addContainersLoaded(c);
+            Container container = DataBaseUtils.getContainerByCargo(cargoManifest.getIdentification(), countContainers, this.databaseConnection);
+            cargoManifest.addContainersLoaded(container);
             countContainers--;
         }
 
 
-        File myObj = new File("container.txt");
+        File file = new File("container.txt");
 
-        try (FileWriter myWriter = new FileWriter(myObj)) {
+        try (FileWriter fileWriter = new FileWriter(file)) {
             for (Container container : cargoManifest.getLoaded().inOrder()) {
-                myWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
+                fileWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
             }
         }
         return true;
