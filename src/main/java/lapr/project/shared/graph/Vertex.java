@@ -18,4 +18,7 @@ public interface Vertex extends Comparable<Vertex> {
     int getColour();
 
     void setColour(int colour);
+
+    String getName();
+
 }

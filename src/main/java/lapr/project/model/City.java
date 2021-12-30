@@ -92,4 +92,9 @@ public class City implements Vertex {
     public void setColour(int colour) {
         this.color = colour;
     }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
 }

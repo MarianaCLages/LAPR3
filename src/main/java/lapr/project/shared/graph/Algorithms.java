@@ -1,6 +1,9 @@
 package lapr.project.shared.graph;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.function.BinaryOperator;
 
 public class Algorithms {
 
@@ -39,4 +42,101 @@ public class Algorithms {
 
         return gbfs;
     }
+
+    /**
+     * Shortest-path between a vertex and all the other vertices
+     *
+     * @param g     graph
+     * @param vOrig start vertex
+     * @param ce    comparator between elements of type E
+     * @param sum   sum two elements of type E
+     * @param zero  neutral element of the sum in elements of type E
+     * @param paths returns all the minimum paths
+     * @param dists returns the corresponding minimum distances
+     * @return if vOrig exists in the graph true, false otherwise
+     */
+    public static <V, E> boolean shortestPaths(Graph<V, E> g, V vOrig, Comparator<E> ce, BinaryOperator<E> sum, E zero, ArrayList<LinkedList<V>> paths, ArrayList<E> dists) {
+        if (!g.validVertex(vOrig)) return false;
+        paths.clear();
+        dists.clear();
+        int numVerts = g.numVertices();
+        boolean[] visited = new boolean[numVerts];
+        @SuppressWarnings("unchecked")
+        V[] pathKeys = (V[]) new Object[numVerts];
+        @SuppressWarnings("unchecked")
+        E[] dist = (E[]) new Object[numVerts];
+        initializePathDist(numVerts, pathKeys, dist);
+
+        shortestPathDijkstra(g, vOrig, ce, sum, zero, visited, pathKeys, dist);
+
+        dists.clear();
+        paths.clear();
+        for (int i = 0; i < numVerts; i++) {
+            paths.add(null);
+            dists.add(null);
+        }
+        for (V vOst : g.vertices()) {
+            int i = g.key(vOst);
+            if (dist[i] != null) {
+                LinkedList<V> shortPath = new LinkedList<>();
+                getPath(g, vOrig, vOst, pathKeys, shortPath);
+                paths.set(i, shortPath);
+                dists.set(i, dist[i]);
+            }
+        }
+
+        return true;
+    }
+
+    private static <V, E> void shortestPathDijkstra(Graph<V, E> g, V vOrig, Comparator<E> ce, BinaryOperator<E> sum, E zero, boolean[] visited, V[] pathKeys, E[] dist) {
+        int vkey = g.key(vOrig);
+        dist[vkey] = zero;
+        pathKeys[vkey] = vOrig;
+        while (vOrig != null) {
+            vkey = g.key(vOrig);
+            visited[vkey] = true;
+            for (Edge<V, E> edge : g.outgoingEdges(vOrig)) {
+                int vkeyAdj = g.key(edge.getVDest());
+                if (!visited[vkeyAdj]) {
+                    E s = sum.apply(dist[vkey], edge.getWeight());
+                    if (dist[vkeyAdj] == null || ce.compare(dist[vkeyAdj], s) > 0) {
+                        dist[vkeyAdj] = s;
+                        pathKeys[vkeyAdj] = vOrig;
+                    }
+                }
+            }
+            E minDist = null;
+            vOrig = null;
+            for (V vert : g.vertices()) {
+                int i = g.key(vert);
+                if (!visited[i] && (dist[i] != null) && ((minDist == null) || ce.compare(dist[i], minDist) < 0)) {
+                    minDist = dist[i];
+                    vOrig = vert;
+                }
+            }
+        }
+    }
+
+    private static <V, E> void getPath(Graph<V, E> g, V vOrig, V vDest,
+                                       V[] pathKeys, LinkedList<V> path) {
+
+        if (vOrig.equals(vDest)) {
+            path.push(vOrig);
+        } else {
+            path.push(vDest);
+            int vKey = g.key(vDest);
+            vDest = pathKeys[vKey];
+            getPath(g, vOrig, vDest, pathKeys, path);
+        }
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private static <V, E> void initializePathDist(int nVerts, V[] pathKeys, E[] dist) {
+        for (int i = 0; i < nVerts; i++) {
+            dist[i] = null;
+            pathKeys[i] = null;
+        }
+    }
+
+
 }
