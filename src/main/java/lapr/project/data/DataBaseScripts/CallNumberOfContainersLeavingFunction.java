@@ -13,7 +13,7 @@ public class CallNumberOfContainersLeavingFunction {
 
     public static int numberOfContainers(DatabaseConnection connection, String facilityId, Date date) {
         int returnValue = 0;
-        String sqlString = "{? = CALL GETCONTAINERSLEAVINGNEXTMONTH(?,?)}";
+        String sqlString = "{? = call GETCONTAINERSLEAVINGNEXTMONTH(?,?)}";
         try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setString(2, facilityId);
