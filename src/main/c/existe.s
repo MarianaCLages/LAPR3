@@ -11,9 +11,8 @@
 .section .text
 .global existe
 existe:
-//a verdaeira posição do elemento que queremos encontrar irá ser dada por (posicao_x*tamanho_y*tamanho_z +posicao_y*tamanho_z+posicao_z), uma vez que todos os elementos se econtram seguidos em memória
+//a verdadeira posição do elemento que queremos encontrar irá ser dada por (posicao_x*tamanho_y*tamanho_z +posicao_y*tamanho_z+posicao_z), uma vez que todos os elementos se econtram seguidos em memória
 
-	
 	movq matrix(%rip), %r12	
 	
 	movl posicao_y(%rip), %eax

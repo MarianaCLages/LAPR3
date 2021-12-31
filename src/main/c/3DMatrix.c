@@ -1,37 +1,38 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "existe.h"
 
-int posicao_z;
-int posicao_y;
-int posicao_x;
+int* matrix;
 int tamanho_y;
 int tamanho_x;
 int tamanho_z;
-int* matrix;
-int* enderecoTest;
 
-
-int main(void) {
+int createMatrix3D(void) {
 	
 	FILE *fp;
 	char buffer[255];
 
 	int x = -999, y = -999, z = -999;
 	int matrix3D[50][50][50];
-	
 	matrix = &matrix3D[0][0][0];
-	posicao_x =25;
-	posicao_y =5;
-	posicao_z =2;
+	
 	tamanho_y = 50;
 	tamanho_x = 50;
 	tamanho_z = 50;
-
-		
-	fp = fopen("container.txt", "r");
 	
+	for (int i = 0; i < 50; i++){
+			
+		for (int j = 0; j < 50; j++){
+			
+			for (int k = 0; k < 50; k++){
+				
+				matrix3D[i][j][k] = 0;
+				
+			}
+		}
+	}
+
+	fp = fopen("container.txt", "r");
 	
 
 
@@ -93,13 +94,18 @@ int main(void) {
 	
    	fclose(fp);
    	
-	printf("position[%d][%d][%d] ", posicao_x, posicao_y, posicao_z);
-	
-   	if(existe()){
-		printf("existe\n");
-	}else{
-		printf("não existe\n");
+   	for (i = 0; i < 50; i++){
+			
+		for (int j = 0; j < 50; j++){
+			
+			for (int k = 0; k < 50; k++){
+				
+				if(matrix3D[i][j][k] != 0){
+					printf("matrix[%d][%d][%d] = %d\n ",i,j,k,matrix3D[i][j][k]);
+				}
+			}
+		}
 	}
-	
+   	
 	return 0;	
 }
