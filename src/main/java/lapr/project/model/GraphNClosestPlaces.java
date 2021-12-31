@@ -9,7 +9,7 @@ import java.util.*;
 
 public class GraphNClosestPlaces {
 
-    private GraphNClosestPlaces() {
+    public GraphNClosestPlaces() {
         //EMPTY
     }
 
@@ -191,11 +191,11 @@ public class GraphNClosestPlaces {
 
     }
 
-    private static void quickSort(ArrayList<Double> array, ArrayList<LinkedList<Vertex>> paths) {
+    public   void quickSort(ArrayList<Double> array, ArrayList<LinkedList<Vertex>> paths) {
         quickSort(array, 0, array.size() - 1, paths);
     }
 
-    private static void quickSort(ArrayList<Double> array, int lowIndex, int highIndex, ArrayList<LinkedList<Vertex>> paths) {
+    private  void quickSort(ArrayList<Double> array, int lowIndex, int highIndex, ArrayList<LinkedList<Vertex>> paths) {
 
 
         if (lowIndex >= highIndex) {
@@ -210,7 +210,7 @@ public class GraphNClosestPlaces {
 
     }
 
-    private static void swap(ArrayList<Double> array, int index1, int index2, ArrayList<LinkedList<Vertex>> paths) {
+    public void swap(ArrayList<Double> array, int index1, int index2, ArrayList<LinkedList<Vertex>> paths) {
 
         double temp = array.get(index1);
         array.set(index1, array.get(index2));
@@ -222,7 +222,7 @@ public class GraphNClosestPlaces {
 
     }
 
-    private static int partition(ArrayList<Double> array, int lowIndex, int highIndex, double pivot, ArrayList<LinkedList<Vertex>> paths) {
+    public int partition(ArrayList<Double> array, int lowIndex, int highIndex, double pivot, ArrayList<LinkedList<Vertex>> paths) {
 
         int leftPointer = lowIndex;
         int rightPointer = highIndex;
