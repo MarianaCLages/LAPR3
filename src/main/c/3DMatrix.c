@@ -31,6 +31,8 @@ int createMatrix3D(void) {
 			}
 		}
 	}
+	
+
 
 	fp = fopen("container.txt", "r");
 	
@@ -101,7 +103,7 @@ int createMatrix3D(void) {
 			for (int k = 0; k < 50; k++){
 				
 				if(matrix3D[i][j][k] != 0){
-					printf("matrix[%d][%d][%d] = %d\n ",i,j,k,matrix3D[i][j][k]);
+					printf("matrixd[%d][%d][%d] = %d\n ",i,j,k,matrix3D[i][j][k]);
 				}
 			}
 		}

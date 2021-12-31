@@ -14,19 +14,7 @@ int main(void) {
 
     //Create the Matrix calling the createMatrix3D
 	createMatrix3D();
-	for (int i = 0; i < tamanho_x; i++)
-	{
-		for (int j = 0; j < tamanho_y; j++)
-		{
-			for (int k = 0; k < tamanho_z; k++)
-			{
-				if (*(matrix+i*tamanho_y*tamanho_z+j*tamanho_z+k)!=0)
-				{
-					printf("matrix[%d][%d][%d] = %d\n ",i,j,k,*(matrix+i*tamanho_y*tamanho_z+j*tamanho_z+k));
-				}
-			}
-		}
-	}
+
 	printf("0x%lX\n",occupiedSlots());
    //createMatrix3D();
 /*
