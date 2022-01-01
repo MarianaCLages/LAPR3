@@ -44,11 +44,16 @@ public class GraphNClosestPlacesTest {
             assertEquals(GraphNClosestPlaces.getNClosestPlaces(graph, 0), "No values returned!");
             //System.out.println(GraphNClosestPlaces.getTheNPlacesClosest(graph,1));
 
-            String expected = "Origin Vertex: Lisboa , which is a : City\n" +
+            String expected = "\n" +
+                    "Origin Vertex: Lisboa , which is a : City\n" +
+                    "\t\t\tThere are no connections for this place!\n" +
                     "Origin Vertex: Madrid , which is a : City\n" +
-                    "             Lisboa which is a : City , with a distance of: 0.0\n" +
+                    "\t\t\tLisboa which is a : City , with a distance of: 0.0\n" +
+                    "\n" +
                     "Origin Vertex: Luanda , which is a : City\n" +
-                    "Origin Vertex: Bailundo , which is a : City\n";
+                    "\t\t\tThere are no connections for this place!\n" +
+                    "Origin Vertex: Bailundo , which is a : City\n" +
+                    "\t\t\tThere are no connections for this place!";
 
             assertEquals(expected, GraphNClosestPlaces.getNClosestPlaces(graph, 1));
         } catch (NoPathFoundForSpecificVertexException e) {
