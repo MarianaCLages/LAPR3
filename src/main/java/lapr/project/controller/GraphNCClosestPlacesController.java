@@ -2,25 +2,23 @@ package lapr.project.controller;
 
 import lapr.project.model.Company;
 import lapr.project.model.FreightNetwork;
-import lapr.project.model.GraphNClosestPlaces;
+import lapr.project.shared.exceptions.NoPathFoundForSpecificVertexException;
+import lapr.project.shared.graph.GraphNClosestPlaces;
 import lapr.project.shared.graph.Graph;
 import lapr.project.shared.graph.Vertex;
 
-public class GraphNClosestePlacesController {
+public class GraphNCClosestPlacesController {
 
-    private final GraphNClosestPlaces graphNClosestPlaces;
     private final FreightNetwork freightNetwork;
 
 
-    public GraphNClosestePlacesController(){
+    public GraphNCClosestPlacesController() {
         Company company = App.getInstance().getCompany();
         this.freightNetwork = company.getFreightNetwork();
-        graphNClosestPlaces = new GraphNClosestPlaces();
     }
 
-    public String graphNClosestPlacesController(int n){
+    public String graphNClosestPlacesController(int n) throws NoPathFoundForSpecificVertexException {
         Graph<Vertex, Double> graph = freightNetwork.getGraph();
-
-        return graphNClosestPlaces.getNClosestPlaces(graph,n);
+        return GraphNClosestPlaces.getNClosestPlaces(graph, n);
     }
 }

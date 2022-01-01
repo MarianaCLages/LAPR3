@@ -17,7 +17,6 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Get the list of ships", new ListShipsUI()));
         options.add(new MenuItem("Get the top-N ships in a certain interval of dates", new TopNShipsUI()));
         options.add(new MenuItem("Show all pairs of ships", new PairsOfShipsUI()));
-        options.add(new MenuItem("N Closest Places",new GraphNClosestPlacesUI()));
 
         //SPRINT 2
         options.add(new MenuItem("Find the closest port from a certain ship", new ClosestPortUI()));
@@ -26,6 +25,7 @@ public class TrafficManagerUI implements Runnable {
         //SPRINT 3
         options.add(new MenuItem("Build a freight network", new FreightNetworkUI()));
         options.add(new MenuItem("Colour the map using as few colours as possible", new ColourGraphUI()));
+        options.add(new MenuItem("Get the 'N' closest places per city/port",new GraphNClosestPlacesUI()));
 
         int option;
         do {
