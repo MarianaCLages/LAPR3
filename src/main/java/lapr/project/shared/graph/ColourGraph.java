@@ -1,16 +1,20 @@
 package lapr.project.shared.graph;
 
 import lapr.project.model.City;
+import lapr.project.shared.exceptions.SetColoursException;
 
 import java.util.*;
 
 public class ColourGraph {
 
-    public ColourGraph() {
+    private ColourGraph() {
         // Empty constructor
     }
 
-    public String setColours(Graph<Vertex, Double> graph) {
+    public static String setColours(Graph<Vertex, Double> graph) throws SetColoursException {
+
+        StringBuilder sb = new StringBuilder();
+
         int[] colours = new int[graph.numVertices()];
         int colour;
         ArrayList<Vertex> vertexArrayList = graph.vertices();
@@ -46,11 +50,11 @@ public class ColourGraph {
             }
 
             if (v instanceof City) {
-                System.out.println("City: " + v.getDesignation() + ", Colour: " + v.getColour());
+                sb.append("City: ").append(v.getDesignation()).append(", Colour: ").append(v.getColour());
             } else {
-                return null;
+                throw new SetColoursException();
             }
         }
-        return null;
+        return sb.toString();
     }
 }

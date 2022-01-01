@@ -3,6 +3,7 @@ package lapr.project.shared.graph;
 import lapr.project.model.City;
 import lapr.project.model.Continent;
 import lapr.project.model.Country;
+import lapr.project.shared.exceptions.SetColoursException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +31,11 @@ class ColourGraphTest {
     }
 
     @Test
-    void setColoursTest(){
-        ColourGraph cg = new ColourGraph();
-        cg.setColours(graph);
+    void setColoursTest() {
+        try {
+            ColourGraph.setColours(graph);
+        } catch (SetColoursException e) {
+
+        }
     }
 }

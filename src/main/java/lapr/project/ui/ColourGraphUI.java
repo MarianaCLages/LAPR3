@@ -1,6 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ColourGraphController;
+import lapr.project.shared.exceptions.SetColoursException;
 
 public class ColourGraphUI implements Runnable {
 
@@ -13,7 +14,9 @@ public class ColourGraphUI implements Runnable {
     public void run() {
         try {
             controller.colourGraph();
-        } catch (Exception e) {
+        } catch (SetColoursException ex1) {
+            System.out.println(ex1.getMessage());
+        } catch (Exception ex2) {
             System.out.println("Something went wrong. Please, try again.");
         }
     }
