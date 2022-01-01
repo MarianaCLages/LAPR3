@@ -7,17 +7,17 @@ import java.sql.SQLException;
 
 public class GetContainerRouteUI implements Runnable {
 
-    public GetContainerRouteUI() {
-        //Empty
-    }
+    private final GetContainerRouteController getContainerRouteController;
 
-    private final GetContainerRouteController getContainerRouteController = new GetContainerRouteController();
+    public GetContainerRouteUI() {
+        this.getContainerRouteController = new GetContainerRouteController();
+    }
 
     @Override
     public void run() {
 
-        int containerID = -1;
-        int clientID = -1;
+        int containerID;
+        int clientID;
 
         do {
             try {
@@ -44,6 +44,5 @@ public class GetContainerRouteUI implements Runnable {
         } catch (SQLException | NullPointerException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }
