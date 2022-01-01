@@ -3,29 +3,42 @@ package lapr.project.ui;
 import lapr.project.controller.ThermalController;
 import lapr.project.data.ConnectionFactory;
 import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ThermalUI implements Runnable{
+public class ThermalUI implements Runnable {
 
-    public ThermalUI(){}
+    private final ThermalController thermalController;
+
+    public ThermalUI() {
+        this.thermalController = new ThermalController();
+    }
 
     @Override
-    public void run(){
+    public void run() {
 
-        ThermalController thermalController = new ThermalController();
+        int id;
 
-        int id = Utils.readIntegerFromConsole("Container ID:");
+        do {
+            try {
+                id = Utils.readIntegerFromConsole("Container ID:");
+                if (id < 0)
+                    throw new NumberFormatException("Please enter a positive number! There is no negative ID!");
+            } catch (NumberFormatException ex1) {
+                System.out.println(ex1.getMessage());
+                id = -1;
+            } catch (IllegalArgumentException ex2) {
+                System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                id = -1;
+            }
+        } while (id == -1);
+
         try {
-            DatabaseConnection db = ConnectionFactory.getInstance().getDatabaseConnection();
-            System.out.println(thermalController.ThermalController(id,db));
-        } catch (IOException | SQLException ioException) {
-            ioException.printStackTrace();
+            System.out.println(thermalController.getMaterialThermalResistance(id));
+        } catch (ProportionalityConstantNullException ex1) {
+            System.out.println(ex1.getMessage());
         }
-
-
-
-
     }
 }

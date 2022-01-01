@@ -2,17 +2,20 @@ package lapr.project.controller;
 
 import lapr.project.data.DataBaseScripts.GetMaterialsScript;
 import lapr.project.data.DatabaseConnection;
+import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
 import java.sql.SQLException;
 
 public class ThermalController {
 
-    public ThermalController(){}
+    private final GetMaterialsScript getMaterialsScript;
 
-    public String ThermalController(int id, DatabaseConnection db) throws SQLException {
+    public ThermalController() {
+        DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+        getMaterialsScript = new GetMaterialsScript(databaseConnection);
+    }
 
-        GetMaterialsScript getMaterialsScript = new GetMaterialsScript();
-
-        return getMaterialsScript.getThermalResistance(id,db);
+    public String getMaterialThermalResistance(int id) throws ProportionalityConstantNullException {
+        return getMaterialsScript.getThermalResistance(id);
     }
 }
