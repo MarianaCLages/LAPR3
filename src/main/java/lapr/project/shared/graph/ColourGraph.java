@@ -50,9 +50,7 @@ public class ColourGraph {
             }
 
             if (v instanceof City) {
-                sb.append("City: ").append(v.getDesignation()).append(", Colour: ").append(v.getColour());
-            } else {
-                throw new SetColoursException();
+                sb.append("City: ").append(v.getDesignation()).append(", Colour: ").append(v.getColour()).append("\n");
             }
         }
         return sb.toString();

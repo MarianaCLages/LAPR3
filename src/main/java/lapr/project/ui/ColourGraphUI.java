@@ -13,7 +13,7 @@ public class ColourGraphUI implements Runnable {
 
     public void run() {
         try {
-            controller.colourGraph();
+            System.out.println(controller.colourGraph());
         } catch (SetColoursException ex1) {
             System.out.println(ex1.getMessage());
         } catch (Exception ex2) {

@@ -16,8 +16,8 @@ public class ColourGraphController {
         this.freightNetwork = company.getFreightNetwork();
     }
 
-    public void colourGraph() throws SetColoursException {
+    public String colourGraph() throws SetColoursException {
         Graph<Vertex, Double> graph = freightNetwork.getGraph();
-        ColourGraph.setColours(graph);
+        return ColourGraph.setColours(graph);
     }
 }
