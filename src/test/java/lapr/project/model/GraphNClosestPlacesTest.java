@@ -42,7 +42,7 @@ public class GraphNClosestPlacesTest {
     void GraphNClosestPlaces(){
 
 
-        assertEquals(GraphNClosestPlaces.getNClosestPlaces(graph,0),"No values returned!");
+        assertEquals(graphNClosestPlaces.getNClosestPlaces(graph,0),"No values returned!");
 
         //System.out.println(GraphNClosestPlaces.getTheNPlacesClosest(graph,1));
 
@@ -52,7 +52,7 @@ public class GraphNClosestPlacesTest {
                 "Origin Vertex: Luanda , which is a : City\n" +
                 "Origin Vertex: Bailundo , which is a : City\n";
 
-        assertEquals(expected,GraphNClosestPlaces.getNClosestPlaces(graph,1));
+        assertEquals(expected,graphNClosestPlaces.getNClosestPlaces(graph,1));
     }
 
     @Test

@@ -103,7 +103,7 @@ public class GraphNClosestPlaces {
     } */
 
 
-    public static String getNClosestPlaces(Graph<Vertex, Double> graph, int n) {
+    public  String getNClosestPlaces(Graph<Vertex, Double> graph, int n) {
 
         if (n < 1)
             return "No values returned!";
