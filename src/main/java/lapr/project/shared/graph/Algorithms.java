@@ -152,6 +152,14 @@ public class Algorithms {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Initializes the path.
+     * @param nVerts the number of vertices
+     * @param pathKeys the path keys
+     * @param dist the distance
+     * @param <V> the type of parameter (Vertex)
+     * @param <E> the type of parameter (Edge)
+     */
     private static <V, E> void initializePathDist(int nVerts, V[] pathKeys, E[] dist) {
         for (int i = 0; i < nVerts; i++) {
             dist[i] = null;
