@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class ColourGraphControllerTest {
 
-    /*
+
 
     @Test
     void colourGraphController() {
@@ -28,5 +28,5 @@ class ColourGraphControllerTest {
 
 
 
-     */
+
 }

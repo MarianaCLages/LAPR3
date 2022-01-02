@@ -48,9 +48,9 @@ public class FindAvailableShipsController {
             }
         }
 
-        for (String shipID : lShipID) {
+        /*for (String shipID : lShipID) {
             rlShip.add(shipStore.getShipByCallSign(shipID));
-        }
+        } */
 
         return rlShip;
     }
