@@ -17,7 +17,7 @@ class FreightNetworkTest {
             assertTrue(f.createGraph(5, database));
             assertEquals(140, f.size());
             assertEquals(590, f.connectionsSize());
-            assertEquals(5, f.getGraph().outgoingEdges(f.getGraph().vertex(15)).size());
+            assertEquals(5, f.getGraph().outgoingEdges(f.getGraph().vertex(30)).size());
         } catch (NullVerticesException e) {
             fail();
         }
