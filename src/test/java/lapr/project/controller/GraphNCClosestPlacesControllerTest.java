@@ -10,6 +10,8 @@ class GraphNCClosestPlacesControllerTest {
     @Test
     void graphNClosestPlacesController() {
 
+        /*
+
         GraphNCClosestPlacesController graphNCClosestPlacesController = new GraphNCClosestPlacesController();
 
 
@@ -23,5 +25,8 @@ class GraphNCClosestPlacesControllerTest {
             System.out.println("NANI");
         }
 
+    }
+
+         */
     }
 }

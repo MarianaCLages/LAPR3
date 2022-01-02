@@ -21,8 +21,8 @@ class LoadedContainersControllerTest {
 
             if (actual == null || actual.equals("")) fail();
 
-        } catch (ShipCargoCapacityException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
-            System.out.println("NANI");
+        } catch (SQLException e) {
+
         }
 
 
