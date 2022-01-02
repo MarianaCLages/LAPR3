@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.Company;
-import lapr.project.model.FreightNetwork;
+import lapr.project.shared.graph.FreightNetwork;
 import lapr.project.shared.exceptions.NoPathFoundForSpecificVertexException;
 import lapr.project.shared.graph.GraphNClosestPlaces;
 import lapr.project.shared.graph.Graph;

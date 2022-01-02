@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.model.FreightNetwork;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;

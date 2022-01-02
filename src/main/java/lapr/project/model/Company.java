@@ -8,6 +8,7 @@ import lapr.project.model.stores.CargoManifestStore;
 import lapr.project.model.stores.ContainerStore;
 import lapr.project.model.stores.PortStore;
 import lapr.project.model.stores.ShipStore;
+import lapr.project.shared.graph.FreightNetwork;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
 import lapr.project.utils.auth.domain.store.UserStore;
