@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 /**
  * @author nunocastro
@@ -14,7 +13,6 @@ public class ConnectionFactory {
     /**
      * Logger class.
      */
-    private static final Logger LOGGER = Logger.getLogger("MainLog");
 
     private static ConnectionFactory instance = null;
 
@@ -23,8 +21,7 @@ public class ConnectionFactory {
      */
 
 
-
-    private final Integer connectionPoolCount = 1;
+    private static final Integer connectionPoolCount = 1;
 
     private final List<DatabaseConnection> databaseConnectionList =
             new ArrayList<>();
@@ -47,7 +44,7 @@ public class ConnectionFactory {
      * Load Properties from application.properties file.
      */
 
-private void loadProperties() throws IOException {
+    private void loadProperties() throws IOException {
         //Load existing properties.
         Properties properties = new Properties(System.getProperties());
 

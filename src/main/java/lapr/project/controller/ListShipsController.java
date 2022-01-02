@@ -12,10 +12,10 @@ import java.util.List;
 
 public class ListShipsController {
 
-    Company company;
-    ShipStore shipStore;
-    List<Ship> shipList;
-    ShipMapper shipMapper;
+    private final Company company;
+    private final ShipStore shipStore;
+    private List<Ship> shipList;
+    private final ShipMapper shipMapper;
 
     /**
      * Constructor.
@@ -23,6 +23,8 @@ public class ListShipsController {
     public ListShipsController() {
         this.company = App.getInstance().getCompany();
         this.shipStore = company.getShipStore();
+        this.shipList = new ArrayList<>();
+        this.shipMapper = new ShipMapper();
     }
 
     /**
@@ -40,8 +42,7 @@ public class ListShipsController {
      * @return the ship list
      */
     public List<Ship> getShipList() {
-        shipList = new ArrayList<>();
-        shipList = shipStore.transformAVLintoListMMSI();
+        this.shipList = shipStore.transformAVLintoListMMSI();
         return shipList;
     }
 
@@ -64,7 +65,6 @@ public class ListShipsController {
      */
     public List<ShipDTO> getShipListDTO() {
         try {
-            this.shipMapper = new ShipMapper();
             List<Ship> sShips = sortedList();
             return shipMapper.toDTO(sShips);
         } catch (Exception e) {

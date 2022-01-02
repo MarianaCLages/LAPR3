@@ -50,54 +50,6 @@ public class seaDistancesImporter {
                         }
                     }
                 }
-
-            /*String sqlCommand = "SELECT ALPHA2CODE, ALPHA3CODE from FACILITY where FACILITYID = '" + line[1] + "'";
-            try (PreparedStatement getCountryCodeStatement = connection.prepareStatement(sqlCommand)) {
-                try (ResultSet resultSetCountryCode = getCountryCodeStatement.executeQuery()) {
-                    while (resultSetCountryCode.next()) {
-
-                        sqlCommand = "select * from FACILITY where ALPHA3CODE = '" + resultSetCountryCode.getString(2) + "' and ALPHA2CODE = '" + resultSetCountryCode.getString(1) + "' ";
-
-                        try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                            try (ResultSet resultSetCountry = getCountryPreparedStatement.executeQuery()) {
-
-                                if (resultSetCountry.next()) {
-
-                                    port1ID = resultSetCountry.getInt("FACILITYID");
-                                }
-                            }
-                        }
-                        sqlCommand = "SELECT ALPHA2CODE, ALPHA3CODE from FACILITY where FACILITYID = '" + line[4] + "'";
-                        try (PreparedStatement getCountry2CodeStatement = connection.prepareStatement(sqlCommand)) {
-                            try (ResultSet resultSetCountry2Code = getCountry2CodeStatement.executeQuery()) {
-                                while (resultSetCountry2Code.next()) {
-                                    sqlCommand = "select * from FACILITY where ALPHA3CODE = '" + resultSetCountry2Code.getString(2) + "' and ALPHA2CODE = '" + resultSetCountry2Code.getString(1) + "' ";
-
-                                    try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                                        try (ResultSet resultSetCountry = getCountryPreparedStatement.executeQuery()) {
-
-                                            if (resultSetCountry.next()) {
-
-                                                port2ID = resultSetCountry.getInt("FACILITYID");
-
-                                                sqlCommand = "insert into SeaDistance (firstPortID, secondPortID, seaDistance) values ('" + port1ID + "','" + port2ID + "','" + line[6] + "')";
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            try (PreparedStatement geContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                geContainerPreparedStatement.executeUpdate();
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-            }
-*/
             }
         } while (sc.hasNextLine());
         sc.close();

@@ -1,6 +1,5 @@
 package lapr.project.data;
 
-import lapr.project.controller.App;
 import lapr.project.model.Container;
 import lapr.project.model.stores.ContainerStore;
 
@@ -16,6 +15,7 @@ import java.util.logging.Logger;
 public class ContainerStoreData implements Persistable {
 
     public ContainerStoreData() {
+        //EMPTY
     }
 
     private static int i = 1;
@@ -34,7 +34,6 @@ public class ContainerStoreData implements Persistable {
         try (PreparedStatement geContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet addressesResultSet = geContainerPreparedStatement.executeQuery()) {
                 if (addressesResultSet.next()) {
-                    System.out.println(addressesResultSet.getInt(1));
 
                     sqlCommand = "UPDATE CONTAINER SET PAYLOAD = '" + container.getPayload() + "', TARE = '" + container.getTare() + "', GROSS = '" + container.getGross() + "',ISOCODE = '" + container.getIsoCode() + " Where CONTAINERID = '" + container.getIdentification() + "'";
 

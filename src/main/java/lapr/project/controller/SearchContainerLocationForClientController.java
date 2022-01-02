@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class SearchContainerLocationForClientController {
 
     private final CargoManifestStoreData cargoManifestStore;
-    private GetClientsContainerScript script = new GetClientsContainerScript(App.getInstance().getDatabaseConnection());
+    private final GetClientsContainerScript script;
 
     /**
      * Constructor
@@ -17,6 +17,7 @@ public class SearchContainerLocationForClientController {
     public SearchContainerLocationForClientController() {
         Company company = App.getInstance().getCompany();
         this.cargoManifestStore = company.getCargoManifestStoreData();
+        script = new GetClientsContainerScript(App.getInstance().getDatabaseConnection());
     }
 
     /**
@@ -26,9 +27,7 @@ public class SearchContainerLocationForClientController {
      * @return list of containers
      */
     public ArrayList<String> getClientContainers(String clientID) {
-        ArrayList<String> lResult = script.getClientContainers(clientID);
-
-        return lResult;
+        return script.getClientContainers(clientID);
     }
 
     /**
@@ -40,9 +39,7 @@ public class SearchContainerLocationForClientController {
     public CargoManifest findContainerVessel(Container rContainer) {
         CargoManifest rCargoManifest = null;
         for (CargoManifest cm : cargoManifestStore.getListCargoManifest(App.getInstance().getDatabaseConnection())) {
-            if (cm.getLoaded().find(rContainer).equals(rContainer) && rCargoManifest.equals(null)) {
-                rCargoManifest = cm;
-            } else if (cm.getDate().after(rCargoManifest.getDate())) {
+            if (cm.getLoaded().find(rContainer).equals(rContainer) && rCargoManifest == (null)) {
                 rCargoManifest = cm;
             }
         }

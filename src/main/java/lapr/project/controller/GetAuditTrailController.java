@@ -1,7 +1,6 @@
 package lapr.project.controller;
 
 import lapr.project.data.DataBaseScripts.GetAuditTrailScript;
-import lapr.project.data.DataBaseScripts.GetContainerRouteScript;
 import lapr.project.data.DatabaseConnection;
 
 import java.sql.SQLException;
@@ -15,8 +14,6 @@ public class GetAuditTrailController {
     }
 
     public String getAuditTrail() throws SQLException {
-
         return GetAuditTrailScript.getAuditTrail(databaseConnection);
-
     }
 }

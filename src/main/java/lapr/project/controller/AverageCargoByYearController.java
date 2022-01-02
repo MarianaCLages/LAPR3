@@ -26,7 +26,7 @@ public class AverageCargoByYearController {
      * @param year the year
      * @return the total number of cargo manifests in a given year and the average number of containers per manifest
      */
-    public String averageCargoByYear(int mmsi, int year) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException, SQLException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException, NoContainersInsideThatTripException {
+    public String averageCargoByYear(int mmsi, int year) throws NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException, SQLException, NoContainersInsideThatTripException {
         return averageCargoByYear.numberOfContainers(databaseConnection, mmsi, year);
     }
 }

@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.data.DataBaseScripts.OffOrLoadContainers;
 import lapr.project.data.DatabaseConnection;
-import lapr.project.shared.exceptions.*;
 
 import java.sql.SQLException;
 
@@ -25,16 +24,9 @@ public class LoadedContainersController {
      * @param mmsi the ship's MMSI
      * @param type the ship's type (to be loaded)
      * @return the containers to be loaded
-     * @throws ShipCargoCapacityException
-     * @throws ContainerGrossException
-     * @throws ContainersInsideCargoManifestListSizeException
-     * @throws CargoManifestIDException
-     * @throws CargoManifestDoesntBelongToThatShipException
-     * @throws VehicleIDNotValidException
-     * @throws IllegalArgumentException
-     * @throws SQLException
+     * @throws SQLException in case a error occurs in the DB
      */
-    public String getLoadContainers(int mmsi, String type) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException, SQLException {
+    public String getLoadContainers(int mmsi, String type) throws SQLException {
         return (offOrLoadContainers.getResultLoaded(databaseConnection, mmsi, type));
     }
 }
