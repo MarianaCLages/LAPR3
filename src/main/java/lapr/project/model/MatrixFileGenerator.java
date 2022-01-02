@@ -34,6 +34,8 @@ public class MatrixFileGenerator {
 
         Ship ship = DataBaseUtils.getMmsiByCargoManifest(databaseConnection, cargoManifestId);
 
+        int capacity = (int) ship.getCapacity() / 3;
+
         if (ship == null) {
             return false;
         }
@@ -60,6 +62,8 @@ public class MatrixFileGenerator {
         File file = new File("container.txt");
 
         try (FileWriter fileWriter = new FileWriter(file)) {
+
+            fileWriter.write(capacity+","+capacity+","+capacity + "\n");
             for (Container container : cargoManifest.getLoaded().inOrder()) {
                 fileWriter.write(container.getPosition().xPos + "," + container.getPosition().yPos + "," + container.getPosition().zPos + "," + container.getIdentification() + "\n");
             }
