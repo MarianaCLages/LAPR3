@@ -55,7 +55,7 @@ public class FacilityOccupationRateController {
             Date dateDate = new Date(System.currentTimeMillis());
             numberOfContainers = CallNumberOfContainersLeavingFunction.numberOfContainers(connection, id, dateDate);
 
-            return "There are " + numberOfContainers + " leaving facility " + id + " in the next month";
+            return "There are " + numberOfContainers + " containers leaving facility " + id + " in the next month";
         } else {
             return "";
         }

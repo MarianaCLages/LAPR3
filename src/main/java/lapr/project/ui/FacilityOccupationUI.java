@@ -22,9 +22,9 @@ public class FacilityOccupationUI implements Runnable {
 
         do {
             try {
-                facilityId = Utils.readIntegerFromConsole("Please enter the FacilityId:");
+                facilityId = Utils.readIntegerFromConsole("Please enter the facility ID:");
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a valid Id!");
+                System.out.println("Please enter a valid ID!");
                 facilityId = 0;
             }
         } while (facilityId == 0);
