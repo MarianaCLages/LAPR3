@@ -1,6 +1,9 @@
-package lapr.project.model;
+package lapr.project.shared.graph;
 
 
+import lapr.project.model.City;
+import lapr.project.model.Continent;
+import lapr.project.model.Country;
 import lapr.project.shared.graph.FreightNetwork;
 import org.junit.jupiter.api.Test;
 
