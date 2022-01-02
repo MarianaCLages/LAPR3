@@ -1,10 +1,8 @@
 package lapr.project.ui;
 
 import lapr.project.controller.SearchContainerLocationForClientController;
-import lapr.project.model.CargoManifest;
+import lapr.project.data.CargoManifest;
 import lapr.project.model.Container;
-import lapr.project.model.FacilityLocation;
-import lapr.project.model.Position;
 
 import java.util.ArrayList;
 

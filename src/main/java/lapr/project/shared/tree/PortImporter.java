@@ -1,7 +1,9 @@
-package lapr.project.model;
+package lapr.project.shared.tree;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.PortStoreData;
+import lapr.project.model.FacilityLocation;
+import lapr.project.model.Port;
 import lapr.project.model.stores.PortStore;
 
 import java.io.File;

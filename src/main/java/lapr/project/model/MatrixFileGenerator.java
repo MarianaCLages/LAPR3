@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.data.CargoManifest;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
 

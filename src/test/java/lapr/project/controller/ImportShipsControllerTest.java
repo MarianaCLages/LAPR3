@@ -1,11 +1,9 @@
 package lapr.project.controller;
 
-import lapr.project.model.ShipImporter;
 import lapr.project.shared.exceptions.InvalidLineException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,5 +1,6 @@
 package lapr.project.model.stores;
 
+import lapr.project.data.CargoManifest;
 import lapr.project.model.*;
 import lapr.project.shared.PairOfShips;
 import org.junit.jupiter.api.Test;

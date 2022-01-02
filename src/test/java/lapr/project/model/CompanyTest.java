@@ -5,6 +5,7 @@ import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.ContainerStoreData;
 import lapr.project.data.PortStoreData;
 import lapr.project.data.ShipStoreData;
+import lapr.project.shared.graph.FreightNetwork;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
 import lapr.project.utils.auth.domain.store.UserStore;

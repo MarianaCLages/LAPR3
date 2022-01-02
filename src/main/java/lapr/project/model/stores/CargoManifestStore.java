@@ -1,8 +1,6 @@
 package lapr.project.model.stores;
 
-import lapr.project.model.CargoManifest;
-import lapr.project.model.Container;
-import lapr.project.model.Position;
+import lapr.project.data.CargoManifest;
 import lapr.project.shared.tree.AVL;
 
 

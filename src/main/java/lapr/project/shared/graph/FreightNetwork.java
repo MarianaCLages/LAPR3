@@ -1,7 +1,10 @@
-package lapr.project.model;
+package lapr.project.shared.graph;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
+import lapr.project.model.City;
+import lapr.project.model.Facility;
+import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NullVerticesException;
 import lapr.project.shared.graph.Graph;
 import lapr.project.shared.graph.MatrixGraph;

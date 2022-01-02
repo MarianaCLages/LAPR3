@@ -1,7 +1,6 @@
 package lapr.project.data;
 
 import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.model.CargoManifest;
 import lapr.project.model.Port;
 
 import java.sql.Connection;
