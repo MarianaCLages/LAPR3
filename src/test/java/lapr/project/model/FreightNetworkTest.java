@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FreightNetworkTest {
 
-    @Test
+/*    @Test
     void createGraphTest() {// uses a different user on database in order to have solid data to test
         DatabaseConnection database = new DatabaseConnection("jdbc:oracle:thin:@vsgate-s1.dei.isep.ipp.pt:10676/xepdb1", "graphtest", "mypassword");
         FreightNetwork f = new FreightNetwork();
@@ -21,7 +21,7 @@ class FreightNetworkTest {
         } catch (NullVerticesException e) {
             fail();
         }
-    }
+    }*/
 
     @Test
     void numberOfVerticesTest() {
