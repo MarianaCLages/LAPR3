@@ -12,18 +12,15 @@ int* enderecoTest;
 
 int main(void) {
 
-    //Create the Matrix calling the createMatrix3D
+    //Create the Matrix calling the createMatrix3D function
 	createMatrix3D();
 
-	printf("0x%lX\n",occupiedSlots());
-   //createMatrix3D();
-/*
     //Print the Menu with all options
-
-   //menuPrint();
+    menuPrint();
 
     int option;
-    int error = 0;
+    int count = 0;
+    int exit = 0;
 
     do {
 
@@ -33,24 +30,48 @@ int main(void) {
     switch(option) {
     case(1):
         //printMatrix();
+         count++;
         break;
     case(2):
-        //Outra US
+         printf("0x%X\n",occupiedSlots());
+         count++;
         break;
     case(3):
-        //Outra Us
-        break;
+
+        printf("Enter the x position: \n");
+        scanf("%d",&posicao_x);
+
+        printf("Enter the y position: \n");
+        scanf("%d",&posicao_y);
+
+        printf("Enter the z position: \n");
+        scanf("%d",&posicao_z);
+
+         char verification = existe();
+
+         if(verification) printf("The typed slot is occupied!\n");
+         else printf("The typed slot is not occupied!\n");
+
+         count++;
+         break;
     case(4):
+        //
+        break;
+    case(5):
+        exit++;
         break;
     default:
         printf("Please enter a valid option!!\n");
-        error++;
+        count++;
         break;
 
     }
 
-    if(error == 3) menuPrint();
+    if(count == 2){
+    count = 0;
+    menuPrint();
+    }
 
-    } while (option < 0 || option);
-*/
+    } while (exit == 0);
+
 }
