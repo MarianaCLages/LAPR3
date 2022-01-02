@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 
 public class PortStoreData implements Persistable {
 
-    private static int i = 1;
     private final Set<Port> listPort;
 
     public PortStoreData() {
@@ -26,12 +25,6 @@ public class PortStoreData implements Persistable {
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
-
-        try {
-            Connection connection = databaseConnection.getConnection();
-        } catch (Exception e) {
-            return false;
-        }
 
         Connection connection = databaseConnection.getConnection();
         Port port = (Port) object;
@@ -63,22 +56,6 @@ public class PortStoreData implements Persistable {
                                 updatePortPreparedStatement.executeUpdate();
                             }
 
-                       /*     } else {
-
-                                sqlCommand = "insert into COUNTRY (ALPHA2CODE, ALPHA3CODE, CONTINENT, NAME, CAPITAL, POPULATION) VALUES ('" + resultSetCountry.getString(1) + "','" + resultSetCountry.getString(2) + "',' " + 1 + "','" + port.getCountry() + "','" + "Invalid" + "','" + 1 + "')";
-
-                                try (PreparedStatement updateCOUNTRYPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                                    updateCOUNTRYPreparedStatement.executeUpdate();
-                                }
-
-                                sqlCommand = "insert into FACILITY (FACILITYID, ALPHA2CODE, ALPHA3CODE, LONGITUDE, LATITUDE, NAME, CAPACITY) values ('" + port.getIdentification() + "','" + resultSetCountry.getString(1) + "','" + resultSetCountry.getString(2) + "'," + port.getLocation().getLongitude() + "," + port.getLocation().getLatitude() + ",'" + port.getName() + "','" + 200 + "')";
-
-                                try (PreparedStatement insertIntoFacilityPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                                    insertIntoFacilityPreparedStatement.executeUpdate();
-                                }
-
-                            }
-*/
                             sqlCommand = "insert into PORT (ID, FACILITYID, DOCKINGAREA) values ('" + port.getIdentification() + "','" + port.getIdentification() + "','" + 300 + "')";
 
                             try (PreparedStatement insertIntoPortPreparedStatement = connection.prepareStatement(sqlCommand)) {

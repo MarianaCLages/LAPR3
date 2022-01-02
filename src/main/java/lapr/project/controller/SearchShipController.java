@@ -6,15 +6,15 @@ import lapr.project.model.stores.ShipStore;
 
 public class SearchShipController {
 
-    private final Company cmpn;
-    private final ShipStore ss;
+    private final Company company;
+    private final ShipStore shipStore;
 
     /**
      * Constructor.
      */
     public SearchShipController() {
-        this.cmpn = App.getInstance().getCompany();
-        this.ss = cmpn.getShipStore();
+        this.company = App.getInstance().getCompany();
+        this.shipStore = company.getShipStore();
     }
 
     /**
@@ -23,7 +23,7 @@ public class SearchShipController {
      * @return the ship store
      */
     public ShipStore getShipStore() {
-        return ss;
+        return shipStore;
     }
 
     /**
@@ -33,7 +33,7 @@ public class SearchShipController {
      * @return the ship found
      */
     public Ship searchShipByMMSI(int mmsi) {
-        return ss.getShipByMmsi(mmsi);
+        return shipStore.getShipByMmsi(mmsi);
     }
 
     /**
@@ -43,7 +43,7 @@ public class SearchShipController {
      * @return the ship found
      */
     public Ship searchShipByIMO(String imo) {
-        return ss.getShipByIMO(imo);
+        return shipStore.getShipByIMO(imo);
     }
 
     /**
@@ -53,6 +53,6 @@ public class SearchShipController {
      * @return the ship found
      */
     public Ship searchShipByCallSign(String callSign) {
-        return ss.getShipByCallSign(callSign);
+        return shipStore.getShipByCallSign(callSign);
     }
 }

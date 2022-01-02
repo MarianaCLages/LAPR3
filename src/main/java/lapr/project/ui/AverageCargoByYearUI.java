@@ -42,7 +42,7 @@ public class AverageCargoByYearUI implements Runnable {
 
         try {
             System.out.print(ctrl.averageCargoByYear(shipMmsi, year));
-        } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTripException | NoCargoManifestInThatDateException | SQLException | VehicleIDNotValidException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
+        } catch (NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTripException | NoCargoManifestInThatDateException | SQLException e) {
             System.out.println(e.getMessage());
         }
     }

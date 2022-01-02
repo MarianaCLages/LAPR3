@@ -9,6 +9,10 @@ import java.sql.SQLException;
 
 public class GetAuditTrailScript {
 
+    private GetAuditTrailScript() {
+        //Empty
+    }
+
     public static String getAuditTrail(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();

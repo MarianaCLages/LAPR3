@@ -2,7 +2,6 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import oracle.jdbc.internal.OracleTypes;
-import oracle.jdbc.OracleType;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -10,6 +9,10 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class GetContainerRouteScript {
+
+    private GetContainerRouteScript() {
+        //EMPTY
+    }
 
     public static String callFunction(String containerID, String clientID, DatabaseConnection databaseConnection) throws SQLException, NullPointerException {
 

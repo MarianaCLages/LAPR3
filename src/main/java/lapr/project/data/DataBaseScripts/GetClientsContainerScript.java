@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class GetClientsContainerScript {
 
-    private DatabaseConnection databaseConnection;
-
+    private final DatabaseConnection databaseConnection;
 
     public GetClientsContainerScript(DatabaseConnection db) {
         this.databaseConnection = db;
@@ -42,6 +41,6 @@ public class GetClientsContainerScript {
             throwables.printStackTrace();
 
         }
-        return null;
+        return new ArrayList<>();
     }
 }

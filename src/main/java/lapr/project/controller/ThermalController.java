@@ -4,8 +4,6 @@ import lapr.project.data.DataBaseScripts.GetMaterialsScript;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
-import java.sql.SQLException;
-
 public class ThermalController {
 
     private final GetMaterialsScript getMaterialsScript;

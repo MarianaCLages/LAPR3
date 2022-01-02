@@ -9,8 +9,8 @@ import java.util.List;
 
 public class TopNShipsController {
 
-    Company company;
-    ShipStore shipStore;
+    private final Company company;
+    private final ShipStore shipStore;
 
     /**
      * Constructor.

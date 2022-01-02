@@ -1,6 +1,5 @@
 package lapr.project.data.DataBaseScripts;
 
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +29,7 @@ public class AvailableShipsOnMondayScript {
      * @return
      */
     public ArrayList<String> get() {
-        ArrayList<String> shipList = new ArrayList<String>();
+        ArrayList<String> shipList = new ArrayList<>();
 
         Connection connection = databaseConnection.getConnection();
         // today's date

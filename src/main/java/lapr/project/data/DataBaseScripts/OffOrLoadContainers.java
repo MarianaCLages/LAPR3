@@ -2,24 +2,17 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.model.CargoManifest;
-import lapr.project.model.Container;
 import lapr.project.model.Port;
-import lapr.project.model.Position;
 import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
 import lapr.project.shared.exceptions.FacilityNotFoundException;
 import lapr.project.utils.mappers.dto.PortDTO;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OffOrLoadContainers {
 
     private DatabaseConnection databaseConnection = null;
-    private List<CargoManifest> cargoManifests = new ArrayList<>();
-    private int countCargos = 0;
     private int countContainers = 0;
 
     public OffOrLoadContainers() {
@@ -34,10 +27,10 @@ public class OffOrLoadContainers {
         String sqlCommand = "Select f.FacilityID from FACILITY f\n" +
                 "inner join POSITIONALMESSAGE pm\n" +
                 "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) >0\n" +
-                "where pm.MMSI = "+mmsi+ "\n" +
+                "where pm.MMSI = " + mmsi + "\n" +
                 "and f.FACILITYID = (Select cm.FACILITYID from CargoManifest cm\n" +
                 "where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
-                " where s.MMSI = "+mmsi+ "))";
+                " where s.MMSI = " + mmsi + "))";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
@@ -69,7 +62,7 @@ public class OffOrLoadContainers {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return countContainers += resultSet.getInt("COUNTCONTAINERS");
+                    return (countContainers += resultSet.getInt("COUNTCONTAINERS"));
                 } else {
                     return 0;
                 }
@@ -118,8 +111,8 @@ public class OffOrLoadContainers {
 
                         stringBuilder.append("\n" + portDTO);
 
-                    } catch (Exception e){
-
+                    } catch (Exception e) {
+                        //EMPTY
                     }
 
                     return stringBuilder.toString();
@@ -182,13 +175,13 @@ public class OffOrLoadContainers {
         }
         int count2 = 0;
 
-        String c = null;
+        StringBuilder c = new StringBuilder();
 
-        c = "Facility ID "+facilityId + ":\n";
+        c.append("Facility ID ").append(facilityId).append(":\n");
 
         while (k != 0) {
             try {
-                c = c + getContainerByCargoManifest(facilityId, mmsi, count2, type);
+                c.append(getContainerByCargoManifest(facilityId, mmsi, count2, type));
             } catch (SQLException e) {
                 throw new ContainersInsideCargoManifestListSizeException();
             }
@@ -196,9 +189,9 @@ public class OffOrLoadContainers {
             k--;
         }
 
-        if (c == null) throw new ContainersInsideCargoManifestListSizeException();
+        if (c.toString() == null) throw new ContainersInsideCargoManifestListSizeException();
 
-        return c;
+        return c.toString();
     }
 
     public String getResultOffLoaded(DatabaseConnection databaseConnection, int mmsi, int type) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
@@ -257,8 +250,8 @@ public class OffOrLoadContainers {
 
                     stringBuilder.append("\n" + portDTO);
 
-                } catch (Exception e){
-
+                } catch (Exception e) {
+                    //EMPTY
                 }
 
                 return stringBuilder.toString();

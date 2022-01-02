@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 public class GetMaterialsScript {
 
     private final DatabaseConnection databaseConnection;
+    private static final String TEMP = "ºC :\n";
 
     public GetMaterialsScript(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
@@ -40,7 +41,7 @@ public class GetMaterialsScript {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Outer Walls for ").append(temperature).append("ºC :\n");
+        stringBuilder.append("Outer Walls for ").append(temperature).append(TEMP);
 
         int k = countMaterialsByTemperature(temperature);
         int count2 = 0;
@@ -53,9 +54,9 @@ public class GetMaterialsScript {
             while (k != 0) {
 
                 if (count2 == 3)
-                    stringBuilder.append("\nIntermediate Material for ").append(temperature).append("ºC :\n");
+                    stringBuilder.append("\nIntermediate Material for ").append(temperature).append(TEMP);
                 else if (count2 == 7)
-                    stringBuilder.append("\nInner Walls Material for ").append(temperature).append("ºC :\n");
+                    stringBuilder.append("\nInner Walls Material for ").append(temperature).append(TEMP);
                 stringBuilder.append(getMaterialByTemperature(temperature, count2));
                 stringBuilder.append("\n");
                 count2++;
@@ -66,9 +67,9 @@ public class GetMaterialsScript {
             while (k != 0) {
 
                 if (count2 == 1)
-                    stringBuilder.append("\nIntermediate Material for ").append(temperature).append("ºC :\n");
+                    stringBuilder.append("\nIntermediate Material for ").append(temperature).append(TEMP);
                 else if (count2 == 2)
-                    stringBuilder.append("\nInner Walls Material for ").append(temperature).append("ºC :\n");
+                    stringBuilder.append("\nInner Walls Material for ").append(temperature).append(TEMP);
                 stringBuilder.append(getMaterialByTemperature(temperature, count2));
                 stringBuilder.append("\n");
                 count2++;
