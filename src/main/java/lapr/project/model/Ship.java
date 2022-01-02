@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.data.CargoManifest;
 import lapr.project.model.stores.PositionTreeStore;
 import lapr.project.shared.DistanceCalculation;
 import lapr.project.shared.tree.AVL;

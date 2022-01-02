@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.model.Company;
-import lapr.project.model.ShipImporter;
+import lapr.project.shared.ShipImporter;
 import lapr.project.shared.exceptions.InvalidLineException;
 
 import java.io.File;

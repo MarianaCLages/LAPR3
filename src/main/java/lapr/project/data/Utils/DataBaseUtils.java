@@ -1,6 +1,7 @@
 package lapr.project.data.Utils;
 
 import lapr.project.controller.App;
+import lapr.project.data.CargoManifest;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipStoreData;
 import lapr.project.model.*;

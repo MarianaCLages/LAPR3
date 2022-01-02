@@ -1,7 +1,10 @@
-package lapr.project.model;
+package lapr.project.shared;
 
 import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
+import lapr.project.model.Company;
+import lapr.project.model.Position;
+import lapr.project.model.Ship;
 import lapr.project.model.stores.ShipStore;
 import lapr.project.shared.exceptions.InvalidLineException;
 
