@@ -97,15 +97,16 @@ public class App {
 
 
         //email: SE00001@lei.pt
-        ShipChiefElectricalEngineer se1 = new ShipChiefElectricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "ShipEletrical1");
+        ShipChiefElectricalEngineer se1 = new ShipChiefElectricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "Ship Chief Electrical Engineer");
         this.authFacade.addUserWithRole(se1.getName(), se1.getEmail(), "123", Constants.ROLE_CHIEF_ELECTRICAL_ENGINEER);
+
         //email: R00001@lei.pt pass: 123
-        Client c1 = new Client(this.company.getOrgRoleStore().getRoleById(Constants.CLIENT), "R00001", "Receptionist1");
+        Client c1 = new Client(this.company.getOrgRoleStore().getRoleById(Constants.CLIENT), "C00001", "Client");
         this.authFacade.addUserWithRole(c1.getName(), c1.getEmail(), "123", Constants.ROLE_CLIENT);
 
-        //email: TM00001@lei.pt pass: 495
+        //email: TM00001@lei.pt pass: 123
         TrafficManager tm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.TRAFFIC_MANAGER), "TM00001", "Traffic Manager");
-        this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "495", Constants.ROLE_TRAFFIC_MANAGER);
+        this.authFacade.addUserWithRole(tm1.getName(), tm1.getEmail(), "123", Constants.ROLE_TRAFFIC_MANAGER);
 
         //email: SC00001@lei.pt pass: 123
         ShipCaptain sc1 = new ShipCaptain(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CAPTAIN), "SC00001", "Ship Captain");
