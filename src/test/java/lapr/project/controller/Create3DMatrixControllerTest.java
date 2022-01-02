@@ -22,11 +22,7 @@ class Create3DMatrixControllerTest {
 
             assertTrue(actual);
 
-            boolean actual2 = create3DMatrixController.createMatrix("-1");
-
-            if (actual2) fail();
-
-            assertFalse(actual2);
+          
 
         } catch (MatrixFileException | IOException | SQLException e) {
             System.out.println("y");
