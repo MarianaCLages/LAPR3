@@ -5,6 +5,7 @@ import lapr.project.utils.auth.mappers.dto.UserRoleDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +21,19 @@ class AuthControllerTest {
         authController.getApp().getAuthFacade().addUserRole("Trolley", "Construir software sem design");
         authController.getApp().getAuthFacade().addUserWithRole("Mariana", "1200902@isep.ipp.pt", "69Sus", "Trolley");
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
-        authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+
+        boolean mutant = authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+
+        if (!mutant) fail();
+
+        boolean mutant2 = authController.doLogin("999@a.t", "ySfa");
+
+        if (mutant2) fail();
+
+        boolean mutant3 = authController.doLogin(null, null);
+
+        if (mutant3) fail();
+
         boolean expected = true;
         //Act
         boolean actual = authController.getApp().getCurrentUserSession().isLoggedIn();
@@ -38,6 +51,10 @@ class AuthControllerTest {
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
         List<UserRoleDTO> list = authController.getUserRoles();
         authController.doLogin("1200902@isep.ipp.pt", "69Sus");
+
+        if (list.equals(Collections.emptyList())) fail();
+        if (list.isEmpty()) fail();
+
         //Assert
         assertNotNull(list);
 

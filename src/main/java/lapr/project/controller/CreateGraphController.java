@@ -1,4 +1,4 @@
-package lapr.project.controller;
+/*package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
@@ -17,6 +17,8 @@ public class CreateGraphController {
     /**
      * Constructor.
      */
+
+/*
     public CreateGraphController() {
         this.company = App.getInstance().getCompany();
         this.connection = App.getInstance().getDatabaseConnection();
@@ -29,3 +31,5 @@ public class CreateGraphController {
 
 
 }
+
+ */

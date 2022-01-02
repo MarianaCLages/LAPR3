@@ -5,11 +5,15 @@ import lapr.project.shared.exceptions.NoPathFoundForSpecificVertexException;
 
 public class GraphNClosestPlacesUI implements Runnable {
 
+    private final GraphNCClosestPlacesController graphNCClosestPlacesController;
+
+    public GraphNClosestPlacesUI() {
+        graphNCClosestPlacesController = new GraphNCClosestPlacesController();
+    }
+
 
     @Override
     public void run() {
-
-        GraphNCClosestPlacesController graphNCClosestPlacesController = new GraphNCClosestPlacesController();
 
         int numberOfNPlaces;
 
@@ -30,7 +34,7 @@ public class GraphNClosestPlacesUI implements Runnable {
 
 
         try {
-            System.out.println(graphNCClosestPlacesController.graphNClosestPlacesController(numberOfNPlaces));
+            System.out.println(graphNCClosestPlacesController.getTheNClosestPlaces(numberOfNPlaces));
         } catch (NoPathFoundForSpecificVertexException ex1) {
             System.out.println(ex1.getMessage());
         } catch (Exception ex2) {

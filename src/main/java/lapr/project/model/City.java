@@ -32,13 +32,6 @@ public class City implements Vertex {
     }
 
     @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "City{" +
                 "name='" + name + '\'' +

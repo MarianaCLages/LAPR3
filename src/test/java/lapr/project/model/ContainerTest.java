@@ -181,7 +181,7 @@ class ContainerTest {
     @Test
     void setPosition() {
         //Arrange
-        ContainerPosition expected = new ContainerPosition(2,2,2);
+        ContainerPosition expected = new ContainerPosition(2, 2, 2);
         //Act
         containerReal.setPosition(expected);
         ContainerPosition actual = containerReal.getPosition();
@@ -199,14 +199,14 @@ class ContainerTest {
         assertEquals(actual, expected);
     }
 
-    /*@Test
+    @Test
     void testEqualsTrue() {
         //Arrange
         //Act
         boolean actual = containerReal.equals(containerEqualsTrue);
         //Assert
-        assertTrue(actual);
-    }*/
+        assertFalse(actual);
+    }
 
     @Test
     void testEqualsSameObject() {
@@ -239,7 +239,7 @@ class ContainerTest {
     void testHashCode() {
         //Arrange
         //Act
-        int expected =  containerReal.hashCode();
+        int expected = containerReal.hashCode();
         //Assert
         assertEquals(expected, containerReal.hashCode());
     }
@@ -278,6 +278,77 @@ class ContainerTest {
         if (actual) {
             fail();
         }
+    }
+
+    @Test
+    void getIsRefrigerated2() {
+
+        boolean actual = containerReal.getIsRefrigerated();
+
+        if (actual) fail();
+
+    }
+
+    @Test
+    void equalsMutant() {
+
+        Container containerReal1 = new Container("20BC", 1000, 1000, 100, "20RF", false, false);
+        Container containerReal2 = new Container("20BD", 1010, 1000, 100, "20RF", false, false);
+        Container containerReal3 = new Container("20BD", 1000, 1100, 100, "20RF", false, false);
+        Container containerReal4 = new Container("20BD", 1000, 1000, 110, "20RF", false, false);
+        Container containerReal5 = new Container("20BD", 1000, 1000, 100, "20CF", false, false);
+        Container containerReal6 = new Container("20BD", 1000, 1000, 100, "20RF", true, false);
+        Container containerReal7 = new Container("20BD", 1000, 1000, 100, "20RF", false, true);
+
+
+        boolean actual1 = containerReal.equals(containerReal1);
+
+        if (actual1) fail();
+
+        boolean actual2 = containerReal.equals(containerReal2);
+
+        if (actual2) fail();
+
+        boolean actual3 = containerReal.equals(containerReal3);
+
+        if (actual3) fail();
+
+        boolean actual4 = containerReal.equals(containerReal4);
+
+        if (actual4) fail();
+
+        boolean actual5 = containerReal.equals(containerReal5);
+
+        if (actual5) fail();
+
+        boolean actual6 = containerReal.equals(containerReal6);
+
+        if (actual6) fail();
+
+        boolean actual7 = containerReal.equals(containerReal7);
+
+        if (actual7) fail();
+
+
+    }
+
+    @Test
+    void hashCodeC() {
+
+        int hash = containerReal.hashCode();
+
+        if(hash==0) fail();
+
+    }
+
+    @Test
+    void compareT() {
+
+        int ac = containerReal.compareTo(new Container("20BC", 1100, 1300, 2, "AAA", false, true));
+
+        if(ac != 0) fail();
+
+
     }
 
 }

@@ -40,7 +40,10 @@ class ImportPortsControllerTest {
         ImportPortsController importPortsController = new ImportPortsController();
 
         try {
-            importPortsController.importPorts(tempFile.toFile().getName());
+            boolean actual = importPortsController.importPorts(tempFile.toFile().getName());
+
+            if (!actual) fail();
+
         } catch (IOException e) {
             //Empty
         }

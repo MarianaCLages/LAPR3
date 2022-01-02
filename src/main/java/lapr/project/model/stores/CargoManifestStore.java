@@ -35,18 +35,6 @@ public class CargoManifestStore {
         cargoManifestByAVL.insert(cargoManifest);
     }
 
-    public void updateCargoManifest(CargoManifest cargoManifest){
-
-    }
-
-    public void removeCargoManifest(CargoManifest cargoManifest){
-
-    }
-
-    private void createCargoManifest(){
-
-    }
-
     /**
      * Writes all the cargo manifests.
      *
@@ -58,7 +46,7 @@ public class CargoManifestStore {
         }
 
         for (CargoManifest cargoManifest : cargoManifestByAVL.inOrder()) {
-          //  System.out.println(cargoManifest.toString());
+            //  System.out.println(cargoManifest.toString());
         }
         return true;
     }

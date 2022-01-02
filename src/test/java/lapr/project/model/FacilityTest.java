@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class FacilityTest {
     Country c1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
-    Facility facility = new Facility("29002", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 0);
+    Facility facility = new Facility("29002", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 10);
+
 
     @Test
     void facilityTest() {
         try {
+            Facility facility2 = new Facility("29002", "Liverpool", "Europe", "Yah", new FacilityLocation(53.46666667, -3.033333333), 0);
             Facility facility = new Facility("29002", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 0);
         } catch (Exception e) {
             fail();
@@ -166,4 +168,83 @@ class FacilityTest {
         Facility facility2 = new Facility("29002", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 0);
         assertEquals(-1, facility1.compareTo(facility2));
     }
+
+    @Test
+    void getCapacity() {
+        int capacity = facility.getCapacity();
+
+        assertNotNull(capacity);
+
+        if (capacity == 0) fail();
+
+    }
+
+    @Test
+    void equals() {
+
+        Country c2 = new Country("United Kigdom", "UA".toCharArray(), "UAK".toCharArray(), 15, Continent.EUROPE);
+
+        Facility facility1 = new Facility("29001", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 10);
+        Facility facility2 = new Facility("29033", "LivArpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 10);
+        Facility facility3 = new Facility("290012312", "Liverpool", "EuCZXCZXpE", c1, new FacilityLocation(53.46666667, -3.033333333), 10);
+        Facility facility4 = new Facility("29001231232", "Liverpool", "Europe", c2, new FacilityLocation(53.46666667, -3.033333333), 10);
+        Facility facility5 = new Facility("2912312002", "Liverpool", "Europe", c1, new FacilityLocation(51.46666667, -3.033333333), 10);
+        Facility facility6 = new Facility("290012312", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -10.033333333), 10);
+        Facility facility7 = new Facility("29012312302", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 1000);
+
+        boolean actual1 = facility.equals(facility1);
+
+        if (actual1) fail();
+
+        boolean actual2 = facility.equals(facility2);
+
+        if (actual2) fail();
+
+        boolean actual3 = facility.equals(facility3);
+
+        if (actual3) fail();
+
+        boolean actual4 = facility.equals(facility4);
+
+        if (actual4) fail();
+
+        boolean actual5 = facility.equals(facility5);
+
+        if (actual5) fail();
+
+        boolean actual6 = facility.equals(facility6);
+
+        if (actual6) fail();
+
+        boolean actual7 = facility.equals(facility7);
+
+        if (actual7) fail();
+
+
+    }
+
+    @Test
+    void getDesignation() {
+        String capacity = facility.getDesignation();
+
+        assertNotNull(capacity);
+
+    }
+
+    @Test
+    void isColour() {
+
+        boolean isColour2 = facility.isColour();
+
+        if(isColour2) fail();
+
+        facility.setColour(10);
+
+        boolean isColour3 = facility.isColour();
+
+        if(!isColour3) fail();
+
+
+    }
+
 }

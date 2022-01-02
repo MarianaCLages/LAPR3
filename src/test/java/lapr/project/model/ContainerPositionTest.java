@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ContainerPositionTest {
 
     ContainerPosition cp = new ContainerPosition(1, 2, 3);
+    ContainerPosition cp2 = new ContainerPosition(2, 2, 3);
 
     @Test
     void getxPos() {
@@ -70,4 +71,31 @@ class ContainerPositionTest {
         //Assert
         assertEquals(actual, expected);
     }
+
+    @Test
+    void comparePos() {
+        int compare = cp.compareTo(cp2);
+
+        if (compare == cp.getzPos()) {
+            fail();
+        }
+
+        cp.setxPos(3);
+
+        int compare2 = cp.compareTo(cp2);
+
+        if (compare2 == cp.getxPos()) {
+            fail();
+        }
+
+        cp.setyPos(3);
+
+        int compare3 = cp.compareTo(cp2);
+
+        if (compare3 == cp.getzPos()) {
+            fail();
+        }
+
+    }
+
 }

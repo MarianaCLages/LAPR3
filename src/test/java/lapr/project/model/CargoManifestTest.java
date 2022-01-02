@@ -18,7 +18,7 @@ public class CargoManifestTest {
     FacilityLocation f1 = new FacilityLocation(11, 11);
     Port p1 = new Port("a", "a", "1", c1, f1, 0);
     CargoManifest cargo1 = new CargoManifest("11", p1, null);
-    CargoManifest cargo2 = new CargoManifest("11", p1, null);
+    CargoManifest cargo2 = new CargoManifest("21", p1, null);
     FacilityLocation f2 = new FacilityLocation(20, 20);
     Port p2 = new Port("a", "a", "2", c1, f2, 0);
 
@@ -520,5 +520,133 @@ public class CargoManifestTest {
         assertEquals(cargoManifest.getShip(), ship4);
     }
 
+
+    @Test
+    void compareTo() {
+        int actual = cargo1.compareTo(cargo2);
+        int reverseActual = cargo2.compareTo(cargo1);
+        int actualMutation = cargo1.compareTo(cargo1);
+        if (actualMutation != 0) fail();
+        if (reverseActual != 1) fail();
+        if (actual != -1) fail();
+        assertNotNull(actual);
+        assertEquals(-1, actual);
+        assertNotNull(reverseActual);
+        assertEquals(1, reverseActual);
+    }
+
+    @Test
+    void addContainersOffLoaded() {
+
+        Container containerPos2 = new Container("20BD", 1001, 1000, 100, "20RF", false, false);
+
+        Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+
+
+        cargo1.setShip(shipgeral);
+
+        cargo1.getShip().addLoadedContainer(containerPos, p1);
+        cargo1.getShip().addLoadedContainer(containerPos, p2);
+
+        cargo1.getShip().addOffLoadedContainer(containerPos, p1);
+        cargo1.getShip().addOffLoadedContainer(containerPos, p2);
+
+        cargo1.getShip().addContainerPosition(cp);
+
+        boolean actual = cargo1.addContainersOffLoaded(containerPos2);
+
+        if (actual) fail();
+
+        containerPos.setPosition(cp);
+
+        boolean actualMutation = cargo1.addContainersOffLoaded(containerPos);
+
+        if(actualMutation) fail();
+
+        containerPos2.setPosition(new ContainerPosition(2, 1, 1));
+
+        int xPos2 = 1;
+        int yPos2 = 1;
+        int zPos2 = 1;
+
+        cargo1.getShip().addContainerPosition(containerPos2.getPosition());
+
+        boolean actualMutation2 = cargo1.addContainersOffLoaded(containerPos2);
+
+        try {
+            cargo1.getShip().getContainerPositionAVL().find(containerPos2.getPosition());
+        } catch (Exception e) {
+            fail();
+        }
+
+        /*
+        if (containerPos.getPosition().getxPos() == xPos2) {
+            fail();
+        } else if (containerPos.getPosition().getyPos() == yPos2) {
+            fail();
+        } else if (containerPos.getPosition().getzPos() == zPos2) {
+            fail();
+        }
+         */
+
+
+    }
+
+    @Test
+    void addContainerLoaded() {
+
+        Container containerPos2 = new Container("20BD", 1001, 1000, 100, "20RF", false, false);
+
+        Ship shipgeral = new Ship(111111111, "name", "IMO1111111", 1, 1, "A", "A", 1, 1, 1, 1);
+
+
+        cargo1.setShip(shipgeral);
+
+        cargo1.getShip().addLoadedContainer(containerPos, p1);
+        cargo1.getShip().addLoadedContainer(containerPos, p2);
+
+        cargo1.getShip().addOffLoadedContainer(containerPos, p1);
+        cargo1.getShip().addOffLoadedContainer(containerPos, p2);
+
+        cargo1.getShip().addContainerPosition(cp);
+
+        boolean actual = cargo1.addContainersLoaded(containerPos2);
+
+        if (actual) fail();
+
+        containerPos.setPosition(cp);
+
+        boolean actualMutation = cargo1.addContainersLoaded(containerPos);
+
+        if(actualMutation) fail();
+
+        containerPos2.setPosition(new ContainerPosition(2, 1, 1));
+
+        int xPos2 = 1;
+        int yPos2 = 1;
+        int zPos2 = 1;
+
+        cargo1.getShip().addContainerPosition(containerPos2.getPosition());
+
+        boolean actualMutation2 = cargo1.addContainersLoaded(containerPos2);
+
+        try {
+            cargo1.getShip().getContainerPositionAVL().find(containerPos2.getPosition());
+        } catch (Exception e) {
+            fail();
+        }
+
+        /*
+        if (containerPos.getPosition().getxPos() == xPos2) {
+            fail();
+        } else if (containerPos.getPosition().getyPos() == yPos2) {
+            fail();
+        } else if (containerPos.getPosition().getzPos() == zPos2) {
+            fail();
+        }
+         */
+
+
+    }
 
 }

@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.model.Position;
 import lapr.project.model.Ship;
+import lapr.project.model.stores.ShipStore;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -48,6 +49,12 @@ class TopNShipsControllerTest {
 
         //Assert
         assertEquals(expectedList.size(), actualList.size());
+
+
+        ShipStore shipStore = topNController.getShipStore();
+
+        if (shipStore == null) fail();
+
     }
 
     @Test
@@ -95,9 +102,8 @@ class TopNShipsControllerTest {
         //Act + Assert
         try {
             List<Ship> actual = topNController.getTopNShips(100, "A", dateMutant1, date2Mutant2);
-        }
-        catch (IllegalArgumentException ex){
-            assertEquals("There is not enough ships to do this operation!",ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            assertEquals("There is not enough ships to do this operation!", ex.getMessage());
 
         }
 

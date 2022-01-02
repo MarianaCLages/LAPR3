@@ -12,6 +12,7 @@ public class CallTheAvailableResourcesFunction {
 
 
     public CallTheAvailableResourcesFunction() {
+        //EMPTY
     }
 
     public String callFunction(int month, int year, int id, DatabaseConnection connection) throws SQLException {

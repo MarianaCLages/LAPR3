@@ -152,11 +152,6 @@ public class Facility implements Vertex {
         return getIdentification() != null ? getIdentification().equals(facility.getIdentification()) : facility.getIdentification() == null;
     }
 
-    @Override
-    public int hashCode() {
-        return getIdentification() != null ? getIdentification().hashCode() : 0;
-    }
-
     /**
      * Returns the textual description of the facility in the format: identification, name, continent, country, location.
      *

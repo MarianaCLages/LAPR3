@@ -3,6 +3,7 @@ package lapr.project.model;
 
 import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.ContainerStoreData;
+import lapr.project.data.PortStoreData;
 import lapr.project.data.ShipStoreData;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
@@ -101,5 +102,22 @@ class CompanyTest {
     }
 
 
+    @Test
+    void getPortStoreData() {
+
+        PortStoreData portStoreData = company.getPortStoreData();
+
+        if(portStoreData==null) fail();
+
+    }
+
+    @Test
+    void getNetwork() {
+
+        FreightNetwork freightNetwork = company.getFreightNetwork();
+
+        if(freightNetwork==null) fail();
+
+    }
 
 }

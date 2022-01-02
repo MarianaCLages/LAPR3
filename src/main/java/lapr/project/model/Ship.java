@@ -836,4 +836,8 @@ public class Ship {
         return cargoManifest;
     }
 
+    public void addContainerPosition(ContainerPosition cs) {
+        containerPositionAVL.insert(cs);
+    }
+
 }

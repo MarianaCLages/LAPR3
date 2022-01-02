@@ -17,7 +17,7 @@ public class GraphNCClosestPlacesController {
         this.freightNetwork = company.getFreightNetwork();
     }
 
-    public String graphNClosestPlacesController(int n) throws NoPathFoundForSpecificVertexException {
+    public String getTheNClosestPlaces(int n) throws NoPathFoundForSpecificVertexException {
         Graph<Vertex, Double> graph = freightNetwork.getGraph();
         return GraphNClosestPlaces.getNClosestPlaces(graph, n);
     }

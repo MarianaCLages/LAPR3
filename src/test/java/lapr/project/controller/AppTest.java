@@ -83,4 +83,10 @@ class AppTest {
 
 
     }
+
+    @Test
+    void getDatabaseConnection() {
+        assertNotNull(app.getDatabaseConnection());
+    }
+
 }

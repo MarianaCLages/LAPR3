@@ -44,6 +44,9 @@ class PairsOfShipsControllerTest {
         try {
             String actual = pairsOfShipsController.getPairs();
 
+            int size = pairsOfShipsController.getSize();
+
+            if (size == 0) fail();
             if (actual.equals("") || StringUtils.isBlank(actual)) {
                 fail();
             }
@@ -54,11 +57,11 @@ class PairsOfShipsControllerTest {
     }
 
     @Test
-    void getShipStoreNotNull(){
+    void getShipStoreNotNull() {
 
         ShipStore shipStore = pairsOfShipsController.getShipStore();
 
-        if(shipStore == null) fail();
+        if (shipStore == null) fail();
 
 
     }
