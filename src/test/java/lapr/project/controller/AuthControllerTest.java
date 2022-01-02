@@ -68,7 +68,7 @@ class AuthControllerTest {
         authController.doLogout();
         List<UserRoleDTO> list = authController.getUserRoles();
         //Assert
-        assertEquals(list, null);
+        assertEquals(list, Collections.emptyList());
 
     }
 

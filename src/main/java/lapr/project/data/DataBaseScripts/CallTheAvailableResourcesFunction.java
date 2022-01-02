@@ -5,7 +5,6 @@ import lapr.project.data.DatabaseConnection;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CallTheAvailableResourcesFunction {
@@ -40,7 +39,6 @@ public class CallTheAvailableResourcesFunction {
         else
             day = 30;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, month - 1); // <-- months start
@@ -49,38 +47,40 @@ public class CallTheAvailableResourcesFunction {
 
         java.sql.Date dateI = new java.sql.Date(cal.getTimeInMillis());
 
-        CallableStatement cstmt = connection.getConnection().prepareCall("{? = call getShipAreaByDate1223(?,?,?)}");
+        try (CallableStatement cstmt = connection.getConnection().prepareCall("{? = call fnGetShipAreaByDate(?,?,?)}")) {
 
-        cstmt.registerOutParameter(1, Types.VARCHAR);
-        cstmt.setInt(2, id); //8
-        cstmt.setDate(3, dateI);
-        cstmt.setInt(4, day);
+            cstmt.registerOutParameter(1, Types.VARCHAR);
+            cstmt.setInt(2, id); //8
+            cstmt.setDate(3, dateI);
+            cstmt.setInt(4, day);
 
-        cstmt.executeUpdate();
+            cstmt.executeUpdate();
 
-        CallableStatement cstmt2 = connection.getConnection().prepareCall("{? = call getContainerByDate1223(?,?,?)}");
+            try (CallableStatement cstmt2 = connection.getConnection().prepareCall("{? = call fnGetContainerByDate(?,?,?)}")) {
 
-        cstmt2.registerOutParameter(1, Types.VARCHAR);
-        cstmt2.setInt(2, id);
-        cstmt2.setDate(3, dateI);
-        cstmt2.setInt(4, day);
+                cstmt2.registerOutParameter(1, Types.VARCHAR);
+                cstmt2.setInt(2, id);
+                cstmt2.setDate(3, dateI);
+                cstmt2.setInt(4, day);
 
-        cstmt2.executeUpdate();
+                cstmt2.executeUpdate();
 
-        StringBuilder containerCapacity;
-        String areaFacility;
+                StringBuilder containerCapacity;
+                String areaFacility;
 
-        containerCapacity = new StringBuilder(cstmt2.getString(1));
-        areaFacility = cstmt.getString(1);
+                containerCapacity = new StringBuilder(cstmt2.getString(1));
+                areaFacility = cstmt.getString(1);
 
-        String[] split = containerCapacity.toString().split(",");
-        String[] split2 = areaFacility.split(",");
-        containerCapacity = new StringBuilder();
+                String[] split = containerCapacity.toString().split(",");
+                String[] split2 = areaFacility.split(",");
+                containerCapacity = new StringBuilder();
 
-        for (int i = 1; i < split.length; i++) {
-            containerCapacity.append("Day").append(i).append(": ").append("\nContainer Capacity:").append(split[i]).append("%\n").append("Facility Area Capacity:").append(split2[i]).append("%\n");
+                for (int i = 1; i < split.length; i++) {
+                    containerCapacity.append("Day").append(i).append(": ").append("\nContainer Capacity:").append(split[i]).append("%\n").append("Facility Area Capacity:").append(split2[i]).append("%\n");
+                }
+
+                return containerCapacity.toString();
+            }
         }
-
-        return containerCapacity.toString();
     }
 }

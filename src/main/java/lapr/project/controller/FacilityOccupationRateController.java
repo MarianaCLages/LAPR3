@@ -8,6 +8,8 @@ import lapr.project.model.Company;
 import java.sql.Date;
 import java.text.ParseException;
 
+import static lapr.project.data.DataBaseScripts.CheckWarehouseExistsFunction.warehouseExists;
+
 public class FacilityOccupationRateController {
 
     private final DatabaseConnection connection;
@@ -26,10 +28,17 @@ public class FacilityOccupationRateController {
      * @return the facility occupation
      */
     public String getOccupation(String id) {
-        double occupation;
-        occupation = CallOccupationRateFunction.occupationRateFunction(connection, id);
+        if (warehouseExists(connection, id)) {
+            double occupation = 0;
+            occupation = CallOccupationRateFunction.occupationRateFunction(connection, id);
+            StringBuilder sb = new StringBuilder();
 
-        return "Occupation of the facility " + id + " is " + occupation;
+            sb.append("Occupation of the facility ").append(id).append(" is ").append(occupation);
+
+            return sb.toString();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -42,10 +51,14 @@ public class FacilityOccupationRateController {
     public String getNumberContainersLeaving(String id) throws ParseException {
         int numberOfContainers;
 
-        Date dateDate = new Date(System.currentTimeMillis());
-        numberOfContainers = CallNumberOfContainersLeavingFunction.numberOfContainers(connection, id, dateDate);
+        if (warehouseExists(connection, id)) {
+            Date dateDate = new Date(System.currentTimeMillis());
+            numberOfContainers = CallNumberOfContainersLeavingFunction.numberOfContainers(connection, id, dateDate);
 
-        return "There are " + numberOfContainers + " leaving facility " + id + " in the next month";
+            return "There are " + numberOfContainers + " leaving facility " + id + " in the next month";
+        } else {
+            return "";
+        }
     }
 
 }

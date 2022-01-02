@@ -29,7 +29,6 @@ public class ImportBordersMain {
             i++;
 
             String[] line = sc.nextLine().split(", ");
-            System.out.println(Arrays.toString(line));
             String sqlQuery = "Select ALPHA2CODE, ALPHA3CODE from COUNTRY where COUNTRY.NAME = '" + line[0] + "'";
             try (PreparedStatement getCountryPreparedStatement = connection.prepareStatement(sqlQuery)) {
                 try (ResultSet countryResultSet = getCountryPreparedStatement.executeQuery()) {
@@ -46,8 +45,6 @@ public class ImportBordersMain {
 
                                     sqlQuery = "INSERT INTO BORDER(FIRSTCOUNTRYALPHA2CODE, FIRSTCOUNTRYALPHA3CODE, SECONDCOUNTRYALPHA2CODE, SECONDCOUNTRYALPHA3CODE)\n" +
                                             "values ('" + alpha2code1 + "', '" + alpha3code1 + "', '" + alpha2code2 + "', '" + alpha3code2 + "')";
-
-                                    System.out.println(i + ": " + alpha2code1 + " " + alpha3code1 + " " + alpha2code2 + " " + alpha3code2);
 
                                     try (PreparedStatement setBorderPreparedStatement = connection.prepareStatement(sqlQuery)) {
                                         setBorderPreparedStatement.executeUpdate();

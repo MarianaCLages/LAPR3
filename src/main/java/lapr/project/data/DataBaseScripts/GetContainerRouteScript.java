@@ -2,7 +2,6 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import oracle.jdbc.internal.OracleTypes;
-import oracle.jdbc.OracleType;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;

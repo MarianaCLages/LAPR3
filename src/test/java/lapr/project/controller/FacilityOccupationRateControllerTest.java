@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class FacilityOccupationRateControllerTest {
 
@@ -14,30 +14,23 @@ class FacilityOccupationRateControllerTest {
     @Test
     void getOccupation() {
 
-        try {
 
-            String actual = facilityOccupationRateController.getOccupation("10136");
+        String actual = facilityOccupationRateController.getOccupation("10136");
 
 
-            if (actual == null || actual.equals("")) fail();
+        if (!actual.equals("")) fail();
 
-        } catch (Exception e) {
-            //Este teste da erro, ver dps o porque
-        }
 
     }
 
     @Test
-    void getNumberContainersLeaving() {
+    void getNumberContainersLeaving() throws ParseException {
 
-        try {
-            String actual = facilityOccupationRateController.getNumberContainersLeaving("10136");
 
-            if (actual == null || actual.equals("")) fail();
+        String actual = facilityOccupationRateController.getNumberContainersLeaving("10136");
 
-        } catch (ParseException e) {
-            System.out.println("NANI");
-        }
+        if (!actual.equals("")) fail();
+
 
     }
 }

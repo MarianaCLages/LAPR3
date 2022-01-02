@@ -22,13 +22,13 @@ public class OccupancyRateGivenCargoManifestIDController {
      *
      * @param mmsi            the ship's MMSI
      * @param cargoManifestID the cargo manifest ID
-     * @return
-     * @throws ShipCargoCapacityException
-     * @throws ContainerGrossException
-     * @throws ContainersInsideCargoManifestListSizeException
-     * @throws CargoManifestDoesntBelongToThatShipException
-     * @throws VehicleIDNotValidException
-     * @throws IllegalArgumentException
+     * @return return the occupancy rate for that specific Ship
+     * @throws ShipCargoCapacityException in case the ship cargo is not available
+     * @throws ContainerGrossException in case the contaienr cross is null/not available
+     * @throws ContainersInsideCargoManifestListSizeException in case there is no containers inside that cargo manifest
+     * @throws CargoManifestDoesntBelongToThatShipException in case the cargo manifest doesn't belong to the ship
+     * @throws VehicleIDNotValidException in case the vehicle ID doesn't exist
+     * @throws IllegalArgumentException in case the introduced MMSI is not valid
      */
     public double getOccupancyRate(int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         return occupancyRateOfAGivenShip.occupancyRateInAShipGivenACargoManifestID(databaseConnection, mmsi, cargoManifestID);

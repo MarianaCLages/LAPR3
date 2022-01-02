@@ -3,7 +3,6 @@ package lapr.project.data.DataBaseScripts;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.Port;
-
 import lapr.project.shared.exceptions.ContainersInsideCargoManifestListSizeException;
 import lapr.project.shared.exceptions.FacilityNotFoundException;
 import lapr.project.utils.mappers.dto.PortDTO;
@@ -20,10 +19,10 @@ public class OffOrLoadContainers {
      * Constructor.
      */
     public OffOrLoadContainers() {
-        // Empty constructor
+        //Empty constructor
     }
 
-    //US205 AND US206 METHODS FOR BOTH USER STORIES
+    //US205 AND US208 METHODS FOR BOTH USER STORIES
 
     /**
      * Gets the facility.
@@ -37,7 +36,7 @@ public class OffOrLoadContainers {
 
         String sqlCommand = "Select f.FacilityID from FACILITY f\n" +
                 "inner join POSITIONALMESSAGE pm\n" +
-                "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) > 0\n" +
+                "on ABS(ABS(pm.LONGITUDE) + ABS(pm.LATITUDE)) - ABS(ABS(f.LATITUDE)+ ABS(f.LONGITUDE)) >0\n" +
                 "where pm.MMSI = " + mmsi + "\n" +
                 "and f.FACILITYID = (Select cm.FACILITYID from CargoManifest cm\n" +
                 "where cm.vehicleId = (Select s.VEHICLEID from Ship s\n" +
@@ -82,7 +81,7 @@ public class OffOrLoadContainers {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return countContainers += resultSet.getInt("COUNTCONTAINERS");
+                    return (countContainers += resultSet.getInt("COUNTCONTAINERS"));
                 } else {
                     return 0;
                 }
@@ -142,7 +141,7 @@ public class OffOrLoadContainers {
                         stringBuilder.append("\n" + portDTO);
 
                     } catch (Exception e) {
-
+                        //EMPTY
                     }
 
                     return stringBuilder.toString();
@@ -196,8 +195,8 @@ public class OffOrLoadContainers {
      */
     public String getContainersPerCargoOffLoad(int mmsi, int type) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
 
-        String facilityId;
-        int k;
+        String facilityId = null;
+        int k = 0;
 
         try {
             facilityId = getFacility(mmsi);
@@ -216,13 +215,13 @@ public class OffOrLoadContainers {
         }
         int count2 = 0;
 
-        StringBuilder sb;
+        StringBuilder c = new StringBuilder();
 
-        sb = new StringBuilder("Facility ID " + facilityId + ":\n");
+        c.append("Facility ID ").append(facilityId).append(":\n");
 
         while (k != 0) {
             try {
-                sb.append(getContainerByCargoManifest(facilityId, mmsi, count2, type));
+                c.append(getContainerByCargoManifest(facilityId, mmsi, count2, type));
             } catch (SQLException e) {
                 throw new ContainersInsideCargoManifestListSizeException();
             }
@@ -230,7 +229,9 @@ public class OffOrLoadContainers {
             k--;
         }
 
-        return sb.toString();
+        if (c.toString() == null) throw new ContainersInsideCargoManifestListSizeException();
+
+        return c.toString();
     }
 
     /**
@@ -295,9 +296,9 @@ public class OffOrLoadContainers {
                     boolean refrigerated = verifyContainerType(databaseConnection, resultSet.getString(1));
 
                     if (refrigerated) {
-                        stringBuilder.append("Container ID: ").append(resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Refrigerated\n");
+                        stringBuilder.append("Container ID: " + resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Refrigerated\n");
                     } else {
-                        stringBuilder.append("Container ID: ").append(resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Not refrigerated\n");
+                        stringBuilder.append("Container ID: " + resultSet.getString(1)).append("; Load: ").append(resultSet.getString(2)).append("; Type: Not refrigerated\n");
                     }
                 }
 
@@ -306,10 +307,10 @@ public class OffOrLoadContainers {
 
                     PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
 
-                    stringBuilder.append("\n").append(portDTO);
+                    stringBuilder.append("\n" + portDTO);
 
                 } catch (Exception e) {
-
+                    //EMPTY
                 }
 
                 return stringBuilder.toString();

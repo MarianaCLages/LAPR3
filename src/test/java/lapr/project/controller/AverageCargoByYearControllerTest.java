@@ -23,7 +23,7 @@ class AverageCargoByYearControllerTest {
         String actual = null;
         try {
             actual = ctrl.averageCargoByYear(303296000, 2021);
-        } catch (ShipCargoCapacityException | NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTripException | NoCargoManifestInThatDateException | VehicleIDNotValidException | SQLException | CargoManifestDoesntBelongToThatShipException | CargoManifestIDException | ContainersInsideCargoManifestListSizeException | ContainerGrossException e) {
+        } catch (NoContainersInsideThatTripException | NoCargoManifestsWereFoundInThatTripException | NoCargoManifestInThatDateException | SQLException e) {
             System.out.println(e.getMessage());
         }
 

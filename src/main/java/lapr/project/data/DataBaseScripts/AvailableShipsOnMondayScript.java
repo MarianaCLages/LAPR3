@@ -32,7 +32,7 @@ public class AvailableShipsOnMondayScript {
      * @return the ships that are available next Monday
      */
     public ArrayList<String> get() {
-        ArrayList<String> shipList = new ArrayList<String>();
+        ArrayList<String> shipList = new ArrayList<>();
 
         Connection connection = databaseConnection.getConnection();
         // today's date

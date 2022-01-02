@@ -37,7 +37,6 @@ public class ContainerStoreData implements Persistable {
         try (PreparedStatement geContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet addressesResultSet = geContainerPreparedStatement.executeQuery()) {
                 if (addressesResultSet.next()) {
-                    System.out.println(addressesResultSet.getInt(1));
 
                     sqlCommand = "UPDATE CONTAINER SET PAYLOAD = '" + container.getPayload() + "', TARE = '" + container.getTare() + "', GROSS = '" + container.getGross() + "',ISOCODE = '" + container.getIsoCode() + " Where CONTAINERID = '" + container.getIdentification() + "'";
 

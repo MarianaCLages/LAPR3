@@ -51,6 +51,6 @@ public class GetClientsContainerScript {
             throwables.printStackTrace();
 
         }
-        return null;
+        return new ArrayList<>();
     }
 }

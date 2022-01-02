@@ -16,6 +16,10 @@ import java.util.Map;
 
 public class DataBaseUtils {
 
+    private DataBaseUtils() {
+        //EMPTY
+    }
+
     private static final ShipStoreData shipStoreData = App.getInstance().getCompany().getShipStoreData();
 
     public static Port getPort(String facilityID, DatabaseConnection databaseConnection) throws SQLException {
