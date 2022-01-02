@@ -1,0 +1,70 @@
+create or replace function fnGetContainerByDate(vFacility  varchar, currentDate  Date, day number)
+    RETURN varchar is variableChar varchar(300) ;
+
+
+        fCapacity FACILITY.capacity%type;
+        currentCapacity number;
+        cDate Date;
+        countCargo number;
+        test number;
+        countContainer number;
+        cString       varchar(32);
+
+
+
+BEGIN
+
+    SELECT CAPACITY into fCapacity from FACILITY where FACILITYID = vFacility;
+    test := 0;
+    countContainer := 0;
+    currentcapacity := fCapacity;
+    cDate := currentDate;
+    variableChar := 'This day:';
+
+    
+
+
+    while test <= day
+        LOOP
+
+            cString := TO_CHAR(cDate, 'YYYY-MM-DD');
+            SELECT count(*) into countCargo from CARGOMANIFEST where FACILITYID = vFacility and CARGOMANIFESTDATE = TO_DATE(cString,'YYYY-MM-DD');
+
+
+            if( countCargo != 0) THEN
+
+
+                SELECT count(*) into countContainer  from CARGOMANIFESTCONTAINER cmc
+                inner join CARGOMANIFEST cm
+                on cmc.CARGOMANIFESTID = cm.CARGOMANIFESTID
+                where cm.FACILITYID = vFacility
+                and cm.CARGOMANIFESTDATE = TO_DATE('2021-10-23','YYYY-MM-DD');
+
+
+                currentcapacity := currentcapacity - countContainer;
+                countContainer := 0;
+
+
+            end if;
+
+            cDate := cDate + 1;
+            test := test + 1;
+
+
+
+
+            variableChar := variableChar || TO_CHAR(currentCapacity / fCapacity * 100) || ',';
+
+
+        end loop;
+
+
+
+
+
+
+    return variableChar;
+
+end;
+/
+

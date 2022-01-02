@@ -1,0 +1,87 @@
+create or replace function fnGetShipAreaByDate(vFacility  number, currentDate  Date, day number)
+    RETURN varchar is variableChar varchar(300)  ;
+
+
+
+    area         number;
+    contagem        number;
+    vLength      Ship.length%type;
+    vWidth       Ship.width%type;
+    vShipArea    number;
+    areaFacility FACILITY.capacity%type;
+    cDate        Date ;
+    test          number;
+    cString       varchar(32);
+
+
+BEGIN
+
+
+    cDate := currentDate;
+    variableChar := 'This day:';
+    test := 0;
+
+    Select p.DOCKINGAREA
+    into areaFacility
+    from Port p
+    where p.FACILITYID = vFacility;
+
+
+    area := areaFacility;
+
+
+    while test <= day
+        LOOP
+            cString := TO_CHAR(cDate, 'YYYY-MM-DD');
+            Select count(s.WIDTH)
+            into contagem
+            from SHIP s
+                     inner join CARGOMANIFEST cm
+                                on s.VEHICLEID = cm.VEHICLEID
+            where cm.CARGOMANIFESTDATE = TO_DATE(cString, 'YYYY-MM-DD')
+              and cm.FACILITYID = vFacility;
+
+
+
+        if(contagem = 1) THEN
+
+            Select s.WIDTH
+            into vWidth
+            from SHIP s
+                     inner join CARGOMANIFEST cm
+                                on s.VEHICLEID = cm.VEHICLEID
+            where cm.CARGOMANIFESTDATE = TO_DATE(cString, 'YYYY-MM-DD')
+              and cm.FACILITYID = vFacility;
+
+               Select s.LENGTH
+            into vLength
+            from SHIP s
+                     inner join CARGOMANIFEST cm
+                                on s.VEHICLEID = cm.VEHICLEID
+            where cm.CARGOMANIFESTDATE = TO_DATE(cString, 'YYYY-MM-DD')
+              and cm.FACILITYID = vFacility;
+
+
+            vShipArea := vLength * vWidth;
+
+
+            area := area - vShipArea;
+
+
+        END IF;
+
+
+        cDate := cDate + 1;
+        test := test + 1;
+        variableChar := variableChar || TO_CHAR((area / areaFacility) * 100) || ',';
+
+
+        END LOOP;
+
+
+
+
+    return(variableChar);
+END;
+/
+

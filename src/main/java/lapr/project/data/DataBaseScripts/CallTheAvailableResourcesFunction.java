@@ -37,7 +37,7 @@ public class CallTheAvailableResourcesFunction {
 
         java.sql.Date dateI = new java.sql.Date(cal.getTimeInMillis());
 
-        CallableStatement cstmt = connection.getConnection().prepareCall("{? = call getShipAreaByDate1223(?,?,?)}");
+        CallableStatement cstmt = connection.getConnection().prepareCall("{? = call fnGetShipAreaByDate(?,?,?)}");
 
         cstmt.registerOutParameter(1, Types.VARCHAR);
         cstmt.setInt(2, id); //8
@@ -46,7 +46,7 @@ public class CallTheAvailableResourcesFunction {
 
         cstmt.executeUpdate();
 
-        CallableStatement cstmt2 = connection.getConnection().prepareCall("{? = call getContainerByDate1223(?,?,?)}");
+        CallableStatement cstmt2 = connection.getConnection().prepareCall("{? = call fnGetContainerByDate(?,?,?)}");
 
         cstmt2.registerOutParameter(1, Types.VARCHAR);
         cstmt2.setInt(2, id);
