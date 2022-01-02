@@ -11,22 +11,38 @@ int createMatrix3D(void) {
 	
 	FILE *fp;
 	char buffer[255];
-
 	int x = -999, y = -999, z = -999;
-	int matrix3D[50][50][50];
+
+
+	fp = fopen("container.txt", "r");
+
+	
+	fgets(buffer, 255, (FILE*)fp);	
+	char* separate = strtok(buffer,",");
+	
+	tamanho_x = atoi(separate);
+	tamanho_y = atoi(separate);
+	tamanho_z = atoi(separate);
+	fclose(fp);
+
+	
+	
+			
+	
+	int matrix3D[tamanho_x][tamanho_y][tamanho_z];
 	matrix = &matrix3D[0][0][0];
 	
-	tamanho_y = 50;
-	tamanho_x = 50;
-	tamanho_z = 50;
+
 	
-	for (int i = 0; i < 50; i++){
+	for (int i = 0; i < tamanho_x; i++){
 			
-		for (int j = 0; j < 50; j++){
+		for (int j = 0; j < tamanho_y; j++){
 			
-			for (int k = 0; k < 50; k++){
+			for (int k = 0; k < tamanho_z; k++){
 				
 				matrix3D[i][j][k] = 0;
+				printf("%d",matrix3D[i][j][k]);
+				
 				
 			}
 		}
@@ -55,14 +71,16 @@ int createMatrix3D(void) {
 	fp = fopen("container.txt", "r");
 	
 
+	fgets(buffer, 255, (FILE*)fp);
 	
 	while (i != count) {
 
-		fgets(buffer, 255, (FILE*)fp);
+   		fgets(buffer, 255, (FILE*)fp);
    	
 		//printf("%s",buffer);
 		
 		char* separate = strtok(buffer,",");
+		
 		
 		
 		while (separate != NULL) {
@@ -79,11 +97,11 @@ int createMatrix3D(void) {
 		
 			/*printf("%d\n",x);
 			printf("%d\n",y);
-			printf("%d\n",z);*/
+			printf("%d\n",z);
 		
 			if (x != -999 && y != -999 && z != -999 && matrix3D[x][y][z] != 0) {
 				printf("position[%d][%d][%d] = %d\n", x, y, z, matrix3D[x][y][z]);
-			}
+			}*/
 			
 	
 					
@@ -96,11 +114,12 @@ int createMatrix3D(void) {
 	
    	fclose(fp);
    	
-   	for (i = 0; i < 50; i++){
+   	
+   	for (i = 0; i < tamanho_x; i++){
 			
-		for (int j = 0; j < 50; j++){
+		for (int j = 0; j < tamanho_y; j++){
 			
-			for (int k = 0; k < 50; k++){
+			for (int k = 0; k < tamanho_z; k++){
 				
 				if(matrix3D[i][j][k] != 0){
 					printf("matrixd[%d][%d][%d] = %d\n ",i,j,k,matrix3D[i][j][k]);
