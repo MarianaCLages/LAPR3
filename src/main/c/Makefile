@@ -14,7 +14,7 @@ existe.o: existe.s
 	gcc -Wall -g -c existe.s -o existe.o
 	
 clean :
-	rm ∗.o laprProject
+	rm -f ∗.o laprProject
 	
 run: laprProject
 	./laprProject
