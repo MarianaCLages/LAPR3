@@ -7,9 +7,21 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class CallOccupationRateFunction {
+
+    /**
+     * Constructor.
+     */
     private CallOccupationRateFunction() {
+        // Empty constructor
     }
 
+    /**
+     * Calls the function that gets the warehouse occupation rate.
+     *
+     * @param connection the database connection
+     * @param facilityId the facility ID
+     * @return the warehouse occupation rate
+     */
     public static double occupationRateFunction(DatabaseConnection connection, String facilityId) {
         double returnValue = 0;
         String sqlString = "{? = call GETWAREHOUSEOCCUPATIONRATE(?)}";

@@ -9,29 +9,38 @@ import java.sql.Date;
 import java.text.ParseException;
 
 public class FacilityOccupationRateController {
-    private Company company;
-    private DatabaseConnection connection;
 
+    private final DatabaseConnection connection;
 
+    /**
+     * Constructor.
+     */
     public FacilityOccupationRateController() {
-        this.company = App.getInstance().getCompany();
         this.connection = App.getInstance().getDatabaseConnection();
-
     }
 
+    /**
+     * Gets the facility occupation.
+     *
+     * @param id the facility ID
+     * @return the facility occupation
+     */
     public String getOccupation(String id) {
-        double occupation = 0;
+        double occupation;
         occupation = CallOccupationRateFunction.occupationRateFunction(connection, id);
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("Occupation of the facility ").append(id).append(" is ").append(occupation);
-
-        return sb.toString();
+        return "Occupation of the facility " + id + " is " + occupation;
     }
 
-
+    /**
+     * Gets the number of containers leaving the facility in the next month.
+     *
+     * @param id the facility ID
+     * @return the number of containers leaving the facility in the next month
+     * @throws ParseException
+     */
     public String getNumberContainersLeaving(String id) throws ParseException {
-        int numberOfContainers = 0;
+        int numberOfContainers;
 
         Date dateDate = new Date(System.currentTimeMillis());
         numberOfContainers = CallNumberOfContainersLeavingFunction.numberOfContainers(connection, id, dateDate);

@@ -17,20 +17,44 @@ import java.util.Map;
 public class FreightNetwork {
     private final Graph<Vertex, Double> graph;
 
+    /**
+     * Constructor.
+     */
     public FreightNetwork() {
         this.graph = new MatrixGraph<>(false);
     }
 
+    /**
+     * Creates the graph.
+     *
+     * @param n          the N closest ports
+     * @param connection the database connection
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     public boolean createGraph(int n, DatabaseConnection connection) throws NullVerticesException {
         boolean ret = false;
         ret = (this.capitals(connection) && this.ports(n, connection));
         return ret;
     }
 
+    /**
+     * Gets the graph.
+     *
+     * @return the graph
+     */
     public Graph<Vertex, Double> getGraph() {
         return graph;
     }
 
+    /**
+     * Adds all ports to the graph.
+     *
+     * @param n          the N closest ports
+     * @param connection the database connection
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     private boolean ports(int n, DatabaseConnection connection) throws NullVerticesException {
         Map<Port, Map<Port, Double>> map = DataBaseUtils.getSeaDist(connection);
         for (Map.Entry<Port, Map<Port, Double>> entry : map.entrySet()) {
@@ -45,6 +69,13 @@ public class FreightNetwork {
         return true;
     }
 
+    /**
+     * Links the port to the N closest ports.
+     *
+     * @param n the N closest ports
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     private boolean linkPortToNClosestPorts(int n) throws NullVerticesException {
 
         for (Vertex v : graph.vertices()) {
@@ -68,10 +99,17 @@ public class FreightNetwork {
                 }
             }
         }
-
         return true;
     }
 
+    /**
+     * DFS to link the ports.
+     *
+     * @param vOriginal the original vertex
+     * @param vKey      the vKey
+     * @param visited   boolean that says if the vertex is visited or not
+     * @param objects   the list of objects (Facility)
+     */
     private void dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects) {
         if (visited[vKey]) {
             return;
@@ -87,6 +125,11 @@ public class FreightNetwork {
         }
     }
 
+    /**
+     * Links each port to its capital.
+     *
+     * @return true if it succeeds, false if it doesn't
+     */
     private boolean linkPortToCapital() {
         boolean ret = false;
         for (Vertex c : graph.vertices()) {
@@ -101,16 +144,20 @@ public class FreightNetwork {
                         }
                     }
                 }
-
             }
             if ((v != null)) {
                 ret = addEdgeAndCalculateWeight(c, v);
             }
         }
-
         return ret;
     }
 
+    /**
+     * Adds all capitals to the graph
+     *
+     * @param connection the database connection
+     * @return true if it succeeds, false if it doesn't
+     */
     private boolean capitals(DatabaseConnection connection) {
         try {
             Map<City, LinkedList<City>> map = DataBaseUtils.getBorders(connection);
@@ -119,7 +166,6 @@ public class FreightNetwork {
                 while (!list.isEmpty()) {
                     this.addEdgeAndCalculateWeight(c.getKey(), list.removeFirst());
                 }
-
             }
 
         } catch (SQLException e) {
@@ -129,6 +175,13 @@ public class FreightNetwork {
         return true;
     }
 
+    /**
+     * Adds an edge to the graph and calculates its weight.
+     *
+     * @param v1 the vertex 1
+     * @param v2 the vertex2
+     * @return true if it succeeds, false if it doesn't
+     */
     protected boolean addEdgeAndCalculateWeight(Vertex v1, Vertex v2) {
         try {
             double weight = VertexDistanceCalculator.distanceCalculator(v1, v2);
@@ -139,6 +192,14 @@ public class FreightNetwork {
         }
     }
 
+    /**
+     * Adds a weighted edge to the graph.
+     *
+     * @param v1     the vertex 1
+     * @param v2     the vertex 2
+     * @param weight the edge's weight
+     * @return true if it succeeds, false if it doesn't
+     */
     protected boolean addEdgeWithWeight(Vertex v1, Vertex v2, double weight) {
         try {
             graph.addEdge(v1, v2, weight);
@@ -148,15 +209,29 @@ public class FreightNetwork {
         }
     }
 
+    /**
+     * Gets the graph size.
+     *
+     * @return the graph size
+     */
     public int size() {
         return graph.numVertices();
     }
 
+    /**
+     * Returns the textual description of the graph.
+     *
+     * @return the graph's characteristics
+     */
     public String toString() {
         return graph.toString();
     }
 
-
+    /**
+     * Gets the graph's number of connections (edges).
+     *
+     * @return the graph's number of connections (edges)
+     */
     public int connectionsSize() {
         return graph.numEdges();
     }

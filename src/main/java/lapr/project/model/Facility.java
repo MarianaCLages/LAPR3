@@ -142,6 +142,12 @@ public class Facility implements Vertex {
         this.location = location;
     }
 
+    /**
+     * Checks if the identification of two objects (Facility) are equal.
+     *
+     * @param o the object
+     * @return true if they are, false if they aren't
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

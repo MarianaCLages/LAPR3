@@ -1,10 +1,21 @@
 package lapr.project.shared.graph;
 
 public class VertexDistanceCalculator {
+
+    /**
+     * Constructor.
+     */
     private VertexDistanceCalculator() {
-        //
+        // Empty constructor
     }
 
+    /**
+     * Calculates the distance between two vertices.
+     *
+     * @param v1 the first vertex
+     * @param v2 the second vertex
+     * @return the distance between two vertices
+     */
     public static double distanceCalculator(Vertex v1, Vertex v2) {
         if ((v1 == null) || (v2 == null)) {
             return Double.MAX_VALUE;

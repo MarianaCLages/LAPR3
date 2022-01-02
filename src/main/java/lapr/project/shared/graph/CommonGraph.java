@@ -16,6 +16,11 @@ public abstract class CommonGraph<V, E> implements Graph<V, E> {
     protected int numEdges;
     protected ArrayList<V> vertices;       // Used to maintain a numeric key to each vertex
 
+    /**
+     * Constructor.
+     *
+     * @param directed boolean that says if the graph is directed or not
+     */
     public CommonGraph(boolean directed) {
         numVerts = 0;
         numEdges = 0;

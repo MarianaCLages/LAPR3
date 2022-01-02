@@ -12,6 +12,14 @@ public class City implements Vertex {
     private Country country;
     private int color;
 
+    /**
+     * Constructor.
+     *
+     * @param name      the city's name
+     * @param latitude  the city's latitude
+     * @param longitude the city's longitude
+     * @param country   the city's country
+     */
     public City(String name, double latitude, double longitude, Country country) {
         this.name = name;
         this.latitude = latitude;
@@ -20,6 +28,12 @@ public class City implements Vertex {
         this.color = -1;
     }
 
+    /**
+     * Checks if the country of two objects (City) are equal.
+     *
+     * @param o the object
+     * @return true if they are, false if they aren't
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,6 +45,11 @@ public class City implements Vertex {
         return getCountry() != null ? getCountry().equals(city.getCountry()) : city.getCountry() == null;
     }
 
+    /**
+     * Returns the textual description of the city in the format: name, latitude, longitude, country.
+     *
+     * @return the city's characteristics
+     */
     @Override
     public String toString() {
         return "City{" +

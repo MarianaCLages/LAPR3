@@ -8,9 +8,22 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class CallNumberOfContainersLeavingFunction {
+
+    /**
+     * Constructor.
+     */
     private CallNumberOfContainersLeavingFunction() {
+        // Empty constructor
     }
 
+    /**
+     * Calls the function that gets the number of containers leaving next month.
+     *
+     * @param connection the database connection
+     * @param facilityId the facility ID
+     * @param date       the date
+     * @return the number of containers leaving next month
+     */
     public static int numberOfContainers(DatabaseConnection connection, String facilityId, Date date) {
         int returnValue = 0;
         String sqlString = "{? = call GETCONTAINERSLEAVINGNEXTMONTH(?,?)}";

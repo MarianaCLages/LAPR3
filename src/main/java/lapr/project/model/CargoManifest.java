@@ -14,7 +14,14 @@ public class CargoManifest implements Comparable<CargoManifest> {
     private Ship ship;
     private boolean inTransport;
 
-
+    /**
+     * Constructor.
+     *
+     * @param identification the cargo manifest identification
+     * @param port           the cargo manifest's port
+     * @param ship           the cargo manifest's ship
+     * @param inTransport    boolean that says if the cargo manifest is in transport or not
+     */
     public CargoManifest(String identification, Port port, Ship ship, boolean inTransport) {
 
         this.identification = identification;
@@ -207,28 +214,30 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return Integer.compare(Integer.parseInt(this.getIdentification()), Integer.parseInt(o.getIdentification()));
     }
 
+    /**
+     * Adds a container to offload into AVL.
+     *
+     * @param container the container to be added
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean addContainersOffLoaded(Container container) {
-
         int x;
         int y;
         int z;
         int capacity = (int) ship.getCapacity() / 3;
 
-        if ( ship.getContainerPositionAVL().isEmpty()) {
+        if (ship.getContainerPositionAVL().isEmpty()) {
             ship.getContainerPositionAVL().insert(container.getPosition());
             offloaded.insert(container);
             return true;
         }
 
-
-        for (ContainerPosition cp :  ship.getContainerPositionAVL().inOrder()) {
-
+        for (ContainerPosition cp : ship.getContainerPositionAVL().inOrder()) {
             for (z = 0; z < capacity; z++) {
                 for (y = 0; y < capacity; y++) {
                     for (x = 0; x < capacity; x++) {
 
                         if (container.getPosition().compareTo(cp) != 0) {
-
                             try {
                                 ship.getContainerPositionAVL().find(container.getPosition());
                             } catch (NullPointerException ex) {
@@ -239,7 +248,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
                         }
                         container.getPosition().setxPos(x);
                     }
-
                     container.getPosition().setyPos(y);
                 }
                 container.getPosition().setzPos(z);
@@ -248,31 +256,31 @@ public class CargoManifest implements Comparable<CargoManifest> {
         return false;
     }
 
-
-
-
+    /**
+     * Adds a container to load into AVL.
+     *
+     * @param container the container to be added
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean addContainersLoaded(Container container) {
         int x;
         int y;
         int z;
         int capacity = (int) ship.getCapacity() / 3;
 
-
-        if ( ship.getContainerPositionAVL().isEmpty()) {
+        if (ship.getContainerPositionAVL().isEmpty()) {
             ship.getContainerPositionAVL().insert(container.getPosition());
             loaded.insert(container);
             return true;
         }
 
-
-        for (ContainerPosition cp :  ship.getContainerPositionAVL().inOrder()) {
+        for (ContainerPosition cp : ship.getContainerPositionAVL().inOrder()) {
 
             for (z = 0; z < capacity; z++) {
                 for (y = 0; y < capacity; y++) {
                     for (x = 0; x < capacity; x++) {
 
                         if (container.getPosition().compareTo(cp) != 0) {
-
                             try {
                                 ship.getContainerPositionAVL().find(container.getPosition());
                             } catch (NullPointerException ex) {
@@ -283,7 +291,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
                         }
                         container.getPosition().setxPos(x);
                     }
-
                     container.getPosition().setyPos(y);
                 }
                 container.getPosition().setzPos(z);
@@ -291,7 +298,6 @@ public class CargoManifest implements Comparable<CargoManifest> {
         }
         return false;
     }
-
 }
 
 

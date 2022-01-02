@@ -9,18 +9,13 @@ import java.io.FileNotFoundException;
 
 public class ImportPortsController {
 
-    private final PortStore store;
-    //    private final PortStoreData portStoreData;
-    private final DatabaseConnection dbConnection;
-
     /**
      * Constructor.
      */
     public ImportPortsController() {
-        this.dbConnection = App.getInstance().getDatabaseConnection();
         Company company = App.getInstance().getCompany();
-        this.store = company.getPortStore();
-//        this.portStoreData = company.getPortStoreData();
+        PortStore store = company.getPortStore();
+        DatabaseConnection dbConnection = App.getInstance().getDatabaseConnection();
     }
 
     /**

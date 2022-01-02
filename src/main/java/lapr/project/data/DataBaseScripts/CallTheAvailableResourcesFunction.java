@@ -10,11 +10,23 @@ import java.util.Calendar;
 
 public class CallTheAvailableResourcesFunction {
 
-
+    /**
+     * Constructor.
+     */
     public CallTheAvailableResourcesFunction() {
-        //EMPTY
+        // Empty constructor
     }
 
+    /**
+     * Calls the function that gets the available resources of a facility.
+     *
+     * @param month      the month
+     * @param year       the year
+     * @param id         the facility ID
+     * @param connection the database connection
+     * @return the available resources of a facility
+     * @throws SQLException
+     */
     public String callFunction(int month, int year, int id, DatabaseConnection connection) throws SQLException {
 
         int day;
@@ -55,22 +67,20 @@ public class CallTheAvailableResourcesFunction {
 
         cstmt2.executeUpdate();
 
-        String containerCapacity;
+        StringBuilder containerCapacity;
         String areaFacility;
 
-        containerCapacity = cstmt2.getString(1);
+        containerCapacity = new StringBuilder(cstmt2.getString(1));
         areaFacility = cstmt.getString(1);
 
-        String[] split = containerCapacity.split(",");
+        String[] split = containerCapacity.toString().split(",");
         String[] split2 = areaFacility.split(",");
-        containerCapacity = "";
+        containerCapacity = new StringBuilder();
 
         for (int i = 1; i < split.length; i++) {
-            containerCapacity = containerCapacity + "Day" + i + ": " +
-                    "\nContainer Capacity:" + split[i] + "%\n" +
-                    "Facility Area capcity:" + split2[i] + "%\n";
+            containerCapacity.append("Day").append(i).append(": ").append("\nContainer Capacity:").append(split[i]).append("%\n").append("Facility Area Capacity:").append(split2[i]).append("%\n");
         }
 
-        return containerCapacity;
+        return containerCapacity.toString();
     }
 }

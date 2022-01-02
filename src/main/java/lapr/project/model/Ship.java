@@ -458,7 +458,11 @@ public class Ship {
         return biggestPosition;
     }
 
-
+    /**
+     * Gets the container position AVL.
+     *
+     * @return the container position AVL
+     */
     public AVL<ContainerPosition> getContainerPositionAVL() {
         return containerPositionAVL;
     }
@@ -811,7 +815,6 @@ public class Ship {
      * @param port the port
      * @return true if it succeeds, false if it doesn't
      */
-
     public boolean giveCargoLoadedSign(Port port) {
         for (CargoManifest cargoManifest : cargoManifestAVL.inOrder()) {
             if (cargoManifest.getPort().equals(port)) {
@@ -832,12 +835,21 @@ public class Ship {
         return (occupancyRate * 100);
     }
 
+    /**
+     * Gets the ship's cargo manifest.
+     *
+     * @return the ship's cargo manifest
+     */
     public CargoManifest getCargoManifest() {
         return cargoManifest;
     }
 
-    public void addContainerPosition(ContainerPosition cs) {
-        containerPositionAVL.insert(cs);
+    /**
+     * Adds a container position.
+     *
+     * @param cp the container position to be added
+     */
+    public void addContainerPosition(ContainerPosition cp) {
+        containerPositionAVL.insert(cp);
     }
-
 }

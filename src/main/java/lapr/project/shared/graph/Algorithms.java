@@ -88,6 +88,17 @@ public class Algorithms {
         return true;
     }
 
+    /**
+     * Computes shortest-path distance from a source vertex to all reachable
+     * vertices of a graph g with non-negative edge weights
+     * This implementation uses Dijkstra's algorithm
+     *
+     * @param g        Graph instance
+     * @param vOrig    Vertex that will be the source of the path
+     * @param visited  set of previously visited vertices
+     * @param pathKeys minimum path vertices keys
+     * @param dist     minimum distances
+     */
     private static <V, E> void shortestPathDijkstra(Graph<V, E> g, V vOrig, Comparator<E> ce, BinaryOperator<E> sum, E zero, boolean[] visited, V[] pathKeys, E[] dist) {
         int vkey = g.key(vOrig);
         dist[vkey] = zero;
@@ -117,6 +128,16 @@ public class Algorithms {
         }
     }
 
+    /**
+     * Extracts from pathKeys the minimum path between voInf and vdInf
+     * The path is constructed from the end to the beginning
+     *
+     * @param g        Graph instance
+     * @param vOrig    information of the Vertex origin
+     * @param vDest    information of the Vertex destination
+     * @param pathKeys minimum path vertices keys
+     * @param path     stack with the minimum path (correct order)
+     */
     private static <V, E> void getPath(Graph<V, E> g, V vOrig, V vDest,
                                        V[] pathKeys, LinkedList<V> path) {
 
@@ -137,6 +158,4 @@ public class Algorithms {
             pathKeys[i] = null;
         }
     }
-
-
 }

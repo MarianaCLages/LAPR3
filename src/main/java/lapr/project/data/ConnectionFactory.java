@@ -23,18 +23,27 @@ public class ConnectionFactory {
      */
 
 
-
     private final Integer connectionPoolCount = 1;
 
-    private final List<DatabaseConnection> databaseConnectionList =
-            new ArrayList<>();
+    private final List<DatabaseConnection> databaseConnectionList = new ArrayList<>();
 
     private Integer connectionPoolRequest = 0;
 
+    /**
+     * Constructor.
+     *
+     * @throws IOException
+     */
     public ConnectionFactory() throws IOException {
         loadProperties();
     }
 
+    /**
+     * Gets the instance.
+     *
+     * @return the instance
+     * @throws IOException
+     */
     public static synchronized ConnectionFactory getInstance()
             throws IOException {
         if (instance == null) {
@@ -47,7 +56,7 @@ public class ConnectionFactory {
      * Load Properties from application.properties file.
      */
 
-private void loadProperties() throws IOException {
+    private void loadProperties() throws IOException {
         //Load existing properties.
         Properties properties = new Properties(System.getProperties());
 
@@ -62,6 +71,11 @@ private void loadProperties() throws IOException {
         System.setProperties(properties);
     }
 
+    /**
+     * Gets the database connection.
+     *
+     * @return the database connection
+     */
     public DatabaseConnection getDatabaseConnection() {
         DatabaseConnection databaseConnection;
         if (++connectionPoolRequest > connectionPoolCount) {

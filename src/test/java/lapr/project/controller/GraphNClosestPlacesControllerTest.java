@@ -3,18 +3,16 @@ package lapr.project.controller;
 import lapr.project.shared.exceptions.NoPathFoundForSpecificVertexException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class GraphNCClosestPlacesControllerTest {
+class GraphNClosestPlacesControllerTest {
 
     @Test
     void graphNClosestPlacesController() {
 
-        GraphNCClosestPlacesController graphNCClosestPlacesController = new GraphNCClosestPlacesController();
+        GraphNClosestPlacesController graphNClosestPlacesController = new GraphNClosestPlacesController();
 
 
         try {
-            String actual = graphNCClosestPlacesController.getTheNClosestPlaces(1);
+            String actual = graphNClosestPlacesController.getTheNClosestPlaces(1);
 
           //  if (actual == null || actual.equals("")) fail();
 

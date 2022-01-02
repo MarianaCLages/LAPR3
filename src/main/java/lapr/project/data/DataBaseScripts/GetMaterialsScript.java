@@ -17,11 +17,22 @@ public class GetMaterialsScript {
 
     private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructor.
+     *
+     * @param databaseConnection the database connection
+     */
     public GetMaterialsScript(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
 
-
+    /**
+     * Gets the thermal resistance.
+     *
+     * @param containerID the container ID
+     * @return the thermal resistance
+     * @throws ProportionalityConstantNullException
+     */
     public String getThermalResistance(int containerID) throws ProportionalityConstantNullException {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -36,6 +47,15 @@ public class GetMaterialsScript {
         return stringBuilder.toString();
     }
 
+    /**
+     * Gets the materials for a specific temperature.
+     *
+     * @param temperature the temperature
+     * @return the materials for a specific temperature
+     * @throws MaterialTypeNullException
+     * @throws NoMaterialsFoundException
+     * @throws NoMaterialsForThatTemperatureException
+     */
     public String materialScript(int temperature) throws MaterialTypeNullException, NoMaterialsFoundException, NoMaterialsForThatTemperatureException {
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -75,11 +95,17 @@ public class GetMaterialsScript {
                 k--;
             }
         }
-
-
         return stringBuilder.toString();
     }
 
+    /**
+     * Gets the K constant.
+     *
+     * @param containerId the container ID
+     * @param wallType    the wall type
+     * @return the K constant
+     * @throws ProportionalityConstantNullException
+     */
     public double getKConstant(int containerId, String wallType) throws ProportionalityConstantNullException {
 
         Connection connection = databaseConnection.getConnection();
@@ -103,6 +129,14 @@ public class GetMaterialsScript {
         }
     }
 
+    /**
+     * Gets the materials by temperature.
+     *
+     * @param temperature the temperature
+     * @param j           the count
+     * @return the materials by temperature
+     * @throws MaterialTypeNullException
+     */
     public String getMaterialByTemperature(int temperature, int j) throws MaterialTypeNullException {
 
         Connection connection = databaseConnection.getConnection();
@@ -115,16 +149,13 @@ public class GetMaterialsScript {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
-
                 for (int i = 0; i < j; i++) {
                     resultSet.next();
                 }
 
                 if (resultSet.next()) {
-
                     return resultSet.getString("TYPE");
                 }
-
             }
         } catch (SQLException exception) {
             throw new MaterialTypeNullException();
@@ -132,6 +163,13 @@ public class GetMaterialsScript {
         return null;
     }
 
+    /**
+     * Gets the number of materials by temperature.
+     *
+     * @param temperature the temperature
+     * @return the number of materials by temperature
+     * @throws NoMaterialsFoundException
+     */
     public int countMaterialsByTemperature(int temperature) throws NoMaterialsFoundException {
 
         Connection connection = databaseConnection.getConnection();
@@ -153,6 +191,5 @@ public class GetMaterialsScript {
         } catch (SQLException exception) {
             throw new NoMaterialsFoundException();
         }
-
     }
 }

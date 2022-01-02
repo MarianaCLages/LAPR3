@@ -1,11 +1,9 @@
 package lapr.project.controller;
 
 import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DataBaseScripts.GetMaterialsScript;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
-import lapr.project.shared.exceptions.NullVerticesException;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
@@ -13,10 +11,6 @@ import lapr.project.utils.auth.domain.OrgRole;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Properties;
 
 public class App {
@@ -108,7 +102,7 @@ public class App {
 
 
         //email: SE00001@lei.pt
-        ShipEletricalEngineer se1 = new ShipEletricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "ShipEletrical1");
+        ShipChiefElectricalEngineer se1 = new ShipChiefElectricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "ShipEletrical1");
         this.authFacade.addUserWithRole(se1.getName(), se1.getEmail(), "123", Constants.ROLE_CHIEF_ELECTRICAL_ENGINEER);
         //email: R00001@lei.pt pass: 123
         Client c1 = new Client(this.company.getOrgRoleStore().getRoleById(Constants.CLIENT), "R00001", "Receptionist1");

@@ -96,6 +96,11 @@ public class Company {
         return this.cargoManifestStore;
     }
 
+    /**
+     * Gets the User Store.
+     *
+     * @return the User Store
+     */
     public UserStore getUserStore() {
         return this.userStore;
     }
@@ -126,20 +131,40 @@ public class Company {
 //    public PortStoreData getPortStoreData() {
 //        return portStoreData;
 //    }
+
+    /**
+     * Gets the Freight Network.
+     *
+     * @return the Freight Network
+     */
     public FreightNetwork getFreightNetwork() {
         return this.freightNetwork;
     }
 
+    /**
+     * Gets the Cargo Manifest Store Data.
+     *
+     * @return the Cargo Manifest Store Data
+     */
     public CargoManifestStoreData getCargoManifestStoreData() {
         return cargoManifestStoreData;
     }
 
+    /**
+     * Gets the Container Store Data.
+     *
+     * @return the Container Store Data
+     */
     public ContainerStoreData getContainerStoreData() {
         return containerStoreData;
     }
 
+    /**
+     * Gets the Port Store Data.
+     *
+     * @return the Port Data
+     */
     public PortStoreData getPortStoreData() {
         return portStoreData;
-
     }
 }

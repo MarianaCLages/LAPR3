@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,5 +81,39 @@ class AlgorithmsTest {
         path = Algorithms.BreadthFirstSearch(incompleteMap, "Viseu");
         expected = new LinkedList<>(Arrays.asList("Viseu", "Guarda", "Castelo Branco"));
         assertEquals(expected, path, "BreathFirst Viseu");
+    }
+
+    @Test
+    public void testShortestPaths() throws NullVerticesException {
+        System.out.println("Test of shortest path");
+
+        ArrayList<LinkedList<String>> paths = new ArrayList<>();
+        ArrayList<Integer> dists = new ArrayList<>();
+
+        Algorithms.shortestPaths(completeMap, "Porto", Integer::compare, Integer::sum, 0, paths, dists);
+
+        assertEquals(paths.size(), dists.size(), "There should be as many paths as sizes");
+        assertEquals(completeMap.numVertices(), paths.size(), "There should be a path to every vertex");
+        assertEquals(Arrays.asList("Porto"), paths.get(completeMap.key("Porto")), "Number of nodes should be 1 if source and vertex are the same");
+        assertEquals(Arrays.asList("Porto", "Aveiro", "Coimbra", "Lisboa"), paths.get(completeMap.key("Lisboa")), "Path to Lisbon");
+        assertEquals(Arrays.asList("Porto", "Aveiro", "Viseu", "Guarda", "Castelo Branco"), paths.get(completeMap.key("Castelo Branco")), "Path to Castelo Branco");
+        assertEquals(335, dists.get(completeMap.key("Castelo Branco")), "Path between Porto and Castelo Branco should be 335 Km");
+
+        //Changing Edge: Aveiro-Viseu with Edge: Leiria-C.Branco
+        //should change shortest path between Porto and Castelo Branco
+        completeMap.removeEdge("Aveiro", "Viseu");
+        completeMap.addEdge("Leiria", "Castelo Branco", 170);
+        Algorithms.shortestPaths(completeMap, "Porto", Integer::compare, Integer::sum, 0, paths, dists);
+        assertEquals(365, dists.get(completeMap.key("Castelo Branco")), "Path between Porto and Castelo Branco should now be 365 Km");
+        assertEquals(Arrays.asList("Porto", "Aveiro", "Leiria", "Castelo Branco"), paths.get(completeMap.key("Castelo Branco")), "Path to Castelo Branco");
+
+        Algorithms.shortestPaths(incompleteMap, "Porto", Integer::compare, Integer::sum, 0, paths, dists);
+        assertNull(dists.get(completeMap.key("Faro")), "Length path should be null if there is no path");
+        assertEquals(335, dists.get(completeMap.key("Lisboa")), "Path between Porto and Lisboa should be 335 Km");
+        assertEquals(Arrays.asList("Porto", "Aveiro", "Coimbra", "Lisboa"), paths.get(completeMap.key("Lisboa")), "Path to Lisboa");
+
+        Algorithms.shortestPaths(incompleteMap, "Braga", Integer::compare, Integer::sum, 0, paths, dists);
+        assertEquals(255, dists.get(completeMap.key("Leiria")), "Path between Braga and Leiria should be 255 Km");
+        assertEquals(Arrays.asList("Braga", "Porto", "Aveiro", "Leiria"), paths.get(completeMap.key("Leiria")), "Path to Leiria");
     }
 }

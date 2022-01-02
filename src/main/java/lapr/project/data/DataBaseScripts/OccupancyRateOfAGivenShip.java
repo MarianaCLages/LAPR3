@@ -12,12 +12,29 @@ public class OccupancyRateOfAGivenShip {
 
     private DatabaseConnection databaseConnection = null;
 
+    /**
+     * Constructor.
+     */
     public OccupancyRateOfAGivenShip() {
-        // empty
+        // Empty constructor
     }
 
-    //US2018 AND US209 METHODS USED BY BOTH USER STORIES
+    //US208 AND US209 METHODS USED BY BOTH USER STORIES
 
+    /**
+     * Gets the occupancy rate of a ship given a cargo manifest ID.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @param cargoManifestID    the cargo manifest ID
+     * @return the occupancy rate of a ship given a cargo manifest ID
+     * @throws ShipCargoCapacityException
+     * @throws ContainerGrossException
+     * @throws ContainersInsideCargoManifestListSizeException
+     * @throws CargoManifestDoesntBelongToThatShipException
+     * @throws VehicleIDNotValidException
+     * @throws IllegalArgumentException
+     */
     public double occupancyRateInAShipGivenACargoManifestID(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws ShipCargoCapacityException, ContainerGrossException, ContainersInsideCargoManifestListSizeException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         this.databaseConnection = databaseConnection;
 
@@ -26,10 +43,25 @@ public class OccupancyRateOfAGivenShip {
         return occupancyRate(mmsi, cargoManifestID);
     }
 
+    /**
+     * Gets the occupancy rate of a ship given a cargo manifest date.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @param date               the cargo manifest date
+     * @return the occupancy rate of a ship given a cargo manifest date
+     * @throws ContainersInsideCargoManifestListSizeException
+     * @throws ShipCargoCapacityException
+     * @throws ContainerGrossException
+     * @throws CargoManifestIDException
+     * @throws CargoManifestDoesntBelongToThatShipException
+     * @throws VehicleIDNotValidException
+     * @throws IllegalArgumentException
+     */
     public double occupancyRateInAShipGivenACargoManifestDate(DatabaseConnection databaseConnection, int mmsi, String date) throws ContainersInsideCargoManifestListSizeException, ShipCargoCapacityException, ContainerGrossException, CargoManifestIDException, CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException, IllegalArgumentException {
         this.databaseConnection = databaseConnection;
 
-        String cargoManifestID = null;
+        String cargoManifestID;
 
         try {
             cargoManifestID = getCargoManifestID(date);
@@ -42,10 +74,19 @@ public class OccupancyRateOfAGivenShip {
         return occupancyRate(mmsi, cargoManifestID);
     }
 
+    /**
+     * Verifies the integrity.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @param cargoManifestID    the cargo manifest ID
+     * @throws CargoManifestDoesntBelongToThatShipException
+     * @throws VehicleIDNotValidException
+     */
     private void verifyIntegrity(DatabaseConnection databaseConnection, int mmsi, String cargoManifestID) throws CargoManifestDoesntBelongToThatShipException, VehicleIDNotValidException {
 
-        String shipVehicleID = null;
-        String cargoManifestAssociatedVehicleID = null;
+        String shipVehicleID;
+        String cargoManifestAssociatedVehicleID;
 
         try {
             shipVehicleID = getShipVehicleID(databaseConnection, mmsi);
@@ -60,11 +101,22 @@ public class OccupancyRateOfAGivenShip {
 
     }
 
+    /**
+     * Calculates the occupancy rate.
+     *
+     * @param mmsi            the ship MMSI
+     * @param cargoManifestID the cargo manifest ID
+     * @return the occupancy rate
+     * @throws ContainersInsideCargoManifestListSizeException
+     * @throws ContainerGrossException
+     * @throws ShipCargoCapacityException
+     * @throws IllegalArgumentException
+     */
     public double occupancyRate(int mmsi, String cargoManifestID) throws ContainersInsideCargoManifestListSizeException, ContainerGrossException, ShipCargoCapacityException, IllegalArgumentException {
 
         int inc = 0;
-        int iterator = 0;
-        double sum = 0;
+        int iterator;
+        double sum;
 
         try {
             iterator = getContainersInsideCargoManifestListSize(cargoManifestID);
@@ -74,7 +126,7 @@ public class OccupancyRateOfAGivenShip {
 
         try {
             sum = (getShipCargoCapacity(databaseConnection, mmsi) * 1000);
-            if(sum == 0) throw new SQLException();
+            if (sum == 0) throw new SQLException();
         } catch (SQLException ex2) {
             throw new ShipCargoCapacityException();
         }
@@ -93,12 +145,19 @@ public class OccupancyRateOfAGivenShip {
             iterator--;
         }
 
-        if(sum==0) throw new IllegalArgumentException("The ship that you selected doesn't carry cargo manifests");
+        if (sum == 0) throw new IllegalArgumentException("The ship that you selected doesn't carry cargo manifests");
 
         return ((containersGross / sum) * 100);
 
     }
 
+    /**
+     * Gets all the cargo manifests of a specific date.
+     *
+     * @param date the date
+     * @return all the cargo manifests of a specific date
+     * @throws SQLException
+     */
     public String getCargoManifestID(String date) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -112,12 +171,17 @@ public class OccupancyRateOfAGivenShip {
                     return resultSet.getString("CARGOMANIFESTID");
 
                 } else return null;
-
             }
         }
-
     }
 
+    /**
+     * Gets the number of containers of a cargo manifest.
+     *
+     * @param cargoManifestID the cargo manifest ID
+     * @return the number of containers of a cargo manifest
+     * @throws SQLException
+     */
     public int getContainersInsideCargoManifestListSize(String cargoManifestID) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -135,11 +199,18 @@ public class OccupancyRateOfAGivenShip {
                     return resultSet.getInt("COUNT_SIZE");
 
                 } else return 0;
-
             }
         }
     }
 
+    /**
+     * Gets the ship's cargo capacity.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @return the ship's cargo capacity
+     * @throws SQLException
+     */
     public int getShipCargoCapacity(DatabaseConnection databaseConnection, int mmsi) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -153,12 +224,18 @@ public class OccupancyRateOfAGivenShip {
                     return resultSetCargoCapacity.getInt("CAPACITY");
 
                 } else return 0;
-
             }
         }
-
     }
 
+    /**
+     * Gets the container gross.
+     *
+     * @param cargoManifestID the cargo manifest ID
+     * @param inc             the count
+     * @return the container gross
+     * @throws SQLException
+     */
     public int getContainerGross(String cargoManifestID, int inc) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -176,15 +253,21 @@ public class OccupancyRateOfAGivenShip {
                 }
 
                 if (resultSet.next()) {
-
                     return resultSet.getInt("CONTAINER_GROSS");
 
                 } else return 0;
-
             }
         }
     }
 
+    /**
+     * Gets the ship's vehicle ID.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @return the ship's vehicle ID
+     * @throws SQLException
+     */
     public String getShipVehicleID(DatabaseConnection databaseConnection, int mmsi) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -195,16 +278,21 @@ public class OccupancyRateOfAGivenShip {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-
                     return resultSet.getString("VEHICLEID");
 
                 } else return null;
-
             }
         }
-
     }
 
+    /**
+     * Gets the vehicle ID given a cargo manifest.
+     *
+     * @param databaseConnection the database connection
+     * @param cargoManifestID    the cargo manifest ID
+     * @return the vehicle ID given a cargo manifest
+     * @throws SQLException
+     */
     public String getAssociatedVehicleID(DatabaseConnection databaseConnection, String cargoManifestID) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -215,14 +303,10 @@ public class OccupancyRateOfAGivenShip {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-
                     return resultSet.getString("VEHICLEID");
 
                 } else return null;
-
             }
         }
-
     }
-
 }

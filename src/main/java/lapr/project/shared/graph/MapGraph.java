@@ -8,22 +8,45 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
 
     private final Map<V, MapVertex<V, E>> mapVertices;  // all the Vertices of the graph
 
+    /**
+     * Constructor.
+     *
+     * @param directed boolean that says if the map is directed or not
+     */
     // Constructs an empty graph (either undirected or directed)
     public MapGraph(boolean directed) {
         super(directed);
         mapVertices = new LinkedHashMap<>();
     }
 
+    /**
+     * Constructor.
+     *
+     * @param g the graph
+     * @throws NullVerticesException
+     */
     public MapGraph(Graph<V, E> g) throws NullVerticesException {
         this(g.isDirected());
         copy(g, this);
     }
 
+    /**
+     * Checks if the vertex is valid (not null).
+     *
+     * @param vert the vertex
+     * @return true if is valid, false if it isn't
+     */
     @Override
     public boolean validVertex(V vert) {
         return (mapVertices.get(vert) != null);
     }
 
+    /**
+     * Gets the adjacent vertices.
+     *
+     * @param vert the vertex for which to find adjacent vertices
+     * @return the adjacent vertices
+     */
     @Override
     public Collection<V> adjVertices(V vert) {
 
@@ -36,6 +59,11 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return mv.getAllAdjVerts();
     }
 
+    /**
+     * Gets the list of outgoing edges.
+     *
+     * @return the list of outgoing edges
+     */
     @Override
     public Collection<Edge<V, E>> edges() {
 
@@ -47,6 +75,13 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return le;
     }
 
+    /**
+     * Gets the edge from the map graph.
+     *
+     * @param vOrig origin vertex
+     * @param vDest destination vertex
+     * @return the edge from the map
+     */
     @Override
     public Edge<V, E> edge(V vOrig, V vDest) {
 
@@ -58,6 +93,13 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return mv.getEdge(vDest);
     }
 
+    /**
+     * Creates an edge.
+     *
+     * @param vOrigKey the key of vertex vOrig
+     * @param vDestKey the key of vertex vDist
+     * @return the edge created
+     */
     @Override
     public Edge<V, E> edge(int vOrigKey, int vDestKey) {
         V vOrig = vertex(vOrigKey);
@@ -66,6 +108,12 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return edge(vOrig, vDest);
     }
 
+    /**
+     * Gets the degree of the outgoing edges.
+     *
+     * @param vert the vertex of interest
+     * @return the degree of the outgoing edges
+     */
     @Override
     public int outDegree(V vert) {
 
@@ -77,6 +125,12 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return mv.numAdjVerts();
     }
 
+    /**
+     * Gets the degree of the incoming edges.
+     *
+     * @param vert the vertex of interest
+     * @return the degree of the incoming edges
+     */
     @Override
     public int inDegree(V vert) {
 
@@ -91,6 +145,12 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return degree;
     }
 
+    /**
+     * Gets all the outgoing edges.
+     *
+     * @param vert the vertex of interest
+     * @return all the outgoing edges
+     */
     @Override
     public Collection<Edge<V, E>> outgoingEdges(V vert) {
 
@@ -102,6 +162,12 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return mv.getAllOutEdges();
     }
 
+    /**
+     * Gets all the incoming edges.
+     *
+     * @param vert the vertex of interest
+     * @return all the incoming edges
+     */
     @Override
     public Collection<Edge<V, E>> incomingEdges(V vert) {
 
@@ -122,6 +188,13 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return edgelist;
     }
 
+    /**
+     * Adds a vertex.
+     *
+     * @param vert the vertex to add
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     @Override
     public boolean addVertex(V vert) throws NullVerticesException {
 
@@ -137,6 +210,15 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Adds an edge.
+     *
+     * @param vOrig  origin vertex
+     * @param vDest  destination vertex
+     * @param weight the weight of the edge
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     @Override
     public boolean addEdge(V vOrig, V vDest, E weight) throws NullVerticesException {
 
@@ -169,6 +251,13 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Removes a vertex.
+     *
+     * @param vert the vertex to remove
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     @Override
     public boolean removeVertex(V vert) throws NullVerticesException {
 
@@ -193,6 +282,14 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Removes an edge.
+     *
+     * @param vOrig vertex origin of the edge
+     * @param vDest vertex destination of the edge
+     * @return true if it succeeds, false if it doesn't
+     * @throws NullVerticesException
+     */
     @Override
     public boolean removeEdge(V vOrig, V vDest) throws NullVerticesException {
 
@@ -222,7 +319,11 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
-    //Returns a clone of the graph
+    /**
+     * Clones the graph.
+     *
+     * @return a clone of the graph
+     */
     @Override
     public MapGraph<V, E> clone() {
 
@@ -237,6 +338,11 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
         return g;
     }
 
+    /**
+     * Returns the textual description of the map graph in the format: vertices, edges.
+     *
+     * @return the map graph's characteristics
+     */
     //string representation
     @Override
     public String toString() {

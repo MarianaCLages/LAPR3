@@ -10,11 +10,23 @@ public class MaterialTemperatureController {
 
     private final GetMaterialsScript getMaterialsScript;
 
+    /**
+     * Constructor.
+     */
     public MaterialTemperatureController() {
         DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
         getMaterialsScript = new GetMaterialsScript(databaseConnection);
     }
 
+    /**
+     * Gets the materials for a specific temperature.
+     *
+     * @param temperature the temperature
+     * @return the materials for a specific temperature
+     * @throws MaterialTypeNullException
+     * @throws NoMaterialsFoundException
+     * @throws NoMaterialsForThatTemperatureException
+     */
     public String materialTemperatureController(int temperature) throws MaterialTypeNullException, NoMaterialsFoundException, NoMaterialsForThatTemperatureException {
         return getMaterialsScript.materialScript(temperature);
     }

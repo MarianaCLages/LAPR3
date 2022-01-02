@@ -18,32 +18,33 @@ public class CargoManifestStoreData implements Persistable {
 
     private final Set<CargoManifest> listCargoManifest;
 
+    /**
+     * Constructor.
+     */
     public CargoManifestStoreData() {
         this.listCargoManifest = new HashSet<>();
     }
 
-    @Override
-    public boolean save(DatabaseConnection databaseConnection, Object object) {
-        return false;
-    }
-
-    @Override
-    public boolean delete(DatabaseConnection databaseConnection, Object object) {
-        return false;
-    }
-
-    @Override
-    public Object getElement(DatabaseConnection databaseConnection, Object object) {
-        return null;
-    }
-
+    /**
+     * Gets the cargo manifest list.
+     *
+     * @param databaseConnection the database connection
+     * @return the cargo manifest list
+     */
     public Set<CargoManifest> getListCargoManifest(DatabaseConnection databaseConnection) {
 
-        if (listCargoManifest.isEmpty()) fillCargoManifestList(databaseConnection);
+        if (listCargoManifest.isEmpty()) {
+            fillCargoManifestList(databaseConnection);
+        }
 
         return listCargoManifest;
     }
 
+    /**
+     * Fills the cargo manifest list.
+     *
+     * @param databaseConnection the database connection
+     */
     private void fillCargoManifestList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
@@ -73,6 +74,18 @@ public class CargoManifestStoreData implements Persistable {
         }
     }
 
+    @Override
+    public boolean save(DatabaseConnection databaseConnection, Object object) {
+        return false;
+    }
 
+    @Override
+    public boolean delete(DatabaseConnection databaseConnection, Object object) {
+        return false;
+    }
 
+    @Override
+    public Object getElement(DatabaseConnection databaseConnection, Object object) {
+        return null;
+    }
 }

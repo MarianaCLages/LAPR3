@@ -12,14 +12,25 @@ import java.sql.SQLException;
 
 public class AverageCargoByYearScript {
 
+    /**
+     * Constructor.
+     */
     public AverageCargoByYearScript() {
         //Empty constructor
     }
 
     //US207
-
     private DatabaseConnection databaseConnection = null;
 
+    /**
+     * Gets the cargo manifests of a trip.
+     *
+     * @param mmsi the ship MMSI
+     * @param date the cargo manifest date
+     * @param j    the count
+     * @return the cargo manifests of a trip
+     * @throws SQLException
+     */
     public int getCargoManifestsOfATripFromDataBase(int mmsi, int date, int j) throws SQLException {
         String sqlCommand = "select cm.CARGOMANIFESTID from CARGOMANIFEST cm\n" +
                 "                                   inner join TRIP T on T.IDTRIP = cm.IDTRIP and T.VEHICLEID = cm.VEHICLEID and Extract(YEAR from CARGOMANIFESTDATE) = " + date +
@@ -42,6 +53,14 @@ public class AverageCargoByYearScript {
         }
     }
 
+    /**
+     * Gets the number of cargo manifests of a trip.
+     *
+     * @param mmsi the ship MMSI
+     * @param date the cargo manifest date
+     * @return the number of cargo manifests of a trip
+     * @throws SQLException
+     */
     private int getCargoManifestOfATripSize(int mmsi, int date) throws SQLException {
         String sqlCommand = "select COUNT(*) COUNT_MANIFESTS from CARGOMANIFEST cm\n" +
                 "                                   inner join TRIP T on T.IDTRIP = cm.IDTRIP and T.VEHICLEID = cm.VEHICLEID and Extract(YEAR from CARGOMANIFESTDATE) = " + date +
@@ -62,6 +81,13 @@ public class AverageCargoByYearScript {
         }
     }
 
+    /**
+     * Gets the number of containers of a cargo manifest of a trip.
+     *
+     * @param cargoManifestID the cargo manifest ID
+     * @return the number of containers of a cargo manifest of a trip
+     * @throws SQLException
+     */
     private int getContainersCargoManifestOfATripSize(int cargoManifestID) throws SQLException {
         Connection connection = databaseConnection.getConnection();
 
@@ -75,16 +101,24 @@ public class AverageCargoByYearScript {
                 if (resultSet.next()) {
                     return (resultSet.getInt("COUNT_CONTAINERS"));
                 }
-
                 return 0;
-
             }
         }
     }
 
+    /**
+     * Gets the number of containers per trip.
+     *
+     * @param mmsi the ship MMSI
+     * @param date the cargo manifest date
+     * @return the number of containers per trip
+     * @throws NoContainersInsideThatTripException
+     * @throws NoCargoManifestInThatDateException
+     * @throws NoCargoManifestsWereFoundInThatTripException
+     */
     public double getNumberOfContainersPerTrip(int mmsi, int date) throws NoContainersInsideThatTripException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException {
 
-        int j = 0;
+        int j;
 
         try {
             j = getCargoManifestOfATripSize(mmsi, date);
@@ -92,12 +126,12 @@ public class AverageCargoByYearScript {
             throw new NoCargoManifestsWereFoundInThatTripException();
         }
 
-        int cargoManifestID = 0;
+        int cargoManifestID;
 
-        int sumContainers = 0;
+        float sumContainers = 0;
 
         int count = 0;
-        int aux = j;
+        float aux = j;
 
         while (j != 0) {
 
@@ -124,13 +158,21 @@ public class AverageCargoByYearScript {
         return (sumContainers / aux);
     }
 
+    /**
+     * Prints the result.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @param date               the cargo manifest date
+     * @return the result
+     * @throws SQLException
+     * @throws NoCargoManifestInThatDateException
+     * @throws NoCargoManifestsWereFoundInThatTripException
+     * @throws NoContainersInsideThatTripException
+     */
     public String numberOfContainers(DatabaseConnection databaseConnection, int mmsi, int date) throws SQLException, NoCargoManifestInThatDateException, NoCargoManifestsWereFoundInThatTripException, NoContainersInsideThatTripException {
         this.databaseConnection = databaseConnection;
 
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append("\nNumber of cargo manifests transported in the given year: ").append(getCargoManifestOfATripSize(mmsi, date)).append("\n").append("Average number of containers per manifest: ").append(getNumberOfContainersPerTrip(mmsi, date));
-
-        return stringBuilder.toString();
+        return "\nNumber of cargo manifests transported in the given year: " + getCargoManifestOfATripSize(mmsi, date) + "\n" + "Average number of containers per manifest: " + getNumberOfContainersPerTrip(mmsi, date);
     }
 }

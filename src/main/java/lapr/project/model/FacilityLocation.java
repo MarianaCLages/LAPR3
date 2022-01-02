@@ -1,7 +1,5 @@
 package lapr.project.model;
 
-import org.jetbrains.annotations.NotNull;
-
 import static lapr.project.shared.Constants.MAX_LATITUDE;
 import static lapr.project.shared.Constants.MAX_LONGITUDE;
 

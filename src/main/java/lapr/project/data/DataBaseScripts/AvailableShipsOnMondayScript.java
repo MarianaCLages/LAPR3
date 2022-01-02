@@ -1,6 +1,5 @@
 package lapr.project.data.DataBaseScripts;
 
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +14,10 @@ public class AvailableShipsOnMondayScript {
 
     private DatabaseConnection databaseConnection;
 
-
+    /**
+     * Constructor.
+     * @param db the database
+     */
     public AvailableShipsOnMondayScript(DatabaseConnection db) {
         this.databaseConnection = db;
     }
@@ -27,7 +29,7 @@ public class AvailableShipsOnMondayScript {
      * Gets which ships are available next Monday.
      * Note that if the current day is a Monday, it only considers the Monday in the following week.
      *
-     * @return
+     * @return the ships that are available next Monday
      */
     public ArrayList<String> get() {
         ArrayList<String> shipList = new ArrayList<String>();

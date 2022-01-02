@@ -11,10 +11,21 @@ import java.util.*;
 
 public class GraphNClosestPlaces {
 
+    /**
+     * Constructor.
+     */
     private GraphNClosestPlaces() {
-        //EMPTY
+        // Empty constructor
     }
 
+    /**
+     * Gets the N closest places.
+     *
+     * @param graph the graph
+     * @param n     the N
+     * @return the N closest places
+     * @throws NoPathFoundForSpecificVertexException
+     */
     public static String getNClosestPlaces(Graph<Vertex, Double> graph, int n) throws NoPathFoundForSpecificVertexException {
 
         if (n < 1)
@@ -93,26 +104,18 @@ public class GraphNClosestPlaces {
                                 auxCont++;
 
                             }
-
                         }
-
-
                     }
-
                 }
 
                 if (auxCont == 0) {
                     sb.append("\t\t\tThere are no connections for this place!");
                 }
-
             }
-
             return sb.toString();
 
         } catch (NullPointerException e) {
             throw new NoPathFoundForSpecificVertexException();
         }
-
     }
-
 }

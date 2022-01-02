@@ -9,11 +9,24 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class PortImporter {
+
+    /**
+     * Constructor.
+     */
     private PortImporter() {
-        //Empty constructor
+        // Empty constructor
     }
 
-
+    /**
+     * Imports the ports from a file.
+     *
+     * @param path          the file path
+     * @param portStore     the port store
+     * @param portStoreData the port store data
+     * @param dbConnection  the database connection
+     * @return true if it succeeds, false if it doesn't
+     * @throws FileNotFoundException
+     */
     public static boolean importPorts(File path, PortStore portStore, PortStoreData portStoreData, DatabaseConnection dbConnection) throws FileNotFoundException {
         boolean returnValue = false;
         Scanner sc = new Scanner(new File(String.valueOf(path)));
@@ -32,5 +45,4 @@ public class PortImporter {
 
         return returnValue;
     }
-
 }

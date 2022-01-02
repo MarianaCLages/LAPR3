@@ -1,6 +1,5 @@
 package lapr.project.data;
 
-import lapr.project.controller.App;
 import lapr.project.model.Container;
 import lapr.project.model.stores.ContainerStore;
 
@@ -15,12 +14,16 @@ import java.util.logging.Logger;
 
 public class ContainerStoreData implements Persistable {
 
-    public ContainerStoreData() {
-    }
-
     private static int i = 1;
 
     private Set<Container> listContainers = new HashSet<>();
+
+    /**
+     * Constructor.
+     */
+    public ContainerStoreData() {
+        // Empty constructor
+    }
 
     @Override
     public boolean save(DatabaseConnection databaseConnection, Object object) {
@@ -130,6 +133,13 @@ public class ContainerStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the iso code.
+     *
+     * @param databaseConnection the database connection
+     * @param isoCodeId          the iso code ID
+     * @return the iso code
+     */
     public String getIsoCode(DatabaseConnection databaseConnection, int isoCodeId) {
         Connection connection = databaseConnection.getConnection();
 
@@ -152,13 +162,25 @@ public class ContainerStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the container list.
+     *
+     * @param databaseConnection the database connection
+     * @return the container list
+     */
     public Set<Container> getListContainers(DatabaseConnection databaseConnection) {
-
-        if (listContainers.isEmpty()) fillContainerList(databaseConnection);
+        if (listContainers.isEmpty()) {
+            fillContainerList(databaseConnection);
+        }
 
         return listContainers;
     }
 
+    /**
+     * Fills the container list.
+     *
+     * @param databaseConnection the database connection
+     */
     private void fillContainerList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
@@ -173,13 +195,10 @@ public class ContainerStoreData implements Persistable {
                 while (resultSet.next()) {
                     listContainers.add(new Container(resultSet.getString("CONTAINERID"), resultSet.getInt("PAYLOAD"), resultSet.getInt("TARE"), resultSet.getInt("GROSS"), resultSet.getString("CONTAINERID")));
                 }
-
             }
         } catch (SQLException e) {
             Logger.getLogger(ContainerStore.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
         }
-
     }
-
 }

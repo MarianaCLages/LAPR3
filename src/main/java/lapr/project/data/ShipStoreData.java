@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 
 public class ShipStoreData implements Persistable {
 
+    /**
+     * Constructor.
+     */
     public ShipStoreData() {
         //Empty constructor
     }
@@ -87,34 +90,6 @@ public class ShipStoreData implements Persistable {
         }
     }
 
-    private boolean updateVesselTypes(Connection connection, Ship ship) {
-        String sqlCommand = "select VESSELTYPEID from VESSELTYPE vt where vt.VESSELTYPEID = '" + ship.getVesselType() + "'";
-
-        try (PreparedStatement getVesselTypePreparedStatement = connection.prepareStatement(sqlCommand)) {
-            try (ResultSet vesselTypesResultSet = getVesselTypePreparedStatement.executeQuery()) {
-                if (vesselTypesResultSet.next()) {
-                    sqlCommand = "UPDATE VESSELTYPE SET VESSELTYPE = " + ship.getVesselType();
-
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-
-                } else {
-                    sqlCommand = "INSERT INTO VESSELTYPE(VESSELTYPEID, VESSELTYPE) values ('" + ship.getVesselType() + "','" + ship.getVesselType() + "')";
-                    System.out.println(sqlCommand);
-
-                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
-                        saveContainerPreparedStatement.executeUpdate();
-                        return true;
-                    }
-                }
-            }
-        } catch (SQLException throwables) {
-            return false;
-        }
-    }
-
     @Override
     public boolean delete(DatabaseConnection databaseConnection, Object object) {
         Connection connection = databaseConnection.getConnection();
@@ -170,7 +145,7 @@ public class ShipStoreData implements Persistable {
                     double draft = shipResultSet.getDouble("DRAFT");
 
                     //Ship ship = new Ship(mmsi, shipName, imo, callSign, vesselType, length, width, draft, capacity, 'A');
-                    Ship ship = new Ship(mmsi,shipName,imo,1,1,callSign,vesselType,length,width,capacity,draft);
+                    Ship ship = new Ship(mmsi, shipName, imo, 1, 1, callSign, vesselType, length, width, capacity, draft);
                     return ship;
 
                 } else return null;
@@ -184,6 +159,48 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Updates the vessel types.
+     *
+     * @param connection the database connection
+     * @param ship       the ship
+     * @return true if it succeeds, false if it doesn't
+     */
+    private boolean updateVesselTypes(Connection connection, Ship ship) {
+        String sqlCommand = "select VESSELTYPEID from VESSELTYPE vt where vt.VESSELTYPEID = '" + ship.getVesselType() + "'";
+
+        try (PreparedStatement getVesselTypePreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet vesselTypesResultSet = getVesselTypePreparedStatement.executeQuery()) {
+                if (vesselTypesResultSet.next()) {
+                    sqlCommand = "UPDATE VESSELTYPE SET VESSELTYPE = " + ship.getVesselType();
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                        return true;
+                    }
+
+                } else {
+                    sqlCommand = "INSERT INTO VESSELTYPE(VESSELTYPEID, VESSELTYPE) values ('" + ship.getVesselType() + "','" + ship.getVesselType() + "')";
+                    System.out.println(sqlCommand);
+
+                    try (PreparedStatement saveContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+                        saveContainerPreparedStatement.executeUpdate();
+                        return true;
+                    }
+                }
+            }
+        } catch (SQLException throwables) {
+            return false;
+        }
+    }
+
+    /**
+     * Gets the transceiver.
+     *
+     * @param databaseConnection the database connection
+     * @param transceiverID      the transceiver ID
+     * @return the transceiver
+     */
     public char getTransceiver(DatabaseConnection databaseConnection, int transceiverID) {
         Connection connection = databaseConnection.getConnection();
 
@@ -205,6 +222,14 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Saves a ship position.
+     *
+     * @param databaseConnection the database connection
+     * @param object             the object
+     * @param ship               the ship
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean saveShipPosition(DatabaseConnection databaseConnection, Object object, Ship ship) {
         Connection connection = databaseConnection.getConnection();
         Position shipPosition = (Position) object;
@@ -283,6 +308,14 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Deletes a ship position.
+     *
+     * @param databaseConnection the database connection
+     * @param object             the object
+     * @param mmsi               the ship MMSI
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
         Connection connection = databaseConnection.getConnection();
         Position shipPosition = (Position) object;
@@ -303,6 +336,14 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the ship position.
+     *
+     * @param databaseConnection the database connection
+     * @param dateTime           the date time
+     * @param mmsi               the ship MMSI
+     * @return the ship position
+     */
     public Position getShipPosition(DatabaseConnection databaseConnection, String dateTime, int mmsi) {
         Connection connection = databaseConnection.getConnection();
 
@@ -337,6 +378,14 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the ship position without the date.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship MMSI
+     * @param i                  the count
+     * @return the ship position without the date
+     */
     public Position getShipPositionWithoutDate(DatabaseConnection databaseConnection, int mmsi, int i) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -373,6 +422,13 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the number of positional messages of a ship.
+     *
+     * @param databaseConnection the database connection
+     * @param mmsi               the ship's MMSI
+     * @return the number of positional messages of a ship
+     */
     public int getShipPositionDateSize(DatabaseConnection databaseConnection, int mmsi) {
         String sqlCommand = "SELECT COUNT(*) FROM PositionalMessage pm where pm.mmsi = '" + mmsi + "'";
 
@@ -399,6 +455,12 @@ public class ShipStoreData implements Persistable {
         }
     }
 
+    /**
+     * Gets the date of the ship position.
+     *
+     * @param shipPosition the ship position
+     * @return the date of the ship position
+     */
     public String getDate(Position shipPosition) {
         String localDateTime = shipPosition.getDate().toString();
 
@@ -411,6 +473,12 @@ public class ShipStoreData implements Persistable {
         return localDateTime;
     }
 
+    /**
+     * Verifies the string.
+     *
+     * @param time the time
+     * @return a String that contains the characters of the character array
+     */
     public String verifyString(String time) {
 
         char[] stringIntoArrayChar = time.toCharArray();
@@ -422,6 +490,11 @@ public class ShipStoreData implements Persistable {
         return String.valueOf(stringIntoArrayChar);
     }
 
+    /**
+     * Fills the ship list.
+     *
+     * @param databaseConnection the database connection
+     */
     private void fillShipList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
@@ -454,20 +527,24 @@ public class ShipStoreData implements Persistable {
 
                     listShip.add(ship);
                 }
-
             }
         } catch (SQLException e) {
             Logger.getLogger(ContainerStore.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
         }
-
     }
 
+    /**
+     * Gets the ship list.
+     *
+     * @param databaseConnection the database connection
+     * @return the ship list
+     */
     public Set<Ship> getListShips(DatabaseConnection databaseConnection) {
-
-        if (listShip.isEmpty()) fillShipList(databaseConnection);
+        if (listShip.isEmpty()) {
+            fillShipList(databaseConnection);
+        }
 
         return listShip;
     }
-
 }

@@ -3,6 +3,9 @@ package lapr.project.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Continents enumerated.
+ */
 public enum Continent {
     EUROPE("Europe"),
     AFRICA("Africa"),
@@ -21,16 +24,31 @@ public enum Continent {
 
     private final String name;
 
+    /**
+     * Constructor.
+     *
+     * @param name the continent's name
+     */
     Continent(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets the name of a continent from the map.
+     *
+     * @param name the continent's name
+     * @return the continent found
+     */
     public static Continent valueOfName(String name) {
         return continentMap.get(name);
     }
 
+    /**
+     * Gets the continent's name.
+     *
+     * @return the continent's name
+     */
     public String getName() {
         return name;
     }
-
 }

@@ -167,7 +167,7 @@ public class ShipStore {
         }
 
         for (Ship s : shipByMmsiAVL.inOrder()) {
-          //  System.out.println(s);
+            //  System.out.println(s);
         }
 
         return true;
@@ -673,7 +673,7 @@ public class ShipStore {
         sb.append("|   Ship 1 MMSI   \t | \t     Ship 2 MMSI  \t  | \t   DistOrig     \t  |    \t  DistDest     \t  |      \t  Movs  \t       |         \t   TravelDist    \t        |  \t       Movs  \t       |           \t TravelDist           \t |\n");
 
         for (PairOfShips pairOfShips : getPairsOfShipsSearchTree()) {
-            sb.append("     " + pairOfShips.getLeft().getMmsi() + "\t\t\t     " + pairOfShips.getRight().getMmsi() + "         \t\t\t " + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "     \t\t\t\t" + DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition()) + "          \t\t\t" + pairOfShips.getLeft().getTotalNumberOfMovements() + "                     \t\t" + pairOfShips.getLeft().getTravelledDistance() + "            \t\t" + pairOfShips.getRight().getTotalNumberOfMovements() + "                    \t\t" + pairOfShips.getRight().getTravelledDistance() + "\n");
+            sb.append("     ").append(pairOfShips.getLeft().getMmsi()).append("\t\t\t     ").append(pairOfShips.getRight().getMmsi()).append("         \t\t\t ").append(DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition())).append("     \t\t\t\t").append(DistanceCalculation.distanceTo(pairOfShips.getLeft().getPosDate().getSmallestPosition(), pairOfShips.getLeft().getPosDate().getBiggestPosition())).append("          \t\t\t").append(pairOfShips.getLeft().getTotalNumberOfMovements()).append("                     \t\t").append(pairOfShips.getLeft().getTravelledDistance()).append("            \t\t").append(pairOfShips.getRight().getTotalNumberOfMovements()).append("                    \t\t").append(pairOfShips.getRight().getTravelledDistance()).append("\n");
         }
         return sb.toString();
     }
@@ -716,6 +716,14 @@ public class ShipStore {
 
     }*/
 
+    /**
+     * Deletes a ship position.
+     *
+     * @param databaseConnection the database connection
+     * @param object             the object
+     * @param mmsi               the ship MMSI
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean deleteShipPosition(DatabaseConnection databaseConnection, Object object, int mmsi) {
         Connection connection = databaseConnection.getConnection();
         Position shipPosition = (Position) object;

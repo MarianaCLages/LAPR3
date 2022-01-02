@@ -11,6 +11,23 @@ import java.sql.Types;
 
 public class GetContainerRouteScript {
 
+    /**
+     * Constructor.
+     */
+    public GetContainerRouteScript() {
+        // Empty constructor
+    }
+
+    /**
+     * Calls the function that gets the route of a container.
+     *
+     * @param containerID        the container ID
+     * @param clientID           the client ID
+     * @param databaseConnection the database connection
+     * @return the route of a container
+     * @throws SQLException
+     * @throws NullPointerException
+     */
     public static String callFunction(String containerID, String clientID, DatabaseConnection databaseConnection) throws SQLException, NullPointerException {
 
         StringBuilder sb = new StringBuilder();
@@ -44,16 +61,11 @@ public class GetContainerRouteScript {
                                 .append("\nTrip End Date: ").append(containerRoute.getObject("TRIP_END_DATE"))
                                 .append("\nCargo Manifest Date: ").append(containerRoute.getObject("CARGOMANIFEST_DATE"))
                                 .append("\n\n");
-
                     }
                 }
-
                 return sb.toString();
             }
-
         }
-
-
     }
 }
 

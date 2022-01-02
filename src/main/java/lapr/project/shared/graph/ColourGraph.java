@@ -7,10 +7,20 @@ import java.util.*;
 
 public class ColourGraph {
 
+    /**
+     * Constructor.
+     */
     private ColourGraph() {
         // Empty constructor
     }
 
+    /**
+     * Sets the colours.
+     *
+     * @param graph the graph
+     * @return the colours assigned to each city of the graph (String)
+     * @throws SetColoursException
+     */
     public static String setColours(Graph<Vertex, Double> graph) throws SetColoursException {
 
         StringBuilder sb = new StringBuilder();

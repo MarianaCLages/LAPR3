@@ -16,12 +16,13 @@ import java.util.logging.Logger;
 
 public class PortStoreData implements Persistable {
 
-    private static int i = 1;
     private final Set<Port> listPort;
 
+    /**
+     * Constructor.
+     */
     public PortStoreData() {
-        //Empty constructor
-        listPort = new HashSet<>();
+        this.listPort = new HashSet<>();
     }
 
     @Override
@@ -152,40 +153,42 @@ public class PortStoreData implements Persistable {
         }
     }
 
+    /**
+     * Fills the port list.
+     *
+     * @param databaseConnection the database connection
+     */
     private void fillPortList(DatabaseConnection databaseConnection) {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand;
-
-        sqlCommand = "SELECT * from FACILITY";
+        String sqlCommand = "SELECT * from FACILITY";
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-
-
                     String facilityID = resultSet.getString("FACILITYID");
-
                     listPort.add(DataBaseUtils.getPort(facilityID, databaseConnection));
                 }
-
             }
         } catch (SQLException e) {
             Logger.getLogger(ContainerStore.class.getName()).log(Level.SEVERE, null, e);
             databaseConnection.registerError(e);
         }
-
     }
 
-
+    /**
+     * Gets the port list.
+     *
+     * @param databaseConnection the database connection
+     * @return the port list
+     */
     public Set<Port> getListPort(DatabaseConnection databaseConnection) {
-
-        if (listPort.isEmpty()) fillPortList(databaseConnection);
-
+        if (listPort.isEmpty()) {
+            fillPortList(databaseConnection);
+        }
         return listPort;
     }
-
 }
 

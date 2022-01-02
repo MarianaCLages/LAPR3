@@ -9,6 +9,20 @@ import java.sql.SQLException;
 
 public class GetAuditTrailScript {
 
+    /**
+     * Constructor.
+     */
+    public GetAuditTrailScript() {
+        //Empty constructor
+    }
+
+    /**
+     * Gets the audit trail.
+     *
+     * @param databaseConnection the database connection
+     * @return the audit trail
+     * @throws SQLException
+     */
     public static String getAuditTrail(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -29,12 +43,9 @@ public class GetAuditTrailScript {
                             .append("\nOperation Type: ").append(auditTrailResultSet.getString(4))
                             .append("\nUser Logged: ").append(auditTrailResultSet.getString(5))
                             .append("\n\n");
-
                 }
-
             }
         }
-
         return sb.toString();
     }
 }

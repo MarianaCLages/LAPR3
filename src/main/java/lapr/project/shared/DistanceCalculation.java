@@ -8,10 +8,20 @@ import java.util.*;
 
 public class DistanceCalculation {
 
+    /**
+     * Constructor.
+     */
     public DistanceCalculation() {
         //Empty constructor.
     }
 
+    /**
+     * Calculates the distance between two ship positions.
+     *
+     * @param pos  the first position
+     * @param pos2 the second position
+     * @return the distance between two ship positions
+     */
     public static double distanceTo(Position pos, Position pos2) {
         if (pos == null && pos2 == null) return 0;
 
@@ -31,6 +41,14 @@ public class DistanceCalculation {
         return (Math.round(distance * 100) / 100.0);
     }
 
+    /**
+     * Calculates the travelled distance in a period of time.
+     *
+     * @param ship          the ship
+     * @param localinitiald the initial date
+     * @param localfinald   the final date
+     * @return the travelled distance in a period of time
+     */
     public double travelledDistanceBaseDateTime(Ship ship, LocalDateTime localinitiald, LocalDateTime localfinald) {
 
 

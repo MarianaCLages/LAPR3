@@ -15,6 +15,16 @@ public class Port extends Facility {
         super(identification, name, continent, country, location, capacity);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param identification the port's identification
+     * @param name           the port's name
+     * @param continent      the port's continent
+     * @param countryName    the port's country name
+     * @param location       the port's location
+     * @param capacity       the port's capacity
+     */
     public Port(String identification, String name, String continent, String countryName, FacilityLocation location, int capacity) {
         super(identification, name, continent, countryName, location, capacity);
     }

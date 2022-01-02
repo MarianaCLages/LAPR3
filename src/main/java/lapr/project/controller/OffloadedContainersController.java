@@ -28,7 +28,6 @@ public class OffloadedContainersController {
      * @return the ships to be offloaded in the nearest port
      */
     public String offLoadedShips(int mmsi) throws FacilityNotFoundException, ContainersInsideCargoManifestListSizeException {
-
         return offOrLoadContainers.getResultOffLoaded(databaseConnection,mmsi,1);
     }
 }

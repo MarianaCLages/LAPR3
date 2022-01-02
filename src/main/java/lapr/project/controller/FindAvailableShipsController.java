@@ -35,15 +35,6 @@ public class FindAvailableShipsController {
         ArrayList<String> lShipID = script.get();
         List<Ship> rlShip = null;
 
-        /* for (String shipID : lShipID) {
-            for (Ship s : shipStoreData.getListShips(App.getInstance().getDatabaseConnection())) {
-                if (shipID.equals(s.getCallSign())) {
-                    rlShip.add(s);
-                }
-
-            }
-        } */
-
         for (String shipID : lShipID) {
             rlShip.add(shipStore.getShipByCallSign(shipID));
         }

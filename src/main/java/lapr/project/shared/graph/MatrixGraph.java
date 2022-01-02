@@ -13,22 +13,45 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 
     Edge<V, E>[][] edgeMatrix;
 
-
+    /**
+     * Constructor.
+     *
+     * @param directed        boolean that says if the matrix graph is directed or not
+     * @param initialCapacity the matrix graph's initial capacity (constant)
+     */
     @SuppressWarnings("unchecked")
     public MatrixGraph(boolean directed, int initialCapacity) {
         super(directed);
         edgeMatrix = (Edge<V, E>[][]) (new Edge<?, ?>[initialCapacity][initialCapacity]);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param directed boolean that says if the matrix graph is directed or not
+     */
     public MatrixGraph(boolean directed) {
         this(directed, INITIAL_CAPACITY);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param g the graph
+     * @throws NullVerticesException
+     */
     public MatrixGraph(Graph<V, E> g) throws NullVerticesException {
         this(g.isDirected(), g.numVertices());
         copy(g, this);
     }
 
+    /**
+     * Constructor.
+     *
+     * @param directed boolean that says if the matrix graph is directed or not
+     * @param vs       the list of vertices
+     * @param m        the edge matrix
+     */
     public MatrixGraph(boolean directed, ArrayList<V> vs, E[][] m) {
         this(directed, vs.size());
         numVerts = vs.size();
@@ -39,6 +62,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
                     addEdge(vertices.get(i), vertices.get(j), m[i][j]);
     }
 
+    /**
+     * Gets the adjacent vertices of a vertex.
+     *
+     * @param vert the vertex for which to find adjacent vertices
+     * @return the adjacent vertices of a vertex
+     */
     @Override
     public Collection<V> adjVertices(V vert) {
         int index = key(vert);
@@ -52,6 +81,11 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return outVertices;
     }
 
+    /**
+     * Gets a list of edges.
+     *
+     * @return a list of edges
+     */
     @Override
     public Collection<Edge<V, E>> edges() {
         ArrayList<Edge<V, E>> edgesList = new ArrayList<>(numEdges);
@@ -67,6 +101,13 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Creates an edge if both keys of the vertices are greater than 0.
+     *
+     * @param vOrig origin vertex
+     * @param vDest destination vertex
+     * @return the edge created
+     */
     @Override
     public Edge<V, E> edge(V vOrig, V vDest) {
         int vOrigKey = key(vOrig);
@@ -78,6 +119,13 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return edgeMatrix[vOrigKey][vDestKey];
     }
 
+    /**
+     * Creates an edge only if both keys of the vertices are lower than the number of vertices.
+     *
+     * @param vOrigKey the key of vertex vOrig
+     * @param vDestKey the key of vertex vDist
+     * @return the edge key created
+     */
     @Override
     public Edge<V, E> edge(int vOrigKey, int vDestKey) {
         if (vOrigKey >= numVerts && vDestKey >= numVerts)
@@ -85,6 +133,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return edgeMatrix[vOrigKey][vDestKey];
     }
 
+    /**
+     * Gets the degree of the outgoing edges.
+     *
+     * @param vert the vertex of interest
+     * @return the degree of the outgoing edges
+     */
     @Override
     public int outDegree(V vert) {
         int vertKey = key(vert);
@@ -98,6 +152,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return edgeCount;
     }
 
+    /**
+     * Gets the degree of the incoming edges.
+     *
+     * @param vert the vertex of interest
+     * @return the degree of the incoming edges
+     */
     @Override
     public int inDegree(V vert) {
         int vertKey = key(vert);
@@ -111,6 +171,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return edgeCount;
     }
 
+    /**
+     * Gets the list of outgoing edges of a vertex.
+     *
+     * @param vert the vertex of interest
+     * @return the list of outgoing edges of a vertex
+     */
     @Override
     public Collection<Edge<V, E>> outgoingEdges(V vert) {
         Collection<Edge<V, E>> ce = new ArrayList<>();
@@ -128,6 +194,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Gets the list of incoming edges of a vertex.
+     *
+     * @param vert the vertex of interest
+     * @return the list of incoming edges of a vertex
+     */
     @Override
     public Collection<Edge<V, E>> incomingEdges(V vert) {
         Collection<Edge<V, E>> ce = new ArrayList<>();
@@ -141,6 +213,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return ce;
     }
 
+    /**
+     * Adds a vertex to the matrix.
+     *
+     * @param vert the vertex to add
+     * @return true if it succeeds, false if it doesn't
+     */
     @Override
     public boolean addVertex(V vert) {
         int vertKey = key(vert);
@@ -168,6 +246,14 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         }
     }
 
+    /**
+     * Adds an edge to the matrix.
+     *
+     * @param vOrig  origin vertex
+     * @param vDest  destination vertex
+     * @param weight the weight of the edge
+     * @return true if it succeeds, false if it doesn't
+     */
     @Override
     public boolean addEdge(V vOrig, V vDest, E weight) {
         if (vOrig == null || vDest == null) throw new RuntimeException("Vertices cannot be null!");
@@ -192,6 +278,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Removes a vertex from the matrix.
+     *
+     * @param vert the vertex to remove
+     * @return true if it succeeds, false if it doesn't
+     */
     @Override
     public boolean removeVertex(V vert) {
         int vertKey = key(vert);
@@ -229,6 +321,12 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Removes an edge from the matrix.
+     *
+     * @param vOrigKey the key of the origin vertex
+     * @param vDestKey the key of the destination vertex
+     */
     private void removeEdge(int vOrigKey, int vDestKey) {
         if (edgeMatrix[vOrigKey][vDestKey] != null) {
             edgeMatrix[vOrigKey][vDestKey] = null;
@@ -240,6 +338,13 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         }
     }
 
+    /**
+     * Removes an edge from the matrix.
+     *
+     * @param vOrig vertex origin of the edge
+     * @param vDest vertex destination of the edge
+     * @return true if it succeeds, false if it doesn't
+     */
     @Override
     public boolean removeEdge(V vOrig, V vDest) {
         int vOrigKey = key(vOrig);
@@ -252,6 +357,11 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         return true;
     }
 
+    /**
+     * Clones the matrix.
+     *
+     * @return a clone of the matrix
+     */
     @Override
     public MatrixGraph<V, E> clone() {
         MatrixGraph<V, E> g = new MatrixGraph<>(this.isDirected, this.edgeMatrix.length);
@@ -264,6 +374,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
 
         return g;
     }
+
     /**
      * Returns a string representation of the graph.
      * Matrix only represents existence of Edge

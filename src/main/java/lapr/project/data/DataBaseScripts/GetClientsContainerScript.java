@@ -10,9 +10,13 @@ import java.util.ArrayList;
 
 public class GetClientsContainerScript {
 
-    private DatabaseConnection databaseConnection;
+    private final DatabaseConnection databaseConnection;
 
-
+    /**
+     * Constructor
+     *
+     * @param db the database connection
+     */
     public GetClientsContainerScript(DatabaseConnection db) {
         this.databaseConnection = db;
 
@@ -20,11 +24,16 @@ public class GetClientsContainerScript {
 
     //US204
 
+    /**
+     * Gets the containers of a client.
+     *
+     * @param clientID the client ID
+     * @return the containers of a client
+     */
     public ArrayList<String> getClientContainers(String clientID) {
         ArrayList<String> rlcontainerID = new ArrayList<>();
 
         Connection connection = databaseConnection.getConnection();
-
 
         String query = " SELECT CONTAINERID as CLIENTID \n" +
                 " FROM CONTAINERCLIENT \n" +

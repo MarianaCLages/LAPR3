@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class SearchContainerLocationForClientController {
 
     private final CargoManifestStoreData cargoManifestStore;
-    private GetClientsContainerScript script = new GetClientsContainerScript(App.getInstance().getDatabaseConnection());
+    private final GetClientsContainerScript script = new GetClientsContainerScript(App.getInstance().getDatabaseConnection());
 
     /**
      * Constructor
@@ -26,9 +26,7 @@ public class SearchContainerLocationForClientController {
      * @return list of containers
      */
     public ArrayList<String> getClientContainers(String clientID) {
-        ArrayList<String> lResult = script.getClientContainers(clientID);
-
-        return lResult;
+        return script.getClientContainers(clientID);
     }
 
     /**

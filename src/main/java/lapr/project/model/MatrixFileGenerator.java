@@ -12,10 +12,23 @@ public class MatrixFileGenerator {
 
     private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructor.
+     *
+     * @param databaseConnection the database connection
+     */
     public MatrixFileGenerator(DatabaseConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
 
+    /**
+     * Generates the matrix file.
+     *
+     * @param cargoManifestId the cargo manifest ID
+     * @return true if it succeeds, false if it doesn't
+     * @throws SQLException
+     * @throws IOException
+     */
     public boolean generateMatrixFile(String cargoManifestId) throws SQLException, IOException {
 
         Ship ship = DataBaseUtils.getMmsiByCargoManifest(databaseConnection, cargoManifestId);

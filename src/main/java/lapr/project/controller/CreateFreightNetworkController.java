@@ -6,17 +6,25 @@ import lapr.project.model.FreightNetwork;
 import lapr.project.shared.exceptions.NullVerticesException;
 
 public class CreateFreightNetworkController {
-    private Company company;
-    private DatabaseConnection connection;
-    private FreightNetwork freightNetwork;
 
+    private final DatabaseConnection connection;
+    private final FreightNetwork freightNetwork;
+
+    /**
+     * Constructor.
+     */
     public CreateFreightNetworkController() {
-        this.company = App.getInstance().getCompany();
+        Company company = App.getInstance().getCompany();
         this.freightNetwork = company.getFreightNetwork();
         this.connection = App.getInstance().getDatabaseConnection();
     }
 
-
+    /**
+     * Creates the graph.
+     *
+     * @param n the N closest ports
+     * @return true if it succeeds, false if it doesn't
+     */
     public boolean createGraph(int n) {
         try {
             return this.freightNetwork.createGraph(n, this.connection);
@@ -24,6 +32,4 @@ public class CreateFreightNetworkController {
             return false;
         }
     }
-
-
 }
