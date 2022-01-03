@@ -6,7 +6,6 @@
 .global tamanho_x
 .global tamanho_z
 .global matrix
-.global rederecoTest
 
 .section .text
 .global existe
