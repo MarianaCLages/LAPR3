@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.shared.exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;

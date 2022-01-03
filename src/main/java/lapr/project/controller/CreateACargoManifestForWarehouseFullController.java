@@ -29,7 +29,7 @@ public class CreateACargoManifestForWarehouseFullController {
      * @throws SQLException
      * @throws IOException
      */
-    public boolean createMatrix(String cargoManifestId, String containerID, int xPos, int yPos, int zPos) throws SQLException, InvalidContainerException, InvalidCargoManifestException {
+    public boolean createCMC(String cargoManifestId, String containerID, int xPos, int yPos, int zPos) throws SQLException, InvalidContainerException, InvalidCargoManifestException {
         return DataBaseUtils.createCargoManifestContainer(databaseConnection, cargoManifestId, containerID, xPos, yPos, zPos);
     }
 

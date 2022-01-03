@@ -2,8 +2,6 @@ package lapr.project.controller;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CreateACargoManifestForWarehouseFullControllerTest {
 
     @Test
@@ -14,7 +12,7 @@ class CreateACargoManifestForWarehouseFullControllerTest {
 
         try {
 
-            createACargoManifestForWarehouseFullController.createMatrix("1", "2579", 1, 1, 1);
+            createACargoManifestForWarehouseFullController.createCMC("1", "2579", 1, 1, 1);
 
         } catch (Exception e) {
 
