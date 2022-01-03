@@ -1,15 +1,14 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ThermalController;
+import lapr.project.controller.ThermalResistanceController;
 import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
+public class ThermalResistanceUI implements Runnable {
 
-public class ThermalUI implements Runnable {
+    private final ThermalResistanceController thermalResistanceController;
 
-    private final ThermalController thermalController;
-
-    public ThermalUI() {
-        this.thermalController = new ThermalController();
+    public ThermalResistanceUI() {
+        this.thermalResistanceController = new ThermalResistanceController();
     }
 
     @Override
@@ -19,7 +18,7 @@ public class ThermalUI implements Runnable {
 
         do {
             try {
-                id = Utils.readIntegerFromConsole("Container ID:");
+                id = Utils.readIntegerFromConsole("Please enter the container ID:");
                 if (id < 0)
                     throw new NumberFormatException("Please enter a positive number! There is no negative ID!");
             } catch (NumberFormatException ex1) {
@@ -32,7 +31,7 @@ public class ThermalUI implements Runnable {
         } while (id == -1);
 
         try {
-            System.out.println(thermalController.getMaterialThermalResistance(id));
+            System.out.println(thermalResistanceController.getMaterialThermalResistance(id));
         } catch (ProportionalityConstantNullException ex1) {
             System.out.println(ex1.getMessage());
         }

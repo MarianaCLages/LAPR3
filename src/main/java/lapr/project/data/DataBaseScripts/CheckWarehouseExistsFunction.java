@@ -9,6 +9,11 @@ import java.sql.Types;
 public class CheckWarehouseExistsFunction {
 
 
+    private CheckWarehouseExistsFunction(){
+        //EMPTY
+    }
+
+
     public static boolean warehouseExists(DatabaseConnection connection, String facilityId) {
         int returnValue = 0;
         String sqlString = "{? = call LAPR3_G096.FNVALIDWAREHOUSE(?)}";

@@ -96,7 +96,7 @@ public class App {
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.PORT_STAFF, Constants.MODEL_CLASS_PATH + "" + Constants.PORT_STAFF));
 
 
-        //email: SE00001@lei.pt
+        //email: SE00001@lei.pt pass: 123
         ShipChiefElectricalEngineer se1 = new ShipChiefElectricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "Ship Chief Electrical Engineer");
         this.authFacade.addUserWithRole(se1.getName(), se1.getEmail(), "123", Constants.ROLE_CHIEF_ELECTRICAL_ENGINEER);
 

@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ThermalControllerTest {
+class ThermalResistanceControllerTest {
 
     @Test
     void getMaterialThermalResistance() {
 
-        ThermalController thermalController = new ThermalController();
+        ThermalResistanceController thermalResistanceController = new ThermalResistanceController();
 
         try {
-            String actual = thermalController.getMaterialThermalResistance(1);
+            String actual = thermalResistanceController.getMaterialThermalResistance(1);
 
 
             if (actual == null || actual.equals("")) fail();

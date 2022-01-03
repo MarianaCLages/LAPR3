@@ -12,7 +12,7 @@ public class GetAuditTrailScript {
     /**
      * Constructor.
      */
-    public GetAuditTrailScript() {
+    private GetAuditTrailScript() {
         //Empty constructor
     }
 

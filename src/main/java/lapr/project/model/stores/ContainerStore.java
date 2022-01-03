@@ -44,8 +44,7 @@ public class ContainerStore {
         }
 
         for (Container container : containerByAVL.inOrder()){
-            //    System.out.println(container);
-
+            //EMPTY
         }
 
             return true;
