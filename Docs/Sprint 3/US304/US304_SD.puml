@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor ShipCaptain
+participant GetAuditTrailUI as UI
+participant GetAuditTrailController as Controller
+participant GetAuditTrailScript as Script
+activate ShipCaptain
+ShipCaptain -> UI: I want to have access to audit trails for a given container of a  given cargo manifest
+activate UI
+UI -> Controller: getAuditTrail()
+activate Controller
+Controller -> Script: getAuditTrail(DatabaseConnection databaseConnection)
+activate Script
+deactivate
+deactivate
+UI --> ShipCaptain: shows the audit trails
+UI --> ShipCaptain: informs operation success
+deactivate
+deactivate UI
+@enduml

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="376px" preserveAspectRatio="none" style="width:1149px;height:376px;background:#FFFFFF;" version="1.1" viewBox="0 0 1149 376" width="1149px" zoomAndPan="magnify"><defs><filter height="300%" id="f1av6oxva91foe" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="182.7578" style="stroke:#A80036;stroke-width:1.0;" width="10" x="41.5" y="99.6094"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="151.4063" style="stroke:#A80036;stroke-width:1.0;" width="10" x="555.5" y="121.9609"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="60.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="703.5" y="152.3125"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1065.5" y="182.6641"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="46" x2="46" y1="89.6094" y2="291.3672"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="560" x2="560" y1="89.6094" y2="291.3672"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="708" x2="708" y1="89.6094" y2="291.3672"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1070" x2="1070" y1="89.6094" y2="291.3672"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="5" y="86.5332">ShipCaptain</text><ellipse cx="46.5" cy="15" fill="#FEFECE" filter="url(#f1av6oxva91foe)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M46.5,23 L46.5,50 M33.5,31 L59.5,31 M46.5,50 L33.5,65 M46.5,50 L59.5,65 " fill="none" filter="url(#f1av6oxva91foe)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="5" y="304.9004">ShipCaptain</text><ellipse cx="46.5" cy="317.9766" fill="#FEFECE" filter="url(#f1av6oxva91foe)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M46.5,325.9766 L46.5,352.9766 M33.5,333.9766 L59.5,333.9766 M46.5,352.9766 L33.5,367.9766 M46.5,352.9766 L59.5,367.9766 " fill="none" filter="url(#f1av6oxva91foe)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="109" x="504" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="511" y="74.5332">GetAuditTrailUI</text><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="109" x="504" y="290.3672"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="95" x="511" y="311.9004">GetAuditTrailUI</text><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="159" x="627" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="634" y="74.5332">GetAuditTrailController</text><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="159" x="627" y="290.3672"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="634" y="311.9004">GetAuditTrailController</text><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1002" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="1009" y="74.5332">GetAuditTrailScript</text><rect fill="#FEFECE" filter="url(#f1av6oxva91foe)" height="31.6094" style="stroke:#A80036;stroke-width:1.5;" width="133" x="1002" y="290.3672"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="1009" y="311.9004">GetAuditTrailScript</text><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="182.7578" style="stroke:#A80036;stroke-width:1.0;" width="10" x="41.5" y="99.6094"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="151.4063" style="stroke:#A80036;stroke-width:1.0;" width="10" x="555.5" y="121.9609"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="60.3516" style="stroke:#A80036;stroke-width:1.0;" width="10" x="703.5" y="152.3125"/><rect fill="#FFFFFF" filter="url(#f1av6oxva91foe)" height="30" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1065.5" y="182.6641"/><polygon fill="#A80036" points="543.5,117.9609,553.5,121.9609,543.5,125.9609,547.5,121.9609" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="51.5" x2="549.5" y1="121.9609" y2="121.9609"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="58.5" y="117.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="474" x="69.5" y="117.1045">I want to have access to audit trails for a given container of a  given cargo manifest</text><polygon fill="#A80036" points="691.5,148.3125,701.5,152.3125,691.5,156.3125,695.5,152.3125" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="565.5" x2="697.5" y1="152.3125" y2="152.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="572.5" y="147.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="80" x="583.5" y="147.4561">getAuditTrail()</text><polygon fill="#A80036" points="1053.5,178.6641,1063.5,182.6641,1053.5,186.6641,1057.5,182.6641" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="713.5" x2="1059.5" y1="182.6641" y2="182.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="720.5" y="177.8076">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="322" x="731.5" y="177.8076">getAuditTrail(DatabaseConnection databaseConnection)</text><polygon fill="#A80036" points="62.5,239.0156,52.5,243.0156,62.5,247.0156,58.5,243.0156" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="56.5" x2="554.5" y1="243.0156" y2="243.0156"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68.5" y="238.1592">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="123" x="79.5" y="238.1592">shows the audit trails</text><polygon fill="#A80036" points="62.5,269.3672,52.5,273.3672,62.5,277.3672,58.5,273.3672" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="56.5" x2="559.5" y1="273.3672" y2="273.3672"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="7" x="68.5" y="268.5107">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="152" x="79.5" y="268.5107">informs operation success</text><!--MD5=[0bc67fd5e7cd6f803be72e7745db435d]
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor ShipCaptain
+participant GetAuditTrailUI as UI
+participant GetAuditTrailController as Controller
+participant GetAuditTrailScript as Script
+activate ShipCaptain
+ShipCaptain -> UI: I want to have access to audit trails for a given container of a  given cargo manifest
+activate UI
+UI -> Controller: getAuditTrail()
+activate Controller
+Controller -> Script: getAuditTrail(DatabaseConnection databaseConnection)
+activate Script
+deactivate
+deactivate
+UI - -> ShipCaptain: shows the audit trails
+UI - -> ShipCaptain: informs operation success
+deactivate
+deactivate UI
+@enduml
+
+@startuml
+
+autonumber
+
+actor ShipCaptain
+participant GetAuditTrailUI as UI
+participant GetAuditTrailController as Controller
+participant GetAuditTrailScript as Script
+activate ShipCaptain
+ShipCaptain -> UI: I want to have access to audit trails for a given container of a  given cargo manifest
+activate UI
+UI -> Controller: getAuditTrail()
+activate Controller
+Controller -> Script: getAuditTrail(DatabaseConnection databaseConnection)
+activate Script
+deactivate
+deactivate
+UI - -> ShipCaptain: shows the audit trails
+UI - -> ShipCaptain: informs operation success
+deactivate
+deactivate UI
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 17:25:22 GMT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>
