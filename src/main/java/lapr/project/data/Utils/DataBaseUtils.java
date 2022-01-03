@@ -5,6 +5,8 @@ import lapr.project.data.CargoManifest;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipStoreData;
 import lapr.project.model.*;
+import lapr.project.shared.exceptions.InvalidCargoManifestException;
+import lapr.project.shared.exceptions.InvalidContainerException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -396,5 +398,89 @@ public class DataBaseUtils {
         }
         return null;
     }
+
+
+    public static boolean createCargoManifestContainer(DatabaseConnection databaseConnection, String cargoManifestID, String containerID, int xPos, int yPos, int zPos) throws SQLException, InvalidCargoManifestException, InvalidContainerException {
+        Connection connection = databaseConnection.getConnection();
+
+        try {
+
+            if (!verifyCargoManifest(cargoManifestID, databaseConnection))
+                throw new InvalidCargoManifestException();
+
+        } catch (SQLException e) {
+            throw new InvalidCargoManifestException();
+        }
+
+        try {
+
+            if (!verifyContainer(containerID, databaseConnection))
+                throw new InvalidContainerException();
+
+        } catch (SQLException e) {
+            throw new InvalidContainerException();
+        }
+
+        String sqlCommand = "insert into CARGOMANIFESTCONTAINER values ('" + cargoManifestID + "','" + containerID + "'," + xPos + "," + yPos + "," + zPos + ")";
+
+        try (PreparedStatement saveCargoManifestContainerPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            saveCargoManifestContainerPreparedStatement.executeUpdate();
+            return true;
+        }
+
+    }
+
+    private static boolean verifyContainer(String containerID, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select COUNT(*)\n" +
+                "from CONTAINER\n" +
+                "where CONTAINERID = " + containerID;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+
+                    if (count == 1) return true;
+                    else return false;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+    private static boolean verifyCargoManifest(String cargoManifestID, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select COUNT(*)\n" +
+                "from CARGOMANIFEST\n" +
+                "where CARGOMANIFESTID = " + cargoManifestID;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+
+                    if (count == 1) return true;
+                    else return false;
+
+                }
+            }
+        }
+
+        return false;
+
+
+    }
+
+
 }
 

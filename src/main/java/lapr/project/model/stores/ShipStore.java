@@ -166,10 +166,6 @@ public class ShipStore {
             return false;
         }
 
-        for (Ship s : shipByMmsiAVL.inOrder()) {
-            //  System.out.println(s);
-        }
-
         return true;
     }
 
@@ -703,18 +699,6 @@ public class ShipStore {
             s3.setPosDateSize();
         }
     }
-
-    /*public boolean saveShipsToDataBase() {
-
-        for (Ship s : transformAVLintoListMMSI()) {
-
-            save(App.getInstance().getDatabaseConnection(), s);
-
-        }
-
-        return true;
-
-    }*/
 
     /**
      * Deletes a ship position.
