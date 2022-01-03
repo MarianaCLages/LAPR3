@@ -7,13 +7,23 @@
 #include "printmatrix.h"
 #include "existeLoop.h"
 #include "existe2.h"
+#include "existe.h"
+//Apontador para a primeira posição da matrix criada através do Cargo Manifest
+
 int* matrix;
+
+//Para ser possível saber se uma posição esta ocupada ou não é necessário definir estas variáveis como variáveis globais para ser possível aceder lhes em Assembly
+
 int posicao_z;
 int posicao_y;
 int posicao_x;
+
+//Tamanho da matrix para ser possível percorrer a mesma
+
 int tamanho_y;
 int tamanho_x;
 int tamanho_z;
+
 const int TAMANHO_X = 50;
 const int TAMANHO_y = 50;
 const int TAMANHO_z = 50;
@@ -22,7 +32,9 @@ int main(void) {
 
 
     //Create the Matrix calling the createMatrix3D function
+    
 	//////////////////////////////////////////////////////////////
+	
 	FILE *fp;
 	char buffer[255];
 
@@ -90,13 +102,13 @@ int main(void) {
 	
    	fclose(fp);
    	
-   	matrix = matrix3D;
-///////////////////////////////////////////////////////////
+   	matrix = &matrix3D[0][0][0];
+   	
     //Print the Menu with all options
     menuPrint();
 
     int option;
-   count = 0;
+	count = 0;
     int exit = 0;
 
     do {
@@ -104,26 +116,33 @@ int main(void) {
     printf("Please type the option desired!\n");
     scanf("%d",&option);
 	
-
     switch(option) {
     case(1):
+    
+		//Função para dar print à matriz com apenas os valores ocupados
+    
         printMatrix(TAMANHO_X ,TAMANHO_y, TAMANHO_z);
         count++;
         break;
     case(2):
-         printf("0x%lX\n",occupiedSlots());
+    
+		//US314 Mostrar os slots ocupados da matriz
+    
+         printf("\nThe number of occupied slots are : 0x%lX\n",occupiedSlots());
          count++;
         break;
     case(3):
 
-        printf("Enter the x position: \n");
-       scanf("%d",&posicao_x);
+		//US315 Mostrar se um específico slot esta ocupado ou não (introduzindo as coordenadas do mesmo)
 
-        printf("Enter the y position: \n");
-        scanf("%d",&posicao_y);
+         printf("\nEnter the x position: \n");
+         scanf("%d",&posicao_x);
 
-        printf("Enter the z position: \n");
-        scanf("%d",&posicao_z);
+         printf("Enter the y position: \n");
+         scanf("%d",&posicao_y);
+
+         printf("Enter the z position: \n");
+         scanf("%d",&posicao_z);
 
          char verification = existe();
 

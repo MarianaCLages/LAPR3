@@ -4,14 +4,14 @@
 
 The teams consists of students identified in the following table.
 
-| Student Number | Name |
-|----------------|----------------------------|
-| **1181032**    | Miguel Morais              |
-| **1191008**    | Rodrigo Rodrigues          |
-| **1200601**    | Tiago Ferreira             |
-| **1200902**    | Mariana Lages              |
-| **1200920**    | Eduardo Sousa              |
-| **1201487**    | Miguel Jordão              |
+| Student Number | Name              |
+|----------------|-------------------|
+| **1181032**    | Miguel Morais     |
+| **1191008**    | Rodrigo Rodrigues |
+| **1200601**    | Tiago Ferreira    |
+| **1200902**    | Mariana Lages     |
+| **1200920**    | Eduardo Sousa     |
+| **1201487**    | Miguel Jordão     |
 
 
 
@@ -33,10 +33,30 @@ Throughout the project's development period, the distribution of _tasks / requir
 | US 201 | [1200920](Sprint 2/US201/US201.md)                         |          |          |          |
 | US 202 | [1201487](Sprint 2/US202/US202.md)                         |          |          |          |
 | US 203 | [1201487]()                                                |          |          |          |
-| US 204 | [1191008 and 1181032](Sprint 2/US204/US204.md)                         |          |          |          |
+| US 204 | [1191008 and 1181032](Sprint 2/US204/US204.md)             |          |          |          |
 | US 205 | [1200601](Sprint 2/US205/US205.md)                         |          |          |          |
 | US 206 | [1200902](Sprint 2/US206/US206.md)                         |          |          |          |
 | US 207 | [1200601 and 1200902](Sprint 2/US207/US207.md)             |          |          |          |
 | US 208 | [1200902 and 1200920 and 1201487](Sprint 2/US208/US208.md) |          |          |          |
 | US 209 | [1200601 and 1200920 and 1201487](Sprint 2/US209/US209.md) |          |          |          |
 | US 210 | [1181032 and 1191008](Sprint 2/US210/US210.md)             |          |          |          |
+| US 301 | [1200920](Sprint 3/US301/US301.md)                         |          |          |          |
+| US 302 | [1200902](Sprint 3/US302/US302.md)                         |          |          |          |
+| US 303 | [1200601 and 1201487](Sprint 3/US303/US303.md)             |          |          |          |
+| US 304 | [1201487](Sprint 3/US304/US304.md)                         |          |          |          |
+| US 305 | [1201487](Sprint 3/US305/US305.md)                         |          |          |          |
+| US 306 | [1200920](Sprint 3/US306/US306.md)                         |          |          |          |
+| US 307 | [1200902 and 1201487](Sprint 3/US307/US307.md)             |          |          |          |
+| US 308 | [1181032 and 1191008](Sprint 3/US308/US308.md)             |          |          |          |
+| US 309 | [1181032 and 1191008](Sprint 3/US309/US309.md)             |          |          |          |
+| US 310 | [1200601](Sprint 3/US310/US310.md)                         |          |          |          |
+| US 311 | [Removed]()                                                |          |          |          |
+| US 312 | [1181032 and 1191008](Sprint 3/US312/US312.md)             |          |          |          |
+| US 313 | [1200902 and 1200601](Sprint 3/US313/US313.md)             |          |          |          |
+| US 314 | [1201487](Sprint 3/US314/US314.md)                         |          |          |          |
+| US 315 | [1191008](Sprint 3/US315/US315.md)                         |          |          |          |
+| US 316 | [1191008](Sprint 3/US316/US316.md)                         |          |          |          |
+| US 317 | [1200601](Sprint 3/US317/US317.md)                         |          |          |          |
+| US 318 | [1200920](Sprint 3/US318/US318.md)                         |          |          |          |
+| US 319 | [1200902](Sprint 3/US319/US319.md)                         |          |          |          |
+| US 320 | [1200601]()                                                |          |          |          |
