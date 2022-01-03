@@ -279,10 +279,10 @@ create table EmployeeFacility
 (
     facilityId varchar2(32)
         constraint fkEmployeeFacilityFacilityID
-            references FACILITY (facilityId),
+        references FACILITY (facilityId),
     employeeId varchar2(64)
         constraint fkEmployeeFacilityEmployeeID
-            references EMPLOYEE (id),
+        references EMPLOYEE (id),
     constraint pkEmployeeFacilityTable
         primary key (facilityId, employeeId)
 );
@@ -299,8 +299,12 @@ CREATE TABLE MaterialType
 CREATE TABLE Material
 (
 
-    id             varchar2(32),
-    materialTypeID varchar2(32),
+    id                      varchar2(32),
+    materialTypeID          varchar2(32),
+    proportionalityConstant number
+        CONSTRAINT nnProportionalityConstant not null,
+    temperature             number
+        CONSTRAINT nnTemperatureMaterial not null,
     constraint pkMaterial
         primary key (id),
     constraint fkMaterialTypeID
@@ -313,6 +317,8 @@ CREATE TABLE ContainerMaterial
 (
     refrigeratedContainerID varchar2(32),
     materialID              varchar2(32),
+    wallType                varchar2(32)
+        CONSTRAINT nnWallType not null,
     constraint pkContainerMaterial
         primary key (refrigeratedContainerID, materialID),
     constraint fkMaterial
@@ -385,8 +391,8 @@ create table PositionalMessage
     constraint pkPositionalMessage
         primary key (baseDateTime, mmsi, transceiverID),
     constraint fkPositionalMessage
-        foreign key (mmsi,transceiverID)
-            references Transceiver (mmsi,transceiverID)
+        foreign key (mmsi, transceiverID)
+            references Transceiver (mmsi, transceiverID)
 );
 
 
@@ -515,21 +521,7 @@ create table TripEmployee
 
 );
 
-create table SeaDistance
-(
-    firstPortID  varchar2(32),
-    secondPortID varchar2(32),
-    seaDistance  varchar2(32)
-        constraint nnSeaDistance not null,
-    constraint fkFirstPortID
-        foreign key (firstPortID)
-            references Facility (facilityId),
-    constraint fSecondPortID
-        foreign key (secondPortID)
-            references Facility (facilityId),
-    constraint pkSeaDistance
-        primary key (firstPortID, secondPortID)
-);
+
 
 create table Stock
 (

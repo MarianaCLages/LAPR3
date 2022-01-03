@@ -1,39 +1,18 @@
+--Main Function
 
---Tabela Auxiliar
+--This function returns the container route inside a cursor
 
-CREATE TABLE Us305SupportTable
-(
-    vehicleType varchar2(32) CONSTRAINT nnVehicleType not null,
-    vehicleName varchar2(255) CONSTRAINT nnVehicleName not null,
-    facilityName varchar2(255) CONSTRAINT nnTFacilityName not null,
-    tripStartDate date CONSTRAINT nnTripStartDate   not null,
-    tripEndDate date CONSTRAINT  nnTripEndDate      not null ,
-    manifestDate date CONSTRAINT nnManifestDate     not null ,
-
-    CONSTRAINT PKUS305TABLE
-        primary key (vehicleName,vehicleType,facilityName)
-
-);
-
--- PL SQL Function
-
-create function fnGetContainerRouteCursor(vClientID CLIENT.ID%type, vContainerID CONTAINER.CONTAINERID%type) return SYS_REFCURSOR
+create or replace function fnGetContainerRouteCursor(vClientID in CLIENT.ID%type,
+                                          vContainerID in CONTAINER.CONTAINERID%type) return SYS_REFCURSOR
     is
     route_Cursor SYS_REFCURSOR;
     invalid_container exception;
-    unavailable_Data_Route exception;
     data_not_found exception;
-    trip_not_valid exception;
-    vFacilityName     FACILITY.name%type;
-    vResult           string(255);
-    vStartDateTrip    TRIP.startDate%type;
-    vEndDateTrip      TRIP.enddate%type;
-    vManifestDate     CARGOMANIFEST.CARGOMANIFESTDATE%type;
-    vCargoManifestID  CONTAINERCLIENT.CARGOMANIFESTID%type;
-    vTripID           TRIP.idtrip%type;
-    vVehicleNameTruck TRUCK.NAME%type;
-    vVehicleNameShip  SHIP.NAME%type;
-    vVerifyIntegrity  NUMBER;
+    vCargoManifestID CONTAINERCLIENT.CARGOMANIFESTID%type;
+    vVerifyIntegrity NUMBER;
+
+    --First is necessary to have a cursor that saves all the available cargoManifests from a specific container of a client in order to have his full route
+
     CURSOR c1
         is select CARGOMANIFESTID
            from CONTAINERCLIENT
@@ -42,42 +21,26 @@ create function fnGetContainerRouteCursor(vClientID CLIENT.ID%type, vContainerID
 
 begin
 
-    DELETE FROM US305SUPPORTTABLE;
-
     open c1;
+
+    --In case that the container does not exit or the cargo manifest does not exit, or even, this container does not belong to the introduced user . If that happens a exception must be raised
 
     if (c1%notfound) then
         raise invalid_container;
     end if;
+
+    --Open a loop to traverse all available cargoManifests inside the cursor (exit when there is no more information to traverse)
 
     LOOP
         FETCH c1 into
             vCargoManifestID;
         EXIT WHEN (c1%notfound);
 
-        SELECT c.CARGOMANIFESTDATE CARGOMANIFEST_DATE
-        into vManifestDate
-        from CARGOMANIFEST c
-        where CARGOMANIFESTID = vCargoManifestID;
-
-        Select cmf.IDTRIP
-        into vTripID
-        from CARGOMANIFEST cmf
-        where cmf.CARGOMANIFESTID = vCargoManifestID;
-
-        SELECT t.STARTDATE START_DATE, t.ENDDATE END_DATE
-        into vStartDateTrip,vEndDateTrip
-        from TRIP t
-        where IDTRIP = vTripID;
-
-        SELECT NAME Facility_Name
-        into vFacilityName
-        from FACILITY f
-                 inner join FACILITYTRIP FT on f.FACILITYID = FT.FACILITYID
-        where F.FACILITYID = (select FACILITYID from FACILITYTRIP ft where ft.IDTRIP = vTripID);
-
-
         begin
+
+            --Before selecting the desired data, it is necessary to see if there is available data for the route. That means, if the vehicle name exists, the facility name exists , if the dates exist ... etc... in order to achieve that we must do a query to select the number of "rows" available for that specific information, if it returns 1 there is available data to be placed inside the cursor if not we can not add nothing to the cursor with those information , because there can be a error in the data integrity
+
+            --In this case we are going to see if the vehicle is a Ship, if the vehicle is not a ship we must instead query the truck instead of the ship table
 
             SELECT COUNT(*)
             INTO vVerifyIntegrity
@@ -86,84 +49,90 @@ begin
                                  from FACILITY
                                           inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
                                  where F.FACILITYID =
-                                       (select FACILITYID from FACILITYTRIP ft where ft.IDTRIP = vTripID));
+                                       (select FACILITYID
+                                        from FACILITYTRIP ft
+                                        where ft.IDTRIP = (Select cmf.IDTRIP
+                                                           from CARGOMANIFEST cmf
+                                                           where cmf.CARGOMANIFESTID = vCargoManifestID)));
 
-            IF (vVerifyIntegrity = 1) THEN
+            if (vVerifyIntegrity = 1) THEN
 
-                SELECT NAME
-                INTO vVehicleNameShip
-                FROM SHIP s
-                WHERE s.VEHICLEID = (SELECT F.VEHICLEID
-                                     from FACILITY
-                                              inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
-                                     where F.FACILITYID =
-                                           (select FACILITYID from FACILITYTRIP ft where ft.IDTRIP = vTripID));
 
-                INSERT INTO US305SUPPORTTABLE (VEHICLETYPE, VEHICLENAME, FACILITYNAME, TRIPSTARTDATE, TRIPENDDATE,
-                                               MANIFESTDATE)
-                values ('SHIP', vVehicleNameShip, vFacilityName, vStartDateTrip, vEndDateTrip, vManifestDate);
+                -- If there is data, we are going to open the cursor and there for insert the desired data to be returned
 
-                -- dbms_output.put_line('Vehicle ' - vVehicleNameShip - 'Facility' - vFacilityName);
-
-                -- CONCAT(vResult, CONCAT(CONCAT(vVehicleNameShip, ' - Vehicle ,'), CONCAT(vFacilityName, ' - Facility ,')));
-
-                -- vResult := 'Vehicle - ' || vVehicleNameShip || ' ; Facility - ' || vFacilityName;
+                open route_Cursor for
+                    select v.Name              VEHICLE_NAME,
+                           f.Name              FACILITY_NAME,
+                           t.StartDate         TRIP_START_DATE,
+                           t.EndDate           TRIP_END_DATE,
+                           c.CARGOMANIFESTDATE CARGOMANIFEST_DATE
+                    from FACILITY f
+                             inner join FACILITYTRIP FT on f.FACILITYID = FT.FACILITYID,
+                         SHIP v,
+                         TRIP t,
+                         CARGOMANIFEST c
+                    where c.CARGOMANIFESTID = vCargoManifestID
+                      and t.IDTRIP = (Select cmf.IDTRIP
+                                      from CARGOMANIFEST cmf
+                                      where cmf.CARGOMANIFESTID = vCargoManifestID)
+                      and f.FACILITYID = (select FACILITYID
+                                          from FACILITYTRIP ft
+                                          where ft.IDTRIP = (Select cmf.IDTRIP
+                                                             from CARGOMANIFEST cmf
+                                                             where cmf.CARGOMANIFESTID = vCargoManifestID))
+                      and v.VEHICLEID = (SELECT F.VEHICLEID
+                                         from FACILITY
+                                                  inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
+                                         where F.FACILITYID =
+                                               (select FACILITYID
+                                                from FACILITYTRIP ft
+                                                where ft.IDTRIP = (Select cmf.IDTRIP
+                                                                   from CARGOMANIFEST cmf
+                                                                   where cmf.CARGOMANIFESTID = vCargoManifestID)));
 
             ELSE
 
-                SELECT COUNT(*)
-                INTO vVerifyIntegrity
-                FROM TRUCK tr
-                WHERE tr.VEHICLEID = (SELECT F.VEHICLEID
-                                      from FACILITY
-                                               inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
-                                      where F.FACILITYID =
-                                            (select FACILITYID from FACILITYTRIP ft where ft.IDTRIP = vTripID));
+                --If the vehicle is a truck we must select the information from the truck , utilizing the same query as before
 
-                IF (vVerifyIntegrity = 1) THEN
-
-                    SELECT NAME
-                    INTO vVehicleNameTruck
-                    FROM TRUCK tr
-                    WHERE tr.VEHICLEID = (SELECT F.VEHICLEID
-                                          from FACILITY
-                                                   inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
-                                          where F.FACILITYID =
-                                                (select FACILITYID from FACILITYTRIP ft where ft.IDTRIP = vTripID));
-
-                    INSERT INTO US305SUPPORTTABLE (VEHICLETYPE, VEHICLENAME, FACILITYNAME, TRIPSTARTDATE, TRIPENDDATE,
-                                                   MANIFESTDATE)
-                    values ('TRUCK', vVehicleNameTruck, vFacilityName, vStartDateTrip, vEndDateTrip, vManifestDate);
-
-                      -- dbms_output.put_line('Vehicle ' - vVehicleNameTruck - 'Facility' - vFacilityName);
-
-                    -- CONCAT(vResult, CONCAT(CONCAT(vVehicleNameTruck, ' - Vehicle ,'), CONCAT(vFacilityName, ' - Facility ,')));
-
-                    -- vResult := 'Vehicle name :  - ' || vVehicleNameTruck || ' ;facility - ' || vFacilityName;
-
-                ELSE
-
-                    RAISE data_not_found;
-
-                end if;
+                open route_Cursor for
+                    select v.Name              VEHICLE_NAME,
+                           f.Name              FACILITY_NAME,
+                           t.StartDate         TRIP_START_DATE,
+                           t.EndDate           TRIP_END_DATE,
+                           c.CARGOMANIFESTDATE CARGOMANIFEST_DATE
+                    from FACILITY f
+                             inner join FACILITYTRIP FT on f.FACILITYID = FT.FACILITYID,
+                         TRUCK v,
+                         TRIP t,
+                         CARGOMANIFEST c
+                    where c.CARGOMANIFESTID = vCargoManifestID
+                      and t.IDTRIP = (Select cmf.IDTRIP
+                                      from CARGOMANIFEST cmf
+                                      where cmf.CARGOMANIFESTID = vCargoManifestID)
+                      and f.FACILITYID = (select FACILITYID
+                                          from FACILITYTRIP ft
+                                          where ft.IDTRIP = (Select cmf.IDTRIP
+                                                             from CARGOMANIFEST cmf
+                                                             where cmf.CARGOMANIFESTID = vCargoManifestID))
+                      and v.VEHICLEID = (SELECT F.VEHICLEID
+                                         from FACILITY
+                                                  inner join FACILITYTRIP F on FACILITY.FACILITYID = F.FACILITYID
+                                         where F.FACILITYID =
+                                               (select FACILITYID
+                                                from FACILITYTRIP ft
+                                                where ft.IDTRIP = (Select cmf.IDTRIP
+                                                                   from CARGOMANIFEST cmf
+                                                                   where cmf.CARGOMANIFESTID = vCargoManifestID)));
 
             end if;
 
-        EXCEPTION
-            when
-                data_not_found THEN
-                RAISE_APPLICATION_ERROR(-20002, 'Name not available! Please verify the data!');
-            when
-                NO_DATA_FOUND THEN
-                RAISE_APPLICATION_ERROR(-20010, 'No data found!');
         end;
 
     end loop;
 
-    open route_Cursor for
-        select *
-        from US305SUPPORTTABLE;
-    close route_Cursor;
+    close c1;
+
+    --Finally, we return the cursor with all data
 
     return (route_Cursor);
 
@@ -171,18 +140,40 @@ EXCEPTION
     WHEN
         invalid_container THEN
         raise_application_error(-200001,
-                                'Invalid Container or client! The is no container assigned to the specified client');
+                                'Invalid Container or client! There is no container assigned to the specified client');
         return (null);
-    WHEN
-        unavailable_Data_Route THEN
-        raise_application_error(-200004,
-                                'Container Route information not valid! Something went wrong while fetching specific information! Please verify the integrity of the data!');
-        return (null);
-    WHEN
-        trip_not_valid THEN
-        raise_application_error(-20005,
-                                'The entered cargo manifest has an invalid date! Data out of bounds in comparison of the dates of the trip!');
-        return (null);
+end;
+/
+
+--Get Vehicle Type Function (Auxiliar function)
+
+--In this function we get the type of the vehicle that was used to perform a certain operation (Used in Java implementation)
+
+create or replace function fnGetVehicleType(vVehicleName in varchar2)
+    return varchar2 is
+    vVehicleType varchar2(32);
+    vNumber      number;
+
+begin
+
+    --A query to verify if the vehicle is a ship or a truck , in case of ship we assume the variable that is going to be returned as "ship" else its a "truck"
+
+    Select COUNT(*)
+    into vNumber
+    from SHIP s
+    where s.NAME = vVehicleName;
+
+    IF (vNumber = 1) THEN
+        vVehicleType := 'SHIP';
+
+    ELSE
+        vVehicleType := 'TRUCK';
+
+    end if;
+
+
+    return (vVehicleType);
+
 end;
 /
 
@@ -194,7 +185,7 @@ ALTER FUNCTION FNGETCONTAINERROUTECURSOR compile;
 
 DROP FUNCTION FNGETCONTAINERROUTECURSOR;
 
--- Test The function
+-- Test the  main function
 
 declare
 	result SYS_REFCURSOR;
@@ -206,4 +197,5 @@ begin
 		VCONTAINERID => VCONTAINERID
 	);
 end;
+
 

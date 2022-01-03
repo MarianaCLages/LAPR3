@@ -258,10 +258,11 @@ public class GraphNClosestPlacesTest {
             assertEquals(expected3,GraphNClosestPlaces.getNClosestPlaces(graph3,1));
             assertEquals(expected4,GraphNClosestPlaces.getNClosestPlaces(graph3,10));
             assertEquals(expected5,GraphNClosestPlaces.getNClosestPlaces(graph4,1));
+
             assertEquals(expected2,GraphNClosestPlaces.getNClosestPlaces(graph5,1));
 
         } catch (NoPathFoundForSpecificVertexException e) {
-
+            //If the method enters this catch that means the last assert throws the "NoPathFoundForSpecificVertexException" exception which makes sense since the graph 5 is null!
         }
 
 

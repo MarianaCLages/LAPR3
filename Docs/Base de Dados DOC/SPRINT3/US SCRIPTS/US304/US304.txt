@@ -1,5 +1,7 @@
 --DML
 
+-- Basic queries to select information from CargoManifestContainer and Audit Trail
+
 select *
 from CARGOMANIFESTCONTAINER
 where containerId = 405
@@ -14,11 +16,11 @@ from AUDITTRAIL;
 
 --DDL
 
+-- Basic Inserts/Updates/Deletes
+
 insert into CARGOMANIFESTCONTAINER (CARGOMANIFESTID, CONTAINERID, XPOS, YPOS, ZPOS)
 VALUES (1, 405, 1, 1, 1);
 commit;
-
-DROP TRIGGER trgAvailableWarehouseCapacity;
 
 update CARGOMANIFESTCONTAINER
 set XPOS = 2,
@@ -37,12 +39,10 @@ SELECT * from AUDITTRAIL;
 -- DISABLE TRIGGERS
 
 ALTER TRIGGER trgCargoManifestContainerAuditTrail disable;
-ALTER TRIGGER trgAvailableWarehouseCapacity disable;
 
 -- ENABLE TRIGGERS
 
 ALTER TRIGGER trgCargoManifestContainerAuditTrail enable;
-ALTER TRIGGER trgAvailableWarehouseCapacity enable ;
 
 --DROP TRIGGERS
 
@@ -54,10 +54,15 @@ DROP FUNCTION fnUserLogged;
 
 --Function
 
+--This function returns the user that is logged in the moment
+
 create or replace function fnUserLogged return varchar
     is
     vName varchar2(32);
 begin
+
+    --Gets the user logged in the moment and returns it
+
     SELECT SYS_CONTEXT('USERENV', 'SESSION_USER')
     into vName
     FROM DUAL;
@@ -65,6 +70,8 @@ begin
 end;
 
 --Triggers
+
+--This trigger inserts in the AUDIT TRAIL TABLE the information of the operation that occur in the CargoManifestContainer table
 
 CREATE OR REPLACE TRIGGER trgCargoManifestContainerAuditTrail
     AFTER
@@ -77,13 +84,17 @@ CREATE OR REPLACE TRIGGER trgCargoManifestContainerAuditTrail
 BEGIN
     CASE
         WHEN INSERTING THEN
+            --When occurs a insert this if statement happens, inserts in the table the corresponding information
             insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
             VALUES (:NEW.CARGOMANIFESTID, :NEW.CONTAINERID, SYSDATE, 'INSERT', FNUSERLOGGED());
         WHEN UPDATING THEN
+             --When occurs a update this if statement happens, inserts in the table the corresponding information
             insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
             VALUES (:NEW.CARGOMANIFESTID, :NEW.CONTAINERID, SYSDATE, 'UPDATE', FNUSERLOGGED());
         WHEN DELETING THEN
+             --When occurs a delete this if statement happens, inserts in the table the corresponding information
             insert into AUDITTRAIL (CARGOMANIFESTID, CONTAINERID, OPERATIONDATE, WRITEOPERATIONSSUMMARY, USERLOGGED)
             VALUES (:OLD.CARGOMANIFESTID, :OLD.CONTAINERID, SYSDATE, 'DELETE', FNUSERLOGGED());
         END CASE;
 END;
+/
