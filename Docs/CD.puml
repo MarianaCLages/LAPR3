@@ -1,5 +1,255 @@
 @startuml
 'https://plantuml.com/class-diagram
+'SPRINT 3
+class FreightNetworkUI{
++run()
+}
+class FreightNetworkController{
++createGraph(int n)
+}
+
+class FreightNetwork{
+-graph
++FreightNetwork()
++createGraph(int n, DatabaseConnection connection)
++getGraph()
++addEdgeAndCalculateWeight(Vertex v1, Vertex v2)
++addEdgeWithWeight(Vertex v1, Vertex v2, double weight)
++size()
++toString()
++connectionsSize()
+-ports(int n, DatabaseConnection connection)
+-linkPortToNClosestPorts(int n)
+-dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects)
+-linkPortToCapital()
+-capitals(DatabaseConnection connection)
+}
+
+class DatabaseUtils{
++getBorders(DatabaseConnection databaseConnection)
++getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId)
+}
+
+interface Graph{
++toString();
++isDirected();
++numVertices();
++vertices();
++validVertex(V vert);
++key(V vert);
++vertex(int key);
++vertex(Predicate<V> p);
++adjVertices(V vert);
++numEdges();
++edges();
++edge(V vOrig, V vDest);
++edge(int vOrigKey, int vDestKey);
++outDegree(V vert);
++inDegree(V vert);
++incomingEdges(V vert);
++addVertex(V vert) throws NullVerticesException;
++addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;
++removeVertex(V vert) throws NullVerticesException;
++removeEdge(V vOrig, V vDest) throws NullVerticesException;
++clone();
+}
+FreightNetworkUI ..> FreightNetworkController
+FreightNetworkController ..>FreightNetwork
+FreightNetwork -> Graph
+FreightNetwork ..> DatabaseUtils
+FreightNetworkController ..> Company
+
+class ColorGraphUI{
+}
+class ColorGraphController{
++colorGraph()
+}
+class ColourGraph{
++setColours()
+}
+interface Vertex {
++getDesignation()
++isColour()
++getColour()
++setColour()
+}
+ColorGraphUI ..> ColorGraphController
+ColorGraphController ..> ColourGraph
+ColourGraph --> Vertex
+ColorGraphController ..> Company
+
+class GraphNClosestPlacesUI{
+}
+
+class GraphNClosestPlacesController{
++closestPlaces(n)
+}
+
+class GraphNClosestPlaces{
++callFunction(n)
+}
+GraphNClosestPlacesUI ..> GraphNClosestPlacesController
+GraphNClosestPlacesController ..> Company
+GraphNClosestPlacesController ..> GraphNClosestPlaces
+GraphNClosestPlacesController ..> FreightNetwork
+
+
+class GetAuditTrailUI{
++run()
+}
+class GetAuditTrailController{
++GetAuditTrailController()
++getAuditTrail()
+}
+class GetAuditTrailScript{
+getAuditTrail(DatabaseConnection databaseConnection)
+}
+
+GetAuditTrailUI ..> GetAuditTrailController
+GetAuditTrailController .> GetAuditTrailScript
+GetAuditTrailController .> Company
+
+
+class GetContainerRouteUI{
+}
+
+class GetContainerRouteController{
++getContainerRoute()
+}
+
+class GetContainerRouteScript{
++getContainerRoute()
+}
+
+GetContainerRouteUI .> GetContainerRouteController
+GetContainerRouteController ..> GetContainerRouteScript
+GetContainerRouteController .> Company
+
+class FacilityOccupationRateUI{
+}
+
+class FacilityOccupationRateController{
+-DatabaseConnection connection
++getOccupation()
++getNumberContainersLeaving()
+}
+
+class CallOccupationRateFunction{
++occupationRateFunction()
+}
+
+class CallNumberOfContainersLeavingFunction{
++numberOfContainers()
+}
+
+FacilityOccupationRateUI ..> FacilityOccupationRateController
+FacilityOccupationRateController .> CallNumberOfContainersLeavingFunction
+FacilityOccupationRateController .> CallOccupationRateFunction
+FacilityOccupationRateController ..> Company
+
+class CreateCargoManifestContainerUI{
+}
+class CreateACargoManifestForWarehouseFullController{
+-DatabaseConnection databaseConnection
++createCMC()
+}
+class DataBaseUtils{
++createCargoManifestContainer()
++verifyCargoManifest()
++verifyContainer()
+}
+
+CreateCargoManifestContainerUI .> CreateACargoManifestForWarehouseFullController
+CreateACargoManifestForWarehouseFullController ..> DatabaseUtils
+CreateACargoManifestForWarehouseFullController .> Company
+
+class CallTheAvailableResourcesFunctionUI{
+}
+
+class CallTheAvailableResourcesFunctionController{
+}
+
+class CallTheAvailableResourcesFunction{
++callFunction(month, year, id, connection)
+}
+
+class ShipStore{
+-List Shipstore
+}
+
+
+CallTheAvailableResourcesFunctionUI ..> CallTheAvailableResourcesFunctionController
+CallTheAvailableResourcesFunctionController ..> CallTheAvailableResourcesFunction
+CallTheAvailableResourcesFunction ..> ShipStore
+ShipStore -> Ship
+
+class Create3DMatrixUI{
+}
+
+class Create3DMatrixController{
+-databaseConnection
++createMatrix(mmsi)
+}
+
+class MatrixFileGenerator{
+-databaseConnection
++generateMatrixFile()
+}
+
+class DataBaseUtils{
++getMmsiByCargoManifest()
++getCargoManifestByID()
++countContainerByCargoManifest()
++getContainerByCargo()
+}
+Create3DMatrixUI ..> Create3DMatrixController
+Create3DMatrixController ..> MatrixFileGenerator
+MatrixFileGenerator --> DataBaseUtils
+MatrixFileGenerator --> Ship
+
+
+class GetMaterialScriptUI{
+}
+
+class GetMaterialScriptController{
+-databaseConnection
++materialTemperatureController(temperature)
+}
+
+class GetMaterialScript{
++materialScript(temperature)
+}
+class DataBaseUtils{
++getContainerID()
+}
+
+GetMaterialScriptUI ..> GetMaterialScriptController
+GetMaterialScriptController ..> GetMaterialScript
+GetMaterialScriptController ..> Company
+GetMaterialScript .>DataBaseUtils
+
+class ThermalResistanceUI{
+}
+
+class ThermalResistanceController{
+-DatabaseConnection databaseConnection
+-GetMaterialsScript getMaterialsScript
++getMaterialThermalResistance()
+}
+
+class GetMaterialsScript{
+-DatabaseConnection databaseConnection
+-String TEMP
++getThermalResistance()
++getKConstant()
+}
+
+ThermalResistanceUI ..> ThermalResistanceController
+ThermalResistanceController .> Company
+ThermalResistanceController ..> GetMaterialsScript
+
+'Sprint 1/2
+
 class FindAvailableShipsUI{
 }
 class FindAvailableShipsController{
