@@ -5,6 +5,8 @@
 #include "createMatrix3D.h"
 #include "menuPrint.h"
 #include "printmatrix.h"
+#include "existeLoop.h"
+#include "existe2.h"
 int* matrix;
 int posicao_z;
 int posicao_y;
@@ -131,7 +133,8 @@ int main(void) {
          count++;
          break;
     case(4):
-        //
+        int total = existeLoop();
+        printf("The total of positions occupied is: %d", total);
         break;
     case(5):
         exit++;
