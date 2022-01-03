@@ -1,0 +1,23 @@
+create or replace function getWarehouseOccupationRate(warehouseId WAREHOUSE.ID%type)
+    RETURN number is
+    capacity FACILITY.CAPACITY%type;
+    occupation number;
+
+
+BEGIN
+    --obtem a partir da tabela Warehouse a capacidade de uma Warehouse e coloca na variavel capacity
+    Select CAPACITY
+    into capacity
+    from WAREHOUSE
+             join FACILITY F on F.FACILITYID = WAREHOUSE.FACILITYID
+    where WAREHOUSE.ID = warehouseId;
+
+    --conta todos os container na tabela stock associados a warehouse fornecida
+    Select count(*)
+    into occupation
+    FROM STOCK
+             join WAREHOUSE W on STOCK.FACILITYID = W.FACILITYID
+    WHERE STOCK.FACILITYID = (Select FACILITYID from WAREHOUSE where WAREHOUSE.ID = warehouseId);
+
+    return occupation / capacity;--revolve a razão entre a ocupação e a capacidade total
+end;

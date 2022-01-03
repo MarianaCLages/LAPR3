@@ -1,0 +1,17 @@
+create or replace function FnValidWarehouse(warehouseId WAREHOUSE.ID%type)
+    RETURN number is
+    numberWarehouse number;
+
+Begin
+    -- conta o numero de Warehouses com o Id fornecido, 1 se existe, 0 se não existe
+    Select count(*)
+    into numberWarehouse
+    from WAREHOUSE
+             join FACILITY F on F.FACILITYID = WAREHOUSE.FACILITYID
+    where WAREHOUSE.ID = warehouseId;
+
+
+    return numberWarehouse;
+
+END;
+

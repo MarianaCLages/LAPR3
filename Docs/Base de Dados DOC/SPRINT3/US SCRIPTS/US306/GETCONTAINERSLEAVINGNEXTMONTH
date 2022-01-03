@@ -1,0 +1,19 @@
+create or replace function getContainersLeavingNextMonth(warehouseId WAREHOUSE.ID%type,
+                                              todayDate CARGOMANIFEST.CARGOMANIFESTDATE%type)
+    RETURN number is
+    numberOfContainers number;
+
+BEGIN
+    --Uma querry que conta todos os contentores associados a uma facility e cuja data de saida está entre a data do dia e um mes a contar do dia de hoje
+    Select count(CONTAINERID)
+    into numberOfContainers
+    from WAREHOUSE
+             join FACILITY F on F.FACILITYID = WAREHOUSE.FACILITYID
+             join CARGOMANIFEST C2 on F.FACILITYID = C2.FACILITYID
+             join CARGOMANIFESTCONTAINER C3 on C2.CARGOMANIFESTID = C3.CARGOMANIFESTID
+    where CARGOMANIFESTTYPE = 1
+      AND ID = warehouseId
+      AND CARGOMANIFESTDATE < ADD_MONTHS(todayDate, 1);
+
+    return numberOfContainers;
+end;
