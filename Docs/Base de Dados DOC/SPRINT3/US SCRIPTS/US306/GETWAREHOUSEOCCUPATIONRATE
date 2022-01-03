@@ -1,4 +1,4 @@
-create or replace function getWarehouseOccupationRate(warehouseId WAREHOUSE.ID%type)
+create or replace function FNGetWarehouseOccupationRate(warehouseId WAREHOUSE.ID%type)
     RETURN number is
     capacity FACILITY.CAPACITY%type;
     occupation number;

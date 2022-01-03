@@ -1,4 +1,4 @@
-create or replace function getContainersLeavingNextMonth(warehouseId WAREHOUSE.ID%type,
+create or replace function FNGetContainersLeavingNextMonth(warehouseId WAREHOUSE.ID%type,
                                               todayDate CARGOMANIFEST.CARGOMANIFESTDATE%type)
     RETURN number is
     numberOfContainers number;
