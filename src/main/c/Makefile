@@ -1,4 +1,4 @@
-laprProject: main.o  menuPrint.o printMatrix.o existe.o occupiedSlots.o 
+laprProject: main.o  menuPrint.o printMatrix.o existe.o occupiedSlots.o
 	gcc -Wall -g main.o existe.o occupiedSlots.o menuPrint.o printMatrix.o -o laprProject
 
 main.o: main.c
@@ -15,7 +15,6 @@ menuPrint.o: menuPrint.c
 
 printMatrix.o: printMatrix.c
 	gcc -Wall -g -c printMatrix.c -o printMatrix.o
-
 
 clean :
 	rm -f ∗.o laprProject

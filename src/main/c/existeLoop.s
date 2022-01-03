@@ -20,7 +20,7 @@
     movq $0, %rdx
 
 existeLoop:
-    call existe2
+    call existeComParametros
 
     cmpb %al, $1
     jne aumentar_y

@@ -5,8 +5,6 @@
 #include "createMatrix3D.h"
 #include "menuPrint.h"
 #include "printmatrix.h"
-#include "existeLoop.h"
-#include "existe2.h"
 #include "existe.h"
 //Apontador para a primeira posição da matrix criada através do Cargo Manifest
 
@@ -152,8 +150,7 @@ int main(void) {
          count++;
          break;
     case(4):
-        int total = existeLoop();
-        printf("The total of positions occupied is: %d", total);
+       // printf("The total of positions occupied is: %d", existeLoop());
         break;
     case(5):
         exit++;
