@@ -77,11 +77,11 @@ public class FreightNetwork {
      */
     private boolean linkPortToNClosestPorts(int n) throws NullVerticesException {
 
-        for (Vertex v : graph.vertices()) {
+        for (Vertex v : graph.vertices()) { //V
             if (v instanceof Facility) {
                 boolean[] visited = new boolean[graph.numVertices()];
                 ArrayList<Facility> list = new ArrayList<>();
-                dfsPortsLink(v, 1, visited, list);
+                dfsPortsLink(v, 1, visited, list); //log(F)
                 int finalI = graph.key(v);
                 Comparator<Facility> comparator = (o1, o2) -> {
                     if (VertexDistanceCalculator.distanceCalculator(o1, graph.vertex(finalI)) > VertexDistanceCalculator.distanceCalculator(o2, graph.vertex(finalI))) {
@@ -90,9 +90,10 @@ public class FreightNetwork {
                     return -1;
                 };
 
-                list.sort(comparator);
+                list.sort(comparator); //FClog(FC)
+
                 if (n - 1 <= list.size()) {
-                    for (Vertex v1 : list.subList(n - 1, list.size())) {
+                    for (Vertex v1 : list.subList(n - 1, list.size())) { // FC-n
                         graph.removeEdge(v, v1);
                     }
                 }

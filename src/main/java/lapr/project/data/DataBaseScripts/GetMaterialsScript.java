@@ -74,7 +74,7 @@ public class GetMaterialsScript {
             while (k != 0) {
 
                 if (count2 == 3)
-                    stringBuilder.append("\nIntermediate Material for ").append(temperature).append(TEMP);
+                    stringBuilder.append("\nIntermediate Material for ").append(7).append(TEMP);
                 else if (count2 == 7)
                     stringBuilder.append("\nInner Walls Material for ").append(temperature).append(TEMP);
                 stringBuilder.append(getMaterialByTemperature(temperature, count2));

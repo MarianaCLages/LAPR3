@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SearchContainerLocationForClientUI implements Runnable {
 
-    private SearchContainerLocationForClientController ctrl = new SearchContainerLocationForClientController();
+    private final SearchContainerLocationForClientController ctrl = new SearchContainerLocationForClientController();
 
     @Override
     public void run() {

@@ -16,7 +16,7 @@ public class ContainerStoreData implements Persistable {
 
     private static int i = 1;
 
-    private Set<Container> listContainers = new HashSet<>();
+    private final Set<Container> listContainers = new HashSet<>();
 
     /**
      * Constructor.

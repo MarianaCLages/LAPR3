@@ -1,11 +1,11 @@
 package lapr.project.model;
 
 public class Country {
-    private String name;
-    private char[] alpha2Code;
-    private char[] alpha3Code;
-    private double population;
-    private Continent continent;
+    private final String name;
+    private final char[] alpha2Code;
+    private final char[] alpha3Code;
+    private final double population;
+    private final Continent continent;
 
     /**
      * Constructor.

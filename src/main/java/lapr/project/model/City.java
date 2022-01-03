@@ -6,10 +6,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class City implements Vertex {
-    private String name;
-    private double latitude;
-    private double longitude;
-    private Country country;
+    private final String name;
+    private final double latitude;
+    private final double longitude;
+    private final Country country;
     private int color;
 
     /**

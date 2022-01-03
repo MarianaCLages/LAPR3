@@ -11,8 +11,8 @@ import java.util.Date;
 public class CargoManifest implements Comparable<CargoManifest> {
 
     String identification;
-    private AVL<Container> offloaded;
-    private AVL<Container> loaded;
+    private final AVL<Container> offloaded;
+    private final AVL<Container> loaded;
     private Port port;
     private Date date;
     private Ship ship;

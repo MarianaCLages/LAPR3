@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class AvailableShipsOnMondayScript {
 
-    private DatabaseConnection databaseConnection;
+    private final DatabaseConnection databaseConnection;
 
     /**
      * Constructor.

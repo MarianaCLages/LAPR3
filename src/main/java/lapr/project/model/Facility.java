@@ -9,7 +9,7 @@ public class Facility implements Vertex {
     private Country country;
     private String countryName;
     private FacilityLocation location;
-    private int capacity;
+    private final int capacity;
     private int color;
 
     /**
@@ -208,11 +208,7 @@ public class Facility implements Vertex {
 
     @Override
     public boolean isColour() {
-        if (color != -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return color != -1;
     }
 
     @Override

@@ -9,7 +9,7 @@ class ContinentTest {
     @Test
     void valueOfName() {
         Continent continent = Continent.ASIA;
-        Continent actual = continent.valueOfName(continent.getName());
+        Continent actual = Continent.valueOfName(continent.getName());
 
         assertNotNull(actual);
 

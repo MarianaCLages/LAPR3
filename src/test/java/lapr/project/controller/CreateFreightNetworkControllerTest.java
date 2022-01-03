@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CreateFreightNetworkControllerTest {
 
-    /*
+/*
 
     @Test
     void createGraph() {
@@ -25,6 +25,5 @@ class CreateFreightNetworkControllerTest {
 
     }
 
-
-     */
+    */
 }

@@ -1,6 +1,5 @@
 package lapr.project.utils.auth.domain;
 
-import lapr.project.utils.auth.domain.OrgRole;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

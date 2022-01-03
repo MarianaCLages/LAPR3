@@ -26,7 +26,7 @@ public class ShipStoreData implements Persistable {
         //Empty constructor
     }
 
-    private Set<Ship> listShip = new HashSet<>();
+    private final Set<Ship> listShip = new HashSet<>();
     private int i = 1;
 
     @Override
