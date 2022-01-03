@@ -1,4 +1,4 @@
-package lapr.project.model;
+package lapr.project.shared;
 
 public class ContainerPosition implements Comparable<ContainerPosition> {
 

@@ -1,5 +1,6 @@
 package lapr.project.model;
 
+import lapr.project.shared.ContainerPosition;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

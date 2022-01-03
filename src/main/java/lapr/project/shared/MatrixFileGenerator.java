@@ -1,8 +1,10 @@
-package lapr.project.model;
+package lapr.project.shared;
 
 import lapr.project.data.CargoManifest;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.Utils.DataBaseUtils;
+import lapr.project.model.Container;
+import lapr.project.model.Ship;
 
 import java.io.File;
 import java.io.FileWriter;

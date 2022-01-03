@@ -1,9 +1,8 @@
 package lapr.project.model;
 
 import lapr.project.controller.App;
+import lapr.project.shared.MatrixFileGenerator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MatrixFileGeneratorTest {
 

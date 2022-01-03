@@ -1,7 +1,7 @@
 package lapr.project.controller;
 
 import lapr.project.data.DatabaseConnection;
-import lapr.project.model.MatrixFileGenerator;
+import lapr.project.shared.MatrixFileGenerator;
 import lapr.project.shared.exceptions.MatrixFileException;
 
 import java.io.IOException;

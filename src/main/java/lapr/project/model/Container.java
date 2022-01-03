@@ -1,5 +1,7 @@
 package lapr.project.model;
 
+import lapr.project.shared.ContainerPosition;
+
 import java.util.Objects;
 
 public class Container implements Comparable<Container> {

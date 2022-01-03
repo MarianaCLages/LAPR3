@@ -1,7 +1,7 @@
 package lapr.project.data;
 
 import lapr.project.model.Container;
-import lapr.project.model.ContainerPosition;
+import lapr.project.shared.ContainerPosition;
 import lapr.project.model.Port;
 import lapr.project.model.Ship;
 import lapr.project.shared.tree.AVL;

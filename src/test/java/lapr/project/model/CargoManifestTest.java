@@ -1,6 +1,7 @@
 package lapr.project.model;
 
 import lapr.project.data.CargoManifest;
+import lapr.project.shared.ContainerPosition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
