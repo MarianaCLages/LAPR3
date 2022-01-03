@@ -4,14 +4,14 @@ import lapr.project.data.DataBaseScripts.GetMaterialsScript;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
-public class ThermalController {
+public class ThermalResistanceController {
 
     private final GetMaterialsScript getMaterialsScript;
 
     /**
      * Constructor.
      */
-    public ThermalController() {
+    public ThermalResistanceController() {
         DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
         getMaterialsScript = new GetMaterialsScript(databaseConnection);
     }
