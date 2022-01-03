@@ -1,6 +1,5 @@
 package lapr.project.utils.mappers.dto;
 
-import lapr.project.model.Country;
 import lapr.project.model.FacilityLocation;
 
 public class PortDTO {

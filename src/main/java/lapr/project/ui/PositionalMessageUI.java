@@ -2,7 +2,6 @@ package lapr.project.ui;
 
 import lapr.project.controller.PositionalMessageController;
 
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

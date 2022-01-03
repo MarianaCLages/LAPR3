@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Test;
 
 class GraphNClosestPlacesControllerTest {
 
-    /*
+
     @Test
     void graphNClosestPlacesController() {
 
-        GraphNCClosestPlacesController graphNCClosestPlacesController = new GraphNCClosestPlacesController();
+        GraphNClosestPlacesController graphNCClosestPlacesController = new GraphNClosestPlacesController();
 
 
         try {
-            String actual = graphNClosestPlacesController.getTheNClosestPlaces(1);
+            String actual = graphNCClosestPlacesController.getTheNClosestPlaces(2);
 
-          //  if (actual == null || actual.equals("")) fail();
+            //  if (actual == null || actual.equals("")) fail();
 
 
         } catch (NoPathFoundForSpecificVertexException e) {
@@ -24,5 +24,4 @@ class GraphNClosestPlacesControllerTest {
 
     }
 
-         */
 }

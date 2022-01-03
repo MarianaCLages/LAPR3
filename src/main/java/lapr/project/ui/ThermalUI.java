@@ -1,12 +1,8 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ThermalController;
-import lapr.project.data.ConnectionFactory;
-import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class ThermalUI implements Runnable {
 

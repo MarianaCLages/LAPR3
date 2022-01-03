@@ -98,7 +98,6 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
             }
         }
         return edgesList;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -191,7 +190,6 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
             }
         }
         return ce;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

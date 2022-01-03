@@ -13,6 +13,7 @@ public class UserStore {
     private final Set<User> store = new HashSet();
 
     public UserStore() {
+        //Empty
     }
 
     public User create(String name, String email, String password) {

@@ -41,12 +41,12 @@ class PairsOfShipsControllerTest {
         pairsOfShipsController.getShipStore().addShip(ship);
         pairsOfShipsController.getShipStore().addShip(ship2);
 
+        int size = pairsOfShipsController.getSize();
+        if (size == 0) fail();
+
         try {
             String actual = pairsOfShipsController.getPairs();
 
-            int size = pairsOfShipsController.getSize();
-
-            if (size == 0) fail();
             if (actual.equals("") || StringUtils.isBlank(actual)) {
                 fail();
             }

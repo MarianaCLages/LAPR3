@@ -11,6 +11,7 @@ public class OrgRoleStore {
     private List<OrgRole> lor = new ArrayList();
 
     public OrgRoleStore() {
+        //Empty
     }
 
     public void addOrgRole(OrgRole role) {
