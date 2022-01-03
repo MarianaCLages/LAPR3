@@ -27,9 +27,8 @@ public class ColourGraph {
 
         int[] colours = new int[graph.numVertices()];
         int colour;
-        ArrayList<Vertex> vertexArrayList = graph.vertices();
 
-        for (Vertex v : vertexArrayList) {
+        for (Vertex v : graph.vertices()) {
             if (v instanceof City) {
 
                 // All available colours
@@ -37,10 +36,8 @@ public class ColourGraph {
                     colours[i] = i;
                 }
 
-                Collection<Vertex> vAdj = graph.adjVertices(v);
-
                 // Banish colors from the adjacent vertices (make them -1)
-                for (Vertex vCheck : vAdj) {
+                for (Vertex vCheck : graph.adjVertices(v)) {
                     if (vCheck.isColour()) {
                         colours[vCheck.getColour()] = -1;
                     }
@@ -57,9 +54,7 @@ public class ColourGraph {
                 } while (colour == -1);
 
                 v.setColour(colour);
-            }
 
-            if (v instanceof City) {
                 sb.append("City: ").append(v.getDesignation()).append(", Colour: ").append(v.getColour()).append("\n");
             }
         }
