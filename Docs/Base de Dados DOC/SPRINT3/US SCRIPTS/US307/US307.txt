@@ -1,5 +1,6 @@
-
 --Trigger
+
+--Trigger to verify if the warehouse is full or not, it is necessary to verify when we are inserting information in the CargoManifestContainer table
 
 create or replace trigger trgAvailableWarehouseCapacity
     after insert
@@ -14,6 +15,10 @@ DECLARE
     vFacilityID       FACILITY.FACILITYID%TYPE;
     vStockFacilityID  STOCK.FACILITYID%TYPE;
     vStockContainerID STOCK.CONTAINERID%Type;
+    vVerifyIntegrity  number;
+
+    --Select all containers available inside a facility from the stock in which the cargoManifest is associated, into a cursor to be able to traverse later on
+
     CURSOR container_Inside_Stock
         is select CONTAINERID
            from STOCK
@@ -25,12 +30,18 @@ DECLARE
 
 begin
 
+    --Open the cursor to later on traverse it
+
     open container_Inside_Stock;
+
+    --Query to select the gross weight of the container being inserted in the table (only the one inserted in the moment)
 
     SELECT GROSS CONTAINER_GROSS
     INTO vContainerGross
     FROM CONTAINER c
     where c.CONTAINERID = :new.containerID;
+
+    --Query to obtain the FacilityID of the introduced cargoManifest (in order to verify if its full or not)
 
     SELECT FACILITYID
     INTO vFacilityID
@@ -39,17 +50,25 @@ begin
     group by FACILITYID
         FETCH FIRST ROW ONLY;
 
+    --After having the facility ID we are going to search for the facility capacity in order to verify with the containers introduced
+
     SELECT CAPACITY FACILITY_CAPACITY
     INTO vFacilityCapacity
     FROM FACILITY
     WHERE FACILITYID = vFacilityID;
 
+    --First we assume the vSumCapacity only with the grossWeight of the container introduced
+
     vSumCapacity := vContainerGross;
+
+    --Loop to sum all the weight of all containers inside that specific cargoManifest
 
     LOOP
         FETCH container_Inside_Stock INTO
             vContainer;
         EXIT WHEN container_Inside_Stock%notfound;
+
+        --Select the container gross from the specific container being traverse in the loop
 
         SELECT GROSS CONTAINER_GROSS
         INTO vContainerGross
@@ -60,21 +79,29 @@ begin
 
     end loop;
 
+    --In case the sum of all containers already in the facility and the container being introduced surpasses the facility capacity a exception must be raised!
+
     IF (vSumCapacity > vFacilityCapacity) THEN
         raise facility_Capacity_Full;
 
     ELSE
 
+        --If the container introduced does not surpass the weight of the facility capacity , we can add it to the table stock to be able to know if that capacity is full or not depending on those containers
+
         vStockFacilityID := null;
         vStockContainerID := null;
 
-        SELECT *
-        into vStockFacilityID,vStockContainerID
+        --If there is not a container already inside of the stock with that kind of data we must verify if before hand to see if possible to add it or not
+
+        SELECT Count(*)
+        into vVerifyIntegrity
         from STOCK s
         where s.FACILITYID = vFacilityID
           and s.CONTAINERID = :new.CONTAINERID;
 
-        if (vStockFacilityID is not null and vContainer is not null) then
+        if (vVerifyIntegrity = 0) then
+
+            --In case the container wasn't inside the stock we can insert now
 
             insert
             into STOCK (FACILITYID, CONTAINERID)
@@ -92,14 +119,13 @@ exception
 end;
 /
 
-
 -- Disable Trigger
 
-ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY DISABLE ;
+ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY DISABLE;
 
 -- Enable Trigger
 
-ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY ENABLE ;
+ALTER TRIGGER TRGAVAILABLEWAREHOUSECAPACITY ENABLE;
 
 -- DROP TRIGGER
 
