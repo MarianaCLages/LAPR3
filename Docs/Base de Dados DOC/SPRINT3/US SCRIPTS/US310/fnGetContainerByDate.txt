@@ -2,52 +2,52 @@ create or replace function fnGetContainerByDate(vFacility  varchar, currentDate 
     RETURN varchar is variableChar varchar(300) ;
 
 
-        fCapacity FACILITY.capacity%type;
-        currentCapacity number;
-        cDate Date;
-        countCargo number;
-        test number;
-        countContainer number;
+        fCapacity FACILITY.capacity%type; /* capacity of the facility*/
+        currentCapacity number; /* the current facility capacity, it may change day by day*/
+        cDate Date; /* the current date*/
+        countCargo number; /* Cargo Counter*/
+        test number; /* starts from the day 1*/
+        countContainer number; /*Container Counter*/
         cString       varchar(32);
 
 
 
 BEGIN
 
-    SELECT CAPACITY into fCapacity from FACILITY where FACILITYID = vFacility;
+    SELECT CAPACITY into fCapacity from FACILITY where FACILITYID = vFacility; /* Gets the capacity of the facility*/
     test := 0;
     countContainer := 0;
     currentcapacity := fCapacity;
     cDate := currentDate;
-    variableChar := 'This day:';
+    variableChar := 'This day:'; /*String to be returned adds the facility resources day by day*/
 
     
 
 
-    while test <= day
+    while test <= day /* since the first day to the last month day*/
         LOOP
 
             cString := TO_CHAR(cDate, 'YYYY-MM-DD');
-            SELECT count(*) into countCargo from CARGOMANIFEST where FACILITYID = vFacility and CARGOMANIFESTDATE = TO_DATE(cString,'YYYY-MM-DD');
+            SELECT count(*) into countCargo from CARGOMANIFEST where FACILITYID = vFacility and CARGOMANIFESTDATE = TO_DATE(cString,'YYYY-MM-DD'); /*Counts how many cargos are comming on that facility in that day*/
 
 
             if( countCargo != 0) THEN
 
 
-                SELECT count(*) into countContainer  from CARGOMANIFESTCONTAINER cmc
+                SELECT count(*) into countContainer  from CARGOMANIFESTCONTAINER cmc /*Counts the containers of that cargo*/
                 inner join CARGOMANIFEST cm
                 on cmc.CARGOMANIFESTID = cm.CARGOMANIFESTID
                 where cm.FACILITYID = vFacility
                 and cm.CARGOMANIFESTDATE = TO_DATE('2021-10-23','YYYY-MM-DD');
 
 
-                currentcapacity := currentcapacity - countContainer;
+                currentcapacity := currentcapacity - countContainer; /* Decreases the capacity of the Facility if there is any containers in that cargo*/
                 countContainer := 0;
 
 
             end if;
 
-            cDate := cDate + 1;
+            cDate := cDate + 1; /* goes to the next day*/
             test := test + 1;
 
 

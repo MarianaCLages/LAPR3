@@ -3,14 +3,14 @@ create or replace function fnGetShipAreaByDate(vFacility  number, currentDate  D
 
 
 
-    area         number;
-    contagem        number;
-    vLength      Ship.length%type;
-    vWidth       Ship.width%type;
-    vShipArea    number;
-    areaFacility FACILITY.capacity%type;
-    cDate        Date ;
-    test          number;
+    area         number; -- Ship Area
+    contagem        number; -- Counter
+    vLength      Ship.length%type; -- Ship Length
+    vWidth       Ship.width%type; -- Ship Width
+    vShipArea    number; -- Ship Area
+    areaFacility FACILITY.capacity%type; --Facility Area
+    cDate        Date ; --Current Date
+    test          number; -- Test is the current day starting from day one
     cString       varchar(32);
 
 
@@ -18,10 +18,10 @@ BEGIN
 
 
     cDate := currentDate;
-    variableChar := 'This day:';
+    variableChar := 'This day:'; --This VarChar will be added new information about the facility resources day by day
     test := 0;
 
-    Select p.DOCKINGAREA
+    Select p.DOCKINGAREA --gets the docking area of a certain facility
     into areaFacility
     from Port p
     where p.FACILITYID = vFacility;
@@ -30,9 +30,9 @@ BEGIN
     area := areaFacility;
 
 
-    while test <= day
+    while test <= day --While test is lest or equals to the max day of the month
         LOOP
-            cString := TO_CHAR(cDate, 'YYYY-MM-DD');
+            cString := TO_CHAR(cDate, 'YYYY-MM-DD'); 
             Select count(s.WIDTH)
             into contagem
             from SHIP s
@@ -43,9 +43,9 @@ BEGIN
 
 
 
-        if(contagem = 1) THEN
+        if(contagem = 1) THEN --If there is one ship
 
-            Select s.WIDTH
+            Select s.WIDTH --Gets the Ship Width
             into vWidth
             from SHIP s
                      inner join CARGOMANIFEST cm
@@ -53,7 +53,7 @@ BEGIN
             where cm.CARGOMANIFESTDATE = TO_DATE(cString, 'YYYY-MM-DD')
               and cm.FACILITYID = vFacility;
 
-               Select s.LENGTH
+               Select s.LENGTH -- Gets the Ship Length
             into vLength
             from SHIP s
                      inner join CARGOMANIFEST cm
@@ -62,18 +62,18 @@ BEGIN
               and cm.FACILITYID = vFacility;
 
 
-            vShipArea := vLength * vWidth;
+            vShipArea := vLength * vWidth; --Calculates the ship area
 
 
-            area := area - vShipArea;
+            area := area - vShipArea; -- Decreases the facility resources
 
 
         END IF;
 
 
-        cDate := cDate + 1;
+        cDate := cDate + 1; --increases one day
         test := test + 1;
-        variableChar := variableChar || TO_CHAR((area / areaFacility) * 100) || ',';
+        variableChar := variableChar || TO_CHAR((area / areaFacility) * 100) || ','; --gets the percentage resources
 
 
         END LOOP;
