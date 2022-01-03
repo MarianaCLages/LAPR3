@@ -15,6 +15,14 @@ class FacilityTest {
         try {
             Facility facility2 = new Facility("29002", "Liverpool", "Europe", "Yah", new FacilityLocation(53.46666667, -3.033333333), 0);
             Facility facility = new Facility("29002", "Liverpool", "Europe", c1, new FacilityLocation(53.46666667, -3.033333333), 0);
+
+            Country c2 = null;
+
+            Facility facility4 = new Facility("29002", "Liverpool", "Europe", c2, new FacilityLocation(53.46666667, -3.033333333), 0);
+
+            facility4.getCountry();
+            facility4.getColour();
+
         } catch (Exception e) {
             fail();
         }
@@ -236,13 +244,13 @@ class FacilityTest {
 
         boolean isColour2 = facility.isColour();
 
-        if(isColour2) fail();
+        if (isColour2) fail();
 
         facility.setColour(10);
 
         boolean isColour3 = facility.isColour();
 
-        if(!isColour3) fail();
+        if (!isColour3) fail();
 
 
     }

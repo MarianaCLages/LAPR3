@@ -125,15 +125,6 @@ public class Company {
     }
 
     /**
-     * Gets the Port Store Data.
-     *
-     * @return the Port Store Data
-     */
-//    public PortStoreData getPortStoreData() {
-//        return portStoreData;
-//    }
-
-    /**
      * Gets the Freight Network.
      *
      * @return the Freight Network

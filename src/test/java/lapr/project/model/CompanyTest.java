@@ -5,6 +5,8 @@ import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.ContainerStoreData;
 import lapr.project.data.PortStoreData;
 import lapr.project.data.ShipStoreData;
+import lapr.project.model.stores.CargoManifestStore;
+import lapr.project.model.stores.ContainerStore;
 import lapr.project.shared.graph.FreightNetwork;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.domain.store.OrgRoleStore;
@@ -42,7 +44,7 @@ class CompanyTest {
 
         AuthFacade authFacade = company.getAuthFacade();
 
-        if(authFacade==null) fail();
+        if (authFacade == null) fail();
 
     }
 
@@ -51,7 +53,7 @@ class CompanyTest {
 
         OrgRoleStore orgRoleStore = company.getOrgRoleStore();
 
-        if(orgRoleStore==null) fail();
+        if (orgRoleStore == null) fail();
 
     }
 
@@ -60,7 +62,7 @@ class CompanyTest {
 
         ShipStoreData shipStoreData = company.getShipStoreData();
 
-        if(shipStoreData==null) fail();
+        if (shipStoreData == null) fail();
 
     }
 
@@ -80,7 +82,7 @@ class CompanyTest {
 
         CargoManifestStoreData cargoManifestStoreData = company.getCargoManifestStoreData();
 
-        if(cargoManifestStoreData==null) fail();
+        if (cargoManifestStoreData == null) fail();
 
     }
 
@@ -89,7 +91,7 @@ class CompanyTest {
 
         ContainerStoreData containerStoreData = company.getContainerStoreData();
 
-        if(containerStoreData==null) fail();
+        if (containerStoreData == null) fail();
 
     }
 
@@ -98,7 +100,7 @@ class CompanyTest {
 
         UserStore userStore = company.getUserStore();
 
-        if(userStore ==null) fail();
+        if (userStore == null) fail();
 
     }
 
@@ -106,9 +108,9 @@ class CompanyTest {
     @Test
     void getPortStoreData() {
 
-        PortStoreData portStoreData = company.getPortStoreData();
+        PortStoreData portStoreData2 = company.getPortStoreData();
 
-        if(portStoreData==null) fail();
+        if (portStoreData2 == null) fail();
 
     }
 
@@ -117,7 +119,25 @@ class CompanyTest {
 
         FreightNetwork freightNetwork = company.getFreightNetwork();
 
-        if(freightNetwork==null) fail();
+        if (freightNetwork == null) fail();
+
+    }
+
+    @Test
+    void getContainerStore() {
+
+        ContainerStore containerStore = company.getContainerStore();
+
+        if (containerStore == null) fail();
+
+    }
+
+    @Test
+    void getCargoManifestStore() {
+
+        CargoManifestStore cargoManifestStore = company.getCargoManifestStore();
+
+        if (cargoManifestStore == null) fail();
 
     }
 
