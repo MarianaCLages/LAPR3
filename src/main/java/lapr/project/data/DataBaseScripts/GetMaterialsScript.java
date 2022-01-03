@@ -37,7 +37,7 @@ public class GetMaterialsScript {
     public String getThermalResistance(int containerID) throws ProportionalityConstantNullException {
 
         StringBuilder stringBuilder = new StringBuilder();
-        String[] walls = {"Outer Walls", "Inner Walls", "Intermediate Layers"};
+        String[] walls = {"Outer Wall", "Inner Wall", "Intermediate Material"};
         DecimalFormat df = new DecimalFormat("#.#######");
 
         for (String wall : walls) {
