@@ -2,8 +2,6 @@ package lapr.project.ui;
 
 import lapr.project.controller.SearchShipController;
 import lapr.project.model.Ship;
-import lapr.project.ui.Utils;
-
 
 import java.util.Scanner;
 
@@ -11,8 +9,8 @@ public class SearchShipUI implements Runnable {
 
     private final SearchShipController ctrl = new SearchShipController();
 
-    public SearchShipUI(){
-
+    public SearchShipUI() {
+        //Empty
     }
 
     @Override
@@ -27,7 +25,7 @@ public class SearchShipUI implements Runnable {
             try {
                 System.out.print(
                         "Select which parameter you wish to search a ship by: \n" +
-                                "1 - MMSI\n" + "2 - IMO\n" + "3 - Call Sign\n"+ "\n" + "0 - cancel" );
+                                "1 - MMSI\n" + "2 - IMO\n" + "3 - Call Sign\n" + "\n" + "0 - cancel");
                 op = Utils.readIntegerFromConsole(in.nextLine().trim());
                 if (op > 3) throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
@@ -36,7 +34,7 @@ public class SearchShipUI implements Runnable {
             }
         } while (op == 0);
 
-        switch (op){
+        switch (op) {
             case 1:
                 do {
                     try {
@@ -52,8 +50,8 @@ public class SearchShipUI implements Runnable {
                 } catch (IllegalArgumentException err1) {
                     System.out.println(err1.getMessage());
                     break;
-                } catch (NullPointerException err2){
-                    System.out.println("Failed to find any ships with those parameters!");
+                } catch (NullPointerException err2) {
+                    System.out.println("No ship found!");
                     break;
                 }
             case 2:
@@ -71,7 +69,7 @@ public class SearchShipUI implements Runnable {
                 } catch (IllegalArgumentException err1) {
                     System.out.println(err1.getMessage());
                     break;
-                } catch (NullPointerException err2){
+                } catch (NullPointerException err2) {
                     System.out.println("Failed to find any ships with those parameters!");
                     break;
                 }
@@ -90,8 +88,8 @@ public class SearchShipUI implements Runnable {
                 } catch (IllegalArgumentException err1) {
                     System.out.println(err1.getMessage());
                     break;
-                } catch (NullPointerException err2){
-                    System.out.println("Failed to find any ships with those parameters!");
+                } catch (NullPointerException err2) {
+                    System.out.println("There is no ship for that information!");
                     break;
                 }
             default:

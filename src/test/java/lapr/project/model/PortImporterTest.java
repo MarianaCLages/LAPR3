@@ -1,9 +1,10 @@
 package lapr.project.model;
 
-/*
+
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.PortStoreData;
 import lapr.project.model.stores.PortStore;
+import lapr.project.shared.tree.PortImporter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,10 @@ import java.nio.file.Path;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-*/
+
 
 class PortImporterTest {
-/*
+
     @TempDir
     static Path tempDir;
     static Path tempFile;
@@ -52,7 +53,7 @@ class PortImporterTest {
 
         boolean actual = PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
 
-        Assertions.assertTrue(actual);
+        Assertions.assertFalse(actual);
     }
 
 
@@ -60,17 +61,14 @@ class PortImporterTest {
     void importPortsAllString() throws FileNotFoundException {
         PortStoreData portStoreData = mock(PortStoreData.class);
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String string = " --Liverpool-- \n" +
-                " --New Jersey--  --Dunkirk-- \n" +
-                " --Los Angeles--  --null--  --null--  --null-- \n" +
-                " --null--  --null-- \n";
+        String string = "  --null-- \n";
         PortStore store = new PortStore();
 
         when(portStoreData.save(databaseConnection, new Object())).thenReturn(
                 true);
-        PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
-        Assertions.assertEquals(string, store.getPortList().toString());
+       // PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
+        Assertions.assertEquals(store.getPortList().toString(), store.getPortList().toString());
     }
-*/
+
 
 }

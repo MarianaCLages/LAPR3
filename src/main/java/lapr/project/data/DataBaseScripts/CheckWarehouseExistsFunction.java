@@ -1,6 +1,5 @@
 package lapr.project.data.DataBaseScripts;
 
-import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
 
 import java.sql.CallableStatement;

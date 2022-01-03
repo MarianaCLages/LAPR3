@@ -7,6 +7,10 @@ import java.util.function.BinaryOperator;
 
 public class Algorithms {
 
+    private Algorithms() {
+        //Empty
+    }
+
     /**
      * Performs breadth-first search of a Graph starting in a vertex
      *
@@ -149,16 +153,16 @@ public class Algorithms {
             vDest = pathKeys[vKey];
             getPath(g, vOrig, vDest, pathKeys, path);
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
      * Initializes the path.
-     * @param nVerts the number of vertices
+     *
+     * @param nVerts   the number of vertices
      * @param pathKeys the path keys
-     * @param dist the distance
-     * @param <V> the type of parameter (Vertex)
-     * @param <E> the type of parameter (Edge)
+     * @param dist     the distance
+     * @param <V>      the type of parameter (Vertex)
+     * @param <E>      the type of parameter (Edge)
      */
     private static <V, E> void initializePathDist(int nVerts, V[] pathKeys, E[] dist) {
         for (int i = 0; i < nVerts; i++) {

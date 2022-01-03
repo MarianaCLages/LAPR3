@@ -48,7 +48,7 @@ public class ShipSummaryUI implements Runnable {
                     System.out.println(ex1.getMessage());
                     break;
                 } catch (NullPointerException ex2){
-                    System.out.println("Invalid Ship!");
+                    System.out.println("Ship not valid!");
                     break;
                 }
             case 2:
@@ -67,7 +67,7 @@ public class ShipSummaryUI implements Runnable {
                     System.out.println(e.getMessage());
                     break;
                 } catch (NullPointerException ex2){
-                    System.out.println("Invalid Ship!");
+                    System.out.println("No ship found!");
                     break;
                 }
 

@@ -24,7 +24,7 @@ class CountryTest {
     @Test
     void getAlpha2Code() {
 
-        String actual = country.getName();
+        char[] actual = country.getAlpha2Code();
 
         assertNotNull(actual);
 

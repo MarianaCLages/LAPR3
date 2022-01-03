@@ -14,7 +14,7 @@ public class PortManagerUI implements Runnable {
         options.add(new MenuItem("Occupation of the existing resources during a month", new FacilityResourcesUI()));
 
         //SPRINT 3
-        options.add(new MenuItem("Occupancy rate of each warehouse and an estimate of the containers leaving the warehouse during the next 30 days", new FacilityOccupationUI()));
+        options.add(new MenuItem("Occupancy rate of each warehouse and an estimate of the containers leaving the warehouse during the next 30 days", new FacilityOccupationRateUI()));
         int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nPort Manager Menu:");
