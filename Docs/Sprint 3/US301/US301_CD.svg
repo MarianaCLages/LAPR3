@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="591.2px" preserveAspectRatio="none" style="width:691px;height:591px;background:#FFFFFF;" version="1.1" viewBox="0 0 691 591" width="691.2px" zoomAndPan="magnify"><defs><filter height="300%" id="fiatklwn0fc8f" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="1.6000000000000003"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="3.2000000000000006" dy="3.2000000000000006" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[d3dfc34056f185a62dc850ea28535517]
+class FreightNetworkUI--><rect codeLine="3" fill="#FEFECE" filter="url(#fiatklwn0fc8f)" height="49.4688" id="FreightNetworkUI" style="stroke:#A80036;stroke-width:1.2000000000000002;" width="101.6" x="143.6" y="5.6"/><ellipse cx="155.6" cy="18.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><path d="M157.2,15.6 Q157.3625,15.2 157.55,15 Q157.7375,14.8 157.95,14.8 Q158.325,14.8 158.5625,15.025 Q158.8,15.25 158.8,15.775 L158.8,17.025 Q158.8,17.55 158.575,17.775 Q158.35,18 158,18 Q157.6875,18 157.4875,17.8625 Q157.2875,17.725 157.2,17.3625 Q157.1625,17.1125 157.025,16.975 Q156.775,16.7125 156.325,16.5625 Q155.875,16.4 155.425,16.4 Q154.8625,16.4 154.3875,16.625 Q153.925,16.85 153.5625,17.35 Q153.2,17.85 153.2,18.5375 L153.2,19.275 Q153.2,20.1 153.875,20.65 Q154.55,21.2 155.75,21.2 Q156.4625,21.2 156.9625,21.0375 Q157.25,20.95 157.575,20.6625 Q157.7875,20.5 157.9,20.45 Q158.0125,20.4 158.15,20.4 Q158.4125,20.4 158.6,20.6125 Q158.8,20.8125 158.8,21.1 Q158.8,21.375 158.525,21.7 Q158.125,22.175 157.4875,22.4375 Q156.65,22.8 155.625,22.8 Q154.425,22.8 153.4625,22.325 Q152.6875,21.95 152.1375,21.1375 Q151.6,20.325 151.6,19.3625 L151.6,18.4875 Q151.6,17.4875 152.075,16.6125 Q152.5625,15.7375 153.4,15.275 Q154.25,14.8 155.2,14.8 Q155.775,14.8 156.275,15 Q156.775,15.2 157.2,15.6 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="9.6" lengthAdjust="spacing" textLength="76" x="166.8" y="22.3281">FreightNetworkUI</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="144.4" x2="244.4" y1="31.2" y2="31.2"/><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="144.4" x2="244.4" y1="37.6" y2="37.6"/><ellipse cx="152.4" cy="46.4" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="19.2" x="159.6" y="49.9352">run()</text><!--MD5=[6d09b58ea1a4677a8cce6f6dd4a6f212]
+class FreightNetworkController--><rect codeLine="6" fill="#FEFECE" filter="url(#fiatklwn0fc8f)" height="49.4688" id="FreightNetworkController" style="stroke:#A80036;stroke-width:1.2000000000000002;" width="135.2" x="126.8" y="103.2"/><ellipse cx="138.8" cy="116" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><path d="M140.4,113.2 Q140.5625,112.8 140.75,112.6 Q140.9375,112.4 141.15,112.4 Q141.525,112.4 141.7625,112.625 Q142,112.85 142,113.375 L142,114.625 Q142,115.15 141.775,115.375 Q141.55,115.6 141.2,115.6 Q140.8875,115.6 140.6875,115.4625 Q140.4875,115.325 140.4,114.9625 Q140.3625,114.7125 140.225,114.575 Q139.975,114.3125 139.525,114.1625 Q139.075,114 138.625,114 Q138.0625,114 137.5875,114.225 Q137.125,114.45 136.7625,114.95 Q136.4,115.45 136.4,116.1375 L136.4,116.875 Q136.4,117.7 137.075,118.25 Q137.75,118.8 138.95,118.8 Q139.6625,118.8 140.1625,118.6375 Q140.45,118.55 140.775,118.2625 Q140.9875,118.1 141.1,118.05 Q141.2125,118 141.35,118 Q141.6125,118 141.8,118.2125 Q142,118.4125 142,118.7 Q142,118.975 141.725,119.3 Q141.325,119.775 140.6875,120.0375 Q139.85,120.4 138.825,120.4 Q137.625,120.4 136.6625,119.925 Q135.8875,119.55 135.3375,118.7375 Q134.8,117.925 134.8,116.9625 L134.8,116.0875 Q134.8,115.0875 135.275,114.2125 Q135.7625,113.3375 136.6,112.875 Q137.45,112.4 138.4,112.4 Q138.975,112.4 139.475,112.6 Q139.975,112.8 140.4,113.2 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="9.6" lengthAdjust="spacing" textLength="109.6" x="150" y="119.9281">FreightNetworkController</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="127.6" x2="261.2" y1="128.8" y2="128.8"/><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="127.6" x2="261.2" y1="135.2" y2="135.2"/><ellipse cx="135.6" cy="144" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="71.2" x="142.8" y="147.5352">createGraph(int n)</text><!--MD5=[074ba6ad47b234bd73d65012320c1634]
+class FreightNetwork--><rect codeLine="10" fill="#FEFECE" filter="url(#fiatklwn0fc8f)" height="193.3625" id="FreightNetwork" style="stroke:#A80036;stroke-width:1.2000000000000002;" width="348" x="20.4" y="239.6"/><ellipse cx="157.8" cy="252.4" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><path d="M159.4,249.6 Q159.5625,249.2 159.75,249 Q159.9375,248.8 160.15,248.8 Q160.525,248.8 160.7625,249.025 Q161,249.25 161,249.775 L161,251.025 Q161,251.55 160.775,251.775 Q160.55,252 160.2,252 Q159.8875,252 159.6875,251.8625 Q159.4875,251.725 159.4,251.3625 Q159.3625,251.1125 159.225,250.975 Q158.975,250.7125 158.525,250.5625 Q158.075,250.4 157.625,250.4 Q157.0625,250.4 156.5875,250.625 Q156.125,250.85 155.7625,251.35 Q155.4,251.85 155.4,252.5375 L155.4,253.275 Q155.4,254.1 156.075,254.65 Q156.75,255.2 157.95,255.2 Q158.6625,255.2 159.1625,255.0375 Q159.45,254.95 159.775,254.6625 Q159.9875,254.5 160.1,254.45 Q160.2125,254.4 160.35,254.4 Q160.6125,254.4 160.8,254.6125 Q161,254.8125 161,255.1 Q161,255.375 160.725,255.7 Q160.325,256.175 159.6875,256.4375 Q158.85,256.8 157.825,256.8 Q156.625,256.8 155.6625,256.325 Q154.8875,255.95 154.3375,255.1375 Q153.8,254.325 153.8,253.3625 L153.8,252.4875 Q153.8,251.4875 154.275,250.6125 Q154.7625,249.7375 155.6,249.275 Q156.45,248.8 157.4,248.8 Q157.975,248.8 158.475,249 Q158.975,249.2 159.4,249.6 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="9.6" lengthAdjust="spacing" textLength="66.4" x="174.2" y="256.3281">FreightNetwork</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="21.2" x2="367.6" y1="265.2" y2="265.2"/><rect fill="none" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="271.6"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="22.4" x="36.4" y="277.5352">graph</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="21.2" x2="367.6" y1="282.6688" y2="282.6688"/><ellipse cx="29.2" cy="291.4688" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="65.6" x="36.4" y="295.0039">FreightNetwork()</text><ellipse cx="29.2" cy="302.5375" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="200.8" x="36.4" y="306.0727">createGraph(int n, DatabaseConnection connection)</text><ellipse cx="29.2" cy="313.6063" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="42.4" x="36.4" y="317.1414">getGraph()</text><ellipse cx="29.2" cy="324.675" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="199.2" x="36.4" y="328.2102">addEdgeAndCalculateWeight(Vertex v1, Vertex v2)</text><ellipse cx="29.2" cy="335.7438" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="224" x="36.4" y="339.2789">addEdgeWithWeight(Vertex v1, Vertex v2, double weight)</text><ellipse cx="29.2" cy="346.8125" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="22.4" x="36.4" y="350.3477">size()</text><ellipse cx="29.2" cy="357.8813" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="36" x="36.4" y="361.4164">toString()</text><ellipse cx="29.2" cy="368.95" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="70.4" x="36.4" y="372.4852">connectionsSize()</text><rect fill="#F24D5C" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="377.6188"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="172" x="36.4" y="383.5539">ports(int n, DatabaseConnection connection)</text><rect fill="#F24D5C" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="388.6875"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="113.6" x="36.4" y="394.6227">linkPortToNClosestPorts(int n)</text><rect fill="#F24D5C" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="399.7563"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="327.2" x="36.4" y="405.6914">dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList&lt;Facility&gt; objects)</text><rect fill="#F24D5C" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="410.825"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="68.8" x="36.4" y="416.7602">linkPortToCapital()</text><rect fill="#F24D5C" height="4.8" style="stroke:#C82930;stroke-width:0.8000000000000002;" width="4.8" x="26.8" y="421.8938"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="160.8" x="36.4" y="427.8289">capitals(DatabaseConnection connection)</text><!--MD5=[ab317dcf4bca942cf15952c2cefe261a]
+class DatabaseUtils--><rect codeLine="27" fill="#FEFECE" filter="url(#fiatklwn0fc8f)" height="60.5375" id="DatabaseUtils" style="stroke:#A80036;stroke-width:1.2000000000000002;" width="377.6" x="5.6" y="520"/><ellipse cx="159.4" cy="532.8" fill="#ADD1B2" rx="8.8" ry="8.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><path d="M161,530 Q161.1625,529.6 161.35,529.4 Q161.5375,529.2 161.75,529.2 Q162.125,529.2 162.3625,529.425 Q162.6,529.65 162.6,530.175 L162.6,531.425 Q162.6,531.95 162.375,532.175 Q162.15,532.4 161.8,532.4 Q161.4875,532.4 161.2875,532.2625 Q161.0875,532.125 161,531.7625 Q160.9625,531.5125 160.825,531.375 Q160.575,531.1125 160.125,530.9625 Q159.675,530.8 159.225,530.8 Q158.6625,530.8 158.1875,531.025 Q157.725,531.25 157.3625,531.75 Q157,532.25 157,532.9375 L157,533.675 Q157,534.5 157.675,535.05 Q158.35,535.6 159.55,535.6 Q160.2625,535.6 160.7625,535.4375 Q161.05,535.35 161.375,535.0625 Q161.5875,534.9 161.7,534.85 Q161.8125,534.8 161.95,534.8 Q162.2125,534.8 162.4,535.0125 Q162.6,535.2125 162.6,535.5 Q162.6,535.775 162.325,536.1 Q161.925,536.575 161.2875,536.8375 Q160.45,537.2 159.425,537.2 Q158.225,537.2 157.2625,536.725 Q156.4875,536.35 155.9375,535.5375 Q155.4,534.725 155.4,533.7625 L155.4,532.8875 Q155.4,531.8875 155.875,531.0125 Q156.3625,530.1375 157.2,529.675 Q158.05,529.2 159,529.2 Q159.575,529.2 160.075,529.4 Q160.575,529.6 161,530 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="9.6" lengthAdjust="spacing" textLength="63.2" x="175.8" y="536.7281">DatabaseUtils</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="6.4" x2="382.4" y1="545.6" y2="545.6"/><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="6.4" x2="382.4" y1="552" y2="552"/><ellipse cx="14.4" cy="560.8" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="211.2" x="21.6" y="564.3352">getBorders(DatabaseConnection databaseConnection)</text><ellipse cx="14.4" cy="571.8688" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="356.8" x="21.6" y="575.4039">getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId)</text><!--MD5=[706e73df52f3df32f52be1ce9adb217e]
+class Graph--><rect codeLine="32" fill="#FEFECE" filter="url(#fiatklwn0fc8f)" height="270.8438" id="Graph" style="stroke:#A80036;stroke-width:1.2000000000000002;" width="284" x="396.4" y="200.8"/><ellipse cx="521.4" cy="213.6" fill="#B4A7E5" rx="8.8" ry="8.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><path d="M522.2,211.2 L522.2,216 L523.8,216 L524.1875,216 L524.6,216.5 L524.6,216.8 L524.6,217.1 L524.1875,217.6 L523.8,217.6 L519,217.6 L518.6125,217.6 L518.2,217.1 L518.2,216.8 L518.2,216.5 L518.6125,216 L519,216 L520.6,216 L520.6,211.2 L519,211.2 L518.6125,211.2 L518.2,210.7 L518.2,210.4 L518.2,210.1 L518.6125,209.6 L519,209.6 L523.8,209.6 L524.1875,209.6 L524.6,210.1 L524.6,210.4 L524.6,210.7 L524.1875,211.2 L523.8,211.2 L522.2,211.2 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="9.6" font-style="italic" lengthAdjust="spacing" textLength="27.2" x="537.8" y="217.5281">Graph</text><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="397.2" x2="679.6" y1="226.4" y2="226.4"/><line style="stroke:#A80036;stroke-width:1.2000000000000002;" x1="397.2" x2="679.6" y1="232.8" y2="232.8"/><ellipse cx="405.2" cy="241.6" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="38.4" x="412.4" y="245.1352">toString();</text><ellipse cx="405.2" cy="252.6688" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="47.2" x="412.4" y="256.2039">isDirected();</text><ellipse cx="405.2" cy="263.7375" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="57.6" x="412.4" y="267.2727">numVertices();</text><ellipse cx="405.2" cy="274.8063" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="40" x="412.4" y="278.3414">vertices();</text><ellipse cx="405.2" cy="285.875" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="76.8" x="412.4" y="289.4102">validVertex(V vert);</text><ellipse cx="405.2" cy="296.9438" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="46.4" x="412.4" y="300.4789">key(V vert);</text><ellipse cx="405.2" cy="308.0125" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="58.4" x="412.4" y="311.5477">vertex(int key);</text><ellipse cx="405.2" cy="319.0813" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="92.8" x="412.4" y="322.6164">vertex(Predicate&lt;V&gt; p);</text><ellipse cx="405.2" cy="330.15" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="76.8" x="412.4" y="333.6852">adjVertices(V vert);</text><ellipse cx="405.2" cy="341.2188" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="48.8" x="412.4" y="344.7539">numEdges();</text><ellipse cx="405.2" cy="352.2875" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="32.8" x="412.4" y="355.8227">edges();</text><ellipse cx="405.2" cy="363.3563" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="93.6" x="412.4" y="366.8914">edge(V vOrig, V vDest);</text><ellipse cx="405.2" cy="374.425" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="128.8" x="412.4" y="377.9602">edge(int vOrigKey, int vDestKey);</text><ellipse cx="405.2" cy="385.4938" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="72.8" x="412.4" y="389.0289">outDegree(V vert);</text><ellipse cx="405.2" cy="396.5625" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="67.2" x="412.4" y="400.0977">inDegree(V vert);</text><ellipse cx="405.2" cy="407.6313" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="90.4" x="412.4" y="411.1664">incomingEdges(V vert);</text><ellipse cx="405.2" cy="418.7" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="190.4" x="412.4" y="422.2352">addVertex(V vert) throws NullVerticesException;</text><ellipse cx="405.2" cy="429.7688" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="263.2" x="412.4" y="433.3039">addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;</text><ellipse cx="405.2" cy="440.8375" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="204.8" x="412.4" y="444.3727">removeVertex(V vert) throws NullVerticesException;</text><ellipse cx="405.2" cy="451.9063" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="239.2" x="412.4" y="455.4414">removeEdge(V vOrig, V vDest) throws NullVerticesException;</text><ellipse cx="405.2" cy="462.975" fill="#84BE84" rx="2.4" ry="2.4" style="stroke:#038048;stroke-width:0.8000000000000002;"/><text fill="#000000" font-family="sans-serif" font-size="8.8" lengthAdjust="spacing" textLength="29.6" x="412.4" y="466.5102">clone();</text><!--MD5=[5eb0327d86adad0cbeea923cef090aa6]
+link FreightNetworkUI to FreightNetworkController--><path codeLine="55" d="M194.4,55.424 C194.4,68.616 194.4,85.008 194.4,98.792 " fill="none" id="FreightNetworkUI-to-FreightNetworkController" style="stroke:#A80036;stroke-width:0.8000000000000002;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="194.4,102.984,197.6,95.784,194.4,98.984,191.2,95.784,194.4,102.984" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><!--MD5=[09bf8cbad68652591b072638f0a84cdf]
+link FreightNetworkController to FreightNetwork--><path codeLine="56" d="M194.4,152.928 C194.4,173.528 194.4,204.608 194.4,235.328 " fill="none" id="FreightNetworkController-to-FreightNetwork" style="stroke:#A80036;stroke-width:0.8000000000000002;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="194.4,239.464,197.6,232.264,194.4,235.464,191.2,232.264,194.4,239.464" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><!--MD5=[24eb032ce14d8b81c8293ad6f5be0f42]
+link FreightNetwork to Graph--><path codeLine="57" d="M368.416,336.4 C376.328,336.4 384.248,336.4 392.168,336.4 " fill="none" id="FreightNetwork-to-Graph" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><polygon fill="#A80036" points="396.304,336.4,389.104,333.2,392.304,336.4,389.104,339.6,396.304,336.4" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><!--MD5=[f887e1871997e8c5d3a6c6cf96afe3a6]
+link FreightNetwork to DatabaseUtils--><path codeLine="58" d="M194.4,433.456 C194.4,462.904 194.4,493.384 194.4,515.728 " fill="none" id="FreightNetwork-to-DatabaseUtils" style="stroke:#A80036;stroke-width:0.8000000000000002;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="194.4,519.8,197.6,512.6,194.4,515.8,191.2,512.6,194.4,519.8" style="stroke:#A80036;stroke-width:0.8000000000000002;"/><!--MD5=[32218495188ccf1dab3ba9d558218c27]
+@startuml
+'https://plantuml.com/class-diagram
+
+class FreightNetworkUI{
++run()
+}
+class FreightNetworkController{
++createGraph(int n)
+}
+
+class FreightNetwork{
+-graph
++FreightNetwork()
++createGraph(int n, DatabaseConnection connection)
++getGraph()
++addEdgeAndCalculateWeight(Vertex v1, Vertex v2)
++addEdgeWithWeight(Vertex v1, Vertex v2, double weight)
++size()
++toString()
++connectionsSize()
+-ports(int n, DatabaseConnection connection)
+-linkPortToNClosestPorts(int n)
+-dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects)
+-linkPortToCapital()
+-capitals(DatabaseConnection connection)
+}
+
+class DatabaseUtils{
++getBorders(DatabaseConnection databaseConnection)
++getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId)
+}
+
+interface Graph{
++toString();
++isDirected();
++numVertices();
++vertices();
++validVertex(V vert);
++key(V vert);
++vertex(int key);
++vertex(Predicate<V> p);
++adjVertices(V vert);
++numEdges();
++edges();
++edge(V vOrig, V vDest);
++edge(int vOrigKey, int vDestKey);
++outDegree(V vert);
++inDegree(V vert);
++incomingEdges(V vert);
++addVertex(V vert) throws NullVerticesException;
++addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;
++removeVertex(V vert) throws NullVerticesException;
++removeEdge(V vOrig, V vDest) throws NullVerticesException;
++clone();
+}
+FreightNetworkUI ..> FreightNetworkController
+FreightNetworkController ..>FreightNetwork
+FreightNetwork -> Graph
+FreightNetwork ..> DatabaseUtils
+@enduml
+
+@startuml
+
+class FreightNetworkUI{
++run()
+}
+class FreightNetworkController{
++createGraph(int n)
+}
+
+class FreightNetwork{
+-graph
++FreightNetwork()
++createGraph(int n, DatabaseConnection connection)
++getGraph()
++addEdgeAndCalculateWeight(Vertex v1, Vertex v2)
++addEdgeWithWeight(Vertex v1, Vertex v2, double weight)
++size()
++toString()
++connectionsSize()
+-ports(int n, DatabaseConnection connection)
+-linkPortToNClosestPorts(int n)
+-dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects)
+-linkPortToCapital()
+-capitals(DatabaseConnection connection)
+}
+
+class DatabaseUtils{
++getBorders(DatabaseConnection databaseConnection)
++getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId)
+}
+
+interface Graph{
++toString();
++isDirected();
++numVertices();
++vertices();
++validVertex(V vert);
++key(V vert);
++vertex(int key);
++vertex(Predicate<V> p);
++adjVertices(V vert);
++numEdges();
++edges();
++edge(V vOrig, V vDest);
++edge(int vOrigKey, int vDestKey);
++outDegree(V vert);
++inDegree(V vert);
++incomingEdges(V vert);
++addVertex(V vert) throws NullVerticesException;
++addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;
++removeVertex(V vert) throws NullVerticesException;
++removeEdge(V vOrig, V vDest) throws NullVerticesException;
++clone();
+}
+FreightNetworkUI ..> FreightNetworkController
+FreightNetworkController ..>FreightNetwork
+FreightNetwork -> Graph
+FreightNetwork ..> DatabaseUtils
+@enduml
+
+PlantUML version 1.2021.16(Wed Dec 08 17:25:22 GMT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+--></g></svg>

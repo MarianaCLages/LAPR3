@@ -1,0 +1,25 @@
+@startuml
+hide methods
+
+class Port{
+-Identification
+-Name
+-Continent
+-Country
+-Location
+-Capacity
+}
+
+class City{
+-Identification
+}
+class Country{
+}
+
+class Company{
+}
+Company -> Port : owns >
+Port --> Port : connects with >
+Port --> City : connects with >
+City -> Country : is inside an >
+@enduml

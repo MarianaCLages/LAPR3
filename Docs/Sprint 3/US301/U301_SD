@@ -1,0 +1,52 @@
+@startuml
+autonumber
+actor PortManager
+participant FreightNetworkUI as UI
+participant FreightNetworkController as Controller
+participant FreightNetwork as Network
+participant DatabaseUtils as Utils
+
+activate PortManager
+
+PortManager -> UI: Asks for create the graph
+activate UI
+
+UI --> PortManager: Ask the number of connections
+deactivate UI
+
+PortManager -> UI: Introduces the number of connections
+activate UI
+UI -> Controller: createGraph(int n)
+activate Controller
+
+Controller -> Network: createGraph(n, databaseConnection)
+activate Network
+Network -> Utils: getBorders()
+activate Utils
+deactivate
+
+Network -> Network: capitals()
+activate Network
+deactivate
+
+Network -> Utils: getSeaDist()
+activate Utils
+deactivate Utils
+Network -> Network: ports()
+activate Network
+deactivate
+Network -> Network: linkPortToCapital()
+activate Network
+deactivate
+Network -> Network: linkPortToNClosestPorts(n);
+
+activate Network
+deactivate
+deactivate
+deactivate
+PortManager <-- UI: Informs the success of the operation
+deactivate UI
+deactivate PortManager
+
+
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class FreightNetworkUI{
++run()
+}
+class FreightNetworkController{
++createGraph(int n)
+}
+
+class FreightNetwork{
+-graph
++FreightNetwork()
++createGraph(int n, DatabaseConnection connection)
++getGraph()
++addEdgeAndCalculateWeight(Vertex v1, Vertex v2)
++addEdgeWithWeight(Vertex v1, Vertex v2, double weight)
++size()
++toString()
++connectionsSize()
+-ports(int n, DatabaseConnection connection)
+-linkPortToNClosestPorts(int n)
+-dfsPortsLink(Vertex vOriginal, int vKey, boolean[] visited, ArrayList<Facility> objects)
+-linkPortToCapital()
+-capitals(DatabaseConnection connection)
+}
+
+class DatabaseUtils{
++getBorders(DatabaseConnection databaseConnection)
++getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId)
+}
+
+interface Graph{
++toString();
++isDirected();
++numVertices();
++vertices();
++validVertex(V vert);
++key(V vert);
++vertex(int key);
++vertex(Predicate<V> p);
++adjVertices(V vert);
++numEdges();
++edges();
++edge(V vOrig, V vDest);
++edge(int vOrigKey, int vDestKey);
++outDegree(V vert);
++inDegree(V vert);
++incomingEdges(V vert);
++addVertex(V vert) throws NullVerticesException;
++addEdge(V vOrig, V vDest, E weight) throws NullVerticesException;
++removeVertex(V vert) throws NullVerticesException;
++removeEdge(V vOrig, V vDest) throws NullVerticesException;
++clone();
+}
+FreightNetworkUI ..> FreightNetworkController
+FreightNetworkController ..>FreightNetwork
+FreightNetwork -> Graph
+FreightNetwork ..> DatabaseUtils
+@enduml

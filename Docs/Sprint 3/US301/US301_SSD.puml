@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor TrafficManager
+activate TrafficManager
+
+TrafficManager -> System: Asks for create the graph
+activate System
+System --> TrafficManager: Ask the number of connections
+deactivate System
+
+TrafficManager -> System: Introduces the number of connections
+activate System
+TrafficManager <-- System: Informs the success of the operation
+deactivate System
+deactivate PortManager
+@enduml
