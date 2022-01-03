@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.GetAuditTrailController;
-import lapr.project.controller.GetContainerRouteController;
-import lapr.project.controller.ShipSummaryController;
-import lapr.project.data.DataBaseScripts.GetAuditTrailScript;
 
 import java.sql.SQLException;
 

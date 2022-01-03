@@ -3,10 +3,6 @@ package lapr.project.shared.graph;
 import lapr.project.model.City;
 import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NoPathFoundForSpecificVertexException;
-import lapr.project.shared.graph.Algorithms;
-import lapr.project.shared.graph.Graph;
-import lapr.project.shared.graph.Vertex;
-
 import java.util.*;
 
 public class GraphNClosestPlaces {

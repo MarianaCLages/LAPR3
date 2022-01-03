@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.LoadedContainersController;
-import lapr.project.shared.exceptions.*;
 import java.sql.SQLException;
 
 public class LoadedContainersUI implements Runnable {

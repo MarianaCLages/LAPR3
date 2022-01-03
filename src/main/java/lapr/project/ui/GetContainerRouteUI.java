@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.GetContainerRouteController;
-import lapr.project.controller.ShipSummaryController;
 
 import java.sql.SQLException;
 

@@ -3,12 +3,10 @@ package lapr.project.ui;
 import lapr.project.controller.FacilityOccupationRateController;
 
 import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
 
 public class FacilityOccupationRateUI implements Runnable {
 
     private final FacilityOccupationRateController facilityOccupationRateController;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public FacilityOccupationRateUI() {
         this.facilityOccupationRateController = new FacilityOccupationRateController();

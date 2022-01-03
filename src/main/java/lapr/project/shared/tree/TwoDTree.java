@@ -27,36 +27,6 @@ public class TwoDTree {
     }
 
     /**
-     * Calculates the distance between the node and the port.
-     *
-     * @param n0   the node
-     * @param port the port
-     * @return the distance between the node and the port
-     */
-    private static double dist(Node n0, Port port) {
-        double total;
-
-        total = Math.sqrt(distSquared(n0, port));
-
-        return total;
-    }
-
-
-    /**
-     * Calculates the distance squared between the node and the port.
-     *
-     * @param n0   the node
-     * @param port the port
-     * @return the distance squared between the node and the port
-     */
-    private static double distSquared(Node n0, Port port) {
-
-        double total = Math.abs(Math.pow(n0.getX() - port.getLocation().getLatitude(), 2) + Math.pow(n0.getY() - port.getLocation().getLongitude(), 2));
-
-        return total;
-    }
-
-    /**
      * Inserts a group of ports into the 2D-Tree.
      *
      * @param port the array of ports

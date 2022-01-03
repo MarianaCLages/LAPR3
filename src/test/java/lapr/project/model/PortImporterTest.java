@@ -66,7 +66,7 @@ class PortImporterTest {
 
         when(portStoreData.save(databaseConnection, new Object())).thenReturn(
                 true);
-       // PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
+        PortImporter.importPorts(tempFile.toFile(), store, portStoreData, databaseConnection);
         Assertions.assertEquals(store.getPortList().toString(), store.getPortList().toString());
     }
 

@@ -6,10 +6,6 @@ import lapr.project.model.City;
 import lapr.project.model.Facility;
 import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NullVerticesException;
-import lapr.project.shared.graph.Graph;
-import lapr.project.shared.graph.MatrixGraph;
-import lapr.project.shared.graph.Vertex;
-import lapr.project.shared.graph.VertexDistanceCalculator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
