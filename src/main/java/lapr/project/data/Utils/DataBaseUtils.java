@@ -43,12 +43,15 @@ public class DataBaseUtils {
                 "         inner join COUNTRY C2 on FACILITY.ALPHA2CODE = C2.ALPHA2CODE\n" +
                 "WHERE FACILITYID = '" + facilityID + "'";
 
+
+
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
+
                 if (resultSet.next()) {
 
-                    String continentID = getContinentID(resultSet.getString("ALPHA3CODE"), databaseConnection);
+                    //String continentID = getContinentID(resultSet.getString("ALPHA3CODE"), databaseConnection);
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
@@ -59,7 +62,8 @@ public class DataBaseUtils {
                     if (latitude < -90) latitude += 90;
                     if (longitude < -180) longitude += 180;
 
-                    return new Port(identification, name, continentID, country, new FacilityLocation(longitude, latitude), 0);
+
+                    return new Port(identification, name, null, country, new FacilityLocation(longitude, latitude), 0);
 
                 } else return null;
 

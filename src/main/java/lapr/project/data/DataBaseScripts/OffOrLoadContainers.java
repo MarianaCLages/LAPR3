@@ -135,13 +135,12 @@ public class OffOrLoadContainers {
 
                     try {
                         Port port = DataBaseUtils.getPort(getFacility(mmsi), databaseConnection);
-
-                        PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
+                        PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getCountry(), port.getLocation());
 
                         stringBuilder.append("\n" + portDTO);
 
                     } catch (Exception e) {
-                        //EMPTY
+
                     }
 
                     return stringBuilder.toString();
@@ -217,7 +216,7 @@ public class OffOrLoadContainers {
 
         StringBuilder c = new StringBuilder();
 
-        c.append("Facility ID ").append(facilityId).append(":\n");
+
 
         while (k != 0) {
             try {
@@ -305,7 +304,7 @@ public class OffOrLoadContainers {
                 try {
                     Port port = DataBaseUtils.getPort(getFacility(mmsi), databaseConnection);
 
-                    PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
+                    PortDTO portDTO = new PortDTO(port.getIdentification(), port.getName(),port.getCountry(), port.getLocation());
 
                     stringBuilder.append("\n" + portDTO);
 

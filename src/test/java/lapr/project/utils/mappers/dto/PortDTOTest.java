@@ -11,7 +11,7 @@ class PortDTOTest {
     // Country c1 = new Country("United Kingdom", "UK".toCharArray(), "UNK".toCharArray(), 25, Continent.EUROPE);
 
 
-    PortDTO portDTO = new PortDTO("America", "USA", "01", "IA", new FacilityLocation(10, 10));
+    PortDTO portDTO = new PortDTO("America", "USA", "01", new FacilityLocation(10, 10));
 
     @Test
     void testToString() {
@@ -19,8 +19,7 @@ class PortDTOTest {
         String expected = "Port Information :\n" +
                 "Identification: America\n" +
                 "Name: USA\n" +
-                "Continent: 01\n" +
-                "Country: IA\n" +
+                "Country: 01\n" +
                 "Longitude = 10.0\n" +
                 "Latitude = 10.0\n";
 

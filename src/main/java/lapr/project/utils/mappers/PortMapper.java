@@ -15,7 +15,7 @@ public class PortMapper {
      * @return the port info in DTO
      */
     private PortDTO toDTO(Port port) {
-        return new PortDTO(port.getIdentification(), port.getName(), port.getContinent(), port.getCountry(), port.getLocation());
+        return new PortDTO(port.getIdentification(), port.getName(),  port.getCountry(), port.getLocation());
     }
 
     /**
