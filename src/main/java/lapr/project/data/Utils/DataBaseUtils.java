@@ -29,19 +29,8 @@ public class DataBaseUtils {
 
         Connection connection = databaseConnection.getConnection();
 
-        String sqlCommand = "SELECT FACILITYID,\n" +
-                "       LONGITUDE,\n" +
-                "       LATITUDE,\n" +
-                "       CAPACITY,\n" +
-                "       CONTINENT,\n" +
-                "       C2.ALPHA2CODE,\n" +
-                "       C2.ALPHA3CODE,\n" +
-                "       C2.NAME,\n" +
-                "       CAPITAL,\n" +
-                "       POPULATION\n" +
-                "FROM FACILITY\n" +
-                "         inner join COUNTRY C2 on FACILITY.ALPHA2CODE = C2.ALPHA2CODE\n" +
-                "WHERE FACILITYID = '" + facilityID + "'";
+        String sqlCommand = "SELECT * FROM FACILITY\n" +
+                "                WHERE FACILITYID = "+facilityID;
 
 
 
@@ -55,7 +44,7 @@ public class DataBaseUtils {
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
-                    Country country = new Country(resultSet.getString("NAME"), resultSet.getString("ALPHA2CODE").toCharArray(), resultSet.getString("ALPHA3CODE").toCharArray(), resultSet.getDouble("POPULATION"), Continent.valueOfName(resultSet.getString("CONTINENT")));
+                    Country country = new Country(resultSet.getString("COUNTRYID"), null,null,0,null);
                     double longitude = resultSet.getDouble("LONGITUDE");
                     double latitude = resultSet.getDouble("LATITUDE");
 
