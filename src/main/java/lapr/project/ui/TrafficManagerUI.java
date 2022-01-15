@@ -27,6 +27,9 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Colour the map using as few colours as possible", new ColourGraphUI()));
         options.add(new MenuItem("Get the 'N' closest places per city/port",new GraphNClosestPlacesUI()));
 
+        //SPRINT 4
+        //options.add(new MenuItem("Get the 'N' more critical ports", new PortCentralityUI()));
+
         int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nTraffic Manager Menu:");
