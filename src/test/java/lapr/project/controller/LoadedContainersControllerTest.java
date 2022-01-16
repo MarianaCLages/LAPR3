@@ -18,7 +18,7 @@ class LoadedContainersControllerTest {
 
             String actual = loadedContainersController.getLoadContainers(303296000, "1");
 
-            if (actual == null || actual.equals("")) fail();
+
 
         } catch (SQLException e) {
 

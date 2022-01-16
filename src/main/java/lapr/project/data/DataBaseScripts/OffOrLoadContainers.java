@@ -46,6 +46,7 @@ public class OffOrLoadContainers {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
+
                     return resultSet.getString("FACILITYID");
                 } else {
                     return null;
