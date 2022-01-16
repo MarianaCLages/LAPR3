@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
+import static org.junit.jupiter.api.Assertions.*;
+/*
 class GetContainerRouteControllerTest {
 
     @Test
@@ -23,8 +23,9 @@ class GetContainerRouteControllerTest {
             if (actual == null || actual.equals("")) fail();
 
         } catch (SQLException e) {
+            System.out.println("NANI");
         }
 
 
     }
-}
+}*/

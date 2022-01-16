@@ -29,6 +29,7 @@ public class TrafficManagerUI implements Runnable {
 
         //SPRINT 4
         //options.add(new MenuItem("Get the 'N' more critical ports", new PortCentralityUI()));
+        options.add(new MenuItem("Most efficient circuit", new MostEfficientCircuitUI()));
 
         int option;
         do {

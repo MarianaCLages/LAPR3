@@ -39,7 +39,7 @@ public class GraphNClosestPlaces {
 
             for (Vertex v : graph.vertices()) {
 
-                Algorithms.shortestPaths(graph, v, Double::compare, Double::sum, 0.0, possiblePaths, distanceList);
+                Algorithms.shortestPaths(graph, v, Double::compare, Double::sum, 0.0, possiblePaths, distanceList);//vai pegar num vertice e pegar em todos os paths possiveis
 
                 for (int i = 0; i < distanceList.size(); i++) {
 
