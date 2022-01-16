@@ -5,6 +5,7 @@ import lapr.project.data.CargoManifest;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.data.ShipStoreData;
 import lapr.project.model.*;
+import lapr.project.shared.ContainerPosition;
 import lapr.project.shared.exceptions.InvalidCargoManifestException;
 import lapr.project.shared.exceptions.InvalidContainerException;
 
@@ -12,26 +13,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class DataBaseUtils {
+
+    private static final ShipStoreData shipStoreData = App.getInstance().getCompany().getShipStoreData();
 
     private DataBaseUtils() {
         //EMPTY
     }
-
-    private static final ShipStoreData shipStoreData = App.getInstance().getCompany().getShipStoreData();
 
     public static Port getPort(String facilityID, DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "SELECT * FROM FACILITY\n" +
-                "                WHERE FACILITYID = "+facilityID;
-
+                "                WHERE FACILITYID = " + facilityID;
 
 
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
@@ -44,7 +41,7 @@ public class DataBaseUtils {
 
                     String identification = resultSet.getString("FACILITYID");
                     String name = resultSet.getString("NAME");
-                    Country country = new Country(resultSet.getString("COUNTRYID"), null,null,0,null);
+                    Country country = new Country(resultSet.getString("COUNTRYID"), null, null, 0, null);
                     double longitude = resultSet.getDouble("LONGITUDE");
                     double latitude = resultSet.getDouble("LATITUDE");
 
@@ -227,6 +224,78 @@ public class DataBaseUtils {
         }
     }
 
+    public static List<Container> getAllContainersFromACargoManifest(String cargoManifestId, DatabaseConnection databaseConnection) throws SQLException {
+
+        LinkedList<Container> list = null;
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "Select CARGOMANIFESTID,\n" +
+                "       xpos,\n" +
+                "       ypos,\n" +
+                "       zpos,\n" +
+                "       C2.containerid,\n" +
+                "       isocode,\n" +
+                "       payload,\n" +
+                "       tare,\n" +
+                "       gross,\n" +
+                "       energyconsume,\n" +
+                "       temperature\n" +
+                "from CARGOMANIFESTCONTAINER\n" +
+                "         join CONTAINER C2 on C2.CONTAINERID = CARGOMANIFESTCONTAINER.CONTAINERID\n" +
+                "         left join REFRIGERATORCONTAINER R on C2.CONTAINERID = R.CONTAINERID\n" +
+                "where CARGOMANIFESTID = " + "'" + cargoManifestId + "'";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    list = new LinkedList<>();
+
+                    if (resultSet.getString("ENERGYCONSUME") != null) {
+
+                        RefrigeratedContainer refrigeratedContainer = new RefrigeratedContainer(resultSet.getString("CONTAINERID"), resultSet.getInt("PAYLOAD"), resultSet.getInt("TARE"), resultSet.getInt("GROSS"), resultSet.getString("ISOCODE"), resultSet.getInt("ENERGYCONSUME"), resultSet.getInt("TEMPERATURE"));
+                        refrigeratedContainer.setPosition(new ContainerPosition(resultSet.getInt("XPOS"), resultSet.getInt("YPOS"), resultSet.getInt("ZPOS")));
+                        list.add(refrigeratedContainer);
+
+                    } else {
+
+                        Container container = new Container(resultSet.getString("CONTAINERID"), resultSet.getInt("PAYLOAD"), resultSet.getInt("TARE"), resultSet.getInt("GROSS"), resultSet.getString("ISOCODE"));
+                        container.setPosition(new ContainerPosition(resultSet.getInt("XPOS"), resultSet.getInt("YPOS"), resultSet.getInt("ZPOS")));
+                        list.add(container);
+
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    public static ISODimentions getDimensionsByISO(String ISO, DatabaseConnection databaseConnection) {
+        Connection connection = databaseConnection.getConnection();
+        ISODimentions isoDimentions;
+
+        String sqlCommand = "SELECT *\n" +
+                "from ISOCODE\n" +
+                "where ID = '" + ISO + "'";
+
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+                resultSet.next();
+                isoDimentions = new ISODimentions(resultSet.getInt("WIDTH"), resultSet.getInt("LENGTH"), resultSet.getInt("HEIGHT"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+        }
+
+        return isoDimentions;
+    }
+
+
     public static Ship getShipByMmsi(int mmsi, DatabaseConnection databaseConnection) {
         return (Ship) shipStoreData.getElement(databaseConnection, mmsi);
     }
@@ -360,8 +429,6 @@ public class DataBaseUtils {
                             }
                         }
                     }
-
-
                 } while (resultSet.next());
             }
         } catch (SQLException ex) {
@@ -372,7 +439,8 @@ public class DataBaseUtils {
     }
 
 
-    public static Ship getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId) throws SQLException {
+    public static Ship getMmsiByCargoManifest(DatabaseConnection databaseConnection, String cargoManifestId) throws
+            SQLException {
         Connection connection = databaseConnection.getConnection();
 
         String sqlCommand = "select MMSI from SHIP s\n" +
@@ -393,11 +461,12 @@ public class DataBaseUtils {
     }
 
 
-    public static boolean createCargoManifestContainer(DatabaseConnection databaseConnection, String cargoManifestID, String containerID, int xPos, int yPos, int zPos) throws SQLException, InvalidCargoManifestException, InvalidContainerException {
+    public static boolean createCargoManifestContainer(DatabaseConnection databaseConnection, String
+            cargoManifestID, String containerID, int xPos, int yPos, int zPos) throws
+            SQLException, InvalidCargoManifestException, InvalidContainerException {
         Connection connection = databaseConnection.getConnection();
 
         try {
-
             if (!verifyCargoManifest(cargoManifestID, databaseConnection))
                 throw new InvalidCargoManifestException();
 
@@ -423,7 +492,8 @@ public class DataBaseUtils {
 
     }
 
-    private static boolean verifyContainer(String containerID, DatabaseConnection databaseConnection) throws SQLException {
+    private static boolean verifyContainer(String containerID, DatabaseConnection databaseConnection) throws
+            SQLException {
 
         Connection connection = databaseConnection.getConnection();
 
@@ -437,8 +507,7 @@ public class DataBaseUtils {
                 if (resultSet.next()) {
                     int count = resultSet.getInt(1);
 
-                    if (count == 1) return true;
-                    else return false;
+                    return count == 1;
 
                 }
             }
@@ -448,7 +517,8 @@ public class DataBaseUtils {
 
     }
 
-    private static boolean verifyCargoManifest(String cargoManifestID, DatabaseConnection databaseConnection) throws SQLException {
+    private static boolean verifyCargoManifest(String cargoManifestID, DatabaseConnection databaseConnection) throws
+            SQLException {
 
         Connection connection = databaseConnection.getConnection();
 

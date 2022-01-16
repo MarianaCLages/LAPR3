@@ -82,6 +82,7 @@ public class FreightNetwork {
                 boolean[] visited = new boolean[graph.numVertices()];
                 ArrayList<Facility> list = new ArrayList<>();
                 dfsPortsLink(v, 1, visited, list); //log(F)
+
                 int finalI = graph.key(v);
                 Comparator<Facility> comparator = (o1, o2) -> {
                     if (VertexDistanceCalculator.distanceCalculator(o1, graph.vertex(finalI)) > VertexDistanceCalculator.distanceCalculator(o2, graph.vertex(finalI))) {
