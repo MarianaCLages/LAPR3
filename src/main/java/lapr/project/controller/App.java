@@ -87,7 +87,9 @@ public class App {
         this.authFacade.addUserRole(Constants.ROLE_SHIP_CAPTAIN, Constants.ROLE_SHIP_CAPTAIN);
         this.authFacade.addUserRole(Constants.ROLE_PORT_MANAGER, Constants.ROLE_PORT_MANAGER);
         this.authFacade.addUserRole(Constants.ROLE_PORT_STAFF, Constants.ROLE_PORT_STAFF);
+        this.authFacade.addUserRole(Constants.ROLE_FLEET_MANAGER,Constants.ROLE_FLEET_MANAGER);
 
+        this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.FLEET_MANAGER,Constants.MODEL_CLASS_PATH + "" + Constants.FLEET_MANAGER));
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER, Constants.MODEL_CLASS_PATH + "" + Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER));
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.CLIENT, Constants.MODEL_CLASS_PATH + "" + Constants.CLIENT));
         this.company.getOrgRoleStore().addOrgRole(new OrgRole(Constants.TRAFFIC_MANAGER, Constants.MODEL_CLASS_PATH + "" + Constants.TRAFFIC_MANAGER));
@@ -119,6 +121,10 @@ public class App {
         //email: PS00001@lei.pt pass: 123
         PortStaff ps1 = new PortStaff(this.company.getOrgRoleStore().getRoleById(Constants.PORT_STAFF), "PS00001", "Port Staff");
         this.authFacade.addUserWithRole(ps1.getName(), ps1.getEmail(), "123", Constants.ROLE_PORT_STAFF);
+
+        //email: FM00001@lei.pt pass: 123
+        TrafficManager fm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.FLEET_MANAGER),"FM00001","Fleet Manager");
+        this.authFacade.addUserWithRole(fm1.getName(),fm1.getEmail(),"123",Constants.ROLE_FLEET_MANAGER);
 
         return true;
     }

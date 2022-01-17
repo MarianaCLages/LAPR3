@@ -11,7 +11,7 @@ public class CallOccupationRateFunction {
     /**
      * Constructor.
      */
-    private CallOccupationRateFunction() {
+    public CallOccupationRateFunction() {
         // Empty constructor
     }
 
