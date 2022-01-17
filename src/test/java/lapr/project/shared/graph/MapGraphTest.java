@@ -33,7 +33,6 @@ class MapGraphTest {
      */
     @Test
     void testCopyConstructor() throws NullVerticesException {
-        System.out.println("Test copy constructor");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -48,7 +47,6 @@ class MapGraphTest {
      */
     @Test
     void testIsDirected() {
-        System.out.println("Test isDirected");
 
         assertTrue(instance.isDirected(), "result should be true");
         instance = new MapGraph<>(false);
@@ -60,7 +58,6 @@ class MapGraphTest {
      */
     @Test
     void testNumVertices() throws NullVerticesException {
-        System.out.println("Test numVertices");
 
         assertEquals(0, instance.numVertices(), "result should be zero");
         instance.addVertex("A");
@@ -78,7 +75,6 @@ class MapGraphTest {
      */
     @Test
     void testVertices() throws NullVerticesException {
-        System.out.println("Test vertices");
 
         assertEquals(0, instance.vertices().size(), "vertices should be empty");
 
@@ -107,7 +103,6 @@ class MapGraphTest {
      */
     @Test
     void testValidVertex() throws NullVerticesException {
-        System.out.println("Test validVertex");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -124,7 +119,6 @@ class MapGraphTest {
      */
     @Test
     void testKey() throws NullVerticesException {
-        System.out.println("Test key");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -140,7 +134,6 @@ class MapGraphTest {
      */
     @Test
     void testAdjVertices() throws NullVerticesException {
-        System.out.println("Test adjVertices");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -166,7 +159,6 @@ class MapGraphTest {
      */
     @Test
     void testNumEdges() throws NullVerticesException {
-        System.out.println("Test numEdges");
 
         assertEquals(0, instance.numEdges(), "result should be zero");
 
@@ -188,7 +180,6 @@ class MapGraphTest {
      */
     @Test
     void testEdges() throws NullVerticesException {
-        System.out.println("Test Edges");
 
         assertEquals(0, instance.edges().size(), "edges should be empty");
 
@@ -236,7 +227,6 @@ class MapGraphTest {
      */
     @Test
     void testGetEdge() throws NullVerticesException {
-        System.out.println("Test getEdge");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -255,7 +245,6 @@ class MapGraphTest {
      */
     @Test
     void testGetEdgeByKey() throws NullVerticesException {
-        System.out.println("Test getEdge");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -275,7 +264,6 @@ class MapGraphTest {
      */
     @Test
     void testOutDegree() throws NullVerticesException {
-        System.out.println("Test outDegree");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -291,7 +279,6 @@ class MapGraphTest {
      */
     @Test
     void testInDegree() throws NullVerticesException {
-        System.out.println("Test inDegree");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -307,7 +294,6 @@ class MapGraphTest {
      */
     @Test
     void testOutgoingEdges() throws NullVerticesException {
-        System.out.println(" Test outgoingEdges");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -340,7 +326,6 @@ class MapGraphTest {
      */
     @Test
     void testIncomingEdges() throws NullVerticesException {
-        System.out.println(" Test incomingEdges");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -374,7 +359,6 @@ class MapGraphTest {
      */
     @Test
     void testRemoveVertex() throws NullVerticesException {
-        System.out.println("Test removeVertex");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -404,7 +388,6 @@ class MapGraphTest {
      */
     @Test
     void testRemoveEdge() throws NullVerticesException {
-        System.out.println("Test removeEdge");
 
         assertEquals(0, instance.numEdges(), "Num edges should be 0");
 
@@ -432,7 +415,6 @@ class MapGraphTest {
      */
     @Test
     void testClone() throws NullVerticesException {
-        System.out.println("Test Clone");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -460,7 +442,6 @@ class MapGraphTest {
 
     @Test
     void testEquals() throws NullVerticesException {
-        System.out.println("Test Equals");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));

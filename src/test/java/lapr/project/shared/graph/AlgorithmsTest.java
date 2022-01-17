@@ -59,7 +59,7 @@ class AlgorithmsTest {
      */
     @Test
     public void testBreadthFirstSearch() {
-        System.out.println("Test BreadthFirstSearch");
+
 
         Assertions.assertNull(Algorithms.BreadthFirstSearch(completeMap, "LX"), "Should be null if vertex does not exist");
 
@@ -93,7 +93,6 @@ class AlgorithmsTest {
      */
     @Test
     public void testDepthFirstSearch() {
-        System.out.println("Test of DepthFirstSearch");
 
         assertNull(Algorithms.DepthFirstSearch(completeMap, "LX"), "Should be null if vertex does not exist");
 
@@ -118,7 +117,6 @@ class AlgorithmsTest {
      */
     @Test
     public void testShortestPath() throws NullVerticesException {
-        System.out.println("Test of shortest path");
 
         LinkedList<String> shortPath = new LinkedList<>();
 
@@ -162,7 +160,7 @@ class AlgorithmsTest {
      */
     @Test
     public void testShortestPaths() throws NullVerticesException {
-        System.out.println("Test of shortest path");
+
 
         ArrayList<LinkedList<String>> paths = new ArrayList<>();
         ArrayList<Integer> dists = new ArrayList<>();

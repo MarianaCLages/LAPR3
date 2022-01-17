@@ -10,7 +10,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
- class MatrixGraphTest {
+class MatrixGraphTest {
 
     final ArrayList<String> co = new ArrayList<>(Arrays.asList("A", "A", "B", "C", "C", "D", "E", "E"));
     final ArrayList<String> cd = new ArrayList<>(Arrays.asList("B", "C", "D", "D", "E", "A", "D", "E"));
@@ -28,8 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of copy constructor of class Graph.
      */
     @Test
-     void testCopyConstructor() throws NullVerticesException {
-        System.out.println("Test copy constructor");
+    void testCopyConstructor() throws NullVerticesException {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -43,8 +42,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of isDirected method, of class Graph.
      */
     @Test
-     void testIsDirected() {
-        System.out.println("Test isDirected");
+    void testIsDirected() {
 
         assertTrue(instance.isDirected(), "result should be true");
         instance = new MatrixGraph<>(false);
@@ -55,8 +53,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of numVertices method, of class Graph.
      */
     @Test
-     void testNumVertices() {
-        System.out.println("Test numVertices");
+    void testNumVertices() {
 
         assertEquals(0, instance.numVertices(), "result should be zero");
         instance.addVertex("A");
@@ -73,8 +70,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of vertices method, of class Graph.
      */
     @Test
-     void testVertices() {
-        System.out.println("Test vertices");
+    void testVertices() {
 
         assertEquals(0, instance.vertices().size(), "vertices should be empty");
 
@@ -102,8 +98,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of validVertex method, of class Graph.
      */
     @Test
-     void testValidVertex() {
-        System.out.println("Test validVertex");
+    void testValidVertex() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -119,8 +114,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of key method, of class Graph.
      */
     @Test
-     void testKey() {
-        System.out.println("Test key");
+    void testKey() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -135,8 +129,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of testAdjVertices method, of class Graph.
      */
     @Test
-     void testAdjVertices() {
-        System.out.println("Test adjVertices");
+    void testAdjVertices() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -161,8 +154,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of numEdges method, of class Graph.
      */
     @Test
-     void testNumEdges() {
-        System.out.println("Test numEdges");
+    void testNumEdges() {
 
         assertEquals(0, instance.numEdges(), "result should be zero");
 
@@ -183,8 +175,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of edges method, of class Graph.
      */
     @Test
-     void testEdges() {
-        System.out.println("Test Edges");
+    void testEdges() {
 
         assertEquals(0, instance.edges().size(), "edges should be empty");
 
@@ -231,8 +222,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of getEdge method, of class Graph.
      */
     @Test
-     void testGetEdge() {
-        System.out.println("Test getEdge");
+    void testGetEdge() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -250,8 +240,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of getEdge by key method, of class Graph.
      */
     @Test
-     void testGetEdgeByKey() {
-        System.out.println("Test getEdge");
+    void testGetEdgeByKey() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -270,8 +259,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of outDegree method, of class Graph.
      */
     @Test
-     void testOutDegree() {
-        System.out.println("Test outDegree");
+    void testOutDegree() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -286,8 +274,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of inDegree method, of class Graph.
      */
     @Test
-     void testInDegree() {
-        System.out.println("Test inDegree");
+    void testInDegree() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -302,8 +289,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of outgoingEdges method, of class Graph.
      */
     @Test
-     void testOutgoingEdges() {
-        System.out.println(" Test outgoingEdges");
+    void testOutgoingEdges() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -335,8 +321,7 @@ import static org.junit.jupiter.api.Assertions.*;
      * Test of incomingEdges method, of class Graph.
      */
     @Test
-     void testIncomingEdges() {
-        System.out.println(" Test incomingEdges");
+    void testIncomingEdges() {
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -370,7 +355,6 @@ import static org.junit.jupiter.api.Assertions.*;
      */
     @Test
     public void testRemoveVertex() {
-        System.out.println("Test removeVertex");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -400,7 +384,6 @@ import static org.junit.jupiter.api.Assertions.*;
      */
     @Test
     public void testRemoveEdge() {
-        System.out.println("Test removeEdge");
 
         assertEquals(0, instance.numEdges(), "Num edges should be 0");
 
@@ -428,7 +411,6 @@ import static org.junit.jupiter.api.Assertions.*;
      */
     @Test
     public void testClone() throws NullVerticesException {
-        System.out.println("Test Clone");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
@@ -456,7 +438,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
     @Test
     public void testEquals() {
-        System.out.println("Test Equals");
 
         for (int i = 0; i < co.size(); i++)
             instance.addEdge(co.get(i), cd.get(i), cw.get(i));
