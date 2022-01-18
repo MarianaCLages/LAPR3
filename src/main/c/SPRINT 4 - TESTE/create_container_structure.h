@@ -1,11 +1,11 @@
 #ifndef CREATE_CONTAINER_STRUCTURE_H
 #define CREATE_CONTAINER_STRUCTURE_H
 
-#define ARRAY_SIZE 125						//Matrix size (5x5x5)
+#define ARRAY_SIZE 5						//Initial Array size
 extern int numContainers;					//Number of containers to be printed in the main
 
-//Structure size = 18 Bytes
-//Structure data alignment (K = 2) : 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 + 2 + 2 + 2
+//Structure size = 20 Bytes
+//Structure data alignment (K = 2) : 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 + 2 + 2 + 2 + 2
 
 typedef struct {
 	unsigned char xPos;						//Container	X position inside the matrix
@@ -21,6 +21,7 @@ typedef struct {
 	unsigned short gross;					//Container Gross
 	unsigned short id;						//Container ID
 	unsigned short energyConsumption;		//Container Energy Consumption
+	float thermalResistance;				//Container Material thermal resistance
 }Container;
 
 #endif

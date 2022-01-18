@@ -22,6 +22,8 @@ Container* fill_matrix(Container* container_array,FILE* file) {
 		
 		string = strtok(buffer,",");
 		
+		if(atoi(string) == "\n") return NULL;
+		
 		auxContainer.xPos = atoi(string);					//Multiple atois in order to obtain the value of each specific variable inside the structure
 		string = strtok(NULL, ",");
 		auxContainer.yPos = atoi(string);
@@ -45,7 +47,11 @@ Container* fill_matrix(Container* container_array,FILE* file) {
 		auxContainer.gross = atoi(string);
 		string = strtok(NULL, ",");
 		auxContainer.id = atoi(string);
-	
+		string = strtok(NULL, ",");
+		auxContainer.energyConsumption = atoi(string);
+		string = strtok(NULL, ",");
+		auxContainer.thermalResistance = atoi(string);
+		
 		if(containerPosition > ARRAY_SIZE) {				//If there is no more space inside the array, it is necessary to alloc more space inside of it, so we realloc more space for the array
 			ptrContainer = (Container*) realloc(container_array,(containerPosition+1) * sizeof(Container));
 			
