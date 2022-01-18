@@ -9,7 +9,6 @@ public class FleetManagerUI implements Runnable{
     @Override
     public void run() {
 
-
         List<MenuItem> options = new ArrayList<>();
 
         //Sprint 4

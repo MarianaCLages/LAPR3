@@ -4,6 +4,7 @@ import lapr.project.data.ConnectionFactory;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.model.*;
 import lapr.project.shared.Constants;
+import lapr.project.ui.FleetManagerUI;
 import lapr.project.utils.auth.AuthFacade;
 import lapr.project.utils.auth.UserSession;
 import lapr.project.utils.auth.domain.OrgRole;
@@ -102,7 +103,7 @@ public class App {
         ShipChiefElectricalEngineer se1 = new ShipChiefElectricalEngineer(this.company.getOrgRoleStore().getRoleById(Constants.SHIP_CHIEF_ELECTRICAL_ENGINEER), "SE00001", "Ship Chief Electrical Engineer");
         this.authFacade.addUserWithRole(se1.getName(), se1.getEmail(), "123", Constants.ROLE_CHIEF_ELECTRICAL_ENGINEER);
 
-        //email: R00001@lei.pt pass: 123
+        //email: C00001@lei.pt pass: 123
         Client c1 = new Client(this.company.getOrgRoleStore().getRoleById(Constants.CLIENT), "C00001", "Client");
         this.authFacade.addUserWithRole(c1.getName(), c1.getEmail(), "123", Constants.ROLE_CLIENT);
 
@@ -123,7 +124,7 @@ public class App {
         this.authFacade.addUserWithRole(ps1.getName(), ps1.getEmail(), "123", Constants.ROLE_PORT_STAFF);
 
         //email: FM00001@lei.pt pass: 123
-        TrafficManager fm1 = new TrafficManager(this.company.getOrgRoleStore().getRoleById(Constants.FLEET_MANAGER),"FM00001","Fleet Manager");
+        FleetManager fm1 = new FleetManager(this.company.getOrgRoleStore().getRoleById(Constants.FLEET_MANAGER),"FM00001","Fleet Manager");
         this.authFacade.addUserWithRole(fm1.getName(),fm1.getEmail(),"123",Constants.ROLE_FLEET_MANAGER);
 
         return true;

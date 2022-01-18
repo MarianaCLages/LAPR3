@@ -1,6 +1,5 @@
 package lapr.project.controller;
 
-import lapr.project.data.DataBaseScripts.CallOccupationRateFunction;
 import lapr.project.data.DataBaseScripts.CountDaysEachShipScript;
 import lapr.project.data.DatabaseConnection;
 
@@ -17,10 +16,6 @@ public class CountDaysEachShipScriptController {
 
         CountDaysEachShipScript countDaysEachShipScript = new CountDaysEachShipScript();
 
-        String s = countDaysEachShipScript.CountDaysEachShip(connection,year);
-
-        return s;
+        return countDaysEachShipScript.CountDaysEachShip(connection,year);
     }
-
-
 }
