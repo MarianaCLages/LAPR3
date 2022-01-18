@@ -6,7 +6,7 @@
 
 #define FILE_NAME "containers.txt"									//File name to be read
 
-char verifyStruc(Container* c,int position);									//Function to verify Data later on can be changed 
-Container* fill_matrix(Container* container_arrray,FILE* file);		//Function that fills the allocated memory for the dynamic array
+char verifyStruct(Container* c, int position);						//Function to verify Data later on can be changed 
+Container* fill_matrix(Container* container_array, FILE* file);		//Function that fills the allocated memory for the dynamic array
 
 #endif

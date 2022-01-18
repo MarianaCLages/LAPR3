@@ -11,7 +11,7 @@ typedef struct {
 	unsigned char xPos;						//Container	X position inside the matrix
 	unsigned char yPos;						//Container Y position inside the matrix
 	unsigned char zPos;						//Container Z position inside the matrix
-	unsigned char widht;					//Container Widht
+	unsigned char width;					//Container Width
 	unsigned char lenght;					//Container Lenght
 	unsigned char height;					//Container Height
 	unsigned char isRefrigerated;			//Container Refrigeration (If the value is 1 it means the container is refrigerated if the value is 0 the container is not refrigerated)

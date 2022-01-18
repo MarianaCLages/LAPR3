@@ -1,6 +1,6 @@
 .section .data
 
-.equ STRUC_SIZE,20
+.equ STRUCT_SIZE,20
 
 .equ XPOS_OFFSET,0
 .equ YPOS_OFFSET,1
@@ -18,9 +18,9 @@
 .equ THERMAL_RESISTANCE_OFFSET, 18
 
 .section .text
-.global verifyStruc
+	.global verifyStruct
 
-verifyStruc:
+verifyStruct:
 	movl IS_REFRIGERATED_OFFSET(%rdi), %eax
 	
 end:

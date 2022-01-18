@@ -22,7 +22,7 @@ typedef struct {
 	char refrigerationTemperature
 }Container;
 
-int verifyStruc(Container* c);
-Container* construct_array(Container* container_arrray,File* file);
+int verifyStruct(Container* c, int position);
+Container* construct_array(Container* container_arrray, FILE* file);
 
 #endif
