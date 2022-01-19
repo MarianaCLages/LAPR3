@@ -69,9 +69,18 @@ int main(void) {
 			printf("Enter the z position: \n");
 			scanf("%hhd",&z);
 	
-			printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energy_needed(container_array, x, y, z));
-			count++;
-			break;
+			char temp_position = find_container_position(container_array, x, y, z);
+
+			if(temp_position == -1) {
+				printf("\nPlease enter a valid position! Check the inserted positions and try again.\n\n");
+				count++;
+				break;
+
+			} else {
+				printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energy_needed(container_array, x, y, z));
+				count++;
+				break;
+			}
 			
 			case(3):
 			//US 411, can the ship's energy generation output support the container's energy consumption in a determined cargo manifest
