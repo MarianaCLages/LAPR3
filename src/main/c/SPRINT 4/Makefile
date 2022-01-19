@@ -1,8 +1,11 @@
-main: main.o verifyStruct.o fill_matrix.o find_container_position.o verifyIfRefrigerated.o energy_needed.o
-	gcc -g -Wall main.o verifyStruct.o fill_matrix.o find_container_position.o verifyIfRefrigerated.o energy_needed.o -o main
+main: main.o verifyStruct.o fill_matrix.o find_container_position.o verifyIfRefrigerated.o energy_needed.o print_container_array.o print_menu.o
+	gcc -g -Wall main.o verifyStruct.o fill_matrix.o find_container_position.o verifyIfRefrigerated.o energy_needed.o print_container_array.o print_menu.o -o main
 
 main.o: main.c
 	gcc -g -Wall -c main.c -o main.o
+	
+print_menu.o: print_menu.c
+	gcc -g -Wall -c print_menu.c -o print_menu.o
 	
 verifyStruct.o: verifyStruct.s
 	gcc -g -Wall -c verifyStruct.s -o verifyStruct.o
@@ -18,6 +21,9 @@ verifyIfRefrigerated.o: verifyIfRefrigerated.s
 	
 energy_needed.o: energy_needed.c
 	gcc -g -Wall -c energy_needed.c -o energy_needed.o
+	
+print_container_array.o: print_container_array.c
+	gcc -g -Wall -c print_container_array.c -o print_container_array.o
 	
 clean:
 	rm -f *.o main

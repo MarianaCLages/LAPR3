@@ -2,6 +2,7 @@
 #define CREATE_CONTAINER_STRUCTURE_H
 
 #define ARRAY_SIZE 5						//Initial Array size
+#define VOYAGE_TIME 9000					//Trip time
 extern int numContainers;					//Number of containers to be printed in the main
 
 //Structure size = 20 Bytes
