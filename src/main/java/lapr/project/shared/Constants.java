@@ -45,6 +45,9 @@ public class Constants {
     public static final double HEIGHT = 2.39;
     public static final double AREA = 2 * HEIGHT * LENGTH + 2 * HEIGHT * WIDTH + 2 * WIDTH * LENGTH;
 
+    //Temperature
+    public static final double intervalMinusFiveTemperature = 20 - (-5);
+    public static final double intervalSevenTemperature = 20 - 7;
     //Material Gross m
     public static final double GROSS = 0.2;
 }

@@ -249,8 +249,9 @@ public class DataBaseUtils {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
+                list = new LinkedList<>();
                 while (resultSet.next()) {
-                    list = new LinkedList<>();
+
 
                     if (resultSet.getString("ENERGYCONSUME") != null) {
 
