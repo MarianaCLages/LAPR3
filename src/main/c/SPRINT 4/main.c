@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <errno.h>
-
+#include "energy_needed.h"
+#include "calculate_energy_consumption.h"
 #include "fill_matrix.h"
 
 //Container size (20 Bytes)
@@ -39,6 +41,8 @@ int main(void) {
 	char option;
 	char x,y,z;
 	char count = 0;
+	float genOutput;
+	bool vibe_check;
 	
 	//Prepare the Menu
 	print_menu();
@@ -70,7 +74,16 @@ int main(void) {
 			break;
 			
 			case(3):
-			//US411 YET TO BE IMPLEMENTED
+			//US 411, can the ship's energy generation output support the container's energy consumption in a determined cargo manifest
+			printf("\nEnter the ship's energy generation output: \n");
+			scanf("%f",&genOutput);
+
+			vibe_check = calculate_energy_consumption(container_array, genOutput, numContainers);
+
+			if(vibe_check){
+				printf("1\n");
+			} else printf("2\n");
+
 			count++;
 			break;
 			

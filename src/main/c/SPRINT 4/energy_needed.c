@@ -1,8 +1,6 @@
-#include "create_container_structure.h"
-#include "find_container_position.h"
-#include "verifyIfRefrigerated.h"
+#include "energy_needed.h"
 
-float energy_needed(Container* container_array, char x, char y, char z) {
+float energy_needed(Container* container_array, unsigned char x, unsigned char y, unsigned char z) {
 	
 	int container_position = find_container_position(container_array, x, y, z);
 	
