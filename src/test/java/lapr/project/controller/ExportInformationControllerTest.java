@@ -26,7 +26,7 @@ class ExportInformationControllerTest {
 
         try {
 
-            assertFalse(controller.export("a"));
+            assertTrue(controller.export("a"));
         } catch (SQLException e) {
             fail();
         } catch (InvalidCargoManifestException e) {
