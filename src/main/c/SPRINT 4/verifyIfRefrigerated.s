@@ -1,6 +1,6 @@
 .section .data
 
-.equ STRUCT_SIZE,20	#All structure off sets
+.equ STRUCT_SIZE,24	#All structure off sets
 
 .equ XPOS_OFFSET,0
 .equ YPOS_OFFSET,1
@@ -14,8 +14,8 @@
 .equ TARE_OFFSET,10
 .equ GROSS_OFFSET,12
 .equ ID_OFFSET,14
-.equ ENERGY_CONSUMPTION_OFFSET, 16
-.equ THERMAL_RESISTANCE_OFFSET, 18
+.equ THERMAL_RESISTANCE_OFFSET, 16
+.equ ENERGY_CONSUMPTION_OFFSET, 20
 
 .section .text
 	.global verifyIfRefrigerated
@@ -27,21 +27,29 @@ verifyIfRefrigerated:		# %rdi: Container_Array / %rsi: Container_Position
 	je first_position		#in case the container position is the first in the array
 	
 	movl $STRUCT_SIZE, %eax	#prepare the off set to get the correct position
-	mull %esi
-		
+
+sum_loop:
+	cmpl $0,%esi
+	je continue
+	addl %eax,%eax
+	
+	decl %esi
+	jmp sum_loop
+	
+continue:
 	addq %rax, %rdx			#now we have the correct container position
 	
 	jmp verify_integrity
 	
 first_position:
-	#since the container position is the first in the array, we don't have to increment any off set
+	#since the container position is the first in the array, we do not have to increment any off set
 	
 verify_integrity:
 
 	movl IS_REFRIGERATED_OFFSET(%rdx), %ecx
 	
 	cmpb $0, %cl
-	je not_refrigerated	#if the value of the variable inside the struct "isRefrigerated" is 0 then the container is not refrigerated
+	je not_refrigerated		#if the value of the variable inside the struct isRefrigerated is 0 then the container is not refrigerated
 	
 	movb $1, %al
 	

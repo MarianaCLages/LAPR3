@@ -13,10 +13,7 @@ bool calculate_energy_consumption(Container* container_array, float generatorCap
     if(numContainers == 0) {
         return true;
     }
-
-    printf("OLAAAAA\n");
-    printf("%d",numContainers);
-
+    
     //for each(item, container_array, numContainers) {
     //    energyConsumption = energy_needed(container_array, item.xPos, item.yPos, item.zPos);
     //    totalEnergyConsumption += energyConsumption;
