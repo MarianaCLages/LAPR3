@@ -42,7 +42,7 @@ int main(void) {
 	char x,y,z;
 	char count = 0;
 	float genOutput;
-	bool vibe_check;
+	int decision;
 	
 	//Prepare the Menu
 	print_menu();
@@ -87,11 +87,9 @@ int main(void) {
 			printf("\nEnter the ship's energy generation output: \n");
 			scanf("%f",&genOutput);
 
-			vibe_check = calculate_energy_consumption(container_array, genOutput, numContainers);
-
-			if(vibe_check){
-				printf("1\n");
-			} else printf("2\n");
+			decision = calculate_energy_consumption(container_array, genOutput, numContainers);
+			
+			printf("%d\n",decision);
 
 			count++;
 			break;
