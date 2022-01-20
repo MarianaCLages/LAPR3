@@ -60,13 +60,13 @@ int main(void) {
 			
 			case(2):
 			//US 410, know the amount needed enerrgy, first, it is necessary to have the x,y,z coord in order to know which container we will be working with
-			printf("\nEnter the x position: \n");
+			printf("\nPlease enter the x position: \n");
 			scanf("%hhd",&x);
 
-			printf("Enter the y position: \n");
+			printf("Please enter the y position: \n");
 			scanf("%hhd",&y);
 
-			printf("Enter the z position: \n");
+			printf("Please enter the z position: \n");
 			scanf("%hhd",&z);
 	
 			char temp_position = find_container_position(container_array, x, y, z);
@@ -89,7 +89,7 @@ int main(void) {
 
 			decision = calculate_energy_consumption(container_array, genOutput, numContainers);
 			
-			printf("%d\n",decision);
+			printf("\nResult: %d\n\n", decision);
 
 			count++;
 			break;
@@ -104,9 +104,9 @@ int main(void) {
 			
 		}
 		
-		if(count==2) {
+		if(count == 2) {
 			print_menu();
-			count=0;
+			count = 0;
 		}
 		
 	} while(exit == 0);
