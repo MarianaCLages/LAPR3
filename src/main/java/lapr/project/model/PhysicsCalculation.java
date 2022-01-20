@@ -7,6 +7,34 @@ import java.util.Map;
 
 public class PhysicsCalculation {
 
+    public static double calculateEnergyConsumptionDeterminedTripMinus5C() {
+        double stainlessSteelResistance = 0.95 / (15 * Constants.AREA);
+        double polyurethaneFoamResistance = 30 / (0.029 * Constants.AREA);
+        double marinePlywoodResistance = 11.75 / (0.13 * Constants.AREA);
+
+        double totalResistance = stainlessSteelResistance + polyurethaneFoamResistance + marinePlywoodResistance;
+
+        // Q = temperature difference / total resistance
+        double q = (20 + 5.0) / totalResistance;
+
+        //Return = Q x time
+        return (q * Constants.VOYAGE_TIME);
+    }
+
+    public static double calculateEnergyConsumptionDeterminedTrip7C() {
+        double cortenSteelResistance = 2 / (25 * Constants.AREA);
+        double extrudedPolystyreneResistance = 6.10 / (3.30 * Constants.AREA);
+        double marinePlywoodResistance = 11.75 / (0.13 * Constants.AREA);
+
+        double totalResistance = cortenSteelResistance + extrudedPolystyreneResistance + marinePlywoodResistance;
+
+        // Q = temperature difference / total resistance
+        double q = (20 - 7.0) / totalResistance;
+
+        //Return = Q x time
+        return (q * Constants.VOYAGE_TIME);
+    }
+
     public static double calculateTotalEnergySuppliedMinus5(int numberOfContainers, double temperature, int voyageTime) {
         double containerArea;
         double totalResistance;

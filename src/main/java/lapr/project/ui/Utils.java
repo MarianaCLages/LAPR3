@@ -74,7 +74,7 @@ public class Utils {
         String input;
         Integer value;
         do {
-            input = Utils.readLineFromConsole("Type your option: ");
+            input = Utils.readLineFromConsole("Type your option: (Enter a valid option!)");
             value = Integer.valueOf(input);
         } while (value < 0 || value > list.size());
 

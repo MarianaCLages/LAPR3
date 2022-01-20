@@ -545,6 +545,44 @@ public class DataBaseUtils {
 
     }
 
+    public static String getAllTrips(DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        StringBuilder sb = new StringBuilder();
+        int auxCount = 1;
+
+        String sqlCommand = "select t.IDTRIP from TRIP t group by IDTRIP order by 1";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    sb.append("Trip number: ").append(auxCount).append(" ,Trip ID: ").append(resultSet.getInt(1)).append("\n");
+                    auxCount++;
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public static boolean verifyTrip(String idTrip, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select t.IDTRIP from TRIP t where t.idTrip = " + idTrip;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return true;
+                }
+
+            }
+        }
+        return false;
+
+    }
 
 }
-

@@ -48,6 +48,7 @@ public class Constants {
     public static final double CONTAINER_MID_MINUS5 = 0.000061;
     public static final double CONTAINER_INTERIOR = 0.01175;
     public static final double AREA = 2 * CONTAINER_HEIGHT * CONTAINER_LENGTH + 2 * CONTAINER_HEIGHT * CONTAINER_WIDTH + 2 * CONTAINER_WIDTH * CONTAINER_LENGTH;
+    public static final int VOYAGE_TIME = 9000;
 
 
     //Temperature

@@ -15,6 +15,7 @@ public class ShipChiefElectricalEngineerUI implements Runnable {
         options.add(new MenuItem("Container thermal resistance values", new ThermalResistanceUI()));
 
         // SPRINT 4
+        options.add(new MenuItem("Know the total energy to be supplied to a container for a default voyage time and temperature", new TotalEnergyInACertainTripUI()));
         options.add(new MenuItem("Know the total energy to be supplied to a set of containers in a trip", new TotalEnergySuppliedUI()));
         options.add(new MenuItem("Get energy consumption with different section", new EnergyNeededToSupplyUI()));
 
