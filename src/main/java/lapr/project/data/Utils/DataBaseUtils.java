@@ -284,7 +284,7 @@ public class DataBaseUtils {
         try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
                 resultSet.next();
-                isoDimentions = new ISODimentions(resultSet.getInt("CONTAINER_WIDTH"), resultSet.getInt("CONTAINER_LENGTH"), resultSet.getInt("CONTAINER_HEIGHT"));
+                isoDimentions = new ISODimentions(resultSet.getInt("WIDTH"), resultSet.getInt("LENGTH"), resultSet.getInt("HEIGHT"));
 
             }
         } catch (SQLException e) {
