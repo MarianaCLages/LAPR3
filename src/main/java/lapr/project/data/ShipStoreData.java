@@ -169,8 +169,8 @@ public class ShipStoreData implements Persistable {
                     String callSign = shipResultSet.getString("CALLSIGN");
                     String shipName = shipResultSet.getString("NAME");
 
-                    double length = shipResultSet.getDouble("LENGTH");
-                    double width = shipResultSet.getDouble("WIDTH");
+                    double length = shipResultSet.getDouble("CONTAINER_LENGTH");
+                    double width = shipResultSet.getDouble("CONTAINER_WIDTH");
                     double capacity = shipResultSet.getDouble("CAPACITY");
                     double draft = shipResultSet.getDouble("DRAFT");
 
@@ -504,8 +504,8 @@ public class ShipStoreData implements Persistable {
                     String name = resultSet.getString("NAME");
                     String imo = resultSet.getString("IMO");
                     String callSign = resultSet.getString("CALLSIGN");
-                    double length = resultSet.getDouble("LENGTH");
-                    double width = resultSet.getDouble("WIDTH");
+                    double length = resultSet.getDouble("CONTAINER_LENGTH");
+                    double width = resultSet.getDouble("CONTAINER_WIDTH");
                     double draft = resultSet.getDouble("DRAFT");
                     String cargo = resultSet.getString("CAPACITY");
 

@@ -367,7 +367,7 @@ public class MatrixGraph<V, E> extends CommonGraph<V, E> {
         try {
             copy(this, g);
         } catch (NullVerticesException e) {
-            //
+//
         }
 
         return g;

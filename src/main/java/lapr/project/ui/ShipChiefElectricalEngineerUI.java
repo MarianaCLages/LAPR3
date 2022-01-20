@@ -3,14 +3,15 @@ package lapr.project.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipChiefElectricalEngineerUI implements Runnable{
+public class ShipChiefElectricalEngineerUI implements Runnable {
 
 
-    public void run(){
+    public void run() {
 
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Materials for the temperature", new MaterialTemperatureUI()));
         options.add(new MenuItem("Container thermal resistance values", new ThermalResistanceUI()));
+        options.add(new MenuItem("Get energy consumption with different section", new EnergyNeededToSupplyUI()));
 
         int option;
         do {
