@@ -12,7 +12,7 @@ public class PhysicsCalculation {
         double areaFront = frontFaces * Constants.CONTAINER_HEIGHT * Constants.CONTAINER_WIDTH;
         double areaSide = sideSides * Constants.CONTAINER_HEIGHT * Constants.CONTAINER_LENGTH;
         double areaTop = topSides * Constants.CONTAINER_WIDTH * Constants.CONTAINER_LENGTH;
-        double thermalResistance = (1 / areaFront + areaSide + areaTop) * (Constants.CONTAINER_EXTERIOR_MINUS5 / Constants.THERMALCONDUCTIVITY_CONTAINER_EXTERIOR_MINUS5) + (Constants.CONTAINER_MID_MINUS5 / Constants.THERMALCONDUCTIVITY_CONTAINER_MID_MINUS5) + (Constants.CONTAINER_INTERIOR / Constants.THERMALCONDUCTIVITY_CONTAINER_INTERIOR_MINUS5);
+        double thermalResistance = (1 / areaFront + areaSide + areaTop) * (Constants.CONTAINER_EXTERIOR_MINUS5 / Double.parseDouble(System.getProperty("thermalConductivity.outer.minus5"))) + (Constants.CONTAINER_MID_MINUS5 / Double.parseDouble(System.getProperty("thermalConductivity.mid.minus5"))) + (Constants.CONTAINER_INTERIOR / Double.parseDouble(System.getProperty("thermalConductivity.inner.minus5")));
 
         double total = 0;
         for (Map.Entry<Integer, Double> entry : section.entrySet()) {
@@ -28,7 +28,7 @@ public class PhysicsCalculation {
         double areaFront = frontFaces * Constants.CONTAINER_HEIGHT * Constants.CONTAINER_WIDTH;
         double areaSide = sideSides * Constants.CONTAINER_HEIGHT * Constants.CONTAINER_LENGTH;
         double areaTop = topSides * Constants.CONTAINER_WIDTH * Constants.CONTAINER_LENGTH;
-        double thermalResistance = (1 / areaFront + areaSide + areaTop) * (Constants.CONTAINER_EXTERIOR_MINUS5 / Constants.THERMALCONDUCTIVITY_CONTAINER_EXTERIOR_MINUS5) + (Constants.CONTAINER_MID_MINUS5 / Constants.THERMALCONDUCTIVITY_CONTAINER_MID_MINUS5) + (Constants.CONTAINER_INTERIOR / Constants.THERMALCONDUCTIVITY_CONTAINER_INTERIOR_MINUS5);
+        double thermalResistance = (1 / areaFront + areaSide + areaTop) * (Constants.CONTAINER_EXTERIOR_7 / Double.parseDouble(System.getProperty("thermalConductivity.outer.7")) + (Constants.CONTAINER_MID_7 / Double.parseDouble(System.getProperty("thermalConductivity.mid.7"))) + (Constants.CONTAINER_INTERIOR / Double.parseDouble(System.getProperty("thermalConductivity.inner.7"))));
 
         double total = 0;
         for (Map.Entry<Integer, Double> entry : section.entrySet()) {

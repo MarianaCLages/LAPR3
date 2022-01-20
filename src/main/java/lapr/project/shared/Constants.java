@@ -49,12 +49,6 @@ public class Constants {
     public static final double CONTAINER_INTERIOR = 0.01175;
     public static final double AREA = 2 * CONTAINER_HEIGHT * CONTAINER_LENGTH + 2 * CONTAINER_HEIGHT * CONTAINER_WIDTH + 2 * CONTAINER_WIDTH * CONTAINER_LENGTH;
 
-    public static final double THERMALCONDUCTIVITY_CONTAINER_EXTERIOR_MINUS5 = Double.parseDouble(System.getProperty("thermalConductivity.outer.minus5"));
-    public static final double THERMALCONDUCTIVITY_CONTAINER_EXTERIOR_7 = Double.parseDouble(System.getProperty("thermalConductivity.outer.7"));
-    public static final double THERMALCONDUCTIVITY_CONTAINER_MID_MINUS7 = Double.parseDouble(System.getProperty("thermalConductivity.mid.7"));
-    public static final double THERMALCONDUCTIVITY_CONTAINER_MID_MINUS5 = Double.parseDouble(System.getProperty("thermalConductivity.mid.minus5"));
-    public static final double THERMALCONDUCTIVITY_CONTAINER_INTERIOR_MINUS5 = Double.parseDouble(System.getProperty("thermalConductivity.inner.minus5"));
-    public static final double THERMALCONDUCTIVITY_CONTAINER_INTERIOR_MINUS7 = Double.parseDouble(System.getProperty("thermalConductivity.inner.7"));
 
     //Temperature
     public static final double INTERVALMINUSFIVETEMPERATURE = 20 - (-5);
