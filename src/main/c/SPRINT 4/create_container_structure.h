@@ -2,10 +2,11 @@
 #define CREATE_CONTAINER_STRUCTURE_H
 
 #define ARRAY_SIZE 5						//Initial Array size
+#define VOYAGE_TIME 9000					//Trip time
 extern int numContainers;					//Number of containers to be printed in the main
 
-//Structure size = 20 Bytes
-//Structure data alignment (K = 2) : 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 + 2 + 2 + 2 + 2
+//Structure size = 24 Bytes
+//Structure data alignment (K = 4) : 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 + 2 + 2 + 4 + 2 + (GAP = 2)
 
 typedef struct {
 	unsigned char xPos;						//Container	X position inside the matrix
@@ -20,8 +21,8 @@ typedef struct {
 	unsigned short tare;					//Container Tare		
 	unsigned short gross;					//Container Gross
 	unsigned short id;						//Container ID
-	unsigned short energyConsumption;		//Container Energy Consumption
 	float thermalResistance;				//Container Material thermal resistance
+	unsigned short energyConsumption;		//Container Energy Consumption
 }Container;
 
 #endif

@@ -22,7 +22,7 @@ Container* fill_matrix(Container* container_array,FILE* file) {
 		
 		string = strtok(buffer,",");
 		
-		if(atoi(string) == "\n") return NULL;
+		if(atoi(string) == '\n') return NULL;
 		
 		auxContainer.xPos = atoi(string);					//Multiple atois in order to obtain the value of each specific variable inside the structure
 		string = strtok(NULL, ",");
@@ -30,7 +30,7 @@ Container* fill_matrix(Container* container_array,FILE* file) {
 		string = strtok(NULL, ",");
 		auxContainer.zPos = atoi(string);
 		string = strtok(NULL, ",");
-		auxContainer.widht = atoi(string);
+		auxContainer.width = atoi(string);
 		string = strtok(NULL, ",");
 		auxContainer.lenght = atoi(string);
 		string = strtok(NULL, ",");

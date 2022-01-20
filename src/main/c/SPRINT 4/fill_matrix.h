@@ -3,6 +3,9 @@
 
 #include "create_container_structure.h"
 #include "find_container_position.h"
+#include "print_container_array.h"
+#include "print_menu.h"
+#include "energy_needed.h"
 
 #define FILE_NAME "containers.txt"									//File name to be read
 
