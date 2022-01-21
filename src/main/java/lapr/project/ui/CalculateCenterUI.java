@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.CalculateCenterController;
-import lapr.project.data.DataBaseScripts.CalculateCenter;
 
 public class CalculateCenterUI implements Runnable {
 

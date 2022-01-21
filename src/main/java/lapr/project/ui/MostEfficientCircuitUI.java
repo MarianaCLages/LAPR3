@@ -3,7 +3,6 @@ package lapr.project.ui;
 
 
 import lapr.project.controller.MostEfficientCircuitController;
-import lapr.project.shared.graph.MostEfficientCircuit;
 import lapr.project.shared.graph.Vertex;
 
 import java.util.LinkedList;

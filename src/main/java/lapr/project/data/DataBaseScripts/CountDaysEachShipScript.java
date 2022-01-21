@@ -30,7 +30,7 @@ public class CountDaysEachShipScript {
           String[] split = string.split(",");
 
 
-          for (int i = 1; i < split.length; i++) {
+          for (int i = 0; i < split.length; i++) {
               sb.append(split[i]).append("\n");
           }
 
