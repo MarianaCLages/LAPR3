@@ -135,7 +135,6 @@ public class PhysicsCalculation {
 
 
         double energykw = (calculateTotalEnergySuppliedMinus5(numberOfContainers,temperature,voyageTime) )  ;
-        System.out.println(energykw);
         int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000))) ;
 
         if(supliesNeeded == 0) supliesNeeded = 1;
