@@ -14,11 +14,14 @@ public class CountDaysEachScriptUI implements Runnable{
 
         CountDaysEachShipScriptController countDaysEachShipScriptController = new CountDaysEachShipScriptController();
 
-        int year = Utils.readIntegerFromConsole("Please, enter the year:");
+        try {
+            int year = Utils.readIntegerFromConsole("Please, enter the year:");
 
-        String s = countDaysEachShipScriptController.CountDaysEachShipScript(year);
+            String s = countDaysEachShipScriptController.CountDaysEachShipScript(year);
 
-        System.out.println(s);
-
+            System.out.println(s);
+        }catch (NumberFormatException ex){
+            System.out.println("Please input a valid year!");
+        }
     }
 }

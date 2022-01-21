@@ -8,7 +8,6 @@ import lapr.project.model.Ship;
 import lapr.project.model.stores.ShipStore;
 import lapr.project.utils.auth.UserSession;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
