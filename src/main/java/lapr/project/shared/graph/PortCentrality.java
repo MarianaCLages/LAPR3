@@ -4,7 +4,11 @@ import java.util.*;
 
 public class PortCentrality {
 
-    static public String getCentralityOfNPorts(MatrixGraph<Vertex, Double> graph, int n) {
+    public PortCentrality() {
+        // Empty constructor
+    }
+
+    public static String getCentralityOfNPorts(MatrixGraph<Vertex, Double> graph, int n) {
         ArrayList<LinkedList<Vertex>> pathList = new ArrayList<>();
         ArrayList<Double> distanceList = new ArrayList<>();
 

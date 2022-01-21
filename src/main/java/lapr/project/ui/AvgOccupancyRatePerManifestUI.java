@@ -25,18 +25,18 @@ public class AvgOccupancyRatePerManifestUI implements Runnable {
         try {
             do {
                 try {
-                    option = (String) Utils.showAndSelectOne(controller.getAllShipsWithTrip(), "\nAll Ships with trips, please choose one:\n");
+                    option = (String) Utils.showAndSelectOne(controller.getAllShipsWithTrip(), "\n### SHIPS WITH TRIPS LIST ###\n Please choose one:\n");
 
                     if (option == null || option.trim().equals("")) {
-                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid option! (See the trip list above)");
+                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid option! (See the ship list above)");
                     }
 
                     if (!controller.verifyShip(option)) {
-                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid option! (See the trip list above)");
+                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid option! (See the ship list above)");
                     }
 
                 } catch (SQLException ex1) {
-                    System.out.println("Invalid Ship! Please enter a valid option! (Notice: enter a number that corresponds to the option, not a invalid character or a set of invalid characters nor a number that does not exist in the list!) \n");
+                    System.out.println("Invalid ship! Please enter a valid option! (Note: enter a number that corresponds to the option, not a invalid character or a set of invalid characters nor a number that does not exist in the list!) \n");
                     option = null;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -49,20 +49,20 @@ public class AvgOccupancyRatePerManifestUI implements Runnable {
 
             do {
                 try {
-                    begin = Utils.readLineFromConsole("Please enter the begin date (Follow this format: yyyy-MM-dd HH:mm:ss!):");
+                    begin = Utils.readLineFromConsole("Please enter the begin date (Follow this format: yyyy-MM-dd HH:mm:ss):");
                     LocalDateTime startTime = LocalDateTime.from(formatter.parse(begin));
                 } catch (Exception e) {
-                    System.out.println("Please enter a valid date! (Follow this format: yyyy-MM-dd HH:mm:ss!)");
+                    System.out.println("Please enter a valid date! (Follow this format: yyyy-MM-dd HH:mm:ss)");
                     begin = null;
                 }
             } while (begin == null);
 
             do {
                 try {
-                    end = Utils.readLineFromConsole("Please enter the end date (Follow this format: yyyy-MM-dd HH:mm:ss!)");
+                    end = Utils.readLineFromConsole("Please enter the end date (Follow this format: yyyy-MM-dd HH:mm:ss)");
                     LocalDateTime endTime = LocalDateTime.from(formatter.parse(end));
                 } catch (Exception e) {
-                    System.out.println("Please enter a valid date! (Follow this format: yyyy-MM-dd HH:mm:ss!)");
+                    System.out.println("Please enter a valid date! (Follow this format: yyyy-MM-dd HH:mm:ss)");
                     end = null;
                 }
             } while (end == null);
