@@ -23,8 +23,19 @@ public class TotalEnergySuppliedUI implements Runnable {
 
         try {
             int i = 0;
+            int numberOfContainers;
 
-            int numberOfContainers = Utils.readIntegerFromConsole("Please enter the number of containers:");
+            do {
+                try {
+                    numberOfContainers = Utils.readIntegerFromConsole("Please enter the number of containers:");
+                    if (numberOfContainers <= 0) {
+                        System.out.println("Invalid number! (The number of containers should be above 0!)");
+                    }
+                } catch (IllegalArgumentException ex2) {
+                    System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
+                    numberOfContainers = 0;
+                }
+            } while (numberOfContainers <= 0);
 
             String index = (String) Utils.showAndSelectOne(optionList, "Please select the temperature of the containers:");
             if (index == null) {

@@ -28,7 +28,7 @@ public class TrafficManagerUI implements Runnable {
         options.add(new MenuItem("Get the 'N' closest places per city/port",new GraphNClosestPlacesUI()));
 
         //SPRINT 4
-        //options.add(new MenuItem("Get the 'N' more critical ports", new PortCentralityUI()));
+        options.add(new MenuItem("Get the 'N' more critical ports", new PortCentralityUI()));
         options.add(new MenuItem("Most efficient circuit", new MostEfficientCircuitUI()));
 
         int option;
