@@ -19,14 +19,14 @@ public class TotalEnergyInACertainTripController {
 
     public StringBuilder calculationToMinus5Degrees() {
         StringBuilder sb = new StringBuilder();
-        String totalEnergy = df.format(PhysicsCalculation.calculateEnergyConsumptionDeterminedTrip7C());
-        return sb.append("Journey time: ").append(Constants.VOYAGE_TIME).append("s").append("\n").append("Temperature: ").append("20 ").append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
+        String totalEnergy = df.format(PhysicsCalculation.calculateEnergyConsumptionDeterminedTripMinus5C());
+        return sb.append("Journey time: ").append(Constants.VOYAGE_TIME).append("s").append("\n").append("Temperature: ").append("20").append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
     }
 
     public StringBuilder calculationTo7Degrees() {
         StringBuilder sb = new StringBuilder();
         String totalEnergy = df.format(PhysicsCalculation.calculateEnergyConsumptionDeterminedTrip7C());
-        return sb.append("Journey time: ").append(Constants.VOYAGE_TIME).append("s").append("\n").append("Temperature: ").append("20 ").append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
+        return sb.append("Journey time: ").append(Constants.VOYAGE_TIME).append("s").append("\n").append("Temperature: ").append("20").append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
     }
 
     public String getAllTripList() throws SQLException {

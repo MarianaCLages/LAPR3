@@ -35,7 +35,7 @@ public class TotalEnergySuppliedUI implements Runnable {
                 try {
                     i = Utils.readIntegerFromConsole("Please enter the number of sections with different temperatures during the trip:");
                     if (i == 0) {
-                        System.out.println("There must be at least 1 section");
+                        System.out.println("There must be at least 1 section!");
                     }
                 } catch (IllegalArgumentException ex2) {
                     System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
@@ -83,9 +83,11 @@ public class TotalEnergySuppliedUI implements Runnable {
             }
 
             System.out.println(sb);
+            System.out.println("\nOperation Success!");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("\nOperation failed! Please try again.");
         }
     }
 }

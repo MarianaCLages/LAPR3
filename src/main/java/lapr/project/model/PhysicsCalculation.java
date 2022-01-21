@@ -16,7 +16,7 @@ public class PhysicsCalculation {
 
         // Q = temperature difference / total resistance
         double q = (20 + 5.0) / totalResistance;
-
+        
         //Return = Q x time
         return (q * Constants.VOYAGE_TIME);
     }
@@ -36,55 +36,35 @@ public class PhysicsCalculation {
     }
 
     public static double calculateTotalEnergySuppliedMinus5(int numberOfContainers, double temperature, int voyageTime) {
-        double containerArea;
-        double totalResistance;
-        double stainlessSteelResistance;
-        double polyurethaneFoamResistance;
-        double marinePlywoodResistance;
+        double stainlessSteelResistance = 0.95 / (15 * Constants.AREA);
+        double polyurethaneFoamResistance = 30 / (0.029 * Constants.AREA);
+        double marinePlywoodResistance = 11.75 / (0.13 * Constants.AREA);
 
-        containerArea = Constants.AREA;
-
-        stainlessSteelResistance = 0.95 / (15 * containerArea);
-        polyurethaneFoamResistance = 30 / (0.029 * containerArea);
-        marinePlywoodResistance = 11.75 / (0.13 * containerArea);
-
-        totalResistance = stainlessSteelResistance + polyurethaneFoamResistance + marinePlywoodResistance;
+        double totalResistance = stainlessSteelResistance + polyurethaneFoamResistance + marinePlywoodResistance;
 
         // Q = temperature difference / total resistance
-        double q;
-        q = (temperature + 5.0) / totalResistance;
+        double q = (temperature + 5.0) / totalResistance;
 
         //Energy = Q x time
-        double energy;
-        energy = q * voyageTime;
+        double energy = q * voyageTime;
 
-        return energy * numberOfContainers;
+        return (energy * numberOfContainers);
     }
 
     public static double calculateTotalEnergySupplied7(int numberOfContainers, double temperature, int voyageTime) {
-        double containerArea;
-        double totalResistance;
-        double cortenSteelResistance;
-        double extrudedPolystyreneResistance;
-        double marinePlywoodResistance;
+        double cortenSteelResistance = 2 / (25 * Constants.AREA);
+        double extrudedPolystyreneResistance = 6.10 / (3.30 * Constants.AREA);
+        double marinePlywoodResistance = 11.75 / (0.13 * Constants.AREA);
 
-        containerArea = Constants.AREA;
-
-        cortenSteelResistance = 2 / (25 * containerArea);
-        extrudedPolystyreneResistance = 6.10 / (3.30 * containerArea);
-        marinePlywoodResistance = 11.75 / (0.13 * containerArea);
-
-        totalResistance = cortenSteelResistance + extrudedPolystyreneResistance + marinePlywoodResistance;
+        double totalResistance = cortenSteelResistance + extrudedPolystyreneResistance + marinePlywoodResistance;
 
         // Q = temperature difference / total resistance
-        double q;
-        q = (temperature - 7.0) / totalResistance;
+        double q = (temperature - 7.0) / totalResistance;
 
         //Energy = Q x time
-        double energy;
-        energy = q * voyageTime;
+        double energy = q * voyageTime;
 
-        return energy * numberOfContainers;
+        return (energy * numberOfContainers);
     }
 
     public static double calculateEnergyConsumptionMinus5(Map<Integer, Double> section, int frontFaces, int sideSides, int topSides) {

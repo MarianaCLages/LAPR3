@@ -69,6 +69,7 @@ public class TotalEnergyInACertainTripUI implements Runnable {
 
         } catch (Exception e) {
             System.out.println(sb);
+            System.out.println("\nOperation failed! Please try again.");
         }
     }
 }

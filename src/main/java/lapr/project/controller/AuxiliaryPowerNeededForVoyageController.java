@@ -1,20 +1,11 @@
 package lapr.project.controller;
 
-import lapr.project.controller.App;
-import lapr.project.data.DatabaseConnection;
 import lapr.project.model.PhysicsCalculation;
-import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
-import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+public class AuxiliaryPowerNeededForVoyageController {
 
-public class AuxiliaryPowerNeddedForVoyageController {
-
-    private final DatabaseConnection connection;
-
-    public AuxiliaryPowerNeddedForVoyageController(){
-        connection = App.getInstance().getDatabaseConnection();
+    public AuxiliaryPowerNeededForVoyageController(){
+        // Empty constructor
     }
 
     public String calculateSupplyNeededForMinus5(int numberOfContainers, double temperature, int journeyTime) {

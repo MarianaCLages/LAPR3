@@ -31,9 +31,9 @@ public class EnergyNeededToSupplyUI implements Runnable {
             }
             do {
                 try {
-                    i = Utils.readIntegerFromConsole("Please enter the number of sections of different temperature int the voyage.");
+                    i = Utils.readIntegerFromConsole("Please enter the number of sections with different temperatures during the trip:");
                     if (i == 0) {
-                        System.out.println("There must be at least 1 section");
+                        System.out.println("There must be at least 1 section!");
                     }
                 } catch (IllegalArgumentException ex2) {
                     System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
@@ -47,22 +47,22 @@ public class EnergyNeededToSupplyUI implements Runnable {
 
                 do {
                     try {
-                        temperature = Double.parseDouble(Utils.readLineFromConsole("Please enter the temperature of the section ." + (j + 1)));
+                        temperature = Double.parseDouble(Utils.readLineFromConsole("Please enter the temperature of the section: " + (j + 1)));
 
                     } catch (NumberFormatException ex2) {
-                        System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                        System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                         temperature = -99;
                     }
                 } while (temperature == -99);
 
                 do {
                     try {
-                        duration = duration + Utils.readIntegerFromConsole("Please enter hour duration of the section ." + (j + 1)) + 3600;
-                        duration = duration + Utils.readIntegerFromConsole("Please enter minute duration of the section ." + (j + 1)) + 60;
+                        duration = duration + Utils.readIntegerFromConsole("Please enter hour duration of the section ." + (j + 1)) * 3600;
+                        duration = duration + Utils.readIntegerFromConsole("Please enter minute duration of the section ." + (j + 1)) * 60;
                         duration = duration + Utils.readIntegerFromConsole("Please enter second duration of the section ." + (j + 1));
 
                     } catch (NumberFormatException ex2) {
-                        System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                        System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                         duration = -99;
                     }
                 } while (duration == -99);
@@ -73,9 +73,9 @@ public class EnergyNeededToSupplyUI implements Runnable {
             int front = 0;
             do {
                 try {
-                    front = Utils.readIntegerFromConsole("Please enter the number of front faces exposed to the ambient.");
+                    front = Utils.readIntegerFromConsole("Please enter the number of front faces exposed to the ambient:");
                 } catch (IllegalArgumentException ex2) {
-                    System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                    System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                     front = -99;
                 }
             } while (front == -99);
@@ -84,9 +84,9 @@ public class EnergyNeededToSupplyUI implements Runnable {
             int side = 0;
             do {
                 try {
-                    side = Utils.readIntegerFromConsole("Please enter the number of side faces exposed to the ambient.");
+                    side = Utils.readIntegerFromConsole("Please enter the number of side faces exposed to the ambient:");
                 } catch (IllegalArgumentException ex2) {
-                    System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                    System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                     side = -99;
                 }
             } while (side == -99);
@@ -94,9 +94,9 @@ public class EnergyNeededToSupplyUI implements Runnable {
             int top = 0;
             do {
                 try {
-                    top = Utils.readIntegerFromConsole("Please enter the number of top faces exposed to the ambient.");
+                    top = Utils.readIntegerFromConsole("Please enter the number of top faces exposed to the ambient:");
                 } catch (IllegalArgumentException ex2) {
-                    System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                    System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                     top = -99;
                 }
             } while (top == -99);
@@ -107,10 +107,8 @@ public class EnergyNeededToSupplyUI implements Runnable {
                 System.out.println(controller.calculateTo7(section, front, side, top));
             }
 
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
-
         }
     }
 }

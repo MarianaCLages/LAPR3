@@ -1,23 +1,21 @@
 package lapr.project.ui;
 
-import lapr.project.controller.AuxiliaryPowerNeddedForVoyageController;
-import lapr.project.shared.exceptions.ProportionalityConstantNullException;
+import lapr.project.controller.AuxiliaryPowerNeededForVoyageController;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class AuxliaryPowerNeededForVoyageUI implements Runnable{
+public class AuxiliaryPowerNeededForVoyageUI implements Runnable{
 
 
-    public AuxliaryPowerNeededForVoyageUI(){
+    public AuxiliaryPowerNeededForVoyageUI(){
         //Empty Constructor
     }
     @Override
     public void run() {
 
-        AuxiliaryPowerNeddedForVoyageController controller = new AuxiliaryPowerNeddedForVoyageController();
+        AuxiliaryPowerNeededForVoyageController controller = new AuxiliaryPowerNeededForVoyageController();
         List<String> optionList = new ArrayList<>();
 
         optionList.add("-5 ºC");
