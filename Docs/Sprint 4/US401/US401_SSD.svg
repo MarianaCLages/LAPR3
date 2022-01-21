@@ -33,13 +33,13 @@
       ><path d="M335 30 L335 45 L124 45 L124 30 ZM297 73 L297 88 L162 88 L162 73 ZM0 0 L0 104 L465 104 L465 0 L385 0 L385 8 L75 8 L75 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath10"
-      ><path d="M297 30 L297 45 L162 45 L162 30 ZM328 67 L328 82 L132 82 L132 67 ZM0 0 L0 104 L465 104 L465 0 L335 0 L335 2 L124 2 L124 0 Z"
+      ><path d="M297 30 L297 45 L162 45 L162 30 ZM327 67 L327 82 L131 82 L131 67 ZM0 0 L0 104 L465 104 L465 0 L335 0 L335 2 L124 2 L124 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath11"
-      ><path d="M328 30 L328 45 L132 45 L132 30 ZM315 67 L315 82 L145 82 L145 67 ZM0 0 L0 104 L465 104 L465 0 L297 0 L297 8 L162 8 L162 0 Z"
+      ><path d="M327 30 L327 45 L131 45 L131 30 ZM315 67 L315 82 L145 82 L145 67 ZM0 0 L0 104 L465 104 L465 0 L297 0 L297 8 L162 8 L162 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath12"
-      ><path d="M315 30 L315 45 L145 45 L145 30 ZM0 0 L0 104 L465 104 L465 0 L328 0 L328 8 L132 8 L132 0 Z"
+      ><path d="M315 30 L315 45 L145 45 L145 30 ZM0 0 L0 104 L465 104 L465 0 L327 0 L327 8 L131 8 L131 0 Z"
       /></clipPath
       ><clipPath clipPathUnits="userSpaceOnUse" id="clipPath13"
       ><path d="M-170 -15 L340 -15 L340 30 L-170 30 L-170 -15 Z"
@@ -129,10 +129,10 @@
       /><text fill="black" x="9" xml:space="preserve" y="12" clip-path="url(#clipPath13)" stroke="none"
       >2.2: informs operation success</text
     ></g
-    ><g font-size="11px" transform="translate(135,183)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
+    ><g font-size="11px" transform="translate(134,183)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="196" height="15" y="0" clip-path="url(#clipPath14)" stroke="none"
       /><text fill="black" x="10" xml:space="preserve" y="12" clip-path="url(#clipPath14)" stroke="none"
-      >2.1: shows the 'N' ports more critical</text
+      >2.1: shows the 'N' more critical ports</text
     ></g
     ><g font-size="11px" transform="translate(165,146)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="135" height="15" y="0" clip-path="url(#clipPath15)" stroke="none"
