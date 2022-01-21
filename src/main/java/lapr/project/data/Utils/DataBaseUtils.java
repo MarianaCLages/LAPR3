@@ -585,4 +585,46 @@ public class DataBaseUtils {
 
     }
 
+    public static List<String> getAllShipsWithTrips(DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+        List<String> shipsList = new ArrayList<>();
+
+        String sqlCommand = "select distinct s.Mmsi\n" +
+                "from SHIP s\n" +
+                "         inner join TRIP T on s.VEHICLEID = T.VEHICLEID\n" +
+                "order by s.MMSI";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    shipsList.add(resultSet.getString(1));
+                }
+
+            }
+        }
+        return shipsList;
+    }
+
+
+    public static boolean verifyShip(String mmsi, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select s.Mmsi from SHIP s where s.MMSI = " + mmsi;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return true;
+                }
+
+            }
+        }
+        return false;
+
+    }
+
 }

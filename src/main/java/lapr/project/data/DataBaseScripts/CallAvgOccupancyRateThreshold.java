@@ -2,6 +2,7 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.InvalidShipException;
+import lapr.project.shared.exceptions.NoValidInformationInsideThatTripExeception;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
@@ -9,15 +10,16 @@ import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class CallAvgOccupancyRatePerManifest {
+public class CallAvgOccupancyRateThreshold {
 
-    public CallAvgOccupancyRatePerManifest() {
-        // Empty constructor
+    public CallAvgOccupancyRateThreshold() {
+        //Empty Constructor
     }
 
-    public static double occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end) throws InvalidShipException {
+    public static String occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end,int treshold) throws IllegalArgumentException, InvalidShipException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         java.util.Date parsedBegin = null;
         java.util.Date parsedEnd = null;
 
@@ -25,25 +27,26 @@ public class CallAvgOccupancyRatePerManifest {
             parsedBegin = format.parse(begin);
             parsedEnd = format.parse(end);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("There was an error while parsing the date! Please verify the same.");
         }
 
         java.sql.Date beginDate = new java.sql.Date(parsedBegin.getTime());
         java.sql.Date endDate = new java.sql.Date(parsedEnd.getTime());
 
-        double returnValue = 0;
-        String sqlString = "{? = call fnGetAverageOccupancyRatePerManifest(?,?,?)}";
+        String returnValue = null;
+        String sqlString = "{? = call fnOccupancyRateWithThresholdPerVoyage(?,?,?,?)}";
         try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {
-            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.registerOutParameter(1, Types.VARCHAR);
             cstmt.setInt(2, mmsi);
             cstmt.setDate(3, beginDate);
             cstmt.setDate(4, endDate);
+            cstmt.setInt(5,treshold);
 
             cstmt.execute();
-            returnValue = cstmt.getDouble(1);
+            returnValue = cstmt.getNString(1);
 
         } catch (SQLException e) {
-           throw new InvalidShipException();
+            throw new InvalidShipException();
         }
         return returnValue;
     }
