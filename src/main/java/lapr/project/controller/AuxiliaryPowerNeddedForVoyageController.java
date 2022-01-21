@@ -1,11 +1,13 @@
 package lapr.project.controller;
 
 import lapr.project.controller.App;
-import lapr.project.data.DataBaseScripts.AuxiliaryPowerNeededForVoyage;
 import lapr.project.data.DatabaseConnection;
+import lapr.project.model.PhysicsCalculation;
 import lapr.project.shared.exceptions.ProportionalityConstantNullException;
 
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class AuxiliaryPowerNeddedForVoyageController {
 
@@ -15,12 +17,15 @@ public class AuxiliaryPowerNeddedForVoyageController {
         connection = App.getInstance().getDatabaseConnection();
     }
 
-    public String AuxiliaryPowerNeddedForVoyage(int mmsi) throws SQLException, ProportionalityConstantNullException {
+    public String calculateSupplyNeededForMinus5(int numberOfContainers, double temperature, int journeyTime) {
+        return "The Supplies needed for the trip is " +
+                PhysicsCalculation.calculateSuppliesNeededForMinus5(numberOfContainers,temperature, journeyTime) +
+                ".";
+    }
 
-        AuxiliaryPowerNeededForVoyage auxiliaryPowerNeededForVoyage = new AuxiliaryPowerNeededForVoyage();
-
-        String energyRequired = auxiliaryPowerNeededForVoyage.amountOfEnergyRequired(mmsi,connection);
-
-        return energyRequired;
+    public String calculateSupplyNeededFor7(int numberOfContainers, double temperature, int journeyTime) {
+        return "The Supplies needed for the trip is " +
+                PhysicsCalculation.calculateSuppliesNeededFor7(numberOfContainers,temperature, journeyTime) +
+                ".";
     }
 }

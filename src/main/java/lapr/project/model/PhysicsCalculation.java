@@ -119,4 +119,27 @@ public class PhysicsCalculation {
 
         return total;
     }
+
+    public static int calculateSuppliesNeededFor7(int numberOfContainers, double temperature, int voyageTime){
+
+        double energykw = (calculateTotalEnergySupplied7(numberOfContainers,temperature,voyageTime) )  ;
+        System.out.println(energykw);
+        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000))) ;
+
+        if(supliesNeeded == 0) supliesNeeded = 1;
+
+        return supliesNeeded;
+    }
+
+    public static int calculateSuppliesNeededForMinus5(int numberOfContainers, double temperature, int voyageTime){
+
+
+        double energykw = (calculateTotalEnergySuppliedMinus5(numberOfContainers,temperature,voyageTime) )  ;
+        System.out.println(energykw);
+        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000))) ;
+
+        if(supliesNeeded == 0) supliesNeeded = 1;
+
+        return supliesNeeded;
+    }
 }

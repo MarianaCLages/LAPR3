@@ -1,15 +1,6 @@
-package lapr.project.data.DataBaseScripts;
+/*package lapr.project.data.DataBaseScripts;
 
-import lapr.project.data.CargoManifest;
-import lapr.project.data.DatabaseConnection;
-import lapr.project.data.Utils.DataBaseUtils;
-import lapr.project.model.Container;
-import lapr.project.shared.Constants;
-import lapr.project.shared.exceptions.ProportionalityConstantNullException;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import lapr.project.model.PhysicsCalculation;
 
 public class AuxiliaryPowerNeededForVoyage {
 
@@ -66,4 +57,19 @@ public class AuxiliaryPowerNeededForVoyage {
 
         return sb.toString();
     }
+
+    public int amountOfEnergyRequiredFor7(int numberOfContainers, double temperature, int voyageTime){
+
+        int supplies = PhysicsCalculation.calculateSuppliesNeededFor7(numberOfContainers,temperature,voyageTime);
+
+        return supplies;
+    }
+
+    public int amountOfEnergyRequiredFor5(int numberOfContainers, double temperature, int voyageTime){
+
+        int supplies = PhysicsCalculation.calculateSuppliesNeededForMinus5(numberOfContainers,temperature,voyageTime);
+
+        return supplies;
+    }
 }
+*/
