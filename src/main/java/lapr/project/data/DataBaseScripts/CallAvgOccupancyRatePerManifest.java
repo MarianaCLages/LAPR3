@@ -31,6 +31,9 @@ public class CallAvgOccupancyRatePerManifest {
         java.sql.Date beginDate = new java.sql.Date(parsedBegin.getTime());
         java.sql.Date endDate = new java.sql.Date(parsedEnd.getTime());
 
+        if (endDate.before(beginDate))
+            throw new IllegalArgumentException("\nThe trip begin date has a value that is after the trip end date!! Please try again!");
+
         double returnValue = 0;
         String sqlString = "{? = call fnGetAverageOccupancyRatePerManifest(?,?,?)}";
         try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {

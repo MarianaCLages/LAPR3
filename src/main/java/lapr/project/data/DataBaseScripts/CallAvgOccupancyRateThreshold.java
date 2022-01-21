@@ -16,7 +16,7 @@ public class CallAvgOccupancyRateThreshold {
         //Empty Constructor
     }
 
-    public static String occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end,int treshold) throws IllegalArgumentException, InvalidShipException {
+    public static String occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end, int treshold) throws IllegalArgumentException, InvalidShipException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -33,6 +33,9 @@ public class CallAvgOccupancyRateThreshold {
         java.sql.Date beginDate = new java.sql.Date(parsedBegin.getTime());
         java.sql.Date endDate = new java.sql.Date(parsedEnd.getTime());
 
+        if (endDate.before(beginDate))
+            throw new IllegalArgumentException("\nThe trip begin date has a value that is after the trip end date!! Please try again!");
+
         String returnValue = null;
         String sqlString = "{? = call fnOccupancyRateWithThresholdPerVoyage(?,?,?,?)}";
         try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {
@@ -40,7 +43,7 @@ public class CallAvgOccupancyRateThreshold {
             cstmt.setInt(2, mmsi);
             cstmt.setDate(3, beginDate);
             cstmt.setDate(4, endDate);
-            cstmt.setInt(5,treshold);
+            cstmt.setInt(5, treshold);
 
             cstmt.execute();
             returnValue = cstmt.getNString(1);
