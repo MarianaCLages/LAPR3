@@ -1,29 +1,24 @@
 package lapr.project.controller;
 
-import lapr.project.data.CargoManifest;
-import lapr.project.data.CargoManifestStoreData;
-import lapr.project.model.Company;
+import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.Ship;
-import lapr.project.model.stores.ShipStore;
-import org.jetbrains.annotations.NotNull;
+import lapr.project.shared.exceptions.InvalidDataException;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.ListIterator;
+
 
 public class ShipWaterPhysicsController {
 
-    private final Company company = App.getInstance().getCompany();
-    private final ShipStore shipStore = company.getShipStore();
-    private final CargoManifestStoreData cargoManifestStoreData = company.getCargoManifestStoreData();
     private Ship rShip;
-    private CargoManifest cargoManifest;
-    private int numContainers = 0;
+    private String cargoManifest;
+    private int numContainers;
 
 
     /**
-     * Salt water's average density (g/cm^3)
+     * Salt water's average density (kg/m^3)
      */
     private static final double waterDensity = 1.030;
 
@@ -59,37 +54,28 @@ public class ShipWaterPhysicsController {
     private double heightDiff = 0;
 
 
-
     /**
-     * Finds the ship instance from the ship's callsign stored in the ShipStore class
-     *
-     * @param shipCallsign ship's name
+     * Finds the list of ship instances associated with the Ship Captain in the Database
      */
-    public Ship getShip(String shipCallsign) {
-        rShip = shipStore.getShipByCallSign(shipCallsign);
-        return rShip;
+    public List<Ship> getShiplist() throws SQLException {
+        List<Ship> lShip = DataBaseUtils.getShipCaptainShips(App.getInstance().getDatabaseConnection());
+        return lShip;
     }
 
-    public List<CargoManifest> getShipCargoManifests(){
-        List<CargoManifest> lCargoManifest = null;
-        for(CargoManifest cargoManifest : cargoManifestStoreData.getListCargoManifest(App.getInstance().getDatabaseConnection())){
-            if(cargoManifest.getShip().getMmsi() == rShip.getMmsi()){
-                lCargoManifest.add(cargoManifest);
-            }
-        }
-
-        return lCargoManifest;
+    public List<String> getShipCargoManifests(int shipmmsi) throws SQLException {
+        return DataBaseUtils.getShipCargoManifests(shipmmsi, App.getInstance().getDatabaseConnection());
     }
 
     /**
      * Calculates all the data for the parameters: totalMass, pressureExerted and heightDiff
-     *
      */
-    public void calculateData(CargoManifest cargoManifest) {
+    public void calculateData(String cargoManifest, Ship ship) throws SQLException, InvalidDataException {
+        this.rShip = ship;
         this.cargoManifest = cargoManifest;
-        totalMass = calculateTotalMass(cargoManifest);
-        pressureExerted = calculatePressureExerted();
-        heightAboveWater = calculateHeightAboveWater();
+        this.numContainers = DataBaseUtils.countContainerByCargoManifest(cargoManifest, App.getInstance().getDatabaseConnection());
+        this.totalMass = calculateTotalMass(this.numContainers);
+        this.pressureExerted = calculatePressureExerted(this.totalMass);
+        this.heightAboveWater = calculateHeightAboveWater(this.totalMass, this.rShip.getWidth(), this.rShip.getLength(), this.rShip.getDraft());
     }
 
     /**
@@ -98,9 +84,13 @@ public class ShipWaterPhysicsController {
      * @return the total mass of the containers present in the ship
      * @throws
      */
-    private double calculateTotalMass(CargoManifest cargoManifest) {
-        countLoadedContainers(cargoManifest);
-        double totalMass = numContainers * containerWeight;
+    public double calculateTotalMass(int numContainers) throws InvalidDataException {
+        double totalMass = numContainers * this.containerWeight;
+
+        if(totalMass < 0) {
+            throw new InvalidDataException("Número de containers inválido!");
+        }
+
         return totalMass;
     }
 
@@ -110,8 +100,8 @@ public class ShipWaterPhysicsController {
      * @return the mass of the container's pressure exerted on the water
      * @throws
      */
-    private double calculatePressureExerted() {
-        double pressureExerted = totalMass * gravityAcceleration;
+    public double calculatePressureExerted(double totalMass) {
+        double pressureExerted = totalMass * this.gravityAcceleration;
         return pressureExerted;
     }
 
@@ -120,31 +110,26 @@ public class ShipWaterPhysicsController {
      *
      * @return the ship's current height above water
      */
-    private double calculateHeightAboveWater() {
-        heightDiff = totalMass / (waterDensity * rShip.getWidth() * rShip.getLength());
-        return rShip.getDraft() - heightDiff;
+    public double calculateHeightAboveWater(double totalMass, double shipWidth, double shipLength, double shipDraft) throws InvalidDataException {
+        this.heightDiff = totalMass / (this.waterDensity * shipWidth * shipLength);
+
+        if( this.heightDiff > shipDraft || shipLength <= 0 || shipWidth <= 0 || shipDraft <= 0){
+            throw new InvalidDataException("Dimensões do navio inválidas!");
+        }
+
+        return shipDraft - this.heightDiff;
     }
 
-    /**
-     * Gets the container count from the ship's current active cargo manifest
-     *
-     * @param cargoManifest ship's cargo manifest
-     */
-    private void countLoadedContainers(CargoManifest cargoManifest){
-
-        numContainers = cargoManifest.countContainers();
-    }
-
-    public String toString(){
+    public String SummaryString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Ship: " + rShip.getCallSign() + " - " + Integer.toString(rShip.getMmsi()) + "\n");
-        sb.append("Cargo manifest ID: " + cargoManifest.getIdentification());
-        sb.append("Total mass = " + Double.toString(totalMass) + " Kg\n");
-        sb.append("Pressure exerted on water: " + Double.toString(pressureExerted) + " N\n");
-        sb.append("Height above water: " + Double.toString(heightAboveWater) + " m\n");
+        sb.append("Ship: " + this.rShip.getCallSign() + " - " + this.rShip.getMmsi() + "\n");
+        sb.append("Cargo manifest ID: " + this.cargoManifest);
+        sb.append("Total mass = " + new BigDecimal(this.totalMass).setScale(2, RoundingMode.HALF_DOWN) + " Kg\n");
+        sb.append("Pressure exerted on water: " + new BigDecimal(this.pressureExerted).setScale(2,RoundingMode.HALF_DOWN) + " N\n");
+        sb.append("Height above water: " + new BigDecimal(this.heightAboveWater).setScale(2,RoundingMode.HALF_DOWN) + " m\n");
 
-        if(numContainers > 0){
-            sb.append("Original ship's draft height: " + Double.toString(rShip.getDraft()) + " m --> Height difference: " + Double.toString(heightDiff) + " m\n");
+        if (this.totalMass > 0) {
+            sb.append("Original ship's draft height: " + new BigDecimal(this.rShip.getDraft()).setScale(2,RoundingMode.HALF_DOWN) + " m --> Height difference: " + new BigDecimal(this.heightDiff).setScale(2,RoundingMode.HALF_DOWN) + " m\n");
         } else {
             sb.append("The ship has no loaded containers!!\n");
         }

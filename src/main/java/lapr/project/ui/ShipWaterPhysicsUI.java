@@ -1,9 +1,10 @@
 package lapr.project.ui;
 
-
 import lapr.project.controller.ShipWaterPhysicsController;
-import lapr.project.data.CargoManifest;
+import lapr.project.model.Ship;
+import lapr.project.shared.exceptions.InvalidDataException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ShipWaterPhysicsUI implements Runnable {
@@ -13,16 +14,22 @@ public class ShipWaterPhysicsUI implements Runnable {
     @Override
     public void run() {
 
-        String shipCallSign = Utils.readLineFromConsole("Enter the ship's Call Sign: ");
-        ctrl.getShip(shipCallSign);
+        List<Ship> lShip = null;
+        List<String> lCargoManifest = null;
 
-        List<CargoManifest> lCargoManifest = ctrl.getShipCargoManifests();
+        try {
+            lShip = this.ctrl.getShiplist();
+            Ship ship = (Ship) Utils.showAndSelectOne(lShip, "Select one ship: ");
+            lCargoManifest = this.ctrl.getShipCargoManifests(ship.getMmsi());
+            String cargoManifest = (String) Utils.showAndSelectOne(lCargoManifest, "Select one: ");
+            this.ctrl.calculateData(cargoManifest, ship);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (InvalidDataException e) {
 
-        CargoManifest  cargoManifest = (CargoManifest) Utils.selectsObject(lCargoManifest);
+        }
 
-        ctrl.calculateData(cargoManifest);
-
-        System.out.println(ctrl.toString());
+        System.out.println(this.ctrl.SummaryString());
 
 
     }
