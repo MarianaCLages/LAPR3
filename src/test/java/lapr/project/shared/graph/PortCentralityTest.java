@@ -27,8 +27,19 @@ class PortCentralityTest {
     @Test
     void getCentralityOfNPorts() {
         //Arrange
-        String expected = "Port: Monaco, Centrality: 4199\n" +
+        String expected1 = "Port: Monaco, Centrality: 4199\n" +
                 "Port: Brest, Centrality: 4199\n" +
+                "Port: Barcelona, Centrality: 4071\n" +
+                "Port: Split, Centrality: 2993\n" +
+                "Port: Hamburg, Centrality: 2989\n" +
+                "Port: Zeebrugge, Centrality: 2533\n" +
+                "Port: Aspropyrgos, Centrality: 1843\n" +
+                "Port: Gdansk, Centrality: 1405\n" +
+                "Port: Ambarli, Centrality: 1263\n" +
+                "Port: Callao, Centrality: 1063\n";
+
+        String expected2 = "Port: Brest, Centrality: 4199\n" +
+                "Port: Monaco, Centrality: 4199\n" +
                 "Port: Barcelona, Centrality: 4071\n" +
                 "Port: Split, Centrality: 2993\n" +
                 "Port: Hamburg, Centrality: 2989\n" +
@@ -42,6 +53,10 @@ class PortCentralityTest {
         String actual = PortCentrality.getCentralityOfNPorts(graph, 10);
 
         //Assert
-        assertEquals(expected, actual);
+        if(!actual.equals(expected1)) {
+            assertEquals(expected2, actual);
+        } else {
+            assertEquals(expected1, actual);
+        }
     }
 }
