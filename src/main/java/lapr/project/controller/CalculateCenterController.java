@@ -1,6 +1,6 @@
 package lapr.project.controller;
 
-import lapr.project.data.DataBaseScripts.CalculateCenter;
+import lapr.project.shared.CalculateCenter;
 
 public class CalculateCenterController {
 

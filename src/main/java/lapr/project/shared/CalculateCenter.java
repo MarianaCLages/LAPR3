@@ -1,6 +1,4 @@
-package lapr.project.data.DataBaseScripts;
-
-import lapr.project.shared.Constants;
+package lapr.project.shared;
 
 import java.text.DecimalFormat;
 
