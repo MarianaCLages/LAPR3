@@ -39,6 +39,12 @@ public class Utils {
         return selectsObject(list);
     }
 
+    public static Object showAndSelectOneWithMessage(List list, String header) {
+        showListNormalUs402(list, header);
+        System.out.println("Notice: If u wish to see more options type the option 36");
+        return selectsObjectSpecial(list);
+    }
+
     private static void showListNormal(List list, String header) {
         System.out.println(header);
 
@@ -50,6 +56,19 @@ public class Utils {
         }
         System.out.println();
         System.out.println("0 - Cancel");
+    }
+
+    private static void showListNormalUs402(List list, String header) {
+        System.out.println(header);
+
+        int index = 0;
+        for (Object o : list) {
+            index++;
+
+            System.out.println(index + ". " + o);
+        }
+        System.out.println();
+        System.out.println("36 - Next List");
     }
 
     public static int showAndSelectIndex(List list, String header) {
@@ -82,6 +101,23 @@ public class Utils {
             return null;
         } else {
             return list.get(value - 1);
+        }
+    }
+
+    public static Object selectsObjectSpecial(List list) {
+        String input;
+        Integer value;
+        do {
+            input = Utils.readLineFromConsole("Type your option: (Enter a valid option!)");
+            value = Integer.valueOf(input);
+        } while (value < 0 || value > list.size() + 1);
+
+        if (value == 0) {
+            return null;
+        } else if (value == 36) {
+            return null;
+        } else {
+            return list.get(value-1);
         }
     }
 

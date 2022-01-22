@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.controller.TotalEnergySuppliedController;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 public class TotalEnergySuppliedUI implements Runnable {
 
     private final TotalEnergySuppliedController controller;
+    private final DecimalFormat df = new DecimalFormat("0.00");
 
     public TotalEnergySuppliedUI() {
         this.controller = new TotalEnergySuppliedController();
@@ -84,7 +86,8 @@ public class TotalEnergySuppliedUI implements Runnable {
                 if (Objects.requireNonNull(index).equals("-5 ºC")) {
                     sb.append("\n");
                     sb.append("Section ").append(j + 1).append("\n");
-                    sb.append(controller.calculationToMinus5(numberOfContainers, temperature, duration));
+                    sb.append("Journey time: ").append(duration).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ");
+                    sb.append(df.format(controller.calculationToMinus5(numberOfContainers, temperature, duration))).append(" J");
                 } else {
                     sb.append("\n");
                     sb.append("Section ").append(j + 1).append("\n");

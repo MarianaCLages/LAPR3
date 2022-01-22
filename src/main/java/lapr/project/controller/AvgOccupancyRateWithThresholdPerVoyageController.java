@@ -17,8 +17,14 @@ public class AvgOccupancyRateWithThresholdPerVoyageController {
         this.connection = App.getInstance().getDatabaseConnection();
     }
 
-    public String getAvgOccupancyRatePerManifest(int mmsi, String begin, String end,int threshold) throws InvalidShipException {
-        return CallAvgOccupancyRateThreshold.occupationRateFunction(connection, mmsi, begin, end,threshold);
+    public String getAvgOccupancyRatePerManifest(int mmsi, String begin, String end, int threshold) throws InvalidShipException {
+        String result = CallAvgOccupancyRateThreshold.occupationRateFunction(connection, mmsi, begin, end, threshold);
+
+        if (result.equals("Given the default Threshold, there are no trips that have an occupancy rate below the given default threshold!!")) {
+            throw new IllegalArgumentException("\nGiven the default Threshold, there are no trips that have an occupancy rate below the given default threshold!!");
+        }
+
+        return result;
     }
 
     public List<String> getAllShipsWithTrip() throws SQLException {

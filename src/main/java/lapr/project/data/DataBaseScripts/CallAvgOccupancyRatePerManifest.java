@@ -48,6 +48,11 @@ public class CallAvgOccupancyRatePerManifest {
         } catch (SQLException e) {
            throw new InvalidShipException();
         }
+
+        if(returnValue > 100) {
+            throw new IllegalArgumentException("The cargo manifest has a weight that overboards the current capacity of the ship! Please verify the capacity of the ship and change it!");
+        }
+
         return returnValue;
     }
 }

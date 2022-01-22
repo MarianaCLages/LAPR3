@@ -51,6 +51,7 @@ public class CallAvgOccupancyRateThreshold {
         } catch (SQLException e) {
             throw new InvalidShipException();
         }
+
         return returnValue;
     }
 }

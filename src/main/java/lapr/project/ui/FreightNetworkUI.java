@@ -19,6 +19,7 @@ public class FreightNetworkUI implements Runnable {
             try {
                 String readOption = Utils.readLineFromConsole("What is your number of connections of a port?");
                 if (StringUtils.isNumeric(readOption)) {
+                    System.out.println("This operation may take a while!!");
                     controller.createGraph(Integer.parseInt(readOption));
                     readOptionBoolean = true;
                 } else throw new IllegalArgumentException();
@@ -28,5 +29,6 @@ public class FreightNetworkUI implements Runnable {
                 readOptionBoolean = false;
             }
         } while (!readOptionBoolean);
+        System.out.println("Operation success!");
     }
 }
