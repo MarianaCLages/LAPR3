@@ -56,6 +56,15 @@ public class CargoManifest implements Comparable<CargoManifest> {
     //Getters
 
     /**
+     * Gets the ship.
+     *
+     * @return the ship
+     */
+    public Ship getShip() {
+        return ship;
+    }
+
+    /**
      * Gets the cargo manifest's identification.
      *
      * @return the cargo manifest's identification
@@ -101,24 +110,21 @@ public class CargoManifest implements Comparable<CargoManifest> {
     }
 
     /**
-     * Sets the cargo manifest's port.
+     * Checks if the cargo manifest is in transport.
      *
-     * @param port the cargo manifest's port
+     * @return true if it is, false if it isn't
      */
-    public void setPort(Port port) {
-        this.port = port;
-    }
-
     public boolean getInTransport() {
         return inTransport;
     }
 
     //Setters
 
-    public Ship getShip() {
-        return ship;
-    }
-
+    /**
+     * Sets the ship.
+     *
+     * @param ship the ship
+     */
     public void setShip(Ship ship) {
         this.ship = ship;
     }
@@ -139,6 +145,15 @@ public class CargoManifest implements Comparable<CargoManifest> {
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * Sets the cargo manifest's port.
+     *
+     * @param port the cargo manifest's port
+     */
+    public void setPort(Port port) {
+        this.port = port;
     }
 
     /**

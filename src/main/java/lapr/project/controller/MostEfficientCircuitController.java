@@ -8,35 +8,40 @@ import lapr.project.shared.graph.Vertex;
 
 import java.util.LinkedList;
 
-
 public class MostEfficientCircuitController {
 
     private final FreightNetwork freightNetwork;
 
-    public MostEfficientCircuitController(){
+    /**
+     * Constructor.
+     */
+    public MostEfficientCircuitController() {
         Company company = App.getInstance().getCompany();
         this.freightNetwork = company.getFreightNetwork();
     }
 
-    public LinkedList<Vertex> MostEfficientCircuitControllerEfficientCircuit(String designation){
+    /**
+     * Gets the most efficient circuit.
+     *
+     * @param designation the vertex designation
+     * @return the most efficient circuit
+     */
+    public LinkedList<Vertex> mostEfficientCircuit(String designation) {
         Graph<Vertex, Double> graph = freightNetwork.getGraph();
         Vertex vertice = null;
 
-        for(Vertex v : graph.vertices()){
-
-            if(v.getDesignation().equals(designation))
+        for (Vertex v : graph.vertices()) {
+            if (v.getDesignation().equals(designation))
                 vertice = v;
         }
-
 
         MostEfficientCircuit mostEfficientCircuit = new MostEfficientCircuit();
         LinkedList<Vertex> path = new LinkedList<>();
         LinkedList<Vertex> ls;
 
+        ls = mostEfficientCircuit.efficientCircuit(graph, vertice, path);
 
-        ls = mostEfficientCircuit.efficientCircuit(graph,vertice,path);
-
-        return  ls;
+        return ls;
     }
 }
 

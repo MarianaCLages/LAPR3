@@ -1,9 +1,11 @@
 package lapr.project.shared.exceptions;
 
-public class InvalidCargoManifestException extends Exception{
+public class InvalidCargoManifestException extends Exception {
 
-    public InvalidCargoManifestException(){
-        super("There is no cargo manifest with the entered ID!");
+    /**
+     * In case there are no cargo manifests with the inserted ID, it prints the message "There are no cargo manifest with the inserted ID!".
+     */
+    public InvalidCargoManifestException() {
+        super("There are no cargo manifest with the inserted ID!");
     }
-
 }

@@ -24,7 +24,7 @@ public class OccupancyRateGivenCargoManifestIDController {
      * @param cargoManifestID the cargo manifest ID
      * @return return the occupancy rate for that specific Ship
      * @throws ShipCargoCapacityException in case the ship cargo is not available
-     * @throws ContainerGrossException in case the contaienr cross is null/not available
+     * @throws ContainerGrossException in case the container cross is null/not available
      * @throws ContainersInsideCargoManifestListSizeException in case there is no containers inside that cargo manifest
      * @throws CargoManifestDoesntBelongToThatShipException in case the cargo manifest doesn't belong to the ship
      * @throws VehicleIDNotValidException in case the vehicle ID doesn't exist

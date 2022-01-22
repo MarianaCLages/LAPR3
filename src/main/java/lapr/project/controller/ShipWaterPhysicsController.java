@@ -16,7 +16,6 @@ public class ShipWaterPhysicsController {
     private String cargoManifest;
     private int numContainers;
 
-
     /**
      * Salt water's average density (kg/m^3)
      */
@@ -87,7 +86,7 @@ public class ShipWaterPhysicsController {
     public double calculateTotalMass(int numContainers) throws InvalidDataException {
         double totalMass = numContainers * this.containerWeight;
 
-        if(totalMass < 0) {
+        if (totalMass < 0) {
             throw new InvalidDataException("Número de containers inválido!");
         }
 
@@ -113,23 +112,28 @@ public class ShipWaterPhysicsController {
     public double calculateHeightAboveWater(double totalMass, double shipWidth, double shipLength, double shipDraft) throws InvalidDataException {
         this.heightDiff = totalMass / (this.waterDensity * shipWidth * shipLength);
 
-        if( this.heightDiff > shipDraft || shipLength <= 0 || shipWidth <= 0 || shipDraft <= 0){
+        if (this.heightDiff > shipDraft || shipLength <= 0 || shipWidth <= 0 || shipDraft <= 0) {
             throw new InvalidDataException("Dimensões do navio inválidas!");
         }
 
         return shipDraft - this.heightDiff;
     }
 
+    /**
+     * Returns the textual description in the format: ship, cargo manifest ID, total mass, pressure exerted on water, height above water, ship's draft height.
+     *
+     * @return the ship water physics' characteristics
+     */
     public String SummaryString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Ship: " + this.rShip.getCallSign() + " - " + this.rShip.getMmsi() + "\n");
         sb.append("Cargo manifest ID: " + this.cargoManifest);
         sb.append("Total mass = " + new BigDecimal(this.totalMass).setScale(2, RoundingMode.HALF_DOWN) + " Kg\n");
-        sb.append("Pressure exerted on water: " + new BigDecimal(this.pressureExerted).setScale(2,RoundingMode.HALF_DOWN) + " N\n");
-        sb.append("Height above water: " + new BigDecimal(this.heightAboveWater).setScale(2,RoundingMode.HALF_DOWN) + " m\n");
+        sb.append("Pressure exerted on water: " + new BigDecimal(this.pressureExerted).setScale(2, RoundingMode.HALF_DOWN) + " N\n");
+        sb.append("Height above water: " + new BigDecimal(this.heightAboveWater).setScale(2, RoundingMode.HALF_DOWN) + " m\n");
 
         if (this.totalMass > 0) {
-            sb.append("Original ship's draft height: " + new BigDecimal(this.rShip.getDraft()).setScale(2,RoundingMode.HALF_DOWN) + " m --> Height difference: " + new BigDecimal(this.heightDiff).setScale(2,RoundingMode.HALF_DOWN) + " m\n");
+            sb.append("Original ship's draft height: " + new BigDecimal(this.rShip.getDraft()).setScale(2, RoundingMode.HALF_DOWN) + " m --> Height difference: " + new BigDecimal(this.heightDiff).setScale(2, RoundingMode.HALF_DOWN) + " m\n");
         } else {
             sb.append("The ship has no loaded containers!!\n");
         }

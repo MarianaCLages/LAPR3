@@ -11,10 +11,23 @@ import java.text.SimpleDateFormat;
 
 public class CallAvgOccupancyRatePerManifest {
 
+    /**
+     * Constructor.
+     */
     public CallAvgOccupancyRatePerManifest() {
         // Empty constructor
     }
 
+    /**
+     * Calls the function that calculates the average occupancy rate per manifest of a given ship during a given period.
+     *
+     * @param connection the database connection
+     * @param mmsi       the ship MMSI
+     * @param begin      the begin date
+     * @param end        the end date
+     * @return the average occupancy rate per manifest of a given ship during a given period
+     * @throws InvalidShipException
+     */
     public static double occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end) throws InvalidShipException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -46,7 +59,7 @@ public class CallAvgOccupancyRatePerManifest {
             returnValue = cstmt.getDouble(1);
 
         } catch (SQLException e) {
-           throw new InvalidShipException();
+            throw new InvalidShipException();
         }
         return returnValue;
     }

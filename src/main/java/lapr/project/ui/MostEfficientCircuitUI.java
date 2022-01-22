@@ -39,7 +39,7 @@ public class MostEfficientCircuitUI implements Runnable {
             }
 
         }while (hasNumber);
-        LinkedList <Vertex> ls = mostEfficientCircuitController.MostEfficientCircuitControllerEfficientCircuit(designation);
+        LinkedList <Vertex> ls = mostEfficientCircuitController.mostEfficientCircuit(designation);
 
         if(ls.getFirst() != null) {
             for (Vertex v : ls) {

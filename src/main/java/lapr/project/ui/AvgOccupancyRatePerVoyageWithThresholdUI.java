@@ -119,7 +119,7 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
                     end = null;
                 }
             } while (end == null);
-            System.out.println("\n" + controller.getAvgOccupancyRatePerManifest(mmsi, begin, end,thresholdValue));
+            System.out.println("\n" + controller.getAvgOccupancyRateThreshold(mmsi, begin, end,thresholdValue));
             System.out.println("\nOperation Success!\n");
         } catch (Exception ex1) {
             System.out.println(ex1.getMessage());
