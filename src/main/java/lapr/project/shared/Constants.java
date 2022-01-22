@@ -62,48 +62,61 @@ public class Constants {
     //Vessel type 71:
     public static final double C1X71 = 10;
     public static final double C1Y71 = 10;
+    public static final double C1Z71 = 10;
     public static final double C1M71 = 2000;
     public static final double C2X71 = 40;
-    public static final double C2Y71 = 10;
+    public static final double C2Y71 = 20;
+    public static final double C2Z71 = 20;
     public static final double C2M71 = 5000;
     public static final double C3X71 = 10;
     public static final double C3Y71 = 10;
+    public static final double C3Z71 = 10;
     public static final double C3M71 = 2000;
     public static final double C4X71 = 60;
-    public static final double C4Y71 = 10;
+    public static final double C4Y71 = 20;
+    public static final double C4Z71 = 20;
     public static final double C4M71 = 8000;
-    public static final double C5X71 = 2.5;
-    public static final double C5Y71 = 10;
+    public static final double C5X71 = 5;
+    public static final double C5Y71 = 5;
+    public static final double C5Z71 = 20;
     public static final double C5M71 = 1000;
     public static final double MTOTAL71 = 18000;
 
-    //Vessel Type 80:
-    public static final double C1X80 = 200;
-    public static final double C1Y80 = 50;
-    public static final double C1M80 = 10000;
-    public static final double C2X80 = 50;
-    public static final double C2Y80 = 100;
-    public static final double C2M80 = 3000;
-    public static final double C3X80 = 25;
-    public static final double C3Y80 = 100;
-    public static final double C3M80 = 2000;
-    public static final double MTOTAL80 = 15000;
+    //Vessel Type 72:
+    public static final double C1X72 = 150;
+    public static final double C1Y72 = 50;
+    public static final double C1Z72 = 25;
+    public static final double C1M72 = 10000;
+    public static final double C2X72 = 25;
+    public static final double C2Y72 = 25;
+    public static final double C2Z72 = 25;
+    public static final double C2M72 = 2000;
+    public static final double C3X72 = 50;
+    public static final double C3Y72 = 25;
+    public static final double C3Z72 = 25;
+    public static final double C3M72 = 8000;
+    public static final double C4X72 = 25;
+    public static final double C4Y72 = 25;
+    public static final double C4Z72 = 50;
+    public static final double C4M72 = 2000;
+    public static final double MTOTAL72 = 22000;
 
-    //Vessel Type 31:
-    public static final double C1X31 = 10;
-    public static final double C1Y31 = 20;
-    public static final double C1M31 = 2000;
-    public static final double C2X31 = 10;
-    public static final double C2Y31 = 10;
-    public static final double C2M31 = 1000;
-    public static final double C3X31 = 70;
-    public static final double C3Y31 = 20;
-    public static final double C3M31 = 6000;
-    public static final double C4X31 = 80;
-    public static final double C4Y31 = 40;
-    public static final double C4M31 = 8000;
-    public static final double C5X31 = 10;
-    public static final double C5Y31 = 10;
-    public static final double C5M31 = 1000;
-    public static final double MTOTAL31 = 18000;
+    //Vessel Type 74:
+    public static final double C1X74 = 250;
+    public static final double C1Y74 = 50;
+    public static final double C1Z74 = 100;
+    public static final double C1M74 = 12000;
+    public static final double C2X74 = 100;
+    public static final double C2Y74 = 50;
+    public static final double C2Z74 = 50;
+    public static final double C2M74 = 5000;
+    public static final double C3X74 = 25;
+    public static final double C3Y74 = 50;
+    public static final double C3Z74 = 50;
+    public static final double C3M74 = 2000;
+    public static final double C4X74 = 50;
+    public static final double C4Y74 = 100;
+    public static final double C4Z74 = 150;
+    public static final double C4M74 = 8000;
+    public static final double MTOTAL74 = 27000;
 }
