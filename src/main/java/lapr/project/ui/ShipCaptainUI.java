@@ -16,7 +16,8 @@ public class ShipCaptainUI implements Runnable {
         options.add(new MenuItem("Get Audit Trail", new GetAuditTrailUI()));
         options.add(new MenuItem("Auxiliary Power Equipment Needed", new AuxiliaryPowerNeededForVoyageUI()));
         options.add(new MenuItem("Determinate the center of a ship",new CalculateCenterUI()));
-
+        options.add(new MenuItem("Calculate ship's height above water while loaded", new ShipWaterPhysicsUI()));
+        
         int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nShip Captain Menu:");

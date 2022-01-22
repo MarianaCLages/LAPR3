@@ -1,32 +1,58 @@
 package lapr.project.model;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.LinkedHashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PhysicsCalculationTest {
+    LinkedHashMap<Integer, Double> map;
 
-    int numberOfContainers = 10;
-    double temperature = 20;
-    int time = 9000;
 
-    @Test
-    void calculateTotalEnergySuppliedMinus5() {
-        //Arrange
-        double expected = 134338.27436138067;
-        //Act
-        double actual = PhysicsCalculation.calculateTotalEnergySuppliedMinus5(numberOfContainers, temperature, time);
-        //Assert
-        assertEquals(expected, actual);
+    @BeforeEach
+    public void setUp() {
+        map = new LinkedHashMap();
+
+        System.setProperty("thermalConductivity.inner.minus5", "0.033");
+        System.setProperty("thermalConductivity.mid.minus5", "25");
+        System.setProperty("thermalConductivity.outer.minus5", "0.13");
+        System.setProperty("thermalConductivity.outer.7", "15");
+        System.setProperty("thermalConductivity.mid.7", "0.028");
+        System.setProperty("thermalConductivity.inner.7", "0.13");
+
     }
 
     @Test
-    void calculateTotalEnergySupplied7() {
-        //Arrange
-        double expected = 851266.5028210469;
-        //Act
-        double actual = PhysicsCalculation.calculateTotalEnergySupplied7(numberOfContainers, temperature, time);
-        //Assert
-        assertEquals(expected, actual);
+    void Minus5ZeroTest() {
+
+        assertEquals(0, PhysicsCalculation.calculateEnergyConsumptionMinus5(map, 0, 0, 0));
     }
+
+    @Test
+    void SevenZeroTest() {
+
+        assertEquals(0, PhysicsCalculation.calculateEnergyConsumption7(map, 0, 0, 0));
+    }
+
+
+    @Test
+    void SevenTest2Section() {
+
+        map.put(7200, 20.0);
+        map.put(3600, 30.0);
+
+        assertEquals(2.3352179108136587E7, PhysicsCalculation.calculateEnergyConsumption7(map, 5, 4, 5));
+    }
+
+    @Test
+    void SevenMinus5Section() {
+
+        map.put(7200, 20.0);
+        map.put(3600, 30.0);
+
+        assertEquals(859132.8908588162, PhysicsCalculation.calculateEnergyConsumptionMinus5(map, 5, 4, 5));
+    }
+
 }
