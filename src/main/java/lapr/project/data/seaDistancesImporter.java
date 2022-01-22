@@ -19,6 +19,15 @@ public class seaDistancesImporter {
         }
     }
 
+    /**
+     * Imports the sea distances.
+     *
+     * @param path         the file path
+     * @param dbConnection the database connection
+     * @return true if it succeeds, false if it doesn't
+     * @throws FileNotFoundException
+     * @throws SQLException
+     */
     public static boolean importSeaDistances(File path, DatabaseConnection dbConnection) throws FileNotFoundException, SQLException {
         boolean returnValue = false;
         Connection connection = dbConnection.getConnection();

@@ -14,7 +14,7 @@ public class TotalEnergySuppliedController {
     }
 
     /**
-     * Gets the result values of the total energy needed to supply a set of containers of -5ºC.
+     * Gets the result values of the total energy needed to supply to a set of containers of -5ºC.
      *
      * @param numberOfContainers the number of containers
      * @param temperature        the container temperature
@@ -26,7 +26,7 @@ public class TotalEnergySuppliedController {
     }
 
     /**
-     * Gets the result values of the total energy needed to supply a set of containers of 7ºC.
+     * Gets the result values of the total energy needed to supply to a set of containers of 7ºC.
      *
      * @param numberOfContainers the number of containers
      * @param temperature        the container temperature

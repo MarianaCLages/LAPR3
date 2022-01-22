@@ -80,27 +80,27 @@ public class Ship {
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param mmsi
-     * @param name
-     * @param imo
-     * @param callSign
-     * @param vesselTYPe
-     * @param length
-     * @param width
-     * @param draft
-     * @param cargo
-     * @param transceiver
+     * @param mmsi        the ship's MMSI
+     * @param name        the ship's name
+     * @param imo         the ship's IMO
+     * @param callSign    the ship's call sign
+     * @param vesselType  the ship's vessel type
+     * @param length      the ship's length
+     * @param width       the ship's width
+     * @param draft       the ship's draft
+     * @param cargo       the ship's cargo
+     * @param transceiver the ship's transceiver
      */
-    public Ship(int mmsi, String name, String imo, String callSign, String vesselTYPe, double length, double width, double draft, String cargo, char transceiver) {
+    public Ship(int mmsi, String name, String imo, String callSign, String vesselType, double length, double width, double draft, String cargo, char transceiver) {
         checkIMO(imo);
         checkMMSI(mmsi);
 
         this.mmsi = mmsi;
         this.name = name;
         this.imo = imo;
-        this.vesselType = vesselTYPe;
+        this.vesselType = vesselType;
         this.draft = draft;
         this.callSign = callSign;
         this.length = length;
