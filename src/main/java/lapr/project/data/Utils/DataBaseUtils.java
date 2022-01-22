@@ -558,7 +558,7 @@ public class DataBaseUtils {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    sb.append("Trip number: ").append(auxCount).append(" ,Trip ID: ").append(resultSet.getInt(1)).append("\n");
+                    sb.append("Trip number: ").append(auxCount).append(", Trip ID: ").append(resultSet.getInt(1)).append("\n");
                     auxCount++;
                 }
             }
@@ -584,7 +584,6 @@ public class DataBaseUtils {
         return false;
 
     }
-
 
 
     public static List<String> getAllShipsWithTrips(DatabaseConnection databaseConnection) throws SQLException {
@@ -628,6 +627,7 @@ public class DataBaseUtils {
         return false;
 
     }
+
     public static List<Ship> getShipCaptainShips(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();

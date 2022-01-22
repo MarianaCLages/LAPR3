@@ -2,6 +2,8 @@ package lapr.project.ui;
 
 import lapr.project.controller.TotalEnergySuppliedController;
 
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +11,7 @@ import java.util.Objects;
 public class TotalEnergySuppliedUI implements Runnable {
 
     private final TotalEnergySuppliedController controller;
+    private final DecimalFormat df = new DecimalFormat("0.00");
 
     public TotalEnergySuppliedUI() {
         this.controller = new TotalEnergySuppliedController();
@@ -17,9 +20,41 @@ public class TotalEnergySuppliedUI implements Runnable {
     public void run() {
         List<String> optionList = new ArrayList<>();
 
-        optionList.add("-5 ºC");
-        optionList.add("7 ºC");
+        optionList.add("-5ºC");
+        optionList.add("7ºC");
         StringBuilder sb = new StringBuilder();
+
+        String option = null;
+
+        try {
+            System.out.println("\n### TRIP LIST ###");
+            System.out.println(controller.getAllTripList());
+            do {
+                try {
+                    option = Utils.readLineFromConsole("Please enter one of the valid TRIP ID shown above:");
+
+                    if (option == null || option.trim().equals("")) {
+                        throw new IllegalArgumentException("Invalid trip! Please enter a valid trip ID (See the trip list above)");
+                    }
+
+                    if (!controller.verifyTrip(option)) {
+                        throw new IllegalArgumentException("Invalid trip! Please enter a valid trip ID (See the trip list above)");
+                    }
+
+                } catch (SQLException ex1) {
+                    System.out.println("Please enter a valid trip! (Notice: enter a number, not a invalid character or a set of invalid characters!) \n");
+                    option = null;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    option = null;
+                }
+
+            } while (option == null);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("\nOperation failed! Please try again.");
+        }
 
         try {
             int i = 0;
@@ -84,11 +119,13 @@ public class TotalEnergySuppliedUI implements Runnable {
                 if (Objects.requireNonNull(index).equals("-5 ºC")) {
                     sb.append("\n");
                     sb.append("Section ").append(j + 1).append("\n");
-                    sb.append(controller.calculationToMinus5(numberOfContainers, temperature, duration));
+                    sb.append("Journey time: ").append(duration).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ");
+                    sb.append(df.format(controller.calculationToMinus5(numberOfContainers, temperature, duration))).append(" J");
                 } else {
                     sb.append("\n");
                     sb.append("Section ").append(j + 1).append("\n");
-                    sb.append(controller.calculationTo7(numberOfContainers, temperature, duration));
+                    sb.append("Journey time: ").append(duration).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ");
+                    sb.append(df.format(controller.calculationTo7(numberOfContainers, temperature, duration))).append(" J");
                 }
                 sb.append("\n");
             }

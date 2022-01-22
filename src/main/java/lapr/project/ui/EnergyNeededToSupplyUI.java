@@ -57,9 +57,9 @@ public class EnergyNeededToSupplyUI implements Runnable {
 
                 do {
                     try {
-                        duration = duration + Utils.readIntegerFromConsole("Please enter hour duration of the section ." + (j + 1)) * 3600;
-                        duration = duration + Utils.readIntegerFromConsole("Please enter minute duration of the section ." + (j + 1)) * 60;
-                        duration = duration + Utils.readIntegerFromConsole("Please enter second duration of the section ." + (j + 1));
+                        duration = duration + Utils.readIntegerFromConsole("Please enter hour duration of the section: " + (j + 1)) * 3600;
+                        duration = duration + Utils.readIntegerFromConsole("Please enter minute duration of the section: " + (j + 1)) * 60;
+                        duration = duration + Utils.readIntegerFromConsole("Please enter second duration of the section: " + (j + 1));
 
                     } catch (NumberFormatException ex2) {
                         System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");

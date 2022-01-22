@@ -13,10 +13,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ContainerInformationExporter {
+
+    /**
+     * Constructor.
+     */
     private ContainerInformationExporter() {
         // empty
     }
 
+    /**
+     * Exports the container information.
+     *
+     * @param cargoManifestId    the cargo manifest ID
+     * @param databaseConnection the database connection
+     * @return true if it succeeds, false if it doesn't
+     * @throws SQLException
+     * @throws InvalidCargoManifestException
+     */
     public static boolean exportInformation(String cargoManifestId, DatabaseConnection databaseConnection) throws SQLException, InvalidCargoManifestException {
 
         List<Container> containers = DataBaseUtils.getAllContainersFromACargoManifest(cargoManifestId, databaseConnection);

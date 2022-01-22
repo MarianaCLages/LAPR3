@@ -1,45 +1,65 @@
 package lapr.project.controller;
 
+import lapr.project.data.DatabaseConnection;
+import lapr.project.data.Utils.DataBaseUtils;
 import lapr.project.model.PhysicsCalculation;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class TotalEnergySuppliedController {
 
-    private final DecimalFormat df = new DecimalFormat("0.00");
+    private final DatabaseConnection connection;
 
     /**
      * Constructor.
      */
     public TotalEnergySuppliedController() {
-        // Empty constructor
+        this.connection = App.getInstance().getDatabaseConnection();
     }
 
     /**
-     * Gets the result values of the total energy needed to supply a set of containers of -5ºC.
+     * Gets the result values of the total energy needed to supply to a set of containers of -5ºC.
      *
      * @param numberOfContainers the number of containers
      * @param temperature        the container temperature
      * @param journeyTime        the journey time
      * @return a string with all the result values
      */
-    public StringBuilder calculationToMinus5(int numberOfContainers, double temperature, int journeyTime) {
-        StringBuilder sb = new StringBuilder();
-        String totalEnergy = df.format(PhysicsCalculation.calculateTotalEnergySuppliedMinus5(numberOfContainers, temperature, journeyTime));
-        return sb.append("Journey time: ").append(journeyTime).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
+    public Double calculationToMinus5(int numberOfContainers, double temperature, int journeyTime) {
+        return PhysicsCalculation.calculateTotalEnergySuppliedMinus5(numberOfContainers, temperature, journeyTime);
     }
 
     /**
-     * Gets the result values of the total energy needed to supply a set of containers of 7ºC.
+     * Gets the result values of the total energy needed to supply to a set of containers of 7ºC.
      *
      * @param numberOfContainers the number of containers
      * @param temperature        the container temperature
      * @param journeyTime        the journey time
      * @return a string with all the result values
      */
-    public StringBuilder calculationTo7(int numberOfContainers, double temperature, int journeyTime) {
-        StringBuilder sb = new StringBuilder();
-        String totalEnergy = df.format(PhysicsCalculation.calculateTotalEnergySupplied7(numberOfContainers, temperature, journeyTime));
-        return sb.append("Journey time: ").append(journeyTime).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ").append(totalEnergy).append(" J");
+    public Double calculationTo7(int numberOfContainers, double temperature, int journeyTime) {
+        return PhysicsCalculation.calculateTotalEnergySupplied7(numberOfContainers, temperature, journeyTime);
+    }
+
+    /**
+     * Gets a list with all the trips.
+     *
+     * @return a list with all the trips
+     * @throws SQLException
+     */
+    public String getAllTripList() throws SQLException {
+        return DataBaseUtils.getAllTrips(connection);
+    }
+
+    /**
+     * Verifies if the trip exists.
+     *
+     * @param option the trip ID chosen by the user
+     * @return true if it exists, false if it doesn't
+     * @throws SQLException
+     */
+    public boolean verifyTrip(String option) throws SQLException {
+        return DataBaseUtils.verifyTrip(option, connection);
     }
 }

@@ -8,37 +8,46 @@ import java.sql.Types;
 
 public class CountDaysEachShipScript {
 
-
-    public CountDaysEachShipScript(){
+    /**
+     * Constructor.
+     */
+    public CountDaysEachShipScript() {
         //Empty Constructor
     }
 
-    public String CountDaysEachShip(DatabaseConnection connection,int year){
+    /**
+     * Calls a function that counts the number of days a ship has been idle since the beginning of the current year
+     *
+     * @param connection the database connection
+     * @param year       the current year
+     * @return the number of days a ship has been idle since the beginning of the current year
+     */
+    public String CountDaysEachShip(DatabaseConnection connection, int year) {
 
-      String string = new String();
-      String sqlString = "{? = call fnCountDays(?)}";
-      StringBuilder sb = new StringBuilder();
+        String string = new String();
+        String sqlString = "{? = call fnCountDays(?)}";
+        StringBuilder sb = new StringBuilder();
 
-      try(CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)){
+        try (CallableStatement cstmt = connection.getConnection().prepareCall(sqlString)) {
 
-          cstmt.registerOutParameter(1, Types.VARCHAR);
-          cstmt.setInt(2,year); //year
+            cstmt.registerOutParameter(1, Types.VARCHAR);
+            cstmt.setInt(2, year); //year
 
-          cstmt.executeUpdate();
+            cstmt.executeUpdate();
 
-          string = cstmt.getString(1);
-          String[] split = string.split(",");
-
-
-          for (int i = 0; i < split.length; i++) {
-              sb.append(split[i]).append("\n");
-          }
-
-      } catch (SQLException throwables) {
-          throwables.printStackTrace();
-      }
+            string = cstmt.getString(1);
+            String[] split = string.split(",");
 
 
-    return sb.toString();
+            for (int i = 0; i < split.length; i++) {
+                sb.append(split[i]).append("\n");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return sb.toString();
     }
 }

@@ -15,12 +15,12 @@ public class CalculateCenterUI implements Runnable {
         int vesselType;
 
         do {
-            vesselType = Utils.readIntegerFromConsole("Please insert ship's vessel type? (Available: 80,31,71)");
+            vesselType = Utils.readIntegerFromConsole("Please insert ship's vessel type? (Available: 74,72,71)");
 
-            if(vesselType != 80 && vesselType != 31 && vesselType != 71){
+            if(vesselType != 72 && vesselType != 74 && vesselType != 71){
                 System.out.println("Please Insert an available vessel type!");
             }
-        }while (vesselType != 80 && vesselType != 31 && vesselType != 71);
+        }while (vesselType != 72 && vesselType != 74 && vesselType != 71);
         System.out.println(calculateCenterController.calculateCenterController(vesselType));
     }
 }

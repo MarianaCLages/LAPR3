@@ -2,7 +2,6 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.InvalidShipException;
-import lapr.project.shared.exceptions.NoValidInformationInsideThatTripExeception;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
@@ -12,11 +11,26 @@ import java.text.SimpleDateFormat;
 
 public class CallAvgOccupancyRateThreshold {
 
+    /**
+     * Constructor.
+     */
     public CallAvgOccupancyRateThreshold() {
         //Empty Constructor
     }
 
-    public static String occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end, int treshold) throws IllegalArgumentException, InvalidShipException {
+    /**
+     * Calls a function that gets the ship voyages that had an average occupancy rate below a certain threshold.
+     *
+     * @param connection the database connection
+     * @param mmsi       the ship MMSI
+     * @param begin      the begin date
+     * @param end        the end date
+     * @param threshold  the threshold
+     * @return the ship voyages that had an average occupancy rate below a certain threshold
+     * @throws IllegalArgumentException
+     * @throws InvalidShipException
+     */
+    public static String occupationRateFunction(DatabaseConnection connection, int mmsi, String begin, String end, int threshold) throws IllegalArgumentException, InvalidShipException {
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -43,7 +57,7 @@ public class CallAvgOccupancyRateThreshold {
             cstmt.setInt(2, mmsi);
             cstmt.setDate(3, beginDate);
             cstmt.setDate(4, endDate);
-            cstmt.setInt(5, treshold);
+            cstmt.setInt(5, threshold);
 
             cstmt.execute();
             returnValue = cstmt.getNString(1);
@@ -51,6 +65,7 @@ public class CallAvgOccupancyRateThreshold {
         } catch (SQLException e) {
             throw new InvalidShipException();
         }
+
         return returnValue;
     }
 }

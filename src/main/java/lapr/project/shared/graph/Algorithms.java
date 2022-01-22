@@ -1,9 +1,6 @@
 package lapr.project.shared.graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.function.BinaryOperator;
 
 public class Algorithms {
@@ -308,53 +305,6 @@ public class Algorithms {
             vDest = pathKeys[vKey];
             getPath(g, vOrig, vDest, pathKeys, path);
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-
-    /**
-     * Calculates the minimum distance graph using Floyd-Warshall
-     *
-     * @param g   initial graph
-     * @param ce  comparator between elements of type E
-     * @param sum sum two elements of type E
-     * @return the minimum distance graph
-     */
-    public static <V, E> MatrixGraph<V, E> minDistGraph(Graph<V, E> g, Comparator<E> ce, BinaryOperator<E> sum) {
-        int numVertices = g.numVertices();
-
-        if (numVertices == 0) {
-            return null;
-        }
-
-        @SuppressWarnings("unchecked")
-        E[][] m = (E[][]) new Object[numVertices][numVertices];
-
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = 0; j < numVertices; j++) {
-                Edge<V, E> e = g.edge(i, j);
-
-                if (e != null) {
-                    m[i][j] = e.getWeight();
-                }
-            }
-        }
-
-        for (int k = 0; k < numVertices; k++) {
-            for (int i = 0; i < numVertices; i++) {
-                if (i != k && m[i][k] != null) {
-                    for (int j = 0; j < numVertices; j++) {
-                        if (i != j && m[k][j] != null) {
-                            E s = sum.apply(m[i][k], m[k][j]);
-                            if (m[i][j] == null || ce.compare(m[i][j], s) > 0) {
-                                m[i][j] = s;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return new MatrixGraph<>(g.isDirected(), g.vertices(), m);
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
