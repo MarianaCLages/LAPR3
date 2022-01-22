@@ -585,6 +585,8 @@ public class DataBaseUtils {
 
     }
 
+
+
     public static List<String> getAllShipsWithTrips(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -625,6 +627,74 @@ public class DataBaseUtils {
         }
         return false;
 
+    }
+    public static List<Ship> getShipCaptainShips(DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+        List<Ship> shipList = new ArrayList<>();
+
+        String sqlCommand = "select * from SHIP s where s.MMSI = " + 229767000 + "or s.MMSI = " + 257799000;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet shipResultSet = getPreparedStatement.executeQuery()) {
+
+                while (shipResultSet.next()) {
+                    String vesselType = shipResultSet.getString("VESSELTYPE");
+
+                    int mmsi = shipResultSet.getInt("MMSI");
+                    String imo = shipResultSet.getString("IMO");
+                    String callSign = shipResultSet.getString("CALLSIGN");
+                    String shipName = shipResultSet.getString("NAME");
+
+                    double length = shipResultSet.getDouble("LENGTH");
+                    double width = shipResultSet.getDouble("WIDTH");
+                    double capacity = shipResultSet.getDouble("CAPACITY");
+                    double draft = shipResultSet.getDouble("DRAFT");
+
+                    shipList.add(new Ship(mmsi, shipName, imo, 1, 1, callSign, vesselType, length, width, capacity, draft));
+                }
+
+            }
+        }
+        return shipList;
+
+    }
+
+    public static List<String> getShipCargoManifests(int mmsi, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+        List<String> cargoManifestList = new ArrayList<>();
+
+        String sqlCommand = "select * from CARGOMANIFEST cm where cm.VEHICLEID = (select s.VehicleID from SHIP s where s.MMSI = " + mmsi + ") AND cm.CARGOMANIFESTTYPE = 1";
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    cargoManifestList.add(resultSet.getString(1));
+                }
+
+            }
+        }
+        return cargoManifestList;
+    }
+
+    public int getNumContainers(String cargoManifestID, DatabaseConnection databaseConnection) throws SQLException {
+
+        Connection connection = databaseConnection.getConnection();
+
+        String sqlCommand = "select Count(cmc.ContainerID) from CARGOMANIFESTCONTAINER cmc where cmc.CARGOMANIFESTID = " + cargoManifestID;
+
+        try (PreparedStatement getPreparedStatement = connection.prepareStatement(sqlCommand)) {
+            try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+
+            }
+        }
+        return 0;
     }
 
 }

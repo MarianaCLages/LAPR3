@@ -91,7 +91,8 @@ public class TotalEnergySuppliedUI implements Runnable {
                 } else {
                     sb.append("\n");
                     sb.append("Section ").append(j + 1).append("\n");
-                    sb.append(controller.calculationTo7(numberOfContainers, temperature, duration));
+                    sb.append("Journey time: ").append(duration).append("s").append("\n").append("Temperature: ").append(temperature).append("ºC").append("\n").append("Total energy to be supplied: ");
+                    sb.append(df.format(controller.calculationTo7(numberOfContainers, temperature, duration))).append(" J");
                 }
                 sb.append("\n");
             }

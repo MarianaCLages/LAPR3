@@ -1,9 +1,6 @@
 package lapr.project.shared.graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.function.BinaryOperator;
 
 public class Algorithms {
@@ -320,15 +317,18 @@ public class Algorithms {
      * @param sum sum two elements of type E
      * @return the minimum distance graph
      */
-    public static <V, E> MatrixGraph<V, E> minDistGraph(Graph<V, E> g, Comparator<E> ce, BinaryOperator<E> sum) {
+    public static <V, E> Vertex[][] minDistGraph(Graph<V, E> g, Comparator<E> ce, BinaryOperator<E> sum) {
         int numVertices = g.numVertices();
 
         if (numVertices == 0) {
             return null;
         }
 
+
         @SuppressWarnings("unchecked")
         E[][] m = (E[][]) new Object[numVertices][numVertices];
+
+        Vertex[][] p = new Vertex[numVertices][numVertices];
 
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
@@ -336,25 +336,41 @@ public class Algorithms {
 
                 if (e != null) {
                     m[i][j] = e.getWeight();
+
+                    p[i][j] = (Vertex) g.vertex(i);
+
+                } else {
+                    p[i][j] = null;
                 }
             }
         }
+
 
         for (int k = 0; k < numVertices; k++) {
             for (int i = 0; i < numVertices; i++) {
                 if (i != k && m[i][k] != null) {
                     for (int j = 0; j < numVertices; j++) {
-                        if (i != j && m[k][j] != null) {
+                        if (i != j && j!=k && m[k][j] != null) {
                             E s = sum.apply(m[i][k], m[k][j]);
                             if (m[i][j] == null || ce.compare(m[i][j], s) > 0) {
                                 m[i][j] = s;
+                                p[i][j] = p[j][k];
                             }
                         }
                     }
                 }
             }
         }
-        return new MatrixGraph<>(g.isDirected(), g.vertices(), m);
+
+      //System.out.println(Arrays.deepToString(m));
+/*        for (int i = 0; i < p.length; i++) {
+            for (int j = i+1; j < p[i].length; j++) {
+                if (p[i][j] != null && i!=j) {
+                    System.out.println(g.vertex(i) + "->" + g.vertex(i) + " passando em: " + p[i][j]);
+                }
+            }
+        }*/
+        return p;
         //throw new UnsupportedOperationException("Not supported yet.");
     }
 
