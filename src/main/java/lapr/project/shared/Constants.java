@@ -44,7 +44,7 @@ public class Constants {
     public static final double CONTAINER_HEIGHT = 2.39;
     public static final double CONTAINER_EXTERIOR_MINUS5 = 0.0022;
     public static final double CONTAINER_EXTERIOR_7 = 0.00095;
-    public static final double CONTAINER_MID_7 = 0.000028;
+    public static final double CONTAINER_MID_7 = 0.030;
     public static final double CONTAINER_MID_MINUS5 = 0.000061;
     public static final double CONTAINER_INTERIOR = 0.01175;
     public static final double AREA = 2 * CONTAINER_HEIGHT * CONTAINER_LENGTH + 2 * CONTAINER_HEIGHT * CONTAINER_WIDTH + 2 * CONTAINER_WIDTH * CONTAINER_LENGTH;
