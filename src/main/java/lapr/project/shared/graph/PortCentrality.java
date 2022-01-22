@@ -4,10 +4,20 @@ import java.util.*;
 
 public class PortCentrality {
 
+    /**
+     * Constructor.
+     */
     private PortCentrality() {
         // Empty constructor
     }
 
+    /**
+     * Gets the N more critical ports (have greater centrality).
+     *
+     * @param graph the graph
+     * @param n     the N number of ports
+     * @return the N more critical ports (in a string)
+     */
     public static String getCentralityOfNPorts(MatrixGraph<Vertex, Double> graph, int n) {
         ArrayList<LinkedList<Vertex>> pathList = new ArrayList<>();
         ArrayList<Double> distanceList = new ArrayList<>();
@@ -53,6 +63,12 @@ public class PortCentrality {
         return sb.toString();
     }
 
+    /**
+     * Sorts the map.
+     *
+     * @param map the map
+     * @return the sorted map
+     */
     public static LinkedHashMap<Vertex, Integer> sortMap(LinkedHashMap<Vertex, Integer> map) {
         List<Map.Entry<Vertex, Integer>> capitalList = new LinkedList<>(map.entrySet());
 

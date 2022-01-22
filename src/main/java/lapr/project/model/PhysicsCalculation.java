@@ -8,6 +8,7 @@ public class PhysicsCalculation {
 
     /**
      * Calculates the energy needed to supply to a container of -5ºC with an exterior temperature of 20ºC and a travel time of 2h30.
+     *
      * @return the energy needed to supply to a container of -5ºC with an exterior temperature of 20ºC and a travel time of 2h30
      */
     public static double calculateEnergyConsumptionDeterminedTripMinus5C() {
@@ -26,6 +27,7 @@ public class PhysicsCalculation {
 
     /**
      * Calculates the energy needed to supply to a container of 7ºC with an exterior temperature of 20ºC and a travel time of 2h30.
+     *
      * @return the energy needed to supply to a container of 7ºC with an exterior temperature of 20ºC and a travel time of 2h30
      */
     public static double calculateEnergyConsumptionDeterminedTrip7C() {
@@ -92,10 +94,11 @@ public class PhysicsCalculation {
 
     /**
      * Calculates the energy needed to supply to the container cargo (with a temperature of -5ºC) in a voyage, depending on the position of the containers on the ship.
-     * @param section the trip section
+     *
+     * @param section    the trip section
      * @param frontFaces the number of front faces
-     * @param sideFaces the number of side faces
-     * @param topFaces the number of top faces
+     * @param sideFaces  the number of side faces
+     * @param topFaces   the number of top faces
      * @return the energy needed to supply to the container cargo (with a temperature of -5ºC) in a voyage, depending on the position of the containers on the ship
      */
     public static double calculateEnergyConsumptionMinus5(Map<Integer, Double> section, int frontFaces, int sideFaces, int topFaces) {
@@ -118,10 +121,11 @@ public class PhysicsCalculation {
 
     /**
      * Calculates the energy needed to supply to the container cargo (with a temperature of 7ºC) in a voyage, depending on the position of the containers on the ship.
-     * @param section the trip section
+     *
+     * @param section    the trip section
      * @param frontFaces the number of front faces
-     * @param sideFaces the number of side faces
-     * @param topFaces the number of top faces
+     * @param sideFaces  the number of side faces
+     * @param topFaces   the number of top faces
      * @return the energy needed to supply to the container cargo (with a temperature of 7ºC) in a voyage, depending on the position of the containers on the ship
      */
     public static double calculateEnergyConsumption7(Map<Integer, Double> section, int frontFaces, int sideFaces, int topFaces) {
@@ -140,6 +144,14 @@ public class PhysicsCalculation {
         return total;
     }
 
+    /**
+     * Calculates the energy needed to supply to the container cargo (with a temperature of 7ºC) in a voyage, depending on the position of the containers on the ship.
+     *
+     * @param numberOfContainers the number of containers
+     * @param temperature        the container temperature
+     * @param voyageTime         the voyage time
+     * @return the energy needed to supply to the container cargo (with a temperature of 7ºC) in a voyage, depending on the position of the containers on the ship
+     */
     public static int calculateSuppliesNeededFor7(int numberOfContainers, double temperature, int voyageTime) {
         double energykw = (calculateTotalEnergySupplied7(numberOfContainers, temperature, voyageTime));
         System.out.println(energykw);
@@ -150,9 +162,17 @@ public class PhysicsCalculation {
         return supliesNeeded;
     }
 
+    /**
+     * Calculates the energy needed to supply to the container cargo (with a temperature of -5ºC) in a voyage, depending on the position of the containers on the ship.
+     *
+     * @param numberOfContainers the number of containers
+     * @param temperature        the container temperature
+     * @param voyageTime         the voyage time
+     * @return the energy needed to supply to the container cargo (with a temperature of -5ºC) in a voyage, depending on the position of the containers on the ship
+     */
     public static int calculateSuppliesNeededForMinus5(int numberOfContainers, double temperature, int voyageTime) {
         double energykw = (calculateTotalEnergySuppliedMinus5(numberOfContainers, temperature, voyageTime));
-        int supliesNeeded = (int) Math.abs(Math.round(energykw /  (75 * 1000 * voyageTime)));
+        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000 * voyageTime)));
 
         if (supliesNeeded == 0) supliesNeeded = 1;
 
