@@ -21,15 +21,13 @@
 	.global verifyIfRefrigerated
 
 verifyIfRefrigerated:		# %rdi: Container_Array / %rsi: Container_Position 
-	movq %rdi,%rdx
-	
 	cmpb $0, %sil
-	je first_position		#in case the container position is the first in the array
+	je first_position		#In case the container position is the first in the array we can jump straight to the element
 	
-	movl $STRUCT_SIZE, %eax	#prepare the off set to get the correct position
+	movl $STRUCT_SIZE, %eax	#Prepare the off set to get the correct position
 
 sum_loop:
-	cmpl $0,%esi
+	cmpl $0,%esi			#Loop to prepare the correct container that we are dealing with, according to the container position
 	je continue
 	addl %eax,%eax
 	
@@ -37,26 +35,26 @@ sum_loop:
 	jmp sum_loop
 	
 continue:
-	addq %rax, %rdx			#now we have the correct container position
+	addq %rax, %rdi		#Now we have the correct container position
 	
 	jmp verify_integrity
 	
 first_position:
-	#since the container position is the first in the array, we do not have to increment any off set
+	#Since the container position is the first in the array, we do not have to increment any off set
 	
 verify_integrity:
 
-	movl IS_REFRIGERATED_OFFSET(%rdx), %ecx
+	movl IS_REFRIGERATED_OFFSET(%rdi), %ecx
 	
 	cmpb $0, %cl
-	je not_refrigerated		#if the value of the variable inside the struct isRefrigerated is 0 then the container is not refrigerated
+	je not_refrigerated		#If the value of the variable inside the struct isRefrigerated is 0 then the container is not refrigerated
 	
 	movb $1, %al
 	
 	jmp end
 	
 not_refrigerated:
-	movb $0, %al
+	movb $0, %al			#In case the container is not refrigerated we just return 1
 	
 end:
 	ret

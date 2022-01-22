@@ -41,7 +41,7 @@ public class Utils {
 
     public static Object showAndSelectOneWithMessage(List list, String header) {
         showListNormalUs402(list, header);
-        System.out.println("Notice: If u wish to see more options type the option 36");
+        System.out.println("Notice: If you wish to see more options type the option 36");
         return selectsObjectSpecial(list);
     }
 

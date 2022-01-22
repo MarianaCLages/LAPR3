@@ -1,9 +1,9 @@
 #ifndef CREATE_CONTAINER_STRUCTURE_H
 #define CREATE_CONTAINER_STRUCTURE_H
 
-#define ARRAY_SIZE 5						//Initial Array size
+#define ARRAY_SIZE 125						//Initial Array size
 #define VOYAGE_TIME 9000					//Trip time
-extern int numContainers;					//Number of containers to be printed in the main
+extern int numContainers;					//Number of containers to be printed in the main (or to be used in other functions)
 
 //Structure size = 24 Bytes
 //Structure data alignment (K = 4) : 1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 2 + 2 + 2 + 2 + 4 + 2 + (GAP = 2)

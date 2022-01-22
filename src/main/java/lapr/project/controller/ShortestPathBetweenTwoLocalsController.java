@@ -1,5 +1,7 @@
 package lapr.project.controller;
 
+import lapr.project.model.City;
+import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NullVerticesException;
 import lapr.project.shared.graph.FreightNetwork;
 import lapr.project.shared.graph.Graph;
@@ -125,6 +127,10 @@ public class ShortestPathBetweenTwoLocalsController {
             }
         }
 
+        if (sb.toString().isEmpty()) {
+            throw new NullPointerException();
+        }
+
         return sb.toString();
     }
 
@@ -148,6 +154,16 @@ public class ShortestPathBetweenTwoLocalsController {
             }
         }
         return vertexList;
+    }
+
+    public String verifyVertex(VertexDto vertexDto) {
+        for (Vertex v : graph.vertices()) {
+            if (v.getName().equals(vertexDto.getName())) {
+                if (v instanceof City) return "City";
+                else if (v instanceof Port) return "Port";
+            }
+        }
+        return null;
     }
 
 }

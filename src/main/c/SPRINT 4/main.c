@@ -15,7 +15,7 @@ int main(void) {
 	//Size of the Container Structure	
 	const char CONTAINER_SIZE = sizeof(Container);
 	
-	//Allocate the memory to create an 3D Matrix for containers
+	//Allocate the memory to create an "3D" Matrix for containers
 	Container* container_array = malloc(CONTAINER_SIZE * ARRAY_SIZE);
 	
 	//Pointer to the file with the containers information
@@ -53,13 +53,13 @@ int main(void) {
 		
 		switch(option){
 			case(1):
-			//Extra, in case its necessary to view the container array
+			//Extra, in case it is necessary to view the container array (only the occupied positions)
 			print_container_array(container_array);
 			count++;
 			break;
 			
 			case(2):
-			//US 410, know the amount needed enerrgy, first, it is necessary to have the x,y,z coord in order to know which container we will be working with
+			//US 410, know the amount needed energy, first, it is necessary to have the x,y,z coord in order to know which container we will be working with
 			printf("\nPlease enter the x position: \n");
 			scanf("%hhd",&x);
 
@@ -89,12 +89,16 @@ int main(void) {
 
 			decision = calculate_energy_consumption(container_array, genOutput, numContainers);
 			
-			printf("\nResult: %d\n\n", decision);
-
+			if(decision == 2) {
+				printf("\nFor the given generator capacity, the given energy generation is not enough to provide energy to all refrigerated containers!\n\n");
+			} else if (decision == 1) {
+				printf("\nFor the given generator capacity, the given energy generation is enough to provide energy to all refrigerated containers!\n\n");
+			}
 			count++;
 			break;
 			
 			case(4):
+			//Option to exit the program
 			exit++;
 			break;
 			
@@ -110,17 +114,6 @@ int main(void) {
 		}
 		
 	} while(exit == 0);
-	
-	//Apagar quando for a dar review
-	
-	//Quando for necessario fazer o menu implementar aqui ler da consola o X Y e Z e caso o valor seja -1 nao existe um contentor com essa posição
-	//printf("Container position: %hhd\n", find_container_position(container_array, 2, 9, 1));
-	
-	//short value = verifyStruct(ptr, find_container_position(container_array, 1, 9, 0));
-	//printf("Occupation: %hhd\n", value);
-	
-	//float energy = energy_needed(container_array, 1, 9, 0);
-	//printf("Energy needed to keep the container at its required temperature: %f\n", energy);
 	
 	free(container_array);
 	

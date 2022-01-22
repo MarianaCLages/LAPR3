@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+//Print the menu with all available options
 void print_menu(){
 
 printf("\n\nAvailable options: ");
