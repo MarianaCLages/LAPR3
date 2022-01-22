@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PortCentrality {
 
-    public PortCentrality() {
+    private PortCentrality() {
         // Empty constructor
     }
 
