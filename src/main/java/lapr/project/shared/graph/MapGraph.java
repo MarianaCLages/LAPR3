@@ -343,7 +343,6 @@ public class MapGraph<V, E> extends CommonGraph<V, E> {
      *
      * @return the map graph's characteristics
      */
-    //string representation
     @Override
     public String toString() {
         String s;

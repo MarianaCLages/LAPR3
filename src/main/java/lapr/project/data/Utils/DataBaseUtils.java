@@ -586,7 +586,6 @@ public class DataBaseUtils {
     }
 
 
-
     public static List<String> getAllShipsWithTrips(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
@@ -628,6 +627,7 @@ public class DataBaseUtils {
         return false;
 
     }
+
     public static List<Ship> getShipCaptainShips(DatabaseConnection databaseConnection) throws SQLException {
 
         Connection connection = databaseConnection.getConnection();
