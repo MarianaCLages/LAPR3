@@ -16,7 +16,7 @@ public class PhysicsCalculation {
 
         // Q = temperature difference / total resistance
         double q = (20 + 5.0) / totalResistance;
-        
+
         //Return = Q x time
         return (q * Constants.VOYAGE_TIME);
     }
@@ -35,6 +35,14 @@ public class PhysicsCalculation {
         return (q * Constants.VOYAGE_TIME);
     }
 
+    /**
+     * Calculates the total energy to be supplied to a set of containers of -5ºC.
+     *
+     * @param numberOfContainers the number of containers
+     * @param temperature        the container temperature
+     * @param voyageTime         the trip time
+     * @return the total energy to be supplied to a set of containers of -5ºC
+     */
     public static double calculateTotalEnergySuppliedMinus5(int numberOfContainers, double temperature, int voyageTime) {
         double stainlessSteelResistance = 0.95 / (15 * Constants.AREA);
         double polyurethaneFoamResistance = 30 / (0.029 * Constants.AREA);
@@ -51,6 +59,14 @@ public class PhysicsCalculation {
         return (energy * numberOfContainers);
     }
 
+    /**
+     * Calculates the total energy to be supplied to a set of containers of 7ºC.
+     *
+     * @param numberOfContainers the number of containers
+     * @param temperature        the container temperature
+     * @param voyageTime         the trip time
+     * @return the total energy to be supplied to a set of containers of 7ºC
+     */
     public static double calculateTotalEnergySupplied7(int numberOfContainers, double temperature, int voyageTime) {
         double cortenSteelResistance = 2 / (25 * Constants.AREA);
         double extrudedPolystyreneResistance = 6.10 / (3.30 * Constants.AREA);
@@ -100,24 +116,24 @@ public class PhysicsCalculation {
         return total;
     }
 
-    public static int calculateSuppliesNeededFor7(int numberOfContainers, double temperature, int voyageTime){
+    public static int calculateSuppliesNeededFor7(int numberOfContainers, double temperature, int voyageTime) {
 
-        double energykw = (calculateTotalEnergySupplied7(numberOfContainers,temperature,voyageTime) )  ;
+        double energykw = (calculateTotalEnergySupplied7(numberOfContainers, temperature, voyageTime));
         System.out.println(energykw);
-        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000))) ;
+        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000)));
 
-        if(supliesNeeded == 0) supliesNeeded = 1;
+        if (supliesNeeded == 0) supliesNeeded = 1;
 
         return supliesNeeded;
     }
 
-    public static int calculateSuppliesNeededForMinus5(int numberOfContainers, double temperature, int voyageTime){
+    public static int calculateSuppliesNeededForMinus5(int numberOfContainers, double temperature, int voyageTime) {
 
 
-        double energykw = (calculateTotalEnergySuppliedMinus5(numberOfContainers,temperature,voyageTime) )  ;
-        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000))) ;
+        double energykw = (calculateTotalEnergySuppliedMinus5(numberOfContainers, temperature, voyageTime));
+        int supliesNeeded = (int) Math.abs(Math.round(energykw / (75 * 1000)));
 
-        if(supliesNeeded == 0) supliesNeeded = 1;
+        if (supliesNeeded == 0) supliesNeeded = 1;
 
         return supliesNeeded;
     }
