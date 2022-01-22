@@ -1,5 +1,6 @@
 package lapr.project.shared.graph;
 
+import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;
 import lapr.project.shared.exceptions.NullVerticesException;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,15 +11,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class PortCentralityTest {
 
-    static MatrixGraph<Vertex, Double> graph = new MatrixGraph<>(false);
+    static FreightNetwork freightNetwork = new FreightNetwork();
 
     @BeforeAll
     static void beforeAll() {
-        DatabaseConnection database = new DatabaseConnection("jdbc:oracle:thin:@vsgate-s1.dei.isep.ipp.pt:10676/xepdb1", "graphtest", "mypassword");
-        FreightNetwork freightNetwork = new FreightNetwork();
         try {
-            freightNetwork.createGraph(10, database);
-            graph = freightNetwork.getGraph();
+            freightNetwork.createGraph(10, App.getInstance().getDatabaseConnection());
         } catch (NullVerticesException e) {
             fail();
         }
@@ -50,7 +48,7 @@ class PortCentralityTest {
                 "Port: Callao, Centrality: 1063\n";
 
         //Act
-        String actual = PortCentrality.getCentralityOfNPorts(graph, 10);
+        String actual = PortCentrality.getCentralityOfNPorts(freightNetwork.getGraph(), 10);
 
         //Assert
         if(!actual.equals(expected1)) {
