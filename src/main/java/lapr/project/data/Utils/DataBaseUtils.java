@@ -558,7 +558,7 @@ public class DataBaseUtils {
             try (ResultSet resultSet = getPreparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    sb.append("Trip number: ").append(auxCount).append(" ,Trip ID: ").append(resultSet.getInt(1)).append("\n");
+                    sb.append("Trip number: ").append(auxCount).append(", Trip ID: ").append(resultSet.getInt(1)).append("\n");
                     auxCount++;
                 }
             }

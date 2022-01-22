@@ -21,13 +21,11 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
         String begin;
         String end;
         String option = null;
-        boolean thresholdOption = false;
         String optionThreshold = null;
         int thresholdValue = 66;
-        boolean flag = false;
+        boolean thresholdFlag = false;
         boolean condition = false;
         boolean conditionChange = false;
-
 
         try {
             do {
@@ -35,15 +33,15 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
                     option = (String) Utils.showAndSelectOne(controller.getAllShipsWithTrip(), "\nAll Ships with trips, please choose one:\n ");
 
                     if (option == null || option.trim().equals("")) {
-                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid Mmsi! (See the trip list above)");
+                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid MMSI! (See the trip list above)");
                     }
 
                     if (!controller.verifyShip(option)) {
-                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid Mmsi! (See the trip list above)");
+                        throw new IllegalArgumentException("Invalid Ship! Please enter a valid MMSI! (See the trip list above)");
                     }
 
                 } catch (SQLException ex1) {
-                    System.out.println("Invalid Ship! Please enter a valid Mmsi! (Notice: enter a number that corresponds to the option, not a invalid character or a set of invalid characters nor a number that does not exist in the list!) \n");
+                    System.out.println("Invalid Ship! Please enter a valid MMSI! (Notice: enter a number that corresponds to the option, not a invalid character or a set of invalid characters nor a number that does not exist in the list!) \n");
                     option = null;
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
@@ -86,7 +84,7 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
                     try {
 
                         thresholdValue = Utils.readIntegerFromConsole("Enter the desired value for the threshold! (Notice the value can not be negative nor above 100%!");
-                        flag = true;
+                        thresholdFlag = true;
 
                         if (thresholdValue < 0 || thresholdValue > 100) {
                             throw new IllegalArgumentException("Invalid threshold! Please enter a valid number! (See the note above!)");
@@ -94,10 +92,10 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
 
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        flag = false;
+                        thresholdFlag = false;
                     }
 
-                } while (flag == false);
+                } while (thresholdFlag == false);
             }
 
             do {
@@ -119,12 +117,12 @@ public class AvgOccupancyRatePerVoyageWithThresholdUI implements Runnable {
                     end = null;
                 }
             } while (end == null);
-            System.out.println("\n" + controller.getAvgOccupancyRateThreshold(mmsi, begin, end,thresholdValue));
+            System.out.println("\n" + controller.getAvgOccupancyRateThreshold(mmsi, begin, end, thresholdValue));
             System.out.println("\nOperation Success!\n");
+
         } catch (Exception ex1) {
             System.out.println(ex1.getMessage());
             System.out.println("\nOperation Failed!\n");
         }
-
     }
 }

@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.controller.TotalEnergySuppliedController;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,41 @@ public class TotalEnergySuppliedUI implements Runnable {
     public void run() {
         List<String> optionList = new ArrayList<>();
 
-        optionList.add("-5 ºC");
-        optionList.add("7 ºC");
+        optionList.add("-5ºC");
+        optionList.add("7ºC");
         StringBuilder sb = new StringBuilder();
+
+        String option = null;
+
+        try {
+            System.out.println("\n### TRIP LIST ###");
+            System.out.println(controller.getAllTripList());
+            do {
+                try {
+                    option = Utils.readLineFromConsole("Please enter one of the valid TRIP ID shown above:");
+
+                    if (option == null || option.trim().equals("")) {
+                        throw new IllegalArgumentException("Invalid trip! Please enter a valid trip ID (See the trip list above)");
+                    }
+
+                    if (!controller.verifyTrip(option)) {
+                        throw new IllegalArgumentException("Invalid trip! Please enter a valid trip ID (See the trip list above)");
+                    }
+
+                } catch (SQLException ex1) {
+                    System.out.println("Please enter a valid trip! (Notice: enter a number, not a invalid character or a set of invalid characters!) \n");
+                    option = null;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    option = null;
+                }
+
+            } while (option == null);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("\nOperation failed! Please try again.");
+        }
 
         try {
             int i = 0;
