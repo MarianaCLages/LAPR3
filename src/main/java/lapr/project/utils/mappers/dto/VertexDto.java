@@ -12,10 +12,7 @@ public class VertexDto {
 
     @Override
     public String toString() {
-        return "Vertex{" +
-                "identification='" + identification + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        return "Local: " + identification + " -> " + name;
     }
 
     public String getName() {

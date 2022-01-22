@@ -181,13 +181,9 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
 
         try {
             if (optionVertexes == null || optionVertexes.isEmpty()) {
-                controller.funcaoEdu(pathOption, beginVertex, endVertexF, Collections.EMPTY_LIST);
+                controller.getPath(pathOption, beginVertex, endVertexF, Collections.emptyList());
             } else {
-                controller.funcaoEdu(pathOption, beginVertex, endVertexF, optionVertexes);
-                System.out.println(pathOption + "\n");
-                System.out.println(beginVertex + "\n");
-                System.out.println(endVertexF + "\n");
-                System.out.println(optionVertexes.toString());
+                System.out.println(controller.getPath(pathOption, beginVertex, endVertexF, optionVertexes));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

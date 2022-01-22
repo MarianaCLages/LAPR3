@@ -1,8 +1,6 @@
 package lapr.project.shared.graph;
 
 import lapr.project.model.City;
-import lapr.project.model.Continent;
-import lapr.project.model.Country;
 import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NullVerticesException;
 
@@ -13,30 +11,6 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ShortPaths {
-    public static void main(String[] args) throws NullVerticesException {
-
-        //   FreightNetwork f = new FreightNetwork();
-        //    f.createGraph(1, App.getInstance().getDatabaseConnection());
-        ArrayList<Vertex> list = new ArrayList<>();
-
-        Graph<Vertex, Double> graph = new MatrixGraph<>(false);
-        Vertex vertex1 = new City("Madrid", 40.4, -3.683333, new Country("Spain", "ES".toCharArray(), "ESP".toCharArray(), 46.53, Continent.EUROPE));
-        Vertex vertex2 = new City("Lisbon", 38.71666667, -9.133333, new Country("Portugal", "PT".toCharArray(), "PTR".toCharArray(), 10.31, Continent.EUROPE));
-        Vertex vertex3 = new City("Paris", 48.86666667, 2.333333, new Country("France", "FR".toCharArray(), "FRA".toCharArray(), 66.99, Continent.EUROPE));
-        Vertex vertex4 = new City("Monaco", 40.4, -3.683333, new Country("Monaco", "MC".toCharArray(), "MCO".toCharArray(), 46.53, Continent.EUROPE));
-
-        graph.addEdge(vertex1, vertex2, VertexDistanceCalculator.distanceCalculator(vertex1, vertex2));
-        graph.addEdge(vertex1, vertex3, VertexDistanceCalculator.distanceCalculator(vertex1, vertex3));
-        graph.addEdge(vertex4, vertex3, VertexDistanceCalculator.distanceCalculator(vertex4, vertex3));
-        graph.addEdge(vertex4, vertex2, VertexDistanceCalculator.distanceCalculator(vertex4, vertex2));
-
-
-        list.add(vertex1);
-        list.add(vertex2);
-        seaPath(graph, list, vertex3, vertex4);
-
-    }
-
     public static List<Vertex> seaPath(Graph<Vertex, Double> g, List<Vertex> vertexList, Vertex vInitial, Vertex vFinal) throws NullVerticesException {
         Graph<Vertex, Double> g1 = g.clone();
 
@@ -48,7 +22,7 @@ public class ShortPaths {
             }
         }
 
-        return calculateBestPath(g, vertexList, vInitial, vFinal);
+        return calculateBestPath(g1, vertexList, vInitial, vFinal);
 
     }
 
@@ -64,7 +38,7 @@ public class ShortPaths {
             }
         }
 
-        return calculateBestPath(g, vertexList, vInitial, vFinal);
+        return calculateBestPath(g1, vertexList, vInitial, vFinal);
 
     }
 
