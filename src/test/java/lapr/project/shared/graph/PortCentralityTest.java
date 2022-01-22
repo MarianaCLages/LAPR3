@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PortCentralityTest {
-    
+
     static MatrixGraph<Vertex, Double> graph = new MatrixGraph<>(false);
 
     @BeforeAll
@@ -26,8 +26,8 @@ class PortCentralityTest {
     @Test
     void getCentralityOfNPorts() {
         //Arrange
-        String expected = "Port: Brest, Centrality: 4199\n" +
-                "Port: Monaco, Centrality: 4199\n" +
+        String expected = "Port: Monaco, Centrality: 4199\n" +
+                "Port: Brest, Centrality: 4199\n" +
                 "Port: Barcelona, Centrality: 4071\n" +
                 "Port: Split, Centrality: 2993\n" +
                 "Port: Hamburg, Centrality: 2989\n" +
