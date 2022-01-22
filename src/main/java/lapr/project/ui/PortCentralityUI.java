@@ -1,4 +1,4 @@
-/*package lapr.project.ui;
+package lapr.project.ui;
 
 import lapr.project.controller.App;
 import lapr.project.controller.PortCentralityController;
@@ -37,8 +37,8 @@ public class PortCentralityUI implements Runnable {
         try {
             System.out.println(controller.getCriticalPorts(freightNetwork.getGraph(), numberOfNPorts));
         } catch (Exception exception) {
+            System.out.println(exception.getMessage());
             System.out.println("Something went wrong. Please, try again.");
         }
     }
 }
-*/

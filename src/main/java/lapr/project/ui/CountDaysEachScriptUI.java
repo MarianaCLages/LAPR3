@@ -14,11 +14,8 @@ public class CountDaysEachScriptUI implements Runnable{
 
         CountDaysEachShipScriptController countDaysEachShipScriptController = new CountDaysEachShipScriptController();
 
-        int year = Utils.readIntegerFromConsole("Please, enter the year:");
-
-        String s = countDaysEachShipScriptController.CountDaysEachShipScript(year);
-
-        System.out.println(s);
+            String s = countDaysEachShipScriptController.CountDaysEachShipScript(2022);
+            System.out.println(s);
 
     }
 }

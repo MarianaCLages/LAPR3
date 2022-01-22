@@ -35,8 +35,21 @@ public class Utils {
     }
 
     public static Object showAndSelectOne(List list, String header) {
-        showList(list, header);
+        showListNormal(list, header);
         return selectsObject(list);
+    }
+
+    private static void showListNormal(List list, String header) {
+        System.out.println(header);
+
+        int index = 0;
+        for (Object o : list) {
+            index++;
+
+            System.out.println(index + ". " + o);
+        }
+        System.out.println();
+        System.out.println("0 - Cancel");
     }
 
     public static int showAndSelectIndex(List list, String header) {
@@ -61,7 +74,7 @@ public class Utils {
         String input;
         Integer value;
         do {
-            input = Utils.readLineFromConsole("Type your option: ");
+            input = Utils.readLineFromConsole("Type your option: (Enter a valid option!)");
             value = Integer.valueOf(input);
         } while (value < 0 || value > list.size());
 

@@ -24,7 +24,7 @@ public class FacilityResourcesScript  {
 
     public double getShipAreaByDate(String id,int j,int day, int month, int year){
 
-        String sqlCommand = "Select s.WIDTH, s.LENGTH from Ship s\n" +
+        String sqlCommand = "Select s.CONTAINER_WIDTH, s.CONTAINER_LENGTH from Ship s\n" +
                 "inner join CARGOMANIFEST cm\n" +
                 "on s.VEHICLEID = cm.VEHICLEID\n" +
                 "where cm.CARGOMANIFESTDATE = TO_DATE('"+year+"-"+month+"-"+day+"','YYYY-MM-DD')" +
@@ -42,8 +42,8 @@ public class FacilityResourcesScript  {
                 }
 
                 if(resultSet.next() ){
-                    double width = resultSet.getDouble("WIDTH");
-                    double length = resultSet.getDouble("LENGTH");
+                    double width = resultSet.getDouble("CONTAINER_WIDTH");
+                    double length = resultSet.getDouble("CONTAINER_LENGTH");
                     return width * length;
                 }
 

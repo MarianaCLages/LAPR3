@@ -42,7 +42,7 @@ int main(void) {
 	char x,y,z;
 	char count = 0;
 	float genOutput;
-	bool vibe_check;
+	int decision;
 	
 	//Prepare the Menu
 	print_menu();
@@ -60,29 +60,36 @@ int main(void) {
 			
 			case(2):
 			//US 410, know the amount needed enerrgy, first, it is necessary to have the x,y,z coord in order to know which container we will be working with
-			printf("\nEnter the x position: \n");
+			printf("\nPlease enter the x position: \n");
 			scanf("%hhd",&x);
 
-			printf("Enter the y position: \n");
+			printf("Please enter the y position: \n");
 			scanf("%hhd",&y);
 
-			printf("Enter the z position: \n");
+			printf("Please enter the z position: \n");
 			scanf("%hhd",&z);
 	
-			printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energy_needed(container_array, x, y, z));
-			count++;
-			break;
+			char temp_position = find_container_position(container_array, x, y, z);
+
+			if(temp_position == -1) {
+				printf("\nPlease enter a valid position! Check the inserted positions and try again.\n\n");
+				count++;
+				break;
+
+			} else {
+				printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energy_needed(container_array, x, y, z));
+				count++;
+				break;
+			}
 			
 			case(3):
 			//US 411, can the ship's energy generation output support the container's energy consumption in a determined cargo manifest
 			printf("\nEnter the ship's energy generation output: \n");
 			scanf("%f",&genOutput);
 
-			vibe_check = calculate_energy_consumption(container_array, genOutput, numContainers);
-
-			if(vibe_check){
-				printf("1\n");
-			} else printf("2\n");
+			decision = calculate_energy_consumption(container_array, genOutput, numContainers);
+			
+			printf("\nResult: %d\n\n", decision);
 
 			count++;
 			break;
@@ -97,9 +104,9 @@ int main(void) {
 			
 		}
 		
-		if(count==2) {
+		if(count == 2) {
 			print_menu();
-			count=0;
+			count = 0;
 		}
 		
 	} while(exit == 0);

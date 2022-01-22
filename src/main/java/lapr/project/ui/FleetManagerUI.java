@@ -13,6 +13,7 @@ public class FleetManagerUI implements Runnable{
 
         //Sprint 4
         options.add(new MenuItem("Count idle days for each ship", new CountDaysEachScriptUI()));
+        //options.add(new MenuItem("Average occupancy rate per manifest of a given ship during a given period", new AvgOccupancyRatePerManifestUI()));
 
         int option;
         do {

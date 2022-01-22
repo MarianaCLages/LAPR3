@@ -42,8 +42,8 @@ public class FreightNetwork {
      *
      * @return the graph
      */
-    public Graph<Vertex, Double> getGraph() {
-        return graph;
+    public MatrixGraph<Vertex, Double> getGraph() {
+        return (MatrixGraph<Vertex, Double>) graph;
     }
 
     /**

@@ -62,14 +62,11 @@ public class MostEfficientCircuit {
         Vertex proximoLocation;
         double distanciaMaisCurta;
 
-        if (!(locations.contains(graph.adjVertices(location).iterator().next()))
-                && !(locationUsed.contains(graph.adjVertices(location).iterator().next()))) {
+        if (!(locations.contains(graph.adjVertices(location).iterator().next())) && !(locationUsed.contains(graph.adjVertices(location).iterator().next()))) {
             proximoLocation = graph.adjVertices(location).iterator().next();
             distanciaMaisCurta = graph.edge(location, graph.adjVertices(location).iterator().next()).getWeight();
-        } else if (graph.adjVertices(location).iterator().next().equals(locationOrigem)) {
-            locations.add(locationOrigem);
-            return locations;
-        } else {
+        }
+        else {
             proximoLocation = location;
             distanciaMaisCurta = Double.MAX_VALUE;
         }

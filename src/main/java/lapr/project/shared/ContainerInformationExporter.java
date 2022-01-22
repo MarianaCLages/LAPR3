@@ -72,7 +72,6 @@ public class ContainerInformationExporter {
                     sb.append(container.getGross());
                     sb.append(",");
                     sb.append(container.getIdentification());
-                    sb.append("\n");
                 }
 
             }
