@@ -15,9 +15,10 @@ public class ShipCaptainUI implements Runnable {
         options.add(new MenuItem("Occupancy rate of a ship by cargo manifest date", new OccupancyRateGivenCargoManifestDateUI()));
         options.add(new MenuItem("Get audit trail", new GetAuditTrailUI()));
         options.add(new MenuItem("Know the auxiliary power equipment needed", new AuxiliaryPowerNeededForVoyageUI()));
-        options.add(new MenuItem("Determinate the center of mass of a ship",new CalculateCenterUI()));
+        options.add(new MenuItem("Determinate the center of mass of a ship", new CalculateCenterUI()));
         options.add(new MenuItem("Get the ship's height above water while loaded", new ShipWaterPhysicsUI()));
-        
+        options.add(new MenuItem("Give N containers and place them in the Vessel type and show the center of mass (of the cargo itself so verify if the ship center of mass remains the same", new CargoCenterOfMassUI()));
+
         int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nShip Captain Menu:");

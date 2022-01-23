@@ -179,6 +179,11 @@ public class PhysicsCalculation {
         return supliesNeeded;
     }
 
+    /**
+     * Calculates the center of mass from a certain Ship given a certain cargo manifest
+     * @param positionList List that has all the containers of a certain cargo Manifest
+     * @return the center of mass
+     */
 
     public static double calculateCenterMassOneDim(List<Double> positionList) {
         if (positionList.size() == 0) {
