@@ -1,6 +1,7 @@
 package lapr.project.shared;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalculateCenter {
 
@@ -17,12 +18,11 @@ public class CalculateCenter {
      * @param vesselType the vessel type
      * @return the center of mass of a vessel (in a string)
      */
-    public String calculateCenter(int vesselType) {
-        StringBuilder sb = new StringBuilder();
+    public List<Double> calculateCenter(int vesselType) {
+        List<Double> doubleList = new ArrayList<>();
         double totalCenterX = 0;
         double totalCenterY = 0;
         double totalCenterZ = 0;
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
         if (vesselType == 71) {
             totalCenterX = (Constants.C1X71 * Constants.C1M71 + Constants.C2X71 * Constants.C2M71 + Constants.C3X71 * Constants.C3M71 + Constants.C4X71 * Constants.C4M71 + Constants.C5X71 * Constants.C5M71) / Constants.MTOTAL71;
@@ -39,8 +39,10 @@ public class CalculateCenter {
             totalCenterZ = (Constants.C1Z74 * Constants.C1M74 + Constants.C2Z74 * Constants.C2M74 + Constants.C3Z74 * Constants.C3M74 + Constants.C4Z74 * Constants.C4M74) / Constants.MTOTAL74;
         }
 
-        sb.append("Vessel Type:" + vesselType + " total center is (" + decimalFormat.format(totalCenterX) + ";" + decimalFormat.format(totalCenterY) + ";"+decimalFormat.format(totalCenterZ) +")");
+        doubleList.add(totalCenterX);
+        doubleList.add(totalCenterY);
+        doubleList.add(totalCenterZ);
 
-        return sb.toString();
+        return doubleList;
     }
 }

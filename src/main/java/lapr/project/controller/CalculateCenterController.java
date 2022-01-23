@@ -2,13 +2,17 @@ package lapr.project.controller;
 
 import lapr.project.shared.CalculateCenter;
 
+import java.util.List;
+
 public class CalculateCenterController {
+
+    private final CalculateCenter calculateCenter;
 
     /**
      * Constructor.
      */
     public CalculateCenterController() {
-        //Empty Constructor
+       this.calculateCenter = new CalculateCenter();
     }
 
     /**
@@ -17,8 +21,7 @@ public class CalculateCenterController {
      * @param vesselType the vessel type
      * @return the value of the center of mass calculation for a vessel
      */
-    public String calculateCenterController(int vesselType) {
-        CalculateCenter calculateCenter = new CalculateCenter();
+    public List<Double> calculateCenterOfMass(int vesselType) {
         return calculateCenter.calculateCenter(vesselType);
     }
 }

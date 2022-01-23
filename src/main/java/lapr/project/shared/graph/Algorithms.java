@@ -67,7 +67,6 @@ public class Algorithms {
         for (V vAdj : g.adjVertices(vOrig)) {
             DepthFirstSearch(g, vAdj, visited, qdfs);
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -88,61 +87,7 @@ public class Algorithms {
         DepthFirstSearch(g, vert, visited, gdfs);
 
         return gdfs;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    /**
-     * Returns all paths from vOrig to vDest
-     *
-     * @param g       Graph instance
-     * @param vOrig   Vertex that will be the source of the path
-     * @param vDest   Vertex that will be the end of the path
-     * @param visited set of discovered vertices
-     * @param path    stack with vertices of the current path (the path is in reverse order)
-     * @param paths   ArrayList with all the paths (in correct order)
-     */
-    private static <V, E> void allPaths(Graph<V, E> g, V vOrig, V vDest, boolean[] visited,
-                                        LinkedList<V> path, ArrayList<LinkedList<V>> paths) {
-
-        int vKey = g.key(vOrig);
-
-        if (visited[vKey]) {
-            return;
-        }
-
-        if (vOrig.equals(vDest)) { //save clone of reverse path
-            LinkedList<V> pathcopy = new LinkedList<>(path);
-            pathcopy.addFirst(vDest);
-            Collections.reverse(pathcopy);
-            paths.add(new LinkedList<>(pathcopy));
-            return;
-        }
-
-        path.push(vOrig);
-        visited[vKey] = true;
-
-        for (V vAdj : g.adjVertices(vOrig)) {
-            allPaths(g, vAdj, vDest, visited, path, paths);
-        }
-
-        path.pop();
-        visited[vKey] = false;
-
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * Returns all paths from vOrig to vDest
-     *
-     * @param g     Graph instance
-     * @param vOrig information of the Vertex origin
-     * @param vDest information of the Vertex destination
-     * @return paths ArrayList with all paths from vOrig to vDest
-     */
-    public static <V, E> ArrayList<LinkedList<V>> allPaths(Graph<V, E> g, V vOrig, V vDest) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 
     /**
      * Computes shortest-path distance from a source vertex to all reachable
@@ -187,7 +132,6 @@ public class Algorithms {
                 }
             }
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
 
@@ -230,7 +174,6 @@ public class Algorithms {
         } else {
             return null;
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -281,7 +224,6 @@ public class Algorithms {
             }
         }
         return true;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -305,7 +247,6 @@ public class Algorithms {
             vDest = pathKeys[vKey];
             getPath(g, vOrig, vDest, pathKeys, path);
         }
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private static <V, E> void initializePathDist(int nVerts, V[] pathKeys, E[] dist) {
