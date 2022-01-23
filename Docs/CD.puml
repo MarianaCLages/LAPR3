@@ -1,6 +1,379 @@
 @startuml
 'https://plantuml.com/class-diagram
+'Sprint4
+class CheckForCargoManifestMapUI {
+  +run()
+}
+
+class CheckForCargoManifestMapController {
+  +callFunction()
+}
+
+class CheckForCargoManifestMapFunction {
+  +callFunction()
+}
+
+class LocalDate {
+  +now()
+}
+
+class sql.Date {
+  +valueOf()
+}
+
+CheckForCargoManifestMapUI ..> CheckForCargoManifestMapController
+CheckForCargoManifestMapController ..> CheckForCargoManifestMapFunction
+CheckForCargoManifestMapUI -> LocalDate
+CheckForCargoManifestMapUI -> sql.Date
+
+
+class ShipWaterPhysicsUI {
+  + run()
+}
+
+class ShipWaterPhysicsController  {
+  - rShip
+  - cargoManifest
+  - numContainers
+  - waterDensity
+  - containerWeight
+  - gravityAcceleration
+  - totalMass
+  - pressureExerted
+  - heightAboveWater
+  - heightDiff
+  + getShipList()
+  + getShipCargoManifests()
+  + calculateData()
+  + calculateTotalMass()
+  + calculatePressureExerted()
+  + calculateHeightAboveWater()
+  + SummaryString()
+}
+
+class Ship  {
+  + getDraft()
+  + getWidth()
+  + getLength()
+}
+
+class DataBaseUtils  {
+  + getShipCaptainShips()
+  + getShipCargoManifests()
+}
+
+ShipWaterPhysicsUI ..> ShipWaterPhysicsController
+ShipWaterPhysicsController -> Ship
+ShipWaterPhysicsController ..> DataBaseUtils
+
+
+
+class PortCentralityUI {
+  + run()
+}
+
+class PortCentralityController  {
+  + getCriticalPorts()
+}
+
+
+class PortCentrality  {
+  +getCentralityOfNPorts()
+  +sortMap()
+}
+
+
+PortCentralityUI ..> PortCentralityController
+PortCentralityController -> PortCentrality
+PortCentrality -> Algorithms
+PortCentrality -> Vertex
+
+class ShortestPathBetweenTwoLocalsUI {
+  + run()
+}
+
+class ShortestPathBetweenTwoLocalsController  {
+  -Graph graph
+  -VertexMapper vertexMapper
+  -FreightNetwork freightNetwork
+  -LinkedList vertexList
+  -int index
+  -boolean buildGraph
+  -List vertexDtoList
+  +getAllVerticesByIndex()
+  +constructList()
+  +resetListIndex()
+  +constructMenuOptions()
+  +graphMaxVertices()
+  +getPath()
+  +convertDtoIntoVertex()
+  +convertDtoListIntoVertexList()
+  +verifyVertex()
+}
+
+
+class ShortPaths  {
+  +seaPath()
+  +landPath()
+  +calculateBestPath()
+  +permutation()
+}
+
+class VertexMapper{
++toDTO()
+}
+
+class VertexDTO{
+-String identification
+-String name
++getName()
++toString()
+}
+
+interface Graph{
++vertices()
++removeEdge()
++adjVertices()
++edge()
+}
+
+ShortestPathBetweenTwoLocalsUI ..> ShortestPathBetweenTwoLocalsController
+ShortestPathBetweenTwoLocalsController ..> VertexDTO
+ShortestPathBetweenTwoLocalsController ..> VertexMapper
+VertexMapper ..> VertexDTO
+ShortestPathBetweenTwoLocalsController ..> ShortPaths
+ShortPaths -> Graph
+ShortPaths -> Algorithms
+
+
+
+class MostEfficientCircuitUI  {
+  +run(
+}
+
+class MostEfficientCircuitController{
++efficientCircuit(graph, vertice, path)
+}
+
+class EfficientCircuit{
++efficientCircuit(graph, vertice, paht)
++backTrackCircuit(graph, location, locationOrigem, locationUsed)
+}
+
+
+MostEfficientCircuitUI ..> MostEfficientCircuitController
+MostEfficientCircuitController ..> EfficientCircuit
+ShortestPathBetweenTwoLocalsController --> FreightNetwork
+
+
+class IdleUI  {
+  +run(
+}
+
+class IdleController{
+-DataBaseConnection connection
++callIdleFunction(connection)
+}
+
+class IdleFunction{
++checkIdleShips(connection)
+
+}
+
+
+IdleUI ..> IdleController
+IdleController ..> IdleFunction
+
+
+
+class AvgOccupancyRatePerManifestUI  {
+  +run(
+}
+
+class AvgOccupancyRatePerManifestController{
+-DatabaseConnection connection
++getAvgOccupancyRatePerManifest()
++getAllShipsWithTrip()
++verifyShip()
+}
+
+class CallAvgOccupancyRatePerManifest{
++checkIdleShips(connection)
+
+}
+
+AvgOccupancyRatePerManifestUI ..> AvgOccupancyRatePerManifestController
+AvgOccupancyRatePerManifestController ..> CallAvgOccupancyRatePerManifest
+AvgOccupancyRatePerManifestController ..> DataBaseUtils
+
+
+class AvgOccupancyRatePerVoyageWithThresholdUI {
+  +run(
+}
+
+class AvgOccupancyRatePerVoyageWithThresholdController{
+-DatabaseConnection connection
++getAvgOccupancyRateThreshold()
++getAllShipsWithTrip()
++verifyShip()
+}
+
+class CallAvgOccupancyRateThreshold{
++occupationRateFunction()
+}
+
+AvgOccupancyRatePerVoyageWithThresholdUI ..> AvgOccupancyRatePerVoyageWithThresholdController
+AvgOccupancyRatePerVoyageWithThresholdController ..> CallAvgOccupancyRateThreshold
+AvgOccupancyRatePerVoyageWithThresholdController ..> DataBaseUtils
+
+
+class ExportInformationUI {
+  +run(
+}
+
+class ExportInformationController{
+-DatabaseConnection databaseConnection
++export()
+}
+
+class ContainerInformationExporter{
++exportInformation()
+}
+class ISODimentions{
+-int width
+-int length
+-int height
++getWidth()
++getLength()
++getHeight()
+}
+
+class ContainerPosition{
+-int xPos
+-int yPos
+-int zPos
++getxPos()
++getyPos()
++getzPos()
+}
+
+class RefrigeratedContainer{
+-double temperature
+-double energyConsume
++getTemperature()
++getEnergyConsume()
+}
+
+ExportInformationUI ..> ExportInformationController
+ExportInformationController ..> ContainerInformationExporter
+ExportInformationController ..> DataBaseUtils
+ExportInformationController --> Container
+Container -> ISODimentions
+Container -> ContainerPosition
+Container --|> RefrigeratedContainer
+
+
+class TotalEnergyInACertainTripUI {
+  +run(
+}
+
+class TotalEnergyInACertainTripController{
+-DatabaseConnection databaseConnection
++calculationToMinus5Degrees()
++calculationTo7Degrees()
++getAllTripList()
++verifyTrip()
+}
+
+class PhysicsCalculation{
++calculateEnergyConsumptionDeterminedTripMinus5C()
++calculateEnergyConsumptionDeterminedTrip7C()
+}
+
+TotalEnergyInACertainTripUI ..> TotalEnergyInACertainTripController
+TotalEnergyInACertainTripController ..> PhysicsCalculation
+TotalEnergyInACertainTripController ..> DataBaseUtils
+
+
+class TotalEnergySuppliedUI {
+  +run(
+}
+
+class TotalEnergySuppliedController{
++calculationToMinus5()
++calculationTo7()
+}
+
+class PhysicsCalculation{
++calculateTotalEnergySuppliedMinus5()
++calculateTotalEnergySupplied7()
++calculateEnergyConsumptionMinus5()
++calculateEnergyConsumption7()
+}
+
+TotalEnergySuppliedUI ..> TotalEnergySuppliedController
+TotalEnergySuppliedController ..> PhysicsCalculation
+
+
+class AuxiliaryPowerNeddedUI {
+  +run(
+}
+
+class AuxiliaryPowerNeddedController{
++calculateSupplyNeededForMinus5(int numberOfContainers, double temperature, int journeyTime)
++calculateSupplyNeededFor7(int numberOfContainers, double temperature, int journeyTime)
+}
+
+class PhysicsCalculation{
++calculateTotalEnergySuppliedMinus5()
++calculateTotalEnergySupplied7()
++calculateEnergyConsumptionMinus5()
++calculateEnergyConsumption7()
++calculateTotalEnergySupplied7()
++calculateEnergyConsumptionMinus5()
++calculateSuppliesNeededForMinus5(int numberOfContainers, double temperature, int voyageTime)
++calculateSuppliesNeededFor7(int numberOfContainers, double temperature, int voyageTime)
+}
+
+AuxiliaryPowerNeddedUI ..> AuxiliaryPowerNeddedController
+AuxiliaryPowerNeddedController ..> PhysicsCalculation
+
+
+class CalculateCenterUI {
+  +run(
+}
+
+class CalculateCenterController{
++calculateCenterOfMass(vesselType)
+}
+
+class CalculateCenter{
++calculateCenter(vesselType)
+}
+
+CalculateCenterUI ..> CalculateCenterController
+CalculateCenterController ..> CalculateCenter
+
+class CargoCenterOfMassUI {
+  +run(
+}
+
+class CargoCenterOfMassController{
++calculateCenter(list)
+}
+
+class PhysicsCalculation{
++calculateCenterMassOneDim(positionList)
+}
+
+CargoCenterOfMassUI ..> CargoCenterOfMassController
+CargoCenterOfMassController ..> PhysicsCalculation
+
+
+
+
 'SPRINT 3
+
 class FreightNetworkUI{
 +run()
 }
@@ -259,7 +632,7 @@ FindAvailableShipsController ..> Company
 
 class OccupancyRateUI{
 }
-
+OccupancyRateUI ..> OccupancyRateController
 class OccupancyRateController{
 }
 OccupancyRateController -> ShipStore
@@ -291,28 +664,7 @@ class AverageCargoByYearController{
 AverageCargoByYearUI --> AverageCargoByYearController
 AverageCargoByYearController --> Company
 
-class LoadedShipsUI{
-}
 
-class LoadedShipsController{
-}
-LoadedShipsUI ..> ListShipsController
-ListShipsController ..> Company
-class PortStore{
--TwoDTree portList
-+getPortList()
-+getNearestNeighbourByTime(
-}
-
-class Port{
--String continent
--String country
--String identification
--String name
--FacilityLocation location
-}
-Company --> PortStore
-PortStore -> Port
 
 class OffLoadedUI{
 }
