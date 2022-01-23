@@ -2,6 +2,7 @@ package lapr.project.model;
 
 import lapr.project.shared.Constants;
 
+import java.util.List;
 import java.util.Map;
 
 public class PhysicsCalculation {
@@ -177,4 +178,18 @@ public class PhysicsCalculation {
 
         return supliesNeeded;
     }
+
+
+    public static double calculateCenterMassOneDim(List<Double> positionList) {
+        if (positionList.size() == 0) {
+            return 0;
+        }
+        double sum = 0;
+        for (Double d : positionList) {
+            sum += d;
+        }
+        return sum / positionList.size();
+    }
+
+
 }

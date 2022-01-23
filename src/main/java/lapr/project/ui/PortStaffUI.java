@@ -9,7 +9,7 @@ public class PortStaffUI implements Runnable {
 
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Fill a matrix with each container's ID in its respective place", new Create3DMatrixUI()));
-        options.add(new MenuItem("Fill a array in memory with all the container's information in its respective place", new ExportInformationUI()));
+        options.add(new MenuItem("Fill an array in memory with all the container's information in its respective place", new ExportInformationUI()));
         int option;
         do {
             option = Utils.showAndSelectIndex(options, "\n\nPort Staff Menu:");
