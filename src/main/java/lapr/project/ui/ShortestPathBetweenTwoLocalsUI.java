@@ -193,7 +193,7 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
 
         try {
             if (optionVertices == null || optionVertices.isEmpty()) {
-                controller.getPath(pathOption, beginVertex, endVertexF, Collections.emptyList());
+                System.out.println("There was no intermedia points, please insert intermedia points!!");
             } else {
                 System.out.println(controller.getPath(pathOption, beginVertex, endVertexF, optionVertices));
             }
