@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.utils.mappers.dto.VertexDto;
+import lapr.project.utils.mappers.dto.VertexDTO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,18 +19,18 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
     public void run() {
 
         String desiredVertex = "0";
-        VertexDto desiredVertexDto = null;
-        List<VertexDto> desiredVertexes = new ArrayList<>();
+        VertexDTO desiredVertexDTO = null;
+        List<VertexDTO> desiredVertices = new ArrayList<>();
         String endVertex;
         boolean optionFlag = false;
         String optionIntermediate;
-        VertexDto intermediateVertexDto = null;
+        VertexDTO intermediateVertexDTO = null;
         String pathOption = null;
         String intermediateVertex = "0";
-        int numberVertexes;
-        String verifyMoreVertexes;
+        int numberVertices;
+        String verifyMoreVertices;
         int nextOption = 0;
-        List<VertexDto> optionVertexes = new ArrayList<>();
+        List<VertexDTO> optionVertices = new ArrayList<>();
         boolean optionFirstVertex = false;
 
         do {
@@ -57,10 +57,10 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                     Object auxObj;
 
                     if (!optionFirstVertex) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the departure vertex from the valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the departure local from the list below:");
                         optionFirstVertex = true;
                     } else {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the arrival vertex from the valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the arrival local from the list below:");
                     }
 
                     if (auxObj == null) {
@@ -68,21 +68,21 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                     } else if (auxObj.equals(36)) {
                         desiredVertex = String.valueOf(36);
                     } else {
-                        desiredVertexDto = (VertexDto) auxObj;
+                        desiredVertexDTO = (VertexDTO) auxObj;
                         desiredVertex = String.valueOf(0);
                     }
 
                     nextOption = 1;
 
                     while (desiredVertex.equals("36")) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list:");
 
                         if (auxObj == null) {
                             desiredVertex = String.valueOf(36);
                         } else if (auxObj.equals(36)) {
                             desiredVertex = String.valueOf(36);
                         } else {
-                            desiredVertexDto = (VertexDto) auxObj;
+                            desiredVertexDTO = (VertexDTO) auxObj;
                             desiredVertex = String.valueOf(0);
                         }
                         nextOption++;
@@ -93,7 +93,7 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                     }
 
                     controller.resetListIndex(0);
-                    desiredVertexes.add(desiredVertexDto);
+                    desiredVertices.add(desiredVertexDTO);
 
                 }
 
@@ -119,15 +119,15 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
 
         do {
             try {
-                numberVertexes = Utils.readIntegerFromConsole("\nPlease enter the number of intermediate vertices that you wish to have in the path: ");
+                numberVertices = Utils.readIntegerFromConsole("\nPlease enter the number of intermediate vertices that you wish to have in the path: ");
 
-                if (numberVertexes < 0 || numberVertexes > controller.graphMaxVertices()) {
-                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertices has intermediate points or even more intermediate points than the graph max vertexes! (Graph max vertexes: " + (controller.graphMaxVertices() - 2) + ")");
+                if (numberVertices < 0 || numberVertices > controller.graphMaxVertices()) {
+                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertices as intermediate points or more intermediate points than the graph max vertices! (Graph max vertexes: " + (controller.graphMaxVertices() - 2) + ")");
                 }
 
-                for (int indexOption = 0; indexOption < numberVertexes; indexOption++) {
+                for (int indexOption = 0; indexOption < numberVertices; indexOption++) {
 
-                    Object auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
+                    Object auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list:");
 
                     if (auxObj == null) {
                         intermediateVertex = String.valueOf(36);
@@ -135,11 +135,11 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                         intermediateVertex = String.valueOf(36);
                     } else {
                         intermediateVertex = String.valueOf(0);
-                        intermediateVertexDto = (VertexDto) auxObj;
+                        intermediateVertexDTO = (VertexDTO) auxObj;
                     }
 
                     while (intermediateVertex.equals("36")) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list:");
 
                         if (auxObj == null) {
                             intermediateVertex = String.valueOf(36);
@@ -147,7 +147,7 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                             intermediateVertex = String.valueOf(36);
                         } else {
                             intermediateVertex = String.valueOf(0);
-                            intermediateVertexDto = (VertexDto) auxObj;
+                            intermediateVertexDTO = (VertexDTO) auxObj;
                         }
                         nextOption++;
                         if (nextOption == 3) {
@@ -158,7 +158,7 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
 
                     controller.resetListIndex(0);
 
-                    String typeOfVertex = controller.verifyVertex(desiredVertexDto);
+                    String typeOfVertex = controller.verifyVertex(desiredVertexDTO);
 
                     if (pathOption.equals("Land path")) {
                         if (typeOfVertex.equals("Port"))
@@ -168,7 +168,7 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                             throw new NullPointerException("\nPlease only enter Ports! Since you desire a maritime path, it is necessary to only CHOOSE PORTS!");
                     }
 
-                    optionVertexes.add(intermediateVertexDto);
+                    optionVertices.add(intermediateVertexDTO);
                 }
 
                 optionFlag = true;
@@ -178,31 +178,30 @@ public class ShortestPathBetweenTwoLocalsUI implements Runnable {
                 controller.resetListIndex(0);
                 optionFlag = false;
             } catch (IllegalArgumentException ex) {
-                System.out.println("\nPlease enter a number!! Dont enter a set of characters,space or any kind of symbol!");
+                System.out.println("\nPlease enter a number!! Dont enter a set of characters, spaces or any kind of symbol!");
                 controller.resetListIndex(0);
                 optionFlag = false;
             } catch (Exception ex) {
-                System.out.println("\nThere is no possible path between the origin local and arrival local, please enter another path (Please verify the data!)\n");
+                System.out.println("\nThere are no possible paths between the departure local and arrival local! Please enter another path (Please verify the data!)\n");
                 controller.resetListIndex(0);
                 optionFlag = false;
             }
         } while (!optionFlag);
 
-        VertexDto beginVertex = desiredVertexes.get(0);
-        VertexDto endVertexF = desiredVertexes.get(1);
+        VertexDTO beginVertex = desiredVertices.get(0);
+        VertexDTO endVertexF = desiredVertices.get(1);
 
         try {
-            if (optionVertexes == null || optionVertexes.isEmpty()) {
+            if (optionVertices == null || optionVertices.isEmpty()) {
                 controller.getPath(pathOption, beginVertex, endVertexF, Collections.emptyList());
             } else {
-                System.out.println(controller.getPath(pathOption, beginVertex, endVertexF, optionVertexes));
+                System.out.println(controller.getPath(pathOption, beginVertex, endVertexF, optionVertices));
             }
             System.out.println("\nOperation Success!\n");
         } catch (Exception e) {
-            System.out.println("\nThere is no possible path between the origin location and arrival location, please enter another path! (Note verify all possible paths before entering data again)\n");
+            System.out.println("\nThere are no possible paths between the departure location and arrival location! Please enter another path! (Note: verify all possible paths before entering data again)\n");
             System.out.println("\nOperation Failed!\n");
             controller.resetListIndex(0);
         }
-
     }
 }

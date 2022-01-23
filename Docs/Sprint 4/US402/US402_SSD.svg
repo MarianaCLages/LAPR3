@@ -305,10 +305,6 @@
     ></g
     ><g font-size="11px" transform="translate(74,185)" fill-opacity="1" fill="white" text-rendering="geometricPrecision" image-rendering="optimizeQuality" font-family="sans-serif" stroke="white" stroke-opacity="1"
     ><rect x="0" width="338" height="15" y="0" clip-path="url(#clipPath33)" stroke="none"
-      /><line clip-path="url(#clipPath33)" fill="none" x1="0" x2="337" y1="0" y2="0" stroke="silver"
-      /><line clip-path="url(#clipPath33)" fill="none" x1="337" x2="337" y1="0" y2="14" stroke="silver"
-      /><line clip-path="url(#clipPath33)" fill="none" x1="337" x2="0" y1="14" y2="14" stroke="silver"
-      /><line clip-path="url(#clipPath33)" fill="none" x1="0" x2="0" y1="0" y2="14" stroke="silver"
       /><text fill="black" x="9" xml:space="preserve" y="12" clip-path="url(#clipPath33)" stroke="none"
       >2.1: shows a list of locals and asks to select one (departure local)</text
     ></g

@@ -1,6 +1,6 @@
 package lapr.project.utils.mappers.dto;
 
-public class VertexDto {
+public class VertexDTO {
 
     private final String identification;
     private final String name;
@@ -11,7 +11,7 @@ public class VertexDto {
      * @param identification the vertex identification
      * @param name           the vertex name
      */
-    public VertexDto(String identification, String name) {
+    public VertexDTO(String identification, String name) {
         this.identification = identification;
         this.name = name;
     }
