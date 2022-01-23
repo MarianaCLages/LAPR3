@@ -1,13 +1,6 @@
 package lapr.project.controller;
 
-import lapr.project.data.CargoManifest;
-import lapr.project.model.*;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
+import lapr.project.ui.SearchContainerLocationForClientController;
 
 class SearchContainerLocationForClientControllerTest {
 

@@ -1,5 +1,6 @@
-package lapr.project.controller;
+package lapr.project.ui;
 
+import lapr.project.controller.App;
 import lapr.project.data.CargoManifest;
 import lapr.project.data.CargoManifestStoreData;
 import lapr.project.data.DataBaseScripts.GetClientsContainerScript;

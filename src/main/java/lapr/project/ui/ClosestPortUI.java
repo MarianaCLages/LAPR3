@@ -1,7 +1,6 @@
 package lapr.project.ui;
 
 import lapr.project.controller.App;
-import lapr.project.controller.ClosestPortController;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

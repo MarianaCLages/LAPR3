@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.controller.SearchContainerLocationForClientController;
 import lapr.project.data.CargoManifest;
 import lapr.project.model.Container;
 

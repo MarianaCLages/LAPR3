@@ -1,6 +1,6 @@
 package lapr.project.controller;
 
-import lapr.project.data.ShortestPathBetweenTwoLocalsController;
+import lapr.project.ui.ShortestPathBetweenTwoLocalsController;
 import lapr.project.shared.graph.Vertex;
 import lapr.project.utils.mappers.dto.VertexDto;
 import org.junit.jupiter.api.Test;

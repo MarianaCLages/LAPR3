@@ -2,6 +2,7 @@ package lapr.project.controller;
 
 
 import lapr.project.model.*;
+import lapr.project.ui.ClosestPortController;
 import lapr.project.utils.mappers.dto.PortDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
