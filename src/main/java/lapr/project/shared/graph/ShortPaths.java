@@ -75,8 +75,8 @@ public class ShortPaths {
             LinkedList<Vertex> shortestPath1 = new LinkedList<>();
             LinkedList<Vertex> shortestPath2 = new LinkedList<>();
 
-            Algorithms.shortestPath(graph, vInitial, vertexList.get(0), Double::compare, Double::sum, 0.0, shortestPath1);
-            Algorithms.shortestPath(graph, vertexList.get(0), vFinal, Double::compare, Double::sum, 0.0, shortestPath2);
+            Algorithms.shortestPath(graph, vInitial, vertexList.get(0), Double::compare, Double::sum, 0.0, shortestPath1); //V2
+            Algorithms.shortestPath(graph, vertexList.get(0), vFinal, Double::compare, Double::sum, 0.0, shortestPath2);//V2
 
             List<Vertex> returnList = new LinkedList<>();
 
@@ -97,19 +97,19 @@ public class ShortPaths {
             double temp = 0;
             double min = Double.POSITIVE_INFINITY;
 
-            for (LinkedList<Vertex> permutation : permutations) {
+            for (LinkedList<Vertex> permutation : permutations) { //n! sendo n o número de elementos na lista vertexList
                 pathTotal.clear();
                 pathTotal.add(vInitial);
                 permutation.add(0, vInitial);
 
-                for (int i = 1; i < ((List<Vertex>) permutation).size(); i++) {
+                for (int i = 1; i < ((List<Vertex>) permutation).size(); i++) { //(n-1)!2
                     LinkedList<Vertex> shortestPath = new LinkedList<>();
                     Algorithms.shortestPath(graph, ((List<Vertex>) permutation).get(i - 1), ((List<Vertex>) permutation).get(i), Double::compare, Double::sum, 0.0, shortestPath);
                     shortestPath.removeFirst();
                     pathTotal.addAll(shortestPath);
                 }
 
-                for (int i = 1; i < pathTotal.size(); i++) {
+                for (int i = 1; i < pathTotal.size(); i++) {//p-1, sendo p o numero de vertices no caminho
                     if (graph.edge(pathTotal.get(i - 1), pathTotal.get(i)) == null) {
                         temp = 0;
                         break;
