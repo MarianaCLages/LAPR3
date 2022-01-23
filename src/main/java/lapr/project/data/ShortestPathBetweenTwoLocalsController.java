@@ -1,5 +1,6 @@
-package lapr.project.controller;
+package lapr.project.data;
 
+import lapr.project.controller.App;
 import lapr.project.model.City;
 import lapr.project.model.Port;
 import lapr.project.shared.exceptions.NullVerticesException;

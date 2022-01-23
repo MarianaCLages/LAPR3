@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ShortestPathBetweenTwoLocalsController;
+import lapr.project.data.ShortestPathBetweenTwoLocalsController;
 import lapr.project.utils.mappers.dto.VertexDto;
 
 import java.util.ArrayList;
