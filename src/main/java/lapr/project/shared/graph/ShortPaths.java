@@ -23,9 +23,9 @@ public class ShortPaths {
      * @throws NullVerticesException
      */
     public static List<Vertex> seaPath(Graph<Vertex, Double> g, List<Vertex> vertexList, Vertex vInitial, Vertex vFinal) throws NullVerticesException {
-        Graph<Vertex, Double> g1 = g.clone();
+        Graph<Vertex, Double> g1 = g.clone(); //v2
 
-        for (Vertex v1 : g1.vertices()) {
+        for (Vertex v1 : g1.vertices()) { //v2
             for (Vertex v2 : g1.adjVertices(v1)) {
                 if (v1 instanceof City && v2 instanceof City) {
                     g1.removeEdge(v1, v2);
@@ -81,14 +81,14 @@ public class ShortPaths {
             List<Vertex> returnList = new LinkedList<>();
 
             returnList.addAll(shortestPath1);
-            returnList.addAll(shortestPath2);
+            returnList.addAll(shortestPath2.subList(1, shortestPath2.size()));
 
             return returnList;
 
         } else {
             permutations.add((new LinkedList<>(vertexList)));
 
-            permutation(vertexList, 0, permutations::add);
+            permutation(vertexList, 0, permutations::add);//n!
 
 
             List<Vertex> pathTotal = new ArrayList<>();
@@ -117,7 +117,7 @@ public class ShortPaths {
                     temp += graph.edge(pathTotal.get(i - 1), pathTotal.get(i)).getWeight();
                 }
 
-                (pathTotal).add(vFinal);
+                pathTotal.add(vFinal);
 
                 if (temp < min) {
                     saveTotalPath.clear();
@@ -143,11 +143,13 @@ public class ShortPaths {
         if (start + 1 == original.size()) {
             return;
         }
-        LinkedList<Vertex> temp = new LinkedList<>(original);
-        Vertex tempVal = temp.get(start);
-        temp.set(start, temp.get(start + 1));
-        temp.set(start + 1, tempVal);
-        consumer.accept(temp);
-        permutation(temp, start + 1, consumer);
+        for (int i = start; i < original.size(); i++) {
+            LinkedList<Vertex> temp = new LinkedList<>(original);
+            Vertex tempVal = temp.get(start);
+            temp.set(start, temp.get(start + 1));
+            temp.set(start + 1, tempVal);
+            consumer.accept(temp);
+            permutation(temp, start + 1, consumer);
+        }
     }
 }
