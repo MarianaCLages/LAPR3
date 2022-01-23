@@ -43,7 +43,7 @@ public class MostEfficientCircuitUI implements Runnable {
 
         if(ls.getFirst() != null) {
             for (Vertex v : ls) {
-                System.out.println(v + "\n");
+                System.out.println(v.getDesignation() + ", Country:"+v.getCountry()+ ", Continent:" +v.getContinent()+"\n");
             }
         }
         else {
