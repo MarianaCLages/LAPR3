@@ -1,0 +1,67 @@
+@startuml
+autonumber
+
+actor "Ship Captain" as ACT
+
+participant "ShipWaterPhysicsUI" as UI
+participant "ShipWaterPhysicsController" as CTRL
+participant "DataBaseUtils" as DBU
+participant "Ship" as SHIP
+
+activate ACT
+ACT -> UI : starts process
+activate UI
+UI -> CTRL : lShip = getShipList()
+activate CTRL
+CTRL -> DBU : lShip = getShipCaptainShips(DatabaseConnection)
+activate DBU
+deactivate DBU
+deactivate CTRL
+UI -> ACT : shows list of Captain's Ships \n and asks to pick one
+deactivate UI
+
+ACT -> UI : picks one
+activate UI
+UI -> SHIP : shipMmsi = getShipMMSI()
+activate SHIP
+deactivate SHIP
+UI -> CTRL : lCargoManifest = getShipCargoManifests(shipMmsi)
+activate CTRL
+CTRL -> DBU : getShipCargoManifests(shipMmsi, DatabaseConnection)
+activate DBU
+deactivate DBU
+CTRL -> UI
+deactivate CTRL
+UI -> ACT : shows list of cargo manifests \nand asks to pick one
+deactivate UI
+
+ACT -> UI : picks one
+activate UI
+UI -> CTRL : calculateData(cargoManifest, ship)
+activate CTRL
+CTRL -> DBU : numContainers = countContainerByCargoManifest(cargoManifest, DatabaseConnection)
+activate DBU
+deactivate DBU
+CTRL -> CTRL : totalMass = calculateTotalMass(numContainers)
+CTRL -> CTRL : pressureExerted = calculatePressureExerted(totalMass)
+CTRL -> SHIP : shipWidth = getWidth()
+activate SHIP
+deactivate SHIP
+CTRL -> SHIP : shipLength = getLength()
+activate SHIP
+deactivate SHIP
+CTRL -> SHIP : shipDraft = getDraft()
+activate SHIP
+deactivate SHIP
+CTRL -> CTRL : heightAboveWater = calculateHeightAboveWater(totalMass,shipWidth,shipLength,shipDraft)
+CTRL -> UI
+deactivate CTRL
+
+UI -> CTRL : SummaryString()
+activate CTRL
+deactivate CTRL
+UI -> ACT : presents all data calculated
+deactivate UI
+deactivate ACT
+
+@enduml

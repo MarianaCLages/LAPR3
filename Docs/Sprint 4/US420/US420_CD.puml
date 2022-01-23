@@ -1,0 +1,42 @@
+@startuml
+
+class ShipWaterPhysicsUI {
+  + run()
+}
+
+class ShipWaterPhysicsController  {
+  - rShip
+  - cargoManifest
+  - numContainers
+  - waterDensity
+  - containerWeight
+  - gravityAcceleration
+  - totalMass
+  - pressureExerted
+  - heightAboveWater
+  - heightDiff
+  + getShipList()
+  + getShipCargoManifests()
+  + calculateData()
+  + calculateTotalMass()
+  + calculatePressureExerted()
+  + calculateHeightAboveWater()
+  + SummaryString()
+}
+
+class Ship  {
+  + getDraft()
+  + getWidth()
+  + getLength()
+}
+
+class DataBaseUtils  {
+  + getShipCaptainShips()
+  + getShipCargoManifests()
+}
+
+ShipWaterPhysicsUI ..> ShipWaterPhysicsController
+ShipWaterPhysicsController -> Ship
+ShipWaterPhysicsController ..> DataBaseUtils
+
+@enduml

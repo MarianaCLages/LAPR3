@@ -1,0 +1,22 @@
+@startuml
+
+actor "Ship Captain" as USER
+
+participant "System" as SYS
+
+activate USER
+USER -> SYS : starts the process
+activate SYS
+SYS -> USER : shows list of ships to chose from
+deactivate SYS
+USER -> SYS : picks one
+activate SYS
+SYS -> USER : shows list of cargo manifests to chose from
+deactivate SYS
+USER -> SYS : picks one
+activate SYS
+SYS -> USER : calculates and presents information to user
+deactivate SYS
+deactivate USER
+
+@enduml

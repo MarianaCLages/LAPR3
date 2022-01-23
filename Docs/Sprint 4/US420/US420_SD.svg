@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1175px" preserveAspectRatio="none" style="width:1302px;height:1175px;" version="1.1" viewBox="0 0 1302 1175" width="1302px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f13szapjq9guow" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="971.4375" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="46.5" y="97.6094" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="137.4063" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="119.9609" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="228.1094" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="287.7188" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="522.8672" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="546.1797" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="60.3516" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="150.3125" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="90.7031" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="378.4219" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="401.8125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="576.5313" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="1008.6953" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="180.6641" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="408.7734" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="606.8828" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="318.0703" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="753.9375" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="814.2891" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="874.6406" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="51" x2="51" y1="87.6094" y2="1087.0469" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="275.5" x2="275.5" y1="87.6094" y2="1087.0469" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="615.5" x2="615.5" y1="87.6094" y2="1087.0469" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1186.5" x2="1186.5" y1="87.6094" y2="1087.0469" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1272.5" x2="1272.5" y1="87.6094" y2="1087.0469" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="8" y="84.5332">Ship Captain</text>
+        <ellipse cx="51.5" cy="13" fill="#FEFECE" filter="url(#f13szapjq9guow)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <path d="M51.5,21 L51.5,48 M38.5,29 L64.5,29 M51.5,48 L38.5,63 M51.5,48 L64.5,63 " fill="none" filter="url(#f13szapjq9guow)" style="stroke: #A80036; stroke-width: 2.0;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="8" y="1100.5801">Ship Captain</text>
+        <ellipse cx="51.5" cy="1113.6563" fill="#FEFECE" filter="url(#f13szapjq9guow)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <path d="M51.5,1121.6563 L51.5,1148.6563 M38.5,1129.6563 L64.5,1129.6563 M51.5,1148.6563 L38.5,1163.6563 M51.5,1148.6563 L64.5,1163.6563 " fill="none" filter="url(#f13szapjq9guow)" style="stroke: #A80036; stroke-width: 2.0;" />
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="140" x="203.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="210.5" y="72.5332">ShipWaterPhysicsUI</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="140" x="203.5" y="1086.0469" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="126" x="210.5" y="1107.5801">ShipWaterPhysicsUI</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="190" x="518.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="176" x="525.5" y="72.5332">ShipWaterPhysicsController</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="190" x="518.5" y="1086.0469" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="176" x="525.5" y="1107.5801">ShipWaterPhysicsController</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="102" x="1133.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="88" x="1140.5" y="72.5332">DataBaseUtils</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="102" x="1133.5" y="1086.0469" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="88" x="1140.5" y="1107.5801">DataBaseUtils</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="1249.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="1256.5" y="72.5332">Ship</text>
+        <rect fill="#FEFECE" filter="url(#f13szapjq9guow)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="42" x="1249.5" y="1086.0469" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="28" x="1256.5" y="1107.5801">Ship</text>
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="971.4375" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="46.5" y="97.6094" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="137.4063" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="119.9609" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="228.1094" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="287.7188" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="522.8672" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="270.5" y="546.1797" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="60.3516" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="150.3125" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="90.7031" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="378.4219" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="401.8125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="576.5313" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="610.5" y="1008.6953" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="180.6641" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="408.7734" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1181.5" y="606.8828" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="318.0703" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="753.9375" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="814.2891" />
+        <rect fill="#FFFFFF" filter="url(#f13szapjq9guow)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1267.5" y="874.6406" />
+        <polygon fill="#A80036" points="258.5,115.9609,268.5,119.9609,258.5,123.9609,262.5,119.9609" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="56.5" x2="264.5" y1="119.9609" y2="119.9609" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="63.5" y="115.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="83" x="74.5" y="115.1045">starts process</text>
+        <polygon fill="#A80036" points="598.5,146.3125,608.5,150.3125,598.5,154.3125,602.5,150.3125" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="280.5" x2="604.5" y1="150.3125" y2="150.3125" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="287.5" y="145.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="118" x="298.5" y="145.4561">lShip = getShipList()</text>
+        <polygon fill="#A80036" points="1169.5,176.6641,1179.5,180.6641,1169.5,184.6641,1173.5,180.6641" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1175.5" y1="180.6641" y2="180.6641" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="627.5" y="175.8076">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="294" x="638.5" y="175.8076">lShip = getShipCaptainShips(DatabaseConnection)</text>
+        <polygon fill="#A80036" points="67.5,253.3672,57.5,257.3672,67.5,261.3672,63.5,257.3672" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="61.5" x2="274.5" y1="257.3672" y2="257.3672" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="73.5" y="244.335">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="166" x="84.5" y="236.1592">shows list of Captain's Ships</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="88.5" y="252.5107">and asks to pick one</text>
+        <polygon fill="#A80036" points="258.5,283.7188,268.5,287.7188,258.5,291.7188,262.5,287.7188" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="56.5" x2="264.5" y1="287.7188" y2="287.7188" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="63.5" y="282.8623">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="74.5" y="282.8623">picks one</text>
+        <polygon fill="#A80036" points="1255.5,314.0703,1265.5,318.0703,1255.5,322.0703,1259.5,318.0703" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="280.5" x2="1261.5" y1="318.0703" y2="318.0703" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="287.5" y="313.2139">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="158" x="298.5" y="313.2139">shipMmsi = getShipMMSI()</text>
+        <polygon fill="#A80036" points="598.5,374.4219,608.5,378.4219,598.5,382.4219,602.5,378.4219" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="280.5" x2="604.5" y1="378.4219" y2="378.4219" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="287.5" y="373.5654">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="300" x="298.5" y="373.5654">lCargoManifest = getShipCargoManifests(shipMmsi)</text>
+        <polygon fill="#A80036" points="1169.5,404.7734,1179.5,408.7734,1169.5,412.7734,1173.5,408.7734" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1175.5" y1="408.7734" y2="408.7734" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="627.5" y="403.917">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="326" x="638.5" y="403.917">getShipCargoManifests(shipMmsi, DatabaseConnection)</text>
+        <polygon fill="#A80036" points="291.5,465.125,281.5,469.125,291.5,473.125,287.5,469.125" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="285.5" x2="614.5" y1="469.125" y2="469.125" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="297.5" y="464.2686">9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="312.5" y="464.2686" />
+        <polygon fill="#A80036" points="67.5,511.8281,57.5,515.8281,67.5,519.8281,63.5,515.8281" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="61.5" x2="274.5" y1="515.8281" y2="515.8281" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="73.5" y="502.7959">10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="168" x="91.5" y="494.6201">shows list of cargo manifests</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="121" x="91.5" y="510.9717">and asks to pick one</text>
+        <polygon fill="#A80036" points="258.5,542.1797,268.5,546.1797,258.5,550.1797,262.5,546.1797" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="56.5" x2="264.5" y1="546.1797" y2="546.1797" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="63.5" y="541.3232">11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="81.5" y="541.3232">picks one</text>
+        <polygon fill="#A80036" points="598.5,572.5313,608.5,576.5313,598.5,580.5313,602.5,576.5313" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="280.5" x2="604.5" y1="576.5313" y2="576.5313" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="287.5" y="571.6748">12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="200" x="305.5" y="571.6748">calculateData(cargoManifest, ship)</text>
+        <polygon fill="#A80036" points="1169.5,602.8828,1179.5,606.8828,1169.5,610.8828,1173.5,606.8828" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1175.5" y1="606.8828" y2="606.8828" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="602.0264">13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="506" x="645.5" y="602.0264">numContainers = countContainerByCargoManifest(cargoManifest, DatabaseConnection)</text>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="662.5" y1="667.2344" y2="667.2344" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="662.5" x2="662.5" y1="667.2344" y2="680.2344" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="621.5" x2="662.5" y1="680.2344" y2="680.2344" />
+        <polygon fill="#A80036" points="631.5,676.2344,621.5,680.2344,631.5,684.2344,627.5,680.2344" style="stroke: #A80036; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="662.3779">14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="280" x="645.5" y="662.3779">totalMass = calculateTotalMass(numContainers)</text>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="662.5" y1="710.5859" y2="710.5859" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="662.5" x2="662.5" y1="710.5859" y2="723.5859" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="621.5" x2="662.5" y1="723.5859" y2="723.5859" />
+        <polygon fill="#A80036" points="631.5,719.5859,621.5,723.5859,631.5,727.5859,627.5,723.5859" style="stroke: #A80036; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="705.7295">15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="325" x="645.5" y="705.7295">pressureExerted = calculatePressureExerted(totalMass)</text>
+        <polygon fill="#A80036" points="1255.5,749.9375,1265.5,753.9375,1255.5,757.9375,1259.5,753.9375" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1261.5" y1="753.9375" y2="753.9375" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="749.0811">16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="134" x="645.5" y="749.0811">shipWidth = getWidth()</text>
+        <polygon fill="#A80036" points="1255.5,810.2891,1265.5,814.2891,1255.5,818.2891,1259.5,814.2891" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1261.5" y1="814.2891" y2="814.2891" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="809.4326">17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="144" x="645.5" y="809.4326">shipLength = getLength()</text>
+        <polygon fill="#A80036" points="1255.5,870.6406,1265.5,874.6406,1255.5,878.6406,1259.5,874.6406" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="1261.5" y1="874.6406" y2="874.6406" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="869.7842">18</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="120" x="645.5" y="869.7842">shipDraft = getDraft()</text>
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="620.5" x2="662.5" y1="934.9922" y2="934.9922" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="662.5" x2="662.5" y1="934.9922" y2="947.9922" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="621.5" x2="662.5" y1="947.9922" y2="947.9922" />
+        <polygon fill="#A80036" points="631.5,943.9922,621.5,947.9922,631.5,951.9922,627.5,947.9922" style="stroke: #A80036; stroke-width: 1.0;" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="627.5" y="930.1357">19</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="529" x="645.5" y="930.1357">heightAboveWater = calculateHeightAboveWater(totalMass,shipWidth,shipLength,shipDraft)</text>
+        <polygon fill="#A80036" points="291.5,974.3438,281.5,978.3438,291.5,982.3438,287.5,978.3438" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="285.5" x2="614.5" y1="978.3438" y2="978.3438" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="297.5" y="973.4873">20</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="0" x="319.5" y="973.4873" />
+        <polygon fill="#A80036" points="598.5,1004.6953,608.5,1008.6953,598.5,1012.6953,602.5,1008.6953" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="280.5" x2="604.5" y1="1008.6953" y2="1008.6953" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="287.5" y="1003.8389">21</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="98" x="305.5" y="1003.8389">SummaryString()</text>
+        <polygon fill="#A80036" points="62.5,1065.0469,52.5,1069.0469,62.5,1073.0469,58.5,1069.0469" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="56.5" x2="274.5" y1="1069.0469" y2="1069.0469" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="14" x="68.5" y="1064.1904">22</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="86.5" y="1064.1904">presents all data calculated</text>
+        <!--
+@startuml
+autonumber
+
+actor "Ship Captain" as ACT
+
+participant "ShipWaterPhysicsUI" as UI
+participant "ShipWaterPhysicsController" as CTRL
+participant "DataBaseUtils" as DBU
+participant "Ship" as SHIP
+
+activate ACT
+ACT -> UI : starts process
+activate UI
+UI -> CTRL : lShip = getShipList()
+activate CTRL
+CTRL -> DBU : lShip = getShipCaptainShips(DatabaseConnection)
+activate DBU
+deactivate DBU
+deactivate CTRL
+UI -> ACT : shows list of Captain's Ships \n and asks to pick one
+deactivate UI
+
+ACT -> UI : picks one
+activate UI
+UI -> SHIP : shipMmsi = getShipMMSI()
+activate SHIP
+deactivate SHIP
+UI -> CTRL : lCargoManifest = getShipCargoManifests(shipMmsi)
+activate CTRL
+CTRL -> DBU : getShipCargoManifests(shipMmsi, DatabaseConnection)
+activate DBU
+deactivate DBU
+CTRL -> UI
+deactivate CTRL
+UI -> ACT : shows list of cargo manifests \nand asks to pick one
+deactivate UI
+
+ACT -> UI : picks one
+activate UI
+UI -> CTRL : calculateData(cargoManifest, ship)
+activate CTRL
+CTRL -> DBU : numContainers = countContainerByCargoManifest(cargoManifest, DatabaseConnection)
+activate DBU
+deactivate DBU
+CTRL -> CTRL : totalMass = calculateTotalMass(numContainers)
+CTRL -> CTRL : pressureExerted = calculatePressureExerted(totalMass)
+CTRL -> SHIP : shipWidth = getWidth()
+activate SHIP
+deactivate SHIP
+CTRL -> SHIP : shipLength = getLength()
+activate SHIP
+deactivate SHIP
+CTRL -> SHIP : shipDraft = getDraft()
+activate SHIP
+deactivate SHIP
+CTRL -> CTRL : heightAboveWater = calculateHeightAboveWater(totalMass,shipWidth,shipLength,shipDraft)
+CTRL -> UI
+deactivate CTRL
+
+UI -> CTRL : SummaryString()
+activate CTRL
+deactivate CTRL
+UI -> ACT : presents all data calculated
+deactivate UI
+deactivate ACT
+
+@enduml
+
+PlantUML version 1.2018.14(Fri Dec 21 16:33:16 GMT 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_221-b11
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+-->
+    </g>
+</svg>
