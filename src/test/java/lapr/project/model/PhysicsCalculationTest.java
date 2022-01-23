@@ -3,6 +3,7 @@ package lapr.project.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +14,7 @@ class PhysicsCalculationTest {
 
     @BeforeEach
     public void setUp() {
-        map = new LinkedHashMap();
+        map = new LinkedHashMap<>();
 
         System.setProperty("thermalConductivity.inner.minus5", "0.033");
         System.setProperty("thermalConductivity.mid.minus5", "25");
@@ -53,6 +54,69 @@ class PhysicsCalculationTest {
         map.put(3600, 30.0);
 
         assertEquals(859132.8908588162, PhysicsCalculation.calculateEnergyConsumptionMinus5(map, 5, 4, 5));
+    }
+
+    @Test
+    void calculateCenterMassOneDimZero() {
+        ArrayList<Double> list = new ArrayList<>();
+
+        assertEquals(0, PhysicsCalculation.calculateCenterMassOneDim(list));
+    }
+
+
+    @Test
+    void calculateCenterMassOneDimSomeValues() {
+        ArrayList<Double> list = new ArrayList<>();
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(11.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+        list.add(13.0);
+
+        assertEquals(11.9, PhysicsCalculation.calculateCenterMassOneDim(list));
+    }
+
+
+    @Test
+    void calculateCenterMassOneDimHugeValues() {
+        ArrayList<Double> list = new ArrayList<>();
+        list.add(67.0);
+        list.add(69.0);
+        list.add(69.0);
+        list.add(71.0);
+        list.add(71.0);
+        list.add(73.0);
+        list.add(73.0);
+        list.add(75.0);
+        list.add(75.0);
+        list.add(77.0);
+        list.add(77.0);
+        list.add(79.0);
+        list.add(79.0);
+        list.add(81.0);
+        list.add(81.0);
+        list.add(83.0);
+        list.add(83.0);
+        list.add(85.0);
+        list.add(85.0);
+        list.add(87.0);
+
+        assertEquals(77, PhysicsCalculation.calculateCenterMassOneDim(list));
     }
 
 }
