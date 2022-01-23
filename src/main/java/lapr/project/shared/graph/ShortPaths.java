@@ -11,6 +11,17 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ShortPaths {
+
+    /**
+     * Calculates the shortest path between two locals by sea path.
+     *
+     * @param g          teh graph
+     * @param vertexList the vertex list
+     * @param vInitial   the initial vertex
+     * @param vFinal     the final vertex
+     * @return the shortest path between two locals by sea path
+     * @throws NullVerticesException
+     */
     public static List<Vertex> seaPath(Graph<Vertex, Double> g, List<Vertex> vertexList, Vertex vInitial, Vertex vFinal) throws NullVerticesException {
         Graph<Vertex, Double> g1 = g.clone();
 
@@ -21,12 +32,19 @@ public class ShortPaths {
                 }
             }
         }
-
         return calculateBestPath(g1, vertexList, vInitial, vFinal);
-
     }
 
-
+    /**
+     * Calculates the shortest path between two locals by land path.
+     *
+     * @param g          the graph
+     * @param vertexList the vertex list
+     * @param vInitial   the initial vertex
+     * @param vFinal     the final vertex
+     * @return the shortest path between two locals by land path
+     * @throws NullVerticesException
+     */
     public static List<Vertex> landPath(Graph<Vertex, Double> g, List<Vertex> vertexList, Vertex vInitial, Vertex vFinal) throws NullVerticesException {
         Graph<Vertex, Double> g1 = g.clone();
 
@@ -37,12 +55,18 @@ public class ShortPaths {
                 }
             }
         }
-
         return calculateBestPath(g1, vertexList, vInitial, vFinal);
-
     }
 
-
+    /**
+     * Calculates the best path.
+     *
+     * @param graph      the graph
+     * @param vertexList the vertex list
+     * @param vInitial   the initial vertex
+     * @param vFinal     the final vertex
+     * @return the best path
+     */
     public static List<Vertex> calculateBestPath(Graph<Vertex, Double> graph, List<Vertex> vertexList, Vertex vInitial, Vertex vFinal) {
 
         List<LinkedList<Vertex>> permutations = new ArrayList<>();
@@ -74,13 +98,11 @@ public class ShortPaths {
             double min = Double.POSITIVE_INFINITY;
 
             for (LinkedList<Vertex> permutation : permutations) {
-
                 pathTotal.clear();
                 pathTotal.add(vInitial);
                 permutation.add(0, vInitial);
 
                 for (int i = 1; i < ((List<Vertex>) permutation).size(); i++) {
-
                     LinkedList<Vertex> shortestPath = new LinkedList<>();
                     Algorithms.shortestPath(graph, ((List<Vertex>) permutation).get(i - 1), ((List<Vertex>) permutation).get(i), Double::compare, Double::sum, 0.0, shortestPath);
                     shortestPath.removeFirst();
@@ -104,9 +126,15 @@ public class ShortPaths {
             }
             return saveTotalPath;
         }
-
     }
 
+    /**
+     * Does permutations on the list.
+     *
+     * @param original the vertex list
+     * @param start    the starting point
+     * @param consumer the consumer
+     */
     private static void permutation(List<Vertex> original, int start, Consumer<LinkedList<Vertex>> consumer) {
         Objects.requireNonNull(original);
         if (start == original.size()) {
@@ -121,6 +149,5 @@ public class ShortPaths {
         temp.set(start + 1, tempVal);
         consumer.accept(temp);
         permutation(temp, start + 1, consumer);
-
     }
 }

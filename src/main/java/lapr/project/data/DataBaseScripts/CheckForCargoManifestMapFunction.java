@@ -2,7 +2,7 @@ package lapr.project.data.DataBaseScripts;
 
 import lapr.project.data.DatabaseConnection;
 
-import java.sql.*;;
+import java.sql.*;
 
 public class CheckForCargoManifestMapFunction {
 
@@ -14,7 +14,17 @@ public class CheckForCargoManifestMapFunction {
     }
 
     //US407
-    public String callFunction(DatabaseConnection databaseConnection, String facilityID, java.sql.Date date) throws SQLException {
+
+    /**
+     * Calls the function that generates the loading and unloading map.
+     *
+     * @param databaseConnection the database connection
+     * @param facilityID         the facility ID
+     * @param date               the date
+     * @return the loading and unloading map
+     * @throws SQLException
+     */
+    public static String callFunction(DatabaseConnection databaseConnection, String facilityID, java.sql.Date date) throws SQLException {
         try (CallableStatement cstmt = databaseConnection.getConnection().prepareCall("{? = call fncCheckForCargoManifestMap(?,?)}")) {
 
             cstmt.registerOutParameter(1, Types.VARCHAR);

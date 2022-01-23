@@ -3,9 +3,7 @@ package lapr.project.ui;
 import lapr.project.controller.CheckForCargoManifestMapController;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.time.LocalDate;
-
 
 public class CheckForCargoManifestMapUI implements Runnable {
 
@@ -22,7 +20,6 @@ public class CheckForCargoManifestMapUI implements Runnable {
 
         try {
             String result = ctrl.callFunction(rPortID,rDate);
-
             System.out.println(result);
 
         } catch (Exception exception) {
