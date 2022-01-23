@@ -1,4 +1,4 @@
-package lapr.project.shared;
+package lapr.project.ui;
 
 import lapr.project.controller.App;
 import lapr.project.data.DatabaseConnection;

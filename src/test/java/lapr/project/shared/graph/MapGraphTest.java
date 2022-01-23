@@ -40,6 +40,8 @@ class MapGraphTest {
         Graph<String, Integer> g = new MapGraph<>(instance);
         assertEquals(instance.getClass(), g.getClass(), "The graphs should be from the same class");
         assertEquals(instance, g, "The graphs should have equal contents");
+        String mapTest = g.toString();
+        if(mapTest.isEmpty()) fail();
     }
 
     /**

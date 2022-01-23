@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.CreateFreightNetworkController;
+import lapr.project.data.CreateFreightNetworkController;
 import org.apache.commons.lang3.StringUtils;
 
 public class FreightNetworkUI implements Runnable {
