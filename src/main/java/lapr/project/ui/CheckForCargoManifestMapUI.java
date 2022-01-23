@@ -25,8 +25,8 @@ public class CheckForCargoManifestMapUI implements Runnable {
 
             System.out.println(result);
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         }
     }
 }
