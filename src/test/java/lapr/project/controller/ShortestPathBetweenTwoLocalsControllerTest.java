@@ -2,7 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.ui.ShortestPathBetweenTwoLocalsController;
 import lapr.project.shared.graph.Vertex;
-import lapr.project.utils.mappers.dto.VertexDto;
+import lapr.project.utils.mappers.dto.VertexDTO;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ class ShortestPathBetweenTwoLocalsControllerTest {
 
         try {
             shortestPathBetweenTwoLocalsController.resetListIndex(0);
-            List<VertexDto> vertexDtoList = shortestPathBetweenTwoLocalsController.getAllVerticesByIndex();
-            if (vertexDtoList.isEmpty()) fail();
+            List<VertexDTO> vertexDTOList = shortestPathBetweenTwoLocalsController.getAllVerticesByIndex();
+            if (vertexDTOList.isEmpty()) fail();
 
         } catch (Exception e) {
 
@@ -45,7 +45,7 @@ class ShortestPathBetweenTwoLocalsControllerTest {
     @Test
     void getPath() {
         try {
-            String path = shortestPathBetweenTwoLocalsController.getPath("Land Path", new VertexDto("City", "Lisbon"), new VertexDto("City", "Madrid"), new ArrayList<>());
+            String path = shortestPathBetweenTwoLocalsController.getPath("Land Path", new VertexDTO("City", "Lisbon"), new VertexDTO("City", "Madrid"), new ArrayList<>());
 
         } catch (Exception e) {
 
@@ -55,7 +55,7 @@ class ShortestPathBetweenTwoLocalsControllerTest {
     @Test
     void convertDtoIntoVertex() {
         try {
-            Vertex v = shortestPathBetweenTwoLocalsController.convertDtoIntoVertex(new VertexDto("Port", "Yah"));
+            Vertex v = shortestPathBetweenTwoLocalsController.convertDtoIntoVertex(new VertexDTO("Port", "Yah"));
 
         } catch (Exception e) {
 
@@ -76,7 +76,7 @@ class ShortestPathBetweenTwoLocalsControllerTest {
     @Test
     void verifyVertex() {
         try {
-            String v = shortestPathBetweenTwoLocalsController.verifyVertex(new VertexDto("Port", "Yah"));
+            String v = shortestPathBetweenTwoLocalsController.verifyVertex(new VertexDTO("Port", "Yah"));
 
         } catch (Exception e) {
 

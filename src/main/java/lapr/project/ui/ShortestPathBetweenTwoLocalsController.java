@@ -9,7 +9,7 @@ import lapr.project.shared.graph.Graph;
 import lapr.project.shared.graph.ShortPaths;
 import lapr.project.shared.graph.Vertex;
 import lapr.project.utils.mappers.VertexMapper;
-import lapr.project.utils.mappers.dto.VertexDto;
+import lapr.project.utils.mappers.dto.VertexDTO;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +25,7 @@ public class ShortestPathBetweenTwoLocalsController {
     private final LinkedList<List<Vertex>> vertexList;
     private int index = 0;
     private boolean buildGraph = false;
-    private List<VertexDto> vertexDtoList;
+    private List<VertexDTO> vertexDTOList;
 
     /**
      * Constructor.
@@ -35,7 +35,7 @@ public class ShortestPathBetweenTwoLocalsController {
         this.vertexList = new LinkedList<>();
         this.graph = freightNetwork.getGraph();
         this.vertexMapper = new VertexMapper();
-        this.vertexDtoList = new ArrayList<>();
+        this.vertexDTOList = new ArrayList<>();
     }
 
     /**
@@ -43,7 +43,7 @@ public class ShortestPathBetweenTwoLocalsController {
      *
      * @return a list of vertices
      */
-    public List<VertexDto> getAllVerticesByIndex() {
+    public List<VertexDTO> getAllVerticesByIndex() {
 
         if (!this.buildGraph) {
             constructList();
@@ -51,9 +51,9 @@ public class ShortestPathBetweenTwoLocalsController {
         }
 
         List<Vertex> listByIndex = vertexList.get(index);
-        this.vertexDtoList = vertexMapper.toDTO(listByIndex);
+        this.vertexDTOList = vertexMapper.toDTO(listByIndex);
         index++;
-        return vertexDtoList;
+        return vertexDTOList;
     }
 
     /**
@@ -107,21 +107,21 @@ public class ShortestPathBetweenTwoLocalsController {
      * Gets the path.
      *
      * @param pathOption           path option
-     * @param originVertexDto      the origin vertex
-     * @param endVertexDto         the end vertex
+     * @param originVertexDTO      the origin vertex
+     * @param endVertexDTO         the end vertex
      * @param intermediateVertices the intermediate vertices
      * @return the path (in a string)
      */
-    public String getPath(String pathOption, VertexDto originVertexDto, VertexDto endVertexDto, List<VertexDto> intermediateVertices) {
+    public String getPath(String pathOption, VertexDTO originVertexDTO, VertexDTO endVertexDTO, List<VertexDTO> intermediateVertices) {
 
         if (pathOption == null) {
             throw new NullPointerException("The entered path is null! There was an error while entering data!");
-        } else if (originVertexDto == null || endVertexDto == null) {
+        } else if (originVertexDTO == null || endVertexDTO == null) {
             throw new NullPointerException("The entered origin vertex or end vertex is null! There was an error while entering data!");
         }
 
-        Vertex originVertex = convertDtoIntoVertex(originVertexDto);
-        Vertex endVertex = convertDtoIntoVertex(endVertexDto);
+        Vertex originVertex = convertDtoIntoVertex(originVertexDTO);
+        Vertex endVertex = convertDtoIntoVertex(endVertexDTO);
 
         List<Vertex> intermediateVertexList = convertDtoListIntoVertexList(intermediateVertices);
 
@@ -176,7 +176,7 @@ public class ShortestPathBetweenTwoLocalsController {
      * @param vertexDto the vertex DTO
      * @return the vertex (success) or null (failed)
      */
-    public Vertex convertDtoIntoVertex(VertexDto vertexDto) {
+    public Vertex convertDtoIntoVertex(VertexDTO vertexDto) {
         for (Vertex v : graph.vertices()) {
             if (v.getName().equals(vertexDto.getName())) {
                 return v;
@@ -191,10 +191,10 @@ public class ShortestPathBetweenTwoLocalsController {
      * @param intermediateVertices the intermediate vertices
      * @return the vertex list
      */
-    public List<Vertex> convertDtoListIntoVertexList(List<VertexDto> intermediateVertices) {
+    public List<Vertex> convertDtoListIntoVertexList(List<VertexDTO> intermediateVertices) {
         List<Vertex> vertexList = new ArrayList<>();
 
-        for (VertexDto vDto : intermediateVertices) {
+        for (VertexDTO vDto : intermediateVertices) {
             for (Vertex v : graph.vertices()) {
                 if (v.getName().equals(vDto.getName())) {
                     vertexList.add(v);
@@ -210,7 +210,7 @@ public class ShortestPathBetweenTwoLocalsController {
      * @param vertexDto the vertex DTO
      * @return "City" (if the vertex is a city) or "Port" (if the vertex is a port)
      */
-    public String verifyVertex(VertexDto vertexDto) {
+    public String verifyVertex(VertexDTO vertexDto) {
         for (Vertex v : graph.vertices()) {
             if (v.getName().equals(vertexDto.getName())) {
                 if (v instanceof City) return "City";
