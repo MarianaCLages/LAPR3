@@ -1,0 +1,28 @@
+@startuml
+
+class CheckForCargoManifestMapUI {
+  + run()
+}
+
+class CheckForCargoManifestMapController {
+  + callFunction()
+}
+
+class CheckForCargoManifestMapFunction {
+  + callFunction()
+}
+
+class LocalDate {
+  + now()
+}
+
+class sql.Date {
+  +valueOf()
+}
+
+CheckForCargoManifestMapUI ..> CheckForCargoManifestMapController
+CheckForCargoManifestMapController ..> CheckForCargoManifestMapFunction
+CheckForCargoManifestMapUI -> LocalDate
+CheckForCargoManifestMapUI -> sql.Date
+
+@enduml

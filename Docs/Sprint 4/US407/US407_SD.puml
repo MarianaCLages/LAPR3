@@ -1,0 +1,36 @@
+@startuml
+autonumber
+
+actor "Port Manager" as ACT
+
+participant "CheckForCargoManifestMapUI" as UI
+participant "CheckForCargoManifestMapController" as CTRL
+participant "CheckForCargoManifestMapFunction" as FNC
+participant "java.sql.date" as DATESQL
+participant "LocalDate" as DATEJAVA
+
+activate ACT
+ACT -> UI : starts the process
+activate UI
+UI -> DATEJAVA : rLocalDate = now()
+activate DATEJAVA
+deactivate DATEJAVA
+UI -> DATESQL : rDate = valueOf(rLocalDate)
+activate DATESQL
+deactivate DATESQL
+UI -> ACT : requests facilityID input
+deactivate UI
+
+ACT -> UI : inputs facilityID
+activate UI
+UI -> CTRL : result = callFunction(rPortID, rDate)
+activate CTRL
+CTRL -> FNC : callFunction(DataBaseConnection, rPortID, rDate)
+activate FNC
+deactivate FNC
+deactivate CTRL
+UI -> ACT : prints out result
+deactivate UI
+deactivate ACT
+
+@enduml

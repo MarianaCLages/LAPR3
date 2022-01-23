@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="529px" preserveAspectRatio="none" style="width:1141px;height:529px;" version="1.1" viewBox="0 0 1141 529" width="1141px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="fe9a24b61i019" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0" />
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0" />
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3" />
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal" />
+        </filter>
+    </defs>
+    <g>
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="324.8125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="49" y="97.6094" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="151.0547" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="229" y="119.9609" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="121.0547" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="229" y="301.3672" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="60.3516" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="475" y="331.7188" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="802" y="362.0703" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="988" y="210.6641" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1088" y="150.3125" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="54" x2="54" y1="87.6094" y2="440.4219" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="233.5" x2="233.5" y1="87.6094" y2="440.4219" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="479.5" x2="479.5" y1="87.6094" y2="440.4219" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="807" x2="807" y1="87.6094" y2="440.4219" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="993" x2="993" y1="87.6094" y2="440.4219" />
+        <line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1093" x2="1093" y1="87.6094" y2="440.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86" x="8" y="84.5332">Port Manager</text>
+        <ellipse cx="54" cy="13" fill="#FEFECE" filter="url(#fe9a24b61i019)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <path d="M54,21 L54,48 M41,29 L67,29 M54,48 L41,63 M54,48 L67,63 " fill="none" filter="url(#fe9a24b61i019)" style="stroke: #A80036; stroke-width: 2.0;" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86" x="8" y="453.9551">Port Manager</text>
+        <ellipse cx="54" cy="467.0313" fill="#FEFECE" filter="url(#fe9a24b61i019)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;" />
+        <path d="M54,475.0313 L54,502.0313 M41,483.0313 L67,483.0313 M54,502.0313 L41,517.0313 M54,502.0313 L67,517.0313 " fill="none" filter="url(#fe9a24b61i019)" style="stroke: #A80036; stroke-width: 2.0;" />
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="207" x="128.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="193" x="135.5" y="72.5332">CheckForCargoManifestMapUI</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="207" x="128.5" y="439.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="193" x="135.5" y="460.9551">CheckForCargoManifestMapUI</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="257" x="349.5" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="243" x="356.5" y="72.5332">CheckForCargoManifestMapController</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="257" x="349.5" y="439.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="243" x="356.5" y="460.9551">CheckForCargoManifestMapController</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="250" x="680" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="236" x="687" y="72.5332">CheckForCargoManifestMapFunction</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="250" x="680" y="439.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="236" x="687" y="460.9551">CheckForCargoManifestMapFunction</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="94" x="944" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="951" y="72.5332">java.sql.date</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="94" x="944" y="439.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="951" y="460.9551">java.sql.date</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="78" x="1052" y="51" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="64" x="1059" y="72.5332">LocalDate</text>
+        <rect fill="#FEFECE" filter="url(#fe9a24b61i019)" height="31.6094" style="stroke: #A80036; stroke-width: 1.5;" width="78" x="1052" y="439.4219" /><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="64" x="1059" y="460.9551">LocalDate</text>
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="324.8125" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="49" y="97.6094" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="151.0547" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="229" y="119.9609" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="121.0547" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="229" y="301.3672" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="60.3516" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="475" y="331.7188" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="802" y="362.0703" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="988" y="210.6641" />
+        <rect fill="#FFFFFF" filter="url(#fe9a24b61i019)" height="30" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1088" y="150.3125" />
+        <polygon fill="#A80036" points="217,115.9609,227,119.9609,217,123.9609,221,119.9609" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="59" x2="223" y1="119.9609" y2="119.9609" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="66" y="115.1045">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="105" x="77" y="115.1045">starts the process</text>
+        <polygon fill="#A80036" points="1076,146.3125,1086,150.3125,1076,154.3125,1080,150.3125" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="239" x2="1082" y1="150.3125" y2="150.3125" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="246" y="145.4561">2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="109" x="257" y="145.4561">rLocalDate = now()</text>
+        <polygon fill="#A80036" points="976,206.6641,986,210.6641,976,214.6641,980,210.6641" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="239" x2="982" y1="210.6641" y2="210.6641" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="246" y="205.8076">3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="159" x="257" y="205.8076">rDate = valueOf(rLocalDate)</text>
+        <polygon fill="#A80036" points="70,267.0156,60,271.0156,70,275.0156,66,271.0156" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="64" x2="233" y1="271.0156" y2="271.0156" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="76" y="266.1592">4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="135" x="87" y="266.1592">requests facilityID input</text>
+        <polygon fill="#A80036" points="217,297.3672,227,301.3672,217,305.3672,221,301.3672" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="59" x2="223" y1="301.3672" y2="301.3672" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="66" y="296.5107">5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="88" x="77" y="296.5107">inputs facilityID</text>
+        <polygon fill="#A80036" points="463,327.7188,473,331.7188,463,335.7188,467,331.7188" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="239" x2="469" y1="331.7188" y2="331.7188" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="246" y="326.8623">6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="205" x="257" y="326.8623">result = callFunction(rPortID, rDate)</text>
+        <polygon fill="#A80036" points="790,358.0703,800,362.0703,790,366.0703,794,362.0703" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="485" x2="796" y1="362.0703" y2="362.0703" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="492" y="357.2139">7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="287" x="503" y="357.2139">callFunction(DataBaseConnection, rPortID, rDate)</text>
+        <polygon fill="#A80036" points="65,418.4219,55,422.4219,65,426.4219,61,422.4219" style="stroke: #A80036; stroke-width: 1.0;" />
+        <line style="stroke: #A80036; stroke-width: 1.0;" x1="59" x2="233" y1="422.4219" y2="422.4219" /><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="7" x="71" y="417.5654">8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="90" x="82" y="417.5654">prints out result</text>
+        <!--
+@startuml
+autonumber
+
+actor "Port Manager" as ACT
+
+participant "CheckForCargoManifestMapUI" as UI
+participant "CheckForCargoManifestMapController" as CTRL
+participant "CheckForCargoManifestMapFunction" as FNC
+participant "java.sql.date" as DATESQL
+participant "LocalDate" as DATEJAVA
+
+activate ACT
+ACT -> UI : starts the process
+activate UI
+UI -> DATEJAVA : rLocalDate = now()
+activate DATEJAVA
+deactivate DATEJAVA
+UI -> DATESQL : rDate = valueOf(rLocalDate)
+activate DATESQL
+deactivate DATESQL
+UI -> ACT : requests facilityID input
+deactivate UI
+
+ACT -> UI : inputs facilityID
+activate UI
+UI -> CTRL : result = callFunction(rPortID, rDate)
+activate CTRL
+CTRL -> FNC : callFunction(DataBaseConnection, rPortID, rDate)
+activate FNC
+deactivate FNC
+deactivate CTRL
+UI -> ACT : prints out result
+deactivate UI
+deactivate ACT
+
+@enduml
+
+PlantUML version 1.2018.14(Fri Dec 21 16:33:16 GMT 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.8.0_221-b11
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: Cp1252
+Language: pt
+Country: PT
+-->
+    </g>
+</svg>
