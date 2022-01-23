@@ -39,7 +39,7 @@ public class CalculateCenter {
             totalCenterZ = (Constants.C1Z74 * Constants.C1M74 + Constants.C2Z74 * Constants.C2M74 + Constants.C3Z74 * Constants.C3M74 + Constants.C4Z74 * Constants.C4M74) / Constants.MTOTAL74;
         }
 
-        sb.append("Vessel Type:" + vesselType + " total center is (" + decimalFormat.format(totalCenterX) + ";" + decimalFormat.format(totalCenterY) + ";"+decimalFormat.format(totalCenterZ) +")");
+        sb.append("\nVessel type: ").append(vesselType).append("\nCenter of mass: (").append(decimalFormat.format(totalCenterX)).append("; ").append(decimalFormat.format(totalCenterY)).append("; ").append(decimalFormat.format(totalCenterZ)).append(")");
 
         return sb.toString();
     }

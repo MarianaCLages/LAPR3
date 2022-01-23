@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class AuxiliaryPowerNeededForVoyageUI implements Runnable{
+public class AuxiliaryPowerNeededForVoyageUI implements Runnable {
 
+    AuxiliaryPowerNeededForVoyageController controller;
 
-    public AuxiliaryPowerNeededForVoyageUI(){
-        //Empty Constructor
+    public AuxiliaryPowerNeededForVoyageUI() {
+        controller = new AuxiliaryPowerNeededForVoyageController();
     }
+
     @Override
     public void run() {
-
-        AuxiliaryPowerNeededForVoyageController controller = new AuxiliaryPowerNeededForVoyageController();
         List<String> optionList = new ArrayList<>();
 
         optionList.add("-5 ºC");
@@ -50,10 +50,10 @@ public class AuxiliaryPowerNeededForVoyageUI implements Runnable{
 
                 do {
                     try {
-                        temperature = Double.parseDouble(Utils.readLineFromConsole("Please enter the temperature of the section: " + (j + 1)));
+                        temperature = Double.parseDouble(Utils.readLineFromConsole("Please, enter the temperature of the section: " + (j + 1)));
 
                     } catch (NumberFormatException ex2) {
-                        System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                        System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                         temperature = -99;
                     }
                 } while (temperature == -99);
@@ -66,7 +66,7 @@ public class AuxiliaryPowerNeededForVoyageUI implements Runnable{
                         System.out.println();
 
                     } catch (NumberFormatException ex2) {
-                        System.out.println("Please enter a number! (Don't enter a letter nor symbol!)");
+                        System.out.println("Please enter a number! (Don't enter a letter nor a symbol!)");
                         duration = -99;
                     }
                 } while (duration == -99);
@@ -82,14 +82,12 @@ public class AuxiliaryPowerNeededForVoyageUI implements Runnable{
                 }
                 sb.append("\n");
             }
-
             System.out.println(sb);
+            System.out.println("\nOperation Success!");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("\nOperation failed! Please try again.");
         }
-
     }
-
-
 }

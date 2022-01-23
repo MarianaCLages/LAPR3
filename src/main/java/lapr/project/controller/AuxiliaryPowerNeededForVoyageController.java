@@ -20,9 +20,9 @@ public class AuxiliaryPowerNeededForVoyageController {
      * @return a string with all the result values
      */
     public String calculateSupplyNeededForMinus5(int numberOfContainers, double temperature, int journeyTime) {
-        return "The Supplies needed for the trip is " +
+        return "The amount of auxiliary power equipment needed for the trip is " +
                 PhysicsCalculation.calculateSuppliesNeededForMinus5(numberOfContainers, temperature, journeyTime) +
-                ".";
+                " generator(s).";
     }
 
     /**
@@ -34,8 +34,8 @@ public class AuxiliaryPowerNeededForVoyageController {
      * @return a string with all the result values
      */
     public String calculateSupplyNeededFor7(int numberOfContainers, double temperature, int journeyTime) {
-        return "The Supplies needed for the trip is " +
+        return "The amount of auxiliary power equipment needed for the trip is " +
                 PhysicsCalculation.calculateSuppliesNeededFor7(numberOfContainers, temperature, journeyTime) +
-                ".";
+                " generator(s).";
     }
 }
