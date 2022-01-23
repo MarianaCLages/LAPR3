@@ -77,9 +77,15 @@ int main(void) {
 				break;
 
 			} else {
-				printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energy_needed(container_array, x, y, z));
-				count++;
-				break;
+				float energyNeeded = energy_needed(container_array, x, y, z);
+				
+				if(energyNeeded == -1){
+					printf("\nThe Container is not refrigerated!\n");
+				} else {
+					printf("\nEnergy needed to keep the container at its required temperature: %.2f J\n\n", energyNeeded);
+					count++;
+					break;
+				}
 			}
 			
 			case(3):
