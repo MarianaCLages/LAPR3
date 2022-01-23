@@ -8,11 +8,24 @@ import java.sql.SQLException;
 
 public class CheckForCargoManifestMapController {
 
-    CheckForCargoManifestMapFunction function = new CheckForCargoManifestMapFunction();
-    DatabaseConnection databaseConnection = App.getInstance().getDatabaseConnection();
+    private final DatabaseConnection databaseConnection;
 
+    /**
+     * Constructor.
+     */
+    public CheckForCargoManifestMapController() {
+        this.databaseConnection = App.getInstance().getDatabaseConnection();
+    }
 
+    /**
+     * Gets the function that generates the loading and unloading map.
+     *
+     * @param rPortID the port ID
+     * @param rDate   the date
+     * @return the loading and unloading map
+     * @throws SQLException
+     */
     public String callFunction(String rPortID, Date rDate) throws SQLException {
-        return function.callFunction(databaseConnection,rPortID,rDate);
+        return CheckForCargoManifestMapFunction.callFunction(databaseConnection, rPortID, rDate);
     }
 }

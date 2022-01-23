@@ -58,10 +58,10 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
                     Object auxObj;
 
                     if (!optionFirstVertex) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVertexesByIndex(), "\nPlease choose the departure vertex from the valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the departure vertex from the valid option of the list");
                         optionFirstVertex = true;
                     } else {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVertexesByIndex(), "\nPlease choose the arrival vertex from the valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose the arrival vertex from the valid option of the list");
                     }
 
                     if (auxObj == null) {
@@ -76,7 +76,7 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
                     nextOption = 1;
 
                     while (desiredVertex.equals("36")) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVertexesByIndex(), "\nPlease choose one valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
 
                         if (auxObj == null) {
                             desiredVertex = String.valueOf(36);
@@ -122,13 +122,13 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
             try {
                 numberVertexes = Utils.readIntegerFromConsole("\nPlease enter the number of intermediate vertexes that you wish to have in the path: ");
 
-                if (numberVertexes < 0 || numberVertexes > controller.graphMaxVertexes()) {
-                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertexes has intermediate points or even more intermediate points than the graph max vertexes! (Graph max vertexes: " + (controller.graphMaxVertexes() - 2) + ")");
+                if (numberVertexes < 0 || numberVertexes > controller.graphMaxVertices()) {
+                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertexes has intermediate points or even more intermediate points than the graph max vertexes! (Graph max vertexes: " + (controller.graphMaxVertices() - 2) + ")");
                 }
 
                 for (int indexOption = 0; indexOption < numberVertexes; indexOption++) {
 
-                    Object auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVertexesByIndex(), "\nPlease choose one valid option of the list");
+                    Object auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
 
                     if (auxObj == null) {
                         intermediateVertex = String.valueOf(36);
@@ -140,7 +140,7 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
                     }
 
                     while (intermediateVertex.equals("36")) {
-                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVertexesByIndex(), "\nPlease choose one valid option of the list");
+                        auxObj = Utils.showAndSelectOneWithMessage(controller.getAllVerticesByIndex(), "\nPlease choose one valid option of the list");
 
                         if (auxObj == null) {
                             intermediateVertex = String.valueOf(36);

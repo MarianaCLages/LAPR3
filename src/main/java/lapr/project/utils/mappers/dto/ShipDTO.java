@@ -25,7 +25,7 @@ public class ShipDTO {
     /**
      * Returns the textual description of the ship info in the format: MMSI, total number of movements, travelled distance, delta distance.
      *
-     * @return the Ship's characteristics
+     * @return the ship's characteristics
      */
     @Override
     public String toString() {

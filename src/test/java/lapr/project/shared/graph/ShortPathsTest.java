@@ -72,6 +72,29 @@ class ShortPathsTest {
     }
 
     @Test
+    void onlyOneIntermedianTest() throws NullVerticesException {
+        List<Vertex> list = new ArrayList<>();
+        list.add(new Port("17386", "Barcelona", "Europe", "Spain", new FacilityLocation(-8.7, 41.18333333), 500));
+
+
+        Vertex vInitial = new Port("13012", "Leixoes", "Europe", "Portugal", new FacilityLocation(-8.7, 41.18333333), 500);
+        Vertex vFinal = new Port("21457", "Monaco", "Europe", "Monaco", new FacilityLocation(-8.7, 41.18333333), 500);
+
+        LinkedList<Vertex> actual = (LinkedList<Vertex>) ShortPaths.seaPath(f.getGraph(), list, vInitial, vFinal);
+
+        LinkedList<Vertex> expected = new LinkedList<>();
+
+        expected.add(new Port("13012", "Leixoes", "Europe", "Portugal", new FacilityLocation(-8.7, 41.18333333), 500));
+        expected.add(new Port("13012", "Barcelona", "Europe", "Portugal", new FacilityLocation(-8.7, 41.18333333), 500));
+        expected.add(new Port("13012", "Monaco", "Europe", "Portugal", new FacilityLocation(-8.7, 41.18333333), 500));
+
+        for (int i = 0; i < expected.size(); i++) {
+            Assertions.assertEquals(expected.iterator().next(), actual.iterator().next());
+        }
+
+    }
+
+    @Test
     void getPathTest() {
         ArrayList<Vertex> list = new ArrayList<>();
         list.add(new City("Lisbon", 38.71666667, -9.133333, new Country("Portugal", "PT".toCharArray(), "PTR".toCharArray(), 10.31, Continent.EUROPE)));
