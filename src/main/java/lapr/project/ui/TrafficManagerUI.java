@@ -25,12 +25,12 @@ public class TrafficManagerUI implements Runnable {
         //SPRINT 3
         options.add(new MenuItem("Build a freight network", new FreightNetworkUI()));
         options.add(new MenuItem("Colour the map using as few colours as possible", new ColourGraphUI()));
-        options.add(new MenuItem("Get the 'N' closest places per city/port",new GraphNClosestPlacesUI()));
+        options.add(new MenuItem("Get the 'N' closest places per city/port", new GraphNClosestPlacesUI()));
 
         //SPRINT 4
         options.add(new MenuItem("Get the 'N' more critical ports", new PortCentralityUI()));
-        options.add(new MenuItem("Get the shortesth path between two locals",new ShorthestPathBetweenTwoLocalsUI()));
-        options.add(new MenuItem("Most efficient circuit", new MostEfficientCircuitUI()));
+        options.add(new MenuItem("Get the shortest path between two locals", new ShortestPathBetweenTwoLocalsUI()));
+        options.add(new MenuItem("Get the most efficient circuit", new MostEfficientCircuitUI()));
 
         int option;
         do {

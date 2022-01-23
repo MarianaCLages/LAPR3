@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
+public class ShortestPathBetweenTwoLocalsUI implements Runnable {
 
     public final ShortestPathBetweenTwoLocalsController controller;
 
-    public ShorthestPathBetweenTwoLocalsUI() {
+    public ShortestPathBetweenTwoLocalsUI() {
         controller = new ShortestPathBetweenTwoLocalsController();
     }
 
@@ -120,10 +120,10 @@ public class ShorthestPathBetweenTwoLocalsUI implements Runnable {
 
         do {
             try {
-                numberVertexes = Utils.readIntegerFromConsole("\nPlease enter the number of intermediate vertexes that you wish to have in the path: ");
+                numberVertexes = Utils.readIntegerFromConsole("\nPlease enter the number of intermediate vertices that you wish to have in the path: ");
 
                 if (numberVertexes < 0 || numberVertexes > controller.graphMaxVertices()) {
-                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertexes has intermediate points or even more intermediate points than the graph max vertexes! (Graph max vertexes: " + (controller.graphMaxVertices() - 2) + ")");
+                    throw new NullPointerException("\nPlease enter a valid number! You can not have negative vertices has intermediate points or even more intermediate points than the graph max vertexes! (Graph max vertexes: " + (controller.graphMaxVertices() - 2) + ")");
                 }
 
                 for (int indexOption = 0; indexOption < numberVertexes; indexOption++) {
