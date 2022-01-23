@@ -103,12 +103,15 @@ public class EnergyNeededToSupplyUI implements Runnable {
 
             if (Objects.requireNonNull(index).equals("-5 ºC")) {
                 System.out.println(controller.calculateToMinus5(section, front, side, top));
+                System.out.println("\nOperation success!\n");
             } else {
                 System.out.println(controller.calculateTo7(section, front, side, top));
+                System.out.println("\nOperation success!\n");
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            System.out.println("\nOperation failed!\n");
         }
     }
 }

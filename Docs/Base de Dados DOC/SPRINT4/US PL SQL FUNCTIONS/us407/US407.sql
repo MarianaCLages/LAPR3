@@ -167,13 +167,7 @@ delete from CONTAINER  where CONTAINERID = '88874';
 delete from CONTAINER  where CONTAINERID = '88875';
 delete from CONTAINER  where CONTAINERID = '88876';
 delete from CARGOMANIFEST WHERE CARGOMANIFESTID = '304';
-
-
 commit;
-
-
-
-
 
 INSERT INTO CONTAINER VALUES('99991','28VH',2,2,2);
 INSERT INTO CONTAINER VALUES('99992','28VH',2,2,2);
@@ -211,6 +205,10 @@ delete from EMPLOYEE where (EMPLOYEE.ID = '108');
 delete from EMPLOYEE where (EMPLOYEE.ID = '109');
 
 commit;
+
+
+--Test the function, it is necessary to turn on the dbms output
+
 declare
     result VARCHAR2(32767);
     dateInput DATE := TO_DATE('2022/01/23', 'yyyy/mm/dd');

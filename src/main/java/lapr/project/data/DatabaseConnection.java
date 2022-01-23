@@ -26,16 +26,17 @@ public class DatabaseConnection {
             connection = oracleDataSource.getConnection(username, password);
 
         } catch (SQLException e) {
-            Logger.getLogger(DatabaseConnection.class.getName())
-                    .log(Level.SEVERE, null, e);
-            System.err.format("SQL State: %s\n%s", e.getSQLState(),
-                    e.getMessage());
+            System.out.println("\nThere was an error while trying to connect to the database! Please verify if you have your internet on!");
         }
     }
 
     public Connection getConnection() {
-        if (connection == null) {
-            throw new RuntimeException("Connection does not exit");
+        try {
+            if (connection == null) {
+                throw new RuntimeException("Connection does not exit");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
         return connection;
     }

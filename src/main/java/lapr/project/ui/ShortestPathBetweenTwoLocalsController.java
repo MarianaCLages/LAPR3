@@ -63,7 +63,7 @@ public class ShortestPathBetweenTwoLocalsController {
         List<Vertex> auxList = new ArrayList<>();
         int auxIndex = 0;
         for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 35; j++) {
+            for (int j = 0; j < (graph.numVertices()/4); j++) {
                 auxList.add(graph.vertex(auxIndex));
                 auxIndex++;
             }
